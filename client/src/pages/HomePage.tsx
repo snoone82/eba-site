@@ -28,8 +28,7 @@ import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-hero-bg-kAgYUpyRruMzKNs2oG45FN.webp";
-// TODO(eba): the Manus export did not include this bitmap. Drop the real portrait
-// at client/public/mark-portrait.jpg (or update this path) — it 404s until then.
+// Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
 const MARK_IMG = "/mark-portrait.jpg";
 const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
 const ACADEMY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-academy-section-itC8hxihaXFiQ5LKou8GLG.webp";

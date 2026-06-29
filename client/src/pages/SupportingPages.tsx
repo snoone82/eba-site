@@ -25,8 +25,7 @@ import {
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 
-// TODO(eba): the Manus export did not include this bitmap. Drop the real portrait
-// at client/public/mark-portrait.jpg (or update this path) — it 404s until then.
+// Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
 const MARK_IMG = "/mark-portrait.jpg";
 
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
