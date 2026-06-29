@@ -21,6 +21,7 @@ import {
   isPlaceholder,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
+import { track } from "@/lib/track";
 
 function LegalNav({ active }: { active: string }) {
   const [scrolled, setScrolled] = useState(false);
@@ -58,7 +59,7 @@ function LegalNav({ active }: { active: string }) {
             </Link>
           ))}
           <span>
-            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: RUST, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
@@ -178,6 +179,8 @@ export function PrivacyPolicyPage() {
             <ul style={{ ...bodyText, paddingLeft: "24px", margin: "0 0 16px" }}>
               <li style={{ marginBottom: "8px" }}>Direct interactions — when you complete a contact form, register your interest, or enrol in the Academy</li>
               <li style={{ marginBottom: "8px" }}>Automated technologies — cookies and similar tracking technologies when you visit our website (see Section 7)</li>
+              {/* TODO(eba): confirm privacy policy mentions analytics with your DPO/legal. */}
+              <li style={{ marginBottom: "8px" }}>Privacy-first, cookieless analytics — we use Vercel Analytics and Plausible to measure aggregate website usage and traffic sources. These set no cookies and collect no personally identifiable information</li>
               <li style={{ marginBottom: "8px" }}>Third parties — our course platform (Kajabi) when you purchase or access our programmes</li>
             </ul>
           </LegalSection>

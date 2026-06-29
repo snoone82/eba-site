@@ -9,6 +9,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM } from "@/lib/constants";
+import { track } from "@/lib/track";
 
 const NAV_LINKS = [
   { label: "Academy", href: "/academy" },
@@ -163,6 +164,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
             target="_blank"
             rel="noopener noreferrer"
             aria-disabled={!ENROL_READY || undefined}
+            onClick={() => track("cta_join_cohort_nav")}
             style={{
               display: "inline-block",
               background: RUST, color: "#fff",

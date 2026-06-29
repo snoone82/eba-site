@@ -23,6 +23,7 @@ import {
   isPlaceholder,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
+import { track } from "@/lib/track";
 
 // TODO(eba): the Manus export did not include this bitmap. Drop the real portrait
 // at client/public/mark-portrait.jpg (or update this path) — it 404s until then.
@@ -105,7 +106,7 @@ function NavBar({ active }: { active: string }) {
             </Link>
           ))}
           <span>
-            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: RUST, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
@@ -723,7 +724,7 @@ export function DocumentsPage() {
           <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
             <strong>Academy members receive the complete document library as part of their membership</strong> — no additional purchase required.
           </p>
-          <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+          <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "documents" })} style={{
             background: "#fff", color: RUST, textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "12px",
             padding: "8px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0,
@@ -878,7 +879,7 @@ export function DocumentsPage() {
                     Or join the Academy and receive all 380 documents as part of your membership.
                   </p>
                 </div>
-                <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+                <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "documents" })} style={{
                   background: RUST, color: "#fff", textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0,

@@ -25,6 +25,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
+import { track, getStoredUtm } from "@/lib/track";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-hero-bg-kAgYUpyRruMzKNs2oG45FN.webp";
 // TODO(eba): the Manus export did not include this bitmap. Drop the real portrait
@@ -93,9 +94,15 @@ function LeadMagnetForm() {
       const res = await fetch(FORM_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, source: "lead-magnet:business-health-check" }),
+        body: JSON.stringify({
+          name,
+          email,
+          source: "lead-magnet:business-health-check",
+          ...getStoredUtm(),
+        }),
       });
       if (!res.ok) throw new Error(`Request failed (${res.status})`);
+      track("lead_health_check_submit");
       setSubmitted(true);
     } catch {
       setError("Something went wrong. Please try again, or email us directly.");
@@ -359,6 +366,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = "0.88")}
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                onClick={() => track("cta_join_cohort_nav")}
               >
                 {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
               </a>
@@ -460,6 +468,7 @@ export default function HomePage() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
                 onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+                onClick={() => track("cta_join_cohort_hero")}
               >
                 {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
@@ -472,6 +481,7 @@ export default function HomePage() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "#fff"; }}
                 onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; }}
+                onClick={() => track("cta_explore_tools_hero")}
               >
                 Explore the AI Tools
               </Link>
@@ -871,6 +881,7 @@ export default function HomePage() {
               }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                onClick={() => track("cta_enterprise_enquiry")}
               >
                 Enquire about enterprise deployment →
               </Link>
@@ -960,6 +971,7 @@ export default function HomePage() {
           }}
             onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
             onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+            onClick={() => track("cta_join_cohort_footer")}
           >
             {ENROL_READY ? "Join the founding cohort →" : ENROL_PENDING_LABEL}
           </a>

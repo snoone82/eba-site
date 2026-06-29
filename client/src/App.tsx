@@ -3,6 +3,8 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { Route, Switch, useLocation } from "wouter";
 import { useEffect } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 
@@ -60,6 +62,8 @@ function App() {
           <ScrollToTop />
           <Router />
           <CookieConsentBanner />
+          <Analytics />
+          <SpeedInsights />
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

@@ -1,7 +1,11 @@
 import { createRoot, hydrateRoot } from "react-dom/client";
 import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
+import { captureUtm } from "./lib/track";
 import "./index.css";
+
+// Persist any ?utm_* campaign params for this visit before the app renders.
+captureUtm();
 
 const container = document.getElementById("root")!;
 const app = (

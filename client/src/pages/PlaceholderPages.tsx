@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { MobileNav } from "@/components/MobileNav";
 import { NAVY, CREAM, RUST, OAT, ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
+import { track } from "@/lib/track";
 
 function PlaceholderNav({ active }: { active: string }) {
   const links = [
@@ -36,7 +37,7 @@ function PlaceholderNav({ active }: { active: string }) {
             {l.label}
           </Link>
         ))}
-        <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+        <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
           background: RUST, color: "#fff", textDecoration: "none",
           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
           padding: "9px 20px", letterSpacing: "0.06em",

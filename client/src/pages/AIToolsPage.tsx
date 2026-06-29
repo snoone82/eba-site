@@ -24,6 +24,7 @@ import {
   isPlaceholder,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
+import { track } from "@/lib/track";
 
 const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
 
@@ -402,7 +403,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
                 {label}
               </Link>
             ))}
-            <span><a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+            <span><a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: RUST, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
@@ -537,6 +538,7 @@ export default function AIToolsPage() {
                         }}
                           onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                          onClick={() => track("cta_tool_checkout", { tool: tool.label })}
                         >
                           Buy now →
                         </a>
@@ -549,6 +551,7 @@ export default function AIToolsPage() {
                         }}
                           onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                          onClick={() => track("cta_tool_detail", { tool: tool.label })}
                         >
                           See full details & pricing →
                         </Link>
@@ -589,6 +592,7 @@ export default function AIToolsPage() {
                         }}
                           onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                          onClick={() => track("cta_tool_checkout", { tool: tool.label })}
                         >
                           Buy now →
                         </a>
@@ -601,6 +605,7 @@ export default function AIToolsPage() {
                         }}
                           onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                          onClick={() => track("cta_tool_detail", { tool: tool.label })}
                         >
                           See full details & pricing →
                         </Link>

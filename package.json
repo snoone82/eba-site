@@ -13,6 +13,8 @@
   "dependencies": {
     "@radix-ui/react-slot": "^1.1.1",
     "@radix-ui/react-tooltip": "^1.1.6",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.469.0",
@@ -37,10 +39,16 @@
   },
   "reactSnap": {
     "source": "dist",
-    "minifyHtml": { "collapseWhitespace": false, "removeComments": false },
+    "minifyHtml": {
+      "collapseWhitespace": false,
+      "removeComments": false
+    },
     "inlineCss": false,
     "waitFor": 1000,
-    "puppeteerArgs": ["--no-sandbox", "--disable-setuid-sandbox"],
+    "puppeteerArgs": [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ],
     "include": [
       "/",
       "/academy",

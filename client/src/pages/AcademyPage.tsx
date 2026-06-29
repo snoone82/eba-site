@@ -24,6 +24,7 @@ import {
   isPlaceholder,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
+import { track } from "@/lib/track";
 
 const ACADEMY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-academy-section-itC8hxihaXFiQ5LKou8GLG.webp";
 
@@ -176,12 +177,12 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
                 {label}
               </Link>
             ))}
-            <span><a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" style={{
+            <span><a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: RUST, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
             }}>
-              Join the Academy →
+              {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
             </a></span>
           </div>
         </div>
@@ -229,7 +230,7 @@ export default function AcademyPage() {
                 Built from 15 years of running one of the UK's most respected M&E engineering groups — including six UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-                <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+                <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
                   background: RUST, color: "#fff", textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
@@ -502,7 +503,7 @@ export default function AcademyPage() {
                       </div>
                     ))}
                   </div>
-                  <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+                  <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
                     background: popular ? RUST : "transparent",
                     color: popular ? "#fff" : NAVY,
                     border: popular ? "none" : `2px solid ${NAVY}`,
