@@ -12,9 +12,9 @@ import { Helmet } from "react-helmet-async";
 
 export const SITE_URL = "https://eba.academy";
 export const SITE_NAME = "The Engineering Business Academy";
-// TODO(eba): create a 1200×630 og-image.png (navy bg, EBA logo, rust accent,
-// headline "The business programme built for M&E engineering contractors")
-// and place it at client/public/og-image.png.
+// On-brand 1200×630 og-image lives at client/public/og-image.png (served at /og-image.png).
+// This is an absolute eba.academy URL, so social link previews resolve once the custom
+// domain is connected. TODO(eba): swap in a richer photo/hero version if desired.
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 
 export interface SeoMeta {

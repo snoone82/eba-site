@@ -19,9 +19,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
 
     <!-- Plausible — privacy-first, cookieless analytics for custom events.
-         TODO(eba): confirm the Plausible account + domain. Until the site is added
-         in Plausible this script 404s harmlessly and track() no-ops. -->
-    <script defer data-domain="eba.academy" src="https://plausible.io/js/script.js"></script>
+         data-domain lists both the live Vercel URL (works now) and the future
+         custom domain, so events attribute correctly before and after eba.academy
+         is connected. Create the matching site(s) at plausible.io to see data.
+         Until then this script 404s harmlessly and track() no-ops. -->
+    <script defer data-domain="eba.academy,eba-site.vercel.app" src="https://plausible.io/js/script.js"></script>
   </head>
 
   <body>
