@@ -79,7 +79,7 @@ export function EBALogo({
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-label="The Engineering Business Academy"
-      style={{ display: "block" }}
+      style={{ display: "block", maxWidth: "100%", height: "auto" }}
     >
       {/* ── ICON MARK ── */}
       <rect width={iconW} height={iconH} fill={NAVY} />

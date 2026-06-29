@@ -66,8 +66,8 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
         transition: "background 0.3s ease, border-color 0.3s ease",
       }}>
         {/* Logo */}
-        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <EBALogo height={34} light={true} variant="icon" />
+        <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", minWidth: 0, flexShrink: 1, marginRight: "12px" }}>
+          <EBALogo height={32} light={true} />
         </Link>
 
         {/* Hamburger button */}
