@@ -390,7 +390,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               { label: "Academy", href: "/academy" },
               { label: "AI Tools", href: "/ai-tools" },
               { label: "Documents", href: "/documents" },
-              { label: "About", href: "/about" },
+              { label: "Our Story", href: "/our-story" },
               { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
@@ -737,7 +737,7 @@ export default function AIToolsPage() {
               <EBALogo height={38} light={true} />
             </Link>
             <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
-              {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+              {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
                 <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
                   {label}
                 </Link>

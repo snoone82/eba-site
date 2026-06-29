@@ -166,7 +166,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             <EBALogo height={38} light={true} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-            {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+            {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/academy" ? "#fff" : "rgba(255,255,255,0.7)",
                 textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
@@ -530,7 +530,7 @@ export default function AcademyPage() {
               <EBALogo height={38} light={true} />
             </Link>
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-              {[{ label: "Home", href: "/" }, { label: "AI Tools", href: "/ai-tools" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+              {[{ label: "Home", href: "/" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
                 <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
                   {label}
                 </Link>

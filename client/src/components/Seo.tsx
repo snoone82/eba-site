@@ -55,11 +55,11 @@ export const PAGE_SEO = {
       "An AI assistant trained on your company's HSEQ documentation. Your engineers ask, it answers instantly and accurately — in your firm's own voice.",
     path: "/ai-tools/compliance-chatbot",
   },
-  about: {
-    title: "About Mark Poulton & The Engineering Business Academy",
+  ourStory: {
+    title: "Our Story — Mark Poulton & The Engineering Business Academy",
     description:
-      "EBA is built by Mark Poulton, who grew a single M&E firm into a multi-division engineering group across the UK and Poland — and rebuilt it after a pre-pack.",
-    path: "/about",
+      "Why EBA exists: Mark Poulton built and rebuilt a multi-division M&E engineering group across the UK and Poland — the operational experience behind the Academy.",
+    path: "/our-story",
   },
   mentorship: {
     title: "Mentorship — Direct Access to Mark Poulton | EBA",

@@ -1,7 +1,7 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, useLocation } from "wouter";
+import { Route, Switch, useLocation, Redirect } from "wouter";
 import { useEffect } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
@@ -20,7 +20,7 @@ function ScrollToTop() {
 import HomePage from "@/pages/HomePage";
 import AcademyPage from "@/pages/AcademyPage";
 import AIToolsPage from "@/pages/AIToolsPage";
-import { AboutPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
+import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
 
@@ -35,7 +35,9 @@ function Router() {
       <Route path={"/ai-tools"} component={AIToolsPage} />
       <Route path={"/ai-tools/om-manual"} component={AIToolsPage} />
       <Route path={"/ai-tools/compliance-chatbot"} component={AIToolsPage} />
-      <Route path={"/about"} component={AboutPage} />
+      <Route path={"/our-story"} component={OurStoryPage} />
+      {/* Legacy /about → /our-story (client-side; a 308 redirect is also set in vercel.json) */}
+      <Route path={"/about"}>{() => <Redirect to="/our-story" replace />}</Route>
       <Route path={"/documents"} component={DocumentsPage} />
       <Route path={"/contact"} component={ContactPage} />
       <Route path={"/mentorship"} component={MentorshipPage} />

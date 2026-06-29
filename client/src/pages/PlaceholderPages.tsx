@@ -1,14 +1,19 @@
 import { Link } from "wouter";
+import { useState } from "react";
 import { MobileNav } from "@/components/MobileNav";
-import { NAVY, CREAM, RUST, OAT, ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL } from "@/lib/constants";
+import {
+  NAVY, CREAM, RUST, OAT,
+  ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
+  MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
+} from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
-import { track } from "@/lib/track";
+import { track, getStoredUtm } from "@/lib/track";
 
 function PlaceholderNav({ active }: { active: string }) {
   const links = [
     { href: "/academy", label: "Academy" },
     { href: "/ai-tools", label: "AI Tools" },
-    { href: "/about", label: "About" },
+    { href: "/our-story", label: "Our Story" },
     { href: "/documents", label: "Documents" },
     { href: "/contact", label: "Contact" },
   ];
@@ -107,6 +112,203 @@ function PlaceholderFooter() {
   );
 }
 
+// ── Mentor availability + waitlist (real scarcity, honest fail-safe) ──────────
+function MentorWaitlist() {
+  const openIntake = MENTOR_INTAKES.find((m) => m.status === "open");
+  const openMonth = openIntake?.label;
+  const [selectedMonth, setSelectedMonth] = useState(openMonth || MENTOR_INTAKES[0]?.label || "");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const formReady = !isPlaceholder(FORM_ENDPOINT);
+
+  const choose = (month: string, isOpen: boolean) => {
+    setSelectedMonth(month);
+    if (isOpen) track("cta_mentor_enrol", { month });
+    const el = document.getElementById("mentor-waitlist");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email || !name) return;
+    setError("");
+    setLoading(true);
+    try {
+      const res = await fetch(FORM_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          interest: "mentorship",
+          month: selectedMonth,
+          ...getStoredUtm(),
+        }),
+      });
+      if (!res.ok) throw new Error(`Request failed (${res.status})`);
+      track("mentor_waitlist_submit", { month: selectedMonth });
+      setSubmitted(true);
+    } catch {
+      setError("Something went wrong. Please try again, or use the contact form.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%", background: "#fff", border: `1px solid rgba(27,38,50,0.2)`,
+    padding: "13px 16px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
+    color: NAVY, outline: "none", boxSizing: "border-box",
+  };
+
+  return (
+    <section style={{ background: OAT, padding: "80px 40px" }}>
+      <div style={{ maxWidth: "880px", margin: "0 auto" }}>
+        {/* Honest scarcity line — capacity, not fake history */}
+        <span style={{
+          display: "inline-block", background: RUST, color: "#fff",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
+          letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
+        }}>Availability</span>
+        <h2 style={{
+          fontFamily: "'Playfair Display', serif", fontWeight: 800,
+          fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+          color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
+        }}>
+          Mentorship is deliberately limited.
+        </h2>
+        <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.7, maxWidth: "640px", margin: "0 0 40px" }}>
+          So Mark can give real 1:1 time, each cohort is{" "}
+          {isPlaceholder(MENTOR_CAPACITY) ? "kept deliberately small" : `capped at ${MENTOR_CAPACITY}`}.
+          When a month is full, it's full.{openMonth ? ` The next intake is ${openMonth}.` : ""}
+        </p>
+
+        {/* Intake rows */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "56px" }}>
+          {MENTOR_INTAKES.map((intake) => {
+            const isOpen = intake.status === "open";
+            const isFull = intake.status === "full";
+            const rowBg = isOpen ? "#fff" : isFull ? NAVY : "#fff";
+            const borderLeft = isOpen
+              ? `3px solid ${RUST}`
+              : isFull
+                ? `3px solid rgba(163,81,57,0.4)`
+                : `3px solid ${OAT}`;
+            const monthColor = isFull ? "#fff" : NAVY;
+            const statusText = isOpen
+              ? "Now enrolling — limited places"
+              : isFull
+                ? "Fully booked"
+                : "Register interest";
+            const statusColor = isOpen ? RUST : isFull ? "rgba(238,233,223,0.7)" : "rgba(27,38,50,0.55)";
+            return (
+              <div key={intake.label} style={{
+                background: rowBg, borderLeft, border: isOpen ? `1px solid ${RUST}` : "1px solid rgba(27,38,50,0.08)",
+                padding: "20px 24px", display: "flex", flexWrap: "wrap", alignItems: "center",
+                justifyContent: "space-between", gap: "12px",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                  {isFull && (
+                    <span style={{ width: "9px", height: "9px", background: RUST, display: "inline-block", flexShrink: 0 }} />
+                  )}
+                  <span style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.15rem", color: monthColor }}>
+                    {intake.label}
+                  </span>
+                  <span style={{
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    letterSpacing: "0.06em", textTransform: "uppercase", color: statusColor,
+                  }}>
+                    {statusText}
+                  </span>
+                </div>
+                {isFull ? (
+                  <button onClick={() => choose(intake.label, false)} style={{
+                    background: "transparent", color: "rgba(238,233,223,0.8)", border: "1px solid rgba(238,233,223,0.4)",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
+                  }}>
+                    Join the waitlist →
+                  </button>
+                ) : isOpen ? (
+                  <button onClick={() => choose(intake.label, true)} style={{
+                    background: RUST, color: "#fff", border: "none",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+                    letterSpacing: "0.04em", padding: "10px 22px", cursor: "pointer",
+                  }}>
+                    Register for this intake →
+                  </button>
+                ) : (
+                  <button onClick={() => choose(intake.label, false)} style={{
+                    background: "transparent", color: NAVY, border: `1px solid ${NAVY}`,
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
+                  }}>
+                    Register interest →
+                  </button>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Waitlist form */}
+        <div id="mentor-waitlist" style={{ background: NAVY, padding: "40px", maxWidth: "560px", scrollMarginTop: "80px" }}>
+          {!formReady ? (
+            <>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 12px" }}>
+                Registration opening soon.
+              </h3>
+              <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+                The mentorship waitlist opens shortly. In the meantime you can reach us via the{" "}
+                <Link href="/contact" style={{ color: RUST }}>contact form</Link>.
+                {/* TODO(eba): set FORM_ENDPOINT in constants.ts to enable the waitlist. */}
+              </p>
+            </>
+          ) : submitted ? (
+            <>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 12px" }}>
+                You're on the list for {selectedMonth}.
+              </h3>
+              <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+                We'll be in touch when places open.
+              </p>
+            </>
+          ) : (
+            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 4px" }}>
+                Register your interest.
+              </h3>
+              <label style={{ color: "rgba(238,233,223,0.7)", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                Intake
+              </label>
+              <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
+                {MENTOR_INTAKES.map((m) => (
+                  <option key={m.label} value={m.label}>
+                    {m.label}{m.status === "full" ? " — waitlist" : m.status === "open" ? " — now enrolling" : ""}
+                  </option>
+                ))}
+              </select>
+              <input type="text" placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required style={inputStyle} />
+              <input type="email" placeholder="Your business email" value={email} onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
+              {error && <p style={{ color: "#FFB162", fontSize: "13px", margin: 0 }} role="alert">{error}</p>}
+              <button type="submit" disabled={loading} style={{
+                background: RUST, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+                padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
+              }}>
+                {loading ? "Sending..." : "Join the waitlist →"}
+              </button>
+            </form>
+          )}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export function MentorshipPage() {
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
@@ -146,23 +348,9 @@ export function MentorshipPage() {
               </div>
             ))}
           </div>
-          <div style={{ background: NAVY, padding: "48px", maxWidth: "700px" }}>
-            <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.6rem", color: "#fff", margin: "0 0 16px" }}>
-              Apply for mentorship.
-            </h3>
-            <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", lineHeight: 1.65, margin: "0 0 28px" }}>
-              Mentorship places are allocated by application. To register your interest or discuss your requirements, use the enquiry form.
-            </p>
-            <Link href="/contact" style={{
-              background: RUST, color: "#fff", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
-              padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-            }}>
-              Register your interest →
-            </Link>
-          </div>
         </div>
       </section>
+      <MentorWaitlist />
       <PlaceholderFooter />
     </div>
   );

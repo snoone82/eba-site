@@ -70,6 +70,30 @@ export const STANDARD_PRICE = "TODO(eba): standard price";
 export const PLACES_REMAINING = 27; // TODO(eba): confirm real count
 export const COHORT_SIZE = 30; // TODO(eba): confirm real count
 
+// ── Mentor availability ──────────────────────────────────────────────────────
+
+export type MentorIntakeStatus = "full" | "open" | "soon";
+export interface MentorIntake {
+  label: string;
+  status: MentorIntakeStatus;
+}
+
+/**
+ * Mark's mentorship intakes — REAL scarcity, not fabricated history.
+ * Rendered in one place (the /mentorship availability panel) from this array.
+ * TODO(eba): confirm these months + which are genuinely full vs open before launch.
+ * Do NOT mark a month "full" unless it is actually full — honesty is the point.
+ */
+export const MENTOR_INTAKES: MentorIntake[] = [
+  { label: "August 2026", status: "full" },
+  { label: "September 2026", status: "full" },
+  { label: "October 2026", status: "open" }, // the real next intake
+  { label: "November 2026", status: "soon" },
+];
+
+/** Cohort capacity, shown in the scarcity line. */
+export const MENTOR_CAPACITY = "TODO(eba): e.g. '12 members per cohort'";
+
 // ── Helpers ─────────────────────────────────────────────────────────────────
 
 /** True when a value is unset or still a TODO placeholder (so CTAs can fail safe). */

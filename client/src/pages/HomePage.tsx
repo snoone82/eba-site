@@ -281,7 +281,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               { label: "AI Tools", href: "/ai-tools" },
               { label: "Documents", href: "/documents" },
               { label: "Mentorship", href: "/mentorship" },
-              { label: "About", href: "/about" },
+              { label: "Our Story", href: "/our-story" },
               { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
@@ -619,13 +619,13 @@ export default function HomePage() {
                   </span>
                 ))}
               </div>
-              <Link href="/about" style={{
+              <Link href="/our-story" style={{
                 color: RUST, textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px",
               }}>
-                Meet Mark →
+                Read Mark's full story →
               </Link>
             </RevealSection>
           </div>
@@ -919,7 +919,7 @@ export default function HomePage() {
                 { label: "Enterprise Deployment", href: "/contact" },
               ]},
               { heading: "Company", links: [
-                { label: "About Mark", href: "/about" },
+                { label: "Our Story", href: "/our-story" },
                 { label: "Mentorship", href: "/mentorship" },
                 { label: "Documents", href: "/documents" },
                 { label: "Contact", href: "/contact" },

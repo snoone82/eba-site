@@ -93,7 +93,7 @@ function NavBar({ active }: { active: string }) {
           <EBALogo height={38} light={true} />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
               color: href === active ? "#fff" : "rgba(255,255,255,0.7)",
               textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
@@ -129,7 +129,7 @@ function PageFooter() {
             <EBALogo height={38} light={true} />
           </Link>
           <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
-            {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+            {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
                 {label}
               </Link>
@@ -152,63 +152,36 @@ function PageFooter() {
 }
 
 // ─────────────────────────────────────────────
-// ABOUT PAGE
+// OUR STORY PAGE
 // ─────────────────────────────────────────────
 
-// Mentorship calendar data — Jul / Aug / Sep 2025
-const mentorshipMonths = [
-  {
-    month: "July 2025",
-    dates: [
-      { date: "Tuesday 8 July", time: "10:00 – 12:00", format: "Group — 6 places" },
-      { date: "Tuesday 15 July", time: "10:00 – 12:00", format: "Group — 6 places" },
-      { date: "Tuesday 22 July", time: "09:00 – 10:00", format: "1:1 — 1 place" },
-    ],
-  },
-  {
-    month: "August 2025",
-    dates: [
-      { date: "Tuesday 5 August", time: "10:00 – 12:00", format: "Group — 6 places" },
-      { date: "Tuesday 12 August", time: "10:00 – 12:00", format: "Group — 6 places" },
-      { date: "Tuesday 19 August", time: "09:00 – 10:00", format: "1:1 — 1 place" },
-    ],
-  },
-  {
-    month: "September 2025",
-    dates: [
-      { date: "Tuesday 2 September", time: "10:00 – 12:00", format: "Group — 6 places" },
-      { date: "Tuesday 9 September", time: "10:00 – 12:00", format: "Group — 6 places" },
-      { date: "Tuesday 16 September", time: "09:00 – 10:00", format: "1:1 — 1 place" },
-    ],
-  },
-];
-
-export function AboutPage() {
+export function OurStoryPage() {
   const isMobile = useIsMobile();
+  const rule = { width: "48px", height: "2px", background: RUST, margin: "0 0 24px" } as React.CSSProperties;
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
-      <Seo {...PAGE_SEO.about} />
+      <Seo {...PAGE_SEO.ourStory} />
       <MobileNav transparent={false} />
-      <NavBar active="/about" />
+      <NavBar active="/our-story" />
 
-      {/* Hero */}
+      {/* 1. Hero — Why EBA exists */}
       <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: NAVY }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <SectionLabel>The Founder</SectionLabel>
+          <SectionLabel>Our Story</SectionLabel>
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: "#fff", margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
           }}>
-            Built by someone who has built it — and rebuilt it.
+            Why EBA exists.
           </h1>
-          <p style={{ color: "rgba(238,233,223,0.72)", fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
-            Not a consultant. Not a trainer. A serial engineering entrepreneur who currently runs one of the UK's most ambitious M&E engineering groups — and who built this Academy from the operational experience of doing it.
+          <p style={{ color: "rgba(238,233,223,0.72)", fontSize: "17px", lineHeight: 1.7, maxWidth: "600px" }}>
+            Engineers are taught to build. Nobody teaches them how to run the business around the building — pricing, contracts, cash flow, compliance, people, growth. EBA exists to close that gap.
           </p>
         </div>
       </section>
 
-      {/* Mark's story */}
+      {/* 2. The operator's story */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr", gap: isMobile ? "40px" : "80px", alignItems: "start" }}>
@@ -216,79 +189,105 @@ export function AboutPage() {
               <div style={{ position: "relative" }}>
                 <img
                   src={MARK_IMG}
-                  alt="Mark — Founder, Engineering Business Academy"
+                  alt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
                   style={{ width: "100%", display: "block", filter: "grayscale(15%)" }}
                 />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: RUST, padding: "14px 20px" }}>
                   <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                    Mark — Founder, Engineering Business Academy
+                    Mark Poulton — CEO, KEYIS Group
                   </p>
                 </div>
               </div>
             </RevealSection>
             <RevealSection>
-              <SectionLabel light>Mark Poulton — CEO, KEYIS Group</SectionLabel>
-              <div style={{ display: "flex", flexDirection: "column", gap: "22px" }}>
-                {[
-                  "Mark Poulton built KEYIS Group from a single M&E business into a multi-division engineering group operating across six UK regions and Poland. Along the way, he scaled through healthcare, advanced manufacturing, clean energy, and data centre sectors — and he navigated a pre-pack administration and came out the other side with something most operators never gain: a complete understanding of what breaks engineering businesses and exactly how to fix them.",
-                  "He then launched Pro Defend — a fire protection and security subsidiary now operating in a £2bn market — and Task Energy, focused on the UK's decarbonisation agenda and social housing retrofit. Both businesses are active and growing. Mark currently runs all three.",
-                  "He has also navigated the full range of challenges that M&E business owners face — HMRC disputes, client insolvencies, complex contract failures, and a pre-pack administration. That experience is not a footnote. It is the foundation of Module 9 of the Academy, which covers the commercial and legal realities that no other programme addresses.",
-                  "Everything inside EBA comes directly from that operational arc. Not one lesson was written from theory. The Engineering Business Academy exists because the business skills required to run a serious M&E contracting operation are not taught anywhere. Mark is teaching them now.",
-                ].map((para, i) => (
-                  <p key={i} style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                    {para}
-                  </p>
-                ))}
+              <SectionLabel>The operator's story</SectionLabel>
+              <div style={rule} />
+              <h2 style={{
+                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+                color: NAVY, margin: "0 0 24px", lineHeight: 1.1,
+              }}>
+                He has actually made these decisions.
+              </h2>
+              <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+                <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
+                  Mark Poulton started with a single M&E firm and built it into a multi-division engineering group operating across the UK and Poland.
+                  {/* TODO(eba): founding year + how the single firm became a multi-division group. */}
+                  {/* TODO(eba): the UK → Poland / international expansion detail. */}
+                </p>
+                <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
+                  He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.
+                  {/* TODO(eba): the pre-pack and rebuild — Mark has authorised mentioning it; confirm exactly how much detail is public and how he wants it framed before adding specifics here. */}
+                </p>
+                <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
+                  This isn't someone who read about your industry. It's someone who has run exactly the business you're running — at every stage you're trying to reach.
+                </p>
               </div>
             </RevealSection>
           </div>
         </div>
       </section>
 
-      {/* Mentorship teaser */}
-      <section id="mentorship" style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+      {/* 3. Why teach it now */}
+      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "32px" : "80px", alignItems: "center" }}>
-              <div>
-                <SectionLabel>Mentorship</SectionLabel>
-                <h2 style={{
-                  fontFamily: "'Playfair Display', serif", fontWeight: 800,
-                  fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                  color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
-                }}>
-                  Direct access to Mark Poulton.
-                </h2>
-                <p style={{ color: "rgba(27,38,50,0.68)", fontSize: "16px", lineHeight: 1.7, margin: "0 0 32px" }}>
-                  For M&E business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application.
-                </p>
-                <Link href="/mentorship" style={{
-                  background: NAVY, color: "#fff", textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
-                  padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                  transition: "opacity 0.2s",
-                }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = "1")}>
-                  View mentorship details →
-                </Link>
-              </div>
-              <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                {[
-                  { label: "Group Mentorship", detail: "Monthly sessions with a curated cohort of M&E business owners. Limited to 6 participants." },
-                  { label: "1:1 Mentorship", detail: "Fortnightly sessions working directly with Mark on your specific business challenges. Application-only." },
-                ].map(({ label, detail }) => (
-                  <div key={label} style={{ background: "#fff", borderLeft: `3px solid ${RUST}`, padding: "20px 24px" }}>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px", color: NAVY, margin: "0 0 8px", letterSpacing: "0.04em" }}>{label}</p>
-                    <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <SectionLabel>Why teach it now</SectionLabel>
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+              color: "#fff", margin: "24px 0 28px", lineHeight: 1.1,
+            }}>
+              From operator to academy.
+            </h2>
+            <p style={{ color: "rgba(238,233,223,0.8)", fontSize: "17px", lineHeight: 1.75, margin: 0 }}>
+              The business skills it takes to run a serious M&E contracting operation aren't taught anywhere. Mark learned them the hard way, over years of running the company. EBA is him opening that up — so the next operators don't have to learn it the same way.
+            </p>
+            {/* TODO(eba): replace or supplement the paragraph above with Mark's own reason in his words — a short pull-quote works well here. */}
           </RevealSection>
-
-
         </div>
+      </section>
+
+      {/* 4. What EBA is */}
+      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>What EBA is</SectionLabel>
+            <div style={rule} />
+            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.8, margin: 0 }}>
+              EBA is the thing Mark wishes he'd had: a business academy, AI tools, mentorship and a document library — built only for M&E engineering contractors, from operational experience rather than theory. The academy and the tools carry the knowledge; the mentorship and documents put it to work in your business.
+            </p>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* 5. CTA */}
+      <section style={{ background: RUST, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
+        <RevealSection>
+          <h2 style={{
+            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
+            color: "#fff", margin: "0 0 28px", lineHeight: 1.05,
+          }}>
+            Build the business, not just the jobs.
+          </h2>
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
+            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "our-story" })} style={{
+              background: NAVY, color: "#fff", textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "15px",
+              padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block",
+            }}>
+              {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
+            </a>
+            <Link href="/mentorship" style={{
+              background: "transparent", color: "#fff", textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              padding: "15px 34px", border: "1px solid rgba(255,255,255,0.6)", display: "inline-block",
+            }}>
+              Explore mentorship →
+            </Link>
+          </div>
+        </RevealSection>
       </section>
 
       <PageFooter />
