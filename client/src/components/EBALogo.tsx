@@ -133,7 +133,7 @@ export function EBALogo({
         x={iconW + 26}
         y={iconH * 0.44}
         fill={wordColor}
-        fontFamily="'DM Sans', Arial, sans-serif"
+        fontFamily="Arial, 'Helvetica Neue', Helvetica, sans-serif"
         fontWeight="300"
         fontSize={iconH * 0.22}
         letterSpacing="0.12em"
@@ -146,7 +146,7 @@ export function EBALogo({
         x={iconW + 26}
         y={iconH * 0.72}
         fill={wordColor}
-        fontFamily="'DM Sans', Arial, sans-serif"
+        fontFamily="Arial, 'Helvetica Neue', Helvetica, sans-serif"
         fontWeight="600"
         fontSize={iconH * 0.22}
         letterSpacing="0.08em"
