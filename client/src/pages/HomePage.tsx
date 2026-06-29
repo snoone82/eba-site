@@ -600,7 +600,6 @@ export default function HomePage() {
               <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
               </p>
-              {/* TODO(eba): confirm Mark is happy to state the pre-pack publicly — a powerful, honest credibility point, but his story to authorise. */}
               <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
               </p>
