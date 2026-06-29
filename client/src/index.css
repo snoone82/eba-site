@@ -1,0 +1,175 @@
+/*
+ * EBA — The Engineering Business Academy
+ * Design System: Editorial Precision
+ *
+ * Palette: Navy #1B2632 · Rust #A35139 · Cream #EEE9DF · Oat #DDD6C8
+ * Type: Playfair Display (headings) + DM Sans (body)
+ */
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ─── Google Fonts loaded via index.html ─── */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  /* ─── EBA Colour Tokens ───
+   * Single source of truth mirrored from client/src/lib/constants.ts (COLORS).
+   * Keep these identical to the COLORS object. */
+  --eba-navy:  #1B2632;
+  --eba-rust:  #A35139;
+  --eba-cream: #EEE9DF;
+  --eba-oat:   #DDD6C8;
+  --eba-white: #FFFFFF;
+  --eba-amber: #FFB162;
+
+  /* ─── Semantic tokens (shadcn/ui) ─── */
+  --radius: 0.25rem;
+  --background: oklch(0.97 0.005 80);
+  --foreground: oklch(0.18 0.02 220);
+  --card: oklch(0.99 0.003 80);
+  --card-foreground: oklch(0.18 0.02 220);
+  --popover: oklch(0.99 0.003 80);
+  --popover-foreground: oklch(0.18 0.02 220);
+  --primary: oklch(0.42 0.1 30);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.93 0.005 80);
+  --secondary-foreground: oklch(0.18 0.02 220);
+  --muted: oklch(0.93 0.005 80);
+  --muted-foreground: oklch(0.5 0.01 220);
+  --accent: oklch(0.93 0.005 80);
+  --accent-foreground: oklch(0.18 0.02 220);
+  --destructive: oklch(0.42 0.1 30);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.18 0.02 220 / 12%);
+  --input: oklch(0.18 0.02 220 / 8%);
+  --ring: oklch(0.42 0.1 30);
+}
+
+/* ── Mobile / Desktop nav visibility ── */
+.eba-desktop-nav {
+  display: block;
+}
+
+@media (min-width: 768px) {
+  .eba-mobile-nav-bar,
+  .eba-mobile-drawer {
+    display: none !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .eba-desktop-nav {
+    display: none !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+  }
+  .eba-page-root {
+    padding-top: 60px;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    background-color: var(--eba-cream);
+    color: var(--eba-navy);
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-feature-settings: 'kern' 1, 'liga' 1;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--eba-rust);
+    color: #fff;
+  }
+
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  a[href] {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container {
+      padding-left: 3rem;
+      padding-right: 3rem;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .container {
+      max-width: 1400px;
+      padding-left: 4rem;
+      padding-right: 4rem;
+    }
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+}
+
+/* ─── Keyframes ─── */
+@keyframes float-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ─── Scrollbar ─── */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--eba-navy); }
+::-webkit-scrollbar-thumb { background: rgba(238,233,223,0.2); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(238,233,223,0.35); }
