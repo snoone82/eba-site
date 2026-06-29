@@ -30,8 +30,6 @@ import { track, getStoredUtm } from "@/lib/track";
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-hero-bg-kAgYUpyRruMzKNs2oG45FN.webp";
 // Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
 const MARK_IMG = "/mark-portrait.jpg";
-const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
-const ACADEMY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-academy-section-itC8hxihaXFiQ5LKou8GLG.webp";
 
 function SectionLabel({ children }: { children: string }) {
   return (
@@ -229,89 +227,31 @@ const painPoints = [
   },
 ];
 
-const fourProducts = [
+// Outcome section — mirrors the six pain points, flipped to the result.
+const outcomes = [
   {
-    label: "The Academy",
-    title: "101 lessons. 10 modules. One business transformation.",
-    body: "The most comprehensive M&E business curriculum ever built. From pricing and cash flow to international growth — delivered by someone who has done it, at scale, across multiple businesses.",
-    cta: "View the curriculum →",
-    href: "/academy",
-    img: ACADEMY_IMG,
+    title: "Pricing that protects your margin.",
+    body: "You price to profit, not just to win. Variations get recovered. You know your real numbers on every job.",
   },
   {
-    label: "AI Tools",
-    title: "The tools nobody else has built for M&E.",
-    body: "O&M manuals generated in hours. RAMS produced in minutes. A compliance chatbot trained on your company's safety knowledge. Built exclusively for M&E engineering contractors.",
-    cta: "See the tools →",
-    href: "/ai-tools",
-    img: TOOLS_IMG,
+    title: "Cash that's in the bank before it's owed out.",
+    body: "Applications on time, retentions chased, the gap between billing and banking closed.",
   },
   {
-    label: "Mentorship",
-    title: "Direct access to Mark Poulton.",
-    body: "Group sessions and 1:1 access to the CEO of a multi-division M&E engineering group with operations across the UK and Poland. Not theory. Not a coaching framework. Operational experience on demand.",
-    cta: "Find out more →",
-    href: "/mentorship",
-    img: null,
+    title: "Contracts you understand before you sign.",
+    body: "You know your liability going in — not when it's already too late.",
   },
   {
-    label: "Documents",
-    title: "380 professional documents. Ready to use.",
-    body: "25 years of M&E practice, distilled into an immediately deployable document library. Every template, form, checklist and procedure your business needs — in Word and PDF format.",
-    cta: "Browse the library →",
-    href: "/documents",
-    img: null,
-  },
-];
-
-const aiTools = [
-  {
-    label: "O&M MANUAL COMPILER",
-    title: "O&M Manuals in hours, not days.",
-    body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took.",
-    price: "£150 per manual",
-    status: "live",
-    href: "/ai-tools/om-manual",
+    title: "Compliance that runs in the background.",
+    body: "The paperwork stops being a second job. It gets done, it gets accepted, and it doesn't eat your people.",
   },
   {
-    label: "COMPLIANCE CHATBOT",
-    title: "Your company's safety knowledge, on demand.",
-    body: "The Compliance Chatbot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice.",
-    price: "From £149/month",
-    status: "live",
-    href: "/ai-tools/compliance-chatbot",
+    title: "A team that carries the work, not you.",
+    body: "You hire well, train properly, and step out of the van — and the business holds without you in it.",
   },
   {
-    label: "RAMS GENERATOR",
-    title: "Compliant RAMS in minutes.",
-    body: "Select your activity, your hazards, your controls. The RAMS Generator produces a fully formatted, regulation-compliant Risk Assessment and Method Statement ready to submit.",
-    price: "Coming Month 1",
-    status: "coming",
-    href: "/ai-tools",
-  },
-  {
-    label: "TENDER ASSISTANT",
-    title: "Win more bids. Lose fewer on price.",
-    body: "The Tender Assistant analyses your bid against project requirements, flags commercial risks, and helps you price accurately — without leaving margin on the table.",
-    price: "Coming Month 2",
-    status: "coming",
-    href: "/ai-tools",
-  },
-  {
-    label: "COSHH GENERATOR",
-    title: "COSHH assessments in a minute.",
-    body: "Chemical substance, task, exposure route — assessed and documented instantly. Produces a compliant, branded PDF ready for the site file. No specialist knowledge required.",
-    price: "Coming Month 3",
-    status: "coming",
-    href: "/ai-tools",
-  },
-  {
-    label: "TOOLBOX TALK GENERATOR",
-    title: "Site-specific toolbox talks, weekly.",
-    body: "Stop recycling the same generic toolbox talks. Generate site-specific, task-relevant safety briefings in under 60 seconds — with a sign-off sheet included.",
-    price: "Coming Month 4",
-    status: "coming",
-    href: "/ai-tools",
+    title: "A business you own, not one that owns you.",
+    body: "Past the ceiling, with the systems and the freedom to choose what you build next.",
   },
 ];
 
@@ -540,162 +480,84 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FOUR PRODUCTS ── */}
+      {/* ── THE TRANSFORMATION (Academy) ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel>What we offer</SectionLabel>
+            <SectionLabel>The Academy</SectionLabel>
+            <RustRule />
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 16px",
+              color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
             }}>
-              Four ways to build a better business.
+              You learned to run jobs. This is where you learn to run the business.
             </h2>
-            <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 64px" }}>
-              Each product stands alone. Together they form the complete operating system for an M&E contractor.
+            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
+              Every M&E contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
             </p>
+            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
+              The Academy is 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
+            </p>
+            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
+              Not generic business theory. Not a coaching framework. The specific operating knowledge of running an M&E business — from someone who has built one at scale.
+            </p>
+            <Link href="/academy" style={{
+              color: RUST, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+            }}>
+              See the curriculum →
+            </Link>
           </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "2px" }}>
-            {fourProducts.map((product, i) => (
-              <RevealSection key={i} style={{ transitionDelay: `${i * 80}ms` }}>
-                <div style={{
-                  background: i % 2 === 0 ? NAVY : OAT,
-                  padding: isMobile ? "36px 24px" : "48px 48px",
-                  height: "100%",
-                  position: "relative",
-                  overflow: "hidden",
-                }}>
-                  {product.img && (
-                    <div style={{
-                      position: "absolute", inset: 0,
-                      backgroundImage: `url(${product.img})`,
-                      backgroundSize: "cover", backgroundPosition: "center",
-                      opacity: 0.12,
-                    }} />
-                  )}
-                  <div style={{ position: "relative", zIndex: 1 }}>
-                    <SectionLabel>{product.label}</SectionLabel>
-                    <h3 style={{
-                      fontFamily: "'Playfair Display', serif", fontWeight: 800,
-                      fontSize: "clamp(1.4rem, 2.5vw, 1.9rem)", letterSpacing: "-0.01em",
-                      color: i % 2 === 0 ? "#fff" : NAVY, margin: "0 0 16px", lineHeight: 1.2,
-                    }}>
-                      {product.title}
-                    </h3>
-                    <p style={{
-                      color: i % 2 === 0 ? "rgba(238,233,223,0.75)" : "rgba(27,38,50,0.7)",
-                      fontSize: "15px", lineHeight: 1.65, margin: "0 0 32px",
-                    }}>
-                      {product.body}
-                    </p>
-                    <Link href={product.href} style={{
-                      color: i % 2 === 0 ? "#fff" : NAVY, textDecoration: "none",
-                      fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
-                      letterSpacing: "0.04em",
-                      borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-                      transition: "color 0.2s",
-                    }}
-                      onMouseEnter={e => (e.currentTarget.style.color = RUST)}
-                      onMouseLeave={e => (e.currentTarget.style.color = i % 2 === 0 ? "#fff" : NAVY)}
-                    >
-                      {product.cta}
-                    </Link>
-                  </div>
-                </div>
-              </RevealSection>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ── AI TOOLS SPOTLIGHT ── */}
+      {/* ── THE OUTCOME ── */}
       <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel>AI Tools</SectionLabel>
+            <SectionLabel>The Outcome</SectionLabel>
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: "#fff", margin: "0 0 16px",
+              color: "#fff", margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              The tools nobody else has built for this industry.
+              What it looks like on the other side.
             </h2>
-            <p style={{ color: "rgba(238,233,223,0.65)", fontSize: "17px", lineHeight: 1.65, maxWidth: "580px", margin: "0 0 56px" }}>
-              We built these because they didn't exist. Every M&E contractor we know was either drowning in paperwork or paying agencies thousands to produce documents that AI can now generate in minutes. The difference: ours are built specifically for M&E.
+            <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
+              The point isn't more lessons. It's a business that finally works the way it should.
             </p>
           </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "2px" }}>
-            {aiTools.map((tool, i) => (
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "2px", marginBottom: "48px" }}>
+            {outcomes.map((o, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: "rgba(255,255,255,0.04)", borderLeft: `3px solid ${tool.status === "live" ? RUST : "rgba(163,81,57,0.3)"}`,
-                  padding: "32px 28px", display: "flex", flexDirection: "column", height: "100%",
+                  background: "rgba(255,255,255,0.04)", borderLeft: `3px solid ${RUST}`,
+                  padding: "28px 28px", height: "100%",
                 }}>
-                  <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "16px" }}>
-                    <span style={{
-                      fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "10px",
-                      letterSpacing: "0.12em", textTransform: "uppercase",
-                      color: "rgba(238,233,223,0.5)",
-                    }}>
-                      {tool.label}
-                    </span>
-                    <span style={{
-                      background: tool.status === "live" ? RUST : "rgba(255,255,255,0.1)",
-                      color: "#fff", fontFamily: "'DM Sans', sans-serif",
-                      fontWeight: 700, fontSize: "9px", letterSpacing: "0.1em",
-                      textTransform: "uppercase", padding: "3px 8px",
-                    }}>
-                      {tool.status === "live" ? "LIVE" : "COMING SOON"}
-                    </span>
-                  </div>
                   <h3 style={{
-                    fontFamily: "'Playfair Display', serif", fontWeight: 700,
-                    fontSize: "1.2rem", color: "#fff", margin: "0 0 12px", lineHeight: 1.3,
+                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
+                    fontWeight: 700, fontSize: "15px", letterSpacing: "0.01em",
+                    margin: "0 0 8px", lineHeight: 1.3,
                   }}>
-                    {tool.title}
+                    {o.title}
                   </h3>
-                  <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "14px", lineHeight: 1.65, margin: "0 0 24px", flex: 1 }}>
-                    {tool.body}
+                  <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+                    {o.body}
                   </p>
-                  <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginTop: "auto" }}>
-                    <span style={{
-                      fontFamily: "'Playfair Display', serif", fontStyle: "italic",
-                      color: RUST, fontSize: "14px",
-                    }}>
-                      {tool.price}
-                    </span>
-                    {tool.status === "live" && (
-                      <Link href={tool.href} style={{
-                        color: "#fff", textDecoration: "none",
-                        fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
-                        letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
-                        paddingBottom: "1px",
-                        transition: "color 0.2s",
-                      }}
-                        onMouseEnter={e => (e.currentTarget.style.color = RUST)}
-                        onMouseLeave={e => (e.currentTarget.style.color = "#fff")}
-                      >
-                        See how it works →
-                      </Link>
-                    )}
-                  </div>
                 </div>
               </RevealSection>
             ))}
           </div>
-          <RevealSection style={{ marginTop: "48px" }}>
-            <Link href="/ai-tools" style={{
-              color: "rgba(238,233,223,0.7)", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "15px",
-              borderBottom: "1px solid rgba(238,233,223,0.3)", paddingBottom: "2px",
-              transition: "color 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.7)")}
-            >
-              View all tools and pricing →
-            </Link>
+          <RevealSection>
+            <p style={{
+              fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+              color: RUST, fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)", fontWeight: 700,
+              lineHeight: 1.4, maxWidth: "820px", margin: 0,
+            }}>
+              This is what "engineer your business, design your freedom" actually means. Not a slogan. A different way to run the company you already built.
+            </p>
           </RevealSection>
         </div>
       </section>
@@ -733,16 +595,17 @@ export default function HomePage() {
                 fontSize: "clamp(2rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 24px", lineHeight: 1.1,
               }}>
-                Built by someone who has built it — and rebuilt it.
+                Taught by someone who has actually done it — including the hard version.
               </h2>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                Mark Poulton built KEYIS Group from a single M&E business into a multi-division engineering group operating across six UK regions and Poland. Along the way, he scaled through healthcare, advanced manufacturing, clean energy, and data centre sectors.
+              <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
+                Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                He navigated a pre-pack administration and came out the other side with something most operators never gain: a complete understanding of what breaks engineering businesses and exactly how to fix them. He then launched Pro Defend — a fire protection and security subsidiary now operating in a £2bn market — and Task Energy, focused on the UK's decarbonisation agenda.
+              {/* TODO(eba): confirm Mark is happy to state the pre-pack publicly — a powerful, honest credibility point, but his story to authorise. */}
+              <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
+                That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
-                Everything inside EBA comes directly from that operational arc. Not one lesson was written from theory.
+              <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
+                Members get group sessions and direct 1:1 access. Not theory. Not a framework. The person who's been where you're going.
               </p>
               {/* Credential strip */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
@@ -763,10 +626,64 @@ export default function HomePage() {
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px",
               }}>
-                Read Mark's full story →
+                Meet Mark →
               </Link>
             </RevealSection>
           </div>
+        </div>
+      </section>
+
+      {/* ── AI TOOLS (reason to believe) ── */}
+      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>AI Tools</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
+              color: "#fff", margin: "0 0 28px", lineHeight: 1.12,
+            }}>
+              And the tools that prove we understand your world.
+            </h2>
+            <p style={{ color: "rgba(238,233,223,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
+              Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals generated in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge. Built exclusively for M&E — and included with Academy membership.
+            </p>
+            <Link href="/ai-tools" style={{
+              color: RUST, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+            }}>
+              Explore the AI tools →
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── DOCUMENT LIBRARY ── */}
+      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>Document Library</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
+            }}>
+              380 documents. 25 years of practice. Ready to use.
+            </h2>
+            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
+              Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
+            </p>
+            <Link href="/documents" style={{
+              color: RUST, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+            }}>
+              Browse the library →
+            </Link>
+          </RevealSection>
         </div>
       </section>
 
@@ -960,7 +877,7 @@ export default function HomePage() {
             color: "rgba(255,255,255,0.85)", fontSize: "18px", lineHeight: 1.65,
             maxWidth: "520px", margin: "0 auto 40px",
           }}>
-            Founding members get lifetime access at the founding price — locked in before it increases. Places are limited.
+            Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. M&E contractors only. Limited places.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
             background: NAVY, color: "#fff", textDecoration: "none",
