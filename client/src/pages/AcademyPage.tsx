@@ -343,7 +343,7 @@ export default function AcademyPage() {
                             fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                             padding: "2px 8px", verticalAlign: "middle",
                           }}>
-                            Unique
+                            Rarely taught
                           </span>
                         )}
                       </h3>
