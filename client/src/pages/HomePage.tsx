@@ -457,7 +457,7 @@ export default function HomePage() {
           fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
           color: "rgba(27,38,50,0.55)",
         }}>
-          Trusted by M&E contractors working across advanced manufacturing &nbsp;·&nbsp; healthcare &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres &nbsp;·&nbsp; defence
+          Trusted by M&E contractors working across MOD / MOJ estates &nbsp;·&nbsp; nuclear &nbsp;·&nbsp; aerospace &nbsp;·&nbsp; advanced manufacturing &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres
         </p>
       </div>
 
