@@ -8,7 +8,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
-import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB } from "@/lib/constants";
+import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB } from "@/lib/constants";
 import { track } from "@/lib/track";
 
 const NAV_LINKS = [

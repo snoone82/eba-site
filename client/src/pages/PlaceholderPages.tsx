@@ -6,7 +6,7 @@ import {
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -45,7 +45,7 @@ function PlaceholderNav({ active }: { active: string }) {
           </Link>
         ))}
         <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
-          background: RUST, color: "#fff", textDecoration: "none",
+          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
           padding: "9px 20px", letterSpacing: "0.06em",
         }}>
@@ -236,7 +236,7 @@ function MentorWaitlist() {
                   </button>
                 ) : isOpen ? (
                   <button onClick={() => choose(intake.label, true)} style={{
-                    background: RUST, color: "#fff", border: "none",
+                    background: CTA_PRIMARY_BG, color: "#fff", border: "none",
                     fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
                     letterSpacing: "0.04em", padding: "10px 22px", cursor: "pointer",
                   }}>
@@ -297,7 +297,7 @@ function MentorWaitlist() {
               <input type="email" placeholder="Your business email" value={email} onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
               {error && <p style={{ color: "#FFB162", fontSize: "13px", margin: 0 }} role="alert">{error}</p>}
               <button type="submit" disabled={loading} style={{
-                background: RUST, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
+                background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
                 padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
               }}>
@@ -457,7 +457,7 @@ export function FAQPage() {
             Use the contact form and we'll respond within one business day.
           </p>
           <Link href="/contact" style={{
-            background: RUST, color: "#fff", textDecoration: "none",
+            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>

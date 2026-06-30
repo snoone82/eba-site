@@ -20,7 +20,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -62,7 +62,7 @@ function LegalNav({ active }: { active: string }) {
           ))}
           <span>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
-              background: RUST, color: "#fff", textDecoration: "none",
+              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
             }}>
@@ -469,7 +469,7 @@ export function CookieConsentBanner() {
           <button
             onClick={handleAccept}
             style={{
-              background: RUST, color: "#fff", border: "none", cursor: "pointer",
+              background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: "pointer",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "10px 24px", letterSpacing: "0.04em",
               transition: "opacity 0.2s",

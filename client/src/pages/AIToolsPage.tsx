@@ -23,7 +23,7 @@ import {
   AMBER,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -378,7 +378,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
         type="submit"
         disabled={loading}
         style={{
-          background: RUST, color: "#fff", border: "none", cursor: "pointer",
+          background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: "pointer",
           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
           padding: "9px 16px", letterSpacing: "0.05em", opacity: loading ? 0.7 : 1,
           whiteSpace: "nowrap" as const,
@@ -423,7 +423,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               </Link>
             ))}
             <span><a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
-              background: RUST, color: "#fff", textDecoration: "none",
+              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
             }}>
@@ -550,7 +550,7 @@ export default function AIToolsPage() {
                       </div>
                       {!isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
-                          background: RUST, color: "#fff", textDecoration: "none",
+                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -563,7 +563,7 @@ export default function AIToolsPage() {
                         </a>
                       ) : (
                         <Link href={tool.href} style={{
-                          background: RUST, color: "#fff", textDecoration: "none",
+                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -604,7 +604,7 @@ export default function AIToolsPage() {
                       </div>
                       {!isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
-                          background: RUST, color: "#fff", textDecoration: "none",
+                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -617,7 +617,7 @@ export default function AIToolsPage() {
                         </a>
                       ) : (
                         <Link href={tool.href} style={{
-                          background: RUST, color: "#fff", textDecoration: "none",
+                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -725,7 +725,7 @@ export default function AIToolsPage() {
                   ))}
                 </div>
                 <Link href="/contact" style={{
-                  background: RUST, color: "#fff", textDecoration: "none",
+                  background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 }}>

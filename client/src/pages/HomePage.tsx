@@ -20,7 +20,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -189,7 +189,7 @@ function LeadMagnetForm() {
         type="submit"
         disabled={loading}
         style={{
-          background: RUST, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
+          background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
           fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
           padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
           transition: "opacity 0.2s",
@@ -315,7 +315,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
             ))}
             <span>
               <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-                background: RUST, color: "#fff", textDecoration: "none",
+                background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
                 padding: "9px 20px", letterSpacing: "0.04em",
                 transition: "opacity 0.2s, transform 0.16s",
@@ -370,8 +370,7 @@ export default function HomePage() {
         }} />
         <div style={{
           position: "absolute", inset: 0,
-          display: IS_VIVID ? "none" : "block",
-          background: `linear-gradient(to top, rgba(${NAVY_RGB},0.95) 0%, rgba(${NAVY_RGB},0.6) 50%, rgba(${NAVY_RGB},0.25) 100%)`,
+          background: IS_VIVID ? HERO_GLOW : `linear-gradient(to top, rgba(${NAVY_RGB},0.95) 0%, rgba(${NAVY_RGB},0.6) 50%, rgba(${NAVY_RGB},0.25) 100%)`,
         }} />
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
           {/* Badge */}
@@ -424,7 +423,7 @@ export default function HomePage() {
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
               <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-                background: RUST, color: "#fff", textDecoration: "none",
+                background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", letterSpacing: "0.04em",
                 transition: "opacity 0.2s",
@@ -456,12 +455,12 @@ export default function HomePage() {
 
       {/* ── TRUST STRIP ── (same content column as every section; smaller + more
             muted than the hero feature strip so the two read as distinct elements) */}
-      <div style={{ background: BAND_GRADIENT, padding: isMobile ? "20px 20px" : "26px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.1)` }}>
+      <div style={{ background: BAND_GRADIENT, padding: isMobile ? (IS_VIVID ? "64px 20px" : "20px 20px") : (IS_VIVID ? "128px 40px" : "26px 40px"), borderBottom: IS_VIVID ? "none" : `1px solid rgba(${NAVY_RGB},0.1)` }}>
         <p style={{
-          maxWidth: "1200px", margin: "0 auto", textAlign: "left",
-          fontFamily: "'DM Sans', sans-serif", fontSize: "11px",
-          fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},0.45)`,
+          maxWidth: IS_VIVID ? "1040px" : "1200px", margin: "0 auto", textAlign: IS_VIVID ? "center" : "left",
+          fontFamily: "'DM Sans', sans-serif", fontSize: IS_VIVID ? "13px" : "11px",
+          fontWeight: IS_VIVID ? 700 : 600, letterSpacing: "0.1em", textTransform: "uppercase",
+          color: `rgba(${NAVY_RGB},${IS_VIVID ? 0.78 : 0.45})`,
         }}>
           Trusted by M&E contractors working across MOD / MOJ estates &nbsp;·&nbsp; nuclear &nbsp;·&nbsp; aerospace &nbsp;·&nbsp; advanced manufacturing &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres
         </p>
@@ -815,7 +814,7 @@ export default function HomePage() {
                 ))}
               </div>
               <Link href="/contact" style={{
-                background: RUST, color: "#fff", textDecoration: "none",
+                background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                 padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 transition: "opacity 0.2s",

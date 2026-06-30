@@ -53,10 +53,10 @@ export const COLORS_NOIR = {
  * Tuned so the magenta accent and white-on-dark both clear WCAG AA for text.
  */
 export const COLORS_VIVID = {
-  navy: "#141417",  // near-black: primary text (dark sections are now white)
+  navy: "#000000",  // true black: primary text (dark sections are now white)
   cream: "#FFFFFF", // white page + light surfaces
-  rust: "#101013",  // near-black accent: CTAs / badges / labels (LlamaIndex-style)
-  oat: "#F4F2F7",   // barely-there alternating surface (mostly white)
+  rust: "#6E4BF6",  // electric indigo accent: badges / labels / rules / links
+  oat: "#F3F0FF",   // faint lavender wash on alternating surfaces
   white: "#FFFFFF", // pure white cards
   amber: "#FF7A3D", // warm orange highlight
 } as const;
@@ -112,16 +112,16 @@ export const AMBER = COLORS.amber;
  * instead of staying hard-coded to the default hues.
  */
 // In vivid, what used to be light text/borders on dark sections must become
-// dark text on the now-white surfaces, so these triplets flip to near-black.
-export const NAVY_RGB = pick("27,38,50", "26,26,28", "20,20,23");
-export const RUST_RGB = pick("163,81,57", "142,59,59", "17,17,20");
-export const CREAM_RGB = pick("238,233,223", "244,242,238", "20,20,23");
+// TRUE BLACK text/borders on the now-white surfaces.
+export const NAVY_RGB = pick("27,38,50", "26,26,28", "0,0,0");
+export const RUST_RGB = pick("163,81,57", "142,59,59", "110,75,246"); // indigo accent tints
+export const CREAM_RGB = pick("238,233,223", "244,242,238", "0,0,0");
 
 /**
  * Background for large sections that were dark (hero / founder / CTA / footers).
  * Default keeps the flat navy used previously (visually identical). Noir = subtle
  * vertical charcoal gradient. Vivid = WHITE — the site becomes a full white site
- * and the text on these sections flips to near-black (see ON_DARK below).
+ * and the text on these sections flips to true black (see ON_DARK below).
  */
 export const DARK_GRADIENT = pick(
   NAVY,
@@ -131,38 +131,62 @@ export const DARK_GRADIENT = pick(
 
 /**
  * Primary / muted text that previously sat on dark sections. Light in
- * default + noir (unchanged); near-black in vivid so it reads on white.
+ * default + noir (unchanged); TRUE BLACK in vivid so it reads on white.
  */
-export const ON_DARK = pick("#FFFFFF", "#FFFFFF", "#141417");
-export const ON_DARK_RGB = pick("255,255,255", "255,255,255", "20,20,23");
+export const ON_DARK = pick("#FFFFFF", "#FFFFFF", "#000000");
+export const ON_DARK_RGB = pick("255,255,255", "255,255,255", "0,0,0");
+
+/**
+ * Vivid CTA gradient — the "2028 AI" jewel-toned fill (indigo → fuchsia → rose)
+ * used for primary buttons. Kept dark enough that white button text clears AA.
+ */
+const VIVID_CTA_GRADIENT =
+  "linear-gradient(95deg, #5A2BE0 0%, #A12BC4 50%, #E0407A 100%)";
 
 /**
  * Background for genuinely dark CTA buttons (the navy "outline/solid" buttons,
- * distinct from full-bleed sections). Stays dark in every theme — including
- * vivid, where it becomes a black button with white text (LlamaIndex style).
+ * distinct from full-bleed sections). Dark in default/noir; in vivid they take
+ * the gradient fill.
  */
-export const CTA_DARK_BG = IS_VIVID ? "#0D0D0F" : DARK_GRADIENT;
+export const CTA_DARK_BG = IS_VIVID ? VIVID_CTA_GRADIENT : DARK_GRADIENT;
+
+/**
+ * Primary action buttons that use the rust accent as their fill in the editorial
+ * themes (hero / nav / form CTAs). In vivid they get the gradient fill so the
+ * main calls-to-action carry the brand colour.
+ */
+export const CTA_PRIMARY_BG = IS_VIVID ? VIVID_CTA_GRADIENT : RUST;
 
 /**
  * Full-bleed CTA bands that use the rust accent as their background in the
- * editorial themes. In vivid they become white (the site is all-white); the
- * heading text on them is already routed to near-black, and the buttons inside
- * stay dark, so they read as clean LlamaIndex-style CTA blocks.
+ * editorial themes. In vivid they become a soft pastel-prism wash with dark
+ * text + a gradient button on top.
  */
-export const CTA_BAND_BG = IS_VIVID ? "#FFFFFF" : RUST;
+export const CTA_BAND_BG = IS_VIVID
+  ? "linear-gradient(120deg, #EFF0FF 0%, #FBEEFF 50%, #FFF1E8 100%)"
+  : RUST;
 
 /** Translucent nav-bar scrim. Dark in default/noir; white in vivid. */
 export const NAV_RGB = pick("27,38,50", "26,26,28", "255,255,255");
 
 /**
+ * Soft coloured glow layered over the hero (vivid only) — gives the white hero
+ * a 2028 "aurora" feel without hurting the left-aligned text contrast. Empty in
+ * default/noir (the hero keeps its image + dark overlay).
+ */
+export const HERO_GLOW = IS_VIVID
+  ? "radial-gradient(55% 80% at 82% 8%, rgba(110,75,246,0.20) 0%, transparent 60%), radial-gradient(45% 70% at 98% 42%, rgba(224,64,122,0.16) 0%, transparent 60%), radial-gradient(40% 60% at 70% 0%, rgba(63,196,255,0.14) 0%, transparent 55%)"
+  : "";
+
+/**
  * Signature gradient band. Default and noir keep the solid oat surface
- * (identical to before); vivid gets the bright LlamaIndex-style prism gradient
- * — dark text/logos sit on it, so contrast is preserved.
+ * (identical to before); vivid gets an enlarged, layered prism gradient with
+ * radial light "blooms" for depth — dark text/logos sit on it, so contrast holds.
  */
 export const BAND_GRADIENT = pick(
   OAT,
   OAT,
-  "linear-gradient(90deg, #7FE0FF 0%, #9CC2FF 15%, #C7A6FF 32%, #EC8FE0 48%, #FF8FAE 62%, #FF9E78 80%, #FFC56F 100%)",
+  "radial-gradient(70% 140% at 16% 22%, rgba(90,43,224,0.40) 0%, transparent 60%), radial-gradient(65% 130% at 84% 78%, rgba(224,64,122,0.36) 0%, transparent 60%), radial-gradient(50% 120% at 50% 50%, rgba(255,210,120,0.30) 0%, transparent 65%), linear-gradient(90deg, #8FE3FF 0%, #B7A6FF 28%, #E59CE8 50%, #FF9DB0 72%, #FFC98A 100%)",
 );
 
 /**
