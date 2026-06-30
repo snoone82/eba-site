@@ -104,7 +104,7 @@ function LegalSection({ title, children }: { title: string; children: React.Reac
   return (
     <div style={{ marginBottom: "40px" }}>
       <h2 style={{
-        fontFamily: "'Playfair Display', serif", fontWeight: 700,
+        fontFamily: "var(--eba-heading)", fontWeight: 700,
         fontSize: "1.3rem", color: NAVY, margin: "0 0 16px",
         paddingBottom: "10px", borderBottom: `1px solid rgba(${NAVY_RGB},0.1)`,
       }}>
@@ -139,7 +139,7 @@ export function PrivacyPolicyPage() {
             Legal
           </p>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>
@@ -300,7 +300,7 @@ export function TermsPage() {
             Legal
           </p>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>

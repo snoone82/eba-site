@@ -133,7 +133,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
                 href={href}
                 style={{
                   display: "block",
-                  fontFamily: "'Playfair Display', serif",
+                  fontFamily: "var(--eba-heading)",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 8vw, 2.8rem)",
                   color: location === href ? RUST : (IS_VIVID ? ON_DARK : CREAM),

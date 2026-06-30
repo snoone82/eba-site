@@ -35,7 +35,7 @@ export function DocFlow() {
           <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "16px" }}>
             · The AI Tools ·
           </div>
-          <h2 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
+          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
             From site paperwork to structured intelligence.
           </h2>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: 0 }}>

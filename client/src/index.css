@@ -50,6 +50,9 @@
   --eba-white: #FFFFFF;
   --eba-amber: #FFB162;
 
+  /* Heading typeface — swapped to a modern grotesk via ?font=modern (see constants.ts). */
+  --eba-heading: 'Playfair Display', serif;
+
   /* ─── Semantic tokens (shadcn/ui) ─── */
   --radius: 0.25rem;
   --background: oklch(0.97 0.005 80);
@@ -206,9 +209,31 @@
 .eba-pulse-2     { animation-delay: 1.3s; }
 .eba-row         { animation: eba-rowpop 4s ease-in-out infinite; }
 
+/* Bento cards — hover lift */
+.eba-bento-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.eba-bento-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 32px 60px -28px rgba(0,0,0,0.30) !important;
+}
+
+/* Logo marquee */
+@keyframes eba-marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.eba-marquee-track { animation: eba-marquee 34s linear infinite; }
+.eba-marquee-mask:hover .eba-marquee-track { animation-play-state: paused; }
+.eba-marquee-mask {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .eba-float, .eba-float-slow, .eba-caret, .eba-scanline,
-  .eba-pulse, .eba-row { animation: none !important; }
+  .eba-pulse, .eba-row, .eba-marquee-track,
+  .eba-bento-card { animation: none !important; transition: none !important; }
 }
 
 /* ─── Scrollbar ─── */

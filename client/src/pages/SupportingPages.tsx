@@ -187,7 +187,7 @@ export function OurStoryPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Our Story</SectionLabel>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
           }}>
@@ -221,7 +221,7 @@ export function OurStoryPage() {
               <SectionLabel>The operator's story</SectionLabel>
               <div style={rule} />
               <h2 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 24px", lineHeight: 1.1,
               }}>
@@ -252,7 +252,7 @@ export function OurStoryPage() {
           <RevealSection>
             <SectionLabel>Why teach it now</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "24px 0 28px", lineHeight: 1.1,
             }}>
@@ -283,7 +283,7 @@ export function OurStoryPage() {
       <section style={{ background: CTA_BAND_BG, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 28px", lineHeight: 1.05,
           }}>
@@ -710,7 +710,7 @@ export function DocumentsPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Document Library</SectionLabel>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
@@ -726,7 +726,7 @@ export function DocumentsPage() {
               { value: "Academy", label: "Members get all included" },
             ].map(({ value, label }) => (
               <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
+                <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
                 <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{label}</p>
               </div>
             ))}
@@ -792,7 +792,7 @@ export function DocumentsPage() {
                 <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "32px" : "48px", alignItems: "start" }}>
                   <div>
                     <h2 style={{
-                      fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                      fontFamily: "var(--eba-heading)", fontWeight: 800,
                       fontSize: "clamp(1.8rem, 3vw, 2.4rem)", letterSpacing: "-0.02em",
                       color: NAVY, margin: "0 0 16px",
                     }}>
@@ -806,10 +806,10 @@ export function DocumentsPage() {
                     <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
                       Complete Pack
                     </p>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: ON_DARK, fontSize: "1.1rem", margin: "0 0 4px" }}>
+                    <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: ON_DARK, fontSize: "1.1rem", margin: "0 0 4px" }}>
                       {BUNDLE_PRICES[cat.id].label}
                     </p>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
+                    <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
                       {BUNDLE_PRICES[cat.id].price}
                     </p>
                     <p style={{ color: `rgba(${CREAM_RGB},0.45)`, fontSize: "12px", margin: "0 0 16px" }}>
@@ -836,7 +836,7 @@ export function DocumentsPage() {
                     }}>
                       <div>
                         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
-                          <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1rem", color: NAVY, margin: 0 }}>
+                          <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1rem", color: NAVY, margin: 0 }}>
                             {doc.title}
                           </h4>
                           {doc.bundle && (
@@ -855,7 +855,7 @@ export function DocumentsPage() {
                         </p>
                       </div>
                       <div style={{ textAlign: "right", flexShrink: 0 }}>
-                        <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
+                        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
                           {doc.price}
                         </p>
                         <Link href="/contact" style={{
@@ -888,7 +888,7 @@ export function DocumentsPage() {
             <RevealSection>
               <div style={{ background: DARK_GRADIENT, padding: isMobile ? "32px 20px" : "48px 48px", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "24px" }}>
                 <div>
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.6rem", color: ON_DARK, margin: "0 0 8px" }}>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.6rem", color: ON_DARK, margin: "0 0 8px" }}>
                     Select a category above to browse the library.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "15px", margin: 0 }}>
@@ -966,7 +966,7 @@ export function ContactPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Enquiries</SectionLabel>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
@@ -984,7 +984,7 @@ export function ContactPage() {
             <RevealSection>
               {submitted ? (
                 <div style={{ background: DARK_GRADIENT, padding: "48px", borderLeft: `4px solid ${RUST}` }}>
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: ON_DARK, fontSize: "1.5rem", margin: "0 0 12px" }}>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: ON_DARK, fontSize: "1.5rem", margin: "0 0 12px" }}>
                     Enquiry received.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", margin: 0 }}>
@@ -1054,7 +1054,7 @@ export function ContactPage() {
                   { label: "Mentorship applications", detail: "Places are limited and allocated by application. Please describe your business, turnover range, and the specific challenges you are seeking to address." },
                 ].map(({ label, detail }) => (
                   <div key={label} style={{ background: "#fff", borderLeft: `3px solid ${OAT}`, padding: "20px 20px" }}>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: NAVY, fontSize: "0.95rem", margin: "0 0 6px" }}>{label}</p>
+                    <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: NAVY, fontSize: "0.95rem", margin: "0 0 6px" }}>{label}</p>
                     <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
                   </div>
                 ))}

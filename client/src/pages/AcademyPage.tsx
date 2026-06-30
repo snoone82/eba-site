@@ -239,7 +239,7 @@ export default function AcademyPage() {
             <div>
               <SectionLabel>{`Founding Cohort — ${PLACES_REMAINING} of ${COHORT_SIZE} Places Remaining`}</SectionLabel>
               <h1 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 900,
+                fontFamily: "var(--eba-heading)", fontWeight: 900,
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
                 color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05,
               }}>
@@ -276,7 +276,7 @@ export default function AcademyPage() {
                   background: `rgba(${ON_DARK_RGB},0.06)`, borderLeft: `3px solid ${RUST}`,
                   padding: "16px 20px", display: "flex", alignItems: "center", gap: "16px",
                 }}>
-                  <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
+                  <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
                     {value}
                   </span>
                   <span style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "14px", fontWeight: 500 }}>
@@ -295,7 +295,7 @@ export default function AcademyPage() {
           <RevealSection>
             <SectionLabel light>The Curriculum</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px",
             }}>
@@ -324,7 +324,7 @@ export default function AcademyPage() {
                     }}
                   >
                     <span style={{
-                      fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                      fontFamily: "var(--eba-heading)", fontStyle: "italic",
                       color: mod.dark ? RUST : openModule === i ? RUST : `rgba(${NAVY_RGB},0.25)`,
                       fontSize: "1.1rem", fontWeight: 700, minWidth: "36px",
                       transition: "color 0.2s",
@@ -333,7 +333,7 @@ export default function AcademyPage() {
                     </span>
                     <div style={{ flex: 1 }}>
                       <h3 style={{
-                        fontFamily: "'Playfair Display', serif", fontWeight: 700,
+                        fontFamily: "var(--eba-heading)", fontWeight: 700,
                         fontSize: "1.1rem", color: mod.dark ? "#fff" : NAVY,
                         margin: "0 0 4px",
                       }}>
@@ -405,7 +405,7 @@ export default function AcademyPage() {
           <RevealSection>
             <SectionLabel>How It Works</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 56px", lineHeight: 1.1,
             }}>
@@ -423,7 +423,7 @@ export default function AcademyPage() {
                   padding: "28px 24px",
                 }}>
                   <Icon size={26} strokeWidth={1.75} color={RUST} style={{ display: "block", marginBottom: "14px" }} />
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: ON_DARK, margin: "0 0 10px" }}>{label}</h3>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.1rem", color: ON_DARK, margin: "0 0 10px" }}>{label}</h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.65)`, fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
                 </div>
               ))}
@@ -438,7 +438,7 @@ export default function AcademyPage() {
           <RevealSection>
             <SectionLabel light>Founding Cohort Pricing</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
             }}>
@@ -503,12 +503,12 @@ export default function AcademyPage() {
                     }}>Most Popular</div>
                   )}
                   <h3 style={{
-                    fontFamily: "'Playfair Display', serif", fontWeight: 700,
+                    fontFamily: "var(--eba-heading)", fontWeight: 700,
                     fontSize: "1.05rem", color: popular ? "#fff" : NAVY,
                     margin: "0 0 20px", lineHeight: 1.3,
                   }}>{tier}</h3>
                   <div style={{
-                    fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                    fontFamily: "var(--eba-heading)", fontStyle: "italic",
                     color: RUST, fontSize: PRICING_ANNOUNCED ? "2.2rem" : "1.25rem", fontWeight: 700, margin: "0 0 4px",
                   }}>{PRICING_ANNOUNCED ? price : "Pricing announced soon"}</div>
                   {PRICING_ANNOUNCED && (

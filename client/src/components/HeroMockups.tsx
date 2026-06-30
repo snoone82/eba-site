@@ -61,7 +61,7 @@ export function HeroMockups() {
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.1em", color: sub, marginBottom: "8px" }}>
                 LESSON 4 OF 12
               </div>
-              <div style={{ fontFamily: "'Playfair Display', serif", fontSize: "20px", fontWeight: 800, color: NAVY, lineHeight: 1.15, marginBottom: "14px" }}>
+              <div style={{ fontFamily: "var(--eba-heading)", fontSize: "20px", fontWeight: 800, color: NAVY, lineHeight: 1.15, marginBottom: "14px" }}>
                 Pricing, Margins &amp; Estimating
               </div>
               {/* video area */}

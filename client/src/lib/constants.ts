@@ -242,6 +242,19 @@ if (THEME !== "default" && typeof document !== "undefined") {
   s.setProperty("--eba-amber", COLORS.amber);
 }
 
+/**
+ * Heading typeface A/B — `?font=modern` swaps the Playfair serif for a modern
+ * grotesk (Space Grotesk) by overriding the --eba-heading CSS variable. Works on
+ * any theme and is independent of the colour selection.
+ */
+export const IS_MODERN_FONT =
+  typeof window !== "undefined" &&
+  (() => { try { return new URLSearchParams(window.location.search).get("font") === "modern"; } catch { return false; } })();
+
+if (IS_MODERN_FONT && typeof document !== "undefined") {
+  document.documentElement.style.setProperty("--eba-heading", "'Space Grotesk', sans-serif");
+}
+
 // ── Integrations ───────────────────────────────────────────────────────────
 
 /**

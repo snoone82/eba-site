@@ -128,7 +128,7 @@ function OmManualDemo() {
             Live Tool
           </span>
         </div>
-        <h4 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: NAVY, margin: "0 0 24px" }}>
+        <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.1rem", color: NAVY, margin: "0 0 24px" }}>
           O&M Manual Compiler
         </h4>
         {/* Progress steps */}
@@ -473,7 +473,7 @@ export default function AIToolsPage() {
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>AI Tools for M&E Contractors</SectionLabel>
           <h1 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05, maxWidth: "720px",
           }}>
@@ -492,7 +492,7 @@ export default function AIToolsPage() {
               { value: "24/7", label: "Compliance answers" },
             ].map(({ value, label }) => (
               <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
-                <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.6rem", fontWeight: 700, margin: "0 0 4px" }}>
+                <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.6rem", fontWeight: 700, margin: "0 0 4px" }}>
                   {value}
                 </p>
                 <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
@@ -510,7 +510,7 @@ export default function AIToolsPage() {
           <RevealSection>
             <SectionLabel light>Live Now</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 64px",
             }}>
@@ -530,7 +530,7 @@ export default function AIToolsPage() {
                     <div>
                       <SectionLabel light>{tool.label}</SectionLabel>
                       <h3 style={{
-                        fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                        fontFamily: "var(--eba-heading)", fontWeight: 800,
                         fontSize: "clamp(1.8rem, 3vw, 2.4rem)", letterSpacing: "-0.02em",
                         color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
                       }}>
@@ -540,7 +540,7 @@ export default function AIToolsPage() {
                         {tool.body}
                       </p>
                       <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "32px" }}>
-                        <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700 }}>
+                        <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700 }}>
                           {tool.price}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#28c840", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em" }}>
@@ -584,7 +584,7 @@ export default function AIToolsPage() {
                     <div>
                       <SectionLabel light>{tool.label}</SectionLabel>
                       <h3 style={{
-                        fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                        fontFamily: "var(--eba-heading)", fontWeight: 800,
                         fontSize: "clamp(1.8rem, 3vw, 2.4rem)", letterSpacing: "-0.02em",
                         color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
                       }}>
@@ -594,7 +594,7 @@ export default function AIToolsPage() {
                         {tool.body}
                       </p>
                       <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "32px" }}>
-                        <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700 }}>
+                        <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700 }}>
                           {tool.price}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#28c840", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em" }}>
@@ -644,7 +644,7 @@ export default function AIToolsPage() {
           <RevealSection>
             <SectionLabel>In Development</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px",
             }}>
@@ -669,7 +669,7 @@ export default function AIToolsPage() {
                     {tool.label}
                   </span>
                   <h4 style={{
-                    fontFamily: "'Playfair Display', serif", fontWeight: 700,
+                    fontFamily: "var(--eba-heading)", fontWeight: 700,
                     fontSize: "1.1rem", color: NAVY, margin: "0 0 10px",
                   }}>
                     {tool.title}
@@ -678,7 +678,7 @@ export default function AIToolsPage() {
                     {tool.body}
                   </p>
                   <span style={{
-                    fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                    fontFamily: "var(--eba-heading)", fontStyle: "italic",
                     color: `rgba(${RUST_RGB},0.6)`, fontSize: "13px",
                   }}>
                     {tool.price}
@@ -699,7 +699,7 @@ export default function AIToolsPage() {
               <div>
                 <SectionLabel>For Companies</SectionLabel>
                 <h2 style={{
-                  fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                  fontFamily: "var(--eba-heading)", fontWeight: 800,
                   fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                   color: ON_DARK, margin: "0 0 20px", lineHeight: 1.1,
                 }}>
@@ -715,7 +715,7 @@ export default function AIToolsPage() {
                     { value: "vs £25k+", label: "Agency cost" },
                   ].map(({ value, label }) => (
                     <div key={label}>
-                      <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
+                      <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
                         {value}
                       </p>
                       <p style={{ color: `rgba(${CREAM_RGB},0.45)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
@@ -734,7 +734,7 @@ export default function AIToolsPage() {
               </div>
               <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
                 <p style={{
-                  fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                  fontFamily: "var(--eba-heading)", fontStyle: "italic",
                   color: ON_DARK, fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."

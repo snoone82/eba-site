@@ -26,6 +26,8 @@ import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { HeroMockups } from "@/components/HeroMockups";
 import { DocFlow } from "@/components/DocFlow";
+import { BentoGrid } from "@/components/BentoGrid";
+import { LogoMarquee } from "@/components/LogoMarquee";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
@@ -132,7 +134,7 @@ function LeadMagnetForm() {
   if (!formReady) {
     return (
       <div style={{ background: `rgba(${RUST_RGB},0.1)`, border: `1px solid rgba(${RUST_RGB},0.3)`, padding: "24px 28px" }}>
-        <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
+        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
           Form coming soon.
         </p>
         <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
@@ -146,7 +148,7 @@ function LeadMagnetForm() {
   if (submitted) {
     return (
       <div style={{ background: `rgba(${RUST_RGB},0.1)`, border: `1px solid rgba(${RUST_RGB},0.3)`, padding: "24px 28px" }}>
-        <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
+        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
           Check your inbox.
         </p>
         <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
@@ -392,7 +394,7 @@ export default function HomePage() {
           </div>
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{
-              fontFamily: "'Playfair Display', serif",
+              fontFamily: "var(--eba-heading)",
               fontWeight: 900, fontSize: isMobile ? "2.6rem" : "clamp(3rem, 6vw, 5.5rem)",
               lineHeight: 1.05, letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 24px",
@@ -481,7 +483,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 16px", maxWidth: "720px",
             }}>
@@ -515,6 +517,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ── THE EBA SYSTEM (bento) ── */}
+      <BentoGrid />
+
+      {/* ── CLIENT / SECTOR MARQUEE ── */}
+      <LogoMarquee />
+
       {/* ── THE TRANSFORMATION (Academy) ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
@@ -522,7 +530,7 @@ export default function HomePage() {
             <SectionLabel>The Academy</SectionLabel>
             <RustRule />
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
             }}>
@@ -554,7 +562,7 @@ export default function HomePage() {
           <RevealSection>
             <SectionLabel>The Outcome</SectionLabel>
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 16px", lineHeight: 1.1,
             }}>
@@ -587,7 +595,7 @@ export default function HomePage() {
           </div>
           <RevealSection>
             <p style={{
-              fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+              fontFamily: "var(--eba-heading)", fontStyle: "italic",
               color: RUST, fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)", fontWeight: 700,
               lineHeight: 1.4, maxWidth: "820px", margin: 0,
             }}>
@@ -626,7 +634,7 @@ export default function HomePage() {
               <SectionLabel>The Founder</SectionLabel>
               <RustRule />
               <h2 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(2rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 24px", lineHeight: 1.1,
               }}>
@@ -674,7 +682,7 @@ export default function HomePage() {
             <SectionLabel>AI Tools</SectionLabel>
             <RustRule />
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 28px", lineHeight: 1.12,
             }}>
@@ -701,7 +709,7 @@ export default function HomePage() {
             <SectionLabel>Document Library</SectionLabel>
             <RustRule />
             <h2 style={{
-              fontFamily: "'Playfair Display', serif", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
             }}>
@@ -728,7 +736,7 @@ export default function HomePage() {
             <RevealSection>
               <SectionLabel>Task Energy Insight</SectionLabel>
               <h2 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
               }}>
@@ -752,7 +760,7 @@ export default function HomePage() {
             <RevealSection>
               <SectionLabel>Pro Defend Insight</SectionLabel>
               <h2 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
               }}>
@@ -795,7 +803,7 @@ export default function HomePage() {
             <RevealSection>
               <SectionLabel>For Companies</SectionLabel>
               <h2 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
                 color: ON_DARK, margin: "0 0 20px", lineHeight: 1.1,
               }}>
@@ -812,7 +820,7 @@ export default function HomePage() {
                 ].map(({ value, label }) => (
                   <div key={label}>
                     <p style={{
-                      fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                      fontFamily: "var(--eba-heading)", fontStyle: "italic",
                       color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
                     }}>
                       {value}
@@ -839,7 +847,7 @@ export default function HomePage() {
             <RevealSection>
               <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
                 <p style={{
-                  fontFamily: "'Playfair Display', serif", fontStyle: "italic",
+                  fontFamily: "var(--eba-heading)", fontStyle: "italic",
                   color: ON_DARK, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
@@ -860,7 +868,7 @@ export default function HomePage() {
             <RevealSection>
               <SectionLabel>Free Download</SectionLabel>
               <h2 style={{
-                fontFamily: "'Playfair Display', serif", fontWeight: 800,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
               }}>
@@ -885,7 +893,7 @@ export default function HomePage() {
                     { q: "If you stepped away for 4 weeks, what would break?" },
                   ].map(({ q }, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                      <span style={{ color: RUST, fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 700, flexShrink: 0, marginTop: "2px" }}>{i + 1}.</span>
+                      <span style={{ color: RUST, fontFamily: "var(--eba-heading)", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 700, flexShrink: 0, marginTop: "2px" }}>{i + 1}.</span>
                       <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{q}</p>
                     </div>
                   ))}
@@ -901,7 +909,7 @@ export default function HomePage() {
       <section style={{ background: CTA_BAND_BG, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
-            fontFamily: "'Playfair Display', serif", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
