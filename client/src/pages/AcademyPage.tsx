@@ -25,6 +25,7 @@ import {
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
+import { Play, Clock, Smartphone, Infinity as InfinityIcon, Check } from "lucide-react";
 
 const ACADEMY_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-academy-section-itC8hxihaXFiQ5LKou8GLG.webp";
 
@@ -154,7 +155,7 @@ const modules = [
     number: "09",
     title: "The Dark Side of Business",
     lessons: 8,
-    description: "No other M&E business programme covers this. Pre-pack administration. Insolvency risk. Director liability. Contractor failure. Late payment enforcement. What to do when a major client doesn't pay. What happens when a project fails commercially. This module exists because Mark Poulton has been through it — and because every M&E contractor needs to understand the risks before they experience them.",
+    description: "Other programmes skip this. Pre-pack administration. Insolvency risk. Director liability. Contractor failure. Late payment enforcement. What to do when a major client doesn't pay. What happens when a project fails commercially. This module exists because Mark Poulton has been through it — and because every M&E contractor needs to understand the risks before they experience them.",
     topics: ["Pre-pack administration", "Insolvency risk and director liability", "Late payment enforcement", "When a major client doesn't pay"],
     dark: true,
   },
@@ -240,7 +241,7 @@ export default function AcademyPage() {
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
                 color: "#fff", margin: "0 0 24px", lineHeight: 1.05,
               }}>
-                101 lessons. 10 modules. One business transformation.
+                Everything they never taught you about running an M&E business.
               </h1>
               <p style={{ color: "rgba(238,233,223,0.78)", fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
                 Built from 15 years of running one of the UK's most respected M&E engineering groups — including six UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
@@ -410,16 +411,16 @@ export default function AcademyPage() {
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: isMobile ? "2px" : "2px" }}>
               {[
-                { icon: "▶", label: "Video-led lessons", body: "Each lesson is delivered by Mark Poulton directly to camera. No slides. No talking heads. No stock footage." },
-                { icon: "⏱", label: "Self-paced", body: "Work through the curriculum at your pace. Most members complete the full academy in 12–16 weeks at 2–3 hours per week." },
-                { icon: "📱", label: "Mobile-ready", body: "Access every lesson on desktop, tablet, or phone. Learn on site, in the van, or at the kitchen table." },
-                { icon: "♾", label: "Lifetime access", body: "Your founding membership gives you permanent access. Every new module and update added to the curriculum is included at no extra cost." },
-              ].map(({ icon, label, body }, i) => (
+                { Icon: Play, label: "Video-led lessons", body: "Each lesson is delivered by Mark Poulton directly to camera. No slides. No talking heads. No stock footage." },
+                { Icon: Clock, label: "Self-paced", body: "Work through the curriculum at your pace. Most members complete the full academy in 12–16 weeks at 2–3 hours per week." },
+                { Icon: Smartphone, label: "Mobile-ready", body: "Access every lesson on desktop, tablet, or phone. Learn on site, in the van, or at the kitchen table." },
+                { Icon: InfinityIcon, label: "Lifetime access", body: "Your founding membership gives you permanent access. Every new module and update added to the curriculum is included at no extra cost." },
+              ].map(({ Icon, label, body }, i) => (
                 <div key={i} style={{
                   background: "rgba(255,255,255,0.05)", borderLeft: `3px solid ${RUST}`,
                   padding: "28px 24px",
                 }}>
-                  <div style={{ fontSize: "24px", marginBottom: "12px" }}>{icon}</div>
+                  <Icon size={26} strokeWidth={1.75} color={RUST} style={{ display: "block", marginBottom: "14px" }} />
                   <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: "#fff", margin: "0 0 10px" }}>{label}</h3>
                   <p style={{ color: "rgba(238,233,223,0.65)", fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
                 </div>
@@ -514,7 +515,7 @@ export default function AcademyPage() {
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "28px" }}>
                     {includes.map((item, j) => (
                       <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                        <span style={{ color: RUST, fontWeight: 700, fontSize: "13px", flexShrink: 0, marginTop: "1px" }}>✓</span>
+                        <Check size={16} strokeWidth={2.5} color={RUST} style={{ flexShrink: 0, marginTop: "2px" }} />
                         <span style={{ color: popular ? "rgba(238,233,223,0.75)" : "rgba(27,38,50,0.7)", fontSize: "14px", lineHeight: 1.5 }}>{item}</span>
                       </div>
                     ))}

@@ -719,7 +719,7 @@ export default function HomePage() {
                 The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
               </p>
               <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Module 8 of the EBA curriculum covers how to identify, position for, and win this work. It's the only M&E business programme that addresses net zero as a growth strategy.
+                Module 8 of the EBA curriculum covers how to identify, position for, and win this work — net zero treated as a growth strategy, not just a compliance cost.
               </p>
               <Link href="/academy" style={{
                 color: RUST, textDecoration: "none",
@@ -740,7 +740,7 @@ export default function HomePage() {
                 The £2bn market your clients are already asking you about.
               </h2>
               <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                Fire protection and security is the most common adjacent service request in M&E contracting. The market is worth £2 billion and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
+                Fire protection and security is a common adjacent service request in M&E contracting. The market is worth £2 billion and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
               </p>
               <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on business diversification — using Pro Defend as a live case study in how to identify, enter, and build a profitable adjacent service line.

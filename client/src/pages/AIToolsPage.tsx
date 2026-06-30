@@ -25,6 +25,7 @@ import {
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
+import { Check } from "lucide-react";
 
 const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
 
@@ -145,7 +146,7 @@ function OmManualDemo() {
                   fontSize: "10px", fontWeight: 700,
                   color: i < step ? "#fff" : i === step ? NAVY : "rgba(27,38,50,0.4)",
                 }}>
-                  {i < step ? "✓" : i + 1}
+                  {i < step ? <Check size={12} strokeWidth={3} /> : i + 1}
                 </div>
                 <div>
                   <p style={{
@@ -290,7 +291,7 @@ const allTools = [
   {
     label: "O&M MANUAL COMPILER",
     title: "O&M Manuals in hours, not days.",
-    body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took. Every completed M&E project legally requires one. No other self-serve tool exists to do this.",
+    body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took. Every completed M&E project legally requires one — built to produce it without the manual slog.",
     price: "£150 per manual",
     status: "live",
     href: "/ai-tools/om-manual",
@@ -351,8 +352,8 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
 
   if (submitted) {
     return (
-      <p style={{ color: "rgba(163,81,57,0.8)", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0" }}>
-        ✓ We'll notify you when {toolName} is live.
+      <p style={{ color: "rgba(163,81,57,0.8)", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
+        <Check size={13} strokeWidth={2.5} style={{ flexShrink: 0 }} /> We'll notify you when {toolName} is live.
       </p>
     );
   }
@@ -474,7 +475,7 @@ export default function AIToolsPage() {
             fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.02em",
             color: "#fff", margin: "0 0 24px", lineHeight: 1.05, maxWidth: "720px",
           }}>
-            The tools nobody else has built for this industry.
+            Built for how M&E actually works.
           </h1>
           <p style={{
             color: "rgba(238,233,223,0.75)", fontSize: "18px", lineHeight: 1.65,
