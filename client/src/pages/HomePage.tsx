@@ -20,10 +20,12 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB,
+  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
+import { HeroMockups } from "@/components/HeroMockups";
+import { DocFlow } from "@/components/DocFlow";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
@@ -450,6 +452,11 @@ export default function HomePage() {
               </Link>
             </div>
           </div>
+          {IS_LIGHT && !isMobile && (
+            <div aria-hidden="true" style={{ position: "absolute", top: "12px", right: "8px", width: "46%", maxWidth: "520px", height: "calc(100% - 24px)", pointerEvents: "none" }}>
+              <HeroMockups />
+            </div>
+          )}
         </div>
       </section>
 
@@ -465,6 +472,9 @@ export default function HomePage() {
           Trusted by M&E contractors working across MOD / MOJ estates &nbsp;·&nbsp; nuclear &nbsp;·&nbsp; aerospace &nbsp;·&nbsp; advanced manufacturing &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres
         </p>
       </div>
+
+      {/* ── DOCUMENTS → STRUCTURED DATA (AI tools demo) ── */}
+      <DocFlow />
 
       {/* ── PAIN POINTS ── */}
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>

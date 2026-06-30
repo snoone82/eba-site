@@ -170,6 +170,47 @@
   to   { opacity: 1; }
 }
 
+/* ─── Hero mockups + DocFlow animations (modern light themes) ─── */
+@keyframes eba-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-12px); }
+}
+@keyframes eba-float-slow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+@keyframes eba-caret {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+@keyframes eba-scan {
+  0%   { top: 0; opacity: 0; }
+  10%  { opacity: 1; }
+  90%  { opacity: 1; }
+  100% { top: 100%; opacity: 0; }
+}
+@keyframes eba-pulse {
+  0%   { transform: scale(0.7); opacity: 0.7; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+@keyframes eba-rowpop {
+  0%, 70%, 100% { background: transparent; }
+  10%, 40%      { background: rgba(110,75,246,0.07); }
+}
+
+.eba-float       { animation: eba-float 6s ease-in-out infinite; }
+.eba-float-slow  { animation: eba-float-slow 7.5s ease-in-out infinite; }
+.eba-caret       { animation: eba-caret 1s step-end infinite; }
+.eba-scanline    { animation: eba-scan 3.2s ease-in-out infinite; }
+.eba-pulse       { animation: eba-pulse 2.6s ease-out infinite; }
+.eba-pulse-2     { animation-delay: 1.3s; }
+.eba-row         { animation: eba-rowpop 4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .eba-float, .eba-float-slow, .eba-caret, .eba-scanline,
+  .eba-pulse, .eba-row { animation: none !important; }
+}
+
 /* ─── Scrollbar ─── */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: var(--eba-navy); }
