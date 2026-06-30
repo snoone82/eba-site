@@ -5,7 +5,7 @@
  * Renders instantly with no network dependency.
  */
 
-import { NAVY, RUST, WHITE } from "@/lib/constants";
+import { NAVY, RUST, WHITE, NAVY_RGB } from "@/lib/constants";
 
 interface EBALogoProps {
   /** Height in px — width scales proportionally */
@@ -125,7 +125,7 @@ export function EBALogo({
         y1={iconH * 0.18}
         x2={iconW + 14}
         y2={iconH * 0.82}
-        stroke={light ? "rgba(255,255,255,0.35)" : "rgba(27,38,50,0.2)"}
+        stroke={light ? "rgba(255,255,255,0.35)" : `rgba(${NAVY_RGB},0.2)`}
         strokeWidth="1"
       />
       {/* "THE ENGINEERING" */}

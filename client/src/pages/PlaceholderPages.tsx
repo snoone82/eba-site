@@ -5,6 +5,7 @@ import {
   NAVY, CREAM, RUST, OAT,
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -20,8 +21,8 @@ function PlaceholderNav({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: "rgba(27,38,50,0.97)", backdropFilter: "blur(12px)",
-      borderBottom: "1px solid rgba(163,81,57,0.15)",
+      background: `rgba(${NAVY_RGB},0.97)`, backdropFilter: "blur(12px)",
+      borderBottom: `1px solid rgba(${RUST_RGB},0.15)`,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 40px", height: "60px",
     }}>
@@ -37,7 +38,7 @@ function PlaceholderNav({ active }: { active: string }) {
           <Link key={l.href} href={l.href} style={{
             fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
             letterSpacing: "0.04em", textDecoration: "none",
-            color: l.href === active ? RUST : "rgba(238,233,223,0.7)",
+            color: l.href === active ? RUST : `rgba(${CREAM_RGB},0.7)`,
           }}>
             {l.label}
           </Link>
@@ -56,7 +57,7 @@ function PlaceholderNav({ active }: { active: string }) {
 
 function PlaceholderHero({ label, title, sub }: { label: string; title: string; sub: string }) {
   return (
-    <section style={{ paddingTop: "120px", paddingBottom: "80px", background: NAVY }}>
+    <section style={{ paddingTop: "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
         <p style={{
           fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px",
@@ -67,7 +68,7 @@ function PlaceholderHero({ label, title, sub }: { label: string; title: string; 
           fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
           color: "#fff", margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
         }}>{title}</h1>
-        <p style={{ color: "rgba(238,233,223,0.72)", fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
+        <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
           {sub}
         </p>
       </div>
@@ -85,7 +86,7 @@ function ComingSoonBody({ message }: { message: string }) {
             fontSize: "1.25rem", lineHeight: 1.7, color: NAVY, margin: "0 0 32px",
           }}>{message}</p>
           <Link href="/contact" style={{
-            background: NAVY, color: "#fff", textDecoration: "none",
+            background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>
@@ -99,9 +100,9 @@ function ComingSoonBody({ message }: { message: string }) {
 
 function PlaceholderFooter() {
   return (
-    <footer style={{ background: NAVY, padding: "40px", borderTop: `1px solid rgba(163,81,57,0.2)` }}>
+    <footer style={{ background: DARK_GRADIENT, padding: "40px", borderTop: `1px solid rgba(${RUST_RGB},0.2)` }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: "rgba(238,233,223,0.4)", margin: 0 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${CREAM_RGB},0.4)`, margin: 0 }}>
           © 2025 The Engineering Business Academy. All rights reserved.
         </p>
         <Link href="/" style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", textDecoration: "none" }}>
@@ -159,7 +160,7 @@ function MentorWaitlist() {
   };
 
   const inputStyle: React.CSSProperties = {
-    width: "100%", background: "#fff", border: `1px solid rgba(27,38,50,0.2)`,
+    width: "100%", background: "#fff", border: `1px solid rgba(${NAVY_RGB},0.2)`,
     padding: "13px 16px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
     color: NAVY, outline: "none", boxSizing: "border-box",
   };
@@ -180,7 +181,7 @@ function MentorWaitlist() {
         }}>
           Mentorship is deliberately limited.
         </h2>
-        <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.7, maxWidth: "640px", margin: "0 0 40px" }}>
+        <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.7, maxWidth: "640px", margin: "0 0 40px" }}>
           So Mark can give real 1:1 time, each cohort is{" "}
           {isPlaceholder(MENTOR_CAPACITY) ? "kept deliberately small" : `capped at ${MENTOR_CAPACITY}`}.
           When a month is full, it's full.{openMonth ? ` The next intake is ${openMonth}.` : ""}
@@ -195,7 +196,7 @@ function MentorWaitlist() {
             const borderLeft = isOpen
               ? `3px solid ${RUST}`
               : isFull
-                ? `3px solid rgba(163,81,57,0.4)`
+                ? `3px solid rgba(${RUST_RGB},0.4)`
                 : `3px solid ${OAT}`;
             const monthColor = isFull ? "#fff" : NAVY;
             const statusText = isOpen
@@ -203,10 +204,10 @@ function MentorWaitlist() {
               : isFull
                 ? "Fully booked"
                 : "Register interest";
-            const statusColor = isOpen ? RUST : isFull ? "rgba(238,233,223,0.7)" : "rgba(27,38,50,0.55)";
+            const statusColor = isOpen ? RUST : isFull ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.55)`;
             return (
               <div key={intake.label} style={{
-                background: rowBg, borderLeft, border: isOpen ? `1px solid ${RUST}` : "1px solid rgba(27,38,50,0.08)",
+                background: rowBg, borderLeft, border: isOpen ? `1px solid ${RUST}` : `1px solid rgba(${NAVY_RGB},0.08)`,
                 padding: "20px 24px", display: "flex", flexWrap: "wrap", alignItems: "center",
                 justifyContent: "space-between", gap: "12px",
               }}>
@@ -226,7 +227,7 @@ function MentorWaitlist() {
                 </div>
                 {isFull ? (
                   <button onClick={() => choose(intake.label, false)} style={{
-                    background: "transparent", color: "rgba(238,233,223,0.8)", border: "1px solid rgba(238,233,223,0.4)",
+                    background: "transparent", color: `rgba(${CREAM_RGB},0.8)`, border: `1px solid rgba(${CREAM_RGB},0.4)`,
                     fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
                   }}>
@@ -255,13 +256,13 @@ function MentorWaitlist() {
         </div>
 
         {/* Waitlist form */}
-        <div id="mentor-waitlist" style={{ background: NAVY, padding: "40px", maxWidth: "560px", scrollMarginTop: "80px" }}>
+        <div id="mentor-waitlist" style={{ background: DARK_GRADIENT, padding: "40px", maxWidth: "560px", scrollMarginTop: "80px" }}>
           {!formReady ? (
             <>
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 12px" }}>
                 Registration opening soon.
               </h3>
-              <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
                 The mentorship waitlist opens shortly. In the meantime you can reach us via the{" "}
                 <Link href="/contact" style={{ color: RUST }}>contact form</Link>.
                 {/* TODO(eba): set FORM_ENDPOINT in constants.ts to enable the waitlist. */}
@@ -272,7 +273,7 @@ function MentorWaitlist() {
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 12px" }}>
                 You're on the list for {selectedMonth}.
               </h3>
-              <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
                 We'll be in touch when places open.
               </p>
             </>
@@ -281,7 +282,7 @@ function MentorWaitlist() {
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 4px" }}>
                 Register your interest.
               </h3>
-              <label style={{ color: "rgba(238,233,223,0.7)", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                 Intake
               </label>
               <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
@@ -339,7 +340,7 @@ export function MentorshipPage() {
                 <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.2rem", color: NAVY, margin: "0 0 14px" }}>
                   {label}
                 </h3>
-                <p style={{ color: "rgba(27,38,50,0.7)", fontSize: "14px", lineHeight: 1.75, margin: "0 0 20px" }}>
+                <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.75, margin: "0 0 20px" }}>
                   {detail}
                 </p>
                 <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "14px" }}>
@@ -439,19 +440,19 @@ export function FAQPage() {
               <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.05rem", color: NAVY, margin: "0 0 10px" }}>
                 {q}
               </h3>
-              <p style={{ color: "rgba(27,38,50,0.72)", fontSize: "14px", lineHeight: 1.75, margin: 0 }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.75, margin: 0 }}>
                 {a}
               </p>
             </div>
           ))}
         </div>
       </section>
-      <section style={{ background: NAVY, padding: "64px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: "64px 40px" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
           <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.8rem", color: "#fff", margin: "0 0 16px" }}>
             Still have questions?
           </h3>
-          <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", lineHeight: 1.65, margin: "0 0 28px" }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.65, margin: "0 0 28px" }}>
             Use the contact form and we'll respond within one business day.
           </p>
           <Link href="/contact" style={{

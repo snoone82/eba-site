@@ -22,6 +22,7 @@ import {
   OAT,
   AMBER,
   isPlaceholder,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -33,7 +34,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
   return (
     <span style={{
       display: "inline-block",
-      background: light ? "rgba(163,81,57,0.15)" : RUST,
+      background: light ? `rgba(${RUST_RGB},0.15)` : RUST,
       color: light ? RUST : "#fff",
       fontFamily: "'DM Sans', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
@@ -112,8 +113,8 @@ function OmManualDemo() {
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
         ))}
-        <div style={{ flex: 1, background: "rgba(27,38,50,0.08)", borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: "rgba(27,38,50,0.5)" }}>
+        <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
             tools.engineeringbusinessacademy.co.uk/om-manual
           </span>
         </div>
@@ -134,8 +135,8 @@ function OmManualDemo() {
           {omSteps.map((s, i) => (
             <div key={i} style={{
               padding: "14px 18px",
-              background: i === step ? NAVY : i < step ? "rgba(27,38,50,0.04)" : "transparent",
-              borderLeft: `3px solid ${i === step ? RUST : i < step ? "rgba(163,81,57,0.3)" : OAT}`,
+              background: i === step ? NAVY : i < step ? `rgba(${NAVY_RGB},0.04)` : "transparent",
+              borderLeft: `3px solid ${i === step ? RUST : i < step ? `rgba(${RUST_RGB},0.3)` : OAT}`,
               transition: "all 0.4s ease",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
@@ -144,20 +145,20 @@ function OmManualDemo() {
                   background: i < step ? RUST : i === step ? "#fff" : OAT,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: "10px", fontWeight: 700,
-                  color: i < step ? "#fff" : i === step ? NAVY : "rgba(27,38,50,0.4)",
+                  color: i < step ? "#fff" : i === step ? NAVY : `rgba(${NAVY_RGB},0.4)`,
                 }}>
                   {i < step ? <Check size={12} strokeWidth={3} /> : i + 1}
                 </div>
                 <div>
                   <p style={{
                     fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
-                    color: i === step ? "#fff" : i < step ? NAVY : "rgba(27,38,50,0.5)",
+                    color: i === step ? "#fff" : i < step ? NAVY : `rgba(${NAVY_RGB},0.5)`,
                     margin: "0 0 2px",
                   }}>
                     {s.label}
                   </p>
                   {i === step && (
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: "rgba(238,233,223,0.7)", margin: 0 }}>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${CREAM_RGB},0.7)`, margin: 0 }}>
                       {s.detail}
                     </p>
                   )}
@@ -166,8 +167,8 @@ function OmManualDemo() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: "20px", padding: "14px 18px", background: "rgba(163,81,57,0.06)", borderLeft: `3px solid ${RUST}` }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: "rgba(27,38,50,0.6)", margin: 0 }}>
+        <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${RUST_RGB},0.06)`, borderLeft: `3px solid ${RUST}` }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0 }}>
             <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → under 30 minutes
           </p>
         </div>
@@ -211,8 +212,8 @@ function ComplianceChatDemo() {
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
         ))}
-        <div style={{ flex: 1, background: "rgba(27,38,50,0.08)", borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: "rgba(27,38,50,0.5)" }}>
+        <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
             tools.engineeringbusinessacademy.co.uk/compliance-chat
           </span>
         </div>
@@ -233,7 +234,7 @@ function ComplianceChatDemo() {
             }}>
               {msg.role === "bot" && (
                 <div style={{
-                  width: "28px", height: "28px", background: NAVY, flexShrink: 0,
+                  width: "28px", height: "28px", background: DARK_GRADIENT, flexShrink: 0,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginRight: "8px", alignSelf: "flex-end",
                 }}>
@@ -254,7 +255,7 @@ function ComplianceChatDemo() {
           ))}
           {typing && (
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-              <div style={{ width: "28px", height: "28px", background: NAVY, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <div style={{ width: "28px", height: "28px", background: DARK_GRADIENT, display: "flex", alignItems: "center", justifyContent: "center" }}>
                 <span style={{ color: "#fff", fontSize: "10px", fontWeight: 700 }}>EB</span>
               </div>
               <div style={{ background: OAT, padding: "12px 16px", display: "flex", gap: "4px", alignItems: "center" }}>
@@ -271,7 +272,7 @@ function ComplianceChatDemo() {
         <div style={{ marginTop: "16px", borderTop: `1px solid ${OAT}`, paddingTop: "12px", display: "flex", gap: "8px" }}>
           <div style={{
             flex: 1, background: OAT, padding: "10px 14px",
-            fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: "rgba(27,38,50,0.4)",
+            fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.4)`,
           }}>
             Ask a safety or compliance question...
           </div>
@@ -352,7 +353,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
 
   if (submitted) {
     return (
-      <p style={{ color: "rgba(163,81,57,0.8)", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
+      <p style={{ color: `rgba(${RUST_RGB},0.8)`, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
         <Check size={13} strokeWidth={2.5} style={{ flexShrink: 0 }} /> We'll notify you when {toolName} is live.
       </p>
     );
@@ -368,7 +369,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
         required
         style={{
           flex: 1, minWidth: "160px", padding: "9px 12px",
-          border: `1px solid rgba(27,38,50,0.2)`, background: "rgba(238,233,223,0.6)",
+          border: `1px solid rgba(${NAVY_RGB},0.2)`, background: `rgba(${CREAM_RGB},0.6)`,
           fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: NAVY, outline: "none",
         }}
       />
@@ -392,9 +393,9 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? "rgba(27,38,50,0.97)" : "rgba(27,38,50,0.85)",
+        background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
         backdropFilter: "blur(12px)",
-        borderBottom: scrolled ? `1px solid rgba(163,81,57,0.3)` : "none",
+        borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "all 0.3s ease",
         padding: "0 40px",
       }}>
@@ -460,7 +461,7 @@ export default function AIToolsPage() {
       {/* ── HERO ── */}
       <section style={{
         paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px",
-        background: NAVY,
+        background: DARK_GRADIENT,
         position: "relative", overflow: "hidden",
       }}>
         <div style={{
@@ -478,7 +479,7 @@ export default function AIToolsPage() {
             Built for how M&E actually works.
           </h1>
           <p style={{
-            color: "rgba(238,233,223,0.75)", fontSize: "18px", lineHeight: 1.65,
+            color: `rgba(${CREAM_RGB},0.75)`, fontSize: "18px", lineHeight: 1.65,
             maxWidth: "580px", margin: "0 0 48px",
           }}>
             We built these because they didn't exist. Every M&E contractor we know was either drowning in paperwork or paying agencies thousands to produce documents that AI can now generate in minutes. The difference: ours are built specifically for M&E engineering contractors.
@@ -493,7 +494,7 @@ export default function AIToolsPage() {
                 <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.6rem", fontWeight: 700, margin: "0 0 4px" }}>
                   {value}
                 </p>
-                <p style={{ color: "rgba(238,233,223,0.55)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                   {label}
                 </p>
               </div>
@@ -534,7 +535,7 @@ export default function AIToolsPage() {
                       }}>
                         {tool.title}
                       </h3>
-                      <p style={{ color: "rgba(27,38,50,0.7)", fontSize: "16px", lineHeight: 1.7, margin: "0 0 28px" }}>
+                      <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "16px", lineHeight: 1.7, margin: "0 0 28px" }}>
                         {tool.body}
                       </p>
                       <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "32px" }}>
@@ -588,7 +589,7 @@ export default function AIToolsPage() {
                       }}>
                         {tool.title}
                       </h3>
-                      <p style={{ color: "rgba(27,38,50,0.7)", fontSize: "16px", lineHeight: 1.7, margin: "0 0 28px" }}>
+                      <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "16px", lineHeight: 1.7, margin: "0 0 28px" }}>
                         {tool.body}
                       </p>
                       <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "32px" }}>
@@ -648,7 +649,7 @@ export default function AIToolsPage() {
             }}>
               More tools coming shortly.
             </h2>
-            <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", margin: "0 0 48px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", margin: "0 0 48px" }}>
               All included in the Academy subscription. Available standalone for non-members.
             </p>
           </RevealSection>
@@ -656,13 +657,13 @@ export default function AIToolsPage() {
             {comingSoon.map((tool, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: "#fff", borderTop: `3px solid rgba(163,81,57,0.25)`,
+                  background: "#fff", borderTop: `3px solid rgba(${RUST_RGB},0.25)`,
                   padding: "28px 28px", opacity: 0.8,
                 }}>
                   <span style={{
                     fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
                     fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: "rgba(27,38,50,0.4)", display: "block", marginBottom: "12px",
+                    color: `rgba(${NAVY_RGB},0.4)`, display: "block", marginBottom: "12px",
                   }}>
                     {tool.label}
                   </span>
@@ -672,12 +673,12 @@ export default function AIToolsPage() {
                   }}>
                     {tool.title}
                   </h4>
-                  <p style={{ color: "rgba(27,38,50,0.6)", fontSize: "13px", lineHeight: 1.6, margin: "0 0 16px" }}>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.6)`, fontSize: "13px", lineHeight: 1.6, margin: "0 0 16px" }}>
                     {tool.body}
                   </p>
                   <span style={{
                     fontFamily: "'Playfair Display', serif", fontStyle: "italic",
-                    color: "rgba(163,81,57,0.6)", fontSize: "13px",
+                    color: `rgba(${RUST_RGB},0.6)`, fontSize: "13px",
                   }}>
                     {tool.price}
                   </span>
@@ -690,7 +691,7 @@ export default function AIToolsPage() {
       </section>
 
       {/* ── WHITE LABEL ── */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
@@ -703,7 +704,7 @@ export default function AIToolsPage() {
                 }}>
                   Your own branded compliance assistant. Deployed across your entire organisation.
                 </h2>
-                <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
+                <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
                   The same AI technology that powers the EBA Compliance Chatbot — trained on your specific HSEQ documentation, branded with your company identity, deployed to every engineer in your business. Implementation: 2 weeks. Cost: a fraction of what a compliance consultancy charges. Capability: your entire safety knowledge base, available to every person on site, 24 hours a day.
                 </p>
                 <div style={{ display: "flex", gap: "32px", marginBottom: "36px" }}>
@@ -716,7 +717,7 @@ export default function AIToolsPage() {
                       <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
                         {value}
                       </p>
-                      <p style={{ color: "rgba(238,233,223,0.45)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                      <p style={{ color: `rgba(${CREAM_RGB},0.45)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                         {label}
                       </p>
                     </div>
@@ -737,7 +738,7 @@ export default function AIToolsPage() {
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
                 </p>
-                <p style={{ color: "rgba(238,233,223,0.4)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${CREAM_RGB},0.4)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                   EBA AI Tools Catalogue, June 2026
                 </p>
               </div>
@@ -747,7 +748,7 @@ export default function AIToolsPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: NAVY, borderTop: `1px solid rgba(163,81,57,0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
+      <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "20px" }}>
             <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
@@ -755,7 +756,7 @@ export default function AIToolsPage() {
             </Link>
             <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
               {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
-                <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
+                <Link key={href} href={href} style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
                   {label}
                 </Link>
               ))}
@@ -763,12 +764,12 @@ export default function AIToolsPage() {
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
             <div>
-              <p style={{ color: "rgba(238,233,223,0.3)", fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
-              <p style={{ color: "rgba(238,233,223,0.2)", fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
+              <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
+              <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
             </div>
             <div style={{ display: "flex", gap: "16px" }}>
-              <Link href="/privacy-policy" style={{ color: "rgba(238,233,223,0.3)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
-              <Link href="/terms" style={{ color: "rgba(238,233,223,0.3)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
+              <Link href="/privacy-policy" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
+              <Link href="/terms" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
             </div>
           </div>
         </div>

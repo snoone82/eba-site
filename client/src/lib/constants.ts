@@ -7,7 +7,10 @@
  * exports) and CSS usage reference identical values.
  */
 
-export const COLORS = {
+/**
+ * DEFAULT palette — the editorial navy / cream / rust identity. Unchanged.
+ */
+export const COLORS_DEFAULT = {
   navy: "#1B2632",  // primary text, dark sections
   cream: "#EEE9DF", // primary page background
   rust: "#A35139",  // single signature accent (CTAs, rules, labels)
@@ -16,6 +19,51 @@ export const COLORS = {
   amber: "#FFB162", // sparing highlight / "live" indicator only
 } as const;
 
+/**
+ * NOIR palette — a restrained, law-firm-professional dark variant.
+ * Same roles as the default so every component themes automatically:
+ *  - navy  → neutral charcoal: dark sections AND near-black text (never pure black)
+ *  - cream → off-white: light sections AND slate-white text on dark (never pure white)
+ *  - rust  → deep oxblood: the single accent, used sparingly
+ *  - oat   → secondary light surface / alternating cards
+ *  - white → cards + form surfaces on light
+ *  - amber → cooled highlight that sits with the oxblood accent
+ * Tuned for WCAG AA against the surfaces it lands on.
+ */
+export const COLORS_NOIR = {
+  navy: "#1A1A1C",
+  cream: "#F4F2EE",
+  rust: "#8E3B3B",
+  oat: "#E9E5DD",
+  white: "#FFFFFF",
+  amber: "#C98A55",
+} as const;
+
+/**
+ * Theme selection — read once, at module load, from the `?theme=noir` URL param.
+ * Because the named exports below are ES-module live bindings resolved at load
+ * time, the entire page renders in a single consistent theme. Client-side
+ * navigation (wouter) keeps the chosen theme for the life of the page; a fresh
+ * load without `?theme=noir` falls back to the default. Nothing is persisted, so
+ * `/` and `/?theme=noir` always render their respective themes for side-by-side
+ * comparison.
+ */
+function detectTheme(): "default" | "noir" {
+  if (typeof window === "undefined") return "default";
+  try {
+    return new URLSearchParams(window.location.search).get("theme") === "noir"
+      ? "noir"
+      : "default";
+  } catch {
+    return "default";
+  }
+}
+
+export const THEME: "default" | "noir" = detectTheme();
+export const IS_NOIR = THEME === "noir";
+
+export const COLORS = IS_NOIR ? COLORS_NOIR : COLORS_DEFAULT;
+
 // Convenience named exports — used directly in the pages' inline styles.
 export const NAVY = COLORS.navy;
 export const CREAM = COLORS.cream;
@@ -23,6 +71,38 @@ export const RUST = COLORS.rust;
 export const OAT = COLORS.oat;
 export const WHITE = COLORS.white;
 export const AMBER = COLORS.amber;
+
+/**
+ * RGB triplets (for inline `rgba(...)` literals) that track the active theme.
+ * These let the many low-opacity tints/borders/overlays switch with the palette
+ * instead of staying hard-coded to the default hues.
+ */
+export const NAVY_RGB = IS_NOIR ? "26,26,28" : "27,38,50";
+export const RUST_RGB = IS_NOIR ? "142,59,59" : "163,81,57";
+export const CREAM_RGB = IS_NOIR ? "244,242,238" : "238,233,223";
+
+/**
+ * Background for large dark sections (hero / founder / CTA). In the default
+ * theme this is the flat navy used previously (visually identical). In noir it
+ * becomes a subtle vertical charcoal gradient — never a flat black.
+ */
+export const DARK_GRADIENT = IS_NOIR
+  ? "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)"
+  : NAVY;
+
+/**
+ * Keep the CSS custom properties (used by index.css for body/selection/scrollbar)
+ * in sync with the active theme. Runs once at load; no-op during SSR/prerender.
+ */
+if (IS_NOIR && typeof document !== "undefined") {
+  const s = document.documentElement.style;
+  s.setProperty("--eba-navy", COLORS_NOIR.navy);
+  s.setProperty("--eba-rust", COLORS_NOIR.rust);
+  s.setProperty("--eba-cream", COLORS_NOIR.cream);
+  s.setProperty("--eba-oat", COLORS_NOIR.oat);
+  s.setProperty("--eba-white", COLORS_NOIR.white);
+  s.setProperty("--eba-amber", COLORS_NOIR.amber);
+}
 
 // ── Integrations ───────────────────────────────────────────────────────────
 

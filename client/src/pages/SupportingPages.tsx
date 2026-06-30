@@ -21,6 +21,7 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -32,7 +33,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
   return (
     <span style={{
       display: "inline-block",
-      background: light ? "rgba(163,81,57,0.12)" : RUST,
+      background: light ? `rgba(${RUST_RGB},0.12)` : RUST,
       color: light ? RUST : "#fff",
       fontFamily: "'DM Sans', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
@@ -99,9 +100,9 @@ function NavBar({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled ? "rgba(27,38,50,0.97)" : "rgba(27,38,50,0.85)",
+      background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
       backdropFilter: "blur(12px)",
-      borderBottom: scrolled ? `1px solid rgba(163,81,57,0.3)` : "none",
+      borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
       transition: "all 0.3s ease", padding: "0 40px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
@@ -138,7 +139,7 @@ function NavBar({ active }: { active: string }) {
 function PageFooter() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ background: NAVY, borderTop: `1px solid rgba(163,81,57,0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
+    <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "24px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
@@ -146,7 +147,7 @@ function PageFooter() {
           </Link>
           <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
             {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
-              <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
+              <Link key={href} href={href} style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
                 {label}
               </Link>
             ))}
@@ -154,12 +155,12 @@ function PageFooter() {
         </div>
         <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
           <div>
-            <p style={{ color: "rgba(238,233,223,0.3)", fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
-            <p style={{ color: "rgba(238,233,223,0.2)", fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
+            <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
+            <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
           </div>
           <div style={{ display: "flex", gap: "16px" }}>
-            <Link href="/privacy-policy" style={{ color: "rgba(238,233,223,0.3)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
-            <Link href="/terms" style={{ color: "rgba(238,233,223,0.3)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
+            <Link href="/privacy-policy" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
+            <Link href="/terms" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
           </div>
         </div>
       </div>
@@ -181,7 +182,7 @@ export function OurStoryPage() {
       <NavBar active="/our-story" />
 
       {/* 1. Hero — Why EBA exists */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: NAVY }}>
+      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Our Story</SectionLabel>
           <h1 style={{
@@ -191,7 +192,7 @@ export function OurStoryPage() {
           }}>
             Why EBA exists.
           </h1>
-          <p style={{ color: "rgba(238,233,223,0.72)", fontSize: "17px", lineHeight: 1.7, maxWidth: "600px" }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "600px" }}>
             Engineers are taught to build. Nobody teaches them how to run the business around the building — pricing, contracts, cash flow, compliance, people, growth. EBA exists to close that gap.
           </p>
         </div>
@@ -226,16 +227,16 @@ export function OurStoryPage() {
                 He has actually made these decisions.
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
+                <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   Mark Poulton started with a single M&E firm and built it into a multi-division engineering group operating across the UK and Poland.
                   {/* TODO(eba): founding year + how the single firm became a multi-division group. */}
                   {/* TODO(eba): the UK → Poland / international expansion detail. */}
                 </p>
-                <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
+                <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.
                   {/* TODO(eba): the pre-pack and rebuild — Mark has authorised mentioning it; confirm exactly how much detail is public and how he wants it framed before adding specifics here. */}
                 </p>
-                <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
+                <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   This isn't someone who read about your industry. It's someone who has run exactly the business you're running — at every stage you're trying to reach.
                 </p>
               </div>
@@ -245,7 +246,7 @@ export function OurStoryPage() {
       </section>
 
       {/* 3. Why teach it now */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>Why teach it now</SectionLabel>
@@ -256,7 +257,7 @@ export function OurStoryPage() {
             }}>
               From operator to academy.
             </h2>
-            <p style={{ color: "rgba(238,233,223,0.8)", fontSize: "17px", lineHeight: 1.75, margin: 0 }}>
+            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "17px", lineHeight: 1.75, margin: 0 }}>
               The business skills it takes to run a serious M&E contracting operation aren't taught anywhere. Mark learned them the hard way, over years of running the company. EBA is him opening that up — so the next operators don't have to learn it the same way.
             </p>
             {/* TODO(eba): replace or supplement the paragraph above with Mark's own reason in his words — a short pull-quote works well here. */}
@@ -270,7 +271,7 @@ export function OurStoryPage() {
           <RevealSection>
             <SectionLabel>What EBA is</SectionLabel>
             <div style={rule} />
-            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.8, margin: 0 }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.8, margin: 0 }}>
               EBA is the thing Mark wishes he'd had: a business academy, AI tools, mentorship and a document library — built only for M&E engineering contractors, from operational experience rather than theory. The academy and the tools carry the knowledge; the mentorship and documents put it to work in your business.
             </p>
           </RevealSection>
@@ -289,7 +290,7 @@ export function OurStoryPage() {
           </h2>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "our-story" })} style={{
-              background: NAVY, color: "#fff", textDecoration: "none",
+              background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "15px",
               padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block",
             }}>
@@ -704,7 +705,7 @@ export function DocumentsPage() {
       <NavBar active="/documents" />
 
       {/* Hero */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: NAVY }}>
+      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Document Library</SectionLabel>
           <h1 style={{
@@ -714,7 +715,7 @@ export function DocumentsPage() {
           }}>
             380 documents. 25 years of M&E practice.
           </h1>
-          <p style={{ color: "rgba(238,233,223,0.72)", fontSize: "17px", lineHeight: 1.7, maxWidth: "580px", margin: "0 0 32px" }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px", margin: "0 0 32px" }}>
             Every document in this library was developed and used in the operation of a principal M&E contracting business. These are not generic templates. They are the actual forms, registers, contracts, and procedures that a serious M&E business requires.
           </p>
           <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
@@ -725,7 +726,7 @@ export function DocumentsPage() {
             ].map(({ value, label }) => (
               <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
                 <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
-                <p style={{ color: "rgba(238,233,223,0.5)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{label}</p>
+                <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{label}</p>
               </div>
             ))}
           </div>
@@ -772,7 +773,7 @@ export function DocumentsPage() {
                   <span style={{
                     marginLeft: "8px",
                     background: openCategory === cat.id ? RUST : OAT,
-                    color: openCategory === cat.id ? "#fff" : "rgba(27,38,50,0.6)",
+                    color: openCategory === cat.id ? "#fff" : `rgba(${NAVY_RGB},0.6)`,
                     fontSize: "10px", padding: "2px 7px",
                     transition: "all 0.2s",
                   }}>
@@ -796,12 +797,12 @@ export function DocumentsPage() {
                     }}>
                       {cat.label}
                     </h2>
-                    <p style={{ color: "rgba(27,38,50,0.7)", fontSize: "15px", lineHeight: 1.75, margin: 0 }}>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "15px", lineHeight: 1.75, margin: 0 }}>
                       {cat.description}
                     </p>
                   </div>
-                  <div style={{ background: NAVY, padding: "24px 24px", borderLeft: `3px solid ${RUST}` }}>
-                    <p style={{ color: "rgba(238,233,223,0.55)", fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
+                  <div style={{ background: DARK_GRADIENT, padding: "24px 24px", borderLeft: `3px solid ${RUST}` }}>
+                    <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
                       Complete Pack
                     </p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1.1rem", margin: "0 0 4px" }}>
@@ -810,7 +811,7 @@ export function DocumentsPage() {
                     <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
                       {BUNDLE_PRICES[cat.id].price}
                     </p>
-                    <p style={{ color: "rgba(238,233,223,0.45)", fontSize: "12px", margin: "0 0 16px" }}>
+                    <p style={{ color: `rgba(${CREAM_RGB},0.45)`, fontSize: "12px", margin: "0 0 16px" }}>
                       {BUNDLE_PRICES[cat.id].saving}
                     </p>
                     <Link href="/contact" style={{
@@ -839,7 +840,7 @@ export function DocumentsPage() {
                           </h4>
                           {doc.bundle && (
                             <span style={{
-                              background: "rgba(163,81,57,0.12)", color: RUST,
+                              background: `rgba(${RUST_RGB},0.12)`, color: RUST,
                               fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
                               fontSize: "9px", letterSpacing: "0.1em", textTransform: "uppercase",
                               padding: "2px 8px",
@@ -848,7 +849,7 @@ export function DocumentsPage() {
                             </span>
                           )}
                         </div>
-                        <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
+                        <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
                           {doc.detail}
                         </p>
                       </div>
@@ -857,7 +858,7 @@ export function DocumentsPage() {
                           {doc.price}
                         </p>
                         <Link href="/contact" style={{
-                          background: NAVY, color: "#fff", textDecoration: "none",
+                          background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
                           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
                           padding: "7px 14px", letterSpacing: "0.04em", display: "inline-block",
                           whiteSpace: "nowrap",
@@ -871,8 +872,8 @@ export function DocumentsPage() {
               </div>
 
               <RevealSection style={{ marginTop: "32px" }}>
-                <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid rgba(27,38,50,0.2)` }}>
-                  <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
+                <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid rgba(${NAVY_RGB},0.2)` }}>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
                     All documents are provided in editable Microsoft Word or Excel format. Academy members receive the complete library — all 380 documents across all six categories — as part of their membership. To enquire about volume licensing or bespoke document development, please{" "}
                     <Link href="/contact" style={{ color: RUST, textDecoration: "none", fontWeight: 600 }}>contact us</Link>.
                   </p>
@@ -884,12 +885,12 @@ export function DocumentsPage() {
           {/* CTA if nothing open */}
           {!openCategory && (
             <RevealSection>
-              <div style={{ background: NAVY, padding: isMobile ? "32px 20px" : "48px 48px", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "24px" }}>
+              <div style={{ background: DARK_GRADIENT, padding: isMobile ? "32px 20px" : "48px 48px", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "24px" }}>
                 <div>
                   <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.6rem", color: "#fff", margin: "0 0 8px" }}>
                     Select a category above to browse the library.
                   </h3>
-                  <p style={{ color: "rgba(238,233,223,0.6)", fontSize: "15px", margin: 0 }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "15px", margin: 0 }}>
                     Or join the Academy and receive all 380 documents as part of your membership.
                   </p>
                 </div>
@@ -960,7 +961,7 @@ export function ContactPage() {
       <MobileNav transparent={false} />
       <NavBar active="/contact" />
 
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: NAVY }}>
+      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Enquiries</SectionLabel>
           <h1 style={{
@@ -970,7 +971,7 @@ export function ContactPage() {
           }}>
             Get in touch.
           </h1>
-          <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "17px", lineHeight: 1.65, maxWidth: "480px" }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "480px" }}>
             Academy enrolment, document purchases, AI tool enquiries, white-label deployments, and mentorship applications. Use the form below and we will respond within two working days.
           </p>
         </div>
@@ -981,11 +982,11 @@ export function ContactPage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "40px" : "80px" }}>
             <RevealSection>
               {submitted ? (
-                <div style={{ background: NAVY, padding: "48px", borderLeft: `4px solid ${RUST}` }}>
+                <div style={{ background: DARK_GRADIENT, padding: "48px", borderLeft: `4px solid ${RUST}` }}>
                   <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1.5rem", margin: "0 0 12px" }}>
                     Enquiry received.
                   </h3>
-                  <p style={{ color: "rgba(238,233,223,0.7)", fontSize: "15px", margin: 0 }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", margin: 0 }}>
                     We will respond within two working days.
                   </p>
                 </div>
@@ -1053,7 +1054,7 @@ export function ContactPage() {
                 ].map(({ label, detail }) => (
                   <div key={label} style={{ background: "#fff", borderLeft: `3px solid ${OAT}`, padding: "20px 20px" }}>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: NAVY, fontSize: "0.95rem", margin: "0 0 6px" }}>{label}</p>
-                    <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
                   </div>
                 ))}
               </div>

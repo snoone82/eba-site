@@ -8,7 +8,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
-import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM } from "@/lib/constants";
+import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB } from "@/lib/constants";
 import { track } from "@/lib/track";
 
 const NAV_LINKS = [
@@ -49,9 +49,9 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
 
   const navBg = transparent
     ? scrolled || open
-      ? "rgba(27,38,50,0.97)"
-      : "rgba(27,38,50,0.92)"  // solid enough to prevent hero text bleed-through
-    : "rgba(27,38,50,0.97)";
+      ? `rgba(${NAVY_RGB},0.97)`
+      : `rgba(${NAVY_RGB},0.92)`  // solid enough to prevent hero text bleed-through
+    : `rgba(${NAVY_RGB},0.97)`;
 
   return (
     <>
@@ -62,7 +62,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
         height: "60px", padding: "0 20px",
         background: navBg,
         backdropFilter: scrolled || open ? "blur(12px)" : "none",
-        borderBottom: scrolled || open ? `1px solid rgba(163,81,57,0.3)` : "none",
+        borderBottom: scrolled || open ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "background 0.3s ease, border-color 0.3s ease",
       }}>
         {/* Logo */}
@@ -108,7 +108,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
       {/* ── Full-screen drawer overlay ── */}
       <div className="eba-mobile-drawer" style={{
         position: "fixed", inset: 0, zIndex: 190,
-        background: NAVY,
+        background: DARK_GRADIENT,
         transform: open ? "translateX(0)" : "translateX(100%)",
         transition: "transform 0.35s cubic-bezier(0.23,1,0.32,1)",
         display: "flex", flexDirection: "column",
@@ -179,7 +179,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
             {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
           </a>
           <p style={{
-            color: "rgba(238,233,223,0.4)",
+            color: `rgba(${CREAM_RGB},0.4)`,
             fontFamily: "'DM Sans', sans-serif",
             fontSize: "12px",
             letterSpacing: "0.08em",

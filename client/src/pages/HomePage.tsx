@@ -19,6 +19,7 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -127,11 +128,11 @@ function LeadMagnetForm() {
   // Fail safe: no endpoint wired yet — show an honest "coming soon", never a fake success.
   if (!formReady) {
     return (
-      <div style={{ background: "rgba(163,81,57,0.1)", border: `1px solid rgba(163,81,57,0.3)`, padding: "24px 28px" }}>
+      <div style={{ background: `rgba(${RUST_RGB},0.1)`, border: `1px solid rgba(${RUST_RGB},0.3)`, padding: "24px 28px" }}>
         <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
           Form coming soon.
         </p>
-        <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
+        <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
           The M&E Business Health Check sign-up opens shortly.
           {/* TODO(eba): set FORM_ENDPOINT in client/src/lib/constants.ts to enable this form. */}
         </p>
@@ -141,11 +142,11 @@ function LeadMagnetForm() {
 
   if (submitted) {
     return (
-      <div style={{ background: "rgba(163,81,57,0.1)", border: `1px solid rgba(163,81,57,0.3)`, padding: "24px 28px" }}>
+      <div style={{ background: `rgba(${RUST_RGB},0.1)`, border: `1px solid rgba(${RUST_RGB},0.3)`, padding: "24px 28px" }}>
         <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
           Check your inbox.
         </p>
-        <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
+        <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
           Your M&E Business Health Check is on its way to {email}.
         </p>
       </div>
@@ -161,7 +162,7 @@ function LeadMagnetForm() {
         onChange={e => setName(e.target.value)}
         required
         style={{
-          padding: "13px 16px", border: `1px solid rgba(27,38,50,0.2)`,
+          padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
           background: "#fff", fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
@@ -173,7 +174,7 @@ function LeadMagnetForm() {
         onChange={e => setEmail(e.target.value)}
         required
         style={{
-          padding: "13px 16px", border: `1px solid rgba(27,38,50,0.2)`,
+          padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
           background: "#fff", fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
@@ -195,7 +196,7 @@ function LeadMagnetForm() {
       >
         {loading ? "Sending..." : "Send me the Health Check →"}
       </button>
-      <p style={{ color: "rgba(27,38,50,0.4)", fontSize: "12px", margin: 0 }}>
+      <p style={{ color: `rgba(${NAVY_RGB},0.4)`, fontSize: "12px", margin: 0 }}>
         No spam. Unsubscribe any time. UK GDPR compliant.
       </p>
     </form>
@@ -281,9 +282,9 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? "rgba(27,38,50,0.97)" : "rgba(27,38,50,0.0)",
+        background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.0)`,
         backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid rgba(163,81,57,0.3)` : "none",
+        borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "all 0.3s ease",
         padding: "0 40px",
       }}>
@@ -358,7 +359,7 @@ export default function HomePage() {
         alignItems: "flex-start",
         paddingTop: isMobile ? "96px" : "140px",
         paddingBottom: isMobile ? "48px" : "72px",
-        background: NAVY, // fallback so a slow/dead hero image degrades to clean navy, not muddy cream
+        background: DARK_GRADIENT, // fallback so a slow/dead hero image degrades to clean navy, not muddy cream
       }}>
         <div style={{
           position: "absolute", inset: 0,
@@ -367,7 +368,7 @@ export default function HomePage() {
         }} />
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(to top, rgba(27,38,50,0.95) 0%, rgba(27,38,50,0.6) 50%, rgba(27,38,50,0.25) 100%)",
+          background: `linear-gradient(to top, rgba(${NAVY_RGB},0.95) 0%, rgba(${NAVY_RGB},0.6) 50%, rgba(${NAVY_RGB},0.25) 100%)`,
         }} />
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
           {/* Badge */}
@@ -407,7 +408,7 @@ export default function HomePage() {
                   fontSize: "12px", fontWeight: 600,
                   letterSpacing: "0.08em", textTransform: "uppercase",
                 }}>
-                  {i > 0 && <span style={{ margin: "0 16px", color: "rgba(163,81,57,0.6)" }}>·</span>}
+                  {i > 0 && <span style={{ margin: "0 16px", color: `rgba(${RUST_RGB},0.6)` }}>·</span>}
                   {stat}
                 </span>
               ))}
@@ -452,19 +453,19 @@ export default function HomePage() {
 
       {/* ── TRUST STRIP ── (same content column as every section; smaller + more
             muted than the hero feature strip so the two read as distinct elements) */}
-      <div style={{ background: OAT, padding: isMobile ? "20px 20px" : "26px 40px", borderBottom: `1px solid rgba(27,38,50,0.1)` }}>
+      <div style={{ background: OAT, padding: isMobile ? "20px 20px" : "26px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.1)` }}>
         <p style={{
           maxWidth: "1200px", margin: "0 auto", textAlign: "left",
           fontFamily: "'DM Sans', sans-serif", fontSize: "11px",
           fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
-          color: "rgba(27,38,50,0.45)",
+          color: `rgba(${NAVY_RGB},0.45)`,
         }}>
           Trusted by M&E contractors working across MOD / MOJ estates &nbsp;·&nbsp; nuclear &nbsp;·&nbsp; aerospace &nbsp;·&nbsp; advanced manufacturing &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres
         </p>
       </div>
 
       {/* ── PAIN POINTS ── */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <h2 style={{
@@ -474,7 +475,7 @@ export default function HomePage() {
             }}>
               The engineering is not the problem. The business infrastructure around it is.
             </h2>
-            <p style={{ color: "rgba(238,233,223,0.6)", fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
+            <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
               Most M&E business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
             </p>
           </RevealSection>
@@ -492,7 +493,7 @@ export default function HomePage() {
                   }}>
                     {point.title}
                   </h3>
-                  <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "15px", lineHeight: 1.65, margin: 0 }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "15px", lineHeight: 1.65, margin: 0 }}>
                     {point.body}
                   </p>
                 </div>
@@ -515,13 +516,13 @@ export default function HomePage() {
             }}>
               You learned to run jobs. This is where you learn to run the business.
             </h2>
-            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
               Every M&E contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
             </p>
-            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
               The Academy is 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
             </p>
-            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
               Not generic business theory. Not a coaching framework. The specific operating knowledge of running an M&E business — from someone who has built one at scale.
             </p>
             <Link href="/academy" style={{
@@ -536,7 +537,7 @@ export default function HomePage() {
       </section>
 
       {/* ── THE OUTCOME ── */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>The Outcome</SectionLabel>
@@ -547,7 +548,7 @@ export default function HomePage() {
             }}>
               What it looks like on the other side.
             </h2>
-            <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
+            <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
               The point isn't more lessons. It's a business that finally works the way it should.
             </p>
           </RevealSection>
@@ -565,7 +566,7 @@ export default function HomePage() {
                   }}>
                     {o.title}
                   </h3>
-                  <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
                     {o.body}
                   </p>
                 </div>
@@ -619,13 +620,13 @@ export default function HomePage() {
               }}>
                 Taught by someone who has actually done it — including the hard version.
               </h2>
-              <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
                 Members get group sessions and direct 1:1 access. Not theory. Not a framework. The person who's been where you're going.
               </p>
               {/* Credential strip */}
@@ -655,7 +656,7 @@ export default function HomePage() {
       </section>
 
       {/* ── AI TOOLS (reason to believe) ── */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>AI Tools</SectionLabel>
@@ -667,7 +668,7 @@ export default function HomePage() {
             }}>
               And the tools that prove we understand your world.
             </h2>
-            <p style={{ color: "rgba(238,233,223,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
+            <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
               Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals generated in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge. Built exclusively for M&E — and included with Academy membership.
             </p>
             <Link href="/ai-tools" style={{
@@ -694,7 +695,7 @@ export default function HomePage() {
             }}>
               380 documents. 25 years of practice. Ready to use.
             </h2>
-            <p style={{ color: "rgba(27,38,50,0.78)", fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
               Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
             </p>
             <Link href="/documents" style={{
@@ -709,7 +710,7 @@ export default function HomePage() {
       </section>
 
       {/* ── DECARBONISATION OPPORTUNITY ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(27,38,50,0.1)` }}>
+      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -721,10 +722,10 @@ export default function HomePage() {
               }}>
                 The biggest opportunity in M&E right now. Are you positioned for it?
               </h2>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
                 The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Module 8 of the EBA curriculum covers how to identify, position for, and win this work — net zero treated as a growth strategy, not just a compliance cost.
               </p>
               <Link href="/academy" style={{
@@ -745,10 +746,10 @@ export default function HomePage() {
               }}>
                 The £2bn market your clients are already asking you about.
               </h2>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
                 Fire protection and security is a common adjacent service request in M&E contracting. The market is worth £2 billion and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.75)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on business diversification — using Pro Defend as a live case study in how to identify, enter, and build a profitable adjacent service line.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -763,7 +764,7 @@ export default function HomePage() {
                   See how Mark built it →
                 </Link>
                 <Link href="/academy" style={{
-                  color: "rgba(27,38,50,0.55)", textDecoration: "none",
+                  color: `rgba(${NAVY_RGB},0.55)`, textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
                   letterSpacing: "0.03em",
                 }}>
@@ -776,7 +777,7 @@ export default function HomePage() {
       </section>
 
       {/* ── ENTERPRISE / WHITE-LABEL ── */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -788,7 +789,7 @@ export default function HomePage() {
               }}>
                 Your own branded compliance assistant. Deployed and managed for you.
               </h2>
-              <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
                 We take the compliance chatbot — trained on your company's own documents, procedures, CDM obligations and HSE guidance — and deploy it as a fully managed, branded service for your organisation. Your staff get accurate answers. You get a documented audit trail. We handle the setup, hosting and updates.
               </p>
               <div style={{ display: "flex", gap: "24px", marginBottom: "36px", flexWrap: "wrap" }}>
@@ -804,7 +805,7 @@ export default function HomePage() {
                     }}>
                       {value}
                     </p>
-                    <p style={{ color: "rgba(238,233,223,0.5)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                    <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                       {label}
                     </p>
                   </div>
@@ -831,7 +832,7 @@ export default function HomePage() {
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
                 </p>
-                <p style={{ color: "rgba(238,233,223,0.5)", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                   From the EBA AI Tools Catalogue
                 </p>
               </div>
@@ -841,7 +842,7 @@ export default function HomePage() {
       </section>
 
       {/* ── LEAD MAGNET ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(27,38,50,0.1)` }}>
+      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -853,16 +854,16 @@ export default function HomePage() {
               }}>
                 The M&amp;E Business Health Check.
               </h2>
-              <p style={{ color: "rgba(27,38,50,0.72)", fontSize: "16px", lineHeight: 1.75, margin: "0 0 12px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 12px" }}>
                 20 questions that reveal whether your M&amp;E business is built to last — or built to break under pressure.
               </p>
-              <p style={{ color: "rgba(27,38,50,0.55)", fontSize: "14px", lineHeight: 1.65, margin: "0 0 32px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.55)`, fontSize: "14px", lineHeight: 1.65, margin: "0 0 32px" }}>
                 Covers pricing discipline, cash flow structure, contract exposure, compliance overhead, team dependency, and growth ceiling. Free. No obligation. Sent directly to your inbox.
               </p>
               <LeadMagnetForm />
             </RevealSection>
             <RevealSection>
-              <div style={{ background: NAVY, padding: "40px 36px" }}>
+              <div style={{ background: DARK_GRADIENT, padding: "40px 36px" }}>
                 <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                   {[
                     { q: "Are you pricing to win, or pricing to profit?" },
@@ -873,10 +874,10 @@ export default function HomePage() {
                   ].map(({ q }, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
                       <span style={{ color: RUST, fontFamily: "'Playfair Display', serif", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 700, flexShrink: 0, marginTop: "2px" }}>{i + 1}.</span>
-                      <p style={{ color: "rgba(238,233,223,0.75)", fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{q}</p>
+                      <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{q}</p>
                     </div>
                   ))}
-                  <p style={{ color: "rgba(238,233,223,0.35)", fontSize: "12px", margin: "8px 0 0", fontStyle: "italic" }}>...and 15 more in the full guide.</p>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "12px", margin: "8px 0 0", fontStyle: "italic" }}>...and 15 more in the full guide.</p>
                 </div>
               </div>
             </RevealSection>
@@ -901,7 +902,7 @@ export default function HomePage() {
             Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. M&E contractors only. Limited places.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-            background: NAVY, color: "#fff", textDecoration: "none",
+            background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "16px",
             padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
             transition: "opacity 0.2s",
@@ -916,14 +917,14 @@ export default function HomePage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: NAVY, borderTop: `1px solid rgba(163,81,57,0.3)`, padding: isMobile ? "48px 20px 32px" : "60px 40px 40px" }}>
+      <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "48px 20px 32px" : "60px 40px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 1fr 1fr 1fr", gap: isMobile ? "32px" : "48px", marginBottom: "48px" }}>
             <div>
               <div style={{ marginBottom: "16px" }}>
                 <EBALogo height={36} light={true} />
               </div>
-              <p style={{ color: "rgba(238,233,223,0.5)", fontSize: "14px", lineHeight: 1.65, maxWidth: "280px", margin: 0 }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "14px", lineHeight: 1.65, maxWidth: "280px", margin: 0 }}>
                 The operating system for M&E business owners. Built by someone who has run your business.
               </p>
             </div>
@@ -954,23 +955,23 @@ export default function HomePage() {
                 {links.map(({ label, href, external }: { label: string; href: string; external?: boolean }) => (
                   external ? (
                     <a key={`${heading}-${label}`} href={href} target="_blank" rel="noopener noreferrer" style={{
-                      display: "block", color: "rgba(238,233,223,0.72)", textDecoration: "none",
+                      display: "block", color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none",
                       fontFamily: "'DM Sans', sans-serif", fontSize: "14px", marginBottom: "10px",
                       transition: "color 0.2s",
                     }}
                       onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.72)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}
                     >
                       {label}
                     </a>
                   ) : (
                     <Link key={`${heading}-${label}`} href={href} style={{
-                      display: "block", color: "rgba(238,233,223,0.72)", textDecoration: "none",
+                      display: "block", color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none",
                       fontFamily: "'DM Sans', sans-serif", fontSize: "14px", marginBottom: "10px",
                       transition: "color 0.2s",
                     }}
                       onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                      onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.72)")}
+                      onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}
                     >
                       {label}
                     </Link>
@@ -981,35 +982,35 @@ export default function HomePage() {
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "24px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
             <div>
-              <p style={{ color: "rgba(238,233,223,0.35)", fontSize: "13px", margin: "0 0 4px" }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "13px", margin: "0 0 4px" }}>
                 © 2026 The Engineering Business Academy. All rights reserved.
               </p>
-              <p style={{ color: "rgba(238,233,223,0.25)", fontSize: "12px", margin: 0 }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.25)`, fontSize: "12px", margin: 0 }}>
                 {!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "20px" }}>
               <div style={{ display: "flex", gap: "16px" }}>
-                <Link href="/privacy-policy" style={{ color: "rgba(238,233,223,0.35)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "rgba(238,233,223,0.7)")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.35)")}>
+                <Link href="/privacy-policy" style={{ color: `rgba(${CREAM_RGB},0.35)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.7)`)}
+                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.35)`)}>
                   Privacy Policy
                 </Link>
-                <Link href="/terms" style={{ color: "rgba(238,233,223,0.35)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "rgba(238,233,223,0.7)")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.35)")}>
+                <Link href="/terms" style={{ color: `rgba(${CREAM_RGB},0.35)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}
+                  onMouseEnter={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.7)`)}
+                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.35)`)}>
                   Terms &amp; Conditions
                 </Link>
               </div>
               <div style={{ display: "flex", gap: "12px" }}>
-                <a href="https://www.linkedin.com/company/engineering-business-academy" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none" }}
+                <a href="https://www.linkedin.com/company/engineering-business-academy" target="_blank" rel="noopener noreferrer" style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.72)")}>
+                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
-                <a href="https://www.youtube.com/@engineeringbusinessacademy" target="_blank" rel="noopener noreferrer" style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none" }}
+                <a href="https://www.youtube.com/@engineeringbusinessacademy" target="_blank" rel="noopener noreferrer" style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "rgba(238,233,223,0.72)")}>
+                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>
               </div>

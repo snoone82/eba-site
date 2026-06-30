@@ -19,6 +19,7 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -33,9 +34,9 @@ function LegalNav({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled ? "rgba(27,38,50,0.97)" : "rgba(27,38,50,0.85)",
+      background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
       backdropFilter: "blur(12px)",
-      borderBottom: scrolled ? `1px solid rgba(163,81,57,0.3)` : "none",
+      borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
       transition: "all 0.3s ease", padding: "0 40px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
@@ -76,19 +77,19 @@ function LegalNav({ active }: { active: string }) {
 function LegalFooter() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ background: NAVY, borderTop: `1px solid rgba(163,81,57,0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
+    <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "16px" : "0" }}>
         <div>
-          <p style={{ color: "rgba(238,233,223,0.35)", fontSize: "13px", margin: "0 0 4px" }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "13px", margin: "0 0 4px" }}>
             © 2026 The Engineering Business Academy. All rights reserved.
           </p>
-          <p style={{ color: "rgba(238,233,223,0.25)", fontSize: "12px", margin: 0 }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.25)`, fontSize: "12px", margin: 0 }}>
             {!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales
           </p>
         </div>
         <div style={{ display: "flex", gap: "20px" }}>
           {[{ label: "Home", href: "/" }, { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms", href: "/terms" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
-            <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
+            <Link key={href} href={href} style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
               {label}
             </Link>
           ))}
@@ -104,7 +105,7 @@ function LegalSection({ title, children }: { title: string; children: React.Reac
       <h2 style={{
         fontFamily: "'Playfair Display', serif", fontWeight: 700,
         fontSize: "1.3rem", color: NAVY, margin: "0 0 16px",
-        paddingBottom: "10px", borderBottom: `1px solid rgba(27,38,50,0.1)`,
+        paddingBottom: "10px", borderBottom: `1px solid rgba(${NAVY_RGB},0.1)`,
       }}>
         {title}
       </h2>
@@ -114,7 +115,7 @@ function LegalSection({ title, children }: { title: string; children: React.Reac
 }
 
 const bodyText: React.CSSProperties = {
-  color: "rgba(27,38,50,0.72)", fontSize: "15px", lineHeight: 1.8, margin: "0 0 16px",
+  color: `rgba(${NAVY_RGB},0.72)`, fontSize: "15px", lineHeight: 1.8, margin: "0 0 16px",
   fontFamily: "'DM Sans', sans-serif",
 };
 
@@ -131,7 +132,7 @@ export function PrivacyPolicyPage() {
       <LegalNav active="/privacy-policy" />
 
       {/* Hero */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: NAVY }}>
+      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <p style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
             Legal
@@ -143,7 +144,7 @@ export function PrivacyPolicyPage() {
           }}>
             Privacy Policy
           </h1>
-          <p style={{ color: "rgba(238,233,223,0.6)", fontSize: "14px", margin: 0 }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "14px", margin: 0 }}>
             Last updated: June 2026
           </p>
         </div>
@@ -292,7 +293,7 @@ export function TermsPage() {
       <LegalNav active="/terms" />
 
       {/* Hero */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: NAVY }}>
+      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <p style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
             Legal
@@ -304,7 +305,7 @@ export function TermsPage() {
           }}>
             Terms &amp; Conditions
           </h1>
-          <p style={{ color: "rgba(238,233,223,0.6)", fontSize: "14px", margin: 0 }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "14px", margin: 0 }}>
             Last updated: June 2026
           </p>
         </div>
@@ -445,7 +446,7 @@ export function CookieConsentBanner() {
   return (
     <div style={{
       position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999,
-      background: NAVY, borderTop: `3px solid ${RUST}`,
+      background: DARK_GRADIENT, borderTop: `3px solid ${RUST}`,
       padding: "12px 24px",
       opacity: accepted ? 0 : 1,
       transform: accepted ? "translateY(8px)" : "translateY(0)",
@@ -455,7 +456,7 @@ export function CookieConsentBanner() {
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: "20px", flexWrap: "wrap" }}>
         <p style={{
           flex: "1 1 320px", minWidth: 0,
-          color: "rgba(238,233,223,0.8)", fontFamily: "'DM Sans', sans-serif",
+          color: `rgba(${CREAM_RGB},0.8)`, fontFamily: "'DM Sans', sans-serif",
           fontSize: "13px", lineHeight: 1.5, margin: 0,
         }}>
           <strong style={{ color: "#fff", fontWeight: 600 }}>This website uses cookies</strong> — strictly necessary plus optional analytics (no advertising cookies).{" "}
@@ -480,14 +481,14 @@ export function CookieConsentBanner() {
           <button
             onClick={handleDecline}
             style={{
-              background: "transparent", color: "rgba(238,233,223,0.7)",
-              border: "1px solid rgba(238,233,223,0.3)", cursor: "pointer",
+              background: "transparent", color: `rgba(${CREAM_RGB},0.7)`,
+              border: `1px solid rgba(${CREAM_RGB},0.3)`, cursor: "pointer",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
               padding: "10px 24px",
               transition: "border-color 0.2s, color 0.2s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(238,233,223,0.6)"; e.currentTarget.style.color = "#fff"; }}
-            onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(238,233,223,0.3)"; e.currentTarget.style.color = "rgba(238,233,223,0.7)"; }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = `rgba(${CREAM_RGB},0.6)`; e.currentTarget.style.color = "#fff"; }}
+            onMouseLeave={e => { e.currentTarget.style.borderColor = `rgba(${CREAM_RGB},0.3)`; e.currentTarget.style.color = `rgba(${CREAM_RGB},0.7)`; }}
           >
             Necessary cookies only
           </button>

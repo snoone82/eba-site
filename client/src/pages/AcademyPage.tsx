@@ -22,6 +22,7 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -37,7 +38,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
   return (
     <span style={{
       display: "inline-block",
-      background: light ? "rgba(163,81,57,0.12)" : RUST,
+      background: light ? `rgba(${RUST_RGB},0.12)` : RUST,
       color: light ? RUST : "#fff",
       fontFamily: "'DM Sans', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
@@ -173,9 +174,9 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? "rgba(27,38,50,0.97)" : "rgba(27,38,50,0.85)",
+        background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
         backdropFilter: "blur(12px)",
-        borderBottom: scrolled ? `1px solid rgba(163,81,57,0.3)` : "none",
+        borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "all 0.3s ease", padding: "0 40px",
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
@@ -226,7 +227,7 @@ export default function AcademyPage() {
       {/* ── NAV ── desktop only; CSS hides on mobile */}
       <AcademyNav scrolled={scrolled} />
       {/* ── HERO ── */}
-      <section style={{ position: "relative", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: NAVY, overflow: "hidden" }}>
+      <section style={{ position: "relative", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT, overflow: "hidden" }}>
         <div style={{
           position: "absolute", inset: 0, opacity: 0.15,
           backgroundImage: `url(${ACADEMY_IMG})`,
@@ -243,7 +244,7 @@ export default function AcademyPage() {
               }}>
                 Everything they never taught you about running an M&E business.
               </h1>
-              <p style={{ color: "rgba(238,233,223,0.78)", fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
                 Built from 15 years of running one of the UK's most respected M&E engineering groups — including six UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
@@ -277,7 +278,7 @@ export default function AcademyPage() {
                   <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
                     {value}
                   </span>
-                  <span style={{ color: "rgba(238,233,223,0.7)", fontSize: "14px", fontWeight: 500 }}>
+                  <span style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "14px", fontWeight: 500 }}>
                     {label}
                   </span>
                 </div>
@@ -299,7 +300,7 @@ export default function AcademyPage() {
             }}>
               What you will learn.
             </h2>
-            <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
               Ten modules covering every dimension of running an M&E business. Click any module to see the lesson breakdown.
             </p>
           </RevealSection>
@@ -323,7 +324,7 @@ export default function AcademyPage() {
                   >
                     <span style={{
                       fontFamily: "'Playfair Display', serif", fontStyle: "italic",
-                      color: mod.dark ? RUST : openModule === i ? RUST : "rgba(27,38,50,0.25)",
+                      color: mod.dark ? RUST : openModule === i ? RUST : `rgba(${NAVY_RGB},0.25)`,
                       fontSize: "1.1rem", fontWeight: 700, minWidth: "36px",
                       transition: "color 0.2s",
                     }}>
@@ -349,14 +350,14 @@ export default function AcademyPage() {
                       </h3>
                       <span style={{
                         fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
-                        color: mod.dark ? "rgba(238,233,223,0.45)" : "rgba(27,38,50,0.45)",
+                        color: mod.dark ? `rgba(${CREAM_RGB},0.45)` : `rgba(${NAVY_RGB},0.45)`,
                         fontWeight: 500,
                       }}>
                         {mod.lessons} lessons
                       </span>
                     </div>
                     <span style={{
-                      color: mod.dark ? "rgba(238,233,223,0.5)" : "rgba(27,38,50,0.4)",
+                      color: mod.dark ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.4)`,
                       fontSize: "18px", transition: "transform 0.25s ease",
                       transform: openModule === i ? "rotate(45deg)" : "rotate(0deg)",
                       display: "inline-block",
@@ -371,7 +372,7 @@ export default function AcademyPage() {
                       animation: "expandIn 0.25s ease-out",
                     }}>
                       <p style={{
-                        color: mod.dark ? "rgba(238,233,223,0.75)" : "rgba(27,38,50,0.7)",
+                        color: mod.dark ? `rgba(${CREAM_RGB},0.75)` : `rgba(${NAVY_RGB},0.7)`,
                         fontSize: "15px", lineHeight: 1.7, margin: "0 0 20px",
                       }}>
                         {mod.description}
@@ -380,7 +381,7 @@ export default function AcademyPage() {
                         {mod.topics.map((topic, j) => (
                           <span key={j} style={{
                             background: mod.dark ? "rgba(255,255,255,0.08)" : OAT,
-                            color: mod.dark ? "rgba(238,233,223,0.7)" : "rgba(27,38,50,0.7)",
+                            color: mod.dark ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.7)`,
                             fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 500,
                             padding: "5px 12px",
                           }}>
@@ -398,7 +399,7 @@ export default function AcademyPage() {
       </section>
 
       {/* ── DELIVERY FORMAT ── */}
-      <section style={{ background: NAVY, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>How It Works</SectionLabel>
@@ -422,7 +423,7 @@ export default function AcademyPage() {
                 }}>
                   <Icon size={26} strokeWidth={1.75} color={RUST} style={{ display: "block", marginBottom: "14px" }} />
                   <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: "#fff", margin: "0 0 10px" }}>{label}</h3>
-                  <p style={{ color: "rgba(238,233,223,0.65)", fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.65)`, fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
                 </div>
               ))}
             </div>
@@ -442,7 +443,7 @@ export default function AcademyPage() {
             }}>
               Founding price. Locked in for life.
             </h2>
-            <p style={{ color: "rgba(27,38,50,0.65)", fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
               Founding members pay a permanently lower price than every member who joins after the cohort closes. There is no catch. It is how we reward the people who back EBA before the public launch.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "2px", marginBottom: "40px" }}>
@@ -510,13 +511,13 @@ export default function AcademyPage() {
                     color: RUST, fontSize: PRICING_ANNOUNCED ? "2.2rem" : "1.25rem", fontWeight: 700, margin: "0 0 4px",
                   }}>{PRICING_ANNOUNCED ? price : "Pricing announced soon"}</div>
                   {PRICING_ANNOUNCED && (
-                    <div style={{ color: popular ? "rgba(238,233,223,0.5)" : "rgba(27,38,50,0.45)", fontSize: "13px", margin: "0 0 28px" }}>{monthly}</div>
+                    <div style={{ color: popular ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.45)`, fontSize: "13px", margin: "0 0 28px" }}>{monthly}</div>
                   )}
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "28px" }}>
                     {includes.map((item, j) => (
                       <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                         <Check size={16} strokeWidth={2.5} color={RUST} style={{ flexShrink: 0, marginTop: "2px" }} />
-                        <span style={{ color: popular ? "rgba(238,233,223,0.75)" : "rgba(27,38,50,0.7)", fontSize: "14px", lineHeight: 1.5 }}>{item}</span>
+                        <span style={{ color: popular ? `rgba(${CREAM_RGB},0.75)` : `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.5 }}>{item}</span>
                       </div>
                     ))}
                   </div>
@@ -532,7 +533,7 @@ export default function AcademyPage() {
                 </div>
               ))}
             </div>
-            <p style={{ color: "rgba(27,38,50,0.5)", fontSize: "13px", textAlign: "center" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.5)`, fontSize: "13px", textAlign: "center" }}>
               14-day money-back guarantee. If it isn't right for your business, you pay nothing.
             </p>
           </RevealSection>
@@ -540,7 +541,7 @@ export default function AcademyPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: NAVY, borderTop: `1px solid rgba(163,81,57,0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
+      <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "20px" }}>
             <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
@@ -548,7 +549,7 @@ export default function AcademyPage() {
             </Link>
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
               {[{ label: "Home", href: "/" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
-                <Link key={href} href={href} style={{ color: "rgba(238,233,223,0.72)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
+                <Link key={href} href={href} style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
                   {label}
                 </Link>
               ))}
@@ -556,12 +557,12 @@ export default function AcademyPage() {
           </div>
           <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
             <div>
-              <p style={{ color: "rgba(238,233,223,0.3)", fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
-              <p style={{ color: "rgba(238,233,223,0.2)", fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
+              <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
+              <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
             </div>
             <div style={{ display: "flex", gap: "16px" }}>
-              <Link href="/privacy-policy" style={{ color: "rgba(238,233,223,0.3)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
-              <Link href="/terms" style={{ color: "rgba(238,233,223,0.3)", textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
+              <Link href="/privacy-policy" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
+              <Link href="/terms" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
             </div>
           </div>
         </div>
