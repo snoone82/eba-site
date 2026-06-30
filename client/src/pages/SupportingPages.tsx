@@ -45,8 +45,10 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
-  // Default to VISIBLE so content never disappears if the observer doesn't fire
-  // (e.g. after prerender/hydration). The animation is purely additive.
+  // MUST default true — see reveal bug; do NOT change to false.
+  // Content is visible by default; the fade is additive only. If the observer
+  // never fires (prerender/hydration, no IntersectionObserver, reduced-motion),
+  // content simply stays visible. This has regressed twice — keep it true.
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {

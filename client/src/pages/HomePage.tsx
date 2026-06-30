@@ -58,8 +58,10 @@ function RustRule() {
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
-  // Default to VISIBLE so content never disappears if the observer doesn't fire
-  // (e.g. after prerender/hydration). The animation is purely additive.
+  // MUST default true — see reveal bug; do NOT change to false.
+  // Content is visible by default; the fade is additive only. If the observer
+  // never fires (prerender/hydration, no IntersectionObserver, reduced-motion),
+  // content simply stays visible. This has regressed twice — keep it true.
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -277,7 +279,7 @@ const credentials = [
 
 function HomeNav({ scrolled }: { scrolled: boolean }) {
   return (
-    <nav className="hidden md:block eba-desktop-nav" style={{
+    <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
         background: scrolled ? "rgba(27,38,50,0.97)" : "rgba(27,38,50,0.0)",
         backdropFilter: scrolled ? "blur(12px)" : "none",
@@ -286,10 +288,10 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
         padding: "0 40px",
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
-          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+          <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
             <EBALogo height={42} light={true} />
           </Link>
-          <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
               { label: "Academy", href: "/academy" },
               { label: "AI Tools", href: "/ai-tools" },

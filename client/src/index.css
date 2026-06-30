@@ -78,14 +78,16 @@
   display: block;
 }
 
-@media (min-width: 768px) {
+/* Desktop nav (icon + wordmark + 6 links + CTA) only fits comfortably ≥1100px.
+   Below that the mobile hamburger takes over so the logo never gets crushed. */
+@media (min-width: 1100px) {
   .eba-mobile-nav-bar,
   .eba-mobile-drawer {
     display: none !important;
   }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 1099px) {
   .eba-desktop-nav {
     display: none !important;
     visibility: hidden !important;

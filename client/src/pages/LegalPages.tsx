@@ -446,31 +446,24 @@ export function CookieConsentBanner() {
     <div style={{
       position: "fixed", bottom: 0, left: 0, right: 0, zIndex: 9999,
       background: NAVY, borderTop: `3px solid ${RUST}`,
-      padding: "20px 24px",
+      padding: "12px 24px",
       opacity: accepted ? 0 : 1,
       transform: accepted ? "translateY(8px)" : "translateY(0)",
       transition: "opacity 0.3s ease, transform 0.3s ease",
     }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "16px" }}>
-        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-          <p style={{
-            color: "#fff", fontFamily: "'DM Sans', sans-serif",
-            fontWeight: 600, fontSize: "14px", margin: 0,
-          }}>
-            This website uses cookies
-          </p>
-          <p style={{
-            color: "rgba(238,233,223,0.65)", fontFamily: "'DM Sans', sans-serif",
-            fontSize: "13px", lineHeight: 1.6, margin: 0,
-          }}>
-            We use strictly necessary cookies to make our website work, and optional analytics cookies to understand how you use it. We do not use advertising cookies.{" "}
-            <Link href="/privacy-policy" style={{ color: RUST, textDecoration: "none" }}>
-              Read our Privacy Policy
-            </Link>
-            {" "}for full details.
-          </p>
-        </div>
-        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+      {/* Slim single-row bar: concise notice left, actions right; wraps on narrow screens. */}
+      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: "20px", flexWrap: "wrap" }}>
+        <p style={{
+          flex: "1 1 320px", minWidth: 0,
+          color: "rgba(238,233,223,0.8)", fontFamily: "'DM Sans', sans-serif",
+          fontSize: "13px", lineHeight: 1.5, margin: 0,
+        }}>
+          <strong style={{ color: "#fff", fontWeight: 600 }}>This website uses cookies</strong> — strictly necessary plus optional analytics (no advertising cookies).{" "}
+          <Link href="/privacy-policy" style={{ color: RUST, textDecoration: "none" }}>
+            Privacy Policy
+          </Link>.
+        </p>
+        <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", flexShrink: 0 }}>
           <button
             onClick={handleAccept}
             style={{
