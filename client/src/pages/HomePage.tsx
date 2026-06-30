@@ -353,8 +353,11 @@ export default function HomePage() {
         position: "relative",
         minHeight: "100vh",
         display: "flex",
-        alignItems: isMobile ? "flex-start" : "flex-end",
-        paddingTop: isMobile ? "80px" : "0",
+        // Top-anchor with padding clearing the fixed nav. flex-end overflowed
+        // upward on short viewports, pushing the badge under the nav logo.
+        alignItems: "flex-start",
+        paddingTop: isMobile ? "96px" : "140px",
+        paddingBottom: isMobile ? "48px" : "72px",
         background: NAVY, // fallback so a slow/dead hero image degrades to clean navy, not muddy cream
       }}>
         <div style={{
