@@ -394,19 +394,20 @@ export default function HomePage() {
             }}>
               The business programme built for M&amp;E engineering contractors.
             </h1>
-            {/* Stats strip */}
+            {/* Feature strip — one centred horizontal row of three distinct items */}
             <div style={{
-              display: "flex", flexWrap: "wrap", gap: isMobile ? "8px 16px" : "0 32px",
-              marginBottom: "28px",
+              display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center",
+              gap: "6px 0", marginBottom: "28px",
             }}>
-              {["Built for M&E business owners", "Drawn from real operations", "Operator-led, not theory", "Lifetime founding access"].map((stat, i) => (
+              {["Built for M&E business owners", "Drawn from real operations", "Lifetime founding access"].map((stat, i) => (
                 <span key={i} style={{
+                  display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.75)",
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "12px", fontWeight: 600,
                   letterSpacing: "0.08em", textTransform: "uppercase",
                 }}>
-                  {i > 0 && !isMobile && <span style={{ marginRight: "32px", color: "rgba(163,81,57,0.6)" }}>·</span>}
+                  {i > 0 && <span style={{ margin: "0 16px", color: "rgba(163,81,57,0.6)" }}>·</span>}
                   {stat}
                 </span>
               ))}
