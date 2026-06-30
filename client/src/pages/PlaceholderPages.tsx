@@ -6,6 +6,7 @@ import {
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -21,7 +22,7 @@ function PlaceholderNav({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: `rgba(${NAVY_RGB},0.97)`, backdropFilter: "blur(12px)",
+      background: `rgba(${NAV_RGB},0.97)`, backdropFilter: "blur(12px)",
       borderBottom: `1px solid rgba(${RUST_RGB},0.15)`,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 40px", height: "60px",
@@ -66,7 +67,7 @@ function PlaceholderHero({ label, title, sub }: { label: string; title: string; 
         <h1 style={{
           fontFamily: "'Playfair Display', serif", fontWeight: 900,
           fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-          color: "#fff", margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
+          color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
         }}>{title}</h1>
         <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
           {sub}
@@ -86,7 +87,7 @@ function ComingSoonBody({ message }: { message: string }) {
             fontSize: "1.25rem", lineHeight: 1.7, color: NAVY, margin: "0 0 32px",
           }}>{message}</p>
           <Link href="/contact" style={{
-            background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
+            background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>
@@ -259,7 +260,7 @@ function MentorWaitlist() {
         <div id="mentor-waitlist" style={{ background: DARK_GRADIENT, padding: "40px", maxWidth: "560px", scrollMarginTop: "80px" }}>
           {!formReady ? (
             <>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 12px" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 12px" }}>
                 Registration opening soon.
               </h3>
               <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
@@ -270,7 +271,7 @@ function MentorWaitlist() {
             </>
           ) : submitted ? (
             <>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 12px" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 12px" }}>
                 You're on the list for {selectedMonth}.
               </h3>
               <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
@@ -279,7 +280,7 @@ function MentorWaitlist() {
             </>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: "#fff", margin: "0 0 4px" }}>
+              <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 4px" }}>
                 Register your interest.
               </h3>
               <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
@@ -449,7 +450,7 @@ export function FAQPage() {
       </section>
       <section style={{ background: DARK_GRADIENT, padding: "64px 40px" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
-          <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.8rem", color: "#fff", margin: "0 0 16px" }}>
+          <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.8rem", color: ON_DARK, margin: "0 0 16px" }}>
             Still have questions?
           </h3>
           <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.65, margin: "0 0 28px" }}>

@@ -19,7 +19,8 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
-  DARK_GRADIENT, BAND_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -282,7 +283,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.0)`,
+        background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAVY_RGB},0.0)`,
         backdropFilter: scrolled ? "blur(12px)" : "none",
         borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "all 0.3s ease",
@@ -290,7 +291,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
-            <EBALogo height={42} light={true} />
+            <EBALogo height={42} light={!IS_VIVID} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
@@ -302,12 +303,12 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
-                color: "rgba(255,255,255,0.8)", textDecoration: "none",
+                color: `rgba(${ON_DARK_RGB},0.8)`, textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "14px",
                 transition: "color 0.2s",
               }}
-                onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+                onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
+                onMouseLeave={e => (e.currentTarget.style.color = `rgba(${ON_DARK_RGB},0.8)`)}
               >
                 {label}
               </Link>
@@ -363,11 +364,13 @@ export default function HomePage() {
       }}>
         <div style={{
           position: "absolute", inset: 0,
+          display: IS_VIVID ? "none" : "block",
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover", backgroundPosition: "center 30%",
         }} />
         <div style={{
           position: "absolute", inset: 0,
+          display: IS_VIVID ? "none" : "block",
           background: `linear-gradient(to top, rgba(${NAVY_RGB},0.95) 0%, rgba(${NAVY_RGB},0.6) 50%, rgba(${NAVY_RGB},0.25) 100%)`,
         }} />
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
@@ -391,7 +394,7 @@ export default function HomePage() {
               fontFamily: "'Playfair Display', serif",
               fontWeight: 900, fontSize: isMobile ? "2.6rem" : "clamp(3rem, 6vw, 5.5rem)",
               lineHeight: 1.05, letterSpacing: "-0.02em",
-              color: "#fff", margin: "0 0 24px",
+              color: ON_DARK, margin: "0 0 24px",
             }}>
               The business programme built for M&amp;E engineering contractors.
             </h1>
@@ -403,7 +406,7 @@ export default function HomePage() {
               {["Built for M&E business owners", "Drawn from real operations", "Lifetime founding access"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
-                  color: "rgba(255,255,255,0.75)",
+                  color: `rgba(${ON_DARK_RGB},0.75)`,
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "12px", fontWeight: 600,
                   letterSpacing: "0.08em", textTransform: "uppercase",
@@ -414,7 +417,7 @@ export default function HomePage() {
               ))}
             </div>
             <p style={{
-              color: "rgba(255,255,255,0.82)", fontSize: isMobile ? "16px" : "19px", lineHeight: 1.65,
+              color: `rgba(${ON_DARK_RGB},0.82)`, fontSize: isMobile ? "16px" : "19px", lineHeight: 1.65,
               fontWeight: 400, maxWidth: "600px", margin: "0 0 40px",
             }}>
               You know how to deliver the engineering. Nobody taught you how to run the business around it — pricing, contracts, cash flow, compliance, teams, and growth. That changes here.
@@ -434,14 +437,14 @@ export default function HomePage() {
                 {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
               <Link href="/ai-tools" style={{
-                background: "transparent", color: "#fff", textDecoration: "none",
+                background: "transparent", color: ON_DARK, textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
-                padding: "14px 32px", border: "1px solid rgba(255,255,255,0.5)",
+                padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.5)`,
                 transition: "border-color 0.2s",
                 display: "inline-block",
               }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.5)"; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = ON_DARK; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = `rgba(${ON_DARK_RGB},0.5)`; }}
                 onClick={() => track("cta_explore_tools_hero")}
               >
                 Explore the AI Tools
@@ -471,7 +474,7 @@ export default function HomePage() {
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: "#fff", margin: "0 0 16px", maxWidth: "720px",
+              color: ON_DARK, margin: "0 0 16px", maxWidth: "720px",
             }}>
               The engineering is not the problem. The business infrastructure around it is.
             </h2>
@@ -483,11 +486,11 @@ export default function HomePage() {
             {painPoints.map((point, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: "rgba(255,255,255,0.04)", borderLeft: `3px solid ${RUST}`,
+                  background: `rgba(${ON_DARK_RGB},0.04)`, borderLeft: `3px solid ${RUST}`,
                   padding: "28px 28px",
                 }}>
                   <h3 style={{
-                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
+                    color: ON_DARK, fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 700, fontSize: "13px", letterSpacing: "0.04em",
                     textTransform: "uppercase", margin: "0 0 10px",
                   }}>
@@ -544,7 +547,7 @@ export default function HomePage() {
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: "#fff", margin: "0 0 16px", lineHeight: 1.1,
+              color: ON_DARK, margin: "0 0 16px", lineHeight: 1.1,
             }}>
               What it looks like on the other side.
             </h2>
@@ -556,11 +559,11 @@ export default function HomePage() {
             {outcomes.map((o, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: "rgba(255,255,255,0.04)", borderLeft: `3px solid ${RUST}`,
+                  background: `rgba(${ON_DARK_RGB},0.04)`, borderLeft: `3px solid ${RUST}`,
                   padding: "28px 28px", height: "100%",
                 }}>
                   <h3 style={{
-                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
+                    color: ON_DARK, fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 700, fontSize: "15px", letterSpacing: "0.01em",
                     margin: "0 0 8px", lineHeight: 1.3,
                   }}>
@@ -601,7 +604,7 @@ export default function HomePage() {
                   background: RUST, padding: "14px 20px",
                 }}>
                   <p style={{
-                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
+                    color: ON_DARK, fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
@@ -664,7 +667,7 @@ export default function HomePage() {
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: "#fff", margin: "0 0 28px", lineHeight: 1.12,
+              color: ON_DARK, margin: "0 0 28px", lineHeight: 1.12,
             }}>
               And the tools that prove we understand your world.
             </h2>
@@ -785,7 +788,7 @@ export default function HomePage() {
               <h2 style={{
                 fontFamily: "'Playfair Display', serif", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
-                color: "#fff", margin: "0 0 20px", lineHeight: 1.1,
+                color: ON_DARK, margin: "0 0 20px", lineHeight: 1.1,
               }}>
                 Your own branded compliance assistant. Deployed and managed for you.
               </h2>
@@ -825,10 +828,10 @@ export default function HomePage() {
               </Link>
             </RevealSection>
             <RevealSection>
-              <div style={{ background: "rgba(255,255,255,0.05)", borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
+              <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
                 <p style={{
                   fontFamily: "'Playfair Display', serif", fontStyle: "italic",
-                  color: "#fff", fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
+                  color: ON_DARK, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
                 </p>
@@ -886,23 +889,23 @@ export default function HomePage() {
       </section>
 
       {/* ── FINAL CTA ── */}
-      <section style={{ background: RUST, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
+      <section style={{ background: CTA_BAND_BG, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 20px", lineHeight: 1.05,
+            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
             The founding cohort is open.
           </h2>
           <p style={{
-            color: "rgba(255,255,255,0.85)", fontSize: "18px", lineHeight: 1.65,
+            color: `rgba(${ON_DARK_RGB},0.85)`, fontSize: "18px", lineHeight: 1.65,
             maxWidth: "520px", margin: "0 auto 40px",
           }}>
             Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. M&E contractors only. Limited places.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-            background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
+            background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "16px",
             padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
             transition: "opacity 0.2s",
@@ -922,7 +925,7 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 1fr 1fr 1fr", gap: isMobile ? "32px" : "48px", marginBottom: "48px" }}>
             <div>
               <div style={{ marginBottom: "16px" }}>
-                <EBALogo height={36} light={true} />
+                <EBALogo height={36} light={!IS_VIVID} />
               </div>
               <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "14px", lineHeight: 1.65, maxWidth: "280px", margin: 0 }}>
                 The operating system for M&E business owners. Built by someone who has run your business.
@@ -949,7 +952,7 @@ export default function HomePage() {
               ]},
             ].map(({ heading, links }) => (
               <div key={heading}>
-                <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 16px" }}>
+                <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 16px" }}>
                   {heading}
                 </p>
                 {links.map(({ label, href, external }: { label: string; href: string; external?: boolean }) => (
@@ -959,7 +962,7 @@ export default function HomePage() {
                       fontFamily: "'DM Sans', sans-serif", fontSize: "14px", marginBottom: "10px",
                       transition: "color 0.2s",
                     }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                      onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
                       onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}
                     >
                       {label}
@@ -970,7 +973,7 @@ export default function HomePage() {
                       fontFamily: "'DM Sans', sans-serif", fontSize: "14px", marginBottom: "10px",
                       transition: "color 0.2s",
                     }}
-                      onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                      onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
                       onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}
                     >
                       {label}
@@ -980,7 +983,7 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.1)", paddingTop: "24px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
+          <div style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.1)`, paddingTop: "24px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
             <div>
               <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "13px", margin: "0 0 4px" }}>
                 © 2026 The Engineering Business Academy. All rights reserved.
@@ -1004,12 +1007,12 @@ export default function HomePage() {
               </div>
               <div style={{ display: "flex", gap: "12px" }}>
                 <a href="https://www.linkedin.com/company/engineering-business-academy" target="_blank" rel="noopener noreferrer" style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                  onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
                   onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 </a>
                 <a href="https://www.youtube.com/@engineeringbusinessacademy" target="_blank" rel="noopener noreferrer" style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
+                  onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
                   onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}>
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </a>

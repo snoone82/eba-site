@@ -8,7 +8,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
-import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB } from "@/lib/constants";
+import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB } from "@/lib/constants";
 import { track } from "@/lib/track";
 
 const NAV_LINKS = [
@@ -49,9 +49,9 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
 
   const navBg = transparent
     ? scrolled || open
-      ? `rgba(${NAVY_RGB},0.97)`
-      : `rgba(${NAVY_RGB},0.92)`  // solid enough to prevent hero text bleed-through
-    : `rgba(${NAVY_RGB},0.97)`;
+      ? `rgba(${NAV_RGB},0.97)`
+      : `rgba(${NAV_RGB},0.92)`  // solid enough to prevent hero text bleed-through
+    : `rgba(${NAV_RGB},0.97)`;
 
   return (
     <>
@@ -67,7 +67,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
       }}>
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", minWidth: 0, flexShrink: 1, marginRight: "12px" }}>
-          <EBALogo height={32} light={true} />
+          <EBALogo height={32} light={!IS_VIVID} />
         </Link>
 
         {/* Hamburger button */}
@@ -83,20 +83,20 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
         >
           {/* Three bars that animate to X */}
           <span style={{
-            display: "block", height: "2px", background: "#fff",
+            display: "block", height: "2px", background: ON_DARK,
             width: open ? "24px" : "24px",
             transform: open ? "translateY(7px) rotate(45deg)" : "none",
             transition: "transform 0.25s cubic-bezier(0.23,1,0.32,1)",
             transformOrigin: "center",
           }} />
           <span style={{
-            display: "block", height: "2px", background: "#fff",
+            display: "block", height: "2px", background: ON_DARK,
             width: "18px",
             opacity: open ? 0 : 1,
             transition: "opacity 0.15s ease",
           }} />
           <span style={{
-            display: "block", height: "2px", background: "#fff",
+            display: "block", height: "2px", background: ON_DARK,
             width: open ? "24px" : "24px",
             transform: open ? "translateY(-7px) rotate(-45deg)" : "none",
             transition: "transform 0.25s cubic-bezier(0.23,1,0.32,1)",
@@ -136,7 +136,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
                   fontFamily: "'Playfair Display', serif",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 8vw, 2.8rem)",
-                  color: location === href ? RUST : CREAM,
+                  color: location === href ? RUST : (IS_VIVID ? ON_DARK : CREAM),
                   textDecoration: "none",
                   lineHeight: 1.2,
                   marginBottom: "8px",
@@ -144,7 +144,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
                   transition: "color 0.2s",
                 }}
                 onMouseEnter={e => (e.currentTarget.style.color = RUST)}
-                onMouseLeave={e => (e.currentTarget.style.color = location === href ? RUST : CREAM)}
+                onMouseLeave={e => (e.currentTarget.style.color = location === href ? RUST : (IS_VIVID ? ON_DARK : CREAM))}
               >
                 {label}
               </Link>

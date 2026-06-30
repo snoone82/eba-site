@@ -20,6 +20,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -34,14 +35,14 @@ function LegalNav({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
+      background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAV_RGB},0.85)`,
       backdropFilter: "blur(12px)",
       borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
       transition: "all 0.3s ease", padding: "0 40px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <EBALogo height={38} light={true} />
+          <EBALogo height={38} light={!IS_VIVID} />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
           {[
@@ -52,7 +53,7 @@ function LegalNav({ active }: { active: string }) {
             { label: "Contact", href: "/contact" },
           ].map(({ label, href }) => (
             <Link key={href} href={href} style={{
-              color: href === active ? "#fff" : "rgba(255,255,255,0.7)",
+              color: href === active ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
               textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
               fontWeight: href === active ? 600 : 500, fontSize: "14px",
             }}>
@@ -140,7 +141,7 @@ export function PrivacyPolicyPage() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 16px", lineHeight: 1.05,
+            color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>
             Privacy Policy
           </h1>
@@ -301,7 +302,7 @@ export function TermsPage() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 16px", lineHeight: 1.05,
+            color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>
             Terms &amp; Conditions
           </h1>
@@ -459,7 +460,7 @@ export function CookieConsentBanner() {
           color: `rgba(${CREAM_RGB},0.8)`, fontFamily: "'DM Sans', sans-serif",
           fontSize: "13px", lineHeight: 1.5, margin: 0,
         }}>
-          <strong style={{ color: "#fff", fontWeight: 600 }}>This website uses cookies</strong> — strictly necessary plus optional analytics (no advertising cookies).{" "}
+          <strong style={{ color: ON_DARK, fontWeight: 600 }}>This website uses cookies</strong> — strictly necessary plus optional analytics (no advertising cookies).{" "}
           <Link href="/privacy-policy" style={{ color: RUST, textDecoration: "none" }}>
             Privacy Policy
           </Link>.
@@ -487,7 +488,7 @@ export function CookieConsentBanner() {
               padding: "10px 24px",
               transition: "border-color 0.2s, color 0.2s",
             }}
-            onMouseEnter={e => { e.currentTarget.style.borderColor = `rgba(${CREAM_RGB},0.6)`; e.currentTarget.style.color = "#fff"; }}
+            onMouseEnter={e => { e.currentTarget.style.borderColor = `rgba(${CREAM_RGB},0.6)`; e.currentTarget.style.color = ON_DARK; }}
             onMouseLeave={e => { e.currentTarget.style.borderColor = `rgba(${CREAM_RGB},0.3)`; e.currentTarget.style.color = `rgba(${CREAM_RGB},0.7)`; }}
           >
             Necessary cookies only

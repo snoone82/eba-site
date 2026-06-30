@@ -22,6 +22,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -100,19 +101,19 @@ function NavBar({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
+      background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAV_RGB},0.85)`,
       backdropFilter: "blur(12px)",
       borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
       transition: "all 0.3s ease", padding: "0 40px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <EBALogo height={38} light={true} />
+          <EBALogo height={38} light={!IS_VIVID} />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
           {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
-              color: href === active ? "#fff" : "rgba(255,255,255,0.7)",
+              color: href === active ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
               textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
               fontWeight: href === active ? 600 : 500, fontSize: "14px",
               borderBottom: href === active ? `2px solid ${RUST}` : "none",
@@ -143,7 +144,7 @@ function PageFooter() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "24px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <EBALogo height={38} light={true} />
+            <EBALogo height={38} light={!IS_VIVID} />
           </Link>
           <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
             {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
@@ -153,7 +154,7 @@ function PageFooter() {
             ))}
           </div>
         </div>
-        <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
+        <div style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.08)`, paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
           <div>
             <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
             <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
@@ -188,7 +189,7 @@ export function OurStoryPage() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
+            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
           }}>
             Why EBA exists.
           </h1>
@@ -210,7 +211,7 @@ export function OurStoryPage() {
                   style={{ width: "100%", display: "block", filter: "grayscale(15%)" }}
                 />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: RUST, padding: "14px 20px" }}>
-                  <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                  <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                     Mark Poulton — CEO, KEYIS Group
                   </p>
                 </div>
@@ -253,7 +254,7 @@ export function OurStoryPage() {
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-              color: "#fff", margin: "24px 0 28px", lineHeight: 1.1,
+              color: ON_DARK, margin: "24px 0 28px", lineHeight: 1.1,
             }}>
               From operator to academy.
             </h2>
@@ -279,27 +280,27 @@ export function OurStoryPage() {
       </section>
 
       {/* 5. CTA */}
-      <section style={{ background: RUST, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
+      <section style={{ background: CTA_BAND_BG, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 28px", lineHeight: 1.05,
+            color: ON_DARK, margin: "0 0 28px", lineHeight: 1.05,
           }}>
             Build the business, not just the jobs.
           </h2>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "our-story" })} style={{
-              background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
+              background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "15px",
               padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block",
             }}>
               {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a>
             <Link href="/mentorship" style={{
-              background: "transparent", color: "#fff", textDecoration: "none",
+              background: "transparent", color: ON_DARK, textDecoration: "none",
               fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
-              padding: "15px 34px", border: "1px solid rgba(255,255,255,0.6)", display: "inline-block",
+              padding: "15px 34px", border: `1px solid rgba(${ON_DARK_RGB},0.6)`, display: "inline-block",
             }}>
               Explore mentorship →
             </Link>
@@ -711,7 +712,7 @@ export function DocumentsPage() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
+            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
             380 documents. 25 years of M&E practice.
           </h1>
@@ -734,13 +735,13 @@ export function DocumentsPage() {
       </section>
 
       {/* Academy banner */}
-      <div style={{ background: RUST, padding: isMobile ? "16px 20px" : "16px 40px" }}>
+      <div style={{ background: CTA_BAND_BG, padding: isMobile ? "16px 20px" : "16px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "16px" }}>
-          <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
+          <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
             <strong>Academy members receive the complete document library as part of their membership</strong> — no additional purchase required.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "documents" })} style={{
-            background: "#fff", color: RUST, textDecoration: "none",
+            background: IS_VIVID ? CTA_DARK_BG : "#fff", color: IS_VIVID ? "#fff" : RUST, textDecoration: "none",
             fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "12px",
             padding: "8px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0,
           }}>
@@ -805,7 +806,7 @@ export function DocumentsPage() {
                     <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
                       Complete Pack
                     </p>
-                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1.1rem", margin: "0 0 4px" }}>
+                    <p style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: ON_DARK, fontSize: "1.1rem", margin: "0 0 4px" }}>
                       {BUNDLE_PRICES[cat.id].label}
                     </p>
                     <p style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
@@ -858,7 +859,7 @@ export function DocumentsPage() {
                           {doc.price}
                         </p>
                         <Link href="/contact" style={{
-                          background: DARK_GRADIENT, color: "#fff", textDecoration: "none",
+                          background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
                           fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
                           padding: "7px 14px", letterSpacing: "0.04em", display: "inline-block",
                           whiteSpace: "nowrap",
@@ -887,7 +888,7 @@ export function DocumentsPage() {
             <RevealSection>
               <div style={{ background: DARK_GRADIENT, padding: isMobile ? "32px 20px" : "48px 48px", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "24px" }}>
                 <div>
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.6rem", color: "#fff", margin: "0 0 8px" }}>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 800, fontSize: "1.6rem", color: ON_DARK, margin: "0 0 8px" }}>
                     Select a category above to browse the library.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "15px", margin: 0 }}>
@@ -967,7 +968,7 @@ export function ContactPage() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 20px", lineHeight: 1.05,
+            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
             Get in touch.
           </h1>
@@ -983,7 +984,7 @@ export function ContactPage() {
             <RevealSection>
               {submitted ? (
                 <div style={{ background: DARK_GRADIENT, padding: "48px", borderLeft: `4px solid ${RUST}` }}>
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: "#fff", fontSize: "1.5rem", margin: "0 0 12px" }}>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, color: ON_DARK, fontSize: "1.5rem", margin: "0 0 12px" }}>
                     Enquiry received.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", margin: 0 }}>

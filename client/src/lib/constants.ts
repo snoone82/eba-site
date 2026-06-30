@@ -53,12 +53,12 @@ export const COLORS_NOIR = {
  * Tuned so the magenta accent and white-on-dark both clear WCAG AA for text.
  */
 export const COLORS_VIVID = {
-  navy: "#0D0D0F",
-  cream: "#FFFFFF",
-  rust: "#E11D74",
-  oat: "#F7F5FA",
-  white: "#FFFFFF",
-  amber: "#FF7A3D",
+  navy: "#141417",  // near-black: primary text (dark sections are now white)
+  cream: "#FFFFFF", // white page + light surfaces
+  rust: "#101013",  // near-black accent: CTAs / badges / labels (LlamaIndex-style)
+  oat: "#F4F2F7",   // barely-there alternating surface (mostly white)
+  white: "#FFFFFF", // pure white cards
+  amber: "#FF7A3D", // warm orange highlight
 } as const;
 
 /**
@@ -111,31 +111,58 @@ export const AMBER = COLORS.amber;
  * These let the many low-opacity tints/borders/overlays switch with the palette
  * instead of staying hard-coded to the default hues.
  */
-export const NAVY_RGB = pick("27,38,50", "26,26,28", "13,13,15");
-export const RUST_RGB = pick("163,81,57", "142,59,59", "225,29,116");
-export const CREAM_RGB = pick("238,233,223", "244,242,238", "255,255,255");
+// In vivid, what used to be light text/borders on dark sections must become
+// dark text on the now-white surfaces, so these triplets flip to near-black.
+export const NAVY_RGB = pick("27,38,50", "26,26,28", "20,20,23");
+export const RUST_RGB = pick("163,81,57", "142,59,59", "17,17,20");
+export const CREAM_RGB = pick("238,233,223", "244,242,238", "20,20,23");
 
 /**
- * Background for large dark sections (hero / founder / CTA). Default keeps the
- * flat navy used previously (visually identical). Noir = subtle vertical
- * charcoal gradient. Vivid = a deep jewel-toned near-black gradient that stays
- * dark enough to keep white body text at WCAG AA.
+ * Background for large sections that were dark (hero / founder / CTA / footers).
+ * Default keeps the flat navy used previously (visually identical). Noir = subtle
+ * vertical charcoal gradient. Vivid = WHITE — the site becomes a full white site
+ * and the text on these sections flips to near-black (see ON_DARK below).
  */
 export const DARK_GRADIENT = pick(
   NAVY,
   "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)",
-  "linear-gradient(155deg, #221026 0%, #0E0E12 52%, #241405 100%)",
+  "#FFFFFF",
 );
 
 /**
- * Signature band behind the trust/logos strip. Default and noir keep the solid
- * oat surface (identical to before); vivid gets the bright pastel-prism gradient
- * — dark logos/text sit on it, so contrast is preserved.
+ * Primary / muted text that previously sat on dark sections. Light in
+ * default + noir (unchanged); near-black in vivid so it reads on white.
+ */
+export const ON_DARK = pick("#FFFFFF", "#FFFFFF", "#141417");
+export const ON_DARK_RGB = pick("255,255,255", "255,255,255", "20,20,23");
+
+/**
+ * Background for genuinely dark CTA buttons (the navy "outline/solid" buttons,
+ * distinct from full-bleed sections). Stays dark in every theme — including
+ * vivid, where it becomes a black button with white text (LlamaIndex style).
+ */
+export const CTA_DARK_BG = IS_VIVID ? "#0D0D0F" : DARK_GRADIENT;
+
+/**
+ * Full-bleed CTA bands that use the rust accent as their background in the
+ * editorial themes. In vivid they become white (the site is all-white); the
+ * heading text on them is already routed to near-black, and the buttons inside
+ * stay dark, so they read as clean LlamaIndex-style CTA blocks.
+ */
+export const CTA_BAND_BG = IS_VIVID ? "#FFFFFF" : RUST;
+
+/** Translucent nav-bar scrim. Dark in default/noir; white in vivid. */
+export const NAV_RGB = pick("27,38,50", "26,26,28", "255,255,255");
+
+/**
+ * Signature gradient band. Default and noir keep the solid oat surface
+ * (identical to before); vivid gets the bright LlamaIndex-style prism gradient
+ * — dark text/logos sit on it, so contrast is preserved.
  */
 export const BAND_GRADIENT = pick(
   OAT,
   OAT,
-  "linear-gradient(110deg, #CDEEFF 0%, #E9CBFF 36%, #FFD7C2 68%, #FFECC0 100%)",
+  "linear-gradient(90deg, #7FE0FF 0%, #9CC2FF 15%, #C7A6FF 32%, #EC8FE0 48%, #FF8FAE 62%, #FF9E78 80%, #FFC56F 100%)",
 );
 
 /**

@@ -23,6 +23,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -174,19 +175,19 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
+        background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAV_RGB},0.85)`,
         backdropFilter: "blur(12px)",
         borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "all 0.3s ease", padding: "0 40px",
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <EBALogo height={38} light={true} />
+            <EBALogo height={38} light={!IS_VIVID} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
             {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{
-                color: href === "/academy" ? "#fff" : "rgba(255,255,255,0.7)",
+                color: href === "/academy" ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
                 textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
                 fontWeight: href === "/academy" ? 600 : 500, fontSize: "14px",
                 borderBottom: href === "/academy" ? `2px solid ${RUST}` : "none",
@@ -240,7 +241,7 @@ export default function AcademyPage() {
               <h1 style={{
                 fontFamily: "'Playfair Display', serif", fontWeight: 900,
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-                color: "#fff", margin: "0 0 24px", lineHeight: 1.05,
+                color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05,
               }}>
                 Everything they never taught you about running an M&E business.
               </h1>
@@ -256,9 +257,9 @@ export default function AcademyPage() {
                   {ENROL_READY ? "Join the founding cohort →" : ENROL_PENDING_LABEL}
                 </a>
                 <a href="#curriculum" style={{
-                  background: "transparent", color: "#fff", textDecoration: "none",
+                  background: "transparent", color: ON_DARK, textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
-                  padding: "14px 32px", border: "1px solid rgba(255,255,255,0.4)", display: "inline-block",
+                  padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.4)`, display: "inline-block",
                 }}>
                   View curriculum
                 </a>
@@ -272,7 +273,7 @@ export default function AcademyPage() {
                 { value: "Lifetime", label: "Access at founding price" },
               ].map(({ value, label }) => (
                 <div key={label} style={{
-                  background: "rgba(255,255,255,0.06)", borderLeft: `3px solid ${RUST}`,
+                  background: `rgba(${ON_DARK_RGB},0.06)`, borderLeft: `3px solid ${RUST}`,
                   padding: "16px 20px", display: "flex", alignItems: "center", gap: "16px",
                 }}>
                   <span style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
@@ -380,7 +381,7 @@ export default function AcademyPage() {
                       <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                         {mod.topics.map((topic, j) => (
                           <span key={j} style={{
-                            background: mod.dark ? "rgba(255,255,255,0.08)" : OAT,
+                            background: mod.dark ? `rgba(${ON_DARK_RGB},0.08)` : OAT,
                             color: mod.dark ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.7)`,
                             fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 500,
                             padding: "5px 12px",
@@ -406,7 +407,7 @@ export default function AcademyPage() {
             <h2 style={{
               fontFamily: "'Playfair Display', serif", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: "#fff", margin: "0 0 56px", lineHeight: 1.1,
+              color: ON_DARK, margin: "0 0 56px", lineHeight: 1.1,
             }}>
               How it works.
             </h2>
@@ -418,11 +419,11 @@ export default function AcademyPage() {
                 { Icon: InfinityIcon, label: "Lifetime access", body: "Your founding membership gives you permanent access. Every new module and update added to the curriculum is included at no extra cost." },
               ].map(({ Icon, label, body }, i) => (
                 <div key={i} style={{
-                  background: "rgba(255,255,255,0.05)", borderLeft: `3px solid ${RUST}`,
+                  background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`,
                   padding: "28px 24px",
                 }}>
                   <Icon size={26} strokeWidth={1.75} color={RUST} style={{ display: "block", marginBottom: "14px" }} />
-                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: "#fff", margin: "0 0 10px" }}>{label}</h3>
+                  <h3 style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: "1.1rem", color: ON_DARK, margin: "0 0 10px" }}>{label}</h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.65)`, fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
                 </div>
               ))}
@@ -545,7 +546,7 @@ export default function AcademyPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "20px" }}>
             <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-              <EBALogo height={38} light={true} />
+              <EBALogo height={38} light={!IS_VIVID} />
             </Link>
             <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
               {[{ label: "Home", href: "/" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
@@ -555,7 +556,7 @@ export default function AcademyPage() {
               ))}
             </div>
           </div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
+          <div style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.08)`, paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
             <div>
               <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
               <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>

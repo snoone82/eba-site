@@ -23,6 +23,7 @@ import {
   AMBER,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, NAV_RGB,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -238,7 +239,7 @@ function ComplianceChatDemo() {
                   display: "flex", alignItems: "center", justifyContent: "center",
                   marginRight: "8px", alignSelf: "flex-end",
                 }}>
-                  <span style={{ color: "#fff", fontSize: "10px", fontWeight: 700 }}>EB</span>
+                  <span style={{ color: ON_DARK, fontSize: "10px", fontWeight: 700 }}>EB</span>
                 </div>
               )}
               <div style={{
@@ -256,7 +257,7 @@ function ComplianceChatDemo() {
           {typing && (
             <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
               <div style={{ width: "28px", height: "28px", background: DARK_GRADIENT, display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <span style={{ color: "#fff", fontSize: "10px", fontWeight: 700 }}>EB</span>
+                <span style={{ color: ON_DARK, fontSize: "10px", fontWeight: 700 }}>EB</span>
               </div>
               <div style={{ background: OAT, padding: "12px 16px", display: "flex", gap: "4px", alignItems: "center" }}>
                 {[0, 1, 2].map(i => (
@@ -277,7 +278,7 @@ function ComplianceChatDemo() {
             Ask a safety or compliance question...
           </div>
           <div style={{ background: RUST, padding: "10px 16px", display: "flex", alignItems: "center" }}>
-            <span style={{ color: "#fff", fontSize: "16px" }}>→</span>
+            <span style={{ color: ON_DARK, fontSize: "16px" }}>→</span>
           </div>
         </div>
       </div>
@@ -393,7 +394,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? `rgba(${NAVY_RGB},0.97)` : `rgba(${NAVY_RGB},0.85)`,
+        background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAV_RGB},0.85)`,
         backdropFilter: "blur(12px)",
         borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
         transition: "all 0.3s ease",
@@ -401,7 +402,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <EBALogo height={38} light={true} />
+            <EBALogo height={38} light={!IS_VIVID} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
             {[
@@ -412,7 +413,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
-                color: href === "/ai-tools" ? "#fff" : "rgba(255,255,255,0.7)",
+                color: href === "/ai-tools" ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
                 textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
                 fontWeight: href === "/ai-tools" ? 600 : 500, fontSize: "14px",
                 borderBottom: href === "/ai-tools" ? `2px solid ${RUST}` : "none",
@@ -474,7 +475,7 @@ export default function AIToolsPage() {
           <h1 style={{
             fontFamily: "'Playfair Display', serif", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.02em",
-            color: "#fff", margin: "0 0 24px", lineHeight: 1.05, maxWidth: "720px",
+            color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05, maxWidth: "720px",
           }}>
             Built for how M&E actually works.
           </h1>
@@ -700,7 +701,7 @@ export default function AIToolsPage() {
                 <h2 style={{
                   fontFamily: "'Playfair Display', serif", fontWeight: 800,
                   fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                  color: "#fff", margin: "0 0 20px", lineHeight: 1.1,
+                  color: ON_DARK, margin: "0 0 20px", lineHeight: 1.1,
                 }}>
                   Your own branded compliance assistant. Deployed across your entire organisation.
                 </h2>
@@ -731,10 +732,10 @@ export default function AIToolsPage() {
                   Enquire about a deployment →
                 </Link>
               </div>
-              <div style={{ background: "rgba(255,255,255,0.05)", borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
+              <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
                 <p style={{
                   fontFamily: "'Playfair Display', serif", fontStyle: "italic",
-                  color: "#fff", fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",
+                  color: ON_DARK, fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
                 </p>
@@ -752,7 +753,7 @@ export default function AIToolsPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "20px" }}>
             <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-              <EBALogo height={38} light={true} />
+              <EBALogo height={38} light={!IS_VIVID} />
             </Link>
             <div style={{ display: "flex", gap: "24px", flexWrap: "wrap" }}>
               {[{ label: "Home", href: "/" }, { label: "Academy", href: "/academy" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
@@ -762,7 +763,7 @@ export default function AIToolsPage() {
               ))}
             </div>
           </div>
-          <div style={{ borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
+          <div style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.08)`, paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
             <div>
               <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
               <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
