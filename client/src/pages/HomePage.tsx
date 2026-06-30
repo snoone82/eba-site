@@ -355,6 +355,7 @@ export default function HomePage() {
         display: "flex",
         alignItems: isMobile ? "flex-start" : "flex-end",
         paddingTop: isMobile ? "80px" : "0",
+        background: NAVY, // fallback so a slow/dead hero image degrades to clean navy, not muddy cream
       }}>
         <div style={{
           position: "absolute", inset: 0,
