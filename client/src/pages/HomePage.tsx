@@ -399,7 +399,7 @@ export default function HomePage() {
               display: "flex", flexWrap: "wrap", gap: isMobile ? "8px 16px" : "0 32px",
               marginBottom: "28px",
             }}>
-              {["101 Lessons", "10 Modules", "15+ Years M&E Group Experience", "UK & International", "Lifetime Founding Access"].map((stat, i) => (
+              {["Built for M&E business owners", "Drawn from real operations", "Operator-led, not theory", "Lifetime founding access"].map((stat, i) => (
                 <span key={i} style={{
                   color: "rgba(255,255,255,0.75)",
                   fontFamily: "'DM Sans', sans-serif",
