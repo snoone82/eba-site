@@ -19,7 +19,7 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
-  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  DARK_GRADIENT, BAND_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -453,7 +453,7 @@ export default function HomePage() {
 
       {/* ── TRUST STRIP ── (same content column as every section; smaller + more
             muted than the hero feature strip so the two read as distinct elements) */}
-      <div style={{ background: OAT, padding: isMobile ? "20px 20px" : "26px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.1)` }}>
+      <div style={{ background: BAND_GRADIENT, padding: isMobile ? "20px 20px" : "26px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.1)` }}>
         <p style={{
           maxWidth: "1200px", margin: "0 auto", textAlign: "left",
           fontFamily: "'DM Sans', sans-serif", fontSize: "11px",

@@ -40,29 +40,63 @@ export const COLORS_NOIR = {
 } as const;
 
 /**
- * Theme selection — read once, at module load, from the `?theme=noir` URL param.
- * Because the named exports below are ES-module live bindings resolved at load
- * time, the entire page renders in a single consistent theme. Client-side
- * navigation (wouter) keeps the chosen theme for the life of the page; a fresh
- * load without `?theme=noir` falls back to the default. Nothing is persisted, so
- * `/` and `/?theme=noir` always render their respective themes for side-by-side
- * comparison.
+ * VIVID palette — a bright, high-contrast variant inspired by the LlamaIndex
+ * look: a clean white page, near-black blocks, a vivid magenta accent and a warm
+ * orange highlight, plus a signature pastel-prism gradient band (BAND_GRADIENT).
+ * Same role mapping as the others so the whole site themes automatically:
+ *  - navy  → near-black: dark blocks AND body text (never pure black)
+ *  - cream → white: page background AND text on dark blocks
+ *  - rust  → vivid magenta: the single accent (CTAs, labels, rules)
+ *  - oat   → near-white: subtle alternating surfaces (kept clean, mostly white)
+ *  - white → pure white cards
+ *  - amber → warm orange highlight
+ * Tuned so the magenta accent and white-on-dark both clear WCAG AA for text.
  */
-function detectTheme(): "default" | "noir" {
+export const COLORS_VIVID = {
+  navy: "#0D0D0F",
+  cream: "#FFFFFF",
+  rust: "#E11D74",
+  oat: "#F7F5FA",
+  white: "#FFFFFF",
+  amber: "#FF7A3D",
+} as const;
+
+/**
+ * Theme selection — read once, at module load, from the `?theme=` URL param
+ * (`noir` or `vivid`; anything else falls back to the default). Because the
+ * named exports below are ES-module live bindings resolved at load time, the
+ * entire page renders in a single consistent theme. Client-side navigation
+ * (wouter) keeps the chosen theme for the life of the page. Nothing is
+ * persisted, so `/`, `/?theme=noir` and `/?theme=vivid` always render their
+ * respective themes for side-by-side comparison.
+ */
+export type ThemeName = "default" | "noir" | "vivid";
+
+function detectTheme(): ThemeName {
   if (typeof window === "undefined") return "default";
   try {
-    return new URLSearchParams(window.location.search).get("theme") === "noir"
-      ? "noir"
-      : "default";
+    const t = new URLSearchParams(window.location.search).get("theme");
+    return t === "noir" || t === "vivid" ? t : "default";
   } catch {
     return "default";
   }
 }
 
-export const THEME: "default" | "noir" = detectTheme();
+export const THEME: ThemeName = detectTheme();
 export const IS_NOIR = THEME === "noir";
+export const IS_VIVID = THEME === "vivid";
 
-export const COLORS = IS_NOIR ? COLORS_NOIR : COLORS_DEFAULT;
+type Palette = {
+  readonly navy: string; readonly cream: string; readonly rust: string;
+  readonly oat: string; readonly white: string; readonly amber: string;
+};
+
+/** Pick a value for the active theme: (default, noir, vivid). */
+function pick<T>(d: T, noir: T, vivid: T): T {
+  return THEME === "noir" ? noir : THEME === "vivid" ? vivid : d;
+}
+
+export const COLORS: Palette = pick<Palette>(COLORS_DEFAULT, COLORS_NOIR, COLORS_VIVID);
 
 // Convenience named exports — used directly in the pages' inline styles.
 export const NAVY = COLORS.navy;
@@ -77,31 +111,45 @@ export const AMBER = COLORS.amber;
  * These let the many low-opacity tints/borders/overlays switch with the palette
  * instead of staying hard-coded to the default hues.
  */
-export const NAVY_RGB = IS_NOIR ? "26,26,28" : "27,38,50";
-export const RUST_RGB = IS_NOIR ? "142,59,59" : "163,81,57";
-export const CREAM_RGB = IS_NOIR ? "244,242,238" : "238,233,223";
+export const NAVY_RGB = pick("27,38,50", "26,26,28", "13,13,15");
+export const RUST_RGB = pick("163,81,57", "142,59,59", "225,29,116");
+export const CREAM_RGB = pick("238,233,223", "244,242,238", "255,255,255");
 
 /**
- * Background for large dark sections (hero / founder / CTA). In the default
- * theme this is the flat navy used previously (visually identical). In noir it
- * becomes a subtle vertical charcoal gradient — never a flat black.
+ * Background for large dark sections (hero / founder / CTA). Default keeps the
+ * flat navy used previously (visually identical). Noir = subtle vertical
+ * charcoal gradient. Vivid = a deep jewel-toned near-black gradient that stays
+ * dark enough to keep white body text at WCAG AA.
  */
-export const DARK_GRADIENT = IS_NOIR
-  ? "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)"
-  : NAVY;
+export const DARK_GRADIENT = pick(
+  NAVY,
+  "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)",
+  "linear-gradient(155deg, #221026 0%, #0E0E12 52%, #241405 100%)",
+);
+
+/**
+ * Signature band behind the trust/logos strip. Default and noir keep the solid
+ * oat surface (identical to before); vivid gets the bright pastel-prism gradient
+ * — dark logos/text sit on it, so contrast is preserved.
+ */
+export const BAND_GRADIENT = pick(
+  OAT,
+  OAT,
+  "linear-gradient(110deg, #CDEEFF 0%, #E9CBFF 36%, #FFD7C2 68%, #FFECC0 100%)",
+);
 
 /**
  * Keep the CSS custom properties (used by index.css for body/selection/scrollbar)
  * in sync with the active theme. Runs once at load; no-op during SSR/prerender.
  */
-if (IS_NOIR && typeof document !== "undefined") {
+if (THEME !== "default" && typeof document !== "undefined") {
   const s = document.documentElement.style;
-  s.setProperty("--eba-navy", COLORS_NOIR.navy);
-  s.setProperty("--eba-rust", COLORS_NOIR.rust);
-  s.setProperty("--eba-cream", COLORS_NOIR.cream);
-  s.setProperty("--eba-oat", COLORS_NOIR.oat);
-  s.setProperty("--eba-white", COLORS_NOIR.white);
-  s.setProperty("--eba-amber", COLORS_NOIR.amber);
+  s.setProperty("--eba-navy", COLORS.navy);
+  s.setProperty("--eba-rust", COLORS.rust);
+  s.setProperty("--eba-cream", COLORS.cream);
+  s.setProperty("--eba-oat", COLORS.oat);
+  s.setProperty("--eba-white", COLORS.white);
+  s.setProperty("--eba-amber", COLORS.amber);
 }
 
 // ── Integrations ───────────────────────────────────────────────────────────
