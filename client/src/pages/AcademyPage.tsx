@@ -49,17 +49,31 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
 
 function useReveal() {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  // Default to VISIBLE so content never disappears if the observer doesn't fire
+  // (e.g. after prerender/hydration). The animation is purely additive.
+  const [visible, setVisible] = useState(true);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    // Respect reduced-motion and environments without IntersectionObserver — stay visible.
+    if (typeof IntersectionObserver === "undefined") return;
+    if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) return;
+
+    // Start hidden only now that we know JS + observer are available, then reveal on scroll.
+    setVisible(false);
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) { setVisible(true); obs.disconnect(); } },
       { threshold: 0.08 }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+
+    // Safety net: force visible after 400ms regardless, so nothing can stay hidden.
+    const failsafe = setTimeout(() => setVisible(true), 400);
+
+    return () => { obs.disconnect(); clearTimeout(failsafe); };
   }, []);
+
   return { ref, visible };
 }
 
