@@ -369,7 +369,7 @@ export default function HomePage() {
           position: "absolute", inset: 0,
           background: "linear-gradient(to top, rgba(27,38,50,0.95) 0%, rgba(27,38,50,0.6) 50%, rgba(27,38,50,0.25) 100%)",
         }} />
-        <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
+        <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
           {/* Badge */}
           <div style={{
             display: "inline-block",
@@ -394,9 +394,9 @@ export default function HomePage() {
             }}>
               The business programme built for M&amp;E engineering contractors.
             </h1>
-            {/* Feature strip — one centred horizontal row of three distinct items */}
+            {/* Feature strip — one horizontal row, left-aligned to the content column */}
             <div style={{
-              display: "flex", flexWrap: "wrap", justifyContent: "center", alignItems: "center",
+              display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
               gap: "6px 0", marginBottom: "28px",
             }}>
               {["Built for M&E business owners", "Drawn from real operations", "Lifetime founding access"].map((stat, i) => (
@@ -450,13 +450,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TRUST STRIP ── */}
-      <div style={{ background: OAT, padding: "16px 20px", borderBottom: `1px solid rgba(27,38,50,0.1)` }}>
+      {/* ── TRUST STRIP ── (same content column as every section; smaller + more
+            muted than the hero feature strip so the two read as distinct elements) */}
+      <div style={{ background: OAT, padding: isMobile ? "20px 20px" : "26px 40px", borderBottom: `1px solid rgba(27,38,50,0.1)` }}>
         <p style={{
-          textAlign: "center", margin: 0,
-          fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
-          fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-          color: "rgba(27,38,50,0.55)",
+          maxWidth: "1200px", margin: "0 auto", textAlign: "left",
+          fontFamily: "'DM Sans', sans-serif", fontSize: "11px",
+          fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
+          color: "rgba(27,38,50,0.45)",
         }}>
           Trusted by M&E contractors working across MOD / MOJ estates &nbsp;·&nbsp; nuclear &nbsp;·&nbsp; aerospace &nbsp;·&nbsp; advanced manufacturing &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres
         </p>
