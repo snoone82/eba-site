@@ -14,8 +14,11 @@ import {
 import { track } from "@/lib/track";
 import { MessageSquareText, X, Sparkles, Send } from "lucide-react";
 
-const ASSISTANT_ENDPOINT: string | undefined =
-  (import.meta as any).env?.VITE_ASSISTANT_ENDPOINT;
+// Defaults to the bundled /api/assistant Edge function (live once ANTHROPIC_API_KEY
+// is set in Vercel). Override with VITE_ASSISTANT_ENDPOINT. Any failure — missing
+// key (501), not deployed (404/HTML), network — falls back to the local KB below.
+const ASSISTANT_ENDPOINT: string =
+  (import.meta as any).env?.VITE_ASSISTANT_ENDPOINT || "/api/assistant";
 
 const GREETING =
   "Hi 👋 I'm the EBA assistant. Ask me about the Academy, the AI tools, the free Toolbox Talk Generator, documents, mentorship, pricing or enrolment.";
@@ -112,23 +115,21 @@ export function AssistantWidget() {
     setOpen((o) => { if (!o) track("assistant_open"); return !o; });
   };
 
-  const respond = async (question: string) => {
+  const respond = async (question: string, history: Msg[]) => {
     setThinking(true);
-    // Try a configured live backend first; fall back to the local KB.
+    // Try the live backend first; fall back to the local KB on any failure.
     let reply = "";
-    if (ASSISTANT_ENDPOINT) {
-      try {
-        const res = await fetch(ASSISTANT_ENDPOINT, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message: question }),
-        });
-        if (res.ok) {
-          const data = await res.json();
-          reply = (data?.reply || "").toString();
-        }
-      } catch { /* fall through to KB */ }
-    }
+    try {
+      const res = await fetch(ASSISTANT_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: question, history: history.slice(-8) }),
+      });
+      if (res.ok) {
+        const data = await res.json();
+        reply = (data?.reply || "").toString();
+      }
+    } catch { /* fall through to KB */ }
     if (!reply) {
       // small, natural delay so it reads like a considered answer
       await new Promise((r) => setTimeout(r, 480));
@@ -142,9 +143,12 @@ export function AssistantWidget() {
     const q = question.trim();
     if (!q || thinking) return;
     track("assistant_ask", { q });
-    setMessages((m) => [...m, { role: "user", text: q }]);
+    setMessages((m) => {
+      const next: Msg[] = [...m, { role: "user", text: q }];
+      void respond(q, next);
+      return next;
+    });
     setInput("");
-    void respond(q);
   };
 
   const onSubmit = (e: React.FormEvent) => { e.preventDefault(); ask(input); };

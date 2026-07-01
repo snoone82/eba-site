@@ -471,7 +471,7 @@ export default function HomePage() {
             </p>
           </div>
           {IS_LIGHT && !isMobile && (
-            <div aria-hidden="true" style={{ position: "absolute", top: "12px", right: "8px", width: "46%", maxWidth: "520px", height: "calc(100% - 24px)", pointerEvents: "none" }}>
+            <div aria-hidden="true" style={{ position: "absolute", top: 0, bottom: 0, right: "24px", width: "42%", maxWidth: "430px", display: "flex", alignItems: "center", pointerEvents: "none" }}>
               <HeroMockups />
             </div>
           )}
