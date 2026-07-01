@@ -22,12 +22,14 @@ import {
   OAT,
   AMBER,
   isPlaceholder,
+  WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
+  HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
-import { Check } from "lucide-react";
+import { Check, FileText, ShieldCheck, MessageSquareText, FlaskConical, Sparkles } from "lucide-react";
 
 const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
 
@@ -108,7 +110,7 @@ function OmManualDemo() {
   }, []);
 
   return (
-    <div style={{ background: "#fff", border: `1px solid ${OAT}`, overflow: "hidden" }}>
+    <div style={{ background: "#fff", border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
       {/* Mock browser bar */}
       <div style={{ background: OAT, padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
@@ -208,7 +210,7 @@ function ComplianceChatDemo() {
   }, [visibleMessages]);
 
   return (
-    <div style={{ background: "#fff", border: `1px solid ${OAT}`, overflow: "hidden" }}>
+    <div style={{ background: "#fff", border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
       <div style={{ background: OAT, padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
@@ -301,7 +303,7 @@ const allTools = [
     demo: <OmManualDemo />,
   },
   {
-    label: "COMPLIANCE CHATBOT",
+    label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
     body: "The Compliance Chatbot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone subscription or as a fully managed white-label deployment for your entire organisation.",
     price: "From £149/month",
@@ -314,28 +316,10 @@ const allTools = [
 
 const comingSoon = [
   {
-    label: "RAMS GENERATOR · COMING MONTH 1",
-    title: "Compliant RAMS in minutes.",
-    body: "Select your activity, your hazards, your controls. The RAMS Generator produces a fully formatted, regulation-compliant Risk Assessment and Method Statement ready to submit — without a specialist.",
-    price: "Included in subscription / standalone pricing TBC",
-  },
-  {
-    label: "TENDER ASSISTANT · COMING MONTH 2",
+    label: "TENDER ASSISTANT · IN DEVELOPMENT",
     title: "Win more bids. Lose fewer on price.",
-    body: "The Tender Assistant analyses your bid against project requirements, flags commercial risks, and helps you price accurately — without leaving margin on the table. Built for contractors without a bid team.",
+    body: "Analyses your bid against project requirements, flags commercial risks, and helps you price accurately — without leaving margin on the table. Built for contractors without a bid team.",
     price: "Included in subscription / standalone pricing TBC",
-  },
-  {
-    label: "COSHH GENERATOR · COMING MONTH 3",
-    title: "COSHH assessments in a minute.",
-    body: "Chemical substance, task, exposure route — assessed and documented instantly. No specialist knowledge required. Produces a compliant, branded PDF ready for the site file.",
-    price: "Included in subscription / standalone pricing TBC",
-  },
-  {
-    label: "TOOLBOX TALK GENERATOR · COMING MONTH 4",
-    title: "Site-specific toolbox talks, weekly.",
-    body: "Stop recycling the same generic toolbox talks. Generate site-specific, task-relevant safety briefings in under 60 seconds — with a sign-off sheet included.",
-    price: "Included in subscription",
   },
 ];
 
@@ -461,41 +445,59 @@ export default function AIToolsPage() {
       <AIToolsNav scrolled={scrolled} />
       {/* ── HERO ── */}
       <section style={{
-        paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px",
+        paddingTop: isMobile ? "104px" : "150px", paddingBottom: isMobile ? "56px" : "88px",
         background: DARK_GRADIENT,
         position: "relative", overflow: "hidden",
       }}>
-        <div style={{
-          position: "absolute", inset: 0, opacity: 0.12,
-          backgroundImage: `url(${TOOLS_IMG})`,
-          backgroundSize: "cover", backgroundPosition: "center",
-        }} />
+        {IS_VIVID ? (
+          <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />
+        ) : (
+          <div style={{ position: "absolute", inset: 0, opacity: 0.12, backgroundImage: `url(${TOOLS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+        )}
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <SectionLabel>AI Tools for M&E Contractors</SectionLabel>
+          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "18px" }}>
+            · AI Tools · Built for M&amp;E ·
+          </div>
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
-            fontSize: "clamp(2.5rem, 5vw, 4.5rem)", letterSpacing: "-0.02em",
-            color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05, maxWidth: "720px",
+            fontSize: "clamp(2.5rem, 5.5vw, 4.6rem)", letterSpacing: "-0.02em",
+            color: ON_DARK, margin: "0 0 22px", lineHeight: 1.04, maxWidth: "820px",
           }}>
-            Built for how M&E actually works.
+            The compliance paperwork, done in minutes.
           </h1>
           <p style={{
-            color: `rgba(${CREAM_RGB},0.75)`, fontSize: "18px", lineHeight: 1.65,
-            maxWidth: "580px", margin: "0 0 48px",
+            color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: isMobile ? "16px" : "19px", lineHeight: 1.65,
+            maxWidth: "620px", margin: "0 0 36px",
           }}>
-            We built these because they didn't exist. Every M&E contractor we know was either drowning in paperwork or paying agencies thousands to produce documents that AI can now generate in minutes. The difference: ours are built specifically for M&E engineering contractors.
+            Four AI tools built for how M&amp;E engineering actually works — O&amp;M manuals, RAMS, COSHH, and a compliance co-pilot trained on your own documents. You stay in control: review every output before it leaves your desk.
           </p>
-          <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "44px" }}>
+            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_aitools")} style={{
+              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
+            }}>
+              {ENROL_READY ? "Get the tools — join the Academy" : ENROL_PENDING_LABEL}
+            </a>
+            <a href="#tools" style={{
+              background: "transparent", color: ON_DARK, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.28)`, display: "inline-block",
+            }}>
+              See the four tools ↓
+            </a>
+          </div>
+          <div style={{ display: "flex", gap: isMobile ? "24px" : "40px", flexWrap: "wrap" }}>
             {[
-              { value: "2–3 days", label: "Saved per O&M manual" },
+              { value: "30 min", label: "Per O&M manual, not 2–3 days" },
               { value: "£0", label: "Extra staff required" },
-              { value: "24/7", label: "Compliance answers" },
+              { value: "You", label: "Review every output" },
             ].map(({ value, label }) => (
               <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
-                <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.6rem", fontWeight: 700, margin: "0 0 4px" }}>
+                <p style={{ fontFamily: "var(--eba-heading)", color: RUST, fontSize: "1.6rem", fontWeight: 800, margin: "0 0 4px" }}>
                   {value}
                 </p>
-                <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${ON_DARK_RGB},0.55)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
                   {label}
                 </p>
               </div>
@@ -504,17 +506,69 @@ export default function AIToolsPage() {
         </div>
       </section>
 
+      {/* ── THE FOUR TOOLS (overview) ── */}
+      <section id="tools" style={{ backgroundColor: WHITE, backgroundImage: SECTION_GLOW, padding: isMobile ? "64px 20px" : "104px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 48px" }}>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
+              · Four tools · Live now ·
+            </div>
+            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
+              Built for M&amp;E. Ready today.
+            </h2>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "18px" }}>
+            {[
+              { Icon: FileText, name: "O&M Manual Compiler", outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.", note: "£150 per manual" },
+              { Icon: ShieldCheck, name: "RAMS Generator", outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.", note: "Included with membership" },
+              { Icon: MessageSquareText, name: "Compliance Co-Pilot", outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.", note: "From £149 / month" },
+              { Icon: FlaskConical, name: "COSHH Generator", outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.", note: "Included with membership" },
+            ].map(({ Icon, name, outcome, note }) => (
+              <div key={name} className="eba-bento-card" style={{
+                background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "20px",
+                padding: isMobile ? "26px 24px" : "30px 30px", display: "flex", flexDirection: "column",
+                boxShadow: "0 18px 40px -28px rgba(0,0,0,0.25)",
+              }}>
+                <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "16px" }}>
+                  <span style={{ width: "46px", height: "46px", borderRadius: "13px", background: CTA_PRIMARY_BG, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                    <Icon size={22} color="#fff" strokeWidth={1.9} />
+                  </span>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.35rem", letterSpacing: "-0.01em", color: NAVY, margin: 0 }}>{name}</h3>
+                </div>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.62)`, margin: "0 0 18px" }}>{outcome}</p>
+                <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", fontWeight: 700, color: RUST, background: `rgba(${RUST_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.5)` }}>
+                    <Check size={13} strokeWidth={2.5} /> You review every output
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+          {/* Toolbox Talk free bonus */}
+          <div style={{ marginTop: "18px", display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap", justifyContent: "center", background: CTA_BAND_BG, border: `1px solid rgba(${NAVY_RGB},0.08)`, borderRadius: "16px", padding: isMobile ? "22px 24px" : "22px 32px" }}>
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.05rem", color: NAVY }}>
+              <span style={{ width: "34px", height: "34px", borderRadius: "10px", background: CTA_PRIMARY_BG, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Sparkles size={18} color="#fff" strokeWidth={1.9} /></span>
+              Toolbox Talk Generator
+            </span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.62)` }}>
+              Site-specific toolbox talks in 60 seconds — <strong style={{ color: NAVY }}>free with every Academy membership.</strong>
+            </span>
+          </div>
+        </div>
+      </section>
+
       {/* ── LIVE TOOLS WITH DEMOS ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel light>Live Now</SectionLabel>
+            <SectionLabel light>See it work</SectionLabel>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 64px",
             }}>
-              Two tools. Live now. Try them.
+              See two of them in action.
             </h2>
           </RevealSection>
 
