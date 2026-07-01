@@ -1,16 +1,18 @@
 /**
  * EBA Logo — inline SVG component.
- * A solid rounded-square tile carrying bold "EBA" letterforms, a double-rule
- * divider and an uppercase two-line wordmark. The tile is always a filled
- * contrasting block (never an outline):
- *   • on dark / cobalt backgrounds → white tile, blue letters, white wordmark
- *   • on light backgrounds        → blue tile, white letters, blue wordmark
+ * A square mark with a thin keyline border, its top-left and bottom-right
+ * corners diagonally cut (revealing the background), and heavy bold "EBA"
+ * letterforms filling it — beside a double-rule divider and an uppercase
+ * two-line wordmark. Filled contrasting block, never a hollow outline:
+ *   • on dark / cobalt backgrounds → white mark, blue letters, white wordmark
+ *   • on light backgrounds        → blue mark, white letters, blue wordmark
  * Renders instantly, no network.
  */
 
 import { WHITE } from "@/lib/constants";
 
 const BLUE = "#2563EB";          // brand blue — matches the cobalt gradient's mid-tone
+const EBA_FONT = "'Arial Black', 'DM Sans', sans-serif";
 const WORD_FONT = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
 
 interface EBALogoProps {
@@ -31,27 +33,33 @@ export function EBALogo({
   navOnCobalt = false,
 }: EBALogoProps) {
   const onDark = light || navOnCobalt;
-  const tileFill = onDark ? WHITE : BLUE;   // solid tile
-  const ebaColor = onDark ? BLUE : WHITE;   // letters inside the tile
+  const markFill = onDark ? WHITE : BLUE;   // square fill
+  const lineColor = markFill;               // keyline border
+  const ebaColor = onDark ? BLUE : WHITE;   // letters inside the mark
   const wordColor = onDark ? WHITE : BLUE;  // wordmark
   const ruleColor = wordColor;
 
-  const S = height;               // square tile side
-  const r = S * 0.16;             // rounded-corner radius
+  const S = height;               // square side
+  const sw = S * 0.05;            // keyline thickness
+  const c = S * 0.3;              // corner cut (top-left + bottom-right)
+  // Square fill with the top-left and bottom-right corners chamfered off.
+  const cut = `${c},0 ${S},0 ${S},${S - c} ${S - c},${S} 0,${S} 0,${c}`;
 
   const Icon = (
     <>
-      <rect x={0} y={0} width={S} height={S} rx={r} ry={r} fill={tileFill} />
+      <polygon points={cut} fill={markFill} />
+      {/* Full-square keyline drawn over the fill edges */}
+      <rect x={sw / 2} y={sw / 2} width={S - sw} height={S - sw} fill="none" stroke={lineColor} strokeWidth={sw} />
       <text
         x={S / 2}
-        y={S * 0.5}
+        y={S * 0.53}
         textAnchor="middle"
         dominantBaseline="central"
         fill={ebaColor}
-        fontFamily="'DM Sans', 'Arial Black', sans-serif"
-        fontWeight="800"
-        fontSize={S * 0.34}
-        letterSpacing="-0.5"
+        fontFamily={EBA_FONT}
+        fontWeight="900"
+        fontSize={S * 0.4}
+        letterSpacing="-1"
       >
         EBA
       </text>
