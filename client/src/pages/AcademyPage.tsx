@@ -22,8 +22,10 @@ import {
   CREAM,
   OAT,
   isPlaceholder,
+  WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
+  HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -229,11 +231,11 @@ export default function AcademyPage() {
       <AcademyNav scrolled={scrolled} />
       {/* ── HERO ── */}
       <section style={{ position: "relative", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT, overflow: "hidden" }}>
-        <div style={{
-          position: "absolute", inset: 0, opacity: 0.15,
-          backgroundImage: `url(${ACADEMY_IMG})`,
-          backgroundSize: "cover", backgroundPosition: "center",
-        }} />
+        {IS_VIVID ? (
+          <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />
+        ) : (
+          <div style={{ position: "absolute", inset: 0, opacity: 0.15, backgroundImage: `url(${ACADEMY_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }} />
+        )}
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <div>
@@ -264,8 +266,11 @@ export default function AcademyPage() {
                   View curriculum
                 </a>
               </div>
+              <p style={{ marginTop: "26px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.6)`, maxWidth: "460px", lineHeight: 1.5 }}>
+                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>The only one built for M&amp;E.</span>
+              </p>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
               {[
                 { value: "101", label: "Lessons" },
                 { value: "10", label: "Modules" },
@@ -273,7 +278,9 @@ export default function AcademyPage() {
                 { value: "Lifetime", label: "Access at founding price" },
               ].map(({ value, label }) => (
                 <div key={label} style={{
-                  background: `rgba(${ON_DARK_RGB},0.06)`, borderLeft: `3px solid ${RUST}`,
+                  background: IS_VIVID ? WHITE : `rgba(${ON_DARK_RGB},0.06)`,
+                  border: `1px solid rgba(${NAVY_RGB},0.08)`, borderLeft: `3px solid ${RUST}`,
+                  borderRadius: "12px", boxShadow: IS_VIVID ? "0 12px 30px -24px rgba(0,0,0,0.25)" : "none",
                   padding: "16px 20px", display: "flex", alignItems: "center", gap: "16px",
                 }}>
                   <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
@@ -290,7 +297,7 @@ export default function AcademyPage() {
       </section>
 
       {/* ── CURRICULUM ── */}
-      <section id="curriculum" style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section id="curriculum" style={{ backgroundColor: CREAM, backgroundImage: SECTION_GLOW, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel light>The Curriculum</SectionLabel>
@@ -306,14 +313,17 @@ export default function AcademyPage() {
             </p>
           </RevealSection>
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
             {modules.map((mod, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 40}ms` }}>
                 <div style={{
                   background: mod.dark ? NAVY : "#fff",
+                  border: `1px solid rgba(${NAVY_RGB},0.08)`,
                   borderLeft: `4px solid ${openModule === i ? RUST : mod.dark ? RUST : OAT}`,
+                  borderRadius: "12px",
                   transition: "border-color 0.2s",
                   overflow: "hidden",
+                  boxShadow: "0 10px 30px -22px rgba(0,0,0,0.22)",
                 }}>
                   <button
                     onClick={() => setOpenModule(openModule === i ? null : i)}

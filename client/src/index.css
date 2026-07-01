@@ -209,6 +209,11 @@
 .eba-pulse-2     { animation-delay: 1.3s; }
 .eba-row         { animation: eba-rowpop 4s ease-in-out infinite; }
 
+/* Rounded corners on interactive elements to match the card system.
+   Plain rule (beats @layer base reset) but inline border-radius still wins, so
+   cards/chips/mockups keep their own radii; only un-radiused buttons/inputs pick this up. */
+button, a[href], input, textarea, select { border-radius: 10px; }
+
 /* Hero aurora — slow living drift behind the hero content */
 @keyframes eba-aurora {
   0%   { background-position: 0% 0%;     }
