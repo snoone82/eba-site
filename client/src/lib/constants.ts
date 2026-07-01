@@ -234,6 +234,17 @@ export const CTA_DARK_BG = IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
 export const CTA_PRIMARY_BG = IS_LIGHT ? ACCENT.grad : RUST;
 
 /**
+ * Navigation bar — a filled cobalt (brand-gradient) header with light content on
+ * every theme. Centralised so all page navs stay consistent.
+ */
+export const NAV_BAR_BG = IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
+export const NAV_LINK = "rgba(255,255,255,0.82)";
+export const NAV_LINK_ACTIVE = "#FFFFFF";
+export const NAV_BORDER = "rgba(255,255,255,0.16)";
+export const NAV_CTA_BG = "#FFFFFF";
+export const NAV_CTA_TEXT = ACCENT.hex;
+
+/**
  * Full-bleed CTA bands that use the rust accent as their background in the
  * editorial themes. In the light family they become a soft pastel wash with dark
  * text + a gradient button on top.

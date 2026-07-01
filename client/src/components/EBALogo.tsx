@@ -5,7 +5,7 @@
  * Renders instantly with no network dependency.
  */
 
-import { NAVY, RUST, WHITE, NAVY_RGB } from "@/lib/constants";
+import { NAVY, RUST, WHITE, NAVY_RGB, ACCENT_HEX } from "@/lib/constants";
 
 interface EBALogoProps {
   /** Height in px — width scales proportionally */
@@ -18,14 +18,20 @@ interface EBALogoProps {
   wordmarkColor?: string;
   /** If true, renders wordmark in white (for dark backgrounds) */
   light?: boolean;
+  /** If true, renders the icon as a white tile with cobalt letters — for the
+   *  filled cobalt nav bar, where a navy square would have no contrast. */
+  navOnCobalt?: boolean;
 }
 
 export function EBALogo({
   height = 44,
   variant = "horizontal",
   light = false,
+  navOnCobalt = false,
 }: EBALogoProps) {
   const wordColor = light ? WHITE : NAVY;
+  const iconBg = navOnCobalt ? WHITE : NAVY;
+  const iconText = navOnCobalt ? ACCENT_HEX : WHITE;
 
   // Icon mark dimensions
   const iconH = height;
@@ -82,34 +88,24 @@ export function EBALogo({
       style={{ display: "block", maxWidth: "100%", height: "auto" }}
     >
       {/* ── ICON MARK ── */}
-      <rect width={iconW} height={iconH} fill={NAVY} />
-      {/* Rust triangle top-left */}
-      <polygon
-        points={`0,0 ${iconW * 0.32},0 0,${iconH * 0.32}`}
-        fill={RUST}
-      />
-      {/* Rust triangle bottom-right */}
-      <polygon
-        points={`${iconW},${iconH} ${iconW * 0.68},${iconH} ${iconW},${iconH * 0.68}`}
-        fill={RUST}
-      />
-      {/* White cut lines */}
-      <line
-        x1={iconW * 0.32} y1="0"
-        x2="0" y2={iconH * 0.32}
-        stroke={WHITE} strokeWidth="2"
-      />
-      <line
-        x1={iconW} y1={iconH * 0.68}
-        x2={iconW * 0.68} y2={iconH}
-        stroke={WHITE} strokeWidth="2"
-      />
+      <rect width={iconW} height={iconH} rx={navOnCobalt ? iconH * 0.22 : 0} fill={iconBg} />
+      {!navOnCobalt && (
+        <>
+          {/* Rust triangle top-left */}
+          <polygon points={`0,0 ${iconW * 0.32},0 0,${iconH * 0.32}`} fill={RUST} />
+          {/* Rust triangle bottom-right */}
+          <polygon points={`${iconW},${iconH} ${iconW * 0.68},${iconH} ${iconW},${iconH * 0.68}`} fill={RUST} />
+          {/* White cut lines */}
+          <line x1={iconW * 0.32} y1="0" x2="0" y2={iconH * 0.32} stroke={WHITE} strokeWidth="2" />
+          <line x1={iconW} y1={iconH * 0.68} x2={iconW * 0.68} y2={iconH} stroke={WHITE} strokeWidth="2" />
+        </>
+      )}
       {/* EBA text in icon */}
       <text
         x={iconW / 2}
         y={iconH * 0.67}
         textAnchor="middle"
-        fill={WHITE}
+        fill={iconText}
         fontFamily="'DM Sans', 'Arial Black', sans-serif"
         fontWeight="900"
         fontSize={iconH * 0.38}

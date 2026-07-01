@@ -21,6 +21,7 @@ import {
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX,
+  NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -292,15 +293,15 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
   return (
     <nav className="eba-desktop-nav" style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-        background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAVY_RGB},0.0)`,
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
-        transition: "all 0.3s ease",
+        background: NAV_BAR_BG,
+        borderBottom: `1px solid ${NAV_BORDER}`,
+        boxShadow: scrolled ? "0 12px 30px -18px rgba(0,0,0,0.5)" : "none",
+        transition: "box-shadow 0.3s ease",
         padding: "0 40px",
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
-            <EBALogo height={42} light={!IS_VIVID} />
+            <EBALogo height={42} light navOnCobalt />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
@@ -312,21 +313,21 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
-                color: `rgba(${ON_DARK_RGB},0.8)`, textDecoration: "none",
+                color: NAV_LINK, textDecoration: "none",
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "14px",
                 transition: "color 0.2s",
               }}
-                onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
-                onMouseLeave={e => (e.currentTarget.style.color = `rgba(${ON_DARK_RGB},0.8)`)}
+                onMouseEnter={e => (e.currentTarget.style.color = NAV_LINK_ACTIVE)}
+                onMouseLeave={e => (e.currentTarget.style.color = NAV_LINK)}
               >
                 {label}
               </Link>
             ))}
             <span>
               <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-                background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
-                padding: "9px 20px", letterSpacing: "0.04em",
+                background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+                padding: "9px 20px", letterSpacing: "0.04em", borderRadius: "10px",
                 transition: "opacity 0.2s, transform 0.16s",
                 display: "inline-block",
               }}

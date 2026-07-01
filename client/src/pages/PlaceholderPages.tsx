@@ -10,6 +10,7 @@ import {
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
   HERO_GLOW, SECTION_GLOW, SECTION_TINT, ORB_ACCENT,
+  NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { CtaBanner } from "@/components/CtaBanner";
@@ -32,28 +33,28 @@ function PlaceholderNav({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: `rgba(${NAV_RGB},0.97)`, backdropFilter: "blur(12px)",
-      borderBottom: `1px solid rgba(${RUST_RGB},0.15)`,
+      background: NAV_BAR_BG,
+      borderBottom: `1px solid ${NAV_BORDER}`,
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 40px", height: "60px",
     }}>
       <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-        <EBALogo height={34} light={!IS_VIVID} />
+        <EBALogo height={34} light navOnCobalt />
       </Link>
       <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         {links.map(l => (
           <Link key={l.href} href={l.href} style={{
             fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
             letterSpacing: "0.04em", textDecoration: "none",
-            color: l.href === active ? RUST : `rgba(${CREAM_RGB},0.7)`,
+            color: l.href === active ? NAV_LINK_ACTIVE : NAV_LINK,
           }}>
             {l.label}
           </Link>
         ))}
         <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
-          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
-          padding: "9px 20px", letterSpacing: "0.06em",
+          background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "12px",
+          padding: "9px 20px", letterSpacing: "0.06em", borderRadius: "10px",
         }}>
           {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
         </a>

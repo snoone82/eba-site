@@ -8,7 +8,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
-import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB } from "@/lib/constants";
+import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB, NAV_BAR_BG, NAV_BORDER } from "@/lib/constants";
 import { track } from "@/lib/track";
 
 const NAV_LINKS = [
@@ -48,12 +48,6 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
-  const navBg = transparent
-    ? scrolled || open
-      ? `rgba(${NAV_RGB},0.97)`
-      : `rgba(${NAV_RGB},0.92)`  // solid enough to prevent hero text bleed-through
-    : `rgba(${NAV_RGB},0.97)`;
-
   return (
     <>
       {/* ── Mobile top bar ── */}
@@ -61,14 +55,14 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 200,
         display: "flex", alignItems: "center", justifyContent: "space-between",
         height: "60px", padding: "0 20px",
-        background: navBg,
-        backdropFilter: scrolled || open ? "blur(12px)" : "none",
-        borderBottom: scrolled || open ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
-        transition: "background 0.3s ease, border-color 0.3s ease",
+        background: NAV_BAR_BG,
+        borderBottom: `1px solid ${NAV_BORDER}`,
+        boxShadow: scrolled || open ? "0 12px 30px -18px rgba(0,0,0,0.5)" : "none",
+        transition: "box-shadow 0.3s ease",
       }}>
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", minWidth: 0, flexShrink: 1, marginRight: "12px" }}>
-          <EBALogo height={32} light={!IS_VIVID} />
+          <EBALogo height={32} light navOnCobalt />
         </Link>
 
         {/* Hamburger button */}
@@ -84,20 +78,20 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
         >
           {/* Three bars that animate to X */}
           <span style={{
-            display: "block", height: "2px", background: ON_DARK,
+            display: "block", height: "2px", background: "#fff",
             width: open ? "24px" : "24px",
             transform: open ? "translateY(7px) rotate(45deg)" : "none",
             transition: "transform 0.25s cubic-bezier(0.23,1,0.32,1)",
             transformOrigin: "center",
           }} />
           <span style={{
-            display: "block", height: "2px", background: ON_DARK,
+            display: "block", height: "2px", background: "#fff",
             width: "18px",
             opacity: open ? 0 : 1,
             transition: "opacity 0.15s ease",
           }} />
           <span style={{
-            display: "block", height: "2px", background: ON_DARK,
+            display: "block", height: "2px", background: "#fff",
             width: open ? "24px" : "24px",
             transform: open ? "translateY(-7px) rotate(-45deg)" : "none",
             transition: "transform 0.25s cubic-bezier(0.23,1,0.32,1)",

@@ -25,6 +25,7 @@ import {
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, NAV_RGB,
   WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB,
+  NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
 import { Photo } from "@/components/Photo";
@@ -105,22 +106,22 @@ function NavBar({ active }: { active: string }) {
   return (
     <nav className="eba-desktop-nav" style={{
       position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
-      background: scrolled ? `rgba(${NAV_RGB},0.97)` : `rgba(${NAV_RGB},0.85)`,
-      backdropFilter: "blur(12px)",
-      borderBottom: scrolled ? `1px solid rgba(${RUST_RGB},0.3)` : "none",
-      transition: "all 0.3s ease", padding: "0 40px",
+      background: NAV_BAR_BG,
+      borderBottom: `1px solid ${NAV_BORDER}`,
+      boxShadow: scrolled ? "0 12px 30px -18px rgba(0,0,0,0.5)" : "none",
+      transition: "box-shadow 0.3s ease", padding: "0 40px",
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <EBALogo height={38} light={!IS_VIVID} />
+          <EBALogo height={38} light navOnCobalt />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
           {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
-              color: href === active ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
+              color: href === active ? NAV_LINK_ACTIVE : NAV_LINK,
               textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
               fontWeight: href === active ? 600 : 500, fontSize: "14px",
-              borderBottom: href === active ? `2px solid ${RUST}` : "none",
+              borderBottom: href === active ? `2px solid ${NAV_LINK_ACTIVE}` : "none",
               paddingBottom: "2px",
             }}>
               {label}
@@ -128,9 +129,9 @@ function NavBar({ active }: { active: string }) {
           ))}
           <span>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
-              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
-              padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block",
+              background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+              padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
             </a>
