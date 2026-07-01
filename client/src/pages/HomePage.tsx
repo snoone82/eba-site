@@ -33,6 +33,7 @@ import { Testimonials } from "@/components/Testimonials";
 import { DarkShowcase } from "@/components/DarkShowcase";
 import { StatBand } from "@/components/StatBand";
 import { SectionBreaker } from "@/components/SectionBreaker";
+import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
@@ -653,17 +654,18 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
               <div style={{ position: "relative" }}>
-                <img
+                <Photo
                   src={MARK_IMG}
                   alt="Mark Poulton — Founder, EBA"
-                  style={{ width: "100%", display: "block", objectFit: "cover" }}
+                  ratio="4 / 5"
+                  focus="center 22%"
                 />
                 <div style={{
-                  position: "absolute", bottom: "-2px", left: "-2px",
-                  background: RUST, padding: "14px 20px",
+                  position: "absolute", bottom: "16px", left: "16px", zIndex: 2,
+                  background: RUST, padding: "12px 18px", borderRadius: "10px",
                 }}>
                   <p style={{
-                    color: ON_DARK, fontFamily: "'DM Sans', sans-serif",
+                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
