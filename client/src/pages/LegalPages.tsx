@@ -7,6 +7,7 @@
 import { Link } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
+import { SiteFooter } from "@/components/SiteFooter";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect } from "react";
 import {
@@ -78,25 +79,7 @@ function LegalNav({ active }: { active: string }) {
 function LegalFooter() {
   const isMobile = useIsMobile();
   return (
-    <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "16px" : "0" }}>
-        <div>
-          <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "13px", margin: "0 0 4px" }}>
-            © 2026 The Engineering Business Academy. All rights reserved.
-          </p>
-          <p style={{ color: `rgba(${CREAM_RGB},0.25)`, fontSize: "12px", margin: 0 }}>
-            {!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales
-          </p>
-        </div>
-        <div style={{ display: "flex", gap: "20px" }}>
-          {[{ label: "Home", href: "/" }, { label: "Privacy Policy", href: "/privacy-policy" }, { label: "Terms", href: "/terms" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
-            <Link key={href} href={href} style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
-              {label}
-            </Link>
-          ))}
-        </div>
-      </div>
-    </footer>
+    <SiteFooter />
   );
 }
 

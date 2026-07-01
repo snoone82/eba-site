@@ -24,6 +24,7 @@ import {
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
+import { SiteFooter } from "@/components/SiteFooter";
 import { HeroMockups } from "@/components/HeroMockups";
 import { DocFlow } from "@/components/DocFlow";
 import { BentoGrid } from "@/components/BentoGrid";
@@ -887,107 +888,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "48px 20px 32px" : "60px 40px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr 1fr" : "2fr 1fr 1fr 1fr", gap: isMobile ? "32px" : "48px", marginBottom: "48px" }}>
-            <div>
-              <div style={{ marginBottom: "16px" }}>
-                <EBALogo height={36} light={!IS_VIVID} />
-              </div>
-              <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "14px", lineHeight: 1.65, maxWidth: "280px", margin: 0 }}>
-                The operating system for M&E business owners. Built by someone who has run your business.
-              </p>
-            </div>
-            {[
-              { heading: "Academy", links: [
-                { label: "Curriculum", href: "/academy" },
-                { label: "Founding Cohort", href: ENROL_HREF ?? "/academy", external: ENROL_READY },
-                { label: "Pricing", href: "/academy#pricing" },
-                { label: "FAQ", href: "/faq" },
-              ]},
-              { heading: "AI Tools", links: [
-                { label: "O&M Manual", href: "/ai-tools/om-manual" },
-                { label: "Compliance Chatbot", href: "/ai-tools/compliance-chatbot" },
-                { label: "RAMS Generator", href: "/ai-tools" },
-                { label: "Enterprise Deployment", href: "/contact" },
-              ]},
-              { heading: "Company", links: [
-                { label: "Our Story", href: "/our-story" },
-                { label: "Mentorship", href: "/mentorship" },
-                { label: "Documents", href: "/documents" },
-                { label: "Contact", href: "/contact" },
-              ]},
-            ].map(({ heading, links }) => (
-              <div key={heading}>
-                <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 16px" }}>
-                  {heading}
-                </p>
-                {links.map(({ label, href, external }: { label: string; href: string; external?: boolean }) => (
-                  external ? (
-                    <a key={`${heading}-${label}`} href={href} target="_blank" rel="noopener noreferrer" style={{
-                      display: "block", color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none",
-                      fontFamily: "'DM Sans', sans-serif", fontSize: "14px", marginBottom: "10px",
-                      transition: "color 0.2s",
-                    }}
-                      onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
-                      onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}
-                    >
-                      {label}
-                    </a>
-                  ) : (
-                    <Link key={`${heading}-${label}`} href={href} style={{
-                      display: "block", color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none",
-                      fontFamily: "'DM Sans', sans-serif", fontSize: "14px", marginBottom: "10px",
-                      transition: "color 0.2s",
-                    }}
-                      onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
-                      onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}
-                    >
-                      {label}
-                    </Link>
-                  )
-                ))}
-              </div>
-            ))}
-          </div>
-          <div style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.1)`, paddingTop: "24px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
-            <div>
-              <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "13px", margin: "0 0 4px" }}>
-                © 2026 The Engineering Business Academy. All rights reserved.
-              </p>
-              <p style={{ color: `rgba(${CREAM_RGB},0.25)`, fontSize: "12px", margin: 0 }}>
-                {!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales
-              </p>
-            </div>
-            <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "20px" }}>
-              <div style={{ display: "flex", gap: "16px" }}>
-                <Link href="/privacy-policy" style={{ color: `rgba(${CREAM_RGB},0.35)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.7)`)}
-                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.35)`)}>
-                  Privacy Policy
-                </Link>
-                <Link href="/terms" style={{ color: `rgba(${CREAM_RGB},0.35)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.7)`)}
-                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.35)`)}>
-                  Terms &amp; Conditions
-                </Link>
-              </div>
-              <div style={{ display: "flex", gap: "12px" }}>
-                <a href="https://www.linkedin.com/company/engineering-business-academy" target="_blank" rel="noopener noreferrer" style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
-                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </a>
-                <a href="https://www.youtube.com/@engineeringbusinessacademy" target="_blank" rel="noopener noreferrer" style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = ON_DARK)}
-                  onMouseLeave={e => (e.currentTarget.style.color = `rgba(${CREAM_RGB},0.72)`)}>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <style>{`
         @keyframes pulse {

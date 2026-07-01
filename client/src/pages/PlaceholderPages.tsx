@@ -1,12 +1,15 @@
 import { Link } from "wouter";
 import { useState } from "react";
 import { MobileNav } from "@/components/MobileNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { EBALogo } from "@/components/EBALogo";
 import {
-  NAVY, CREAM, RUST, OAT,
+  NAVY, CREAM, RUST, OAT, WHITE,
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
+  HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -27,12 +30,8 @@ function PlaceholderNav({ active }: { active: string }) {
       display: "flex", alignItems: "center", justifyContent: "space-between",
       padding: "0 40px", height: "60px",
     }}>
-      <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "10px" }}>
-        <svg width="34" height="34" viewBox="0 0 100 100" fill="none">
-          <rect width="100" height="100" fill="#1b2632"/>
-          <path d="M20 20 L50 10 L80 20 L80 80 L50 90 L20 80 Z" fill="#a35139" opacity="0.9"/>
-          <text x="50" y="58" textAnchor="middle" fill="white" fontFamily="serif" fontWeight="900" fontSize="28">EBA</text>
-        </svg>
+      <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
+        <EBALogo height={34} light={!IS_VIVID} />
       </Link>
       <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         {links.map(l => (
@@ -58,8 +57,9 @@ function PlaceholderNav({ active }: { active: string }) {
 
 function PlaceholderHero({ label, title, sub }: { label: string; title: string; sub: string }) {
   return (
-    <section style={{ paddingTop: "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
+    <section style={{ position: "relative", overflow: "hidden", paddingTop: "128px", paddingBottom: "72px", background: DARK_GRADIENT }}>
+      {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />}
+      <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
         <p style={{
           fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px",
           letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 20px",
@@ -101,16 +101,7 @@ function ComingSoonBody({ message }: { message: string }) {
 
 function PlaceholderFooter() {
   return (
-    <footer style={{ background: DARK_GRADIENT, padding: "40px", borderTop: `1px solid rgba(${RUST_RGB},0.2)` }}>
-      <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${CREAM_RGB},0.4)`, margin: 0 }}>
-          © 2025 The Engineering Business Academy. All rights reserved.
-        </p>
-        <Link href="/" style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", textDecoration: "none" }}>
-          ← Back to home
-        </Link>
-      </div>
-    </footer>
+    <SiteFooter />
   );
 }
 
@@ -358,19 +349,120 @@ export function MentorshipPage() {
   );
 }
 
+const PRICING_TIERS = [
+  {
+    name: "Founding Academy",
+    tag: "The full curriculum, for life.",
+    popular: false,
+    features: [
+      "101-lesson curriculum, 10 modules",
+      "Lifetime access at the founding price",
+      "All future updates included",
+      "Founding group session with Mark",
+      "All four AI tools included",
+    ],
+  },
+  {
+    name: "Academy + Documents",
+    tag: "Everything you need to run the business.",
+    popular: true,
+    features: [
+      "Everything in Founding Academy",
+      "Full 380-document library (Word + PDF)",
+      "All future document additions",
+      "All four AI tools included",
+    ],
+  },
+  {
+    name: "Academy + Docs + Mentorship",
+    tag: "The complete package, with Mark alongside you.",
+    popular: false,
+    features: [
+      "Everything in Academy + Documents",
+      "12 months of group mentorship",
+      "Priority for a 1:1 session with Mark",
+    ],
+  },
+];
+
 export function PricingPage() {
+  const border = `rgba(${NAVY_RGB},0.10)`;
+  const sub = `rgba(${NAVY_RGB},0.62)`;
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.pricing} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/pricing" />
       <PlaceholderHero
-        label="Pricing"
-        title="Transparent pricing. No hidden fees."
-        sub="Three ways to access the Engineering Business Academy — from self-paced study to full mentorship with Mark. Pricing for the founding cohort is fixed and will not be offered again."
+        label="Founding Cohort Pricing"
+        title="More depth than a course. Less than a coaching retainer."
+        sub="Three ways in — from the full curriculum to complete access with Mark alongside you. Founding members lock in the lowest price the Academy will ever be, for life."
       />
-      <ComingSoonBody message="Full pricing detail is being finalised. To be notified when the founding cohort opens, or to discuss your requirements, please register your interest below." />
-      <PlaceholderFooter />
+
+      {/* ── TIERS ── */}
+      <section style={{ backgroundColor: CREAM, backgroundImage: SECTION_GLOW, padding: "72px 20px 40px" }}>
+        <div style={{ maxWidth: "1160px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: "20px", alignItems: "stretch" }}>
+            {PRICING_TIERS.map(tier => (
+              <div key={tier.name} style={{
+                position: "relative", background: WHITE,
+                border: tier.popular ? `2px solid ${RUST}` : `1px solid ${border}`,
+                borderRadius: "22px", padding: "34px 30px 32px",
+                display: "flex", flexDirection: "column",
+                boxShadow: tier.popular ? "0 40px 80px -40px rgba(0,0,0,0.35)" : "0 20px 44px -30px rgba(0,0,0,0.25)",
+              }}>
+                {tier.popular && (
+                  <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: CTA_PRIMARY_BG, color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap" }}>
+                    Most popular
+                  </span>
+                )}
+                <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>{tier.name}</h3>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
+                <div style={{ marginBottom: "22px" }}>
+                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "1.6rem", color: NAVY, lineHeight: 1.1 }}>Announced soon</div>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>Founding price · locked for life · rises after launch</div>
+                </div>
+                <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
+                  {tier.features.map(f => (
+                    <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
+                      <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: `rgba(${RUST_RGB},0.12)`, color: RUST, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "11px", fontWeight: 800, marginTop: "1px" }}>✓</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: `rgba(${NAVY_RGB},0.75)`, lineHeight: 1.45 }}>{f}</span>
+                    </div>
+                  ))}
+                </div>
+                <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "pricing", tier: tier.name })} style={{
+                  marginTop: "auto", textAlign: "center",
+                  background: tier.popular ? CTA_PRIMARY_BG : "transparent",
+                  color: tier.popular ? "#fff" : NAVY,
+                  border: tier.popular ? "none" : `1px solid rgba(${NAVY_RGB},0.25)`,
+                  textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+                  padding: "13px 24px", letterSpacing: "0.03em", display: "block",
+                }}>
+                  {ENROL_READY ? "Join the founding cohort →" : "Register your interest →"}
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* Reassurance strip */}
+          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "14px 28px", marginTop: "40px" }}>
+            {[
+              "All four AI tools included in every tier",
+              "14-day money-back guarantee",
+              "M&E contractors only",
+            ].map(t => (
+              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
+                <span style={{ color: RUST, fontWeight: 800 }}>✓</span> {t}
+              </span>
+            ))}
+          </div>
+          <p style={{ textAlign: "center", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
+            Founding pricing is fixed for the first cohort and rises after launch. Prices shown will be confirmed before enrolment opens. Individual AI tools are also available standalone.
+          </p>
+        </div>
+      </section>
+
+      <SiteFooter />
     </div>
   );
 }

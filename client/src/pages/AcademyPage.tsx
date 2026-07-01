@@ -7,6 +7,7 @@
 import { Link } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
+import { SiteFooter } from "@/components/SiteFooter";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -552,32 +553,7 @@ export default function AcademyPage() {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "40px 20px 24px" : "48px 40px 32px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "24px" : "0", marginBottom: "20px" }}>
-            <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-              <EBALogo height={38} light={!IS_VIVID} />
-            </Link>
-            <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-              {[{ label: "Home", href: "/" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
-                <Link key={href} href={href} style={{ color: `rgba(${CREAM_RGB},0.72)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "13px" }}>
-                  {label}
-                </Link>
-              ))}
-            </div>
-          </div>
-          <div style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.08)`, paddingTop: "20px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: isMobile ? "12px" : "0" }}>
-            <div>
-              <p style={{ color: `rgba(${CREAM_RGB},0.3)`, fontSize: "12px", margin: "0 0 3px" }}>© 2026 The Engineering Business Academy. All rights reserved.</p>
-              <p style={{ color: `rgba(${CREAM_RGB},0.2)`, fontSize: "11px", margin: 0 }}>{!isPlaceholder(COMPANY_REG) && <>Company Reg: {COMPANY_REG} · </>}Registered in England &amp; Wales</p>
-            </div>
-            <div style={{ display: "flex", gap: "16px" }}>
-              <Link href="/privacy-policy" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Privacy Policy</Link>
-              <Link href="/terms" style={{ color: `rgba(${CREAM_RGB},0.3)`, textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontSize: "12px" }}>Terms &amp; Conditions</Link>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter />
 
       <style>{`
         @keyframes expandIn { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
