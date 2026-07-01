@@ -392,7 +392,9 @@ export default function HomePage() {
             padding: "6px 16px",
             marginBottom: "24px",
           }}>
-            FOUNDING COHORT · NOW OPEN · {PLACES_REMAINING} OF {COHORT_SIZE} PLACES REMAINING
+            {ENROL_READY
+              ? `FOUNDING COHORT · NOW OPEN · ${PLACES_REMAINING} OF ${COHORT_SIZE} PLACES REMAINING`
+              : `FOUNDING COHORT · ENROLMENT OPENS SOON · ${COHORT_SIZE} PLACES ONLY`}
           </div>
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{

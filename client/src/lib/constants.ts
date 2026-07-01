@@ -61,23 +61,25 @@ export const COLORS_NOIR = {
  * whole page renders one consistent theme; nothing is persisted, so each
  * `?theme=` URL always renders its own theme for side-by-side comparison.
  */
-export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite";
+export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure";
 
-type LightThemeName = "vivid" | "emerald" | "plum" | "graphite";
-const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite"];
+type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure";
+const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure"];
 
 function detectTheme(): ThemeName {
-  // The site now ships on the "vivid" indigo light theme by default. The original
-  // editorial navy/rust theme is kept available at ?theme=classic for reference.
-  if (typeof window === "undefined") return "vivid";
+  // The site ships on the cool "cobalt" indigo→cyan light theme by default —
+  // deliberately distinct from the warm pink/orange of Citation & iHasco. The
+  // earlier indigo→magenta scheme stays available at ?theme=vivid, and the
+  // original editorial navy/rust theme at ?theme=classic, for reference.
+  if (typeof window === "undefined") return "cobalt";
   try {
     const t = new URLSearchParams(window.location.search).get("theme");
     if (t === "noir") return "noir";
     if (t === "classic") return "default";
     if (t && (LIGHT_THEMES as string[]).includes(t)) return t as ThemeName;
-    return "vivid";
+    return "cobalt";
   } catch {
-    return "vivid";
+    return "cobalt";
   }
 }
 
@@ -125,6 +127,25 @@ const ACCENTS: Record<LightThemeName, Accent> = {
     oat: "#FBF0FF",
     ctaBand: "linear-gradient(120deg, #F7EEFF 0%, #FCEEFA 50%, #FFF0F4 100%)",
   },
+  // Cobalt — indigo → electric blue → cyan. Cool, AI-native, engineering-tech.
+  // Deliberately dodges the warm pink/orange prism used by Citation & iHasco.
+  cobalt: {
+    hex: "#3D5AF1", rgb: "61,90,241",
+    grad: "linear-gradient(95deg, #2B2F9E 0%, #2563EB 52%, #06B6D4 100%)",
+    band: "radial-gradient(70% 140% at 16% 22%, rgba(43,47,158,0.42) 0%, transparent 60%), radial-gradient(65% 130% at 84% 78%, rgba(6,182,212,0.34) 0%, transparent 60%), radial-gradient(50% 120% at 50% 50%, rgba(125,211,252,0.30) 0%, transparent 65%), linear-gradient(90deg, #C7D2FE 0%, #A5C8FF 28%, #93D7F0 50%, #A7E8F0 72%, #CDEFF7 100%)",
+    glow: "radial-gradient(55% 80% at 82% 8%, rgba(61,90,241,0.20) 0%, transparent 60%), radial-gradient(45% 70% at 98% 42%, rgba(6,182,212,0.16) 0%, transparent 60%), radial-gradient(40% 60% at 70% 0%, rgba(125,211,252,0.14) 0%, transparent 55%)",
+    oat: "#EEF1FF",
+    ctaBand: "linear-gradient(120deg, #EEF2FF 0%, #ECF6FF 50%, #EAFBFF 100%)",
+  },
+  // Azure — deep navy → royal blue → sky. Cooler, more corporate / premium.
+  azure: {
+    hex: "#1D6FE0", rgb: "29,111,224",
+    grad: "linear-gradient(95deg, #10265E 0%, #1D4ED8 55%, #0EA5E9 100%)",
+    band: "radial-gradient(70% 140% at 16% 22%, rgba(16,38,94,0.44) 0%, transparent 60%), radial-gradient(65% 130% at 84% 78%, rgba(14,165,233,0.34) 0%, transparent 60%), radial-gradient(50% 120% at 50% 50%, rgba(147,197,253,0.30) 0%, transparent 65%), linear-gradient(90deg, #BFDBFE 0%, #A5C8FF 30%, #93C5FD 55%, #A9D9FB 78%, #CDEBFB 100%)",
+    glow: "radial-gradient(55% 80% at 82% 8%, rgba(29,111,224,0.20) 0%, transparent 60%), radial-gradient(45% 70% at 98% 42%, rgba(14,165,233,0.16) 0%, transparent 60%), radial-gradient(40% 60% at 70% 0%, rgba(147,197,253,0.14) 0%, transparent 55%)",
+    oat: "#EBF2FF",
+    ctaBand: "linear-gradient(120deg, #ECF2FF 0%, #EAF4FF 50%, #E8F8FF 100%)",
+  },
   // Graphite — refined near-monochrome. Restrained, "expensive" B2B.
   graphite: {
     hex: "#27272A", rgb: "39,39,42",
@@ -135,7 +156,7 @@ const ACCENTS: Record<LightThemeName, Accent> = {
     ctaBand: "linear-gradient(120deg, #F4F4F5 0%, #FAFAFA 50%, #F4F4F5 100%)",
   },
 };
-const ACCENT: Accent = ACCENTS[(IS_LIGHT ? (THEME as LightThemeName) : "vivid")];
+const ACCENT: Accent = ACCENTS[(IS_LIGHT ? (THEME as LightThemeName) : "cobalt")];
 
 type Palette = {
   readonly navy: string; readonly cream: string; readonly rust: string;
