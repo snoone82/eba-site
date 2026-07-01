@@ -478,17 +478,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TRUST STRIP ── (same content column as every section; smaller + more
-            muted than the hero feature strip so the two read as distinct elements) */}
-      <div style={{ background: BAND_GRADIENT, padding: isMobile ? (IS_VIVID ? "64px 20px" : "20px 20px") : (IS_VIVID ? "128px 40px" : "26px 40px"), borderBottom: IS_VIVID ? "none" : `1px solid rgba(${NAVY_RGB},0.1)` }}>
-        <p style={{
-          maxWidth: IS_VIVID ? "1040px" : "1200px", margin: "0 auto", textAlign: IS_VIVID ? "center" : "left",
-          fontFamily: "'DM Sans', sans-serif", fontSize: IS_VIVID ? "13px" : "11px",
-          fontWeight: IS_VIVID ? 700 : 600, letterSpacing: "0.1em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},${IS_VIVID ? 0.78 : 0.45})`,
-        }}>
-          Built from a real M&E group — KEYIS Group &nbsp;·&nbsp; ISO-certified &nbsp;·&nbsp; RoSPA award-winning &nbsp;·&nbsp; ConstructionLine Gold
-        </p>
+      {/* ── VALUE STRIP ── (bold statement of what EBA does, on the prism band) */}
+      <div style={{ background: BAND_GRADIENT, padding: isMobile ? (IS_VIVID ? "60px 20px" : "22px 20px") : (IS_VIVID ? "112px 40px" : "26px 40px"), borderBottom: IS_VIVID ? "none" : `1px solid rgba(${NAVY_RGB},0.1)` }}>
+        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: IS_VIVID ? "center" : "left" }}>
+          <h2 style={{
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
+            fontSize: IS_VIVID ? (isMobile ? "1.6rem" : "clamp(1.8rem, 3.2vw, 2.6rem)") : "1rem",
+            lineHeight: 1.2, letterSpacing: "-0.015em", color: NAVY, margin: 0,
+            textTransform: IS_VIVID ? "none" : "uppercase",
+          }}>
+            The complete business toolkit for mechanical &amp; electrical contractors.
+          </h2>
+          {IS_VIVID && (
+            <p style={{
+              fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "12px" : "14px",
+              fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
+              color: `rgba(${NAVY_RGB},0.62)`, margin: "20px 0 0",
+            }}>
+              Training &nbsp;·&nbsp; AI compliance tools &nbsp;·&nbsp; 380 templates &nbsp;·&nbsp; Mentorship
+            </p>
+          )}
+        </div>
       </div>
 
       {/* ── ANIMATED STAT BAND ── */}

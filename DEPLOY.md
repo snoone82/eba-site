@@ -74,3 +74,33 @@ All integrations live in `client/src/lib/constants.ts` and can be set there or
 via `VITE_*` env vars (see `.env.example`). Until set, CTAs and forms fail safe
 ("Enrolment opens soon" / "Form coming soon") instead of linking to dead URLs or
 faking submissions. Search the code for `TODO(eba):` for the full list.
+
+## EBA Assistant — turning on the live AI chat
+
+The homepage assistant works out of the box using a built-in **knowledge base**
+(accurate, curated EBA answers — no cost, no config). To upgrade it to a **live
+Claude-powered** chatbot, add one server-side secret:
+
+1. Get an API key from the [Anthropic Console](https://console.anthropic.com/)
+   → **API Keys** (starts with `sk-ant-…`). Note the API is **paid/metered** —
+   the assistant uses the fast, low-cost `claude-haiku-4-5` model (a fraction of
+   a penny per conversation), billed to your Anthropic account.
+2. In **Vercel → your project → Settings → Environment Variables**, add:
+
+   | Name                | Value                | Environments            |
+   | ------------------- | -------------------- | ----------------------- |
+   | `ANTHROPIC_API_KEY` | `sk-ant-…` (your key)| Production (+ Preview)  |
+
+   **Do not** prefix it with `VITE_` (that would expose it to the browser) and
+   **never** commit it to the repo.
+3. **Redeploy** (Deployments → ⋯ → Redeploy, or push a commit). Done.
+
+How it behaves:
+- **Key set** → `/api/assistant` (a Vercel Edge function) answers via the Claude
+  API, grounded by an EBA system prompt so it stays accurate and on-brand.
+- **Key missing or any error** → the widget silently falls back to the local
+  knowledge base, so the chat always works. You can leave the key off until
+  you're ready to go live.
+
+To point the widget at a different backend instead, set `VITE_ASSISTANT_ENDPOINT`
+to its URL (optional; defaults to `/api/assistant`).
