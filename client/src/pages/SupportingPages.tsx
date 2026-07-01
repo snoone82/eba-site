@@ -940,18 +940,43 @@ export function ContactPage() {
 
       <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
         {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
-        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <SectionLabel>Enquiries</SectionLabel>
-          <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
-            fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr", gap: isMobile ? "36px" : "64px", alignItems: "center" }}>
+          <div>
+            <SectionLabel>Enquiries</SectionLabel>
+            <h1 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 900,
+              fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
+              color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
+            }}>
+              Get in touch.
+            </h1>
+            <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "480px" }}>
+              Academy enrolment, document purchases, AI tool enquiries, white-label deployments, and mentorship applications. Use the form below and we will respond within two working days.
+            </p>
+          </div>
+
+          {/* Response card — fills the hero and sets expectations */}
+          <div style={{
+            background: `rgba(${CREAM_RGB},0.06)`,
+            border: `1px solid rgba(${CREAM_RGB},0.16)`,
+            borderRadius: "18px", padding: isMobile ? "24px" : "28px 30px",
+            backdropFilter: "blur(6px)",
           }}>
-            Get in touch.
-          </h1>
-          <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "480px" }}>
-            Academy enrolment, document purchases, AI tool enquiries, white-label deployments, and mentorship applications. Use the form below and we will respond within two working days.
-          </p>
+            {[
+              { k: "Response time", v: "Within 2 working days" },
+              { k: "Founding cohort", v: ENROL_READY ? "Enrolling now" : "Opening soon — join the waitlist" },
+              { k: "AI tools", v: "Pay-per-use or subscription" },
+              { k: "Mentorship", v: "By application · limited places" },
+            ].map(({ k, v }, i, arr) => (
+              <div key={k} style={{
+                padding: "14px 0",
+                borderBottom: i < arr.length - 1 ? `1px solid rgba(${CREAM_RGB},0.12)` : "none",
+              }}>
+                <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 4px" }}>{k}</p>
+                <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontSize: "15px", fontWeight: 600, margin: 0 }}>{v}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -13,6 +13,7 @@ import {
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
+import { ChevronDown } from "lucide-react";
 
 function PlaceholderNav({ active }: { active: string }) {
   const links = [
@@ -483,6 +484,7 @@ export function EnterprisePage() {
 }
 
 export function FAQPage() {
+  const [openFaq, setOpenFaq] = useState(0);
   const faqs = [
     {
       q: "Who is the Academy for?",
@@ -524,18 +526,59 @@ export function FAQPage() {
         title="Frequently asked questions."
         sub="If you have a question that isn't answered here, use the contact form and we'll respond within one business day."
       />
-      <section style={{ background: OAT, padding: "80px 40px" }}>
-        <div style={{ maxWidth: "800px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "2px" }}>
-          {faqs.map(({ q, a }) => (
-            <div key={q} style={{ background: "#fff", padding: "28px 32px", borderLeft: `3px solid ${RUST}` }}>
-              <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.05rem", color: NAVY, margin: "0 0 10px" }}>
-                {q}
-              </h3>
-              <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.75, margin: 0 }}>
-                {a}
-              </p>
-            </div>
-          ))}
+      <section style={{ backgroundColor: IS_VIVID ? CREAM : OAT, backgroundImage: SECTION_GLOW, padding: "80px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "12px" }}>
+          {faqs.map(({ q, a }, i) => {
+            const isOpen = openFaq === i;
+            return (
+              <div
+                key={q}
+                style={{
+                  background: WHITE,
+                  border: `1px solid rgba(${NAVY_RGB},${isOpen ? 0.16 : 0.09})`,
+                  borderRadius: "14px",
+                  boxShadow: isOpen ? "0 20px 40px -28px rgba(0,0,0,0.3)" : "0 8px 20px -18px rgba(0,0,0,0.25)",
+                  overflow: "hidden",
+                  transition: "box-shadow 0.2s, border-color 0.2s",
+                }}
+              >
+                <button
+                  onClick={() => setOpenFaq(isOpen ? -1 : i)}
+                  aria-expanded={isOpen}
+                  style={{
+                    width: "100%", background: "transparent", border: "none", cursor: "pointer",
+                    display: "flex", alignItems: "center", justifyContent: "space-between", gap: "20px",
+                    padding: "22px 26px", textAlign: "left",
+                  }}
+                >
+                  <span style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.05rem", color: NAVY, lineHeight: 1.3 }}>
+                    {q}
+                  </span>
+                  <span style={{
+                    flexShrink: 0, width: "30px", height: "30px", borderRadius: "50%",
+                    background: isOpen ? CTA_PRIMARY_BG : `rgba(${NAVY_RGB},0.06)`,
+                    color: isOpen ? "#fff" : NAVY,
+                    display: "inline-flex", alignItems: "center", justifyContent: "center",
+                    transition: "transform 0.25s, background 0.2s",
+                    transform: isOpen ? "rotate(180deg)" : "rotate(0deg)",
+                  }}>
+                    <ChevronDown size={17} strokeWidth={2.5} />
+                  </span>
+                </button>
+                <div style={{
+                  display: "grid",
+                  gridTemplateRows: isOpen ? "1fr" : "0fr",
+                  transition: "grid-template-rows 0.28s ease",
+                }}>
+                  <div style={{ overflow: "hidden" }}>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.75, margin: 0, padding: "0 26px 24px" }}>
+                      {a}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
       <section style={{ background: DARK_GRADIENT, padding: "64px 40px" }}>
