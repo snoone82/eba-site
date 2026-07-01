@@ -20,7 +20,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB,
+  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -522,11 +522,18 @@ export default function HomePage() {
               Most M&E business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
             </p>
           </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: "2px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: "18px" }}>
             {painPoints.map((point, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
-                <div style={{
-                  background: `rgba(${ON_DARK_RGB},0.04)`, borderLeft: `3px solid ${RUST}`,
+                <div className="eba-bento-card" style={{
+                  height: "100%",
+                  background: IS_LIGHT
+                    ? `linear-gradient(160deg, rgba(${ACCENT_RGB},0.10) 0%, rgba(${ACCENT_RGB},0.03) 100%)`
+                    : `rgba(${ON_DARK_RGB},0.05)`,
+                  border: `1px solid rgba(${ACCENT_RGB},${IS_LIGHT ? 0.18 : 0.25})`,
+                  borderLeft: `3px solid ${ACCENT_HEX}`,
+                  borderRadius: "16px",
+                  boxShadow: IS_LIGHT ? "0 20px 44px -30px rgba(0,0,0,0.35)" : "none",
                   padding: "28px 28px",
                 }}>
                   <h3 style={{
