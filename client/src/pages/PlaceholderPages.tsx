@@ -13,6 +13,7 @@ import {
 } from "@/lib/constants";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { CtaBanner } from "@/components/CtaBanner";
+import { SectionBreaker } from "@/components/SectionBreaker";
 import { useIsMobile } from "@/hooks/useMobile";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -495,6 +496,14 @@ export function PricingPage() {
           </p>
         </div>
       </section>
+
+      {/* ── SECTION BREAKER ── */}
+      <SectionBreaker
+        kicker="Founding cohort"
+        title="Get on the list before"
+        accent="prices rise."
+        variant="gradient"
+      />
 
       <SiteFooter />
     </div>

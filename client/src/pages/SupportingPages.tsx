@@ -26,6 +26,7 @@ import {
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, NAV_RGB,
   WHITE, HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
+import { SectionBreaker } from "@/components/SectionBreaker";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 
@@ -240,6 +241,14 @@ export function OurStoryPage() {
           </RevealSection>
         </div>
       </section>
+
+      {/* Section breaker */}
+      <SectionBreaker
+        kicker="What EBA is"
+        title="Not a course."
+        accent="An operating system."
+        variant="tint"
+      />
 
       {/* 4. What EBA is */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
@@ -725,6 +734,14 @@ export function DocumentsPage() {
           </a>
         </div>
       </div>
+
+      {/* Section breaker */}
+      <SectionBreaker
+        kicker="Browse the library"
+        title="Everything an M&E business"
+        accent="actually runs on."
+        variant="tint"
+      />
 
       {/* Document categories */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "80px 40px" }}>

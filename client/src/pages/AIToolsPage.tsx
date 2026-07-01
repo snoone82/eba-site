@@ -10,6 +10,7 @@ import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolboxLeadMagnet } from "@/components/ToolboxLeadMagnet";
+import { SectionBreaker } from "@/components/SectionBreaker";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -552,6 +553,14 @@ export default function AIToolsPage() {
 
       {/* ── FREE TOOLBOX TALK (lead magnet) ── */}
       <ToolboxLeadMagnet />
+
+      {/* ── SECTION BREAKER ── */}
+      <SectionBreaker
+        kicker="See them work"
+        title="Not slideware."
+        accent="Real tools, real output."
+        variant="dark"
+      />
 
       {/* ── LIVE TOOLS WITH DEMOS ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>

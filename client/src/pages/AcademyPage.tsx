@@ -8,6 +8,7 @@ import { Link } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { SectionBreaker } from "@/components/SectionBreaker";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -442,6 +443,14 @@ export default function AcademyPage() {
           </RevealSection>
         </div>
       </section>
+
+      {/* ── SECTION BREAKER ── */}
+      <SectionBreaker
+        kicker="Founding cohort"
+        title="Lock in the lowest price"
+        accent="it'll ever be."
+        variant="tint"
+      />
 
       {/* ── PRICING / CTA ── */}
       <section id="pricing" style={{ background: OAT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
