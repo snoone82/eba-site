@@ -359,7 +359,6 @@ const PRICING_TIERS = [
       "Lifetime access at the founding price",
       "All future updates included",
       "Founding group session with Mark",
-      "All four AI tools included",
     ],
   },
   {
@@ -370,7 +369,6 @@ const PRICING_TIERS = [
       "Everything in Founding Academy",
       "Full 380-document library (Word + PDF)",
       "All future document additions",
-      "All four AI tools included",
     ],
   },
   {
@@ -447,7 +445,7 @@ export function PricingPage() {
           {/* Reassurance strip */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "14px 28px", marginTop: "40px" }}>
             {[
-              "All four AI tools included in every tier",
+              "Founding price locked in for life",
               "14-day money-back guarantee",
               "M&E contractors only",
             ].map(t => (
@@ -457,7 +455,7 @@ export function PricingPage() {
             ))}
           </div>
           <p style={{ textAlign: "center", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
-            Founding pricing is fixed for the first cohort and rises after launch. Prices shown will be confirmed before enrolment opens. Individual AI tools are also available standalone.
+            Founding pricing is fixed for the first cohort and rises after launch. Prices shown will be confirmed before enrolment opens. The AI tools are priced separately — pay-per-use or subscription — and are not included in Academy membership.
           </p>
         </div>
       </section>

@@ -298,7 +298,7 @@ const allTools = [
     label: "O&M MANUAL COMPILER",
     title: "O&M Manuals in hours, not days.",
     body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took. Every completed M&E project legally requires one — built to produce it without the manual slog.",
-    price: "Included with the Academy",
+    price: "From £99 per manual",
     status: "live",
     href: "/ai-tools/om-manual",
     checkout: STRIPE.omManual,
@@ -308,7 +308,7 @@ const allTools = [
     label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
     body: "The Compliance Chatbot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone subscription or as a fully managed white-label deployment for your entire organisation.",
-    price: "Included with the Academy",
+    price: "From £99 / month",
     status: "live",
     href: "/ai-tools/compliance-chatbot",
     checkout: STRIPE.complianceChatbot,
@@ -521,10 +521,10 @@ export default function AIToolsPage() {
           </div>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "18px" }}>
             {[
-              { Icon: FileText, name: "O&M Manual Compiler", outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.", note: "Free with the Academy" },
-              { Icon: ShieldCheck, name: "RAMS Generator", outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.", note: "Free with the Academy" },
-              { Icon: MessageSquareText, name: "Compliance Co-Pilot", outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.", note: "Free with the Academy" },
-              { Icon: FlaskConical, name: "COSHH Generator", outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.", note: "Free with the Academy" },
+              { Icon: FileText, name: "O&M Manual Compiler", outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.", note: "Pay per manual · from £99" },
+              { Icon: ShieldCheck, name: "RAMS Generator", outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.", note: "Subscription · from £49/mo" },
+              { Icon: MessageSquareText, name: "Compliance Co-Pilot", outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.", note: "Subscription · from £99/mo" },
+              { Icon: FlaskConical, name: "COSHH Generator", outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.", note: "Pay per use · pricing soon" },
             ].map(({ Icon, name, outcome, note }) => (
               <div key={name} className="eba-bento-card" style={{
                 background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "20px",
