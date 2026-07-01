@@ -27,11 +27,12 @@ import {
   WHITE, HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
+import { Photo } from "@/components/Photo";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 
-// Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
-const MARK_IMG = "/mark-portrait.jpg";
+// Founder photo (Mark Poulton) — client/public/.
+const MARK_IMG = "/mark-conversation.jpg";
 
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
   return (
@@ -181,13 +182,13 @@ export function OurStoryPage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr", gap: isMobile ? "40px" : "80px", alignItems: "start" }}>
             <RevealSection>
               <div style={{ position: "relative" }}>
-                <img
+                <Photo
                   src={MARK_IMG}
                   alt="Mark Poulton — Founder, EBA"
-                  style={{ width: "100%", display: "block", filter: "grayscale(15%)" }}
+                  ratio="4 / 3"
                 />
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: RUST, padding: "14px 20px" }}>
-                  <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <div style={{ position: "absolute", bottom: "16px", left: "16px", zIndex: 2, background: RUST, padding: "12px 18px", borderRadius: "10px" }}>
+                  <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                     Mark Poulton — Founder, EBA
                   </p>
                 </div>

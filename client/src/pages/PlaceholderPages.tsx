@@ -342,8 +342,8 @@ export function MentorshipPage() {
         label="Mentorship"
         title="Direct access to Mark Poulton."
         sub="For M&E business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application."
-        portrait="/mark-portrait.jpg"
-        portraitAlt="Mark Poulton — Founder, EBA"
+        portrait="/mark-mentoring.jpg"
+        portraitAlt="Mark Poulton leading a group mentorship session"
       />
       <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: "80px 40px" }}>
         <AmbientOrbs />

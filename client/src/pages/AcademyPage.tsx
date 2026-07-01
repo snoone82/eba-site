@@ -25,7 +25,7 @@ import {
   OAT,
   isPlaceholder,
   WHITE,
-  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
+  DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, ACCENT_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
   HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
@@ -297,6 +297,19 @@ export default function AcademyPage() {
           </div>
         </div>
       </section>
+
+      {/* ── SITE BAND ── */}
+      <div style={{ position: "relative", width: "100%", height: isMobile ? "220px" : "360px", overflow: "hidden" }}>
+        <img src="/site-fitout.jpg" alt="A live M&E fit-out — ductwork, containment and services installation" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", display: "block" }} />
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, rgba(${NAVY_RGB},0.72) 0%, rgba(${NAVY_RGB},0.35) 45%, rgba(${ACCENT_RGB},0.25) 100%)` }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>
+            <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: "#fff", fontSize: isMobile ? "1.4rem" : "clamp(1.6rem, 3vw, 2.4rem)", lineHeight: 1.15, letterSpacing: "-0.01em", maxWidth: "620px", margin: 0 }}>
+              Written for the business behind the toolbox — not the tools.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* ── CURRICULUM ── */}
       <section id="curriculum" style={{ backgroundColor: CREAM, backgroundImage: SECTION_GLOW, padding: isMobile ? "60px 20px" : "100px 40px" }}>

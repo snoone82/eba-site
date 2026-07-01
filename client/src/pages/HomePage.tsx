@@ -41,7 +41,7 @@ import { track, getStoredUtm } from "@/lib/track";
 
 const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-hero-bg-kAgYUpyRruMzKNs2oG45FN.webp";
 // Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
-const MARK_IMG = "/mark-portrait.jpg";
+const MARK_IMG = "/mark-1on1.jpg";
 
 function SectionLabel({ children }: { children: string }) {
   return (
@@ -724,6 +724,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
+              <Photo src="/site-rooftop.jpg" alt="Engineers commissioning rooftop chillers and heat pumps" ratio="16 / 10" style={{ marginBottom: "24px" }} />
               <SectionLabel>Sector Insight</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
@@ -748,6 +749,7 @@ export default function HomePage() {
               </Link>
             </RevealSection>
             <RevealSection>
+              <Photo src="/site-containment.jpg" alt="Electrical containment and cable tray installation on site" ratio="16 / 10" style={{ marginBottom: "24px" }} />
               <SectionLabel>Sector Insight</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
