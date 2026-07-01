@@ -8,6 +8,7 @@ import { EBALogo } from "@/components/EBALogo";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
   DARK_GRADIENT, RUST, RUST_RGB, CREAM_RGB, IS_VIVID, COMPANY_REG, isPlaceholder,
+  NAV_BAR_BG, NAV_BORDER,
 } from "@/lib/constants";
 
 const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
@@ -40,12 +41,14 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
 
 export function SiteFooter() {
   const isMobile = useIsMobile();
-  const heading = `rgba(${CREAM_RGB},0.92)`;
-  const linkCol = `rgba(${CREAM_RGB},0.6)`;
-  const muted = `rgba(${CREAM_RGB},0.4)`;
+  // Cobalt footer to bookend the cobalt header — white content on the brand fill.
+  const heading = "rgba(255,255,255,0.95)";
+  const linkCol = "rgba(255,255,255,0.72)";
+  const muted = "rgba(255,255,255,0.5)";
+  const eyebrow = "rgba(255,255,255,0.65)";
 
   return (
-    <footer style={{ background: DARK_GRADIENT, borderTop: `1px solid rgba(${RUST_RGB},0.3)`, padding: isMobile ? "48px 20px 28px" : "64px 40px 36px" }}>
+    <footer style={{ background: NAV_BAR_BG, borderTop: `1px solid ${NAV_BORDER}`, padding: isMobile ? "48px 20px 28px" : "64px 40px 36px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{
           display: "grid",
@@ -56,7 +59,7 @@ export function SiteFooter() {
           {/* Brand */}
           <div>
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", marginBottom: "18px" }}>
-              <EBALogo height={38} light={!IS_VIVID} />
+              <EBALogo height={38} light navOnCobalt />
             </Link>
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: "0 0 8px", maxWidth: "300px", lineHeight: 1.4 }}>
               The operating system for M&amp;E contractors.
@@ -69,7 +72,7 @@ export function SiteFooter() {
           {/* Link columns */}
           {COLUMNS.map(col => (
             <div key={col.heading}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 16px" }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: eyebrow, margin: "0 0 16px" }}>
                 {col.heading}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "11px" }}>
@@ -87,7 +90,7 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom bar */}
-        <div style={{ borderTop: `1px solid rgba(${CREAM_RGB},0.12)`, paddingTop: "22px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: "8px" }}>
+        <div style={{ borderTop: `1px solid rgba(255,255,255,0.15)`, paddingTop: "22px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: "8px" }}>
           <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
             © 2026 The Engineering Business Academy.{!isPlaceholder(COMPANY_REG) && <> Company Reg: {COMPANY_REG}.</>} Registered in England &amp; Wales.
           </p>
