@@ -372,7 +372,7 @@ export default function HomePage() {
           backgroundImage: `url(${HERO_IMG})`,
           backgroundSize: "cover", backgroundPosition: "center 30%",
         }} />
-        <div style={{
+        <div className={IS_VIVID ? "eba-aurora" : undefined} style={{
           position: "absolute", inset: 0,
           background: IS_VIVID ? HERO_GLOW : `linear-gradient(to top, rgba(${NAVY_RGB},0.95) 0%, rgba(${NAVY_RGB},0.6) 50%, rgba(${NAVY_RGB},0.25) 100%)`,
         }} />

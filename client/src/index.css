@@ -209,6 +209,17 @@
 .eba-pulse-2     { animation-delay: 1.3s; }
 .eba-row         { animation: eba-rowpop 4s ease-in-out infinite; }
 
+/* Hero aurora — slow living drift behind the hero content */
+@keyframes eba-aurora {
+  0%   { background-position: 0% 0%;     }
+  50%  { background-position: 100% 40%;  }
+  100% { background-position: 0% 0%;     }
+}
+.eba-aurora {
+  background-size: 170% 170%;
+  animation: eba-aurora 22s ease-in-out infinite;
+}
+
 /* Bento cards — hover lift */
 .eba-bento-card {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
@@ -232,7 +243,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .eba-float, .eba-float-slow, .eba-caret, .eba-scanline,
-  .eba-pulse, .eba-row, .eba-marquee-track,
+  .eba-pulse, .eba-row, .eba-marquee-track, .eba-aurora,
   .eba-bento-card { animation: none !important; transition: none !important; }
 }
 

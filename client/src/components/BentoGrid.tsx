@@ -5,7 +5,7 @@
  */
 import { Link } from "wouter";
 import { GraduationCap, Sparkles, FileText, Users } from "lucide-react";
-import { NAVY, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG } from "@/lib/constants";
+import { NAVY, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG, SECTION_GLOW } from "@/lib/constants";
 import { useIsMobile } from "@/hooks/useMobile";
 import { CountUp } from "@/components/CountUp";
 
@@ -44,7 +44,7 @@ export function BentoGrid() {
   };
 
   return (
-    <section style={{ background: WHITE, padding: isMobile ? "64px 20px" : "104px 40px" }}>
+    <section style={{ backgroundColor: WHITE, backgroundImage: SECTION_GLOW, padding: isMobile ? "64px 20px" : "104px 40px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ maxWidth: "720px", marginBottom: "44px" }}>
           <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>

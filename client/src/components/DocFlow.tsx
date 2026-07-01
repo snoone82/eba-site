@@ -4,7 +4,7 @@
  * resolves into a clean structured output on the right. CSS-only motion,
  * disabled under prefers-reduced-motion. Theme-aware via the colour tokens.
  */
-import { NAVY, CREAM, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG } from "@/lib/constants";
+import { NAVY, CREAM, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG, SECTION_GLOW } from "@/lib/constants";
 import { useIsMobile } from "@/hooks/useMobile";
 
 const DOCS = [
@@ -28,7 +28,7 @@ export function DocFlow() {
   const accentSoft = `rgba(${RUST_RGB},0.10)`;
 
   return (
-    <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "96px 40px" }}>
+    <section style={{ backgroundColor: CREAM, backgroundImage: SECTION_GLOW, padding: isMobile ? "60px 20px" : "96px 40px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* heading */}
         <div style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 56px" }}>

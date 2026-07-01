@@ -232,6 +232,15 @@ export const HERO_GLOW = IS_LIGHT ? ACCENT.glow : "";
 export const BAND_GRADIENT = pick(OAT, OAT, ACCENT.band);
 
 /**
+ * A faint accent glow layered behind key light-theme sections so they read with
+ * gentle depth instead of flat white. `"none"` in default/noir (unchanged).
+ * Applied as `backgroundImage` over a solid `backgroundColor`.
+ */
+export const SECTION_GLOW = IS_LIGHT
+  ? `radial-gradient(60% 55% at 50% -8%, rgba(${ACCENT.rgb},0.07) 0%, transparent 62%)`
+  : "none";
+
+/**
  * Keep the CSS custom properties (used by index.css for body/selection/scrollbar)
  * in sync with the active theme. Runs once at load; no-op during SSR/prerender.
  */
