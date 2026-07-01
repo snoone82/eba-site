@@ -50,8 +50,8 @@
   --eba-white: #FFFFFF;
   --eba-amber: #FFB162;
 
-  /* Heading typeface — swapped to a modern grotesk via ?font=modern (see constants.ts). */
-  --eba-heading: 'Playfair Display', serif;
+  /* Heading typeface — ships as Space Grotesk; ?font=serif reverts to Playfair (see constants.ts). */
+  --eba-heading: 'Space Grotesk', sans-serif;
 
   /* ─── Semantic tokens (shadcn/ui) ─── */
   --radius: 0.25rem;

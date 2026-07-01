@@ -67,14 +67,17 @@ type LightThemeName = "vivid" | "emerald" | "plum" | "graphite";
 const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite"];
 
 function detectTheme(): ThemeName {
-  if (typeof window === "undefined") return "default";
+  // The site now ships on the "vivid" indigo light theme by default. The original
+  // editorial navy/rust theme is kept available at ?theme=classic for reference.
+  if (typeof window === "undefined") return "vivid";
   try {
-    const t = new URLSearchParams(window.location.search).get("theme") as ThemeName | null;
+    const t = new URLSearchParams(window.location.search).get("theme");
     if (t === "noir") return "noir";
-    if (t && (LIGHT_THEMES as string[]).includes(t)) return t;
-    return "default";
+    if (t === "classic") return "default";
+    if (t && (LIGHT_THEMES as string[]).includes(t)) return t as ThemeName;
+    return "vivid";
   } catch {
-    return "default";
+    return "vivid";
   }
 }
 
@@ -247,12 +250,14 @@ if (THEME !== "default" && typeof document !== "undefined") {
  * grotesk (Space Grotesk) by overriding the --eba-heading CSS variable. Works on
  * any theme and is independent of the colour selection.
  */
-export const IS_MODERN_FONT =
+export const IS_SERIF_FONT =
   typeof window !== "undefined" &&
-  (() => { try { return new URLSearchParams(window.location.search).get("font") === "modern"; } catch { return false; } })();
+  (() => { try { return new URLSearchParams(window.location.search).get("font") === "serif"; } catch { return false; } })();
 
-if (IS_MODERN_FONT && typeof document !== "undefined") {
-  document.documentElement.style.setProperty("--eba-heading", "'Space Grotesk', sans-serif");
+// Headings ship in Space Grotesk (set in index.css :root). ?font=serif reverts
+// to the original Playfair Display for comparison.
+if (IS_SERIF_FONT && typeof document !== "undefined") {
+  document.documentElement.style.setProperty("--eba-heading", "'Playfair Display', serif");
 }
 
 // ── Integrations ───────────────────────────────────────────────────────────

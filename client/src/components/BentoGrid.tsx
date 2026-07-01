@@ -66,6 +66,7 @@ export function BentoGrid() {
             <Icon span><GraduationCap size={26} color="#fff" strokeWidth={1.9} /></Icon>
             <h3 style={{ ...title, fontSize: isMobile ? "1.6rem" : "2rem" }}>The Academy</h3>
             <p style={desc}>The full operating system for running an M&amp;E business — built from real operations, not theory.</p>
+            <span style={{ display: "inline-block", alignSelf: "flex-start", marginTop: "12px", fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.04em", color: RUST, background: accentSoft, padding: "4px 10px", borderRadius: "6px" }}>CPD accreditation in progress</span>
             <div style={{ display: "flex", gap: "32px", marginTop: "26px" }}>
               <div>
                 <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "2.6rem", lineHeight: 1, color: NAVY }}>
@@ -87,7 +88,7 @@ export function BentoGrid() {
           <Link href="/ai-tools" className="eba-bento-card" style={{ ...card, gridColumn: isMobile ? "auto" : "span 2" }}>
             <Icon><Sparkles size={22} color={RUST} strokeWidth={1.9} /></Icon>
             <h3 style={title}>AI Tools</h3>
-            <p style={desc}>A compliance chatbot and an O&amp;M manual generator, trained for how M&amp;E actually works.</p>
+            <p style={desc}>Four tools built for M&amp;E: the <strong>O&amp;M Compiler</strong>, <strong>RAMS Generator</strong>, <strong>Compliance Co-Pilot</strong> and <strong>COSHH Generator</strong>. You review every output.</p>
             <Arrow label="See the tools" />
           </Link>
 

@@ -399,14 +399,14 @@ export default function HomePage() {
               lineHeight: 1.05, letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 24px",
             }}>
-              The business programme built for M&amp;E engineering contractors.
+              Everything it takes to run a profitable M&amp;E business.
             </h1>
             {/* Feature strip — one horizontal row, left-aligned to the content column */}
             <div style={{
               display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
               gap: "6px 0", marginBottom: "28px",
             }}>
-              {["Built for M&E business owners", "Drawn from real operations", "Lifetime founding access"].map((stat, i) => (
+              {["Learn the business", "Automate the compliance", "Win better work"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: `rgba(${ON_DARK_RGB},0.75)`,
@@ -423,7 +423,7 @@ export default function HomePage() {
               color: `rgba(${ON_DARK_RGB},0.82)`, fontSize: isMobile ? "16px" : "19px", lineHeight: 1.65,
               fontWeight: 400, maxWidth: "600px", margin: "0 0 40px",
             }}>
-              You know how to deliver the engineering. Nobody taught you how to run the business around it — pricing, contracts, cash flow, compliance, teams, and growth. That changes here.
+              The Academy, four AI tools built for M&amp;E, and a full template library — from the team behind a real M&amp;E group. The business side nobody taught you, plus the software to run it.
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
               <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
@@ -453,6 +453,10 @@ export default function HomePage() {
                 Explore the AI Tools
               </Link>
             </div>
+            <p style={{ marginTop: "20px", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+              <span style={{ display: "inline-flex", width: "18px", height: "18px", borderRadius: "5px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
+              Every founding member gets our Toolbox Talk Generator free.
+            </p>
           </div>
           {IS_LIGHT && !isMobile && (
             <div aria-hidden="true" style={{ position: "absolute", top: "12px", right: "8px", width: "46%", maxWidth: "520px", height: "calc(100% - 24px)", pointerEvents: "none" }}>
@@ -471,7 +475,7 @@ export default function HomePage() {
           fontWeight: IS_VIVID ? 700 : 600, letterSpacing: "0.1em", textTransform: "uppercase",
           color: `rgba(${NAVY_RGB},${IS_VIVID ? 0.78 : 0.45})`,
         }}>
-          Trusted by M&E contractors working across MOD / MOJ estates &nbsp;·&nbsp; nuclear &nbsp;·&nbsp; aerospace &nbsp;·&nbsp; advanced manufacturing &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres
+          Built from a real M&E group — KEYIS Group &nbsp;·&nbsp; ISO-certified &nbsp;·&nbsp; RoSPA award-winning &nbsp;·&nbsp; ConstructionLine Gold
         </p>
       </div>
 
@@ -672,60 +676,6 @@ export default function HomePage() {
               </Link>
             </RevealSection>
           </div>
-        </div>
-      </section>
-
-      {/* ── AI TOOLS (reason to believe) ── */}
-      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
-        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-          <RevealSection>
-            <SectionLabel>AI Tools</SectionLabel>
-            <RustRule />
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: ON_DARK, margin: "0 0 28px", lineHeight: 1.12,
-            }}>
-              And the tools that prove we understand your world.
-            </h2>
-            <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
-              Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals generated in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge. Built exclusively for M&E — and included with Academy membership.
-            </p>
-            <Link href="/ai-tools" style={{
-              color: RUST, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
-              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-            }}>
-              Explore the AI tools →
-            </Link>
-          </RevealSection>
-        </div>
-      </section>
-
-      {/* ── DOCUMENT LIBRARY ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
-        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-          <RevealSection>
-            <SectionLabel>Document Library</SectionLabel>
-            <RustRule />
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
-            }}>
-              380 documents. 25 years of practice. Ready to use.
-            </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
-              Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
-            </p>
-            <Link href="/documents" style={{
-              color: RUST, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
-              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-            }}>
-              Browse the library →
-            </Link>
-          </RevealSection>
         </div>
       </section>
 
