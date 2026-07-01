@@ -456,7 +456,7 @@ export default function HomePage() {
             </div>
             <p style={{ marginTop: "20px", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, display: "inline-flex", alignItems: "center", gap: "8px" }}>
               <span style={{ display: "inline-flex", width: "18px", height: "18px", borderRadius: "5px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
-              Every founding member gets our Toolbox Talk Generator free.
+              Free Toolbox Talk Generator — no purchase, just your email.
             </p>
           </div>
           {IS_LIGHT && !isMobile && (

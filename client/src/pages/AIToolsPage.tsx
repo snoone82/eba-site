@@ -9,6 +9,7 @@ import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { ToolboxLeadMagnet } from "@/components/ToolboxLeadMagnet";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -546,18 +547,11 @@ export default function AIToolsPage() {
               </div>
             ))}
           </div>
-          {/* Toolbox Talk free bonus */}
-          <div style={{ marginTop: "18px", display: "flex", alignItems: "center", gap: "16px", flexWrap: "wrap", justifyContent: "center", background: CTA_BAND_BG, border: `1px solid rgba(${NAVY_RGB},0.08)`, borderRadius: "16px", padding: isMobile ? "22px 24px" : "22px 32px" }}>
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "10px", fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.05rem", color: NAVY }}>
-              <span style={{ width: "34px", height: "34px", borderRadius: "10px", background: CTA_PRIMARY_BG, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Sparkles size={18} color="#fff" strokeWidth={1.9} /></span>
-              Toolbox Talk Generator
-            </span>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.62)` }}>
-              Site-specific toolbox talks in 60 seconds — <strong style={{ color: NAVY }}>free with every Academy membership.</strong>
-            </span>
-          </div>
         </div>
       </section>
+
+      {/* ── FREE TOOLBOX TALK (lead magnet) ── */}
+      <ToolboxLeadMagnet />
 
       {/* ── LIVE TOOLS WITH DEMOS ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
