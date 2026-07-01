@@ -1,9 +1,11 @@
 /**
  * EBA Logo — inline SVG component.
- * A royal-blue square mark with diagonal cut corners (top-left + bottom-right),
- * bold white EBA letterforms, a double-rule divider and an uppercase geometric
- * wordmark. Two modes: solid (blue tile, for light backgrounds) and outline
- * (white keyline on the cobalt header/footer). Renders instantly, no network.
+ * A solid rounded-square tile carrying bold "EBA" letterforms, a double-rule
+ * divider and an uppercase two-line wordmark. The tile is always a filled
+ * contrasting block (never an outline):
+ *   • on dark / cobalt backgrounds → white tile, blue letters, white wordmark
+ *   • on light backgrounds        → blue tile, white letters, blue wordmark
+ * Renders instantly, no network.
  */
 
 import { WHITE } from "@/lib/constants";
@@ -14,11 +16,11 @@ const WORD_FONT = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
 interface EBALogoProps {
   /** Height in px — width scales proportionally */
   height?: number;
-  /** "horizontal" = icon + wordmark (default) · "icon" = mark only */
+  /** "horizontal" = tile + wordmark (default) · "icon" = tile only */
   variant?: "horizontal" | "icon";
-  /** Render wordmark in white (for dark backgrounds) */
+  /** White content for dark backgrounds */
   light?: boolean;
-  /** Outline (white keyline) icon for the filled cobalt header/footer */
+  /** On the filled cobalt header/footer */
   navOnCobalt?: boolean;
 }
 
@@ -28,30 +30,28 @@ export function EBALogo({
   light = false,
   navOnCobalt = false,
 }: EBALogoProps) {
-  const outline = navOnCobalt;
-  const iconFill = outline ? "none" : BLUE;
-  const iconStroke = outline ? WHITE : BLUE;
-  const wordColor = light || outline ? WHITE : BLUE;
+  const onDark = light || navOnCobalt;
+  const tileFill = onDark ? WHITE : BLUE;   // solid tile
+  const ebaColor = onDark ? BLUE : WHITE;   // letters inside the tile
+  const wordColor = onDark ? WHITE : BLUE;  // wordmark
   const ruleColor = wordColor;
 
-  const S = height;                 // square icon side
-  const cut = S * 0.3;              // corner cut size
-  // Square with top-left + bottom-right corners cut off.
-  const hex = `${cut},0 ${S},0 ${S},${S - cut} ${S - cut},${S} 0,${S} 0,${cut}`;
+  const S = height;               // square tile side
+  const r = S * 0.16;             // rounded-corner radius
 
   const Icon = (
     <>
-      <polygon points={hex} fill={iconFill} stroke={iconStroke} strokeWidth={outline ? 2 : 1.5} strokeLinejoin="round" />
+      <rect x={0} y={0} width={S} height={S} rx={r} ry={r} fill={tileFill} />
       <text
         x={S / 2}
-        y={S * 0.62}
+        y={S * 0.5}
         textAnchor="middle"
-        dominantBaseline="middle"
-        fill={WHITE}
+        dominantBaseline="central"
+        fill={ebaColor}
         fontFamily="'DM Sans', 'Arial Black', sans-serif"
-        fontWeight="900"
+        fontWeight="800"
         fontSize={S * 0.34}
-        letterSpacing="-1"
+        letterSpacing="-0.5"
       >
         EBA
       </text>

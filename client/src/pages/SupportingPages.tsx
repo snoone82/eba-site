@@ -185,12 +185,12 @@ export function OurStoryPage() {
               <div style={{ position: "relative" }}>
                 <Photo
                   src={MARK_IMG}
-                  alt="Mark Poulton — Founder, EBA"
+                  alt="Mark Poulton — Founder, Engineering Business Academy"
                   ratio="4 / 3"
                 />
                 <div style={{ position: "absolute", bottom: "16px", left: "16px", zIndex: 2, background: RUST, padding: "12px 18px", borderRadius: "10px" }}>
                   <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                    Mark Poulton — Founder, EBA
+                    Mark Poulton — Founder, Engineering Business Academy
                   </p>
                 </div>
               </div>

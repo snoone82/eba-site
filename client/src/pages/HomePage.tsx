@@ -664,7 +664,7 @@ export default function HomePage() {
               <div style={{ position: "relative" }}>
                 <Photo
                   src={MARK_IMG}
-                  alt="Mark Poulton — Founder, EBA"
+                  alt="Mark Poulton — Founder, Engineering Business Academy"
                   ratio="4 / 5"
                   focus="center 22%"
                 />
@@ -677,7 +677,7 @@ export default function HomePage() {
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
-                    Mark Poulton — Founder, EBA
+                    Mark Poulton — Founder, Engineering Business Academy
                   </p>
                 </div>
               </div>
