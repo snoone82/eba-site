@@ -29,6 +29,7 @@ import { HeroMockups } from "@/components/HeroMockups";
 import { DocFlow } from "@/components/DocFlow";
 import { BentoGrid } from "@/components/BentoGrid";
 import { LogoMarquee } from "@/components/LogoMarquee";
+import { Testimonials } from "@/components/Testimonials";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
@@ -527,6 +528,9 @@ export default function HomePage() {
 
       {/* ── CLIENT / SECTOR MARQUEE ── */}
       <LogoMarquee />
+
+      {/* ── TESTIMONIALS ── */}
+      <Testimonials />
 
       {/* ── THE TRANSFORMATION (Academy) ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
