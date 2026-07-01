@@ -112,8 +112,8 @@ const modules = [
     number: "02",
     title: "Cash Flow and Financial Visibility",
     lessons: 11,
-    description: "Cash flow kills profitable businesses. This module covers the mechanics of M&E cash flow — applications for payment, retentions, VAT timing, the gap between billing and collection — and how to build visibility and control. Includes the financial models used inside KEYIS Group.",
-    topics: ["Applications for payment and retentions", "VAT timing and cash flow gaps", "Financial models from KEYIS Group", "Building visibility and control"],
+    description: "Cash flow kills profitable businesses. This module covers the mechanics of M&E cash flow — applications for payment, retentions, VAT timing, the gap between billing and collection — and how to build visibility and control. Includes the financial models used to run a real M&E business.",
+    topics: ["Applications for payment and retentions", "VAT timing and cash flow gaps", "Real-world financial models", "Building visibility and control"],
   },
   {
     number: "03",
@@ -154,8 +154,8 @@ const modules = [
     number: "08",
     title: "Growth, Systems and Scaling",
     lessons: 10,
-    description: "How to grow deliberately rather than accidentally. Covers operational systemisation, the technology stack for a growing M&E business, when and how to add a new division, and international expansion — drawing directly from KEYIS Group's growth into Poland and the launch of Pro Defend and Task Energy.",
-    topics: ["Operational systemisation", "Technology stack for growing M&E businesses", "Adding a new division", "International expansion — KEYIS Group's Poland model"],
+    description: "How to grow deliberately rather than accidentally. Covers operational systemisation, the technology stack for a growing M&E business, when and how to add a new division, and expanding into new territories and adjacent service lines — drawn directly from real experience doing exactly that.",
+    topics: ["Operational systemisation", "Technology stack for growing M&E businesses", "Adding a new division", "Expanding into new territories and services"],
   },
   {
     number: "09",
@@ -189,7 +189,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             <EBALogo height={38} light={!IS_VIVID} />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-            {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+            {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/academy" ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
                 textDecoration: "none", fontFamily: "'DM Sans', sans-serif",

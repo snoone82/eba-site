@@ -370,10 +370,10 @@ export interface MentorIntake {
  * Do NOT mark a month "full" unless it is actually full — honesty is the point.
  */
 export const MENTOR_INTAKES: MentorIntake[] = [
+  { label: "July 2026", status: "full" },
   { label: "August 2026", status: "full" },
   { label: "September 2026", status: "full" },
-  { label: "October 2026", status: "open" }, // the real next intake
-  { label: "November 2026", status: "soon" },
+  { label: "October 2026", status: "soon" }, // dates released soon
 ];
 
 /** Cohort capacity, shown in the scarcity line. */

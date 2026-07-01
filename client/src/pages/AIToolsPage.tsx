@@ -186,9 +186,9 @@ function OmManualDemo() {
 // ── COMPLIANCE CHATBOT DEMO ──
 const chatMessages = [
   { role: "user", text: "What are our CDM Principal Contractor obligations for this project?" },
-  { role: "bot", text: "Based on your CDM 2015 procedures document (Section 4.2), as Principal Contractor you are required to: plan, manage and monitor construction work; ensure suitable welfare facilities are provided; draw up construction phase plan before work begins; and liaise with the Principal Designer on pre-construction information. Source: KEYIS CDM Procedures v3.1, p.12." },
+  { role: "bot", text: "Based on your CDM 2015 procedures document (Section 4.2), as Principal Contractor you are required to: plan, manage and monitor construction work; ensure suitable welfare facilities are provided; draw up construction phase plan before work begins; and liaise with the Principal Designer on pre-construction information. Source: your CDM Procedures v3.1, p.12." },
   { role: "user", text: "Do we need a hot works permit for this electrical installation?" },
-  { role: "bot", text: "Yes. Your Hot Works Permit procedure (Form HS-07) is required for any work involving open flames, heat guns, or equipment that could ignite materials. The permit must be signed by the site supervisor and reviewed at the end of each shift. Source: KEYIS Safe Systems of Work, Section 8." },
+  { role: "bot", text: "Yes. Your Hot Works Permit procedure (Form HS-07) is required for any work involving open flames, heat guns, or equipment that could ignite materials. The permit must be signed by the site supervisor and reviewed at the end of each shift. Source: your Safe Systems of Work, Section 8." },
 ];
 
 function ComplianceChatDemo() {
@@ -396,6 +396,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               { label: "Academy", href: "/academy" },
               { label: "AI Tools", href: "/ai-tools" },
               { label: "Documents", href: "/documents" },
+              { label: "Mentorship", href: "/mentorship" },
               { label: "Our Story", href: "/our-story" },
               { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (

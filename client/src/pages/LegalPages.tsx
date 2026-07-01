@@ -50,6 +50,7 @@ function LegalNav({ active }: { active: string }) {
             { label: "Academy", href: "/academy" },
             { label: "AI Tools", href: "/ai-tools" },
             { label: "Documents", href: "/documents" },
+            { label: "Mentorship", href: "/mentorship" },
             { label: "Our Story", href: "/our-story" },
             { label: "Contact", href: "/contact" },
           ].map(({ label, href }) => (

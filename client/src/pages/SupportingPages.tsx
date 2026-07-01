@@ -114,7 +114,7 @@ function NavBar({ active }: { active: string }) {
           <EBALogo height={38} light={!IS_VIVID} />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
               color: href === active ? ON_DARK : `rgba(${ON_DARK_RGB},0.7)`,
               textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
@@ -183,12 +183,12 @@ export function OurStoryPage() {
               <div style={{ position: "relative" }}>
                 <img
                   src={MARK_IMG}
-                  alt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
+                  alt="Mark Poulton — Founder, EBA"
                   style={{ width: "100%", display: "block", filter: "grayscale(15%)" }}
                 />
                 <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: RUST, padding: "14px 20px" }}>
                   <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                    Mark Poulton — CEO, KEYIS Group
+                    Mark Poulton — Founder, EBA
                   </p>
                 </div>
               </div>
@@ -205,9 +205,8 @@ export function OurStoryPage() {
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  Mark Poulton started with a single M&E firm and built it into a multi-division engineering group operating across the UK and Poland.
-                  {/* TODO(eba): founding year + how the single firm became a multi-division group. */}
-                  {/* TODO(eba): the UK → Poland / international expansion detail. */}
+                  Over 25 years, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
+                  {/* TODO(eba): founding year + how the single firm grew. */}
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.

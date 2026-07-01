@@ -58,13 +58,13 @@ export const PAGE_SEO = {
   ourStory: {
     title: "Our Story — Mark Poulton & The Engineering Business Academy",
     description:
-      "Why EBA exists: Mark Poulton built and rebuilt a multi-division M&E engineering group across the UK and Poland — the operational experience behind the Academy.",
+      "Why EBA exists: founder Mark Poulton spent 25 years building, rebuilding and running M&E contracting businesses — the operational experience behind the Academy.",
     path: "/our-story",
   },
   mentorship: {
     title: "Mentorship — Direct Access to Mark Poulton | EBA",
     description:
-      "Group sessions and 1:1 access to the CEO of a multi-division M&E engineering group. Operational experience on demand — not a coaching framework.",
+      "Group sessions and 1:1 access to founder Mark Poulton, who spent 25 years running a real M&E contracting business. Operational experience on demand — not a coaching framework.",
     path: "/mentorship",
   },
   documents: {

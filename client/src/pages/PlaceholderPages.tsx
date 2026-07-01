@@ -23,8 +23,9 @@ function PlaceholderNav({ active }: { active: string }) {
   const links = [
     { href: "/academy", label: "Academy" },
     { href: "/ai-tools", label: "AI Tools" },
-    { href: "/our-story", label: "Our Story" },
     { href: "/documents", label: "Documents" },
+    { href: "/mentorship", label: "Mentorship" },
+    { href: "/our-story", label: "Our Story" },
     { href: "/contact", label: "Contact" },
   ];
   return (
@@ -222,8 +223,10 @@ function MentorWaitlist() {
               ? (formReady ? "Now enrolling — limited places" : "Next intake — register interest")
               : isFull
                 ? "Fully booked"
-                : "Register interest";
-            const statusColor = isOpen ? RUST : isFull ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.55)`;
+                : "Dates released soon";
+            // Full rows are a solid black band on every theme — force white text
+            // (CREAM_RGB is 0,0,0 in the vivid/light family, which would vanish).
+            const statusColor = isOpen ? RUST : isFull ? "rgba(255,255,255,0.75)" : `rgba(${NAVY_RGB},0.55)`;
             return (
               <div key={intake.label} style={{
                 background: rowBg, borderLeft, border: isOpen ? `1px solid ${RUST}` : `1px solid rgba(${NAVY_RGB},0.08)`,
@@ -246,7 +249,7 @@ function MentorWaitlist() {
                 </div>
                 {isFull ? (
                   <button onClick={() => choose(intake.label, false)} style={{
-                    background: "transparent", color: `rgba(${CREAM_RGB},0.8)`, border: `1px solid rgba(${CREAM_RGB},0.4)`,
+                    background: "transparent", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.4)",
                     fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
                   }}>
@@ -307,7 +310,7 @@ function MentorWaitlist() {
               <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
                 {MENTOR_INTAKES.map((m) => (
                   <option key={m.label} value={m.label}>
-                    {m.label}{m.status === "full" ? " — waitlist" : m.status === "open" ? (formReady ? " — now enrolling" : " — next intake") : ""}
+                    {m.label}{m.status === "full" ? " — waitlist" : m.status === "open" ? (formReady ? " — now enrolling" : " — next intake") : " — dates soon"}
                   </option>
                 ))}
               </select>
@@ -340,7 +343,7 @@ export function MentorshipPage() {
         title="Direct access to Mark Poulton."
         sub="For M&E business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application."
         portrait="/mark-portrait.jpg"
-        portraitAlt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
+        portraitAlt="Mark Poulton — Founder, EBA"
       />
       <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: "80px 40px" }}>
         <AmbientOrbs />

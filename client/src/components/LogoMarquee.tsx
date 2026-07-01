@@ -5,8 +5,9 @@
 import { NAVY, CREAM, NAVY_RGB, RUST } from "@/lib/constants";
 
 const ITEMS = [
-  "KEYIS Group", "Task Energy", "Pro Defend", "Advanced Manufacturing",
-  "Clean Energy", "Data Centres", "Nuclear", "Aerospace", "Healthcare", "Defence",
+  "Mechanical & Electrical", "Advanced Manufacturing", "Clean Energy",
+  "Data Centres", "Nuclear", "Aerospace", "Healthcare", "Defence",
+  "Social Housing", "Commercial Fit-Out",
 ];
 
 export function LogoMarquee() {

@@ -62,7 +62,7 @@ export function SiteFooter() {
               The operating system for M&amp;E contractors.
             </p>
             <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: muted, margin: 0, maxWidth: "300px", lineHeight: 1.6 }}>
-              The Academy, AI tools and templates — built from KEYIS Group, a real M&amp;E engineering group.
+              The Academy, AI tools and templates — built from 25 years of running a real M&amp;E contracting business.
             </p>
           </div>
 

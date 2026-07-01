@@ -283,8 +283,7 @@ const outcomes = [
 ];
 
 const credentials = [
-  "KEYIS Group", "Task Energy", "Pro Defend",
-  "25 Years M&E Operations", "UK & Poland",
+  "25 Years M&E Operations", "Mechanical & Electrical",
   "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
@@ -648,7 +647,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── MARK / KEYIS CREDIBILITY ── */}
+      {/* ── FOUNDER CREDIBILITY ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
@@ -656,7 +655,7 @@ export default function HomePage() {
               <div style={{ position: "relative" }}>
                 <img
                   src={MARK_IMG}
-                  alt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
+                  alt="Mark Poulton — Founder, EBA"
                   style={{ width: "100%", display: "block", objectFit: "cover" }}
                 />
                 <div style={{
@@ -668,7 +667,7 @@ export default function HomePage() {
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
-                    Mark Poulton — CEO, KEYIS Group
+                    Mark Poulton — Founder, EBA
                   </p>
                 </div>
               </div>
@@ -684,7 +683,7 @@ export default function HomePage() {
                 Taught by someone who has actually done it — including the hard version.
               </h2>
               <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
+                Over 25 years, Mark Poulton grew a single M&E firm into a substantial contracting operation. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
@@ -723,7 +722,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
-              <SectionLabel>Task Energy Insight</SectionLabel>
+              <SectionLabel>Sector Insight</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
@@ -747,7 +746,7 @@ export default function HomePage() {
               </Link>
             </RevealSection>
             <RevealSection>
-              <SectionLabel>Pro Defend Insight</SectionLabel>
+              <SectionLabel>Sector Insight</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
@@ -759,11 +758,10 @@ export default function HomePage() {
                 Fire protection and security is a common adjacent service request in M&E contracting. The market is worth £2 billion and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on business diversification — using Pro Defend as a live case study in how to identify, enter, and build a profitable adjacent service line.
+                Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on business diversification — a real case study in how to identify, enter, and build a profitable adjacent service line.
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {/* TODO(eba): confirm Pro Defend / Task Energy public references with Mark.
-                    Outbound link repointed to /academy to keep visitors on the funnel. */}
+                {/* Outbound link points to /academy to keep visitors on the funnel. */}
                 <Link href="/academy" style={{
                   color: RUST, textDecoration: "none",
                   fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
