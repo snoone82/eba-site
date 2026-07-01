@@ -24,7 +24,7 @@ import {
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, NAV_RGB,
-  WHITE, HERO_GLOW, SECTION_GLOW,
+  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB,
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
 import { Photo } from "@/components/Photo";
@@ -735,13 +735,19 @@ export function DocumentsPage() {
         </div>
       </div>
 
-      {/* Section breaker */}
-      <SectionBreaker
-        kicker="Browse the library"
-        title="Everything an M&E business"
-        accent="actually runs on."
-        variant="tint"
-      />
+      {/* Photo band */}
+      <div style={{ position: "relative", width: "100%", height: isMobile ? "240px" : "380px", overflow: "hidden" }}>
+        <img src="/site-fitout.jpg" alt="A live M&E project — the environment these documents were built for" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", display: "block" }} />
+        <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, rgba(${NAVY_RGB},0.74) 0%, rgba(${NAVY_RGB},0.4) 45%, rgba(${ACCENT_RGB},0.28) 100%)` }} />
+        <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: "14px" }}>· Browse the library ·</div>
+            <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: "#fff", fontSize: isMobile ? "1.5rem" : "clamp(1.8rem, 3.4vw, 2.8rem)", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "640px", margin: 0 }}>
+              Everything an M&amp;E business actually runs on.
+            </p>
+          </div>
+        </div>
+      </div>
 
       {/* Document categories */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "80px 40px" }}>

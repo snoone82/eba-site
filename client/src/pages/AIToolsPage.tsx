@@ -11,6 +11,7 @@ import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolboxLeadMagnet } from "@/components/ToolboxLeadMagnet";
 import { SectionBreaker } from "@/components/SectionBreaker";
+import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -791,16 +792,19 @@ export default function AIToolsPage() {
                   Enquire about a deployment →
                 </Link>
               </div>
-              <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
-                <p style={{
-                  fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                  color: ON_DARK, fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",
-                }}>
-                  "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
-                </p>
-                <p style={{ color: `rgba(${CREAM_RGB},0.4)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                  EBA AI Tools Catalogue, June 2026
-                </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
+                <Photo src="/site-plantroom.jpg" alt="An M&E engineer checking compliance on a tablet in a plant room" ratio="16 / 10" />
+                <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "28px 30px", borderRadius: "12px" }}>
+                  <p style={{
+                    fontFamily: "var(--eba-heading)", fontStyle: "italic",
+                    color: ON_DARK, fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",
+                  }}>
+                    "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
+                  </p>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.4)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                    EBA AI Tools Catalogue, June 2026
+                  </p>
+                </div>
               </div>
             </div>
           </RevealSection>

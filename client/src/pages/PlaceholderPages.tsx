@@ -14,6 +14,7 @@ import {
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { CtaBanner } from "@/components/CtaBanner";
 import { SectionBreaker } from "@/components/SectionBreaker";
+import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -354,14 +355,20 @@ export function MentorshipPage() {
                 label: "Group Mentorship",
                 detail: "Monthly sessions with a small, curated cohort of M&E business owners. Structured around shared commercial challenges — pricing, cash flow, contract management, growth. Each session is facilitated by Mark and limited to six participants to ensure substantive discussion.",
                 price: "Pricing on application",
+                img: "/mark-teaching.jpg",
+                imgAlt: "Mark Poulton facilitating a group mentorship session",
               },
               {
                 label: "1:1 Mentorship",
                 detail: "Fortnightly sessions working directly with Mark on your business. Suitable for principals at an inflection point — scaling, restructuring, preparing for exit, or navigating a specific commercial or operational challenge. Application-only. Limited to a small number of principals at any one time.",
                 price: "Pricing on application",
+                img: "/mark-seated.jpg",
+                imgAlt: "Mark Poulton in a one-to-one mentoring session",
               },
-            ].map(({ label, detail, price }) => (
-              <div key={label} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "18px", padding: "34px 30px", boxShadow: "0 20px 46px -32px rgba(0,0,0,0.26)" }}>
+            ].map(({ label, detail, price, img, imgAlt }) => (
+              <div key={label} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "18px", padding: "0", overflow: "hidden", boxShadow: "0 20px 46px -32px rgba(0,0,0,0.26)" }}>
+                <Photo src={img} alt={imgAlt} ratio="16 / 9" radius="0" shadow={false} />
+                <div style={{ padding: "28px 30px 32px" }}>
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.3rem", color: NAVY, margin: "0 0 14px" }}>
                   {label}
                 </h3>
@@ -371,6 +378,7 @@ export function MentorshipPage() {
                 <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "14px" }}>
                   {price}
                 </span>
+                </div>
               </div>
             ))}
           </div>
