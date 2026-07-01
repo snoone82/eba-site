@@ -81,6 +81,11 @@ export function BentoGrid() {
                 <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: sub, marginTop: "6px" }}>Modules</div>
               </div>
             </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "22px" }}>
+              {["Pricing & margin", "Contracts", "Cash flow", "Compliance", "Winning work", "Team & growth"].map(t => (
+                <span key={t} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.72)`, background: `rgba(${NAVY_RGB},0.05)`, border: `1px solid rgba(${NAVY_RGB},0.08)`, padding: "5px 12px", borderRadius: "8px" }}>{t}</span>
+              ))}
+            </div>
             <Arrow label="Explore the curriculum" />
           </Link>
 
