@@ -30,6 +30,8 @@ import { DocFlow } from "@/components/DocFlow";
 import { BentoGrid } from "@/components/BentoGrid";
 import { LogoMarquee } from "@/components/LogoMarquee";
 import { Testimonials } from "@/components/Testimonials";
+import { DarkShowcase } from "@/components/DarkShowcase";
+import { StatBand } from "@/components/StatBand";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
@@ -403,7 +405,12 @@ export default function HomePage() {
               lineHeight: 1.05, letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 24px",
             }}>
-              Everything it takes to run a profitable M&amp;E business.
+              Everything it takes to run a{" "}
+              <span style={{
+                background: CTA_PRIMARY_BG,
+                WebkitBackgroundClip: "text", backgroundClip: "text",
+                WebkitTextFillColor: "transparent", color: "transparent",
+              }}>profitable</span>{" "}M&amp;E business.
             </h1>
             {/* Feature strip — one horizontal row, left-aligned to the content column */}
             <div style={{
@@ -483,6 +490,9 @@ export default function HomePage() {
         </p>
       </div>
 
+      {/* ── ANIMATED STAT BAND ── */}
+      <StatBand />
+
       {/* ── DOCUMENTS → STRUCTURED DATA (AI tools demo) ── */}
       <DocFlow />
 
@@ -527,6 +537,9 @@ export default function HomePage() {
 
       {/* ── THE EBA SYSTEM (bento) ── */}
       <BentoGrid />
+
+      {/* ── AI TOOLS DARK DRAMA SHOWCASE ── */}
+      <DarkShowcase />
 
       {/* ── CLIENT / SECTOR MARQUEE ── */}
       <LogoMarquee />

@@ -4,6 +4,7 @@
  * chatbot, built entirely from CSS/SVG so they stay crisp and theme-aware.
  * Rendered only on the modern light themes (desktop), where the hero is white.
  */
+import { useEffect, useRef, useState } from "react";
 import { NAVY, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG } from "@/lib/constants";
 
 const MODULES = [
@@ -14,11 +15,45 @@ const MODULES = [
   "Contracts & Risk",
 ];
 
+const ANSWER =
+  "You'll need a hot-works permit, a fire-watch RAMS and a 60-minute post-works watch. Want me to draft it?";
+
+function prefersReducedMotion() {
+  return typeof window !== "undefined" &&
+    window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+}
+
 export function HeroMockups() {
   const border = `rgba(${NAVY_RGB},0.10)`;
   const track = `rgba(${NAVY_RGB},0.08)`;
   const sub = `rgba(${NAVY_RGB},0.55)`;
   const accentSoft = `rgba(${RUST_RGB},0.12)`;
+
+  // ── Live: chatbot types its answer; progress bar fills on mount ──
+  const reduce = prefersReducedMotion();
+  const [typed, setTyped] = useState(reduce ? ANSWER : "");
+  const [progress, setProgress] = useState(reduce ? 62 : 0);
+  const timers = useRef<number[]>([]);
+
+  useEffect(() => {
+    if (reduce) return;
+    // fill the lesson progress shortly after mount (CSS transition animates it)
+    timers.current.push(window.setTimeout(() => setProgress(62), 450));
+    // type the chatbot answer, then loop (retype) so the hero keeps living
+    let i = 0;
+    const type = () => {
+      i += 1;
+      setTyped(ANSWER.slice(0, i));
+      if (i < ANSWER.length) {
+        timers.current.push(window.setTimeout(type, 34));
+      } else {
+        // hold, clear, retype
+        timers.current.push(window.setTimeout(() => { i = 0; setTyped(""); timers.current.push(window.setTimeout(type, 500)); }, 4200));
+      }
+    };
+    timers.current.push(window.setTimeout(type, 1100));
+    return () => { timers.current.forEach(clearTimeout); timers.current = []; };
+  }, [reduce]);
 
   return (
     <div style={{ position: "relative", width: "100%", height: "100%" }}>
@@ -81,7 +116,7 @@ export function HeroMockups() {
               </div>
               {/* progress */}
               <div style={{ height: "6px", borderRadius: "3px", background: track, overflow: "hidden", marginBottom: "8px" }}>
-                <div style={{ width: "62%", height: "100%", background: CTA_PRIMARY_BG }} />
+                <div style={{ width: `${progress}%`, height: "100%", background: CTA_PRIMARY_BG, transition: "width 1.4s cubic-bezier(0.22,1,0.36,1)" }} />
               </div>
               <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", color: sub }}>62% complete · 7 lessons left</div>
             </div>
@@ -112,8 +147,8 @@ export function HeroMockups() {
           </div>
           {/* answer bubble */}
           <div style={{ display: "flex", marginBottom: "4px" }}>
-            <div style={{ maxWidth: "90%", background: `rgba(${NAVY_RGB},0.05)`, color: sub, fontFamily: "'DM Sans', sans-serif", fontSize: "9.5px", lineHeight: 1.4, padding: "7px 9px", borderRadius: "10px 10px 10px 2px" }}>
-              You'll need a hot-works permit, a fire-watch RAMS and…
+            <div style={{ maxWidth: "90%", minHeight: "44px", background: `rgba(${NAVY_RGB},0.05)`, color: sub, fontFamily: "'DM Sans', sans-serif", fontSize: "9.5px", lineHeight: 1.4, padding: "7px 9px", borderRadius: "10px 10px 10px 2px" }}>
+              {typed}
               <span className="eba-caret" style={{ display: "inline-block", width: "5px", height: "11px", background: RUST, marginLeft: "2px", verticalAlign: "-2px" }} />
             </div>
           </div>

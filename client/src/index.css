@@ -234,6 +234,28 @@ button, a[href], input, textarea, select { border-radius: 10px; }
   box-shadow: 0 32px 60px -28px rgba(0,0,0,0.30) !important;
 }
 
+/* Dark-showcase glass cards — hover glow + lift */
+.eba-glass-card {
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+.eba-glass-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255,255,255,0.07) !important;
+  border-color: rgba(61,90,241,0.55) !important;
+}
+
+/* Scroll-reveal — fade + rise; base hidden, .is-in reveals. JS adds .is-in. */
+.eba-reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1);
+  will-change: opacity, transform;
+}
+.eba-reveal.is-in {
+  opacity: 1;
+  transform: none;
+}
+
 /* Logo marquee */
 @keyframes eba-marquee {
   from { transform: translateX(0); }
@@ -249,7 +271,8 @@ button, a[href], input, textarea, select { border-radius: 10px; }
 @media (prefers-reduced-motion: reduce) {
   .eba-float, .eba-float-slow, .eba-caret, .eba-scanline,
   .eba-pulse, .eba-row, .eba-marquee-track, .eba-aurora,
-  .eba-bento-card { animation: none !important; transition: none !important; }
+  .eba-bento-card, .eba-glass-card { animation: none !important; transition: none !important; }
+  .eba-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
 /* ─── Scrollbar ─── */

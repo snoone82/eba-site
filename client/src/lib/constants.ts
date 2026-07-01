@@ -158,6 +158,11 @@ const ACCENTS: Record<LightThemeName, Accent> = {
 };
 const ACCENT: Accent = ACCENTS[(IS_LIGHT ? (THEME as LightThemeName) : "cobalt")];
 
+/** The active accent's base hex + rgb, for components that need the accent colour
+ *  directly (e.g. dark sections) regardless of the light/dark surface tokens. */
+export const ACCENT_HEX = ACCENT.hex;
+export const ACCENT_RGB = ACCENT.rgb;
+
 type Palette = {
   readonly navy: string; readonly cream: string; readonly rust: string;
   readonly oat: string; readonly white: string; readonly amber: string;
