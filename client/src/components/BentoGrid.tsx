@@ -101,7 +101,19 @@ export function BentoGrid() {
           <Link href="/documents" className="eba-bento-card" style={card}>
             <Icon><FileText size={22} color={RUST} strokeWidth={1.9} /></Icon>
             <h3 style={title}>Document Library</h3>
-            <p style={desc}>RAMS, O&amp;M, CDM and compliance templates, ready to use.</p>
+            <div style={{ display: "flex", flexDirection: "column", gap: "6px", margin: "0 0 4px" }}>
+              {[
+                "Health, Safety & Environmental",
+                "Commercial & Financial",
+                "Technical & Commissioning",
+                "Human Resources & Employment",
+                "O&M Manuals + more",
+              ].map(c => (
+                <span key={c} style={{ display: "flex", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.4, color: sub }}>
+                  <span style={{ color: RUST, fontWeight: 800 }} aria-hidden>·</span>{c}
+                </span>
+              ))}
+            </div>
             <Arrow label="Browse" />
           </Link>
 
