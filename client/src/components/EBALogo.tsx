@@ -75,10 +75,10 @@ export function EBALogo({
   }
 
   // Horizontal lockup
-  const ruleX = S + 14;
-  const wordX = S + 30;
-  const totalW = S + 30 + 258;
-  const fs = S * 0.2;
+  const ruleX = S + 16;
+  const wordX = S + 34;
+  const totalW = S + 34 + 272;
+  const fs = S * 0.19;
 
   return (
     <svg
@@ -92,15 +92,14 @@ export function EBALogo({
     >
       {Icon}
 
-      {/* Double-rule divider */}
-      <line x1={ruleX} y1={S * 0.12} x2={ruleX} y2={S * 0.88} stroke={ruleColor} strokeWidth="1.4" />
-      <line x1={ruleX + 4} y1={S * 0.12} x2={ruleX + 4} y2={S * 0.88} stroke={ruleColor} strokeWidth="1.4" />
+      {/* Single-rule divider */}
+      <line x1={ruleX} y1={S * 0.1} x2={ruleX} y2={S * 0.9} stroke={ruleColor} strokeWidth="1.2" />
 
-      {/* Uppercase geometric wordmark */}
-      <text x={wordX} y={S * 0.42} fill={wordColor} fontFamily={WORD_FONT} fontWeight="700" fontSize={fs} letterSpacing="0.14em">
+      {/* Thin, wide-tracked uppercase wordmark */}
+      <text x={wordX} y={S * 0.42} fill={wordColor} fontFamily={WORD_FONT} fontWeight="300" fontSize={fs} letterSpacing="0.2em">
         THE ENGINEERING
       </text>
-      <text x={wordX} y={S * 0.74} fill={wordColor} fontFamily={WORD_FONT} fontWeight="700" fontSize={fs} letterSpacing="0.14em">
+      <text x={wordX} y={S * 0.74} fill={wordColor} fontFamily={WORD_FONT} fontWeight="300" fontSize={fs} letterSpacing="0.2em">
         BUSINESS ACADEMY
       </text>
     </svg>
