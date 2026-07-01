@@ -18,6 +18,14 @@ const MODULES = [
 const ANSWER =
   "You'll need a hot-works permit, a fire-watch RAMS and a 60-minute post-works watch. Want me to draft it?";
 
+// Steps the O&M Manual Compiler "runs" through, looping.
+const OM_STEPS = [
+  "Reading project data",
+  "Structuring to CDM",
+  "Compiling 48 pages",
+  "Manual ready",
+];
+
 function prefersReducedMotion() {
   return typeof window !== "undefined" &&
     window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
@@ -33,6 +41,8 @@ export function HeroMockups() {
   const reduce = prefersReducedMotion();
   const [typed, setTyped] = useState(reduce ? ANSWER : "");
   const [progress, setProgress] = useState(reduce ? 62 : 0);
+  // O&M compiler: index of the step currently running (>= length ⇒ all done)
+  const [omStep, setOmStep] = useState(reduce ? OM_STEPS.length : 0);
   const timers = useRef<number[]>([]);
 
   useEffect(() => {
@@ -52,6 +62,20 @@ export function HeroMockups() {
       }
     };
     timers.current.push(window.setTimeout(type, 1100));
+
+    // O&M compiler: advance through steps, hold on "ready", then restart
+    let s = 0;
+    const advance = () => {
+      s += 1;
+      setOmStep(s);
+      if (s < OM_STEPS.length) {
+        timers.current.push(window.setTimeout(advance, 1050));
+      } else {
+        timers.current.push(window.setTimeout(() => { s = 0; setOmStep(0); timers.current.push(window.setTimeout(advance, 900)); }, 3600));
+      }
+    };
+    timers.current.push(window.setTimeout(advance, 900));
+
     return () => { timers.current.forEach(clearTimeout); timers.current = []; };
   }, [reduce]);
 
@@ -127,40 +151,70 @@ export function HeroMockups() {
         <div style={{ height: "3px", width: "70px", margin: "0 auto", borderRadius: "0 0 6px 6px", background: "#AEAEB8" }} />
       </div>
 
-      {/* ── Phone: compliance chatbot ── */}
-      <div className="eba-float-slow" style={{ position: "absolute", bottom: "-18px", left: "0", width: "168px" }}>
+      {/* ── Phone: Compliance Co-Pilot (enlarged) ── */}
+      <div className="eba-float-slow" style={{ position: "absolute", bottom: "-24px", left: "-6px", width: "224px" }}>
         <div style={{
-          background: WHITE, borderRadius: "26px", border: `1px solid ${border}`, padding: "10px 9px 14px",
-          boxShadow: "0 30px 60px -22px rgba(0,0,0,0.32), 0 10px 18px -12px rgba(0,0,0,0.2)",
+          background: WHITE, borderRadius: "30px", border: `1px solid ${border}`, padding: "12px 11px 18px",
+          boxShadow: "0 36px 72px -20px rgba(0,0,0,0.38), 0 12px 22px -12px rgba(0,0,0,0.22)",
         }}>
           {/* notch */}
-          <div style={{ width: "46px", height: "5px", borderRadius: "3px", background: track, margin: "1px auto 10px" }} />
-          <div style={{ display: "flex", alignItems: "center", gap: "7px", padding: "0 4px 10px", borderBottom: `1px solid ${border}`, marginBottom: "10px" }}>
-            <span style={{ width: "20px", height: "20px", borderRadius: "6px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", fontWeight: 700, color: NAVY }}>Compliance Assistant</span>
+          <div style={{ width: "58px", height: "6px", borderRadius: "3px", background: track, margin: "1px auto 12px" }} />
+          <div style={{ display: "flex", alignItems: "center", gap: "9px", padding: "0 5px 12px", borderBottom: `1px solid ${border}`, marginBottom: "12px" }}>
+            <span style={{ width: "26px", height: "26px", borderRadius: "8px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", fontWeight: 800, color: NAVY }}>Compliance Co-Pilot</span>
           </div>
           {/* user bubble */}
-          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "8px" }}>
-            <div style={{ maxWidth: "84%", background: accentSoft, color: NAVY, fontFamily: "'DM Sans', sans-serif", fontSize: "9.5px", lineHeight: 1.4, padding: "7px 9px", borderRadius: "10px 10px 2px 10px" }}>
+          <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "10px" }}>
+            <div style={{ maxWidth: "86%", background: accentSoft, color: NAVY, fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", lineHeight: 1.45, padding: "9px 11px", borderRadius: "12px 12px 3px 12px" }}>
               What RAMS do I need for hot works on an MOD site?
             </div>
           </div>
           {/* answer bubble */}
           <div style={{ display: "flex", marginBottom: "4px" }}>
-            <div style={{ maxWidth: "90%", minHeight: "44px", background: `rgba(${NAVY_RGB},0.05)`, color: sub, fontFamily: "'DM Sans', sans-serif", fontSize: "9.5px", lineHeight: 1.4, padding: "7px 9px", borderRadius: "10px 10px 10px 2px" }}>
+            <div style={{ maxWidth: "92%", minHeight: "58px", background: `rgba(${NAVY_RGB},0.05)`, color: sub, fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", lineHeight: 1.45, padding: "9px 11px", borderRadius: "12px 12px 12px 3px" }}>
               {typed}
-              <span className="eba-caret" style={{ display: "inline-block", width: "5px", height: "11px", background: RUST, marginLeft: "2px", verticalAlign: "-2px" }} />
+              <span className="eba-caret" style={{ display: "inline-block", width: "6px", height: "13px", background: RUST, marginLeft: "2px", verticalAlign: "-2px" }} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* ── Floating "automation" chip ── */}
-      <div className="eba-float-slow" style={{ position: "absolute", top: "-14px", left: "70px", background: WHITE, border: `1px solid ${border}`, borderRadius: "12px", padding: "10px 14px", boxShadow: "0 18px 36px -16px rgba(0,0,0,0.26)", display: "flex", alignItems: "center", gap: "9px" }}>
-        <span style={{ width: "26px", height: "26px", borderRadius: "8px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
-        <div>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", fontWeight: 700, color: NAVY, lineHeight: 1.1 }}>O&amp;M manual generated</div>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "8.5px", color: sub }}>in 2 min · 48 pages</div>
+      {/* ── O&M Manual Compiler (animated) ── */}
+      <div className="eba-float-slow" style={{ position: "absolute", top: "-18px", left: "56px", width: "230px" }}>
+        <div style={{
+          background: WHITE, border: `1px solid ${border}`, borderRadius: "16px", padding: "16px 16px 14px",
+          boxShadow: "0 26px 52px -18px rgba(0,0,0,0.30)",
+        }}>
+          <div style={{ display: "flex", alignItems: "center", gap: "9px", marginBottom: "13px" }}>
+            <span style={{ width: "28px", height: "28px", borderRadius: "8px", background: CTA_PRIMARY_BG, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/></svg>
+            </span>
+            <div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", fontWeight: 800, color: NAVY, lineHeight: 1.1 }}>O&amp;M Manual Compiler</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "9px", color: sub, marginTop: "1px" }}>Project · Riverside M&amp;E fit-out</div>
+            </div>
+          </div>
+          {OM_STEPS.map((label, i) => {
+            const done = omStep > i;
+            const active = omStep === i;
+            const isFinal = i === OM_STEPS.length - 1;
+            return (
+              <div key={label} style={{ display: "flex", alignItems: "center", gap: "9px", padding: "4px 0", opacity: done || active ? 1 : 0.4, transition: "opacity 0.3s" }}>
+                <span style={{
+                  width: "16px", height: "16px", borderRadius: "50%", flexShrink: 0,
+                  display: "inline-flex", alignItems: "center", justifyContent: "center",
+                  background: done ? CTA_PRIMARY_BG : "transparent",
+                  border: done ? "none" : `1.5px solid ${active ? RUST : track}`,
+                }}>
+                  {done && <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>}
+                  {active && <span className="eba-caret" style={{ width: "5px", height: "5px", borderRadius: "50%", background: RUST }} />}
+                </span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: done && isFinal ? 800 : 600, color: done && isFinal ? NAVY : done || active ? NAVY : sub }}>
+                  {done && isFinal ? "Manual ready · 48 pages" : label}
+                </span>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

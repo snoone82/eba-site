@@ -32,6 +32,7 @@ import { LogoMarquee } from "@/components/LogoMarquee";
 import { Testimonials } from "@/components/Testimonials";
 import { DarkShowcase } from "@/components/DarkShowcase";
 import { StatBand } from "@/components/StatBand";
+import { SectionBreaker } from "@/components/SectionBreaker";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
@@ -546,6 +547,14 @@ export default function HomePage() {
 
       {/* ── TESTIMONIALS ── */}
       <Testimonials />
+
+      {/* ── SECTION BREAKER ── */}
+      <SectionBreaker
+        kicker="The EBA difference"
+        title="Built by people who've"
+        accent="actually done it."
+        variant="tint"
+      />
 
       {/* ── THE TRANSFORMATION (Academy) ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
