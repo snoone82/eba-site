@@ -21,7 +21,7 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB, HERO_GLOW,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -116,8 +116,9 @@ export function PrivacyPolicyPage() {
       <LegalNav active="/privacy-policy" />
 
       {/* Hero */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
+      <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
+        {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <p style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
             Legal
           </p>
@@ -277,8 +278,9 @@ export function TermsPage() {
       <LegalNav active="/terms" />
 
       {/* Hero */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
+      <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
+        {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <p style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
             Legal
           </p>
@@ -355,7 +357,7 @@ export function TermsPage() {
 
           <LegalSection title="7. AI tools">
             <p style={bodyText}>
-              Our AI tools (including the O&M Manual Compiler and Compliance Chatbot) are provided as productivity aids. The output of these tools should be reviewed by a competent person before use. EBA does not accept liability for any errors or omissions in AI-generated content.
+              Our AI tools (including the O&M Manual Compiler and Compliance Co-Pilot) are provided as productivity aids. The output of these tools should be reviewed by a competent person before use. EBA does not accept liability for any errors or omissions in AI-generated content.
             </p>
             <p style={bodyText}>
               Subscriptions to AI tools are billed monthly and may be cancelled at any time. Cancellation takes effect at the end of the current billing period.

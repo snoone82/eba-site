@@ -307,7 +307,7 @@ const allTools = [
   {
     label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
-    body: "The Compliance Chatbot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone subscription or as a fully managed white-label deployment for your entire organisation.",
+    body: "The Compliance Co-Pilot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone subscription or as a fully managed white-label deployment for your entire organisation.",
     price: "From £99 / month",
     status: "live",
     href: "/ai-tools/compliance-chatbot",
@@ -755,7 +755,7 @@ export default function AIToolsPage() {
                   Your own branded compliance assistant. Deployed across your entire organisation.
                 </h2>
                 <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
-                  The same AI technology that powers the EBA Compliance Chatbot — trained on your specific HSEQ documentation, branded with your company identity, deployed to every engineer in your business. Implementation: 2 weeks. Cost: a fraction of what a compliance consultancy charges. Capability: your entire safety knowledge base, available to every person on site, 24 hours a day.
+                  The same AI technology that powers the EBA Compliance Co-Pilot — trained on your specific HSEQ documentation, branded with your company identity, deployed to every engineer in your business. Implementation: 2 weeks. Cost: a fraction of what a compliance consultancy charges. Capability: your entire safety knowledge base, available to every person on site, 24 hours a day.
                 </p>
                 <div style={{ display: "flex", gap: "32px", marginBottom: "36px" }}>
                   {[

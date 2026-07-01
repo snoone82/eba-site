@@ -24,6 +24,7 @@ import {
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, NAV_RGB,
+  WHITE, HERO_GLOW, SECTION_GLOW,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -156,8 +157,9 @@ export function OurStoryPage() {
       <NavBar active="/our-story" />
 
       {/* 1. Hero — Why EBA exists */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
+      <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
+        {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Our Story</SectionLabel>
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -679,8 +681,9 @@ export function DocumentsPage() {
       <NavBar active="/documents" />
 
       {/* Hero */}
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
+      <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
+        {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Document Library</SectionLabel>
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -935,8 +938,9 @@ export function ContactPage() {
       <MobileNav transparent={false} />
       <NavBar active="/contact" />
 
-      <section style={{ paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
+      <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "80px", background: DARK_GRADIENT }}>
+        {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Enquiries</SectionLabel>
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -986,7 +990,7 @@ export function ContactPage() {
                       <option value="academy">Academy — Founding Cohort Enrolment</option>
                       <option value="documents">Document Library — Purchase Enquiry</option>
                       <option value="om-manual">AI Tool — O&M Manual Compiler</option>
-                      <option value="chatbot">AI Tool — Compliance Chatbot</option>
+                      <option value="chatbot">AI Tool — Compliance Co-Pilot</option>
                       <option value="white-label">AI Tool — White-Label Deployment</option>
                       <option value="mentorship">Mentorship — Application</option>
                       <option value="other">General Enquiry</option>
@@ -1022,7 +1026,7 @@ export function ContactPage() {
                 {[
                   { label: "Academy enrolment", detail: "Questions regarding the founding cohort, curriculum, pricing, or access. Select Academy in the enquiry type." },
                   { label: "Document purchases", detail: "Individual documents or complete category packs. We will confirm availability and provide a payment link within two working days." },
-                  { label: "AI tool enquiries", detail: "Demonstrations of the O&M Manual Compiler or Compliance Chatbot can be arranged on request. Select the relevant tool." },
+                  { label: "AI tool enquiries", detail: "Demonstrations of the O&M Manual Compiler or Compliance Co-Pilot can be arranged on request. Select the relevant tool." },
                   { label: "White-label deployments", detail: "For organisations requiring a managed compliance chatbot deployment. Please describe your organisation and approximate document volume." },
                   { label: "Mentorship applications", detail: "Places are limited and allocated by application. Please describe your business, turnover range, and the specific challenges you are seeking to address." },
                 ].map(({ label, detail }) => (

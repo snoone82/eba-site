@@ -50,7 +50,7 @@ export const PAGE_SEO = {
     path: "/ai-tools/om-manual",
   },
   complianceChatbot: {
-    title: "Compliance Chatbot — Your Safety Knowledge On Demand",
+    title: "Compliance Co-Pilot — Your Safety Knowledge On Demand",
     description:
       "An AI assistant trained on your company's HSEQ documentation. Your engineers ask, it answers instantly and accurately — in your firm's own voice.",
     path: "/ai-tools/compliance-chatbot",

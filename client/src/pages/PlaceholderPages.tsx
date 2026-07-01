@@ -506,7 +506,7 @@ export function FAQPage() {
     },
     {
       q: "Can I access the AI tools without joining the Academy?",
-      a: "Yes. The O&M Manual Compiler and Compliance Chatbot are available as standalone subscriptions. Details are on the AI Tools page.",
+      a: "Yes. The O&M Manual Compiler and Compliance Co-Pilot are available on a pay-per-use or subscription basis — they are not included with Academy membership. Details are on the AI Tools page.",
     },
     {
       q: "What is your refund policy?",
