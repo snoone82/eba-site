@@ -67,10 +67,10 @@ function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: 
   const isMobile = useIsMobile();
   const hasPortrait = !!portrait && !isMobile;
   return (
-    <section style={{ position: "relative", overflow: "hidden", paddingTop: "128px", paddingBottom: "72px", background: DARK_GRADIENT }}>
+    <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "96px" : "128px", paddingBottom: isMobile ? "56px" : "72px", background: DARK_GRADIENT }}>
       {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />}
       <div style={{
-        position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 40px",
+        position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px",
         display: hasPortrait ? "grid" : "block",
         gridTemplateColumns: hasPortrait ? "1.2fr 0.8fr" : undefined,
         gap: hasPortrait ? "56px" : undefined, alignItems: "center",
@@ -106,7 +106,7 @@ function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: 
 
 function ComingSoonBody({ message }: { message: string }) {
   return (
-    <section style={{ background: OAT, padding: "100px 40px", minHeight: "50vh" }}>
+    <section style={{ background: OAT, padding: "clamp(56px,10vw,100px) clamp(20px,5vw,40px)", minHeight: "50vh" }}>
       <div style={{ maxWidth: "700px", margin: "0 auto" }}>
         <div style={{ borderLeft: `4px solid ${RUST}`, paddingLeft: "28px" }}>
           <p style={{
@@ -185,7 +185,7 @@ function MentorWaitlist() {
   };
 
   return (
-    <section style={{ background: OAT, padding: "80px 40px" }}>
+    <section style={{ background: OAT, padding: "clamp(48px,9vw,80px) clamp(20px,5vw,40px)" }}>
       <div style={{ maxWidth: "880px", margin: "0 auto" }}>
         {/* Honest scarcity line — capacity, not fake history */}
         <span style={{
@@ -335,6 +335,7 @@ function MentorWaitlist() {
 }
 
 export function MentorshipPage() {
+  const isMobile = useIsMobile();
   return (
     <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.mentorship} />
@@ -347,10 +348,10 @@ export function MentorshipPage() {
         portrait="/mark-mentoring.jpg"
         portraitAlt="Mark Poulton leading a group mentorship session"
       />
-      <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: "80px 40px" }}>
+      <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "80px 40px" }}>
         <AmbientOrbs />
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "8px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "20px", marginBottom: "8px" }}>
             {[
               {
                 label: "Group Mentorship",
@@ -582,7 +583,7 @@ export function FAQPage() {
         title="Frequently asked questions."
         sub="If you have a question that isn't answered here, use the contact form and we'll respond within one business day."
       />
-      <section style={{ backgroundColor: IS_VIVID ? CREAM : OAT, backgroundImage: SECTION_GLOW, padding: "80px 40px" }}>
+      <section style={{ backgroundColor: IS_VIVID ? CREAM : OAT, backgroundImage: SECTION_GLOW, padding: "clamp(48px,9vw,80px) clamp(20px,5vw,40px)" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "12px" }}>
           {faqs.map(({ q, a }, i) => {
             const isOpen = openFaq === i;
@@ -637,7 +638,7 @@ export function FAQPage() {
           })}
         </div>
       </section>
-      <section style={{ background: DARK_GRADIENT, padding: "64px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: "clamp(44px,8vw,64px) clamp(20px,5vw,40px)" }}>
         <div style={{ maxWidth: "700px", margin: "0 auto", textAlign: "center" }}>
           <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.8rem", color: ON_DARK, margin: "0 0 16px" }}>
             Still have questions?
