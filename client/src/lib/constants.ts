@@ -241,6 +241,20 @@ export const SECTION_GLOW = IS_LIGHT
   : "none";
 
 /**
+ * A soft, solid-feeling tint used to alternate section backgrounds so pages read
+ * as bands of gentle colour instead of walls of white (the iHasco / Citation
+ * rhythm). Light family gets a faint accent wash; default/noir keep OAT/cream.
+ */
+export const SECTION_TINT = pick(OAT, COLORS.cream, `rgba(${ACCENT.rgb},0.055)`);
+
+/**
+ * Two soft ambient "orb" gradients (accent + a warm counter-tone) for decorating
+ * otherwise-empty areas of light-theme sections. Empty string in default/noir.
+ */
+export const ORB_ACCENT = IS_LIGHT ? `radial-gradient(circle, rgba(${ACCENT.rgb},0.16) 0%, transparent 70%)` : "";
+export const ORB_WARM = IS_LIGHT ? `radial-gradient(circle, rgba(${RUST_RGB},0.12) 0%, transparent 70%)` : "";
+
+/**
  * Keep the CSS custom properties (used by index.css for body/selection/scrollbar)
  * in sync with the active theme. Runs once at load; no-op during SSR/prerender.
  */

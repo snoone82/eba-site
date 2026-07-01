@@ -23,6 +23,7 @@ import AIToolsPage from "@/pages/AIToolsPage";
 import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
+import { AssistantWidget } from "@/components/AssistantWidget";
 
 
 
@@ -63,6 +64,7 @@ function App() {
           <Toaster />
           <ScrollToTop />
           <Router />
+          <AssistantWidget />
           <CookieConsentBanner />
           <Analytics />
           <SpeedInsights />

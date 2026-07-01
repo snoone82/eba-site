@@ -9,8 +9,11 @@ import {
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
-  HERO_GLOW, SECTION_GLOW,
+  HERO_GLOW, SECTION_GLOW, SECTION_TINT, ORB_ACCENT,
 } from "@/lib/constants";
+import { AmbientOrbs } from "@/components/AmbientOrbs";
+import { CtaBanner } from "@/components/CtaBanner";
+import { useIsMobile } from "@/hooks/useMobile";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 import { ChevronDown } from "lucide-react";
@@ -56,23 +59,42 @@ function PlaceholderNav({ active }: { active: string }) {
   );
 }
 
-function PlaceholderHero({ label, title, sub }: { label: string; title: string; sub: string }) {
+function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: string; title: string; sub: string; portrait?: string; portraitAlt?: string }) {
+  const isMobile = useIsMobile();
+  const hasPortrait = !!portrait && !isMobile;
   return (
     <section style={{ position: "relative", overflow: "hidden", paddingTop: "128px", paddingBottom: "72px", background: DARK_GRADIENT }}>
       {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />}
-      <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 40px" }}>
-        <p style={{
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px",
-          letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 20px",
-        }}>{label}</p>
-        <h1 style={{
-          fontFamily: "var(--eba-heading)", fontWeight: 900,
-          fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-          color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
-        }}>{title}</h1>
-        <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
-          {sub}
-        </p>
+      <div style={{
+        position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 40px",
+        display: hasPortrait ? "grid" : "block",
+        gridTemplateColumns: hasPortrait ? "1.2fr 0.8fr" : undefined,
+        gap: hasPortrait ? "56px" : undefined, alignItems: "center",
+      }}>
+        <div>
+          <p style={{
+            fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px",
+            letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 20px",
+          }}>{label}</p>
+          <h1 style={{
+            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
+            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
+          }}>{title}</h1>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
+            {sub}
+          </p>
+        </div>
+        {hasPortrait && (
+          <div className="eba-hero-portrait" style={{ position: "relative" }}>
+            <div style={{ position: "absolute", inset: "-18px", background: ORB_ACCENT || "none", filter: "blur(10px)", borderRadius: "24px", zIndex: 0 }} />
+            <img
+              src={portrait}
+              alt={portraitAlt || ""}
+              style={{ position: "relative", zIndex: 1, width: "100%", borderRadius: "18px", display: "block", boxShadow: "0 40px 80px -40px rgba(0,0,0,0.6)" }}
+            />
+          </div>
+        )}
       </div>
     </section>
   );
@@ -192,8 +214,11 @@ function MentorWaitlist() {
                 ? `3px solid rgba(${RUST_RGB},0.4)`
                 : `3px solid ${OAT}`;
             const monthColor = isFull ? "#fff" : NAVY;
+            // Until the waitlist endpoint is live we cannot honestly say "now
+            // enrolling" — the open intake presents as the next intake to
+            // register interest in, matching the form's "opening soon" state.
             const statusText = isOpen
-              ? "Now enrolling — limited places"
+              ? (formReady ? "Now enrolling — limited places" : "Next intake — register interest")
               : isFull
                 ? "Fully booked"
                 : "Register interest";
@@ -232,7 +257,7 @@ function MentorWaitlist() {
                     fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
                     letterSpacing: "0.04em", padding: "10px 22px", cursor: "pointer",
                   }}>
-                    Register for this intake →
+                    {formReady ? "Register for this intake →" : "Register interest →"}
                   </button>
                 ) : (
                   <button onClick={() => choose(intake.label, false)} style={{
@@ -281,7 +306,7 @@ function MentorWaitlist() {
               <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
                 {MENTOR_INTAKES.map((m) => (
                   <option key={m.label} value={m.label}>
-                    {m.label}{m.status === "full" ? " — waitlist" : m.status === "open" ? " — now enrolling" : ""}
+                    {m.label}{m.status === "full" ? " — waitlist" : m.status === "open" ? (formReady ? " — now enrolling" : " — next intake") : ""}
                   </option>
                 ))}
               </select>
@@ -313,10 +338,13 @@ export function MentorshipPage() {
         label="Mentorship"
         title="Direct access to Mark Poulton."
         sub="For M&E business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application."
+        portrait="/mark-portrait.jpg"
+        portraitAlt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
       />
-      <section style={{ background: CREAM, padding: "80px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", marginBottom: "64px" }}>
+      <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: "80px 40px" }}>
+        <AmbientOrbs />
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "20px", marginBottom: "8px" }}>
             {[
               {
                 label: "Group Mentorship",
@@ -329,8 +357,8 @@ export function MentorshipPage() {
                 price: "Pricing on application",
               },
             ].map(({ label, detail, price }) => (
-              <div key={label} style={{ background: "#fff", borderTop: `3px solid ${RUST}`, padding: "32px 28px" }}>
-                <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.2rem", color: NAVY, margin: "0 0 14px" }}>
+              <div key={label} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "18px", padding: "34px 30px", boxShadow: "0 20px 46px -32px rgba(0,0,0,0.26)" }}>
+                <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.3rem", color: NAVY, margin: "0 0 14px" }}>
                   {label}
                 </h3>
                 <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.75, margin: "0 0 20px" }}>
@@ -345,6 +373,13 @@ export function MentorshipPage() {
         </div>
       </section>
       <MentorWaitlist />
+      <CtaBanner
+        title="Not sure which route fits your business?"
+        sub="Tell us where you are and what you're trying to solve. We'll point you to the right level — Academy, documents, or mentorship with Mark."
+        cta="Talk to us"
+        href="/contact"
+        eventName="cta_banner_mentorship"
+      />
       <PlaceholderFooter />
     </div>
   );
