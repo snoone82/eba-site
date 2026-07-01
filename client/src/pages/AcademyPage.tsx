@@ -241,7 +241,7 @@ export default function AcademyPage() {
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <div>
-              <SectionLabel>{`Founding Cohort — ${PLACES_REMAINING} of ${COHORT_SIZE} Places Remaining`}</SectionLabel>
+              <SectionLabel>{ENROL_READY ? `Founding Cohort — ${PLACES_REMAINING} of ${COHORT_SIZE} Places Remaining` : `Founding Cohort — Enrolment Opens Soon · ${COHORT_SIZE} Places Only`}</SectionLabel>
               <h1 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 900,
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
@@ -250,7 +250,7 @@ export default function AcademyPage() {
                 Everything they never taught you about running an M&E business.
               </h1>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
-                Built from 15 years of running one of the UK's most respected M&E engineering groups — including six UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
+                Built from 25 years of running a principal M&E contracting business — through growth, restructuring and scale. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
@@ -276,7 +276,7 @@ export default function AcademyPage() {
               {[
                 { value: "101", label: "Lessons" },
                 { value: "10", label: "Modules" },
-                { value: "15+ years", label: "Operational M&E experience" },
+                { value: "25+ years", label: "Operational M&E experience" },
                 { value: "Lifetime", label: "Access at founding price" },
               ].map(({ value, label }) => (
                 <div key={label} style={{

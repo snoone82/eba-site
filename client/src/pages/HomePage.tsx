@@ -284,7 +284,7 @@ const outcomes = [
 
 const credentials = [
   "KEYIS Group", "Task Energy", "Pro Defend",
-  "15 Years M&E Operations", "UK & Poland",
+  "25 Years M&E Operations", "UK & Poland",
   "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
