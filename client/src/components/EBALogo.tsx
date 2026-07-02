@@ -9,7 +9,7 @@
  * Renders instantly, no network.
  */
 
-import { ACCENT_HEX } from "@/lib/constants";
+import { ACCENT_HEX, NAV_ON_LIGHT } from "@/lib/constants";
 
 const BRAND = ACCENT_HEX;        // active theme's accent (cobalt blue / KEYIS red / …)
 const WHITE = "#FFFFFF";         // the logo's white is always genuine white (it sits on dark/cobalt)
@@ -33,7 +33,9 @@ export function EBALogo({
   light = false,
   navOnCobalt = false,
 }: EBALogoProps) {
-  const onDark = light || navOnCobalt;
+  // Render light (white) on dark surfaces. Exception: on a light/white nav
+  // (Windsor), the nav-bar logo flips to its dark/accent form so it stays legible.
+  const onDark = (light || navOnCobalt) && !(NAV_ON_LIGHT && navOnCobalt);
   const markFill = onDark ? WHITE : BRAND;   // square fill
   const lineColor = markFill;                // keyline border
   const ebaColor = onDark ? BRAND : WHITE;   // letters inside the mark

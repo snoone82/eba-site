@@ -21,13 +21,14 @@ import {
   WHITE,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
+  IS_VIVID, IS_LIGHT, IS_WINDSOR, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { HeroMockups } from "@/components/HeroMockups";
+import { AppTileCluster } from "@/components/AppTileCluster";
 import { DocFlow } from "@/components/DocFlow";
 import { BentoGrid } from "@/components/BentoGrid";
 import { LogoMarquee } from "@/components/LogoMarquee";
@@ -466,8 +467,8 @@ export default function HomePage() {
             </p>
           </div>
           {IS_LIGHT && !isMobile && (
-            <div aria-hidden="true" style={{ position: "absolute", top: 0, bottom: 0, right: "24px", width: "42%", maxWidth: "430px", display: "flex", alignItems: "center", pointerEvents: "none" }}>
-              <HeroMockups />
+            <div aria-hidden="true" style={{ position: "absolute", top: 0, bottom: 0, right: "24px", width: IS_WINDSOR ? "46%" : "42%", maxWidth: IS_WINDSOR ? "500px" : "430px", display: "flex", alignItems: "center", pointerEvents: "none" }}>
+              {IS_WINDSOR ? <AppTileCluster /> : <HeroMockups />}
             </div>
           )}
         </div>

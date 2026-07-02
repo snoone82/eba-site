@@ -61,10 +61,10 @@ export const COLORS_NOIR = {
  * whole page renders one consistent theme; nothing is persisted, so each
  * `?theme=` URL always renders its own theme for side-by-side comparison.
  */
-export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark";
+export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark" | "windsor";
 
-type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark";
-const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure", "keyis", "keyisdark"];
+type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark" | "windsor";
+const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure", "keyis", "keyisdark", "windsor"];
 
 function detectTheme(): ThemeName {
   // The site currently ships on the "keyis" theme — the KEYIS Group brand
@@ -72,15 +72,15 @@ function detectTheme(): ThemeName {
   // gradient accent) for evaluation. The cobalt indigo→cyan scheme stays
   // available at ?theme=cobalt, the indigo→magenta scheme at ?theme=vivid,
   // and the original editorial navy/rust theme at ?theme=classic.
-  if (typeof window === "undefined") return "keyis";
+  if (typeof window === "undefined") return "windsor";
   try {
     const t = new URLSearchParams(window.location.search).get("theme");
     if (t === "noir") return "noir";
     if (t === "classic") return "default";
     if (t && (LIGHT_THEMES as string[]).includes(t)) return t as ThemeName;
-    return "keyis";
+    return "windsor";
   } catch {
-    return "keyis";
+    return "windsor";
   }
 }
 
@@ -91,6 +91,8 @@ export const IS_LIGHT = (LIGHT_THEMES as string[]).includes(THEME);
 export const IS_KEYIS = THEME === "keyis";
 /** KEYIS dark skin — reversed: near-black surfaces, light text, same red + gradient. */
 export const IS_DARK = THEME === "keyisdark";
+/** Windsor — bright modern-SaaS skin: white nav, blue→violet accent, navy footer. */
+export const IS_WINDSOR = THEME === "windsor";
 /** Back-compat flag: every modern light theme uses the white-site layout. */
 export const IS_VIVID = IS_LIGHT;
 
@@ -165,6 +167,16 @@ const ACCENTS: Record<LightThemeName, Accent> = {
   // decorative accent. Shared by the light `keyis` and dark `keyisdark` skins.
   keyis: KEYIS_ACCENT,
   keyisdark: KEYIS_ACCENT,
+  // Windsor — bright modern-SaaS: indigo→violet accent on a white canvas, colourful
+  // product tiles, navy footer. Clean, current, AI-native (à la Windsor.ai).
+  windsor: {
+    hex: "#4B5AE6", rgb: "75,90,230",
+    grad: "linear-gradient(95deg, #4B5AE6 0%, #8B5CF6 100%)",
+    band: "radial-gradient(60% 120% at 18% 20%, rgba(75,90,230,0.14) 0%, transparent 60%), radial-gradient(55% 110% at 84% 30%, rgba(139,92,246,0.14) 0%, transparent 60%), linear-gradient(90deg, #EEF0FF 0%, #F4EEFF 50%, #EAF6FF 100%)",
+    glow: "radial-gradient(55% 80% at 84% 6%, rgba(75,90,230,0.16) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(139,92,246,0.14) 0%, transparent 60%), radial-gradient(45% 65% at 66% 0%, rgba(6,182,212,0.10) 0%, transparent 55%)",
+    oat: "#F3F4FC",
+    ctaBand: "linear-gradient(120deg, #EEF0FF 0%, #F3EEFF 50%, #EAF6FF 100%)",
+  },
   // Graphite — refined near-monochrome. Restrained, "expensive" B2B.
   graphite: {
     hex: "#27272A", rgb: "39,39,42",
@@ -270,12 +282,17 @@ export const CTA_PRIMARY_BG = IS_DARK ? "#D6304A" : IS_KEYIS ? KEYIS_INK : IS_LI
  * Navigation bar — a filled cobalt (brand-gradient) header with light content on
  * every theme. Centralised so all page navs stay consistent.
  */
-export const NAV_BAR_BG = IS_DARK ? "#0E0E12" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
-export const NAV_LINK = "rgba(255,255,255,0.82)";
-export const NAV_LINK_ACTIVE = "#FFFFFF";
-export const NAV_BORDER = "rgba(255,255,255,0.16)";
-export const NAV_CTA_BG = "#FFFFFF";
-export const NAV_CTA_TEXT = ACCENT.hex;
+/** Windsor uses a clean WHITE nav with dark content (rest keep the filled bar). */
+export const NAV_ON_LIGHT = IS_WINDSOR;
+export const NAV_BAR_BG = IS_WINDSOR ? "rgba(255,255,255,0.92)" : IS_DARK ? "#0E0E12" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
+export const NAV_LINK = IS_WINDSOR ? "rgba(20,21,26,0.72)" : "rgba(255,255,255,0.82)";
+export const NAV_LINK_ACTIVE = IS_WINDSOR ? "#14151A" : "#FFFFFF";
+export const NAV_BORDER = IS_WINDSOR ? "rgba(20,21,26,0.10)" : "rgba(255,255,255,0.16)";
+export const NAV_CTA_BG = IS_WINDSOR ? "#14151A" : "#FFFFFF";
+export const NAV_CTA_TEXT = IS_WINDSOR ? "#FFFFFF" : ACCENT.hex;
+
+/** Footer background — Windsor keeps a deep navy footer even though its nav is white. */
+export const FOOTER_BG = IS_WINDSOR ? "#0E1330" : NAV_BAR_BG;
 
 /**
  * Full-bleed CTA bands that use the rust accent as their background in the

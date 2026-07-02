@@ -8,7 +8,7 @@ import { EBALogo } from "@/components/EBALogo";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
   DARK_GRADIENT, RUST, RUST_RGB, CREAM_RGB, IS_VIVID, COMPANY_REG, isPlaceholder,
-  NAV_BAR_BG, NAV_BORDER,
+  NAV_BAR_BG, NAV_BORDER, FOOTER_BG,
 } from "@/lib/constants";
 
 const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
@@ -48,7 +48,7 @@ export function SiteFooter() {
   const eyebrow = "rgba(255,255,255,0.65)";
 
   return (
-    <footer style={{ background: NAV_BAR_BG, borderTop: `1px solid ${NAV_BORDER}`, padding: isMobile ? "48px 20px 28px" : "64px 40px 36px" }}>
+    <footer style={{ background: FOOTER_BG, borderTop: `1px solid rgba(255,255,255,0.12)`, padding: isMobile ? "48px 20px 28px" : "64px 40px 36px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{
           display: "grid",
@@ -59,7 +59,7 @@ export function SiteFooter() {
           {/* Brand */}
           <div>
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", marginBottom: "18px" }}>
-              <EBALogo height={38} light navOnCobalt />
+              <EBALogo height={38} light />
             </Link>
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: "0 0 8px", maxWidth: "300px", lineHeight: 1.4 }}>
               The operating system for M&amp;E contractors.
