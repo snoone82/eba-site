@@ -61,10 +61,10 @@ export const COLORS_NOIR = {
  * whole page renders one consistent theme; nothing is persisted, so each
  * `?theme=` URL always renders its own theme for side-by-side comparison.
  */
-export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark" | "windsor";
+export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark" | "windsor" | "ciob";
 
-type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark" | "windsor";
-const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure", "keyis", "keyisdark", "windsor"];
+type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark" | "windsor" | "ciob";
+const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure", "keyis", "keyisdark", "windsor", "ciob"];
 
 function detectTheme(): ThemeName {
   // The site currently ships on the "keyis" theme — the KEYIS Group brand
@@ -72,15 +72,15 @@ function detectTheme(): ThemeName {
   // gradient accent) for evaluation. The cobalt indigo→cyan scheme stays
   // available at ?theme=cobalt, the indigo→magenta scheme at ?theme=vivid,
   // and the original editorial navy/rust theme at ?theme=classic.
-  if (typeof window === "undefined") return "windsor";
+  if (typeof window === "undefined") return "ciob";
   try {
     const t = new URLSearchParams(window.location.search).get("theme");
     if (t === "noir") return "noir";
     if (t === "classic") return "default";
     if (t && (LIGHT_THEMES as string[]).includes(t)) return t as ThemeName;
-    return "windsor";
+    return "ciob";
   } catch {
-    return "windsor";
+    return "ciob";
   }
 }
 
@@ -93,6 +93,8 @@ export const IS_KEYIS = THEME === "keyis";
 export const IS_DARK = THEME === "keyisdark";
 /** Windsor — bright modern-SaaS skin: white nav, blue→violet accent, navy footer. */
 export const IS_WINDSOR = THEME === "windsor";
+/** CIOB — institutional academy skin: white nav, navy bands + rust accent, photo-led. */
+export const IS_CIOB = THEME === "ciob";
 /** Back-compat flag: every modern light theme uses the white-site layout. */
 export const IS_VIVID = IS_LIGHT;
 
@@ -177,6 +179,16 @@ const ACCENTS: Record<LightThemeName, Accent> = {
     oat: "#F3F4FC",
     ctaBand: "linear-gradient(120deg, #EEF0FF 0%, #F3EEFF 50%, #EAF6FF 100%)",
   },
+  // CIOB — institutional academy: the original navy + rust editorial identity on a
+  // clean white canvas with genuinely dark navy bands (à la CIOB Academy).
+  ciob: {
+    hex: "#A35139", rgb: "163,81,57",
+    grad: "linear-gradient(95deg, #8E4630 0%, #A35139 60%, #B4664C 100%)",
+    band: "linear-gradient(90deg, #F3EFE7 0%, #EFEAE0 100%)",
+    glow: "radial-gradient(55% 80% at 84% 6%, rgba(163,81,57,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(27,38,50,0.08) 0%, transparent 60%)",
+    oat: "#F1F2F5",
+    ctaBand: "linear-gradient(120deg, #F3EFE7 0%, #EEE9DF 100%)",
+  },
   // Graphite — refined near-monochrome. Restrained, "expensive" B2B.
   graphite: {
     hex: "#27272A", rgb: "39,39,42",
@@ -210,7 +222,9 @@ const LIGHT_PALETTE: Palette = IS_DARK
       oat: "#111116", white: "#1A1A1F", amber: "#FFCF47",
     }
   : {
-      navy: "#000000", cream: IS_KEYIS ? "#EDEBE6" : "#FFFFFF", rust: ACCENT.hex,
+      // CIOB keeps the editorial navy as its ink instead of true black.
+      navy: IS_CIOB ? "#1B2632" : "#000000",
+      cream: IS_KEYIS ? "#EDEBE6" : "#FFFFFF", rust: ACCENT.hex,
       oat: ACCENT.oat, white: "#FFFFFF", amber: IS_KEYIS ? "#FFCF47" : "#FF7A3D",
     };
 
@@ -243,9 +257,10 @@ export const AMBER = COLORS.amber;
  * In the light family, light-on-dark text/borders flip to TRUE BLACK on white,
  * and rust tints become the theme accent.
  */
-export const NAVY_RGB = pick("27,38,50", "26,26,28", IS_DARK ? "244,242,238" : "0,0,0");
+export const NAVY_RGB = pick("27,38,50", "26,26,28", IS_DARK ? "244,242,238" : IS_CIOB ? "27,38,50" : "0,0,0");
 export const RUST_RGB = pick("163,81,57", "142,59,59", ACCENT.rgb);
-export const CREAM_RGB = pick("238,233,223", "244,242,238", IS_DARK ? "244,242,238" : "0,0,0");
+// CIOB's dark sections are genuinely navy, so light-on-dark text stays cream there.
+export const CREAM_RGB = pick("238,233,223", "244,242,238", IS_DARK || IS_CIOB ? "238,233,223" : "0,0,0");
 
 /**
  * Background for large sections that were dark (hero / founder / CTA / footers).
@@ -255,44 +270,48 @@ export const CREAM_RGB = pick("238,233,223", "244,242,238", IS_DARK ? "244,242,2
 export const DARK_GRADIENT = pick(
   NAVY,
   "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)",
-  IS_DARK ? "linear-gradient(180deg, #0C0C0E 0%, #141419 100%)" : "#FFFFFF",
+  IS_DARK
+    ? "linear-gradient(180deg, #0C0C0E 0%, #141419 100%)"
+    : IS_CIOB
+      ? "linear-gradient(180deg, #1B2632 0%, #16202B 100%)"
+      : "#FFFFFF",
 );
 
 /**
  * Primary / muted text that previously sat on dark sections. Light in
  * default + noir (unchanged); TRUE BLACK in the light family so it reads on white.
  */
-export const ON_DARK = pick("#FFFFFF", "#FFFFFF", IS_DARK ? "#FFFFFF" : "#000000");
-export const ON_DARK_RGB = pick("255,255,255", "255,255,255", IS_DARK ? "255,255,255" : "0,0,0");
+export const ON_DARK = pick("#FFFFFF", "#FFFFFF", IS_DARK || IS_CIOB ? "#FFFFFF" : "#000000");
+export const ON_DARK_RGB = pick("255,255,255", "255,255,255", IS_DARK || IS_CIOB ? "255,255,255" : "0,0,0");
 
 /**
  * Genuinely dark CTA buttons (the navy "solid" buttons, distinct from sections).
  * Dark in default/noir; the theme's gradient fill in the light family.
  */
-export const CTA_DARK_BG = IS_DARK ? DARK_INK : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
+export const CTA_DARK_BG = IS_CIOB ? "#1B2632" : IS_DARK ? DARK_INK : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
 
 /**
  * Primary action buttons (hero / nav / form CTAs) that use the rust accent fill
  * in the editorial themes. In the light family they take the gradient fill so the
  * main calls-to-action carry the brand colour.
  */
-export const CTA_PRIMARY_BG = IS_DARK ? "#D6304A" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : RUST;
+export const CTA_PRIMARY_BG = IS_CIOB ? "#A35139" : IS_DARK ? "#D6304A" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : RUST;
 
 /**
  * Navigation bar — a filled cobalt (brand-gradient) header with light content on
  * every theme. Centralised so all page navs stay consistent.
  */
-/** Windsor uses a clean WHITE nav with dark content (rest keep the filled bar). */
-export const NAV_ON_LIGHT = IS_WINDSOR;
-export const NAV_BAR_BG = IS_WINDSOR ? "rgba(255,255,255,0.92)" : IS_DARK ? "#0E0E12" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
-export const NAV_LINK = IS_WINDSOR ? "rgba(20,21,26,0.72)" : "rgba(255,255,255,0.82)";
-export const NAV_LINK_ACTIVE = IS_WINDSOR ? "#14151A" : "#FFFFFF";
-export const NAV_BORDER = IS_WINDSOR ? "rgba(20,21,26,0.10)" : "rgba(255,255,255,0.16)";
-export const NAV_CTA_BG = IS_WINDSOR ? "#14151A" : "#FFFFFF";
-export const NAV_CTA_TEXT = IS_WINDSOR ? "#FFFFFF" : ACCENT.hex;
+/** Windsor + CIOB use a clean WHITE nav with dark content (rest keep the filled bar). */
+export const NAV_ON_LIGHT = IS_WINDSOR || IS_CIOB;
+export const NAV_BAR_BG = NAV_ON_LIGHT ? "rgba(255,255,255,0.94)" : IS_DARK ? "#0E0E12" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
+export const NAV_LINK = NAV_ON_LIGHT ? "rgba(27,38,50,0.72)" : "rgba(255,255,255,0.82)";
+export const NAV_LINK_ACTIVE = NAV_ON_LIGHT ? (IS_CIOB ? "#1B2632" : "#14151A") : "#FFFFFF";
+export const NAV_BORDER = NAV_ON_LIGHT ? "rgba(27,38,50,0.10)" : "rgba(255,255,255,0.16)";
+export const NAV_CTA_BG = IS_CIOB ? "#A35139" : IS_WINDSOR ? "#14151A" : "#FFFFFF";
+export const NAV_CTA_TEXT = NAV_ON_LIGHT ? "#FFFFFF" : ACCENT.hex;
 
-/** Footer background — Windsor keeps a deep navy footer even though its nav is white. */
-export const FOOTER_BG = IS_WINDSOR ? "#0E1330" : NAV_BAR_BG;
+/** Footer background — the white-nav skins keep a deep dark footer. */
+export const FOOTER_BG = IS_CIOB ? "#141C25" : IS_WINDSOR ? "#0E1330" : NAV_BAR_BG;
 
 /**
  * Full-bleed CTA bands that use the rust accent as their background in the

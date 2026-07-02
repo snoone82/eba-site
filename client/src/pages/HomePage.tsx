@@ -27,22 +27,13 @@ import {
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { HeroMockups } from "@/components/HeroMockups";
-import { AppTileCluster } from "@/components/AppTileCluster";
-import { DocFlow } from "@/components/DocFlow";
-import { BentoGrid } from "@/components/BentoGrid";
-import { LogoMarquee } from "@/components/LogoMarquee";
 import { Testimonials } from "@/components/Testimonials";
-import { DarkShowcase } from "@/components/DarkShowcase";
-import { StatBand } from "@/components/StatBand";
-import { SectionBreaker } from "@/components/SectionBreaker";
 import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 
-const HERO_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-hero-bg-kAgYUpyRruMzKNs2oG45FN.webp";
 // Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
 const MARK_IMG = "/mark-1on1.jpg";
 
@@ -362,27 +353,24 @@ export default function HomePage() {
       <MobileNav transparent={true} />
       <HomeNav scrolled={scrolled} />
 
-      {/* ── HERO ── */}
+      {/* ── HERO ── (CIOB style: real photo under a deep navy overlay) */}
       <section style={{
         position: "relative",
-        minHeight: "100vh",
+        minHeight: isMobile ? "auto" : "600px",
         display: "flex",
-        // Top-anchor with padding clearing the fixed nav. flex-end overflowed
-        // upward on short viewports, pushing the badge under the nav logo.
-        alignItems: "flex-start",
-        paddingTop: isMobile ? "96px" : "140px",
-        paddingBottom: isMobile ? "48px" : "72px",
-        background: DARK_GRADIENT, // fallback so a slow/dead hero image degrades to clean navy, not muddy cream
+        alignItems: "center",
+        paddingTop: isMobile ? "108px" : "150px",
+        paddingBottom: isMobile ? "56px" : "84px",
+        background: "#1B2632", // fallback so a slow hero image degrades to clean navy
       }}>
         <div style={{
           position: "absolute", inset: 0,
-          display: IS_VIVID ? "none" : "block",
-          backgroundImage: `url(${HERO_IMG})`,
-          backgroundSize: "cover", backgroundPosition: "center 30%",
+          backgroundImage: `url(/mark-teaching.jpg)`,
+          backgroundSize: "cover", backgroundPosition: "center 24%",
         }} />
-        <div className={IS_VIVID ? "eba-aurora" : undefined} style={{
+        <div style={{
           position: "absolute", inset: 0,
-          background: IS_VIVID ? HERO_GLOW : `linear-gradient(to top, rgba(${NAVY_RGB},0.95) 0%, rgba(${NAVY_RGB},0.6) 50%, rgba(${NAVY_RGB},0.25) 100%)`,
+          background: "linear-gradient(100deg, rgba(20,28,37,0.95) 0%, rgba(27,38,50,0.82) 48%, rgba(27,38,50,0.45) 100%)",
         }} />
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
           {/* Badge */}
@@ -405,36 +393,35 @@ export default function HomePage() {
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{
               fontFamily: "var(--eba-heading)",
-              fontWeight: 900, fontSize: isMobile ? "2.6rem" : "clamp(3rem, 6vw, 5.5rem)",
-              lineHeight: 1.05, letterSpacing: "-0.02em",
-              color: ON_DARK, margin: "0 0 24px",
+              fontWeight: 800, fontSize: isMobile ? "2.4rem" : "clamp(2.8rem, 4.6vw, 4rem)",
+              lineHeight: 1.08, letterSpacing: "-0.015em",
+              color: "#fff", margin: "0 0 22px", maxWidth: "20ch",
             }}>
-              Everything it takes to run a{" "}
-              <span className="eba-grad-text" style={{ WebkitTextFillColor: "transparent" }}>profitable</span>{" "}M&amp;E business.
+              The business programme built for M&amp;E engineering contractors.
             </h1>
-            {/* Feature strip — one horizontal row, left-aligned to the content column */}
+            {/* Stats strip */}
             <div style={{
               display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
-              gap: "6px 0", marginBottom: "28px",
+              gap: "6px 0", marginBottom: "24px",
             }}>
-              {["Learn the business", "Automate the compliance", "Win better work"].map((stat, i) => (
+              {["101 Lessons", "10 Modules", "25 Years M&E Experience", "UK & International", "Lifetime Founding Access"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
-                  color: `rgba(${ON_DARK_RGB},0.75)`,
+                  color: "rgba(255,255,255,0.78)",
                   fontFamily: "'Roboto', sans-serif",
                   fontSize: "12px", fontWeight: 600,
                   letterSpacing: "0.08em", textTransform: "uppercase",
                 }}>
-                  {i > 0 && <span style={{ margin: "0 16px", color: `rgba(${RUST_RGB},0.6)` }}>·</span>}
+                  {i > 0 && <span style={{ margin: "0 14px", color: `rgba(${RUST_RGB},0.9)` }}>·</span>}
                   {stat}
                 </span>
               ))}
             </div>
             <p style={{
-              color: `rgba(${ON_DARK_RGB},0.82)`, fontSize: isMobile ? "16px" : "19px", lineHeight: 1.65,
-              fontWeight: 400, maxWidth: "600px", margin: "0 0 40px",
+              color: "rgba(255,255,255,0.88)", fontSize: isMobile ? "16px" : "18px", lineHeight: 1.65,
+              fontWeight: 400, maxWidth: "600px", margin: "0 0 36px",
             }}>
-              The Academy, four AI tools built for M&amp;E, and a full template library — from the team behind a real M&amp;E group. The business side nobody taught you, plus the software to run it.
+              You know how to deliver the engineering. Nobody taught you how to run the business around it — pricing, contracts, cash flow, compliance, teams, and growth. That changes here.
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
               <a className="eba-shine eba-lift" href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
@@ -448,60 +435,38 @@ export default function HomePage() {
                 {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
               <Link href="/ai-tools" style={{
-                background: "transparent", color: ON_DARK, textDecoration: "none",
+                background: "transparent", color: "#fff", textDecoration: "none",
                 fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
-                padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.5)`,
-                transition: "border-color 0.2s",
+                padding: "14px 32px", border: "1.5px solid rgba(255,255,255,0.55)",
+                transition: "border-color 0.2s", borderRadius: "6px",
                 display: "inline-block",
               }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = ON_DARK; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = `rgba(${ON_DARK_RGB},0.5)`; }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "#fff"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.55)"; }}
                 onClick={() => track("cta_explore_tools_hero")}
               >
                 Explore the AI Tools
               </Link>
             </div>
-            <p style={{ marginTop: "20px", fontFamily: "'Roboto', sans-serif", fontSize: "13px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, display: "inline-flex", alignItems: "center", gap: "8px" }}>
+            <p style={{ marginTop: "20px", fontFamily: "'Roboto', sans-serif", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.78)", display: "inline-flex", alignItems: "center", gap: "8px" }}>
               <span style={{ display: "inline-flex", width: "18px", height: "18px", borderRadius: "5px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
               Free Toolbox Talk Generator — no purchase, just your email.
             </p>
           </div>
-          {IS_LIGHT && !isMobile && (
-            <div aria-hidden="true" style={{ position: "absolute", top: 0, bottom: 0, right: "24px", width: IS_WINDSOR ? "46%" : "42%", maxWidth: IS_WINDSOR ? "500px" : "430px", display: "flex", alignItems: "center", pointerEvents: "none" }}>
-              {IS_WINDSOR ? <AppTileCluster /> : <HeroMockups />}
-            </div>
-          )}
         </div>
       </section>
 
-      {/* ── VALUE STRIP ── (bold statement of what EBA does, on the prism band) */}
-      <div style={{ background: BAND_GRADIENT, padding: isMobile ? (IS_VIVID ? "60px 20px" : "22px 20px") : (IS_VIVID ? "112px 40px" : "26px 40px"), borderBottom: IS_VIVID ? "none" : `1px solid rgba(${NAVY_RGB},0.1)` }}>
-        <div style={{ maxWidth: "1000px", margin: "0 auto", textAlign: IS_VIVID ? "center" : "left" }}>
-          <h2 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 800,
-            fontSize: IS_VIVID ? (isMobile ? "1.6rem" : "clamp(1.8rem, 3.2vw, 2.6rem)") : "1rem",
-            lineHeight: 1.2, letterSpacing: "-0.015em", color: "#0C0C0E", margin: 0,
-            textTransform: IS_VIVID ? "none" : "uppercase",
-          }}>
-            The complete business toolkit for mechanical &amp; electrical contractors.
-          </h2>
-          {IS_VIVID && (
-            <p style={{
-              fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "12px" : "14px",
-              fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
-              color: "rgba(12,12,14,0.62)", margin: "20px 0 0",
-            }}>
-              Training &nbsp;·&nbsp; AI compliance tools &nbsp;·&nbsp; 380 templates &nbsp;·&nbsp; Mentorship
-            </p>
-          )}
-        </div>
+      {/* ── TRUST STRIP ── */}
+      <div style={{ background: BAND_GRADIENT, padding: "15px 20px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)` }}>
+        <p style={{
+          textAlign: "center", margin: 0,
+          fontFamily: "'Roboto', sans-serif", fontSize: "12px",
+          fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
+          color: `rgba(${NAVY_RGB},0.6)`,
+        }}>
+          Trusted by M&E contractors working across advanced manufacturing &nbsp;·&nbsp; healthcare &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres &nbsp;·&nbsp; defence
+        </p>
       </div>
-
-      {/* ── ANIMATED STAT BAND ── */}
-      <StatBand />
-
-      {/* ── DOCUMENTS → STRUCTURED DATA (AI tools demo) ── */}
-      <DocFlow />
 
       {/* ── PAIN POINTS ── */}
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
@@ -548,26 +513,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* ── THE EBA SYSTEM (bento) ── */}
-      <BentoGrid />
-
-      {/* ── AI TOOLS DARK DRAMA SHOWCASE ── */}
-      <DarkShowcase />
-
-      {/* ── CLIENT / SECTOR MARQUEE ── */}
-      <LogoMarquee />
-
-      {/* ── TESTIMONIALS ── */}
-      <Testimonials />
-
-      {/* ── SECTION BREAKER ── */}
-      <SectionBreaker
-        kicker="The EBA difference"
-        title="Built by people who've"
-        accent="actually done it."
-        variant="tint"
-      />
 
       {/* ── THE TRANSFORMATION (Academy) ── */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
@@ -717,6 +662,82 @@ export default function HomePage() {
               }}>
                 Read Mark's full story →
               </Link>
+            </RevealSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TESTIMONIALS ── */}
+      <Testimonials />
+
+      {/* ── AI TOOLS + DOCUMENT LIBRARY (photo cards) ── */}
+      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "24px" }}>
+            <RevealSection>
+              <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderRadius: "12px", overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
+                <Photo src="/site-plantroom.jpg" alt="Engineers working on plant room pipework" ratio="16 / 8" radius="0px" shadow={false} />
+                <div style={{ padding: isMobile ? "24px 22px 28px" : "30px 32px 34px", display: "flex", flexDirection: "column", flex: 1 }}>
+                  <SectionLabel>AI Tools</SectionLabel>
+                  <h2 style={{
+                    fontFamily: "var(--eba-heading)", fontWeight: 800,
+                    fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.015em",
+                    color: NAVY, margin: "0 0 14px", lineHeight: 1.15,
+                  }}>
+                    And the tools that prove we understand your world.
+                  </h2>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.7, margin: "0 0 24px" }}>
+                    Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals generated in hours, RAMS in minutes, COSHH and toolbox talks on demand, and the Compliance Co-Pilot trained on your own company's safety knowledge. Built exclusively for M&E.
+                  </p>
+                  <Link href="/ai-tools" style={{
+                    marginTop: "auto", alignSelf: "flex-start",
+                    color: RUST, textDecoration: "none",
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                    letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+                  }}>
+                    Explore the AI tools →
+                  </Link>
+                </div>
+              </div>
+            </RevealSection>
+            <RevealSection>
+              <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderRadius: "12px", overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
+                <Photo src="/site-fitout.jpg" alt="M&E first-fix installation across a commercial fit-out" ratio="16 / 8" radius="0px" shadow={false} />
+                <div style={{ padding: isMobile ? "24px 22px 28px" : "30px 32px 34px", display: "flex", flexDirection: "column", flex: 1 }}>
+                  <SectionLabel>Document Library</SectionLabel>
+                  <h2 style={{
+                    fontFamily: "var(--eba-heading)", fontWeight: 800,
+                    fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.015em",
+                    color: NAVY, margin: "0 0 14px", lineHeight: 1.15,
+                  }}>
+                    380 documents. 25 years of practice. Ready to use.
+                  </h2>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.7, margin: "0 0 14px" }}>
+                    Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy.
+                  </p>
+                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", margin: "0 0 24px" }}>
+                    {[
+                      "Health, Safety & Environmental",
+                      "Commercial & Financial",
+                      "Technical & Commissioning",
+                      "Human Resources & Employment",
+                      "O&M Manuals + more",
+                    ].map(c => (
+                      <span key={c} style={{ display: "flex", gap: "8px", fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", lineHeight: 1.4, color: `rgba(${NAVY_RGB},0.62)` }}>
+                        <span style={{ color: RUST, fontWeight: 800 }} aria-hidden>·</span>{c}
+                      </span>
+                    ))}
+                  </div>
+                  <Link href="/documents" style={{
+                    marginTop: "auto", alignSelf: "flex-start",
+                    color: RUST, textDecoration: "none",
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                    letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+                  }}>
+                    Browse the library →
+                  </Link>
+                </div>
+              </div>
             </RevealSection>
           </div>
         </div>
@@ -899,15 +920,15 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ── */}
-      <section style={{ background: CTA_BAND_BG, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
+      {/* ── FINAL CTA ── (navy band — ON_DARK text needs a genuinely dark surface here) */}
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
-            The founding cohort is open.
+            {ENROL_READY ? "The founding cohort is open." : "The founding cohort is coming."}
           </h2>
           <p style={{
             color: `rgba(${ON_DARK_RGB},0.85)`, fontSize: "18px", lineHeight: 1.65,
@@ -916,10 +937,10 @@ export default function HomePage() {
             Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. M&E contractors only. Limited places.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-            background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
+            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
             fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "16px",
             padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
-            transition: "opacity 0.2s",
+            transition: "opacity 0.2s", borderRadius: "6px",
           }}
             onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
             onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
