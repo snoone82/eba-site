@@ -12,8 +12,8 @@
 import { WHITE, ACCENT_HEX } from "@/lib/constants";
 
 const BRAND = ACCENT_HEX;        // active theme's accent (cobalt blue / KEYIS red / …)
-const EBA_FONT = "'Arial Black', 'DM Sans', sans-serif";
-const WORD_FONT = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
+const EBA_FONT = "'Arial Black', 'Roboto', sans-serif";
+const WORD_FONT = "'Roboto', 'Helvetica Neue', Arial, sans-serif";
 
 interface EBALogoProps {
   /** Height in px — width scales proportionally */

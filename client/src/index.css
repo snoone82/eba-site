@@ -3,7 +3,7 @@
  * Design System: Editorial Precision
  *
  * Palette: Navy #1B2632 · Rust #A35139 · Cream #EEE9DF · Oat #DDD6C8
- * Type: Playfair Display (headings) + DM Sans (body)
+ * Type: Playfair Display (headings) + Roboto (body)
  */
 
 @import "tailwindcss";
@@ -50,8 +50,12 @@
   --eba-white: #FFFFFF;
   --eba-amber: #FFB162;
 
-  /* Heading typeface — ships as Space Grotesk; ?font=serif reverts to Playfair (see constants.ts). */
-  --eba-heading: 'Space Grotesk', sans-serif;
+  /* Active theme's signature gradient (mirrored from constants at runtime).
+   * Default here = the KEYIS blue→red→yellow→green transition. */
+  --eba-accent-grad: linear-gradient(95deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%);
+
+  /* Heading typeface — Roboto (KEYIS brand headline font, used at Bold/Black weights). */
+  --eba-heading: 'Roboto', system-ui, sans-serif;
 
   /* ─── Semantic tokens (shadcn/ui) ─── */
   --radius: 0.25rem;
@@ -115,14 +119,42 @@
   body {
     background-color: var(--eba-cream);
     color: var(--eba-navy);
-    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'kern' 1, 'liga' 1;
     overflow-x: hidden;
+  }
+
+  /* Signature gradient hairline pinned above everything — a subtle, premium
+     brand thread carried across every page. Sits over the fixed nav. */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--eba-accent-grad);
+    z-index: 200;
+    pointer-events: none;
   }
 
   ::selection {
     background: var(--eba-rust);
     color: #fff;
+  }
+
+  /* Signature gradient applied to text (used sparingly on hero/stat accents). */
+  .eba-grad-text {
+    background: var(--eba-accent-grad);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Thin gradient rule — replaces flat accent bars in a few key places. */
+  .eba-grad-rule {
+    background: var(--eba-accent-grad);
+    border-radius: 2px;
   }
 
   button:not(:disabled),

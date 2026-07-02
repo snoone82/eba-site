@@ -177,7 +177,7 @@ export function AssistantWidget() {
             </span>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "15px", color: onDark }}>EBA Assistant</div>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: IS_LIGHT ? "rgba(255,255,255,0.85)" : `rgba(${CREAM_RGB},0.8)` }}>Ask me anything about EBA</div>
+              <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: IS_LIGHT ? "rgba(255,255,255,0.85)" : `rgba(${CREAM_RGB},0.8)` }}>Ask me anything about EBA</div>
             </div>
             <button onClick={toggle} aria-label="Close assistant" style={{ background: "transparent", border: "none", cursor: "pointer", color: onDark, display: "inline-flex", padding: "4px" }}>
               <X size={18} />
@@ -192,7 +192,7 @@ export function AssistantWidget() {
                   maxWidth: "86%",
                   background: m.role === "user" ? CTA_PRIMARY_BG : CREAM,
                   color: m.role === "user" ? "#fff" : NAVY,
-                  fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.5,
+                  fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", lineHeight: 1.5,
                   padding: "10px 13px",
                   borderRadius: m.role === "user" ? "13px 13px 3px 13px" : "3px 13px 13px 13px",
                 }}>
@@ -216,7 +216,7 @@ export function AssistantWidget() {
                   <button key={s} onClick={() => ask(s)} style={{
                     background: `rgba(${RUST_RGB},0.08)`, color: RUST, border: `1px solid rgba(${RUST_RGB},0.2)`,
                     borderRadius: "18px", padding: "7px 12px", cursor: "pointer",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "12px",
                   }}>{s}</button>
                 ))}
               </div>
@@ -228,7 +228,7 @@ export function AssistantWidget() {
             <input
               value={input} onChange={(e) => setInput(e.target.value)}
               placeholder="Ask a question…" aria-label="Ask a question"
-              style={{ flex: 1, minWidth: 0, background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.16)`, borderRadius: "22px", padding: "11px 15px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", color: NAVY, outline: "none" }}
+              style={{ flex: 1, minWidth: 0, background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.16)`, borderRadius: "22px", padding: "11px 15px", fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", color: NAVY, outline: "none" }}
             />
             <button type="submit" disabled={!input.trim() || thinking} aria-label="Send" style={{
               width: "40px", height: "40px", borderRadius: "50%", border: "none", flexShrink: 0,
@@ -239,7 +239,7 @@ export function AssistantWidget() {
             </button>
           </form>
           <div style={{ flexShrink: 0, textAlign: "center", padding: "0 0 10px" }}>
-            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.5)` }}>
+            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'Roboto', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.5)` }}>
               Prefer to talk to a person? Contact us →
             </button>
           </div>

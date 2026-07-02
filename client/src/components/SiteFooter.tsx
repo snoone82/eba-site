@@ -64,7 +64,7 @@ export function SiteFooter() {
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: "0 0 8px", maxWidth: "300px", lineHeight: 1.4 }}>
               The operating system for M&amp;E contractors.
             </p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: muted, margin: 0, maxWidth: "300px", lineHeight: 1.6 }}>
+            <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: muted, margin: 0, maxWidth: "300px", lineHeight: 1.6 }}>
               The Academy, AI tools and templates — built from 25 years of running a real M&amp;E contracting business.
             </p>
           </div>
@@ -72,12 +72,12 @@ export function SiteFooter() {
           {/* Link columns */}
           {COLUMNS.map(col => (
             <div key={col.heading}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: eyebrow, margin: "0 0 16px" }}>
+              <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: eyebrow, margin: "0 0 16px" }}>
                 {col.heading}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "11px" }}>
                 {col.links.map(l => (
-                  <Link key={l.href} href={l.href} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: linkCol, textDecoration: "none", transition: "color 0.2s" }}
+                  <Link key={l.href} href={l.href} style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14px", color: linkCol, textDecoration: "none", transition: "color 0.2s" }}
                     onMouseEnter={e => (e.currentTarget.style.color = heading)}
                     onMouseLeave={e => (e.currentTarget.style.color = linkCol)}
                   >
@@ -91,10 +91,10 @@ export function SiteFooter() {
 
         {/* Bottom bar */}
         <div style={{ borderTop: `1px solid rgba(255,255,255,0.15)`, paddingTop: "22px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: "8px" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
             © 2026 The Engineering Business Academy.{!isPlaceholder(COMPANY_REG) && <> Company Reg: {COMPANY_REG}.</>} Registered in England &amp; Wales.
           </p>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
             Built for M&amp;E engineering contractors.
           </p>
         </div>

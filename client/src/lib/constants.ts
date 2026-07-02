@@ -178,6 +178,8 @@ const ACCENT: Accent = ACCENTS[(IS_LIGHT ? (THEME as LightThemeName) : "cobalt")
  *  directly (e.g. dark sections) regardless of the light/dark surface tokens. */
 export const ACCENT_HEX = ACCENT.hex;
 export const ACCENT_RGB = ACCENT.rgb;
+/** The active theme's signature gradient — used sparingly as a hairline / accent. */
+export const ACCENT_GRAD = ACCENT.grad;
 
 type Palette = {
   readonly navy: string; readonly cream: string; readonly rust: string;
@@ -323,6 +325,7 @@ if (THEME !== "default" && typeof document !== "undefined") {
   s.setProperty("--eba-oat", COLORS.oat);
   s.setProperty("--eba-white", COLORS.white);
   s.setProperty("--eba-amber", COLORS.amber);
+  s.setProperty("--eba-accent-grad", ACCENT.grad);
 }
 
 /**

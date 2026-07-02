@@ -28,14 +28,14 @@ export function DarkShowcase() {
 
       <div style={{ position: "relative", zIndex: 1, maxWidth: "1160px", margin: "0 auto" }}>
         <div style={{ maxWidth: "780px", marginBottom: isMobile ? "40px" : "60px" }}>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: ACCENT_HEX, marginBottom: "20px" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: ACCENT_HEX, marginBottom: "20px" }}>
             <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: ACCENT_HEX, boxShadow: `0 0 12px ${ACCENT_HEX}` }} /> AI tools · ready now
           </div>
           <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2.3rem" : "clamp(2.6rem, 5vw, 4rem)", lineHeight: 1.04, letterSpacing: "-0.025em", color: "#fff", margin: 0 }}>
             The compliance paperwork,{" "}
             <span style={{ background: CTA_PRIMARY_BG, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>done in minutes.</span>
           </h2>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "15px" : "18px", lineHeight: 1.6, color: "rgba(255,255,255,0.66)", margin: "20px 0 0", maxWidth: "620px" }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "15px" : "18px", lineHeight: 1.6, color: "rgba(255,255,255,0.66)", margin: "20px 0 0", maxWidth: "620px" }}>
             Four tools built for M&amp;E contractors — trained on real practice, priced pay-per-use or subscription. You review every output before it goes out.
           </p>
         </div>
@@ -54,8 +54,8 @@ export function DarkShowcase() {
               </span>
               <div>
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.25rem", color: "#fff", margin: "0 0 6px" }}>{name}</h3>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", lineHeight: 1.55, color: "rgba(255,255,255,0.62)", margin: "0 0 10px" }}>{line}</p>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 700, letterSpacing: "0.02em", color: ACCENT_HEX }}>{price}</span>
+                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14px", lineHeight: 1.55, color: "rgba(255,255,255,0.62)", margin: "0 0 10px" }}>{line}</p>
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 700, letterSpacing: "0.02em", color: ACCENT_HEX }}>{price}</span>
               </div>
             </div>
           ))}
@@ -65,7 +65,7 @@ export function DarkShowcase() {
           <Link href="/ai-tools" style={{
             display: "inline-flex", alignItems: "center", gap: "10px",
             background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 800, fontSize: "15px",
+            fontFamily: "'Roboto', sans-serif", fontWeight: 800, fontSize: "15px",
             padding: "15px 30px", borderRadius: "12px",
             boxShadow: `0 20px 44px -16px rgba(${ACCENT_RGB},0.7)`,
           }}>

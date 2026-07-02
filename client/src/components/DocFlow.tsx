@@ -4,7 +4,7 @@
  * resolves into a clean structured output on the right. CSS-only motion,
  * disabled under prefers-reduced-motion. Theme-aware via the colour tokens.
  */
-import { NAVY, CREAM, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG, SECTION_GLOW } from "@/lib/constants";
+import { NAVY, CREAM, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG, ACCENT_GRAD, SECTION_GLOW } from "@/lib/constants";
 import { useIsMobile } from "@/hooks/useMobile";
 
 const DOCS = [
@@ -32,13 +32,13 @@ export function DocFlow() {
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         {/* heading */}
         <div style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 56px" }}>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "16px" }}>
+          <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "16px" }}>
             · The AI Tools ·
           </div>
           <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
             From site paperwork to structured intelligence.
           </h2>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: 0 }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: 0 }}>
             O&amp;M manuals, RAMS, certificates and CDM files — read, understood and turned
             into structured, searchable output your team can actually use.
           </p>
@@ -56,7 +56,7 @@ export function DocFlow() {
                   transform: `rotate(${d.rot})`, boxShadow: "0 12px 24px -14px rgba(0,0,0,0.25)",
                   padding: "12px 12px",
                 }}>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "8.5px", fontWeight: 700, color: sub, marginBottom: "8px", whiteSpace: "nowrap" }}>{d.label}</div>
+                  <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "8.5px", fontWeight: 700, color: sub, marginBottom: "8px", whiteSpace: "nowrap" }}>{d.label}</div>
                   {[1, 0.8, 0.9, 0.6].map((w, j) => (
                     <div key={j} style={{ height: "5px", width: `${w * 100}%`, background: track, borderRadius: "3px", marginBottom: "5px" }} />
                   ))}
@@ -71,13 +71,20 @@ export function DocFlow() {
           <div style={{ position: "relative", width: isMobile ? "120px" : "150px", height: "120px", flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center" }}>
             <span className="eba-pulse" style={{ position: "absolute", width: "64px", height: "64px", borderRadius: "50%", border: `2px solid rgba(${RUST_RGB},0.5)` }} />
             <span className="eba-pulse eba-pulse-2" style={{ position: "absolute", width: "64px", height: "64px", borderRadius: "50%", border: `2px solid rgba(${RUST_RGB},0.5)` }} />
+            {/* Dark core inside a signature-gradient ring — an AI focal point. */}
             <div style={{
-              position: "relative", width: "60px", height: "60px", borderRadius: "50%", background: CTA_PRIMARY_BG,
+              position: "relative", width: "66px", height: "66px", borderRadius: "50%",
+              background: ACCENT_GRAD, padding: "3px", boxSizing: "border-box",
               display: "flex", alignItems: "center", justifyContent: "center",
               boxShadow: "0 14px 30px -10px rgba(0,0,0,0.35)",
-              fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 800, color: "#fff", letterSpacing: "0.02em",
             }}>
-              AI
+              <div style={{
+                width: "100%", height: "100%", borderRadius: "50%", background: CTA_PRIMARY_BG,
+                display: "flex", alignItems: "center", justifyContent: "center",
+                fontFamily: "'Roboto', sans-serif", fontSize: "13px", fontWeight: 800, color: "#fff", letterSpacing: "0.02em",
+              }}>
+                AI
+              </div>
             </div>
           </div>
 
@@ -85,7 +92,7 @@ export function DocFlow() {
           <div style={{ width: isMobile ? "100%" : "320px", maxWidth: "340px", flexShrink: 0, background: WHITE, border: `1px solid ${border}`, borderRadius: "12px", boxShadow: "0 24px 50px -24px rgba(0,0,0,0.22)", overflow: "hidden" }}>
             <div style={{ display: "flex", alignItems: "center", gap: "8px", padding: "12px 16px", borderBottom: `1px solid ${border}` }}>
               <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: RUST }} />
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY }}>Structured output</span>
+              <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY }}>Structured output</span>
             </div>
             {ROWS.map((r, i) => (
               <div key={r.k} className="eba-row" style={{
@@ -93,8 +100,8 @@ export function DocFlow() {
                 padding: "13px 16px", borderBottom: i < ROWS.length - 1 ? `1px solid ${border}` : "none",
                 animationDelay: `${i * 0.45}s`,
               }}>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", color: sub }}>{r.k}</span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", fontWeight: 700, color: NAVY, background: accentSoft, padding: "3px 9px", borderRadius: "6px" }}>{r.v}</span>
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", color: sub }}>{r.k}</span>
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", fontWeight: 700, color: NAVY, background: accentSoft, padding: "3px 9px", borderRadius: "6px" }}>{r.v}</span>
               </div>
             ))}
           </div>

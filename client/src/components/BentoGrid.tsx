@@ -24,7 +24,7 @@ export function BentoGrid() {
   );
 
   const Arrow = ({ label }: { label: string }) => (
-    <span style={{ marginTop: "auto", paddingTop: "20px", display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", fontWeight: 700, color: RUST }}>
+    <span style={{ marginTop: "auto", paddingTop: "20px", display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'Roboto', sans-serif", fontSize: "13px", fontWeight: 700, color: RUST }}>
       {label} <span aria-hidden>→</span>
     </span>
   );
@@ -40,14 +40,14 @@ export function BentoGrid() {
     margin: "18px 0 8px", lineHeight: 1.12, letterSpacing: "-0.01em",
   };
   const desc: React.CSSProperties = {
-    fontFamily: "'DM Sans', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: sub, margin: 0,
+    fontFamily: "'Roboto', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: sub, margin: 0,
   };
 
   return (
     <section style={{ backgroundColor: WHITE, backgroundImage: SECTION_GLOW, padding: isMobile ? "64px 20px" : "104px 40px" }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
         <div style={{ maxWidth: "720px", marginBottom: "44px" }}>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
+          <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
             · The EBA System ·
           </div>
           <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
@@ -66,24 +66,24 @@ export function BentoGrid() {
             <Icon span><GraduationCap size={26} color="#fff" strokeWidth={1.9} /></Icon>
             <h3 style={{ ...title, fontSize: isMobile ? "1.6rem" : "2rem" }}>The Academy</h3>
             <p style={desc}>The full operating system for running an M&amp;E business — built from real operations, not theory.</p>
-            <span style={{ display: "inline-block", alignSelf: "flex-start", marginTop: "12px", fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.04em", color: RUST, background: accentSoft, padding: "4px 10px", borderRadius: "6px" }}>CPD accreditation in progress</span>
+            <span style={{ display: "inline-block", alignSelf: "flex-start", marginTop: "12px", fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.04em", color: RUST, background: accentSoft, padding: "4px 10px", borderRadius: "6px" }}>CPD accreditation in progress</span>
             <div style={{ display: "flex", gap: "32px", marginTop: "26px" }}>
               <div>
                 <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "2.6rem", lineHeight: 1, color: NAVY }}>
                   <CountUp end={101} />
                 </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: sub, marginTop: "6px" }}>Lessons</div>
+                <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: sub, marginTop: "6px" }}>Lessons</div>
               </div>
               <div>
                 <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "2.6rem", lineHeight: 1, color: NAVY }}>
                   <CountUp end={10} />
                 </div>
-                <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: sub, marginTop: "6px" }}>Modules</div>
+                <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", color: sub, marginTop: "6px" }}>Modules</div>
               </div>
             </div>
             <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginTop: "22px" }}>
               {["Pricing & margin", "Contracts", "Cash flow", "Compliance", "Winning work", "Team & growth"].map(t => (
-                <span key={t} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.72)`, background: `rgba(${NAVY_RGB},0.05)`, border: `1px solid rgba(${NAVY_RGB},0.08)`, padding: "5px 12px", borderRadius: "8px" }}>{t}</span>
+                <span key={t} style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.72)`, background: `rgba(${NAVY_RGB},0.05)`, border: `1px solid rgba(${NAVY_RGB},0.08)`, padding: "5px 12px", borderRadius: "8px" }}>{t}</span>
               ))}
             </div>
             <Arrow label="Explore the curriculum" />
@@ -109,7 +109,7 @@ export function BentoGrid() {
                 "Human Resources & Employment",
                 "O&M Manuals + more",
               ].map(c => (
-                <span key={c} style={{ display: "flex", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.4, color: sub }}>
+                <span key={c} style={{ display: "flex", gap: "8px", fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", lineHeight: 1.4, color: sub }}>
                   <span style={{ color: RUST, fontWeight: 800 }} aria-hidden>·</span>{c}
                 </span>
               ))}

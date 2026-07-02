@@ -44,7 +44,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
       display: "inline-block",
       background: light ? `rgba(${RUST_RGB},0.15)` : RUST,
       color: light ? RUST : "#fff",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
     }}>
@@ -122,7 +122,7 @@ function OmManualDemo() {
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
+          <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
             tools.engineeringbusinessacademy.co.uk/om-manual
           </span>
         </div>
@@ -131,7 +131,7 @@ function OmManualDemo() {
       <div style={{ padding: "32px 32px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
           <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#28c840", animation: "pulse 2s infinite" }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#28c840" }}>
+          <span style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#28c840" }}>
             Live Tool
           </span>
         </div>
@@ -159,14 +159,14 @@ function OmManualDemo() {
                 </div>
                 <div>
                   <p style={{
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "13px",
                     color: i === step ? "#fff" : i < step ? NAVY : `rgba(${NAVY_RGB},0.5)`,
                     margin: "0 0 2px",
                   }}>
                     {s.label}
                   </p>
                   {i === step && (
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${CREAM_RGB},0.7)`, margin: 0 }}>
+                    <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${CREAM_RGB},0.7)`, margin: 0 }}>
                       {s.detail}
                     </p>
                   )}
@@ -176,7 +176,7 @@ function OmManualDemo() {
           ))}
         </div>
         <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${RUST_RGB},0.06)`, borderLeft: `3px solid ${RUST}` }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0 }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0 }}>
             <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → under 30 minutes
           </p>
         </div>
@@ -221,7 +221,7 @@ function ComplianceChatDemo() {
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
+          <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
             tools.engineeringbusinessacademy.co.uk/compliance-chat
           </span>
         </div>
@@ -229,7 +229,7 @@ function ComplianceChatDemo() {
       <div style={{ padding: "24px 24px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
           <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#28c840", animation: "pulse 2s infinite" }} />
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#28c840" }}>
+          <span style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#28c840" }}>
             Trained on your documents
           </span>
         </div>
@@ -254,7 +254,7 @@ function ComplianceChatDemo() {
                 background: msg.role === "user" ? NAVY : OAT,
                 color: msg.role === "user" ? "#fff" : NAVY,
                 padding: "10px 14px",
-                fontFamily: "'DM Sans', sans-serif",
+                fontFamily: "'Roboto', sans-serif",
                 fontSize: "13px", lineHeight: 1.55,
               }}>
                 {msg.text}
@@ -280,7 +280,7 @@ function ComplianceChatDemo() {
         <div style={{ marginTop: "16px", borderTop: `1px solid ${OAT}`, paddingTop: "12px", display: "flex", gap: "8px" }}>
           <div style={{
             flex: 1, background: OAT, padding: "10px 14px",
-            fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.4)`,
+            fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.4)`,
           }}>
             Ask a safety or compliance question...
           </div>
@@ -343,7 +343,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
 
   if (submitted) {
     return (
-      <p style={{ color: `rgba(${RUST_RGB},0.8)`, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
+      <p style={{ color: `rgba(${RUST_RGB},0.8)`, fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
         <Check size={13} strokeWidth={2.5} style={{ flexShrink: 0 }} /> We'll notify you when {toolName} is live.
       </p>
     );
@@ -360,7 +360,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
         style={{
           flex: 1, minWidth: "160px", padding: "9px 12px",
           border: `1px solid rgba(${NAVY_RGB},0.2)`, background: `rgba(${CREAM_RGB},0.6)`,
-          fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: NAVY, outline: "none",
+          fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: NAVY, outline: "none",
         }}
       />
       <button
@@ -368,7 +368,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
         disabled={loading}
         style={{
           background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: "pointer",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
+          fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "11px",
           padding: "9px 16px", letterSpacing: "0.05em", opacity: loading ? 0.7 : 1,
           whiteSpace: "nowrap" as const,
         }}
@@ -404,7 +404,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/ai-tools" ? NAV_LINK_ACTIVE : NAV_LINK,
-                textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+                textDecoration: "none", fontFamily: "'Roboto', sans-serif",
                 fontWeight: href === "/ai-tools" ? 600 : 500, fontSize: "14px",
                 borderBottom: href === "/ai-tools" ? `2px solid ${NAV_LINK_ACTIVE}` : "none",
                 paddingBottom: "2px",
@@ -414,7 +414,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
             ))}
             <span><a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
@@ -442,7 +442,7 @@ export default function AIToolsPage() {
         ? PAGE_SEO.complianceChatbot
         : PAGE_SEO.aiTools;
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...seoMeta} />
       <MobileNav transparent={true} />
 
@@ -461,7 +461,7 @@ export default function AIToolsPage() {
           <div style={{ position: "absolute", inset: 0, opacity: 0.12, backgroundImage: `url(${TOOLS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }} />
         )}
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "18px" }}>
+          <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "18px" }}>
             · AI Tools · Built for M&amp;E ·
           </div>
           <h1 style={{
@@ -480,14 +480,14 @@ export default function AIToolsPage() {
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "44px" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_aitools")} style={{
               background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
               padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
             }}>
               {ENROL_READY ? "Get the tools — join the Academy" : ENROL_PENDING_LABEL}
             </a>
             <a href="#tools" style={{
               background: "transparent", color: ON_DARK, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
               padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.28)`, display: "inline-block",
             }}>
               See the four tools ↓
@@ -516,7 +516,7 @@ export default function AIToolsPage() {
       <section id="tools" style={{ backgroundColor: WHITE, backgroundImage: SECTION_GLOW, padding: isMobile ? "64px 20px" : "104px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 48px" }}>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
+            <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
               · Four tools · Live now ·
             </div>
             <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
@@ -541,10 +541,10 @@ export default function AIToolsPage() {
                   </span>
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.35rem", letterSpacing: "-0.01em", color: NAVY, margin: 0 }}>{name}</h3>
                 </div>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.62)`, margin: "0 0 18px" }}>{outcome}</p>
+                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.62)`, margin: "0 0 18px" }}>{outcome}</p>
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", fontWeight: 700, color: RUST, background: `rgba(${RUST_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.5)` }}>
+                  <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", fontWeight: 700, color: RUST, background: `rgba(${RUST_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.5)` }}>
                     <Check size={13} strokeWidth={2.5} /> You review every output
                   </span>
                 </div>
@@ -612,7 +612,7 @@ export default function AIToolsPage() {
                       {!isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
                           background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                          fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
                         }}
@@ -625,7 +625,7 @@ export default function AIToolsPage() {
                       ) : (
                         <Link href={tool.href} style={{
                           background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                          fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
                         }}
@@ -666,7 +666,7 @@ export default function AIToolsPage() {
                       {!isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
                           background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                          fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
                         }}
@@ -679,7 +679,7 @@ export default function AIToolsPage() {
                       ) : (
                         <Link href={tool.href} style={{
                           background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                          fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
                         }}
@@ -723,7 +723,7 @@ export default function AIToolsPage() {
                   padding: "28px 28px", opacity: 0.8,
                 }}>
                   <span style={{
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 600,
                     fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
                     color: `rgba(${NAVY_RGB},0.4)`, display: "block", marginBottom: "12px",
                   }}>
@@ -787,7 +787,7 @@ export default function AIToolsPage() {
                 </div>
                 <Link href="/contact" style={{
                   background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                  fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
                   Enquire about a deployment →

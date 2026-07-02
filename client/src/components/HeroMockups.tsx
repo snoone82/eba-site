@@ -77,7 +77,7 @@ export function HeroMockups() {
       {["#FF5F57", "#FEBC2E", "#28C840"].map(c => (
         <span key={c} style={{ width: "9px", height: "9px", borderRadius: "50%", background: c, opacity: 0.85 }} />
       ))}
-      <span style={{ marginLeft: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.06em", color: sub, textTransform: "uppercase" }}>{label}</span>
+      <span style={{ marginLeft: "8px", fontFamily: "'Roboto', sans-serif", fontSize: "9.5px", fontWeight: 700, letterSpacing: "0.06em", color: sub, textTransform: "uppercase" }}>{label}</span>
     </div>
   );
 
@@ -89,16 +89,16 @@ export function HeroMockups() {
         {chromeRow("The Academy")}
         <div style={{ display: "flex", minHeight: "196px" }}>
           <div style={{ width: "150px", borderRight: `1px solid ${border}`, padding: "14px 11px" }}>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.12em", color: RUST, marginBottom: "12px" }}>MODULES</div>
+            <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.12em", color: RUST, marginBottom: "12px" }}>MODULES</div>
             {MODULES.map((m, i) => (
               <div key={m} style={{ display: "flex", alignItems: "center", gap: "8px", padding: "7px 8px", marginBottom: "3px", borderRadius: "7px", background: i === 2 ? accentSoft : "transparent" }}>
                 <span style={{ width: "7px", height: "7px", borderRadius: "50%", background: i <= 2 ? RUST : track, flexShrink: 0 }} />
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", fontWeight: i === 2 ? 700 : 500, color: i === 2 ? NAVY : sub, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m}</span>
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "10px", fontWeight: i === 2 ? 700 : 500, color: i === 2 ? NAVY : sub, whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{m}</span>
               </div>
             ))}
           </div>
           <div style={{ flex: 1, padding: "16px 16px 18px" }}>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.1em", color: sub, marginBottom: "7px" }}>LESSON 4 OF 12</div>
+            <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "9px", fontWeight: 700, letterSpacing: "0.1em", color: sub, marginBottom: "7px" }}>LESSON 4 OF 12</div>
             <div style={{ fontFamily: "var(--eba-heading)", fontSize: "18px", fontWeight: 800, color: NAVY, lineHeight: 1.15, marginBottom: "12px" }}>Pricing, Margins &amp; Estimating</div>
             <div style={{ position: "relative", height: "84px", borderRadius: "10px", background: `linear-gradient(135deg, ${accentSoft}, rgba(${NAVY_RGB},0.04))`, border: `1px solid ${border}`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "12px" }}>
               <div style={{ width: "40px", height: "40px", borderRadius: "50%", background: CTA_PRIMARY_BG, display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "0 8px 20px -6px rgba(0,0,0,0.3)" }}>
@@ -108,7 +108,7 @@ export function HeroMockups() {
             <div style={{ height: "6px", borderRadius: "3px", background: track, overflow: "hidden", marginBottom: "7px" }}>
               <div style={{ width: `${progress}%`, height: "100%", background: CTA_PRIMARY_BG, transition: "width 1.4s cubic-bezier(0.22,1,0.36,1)" }} />
             </div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10px", color: sub }}>62% complete · 7 lessons left</div>
+            <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "10px", color: sub }}>62% complete · 7 lessons left</div>
           </div>
         </div>
       </div>
@@ -123,7 +123,7 @@ export function HeroMockups() {
             </span>
             <div>
               <div style={{ fontFamily: "var(--eba-heading)", fontSize: "13.5px", fontWeight: 800, color: NAVY, lineHeight: 1.1 }}>Riverside M&amp;E fit-out</div>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "9.5px", color: sub, marginTop: "1px" }}>Generating O&amp;M manual…</div>
+              <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "9.5px", color: sub, marginTop: "1px" }}>Generating O&amp;M manual…</div>
             </div>
           </div>
           {OM_STEPS.map((label, i) => {
@@ -136,7 +136,7 @@ export function HeroMockups() {
                   {done && <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5"/></svg>}
                   {active && <span className="eba-caret" style={{ width: "5px", height: "5px", borderRadius: "50%", background: RUST }} />}
                 </span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: done && isFinal ? 800 : 600, color: done || active ? NAVY : sub }}>
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: done && isFinal ? 800 : 600, color: done || active ? NAVY : sub }}>
                   {done && isFinal ? "Manual ready · 48 pages" : label}
                 </span>
               </div>
@@ -150,12 +150,12 @@ export function HeroMockups() {
         {chromeRow("Compliance Co-Pilot")}
         <div style={{ padding: "16px 16px 18px" }}>
           <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "10px" }}>
-            <div style={{ maxWidth: "82%", background: accentSoft, color: NAVY, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", lineHeight: 1.45, padding: "9px 12px", borderRadius: "12px 12px 3px 12px" }}>
+            <div style={{ maxWidth: "82%", background: accentSoft, color: NAVY, fontFamily: "'Roboto', sans-serif", fontSize: "12px", lineHeight: 1.45, padding: "9px 12px", borderRadius: "12px 12px 3px 12px" }}>
               What RAMS do I need for hot works on an MOD site?
             </div>
           </div>
           <div style={{ display: "flex" }}>
-            <div style={{ maxWidth: "88%", minHeight: "56px", background: `rgba(${NAVY_RGB},0.05)`, color: sub, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", lineHeight: 1.45, padding: "9px 12px", borderRadius: "12px 12px 12px 3px" }}>
+            <div style={{ maxWidth: "88%", minHeight: "56px", background: `rgba(${NAVY_RGB},0.05)`, color: sub, fontFamily: "'Roboto', sans-serif", fontSize: "12px", lineHeight: 1.45, padding: "9px 12px", borderRadius: "12px 12px 12px 3px" }}>
               {typed}
               <span className="eba-caret" style={{ display: "inline-block", width: "6px", height: "13px", background: RUST, marginLeft: "2px", verticalAlign: "-2px" }} />
             </div>

@@ -46,7 +46,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
       display: "inline-block",
       background: light ? `rgba(${RUST_RGB},0.12)` : RUST,
       color: light ? RUST : "#fff",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Roboto', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
     }}>
@@ -193,7 +193,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/academy" ? NAV_LINK_ACTIVE : NAV_LINK,
-                textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+                textDecoration: "none", fontFamily: "'Roboto', sans-serif",
                 fontWeight: href === "/academy" ? 600 : 500, fontSize: "14px",
                 borderBottom: href === "/academy" ? `2px solid ${NAV_LINK_ACTIVE}` : "none",
                 paddingBottom: "2px",
@@ -203,7 +203,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             ))}
             <span><a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
@@ -225,7 +225,7 @@ export default function AcademyPage() {
 
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.academy} jsonLd={COURSE_JSONLD} />
       <MobileNav transparent={true} />
 
@@ -256,20 +256,20 @@ export default function AcademyPage() {
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
                   background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                  fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
                   {ENROL_READY ? "Join the founding cohort →" : ENROL_PENDING_LABEL}
                 </a>
                 <a href="#curriculum" style={{
                   background: "transparent", color: ON_DARK, textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                  fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.4)`, display: "inline-block",
                 }}>
                   View curriculum
                 </a>
               </div>
-              <p style={{ marginTop: "26px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.6)`, maxWidth: "460px", lineHeight: 1.5 }}>
+              <p style={{ marginTop: "26px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.6)`, maxWidth: "460px", lineHeight: 1.5 }}>
                 More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>The only one built for M&amp;E.</span>
               </p>
             </div>
@@ -367,7 +367,7 @@ export default function AcademyPage() {
                         {mod.dark && (
                           <span style={{
                             marginLeft: "12px", background: RUST, color: "#fff",
-                            fontSize: "9px", fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "9px", fontFamily: "'Roboto', sans-serif",
                             fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                             padding: "2px 8px", verticalAlign: "middle",
                           }}>
@@ -376,7 +376,7 @@ export default function AcademyPage() {
                         )}
                       </h3>
                       <span style={{
-                        fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
+                        fontFamily: "'Roboto', sans-serif", fontSize: "12px",
                         color: mod.dark ? `rgba(${CREAM_RGB},0.45)` : `rgba(${NAVY_RGB},0.45)`,
                         fontWeight: 500,
                       }}>
@@ -409,7 +409,7 @@ export default function AcademyPage() {
                           <span key={j} style={{
                             background: mod.dark ? `rgba(${ON_DARK_RGB},0.08)` : OAT,
                             color: mod.dark ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.7)`,
-                            fontFamily: "'DM Sans', sans-serif", fontSize: "12px", fontWeight: 500,
+                            fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 500,
                             padding: "5px 12px",
                           }}>
                             {topic}
@@ -531,7 +531,7 @@ export default function AcademyPage() {
                     <div style={{
                       position: "absolute", top: "-1px", right: "20px",
                       background: RUST, color: "#fff",
-                      fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+                      fontFamily: "'Roboto', sans-serif", fontWeight: 700,
                       fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "4px 12px",
                     }}>Most Popular</div>
@@ -561,7 +561,7 @@ export default function AcademyPage() {
                     color: popular ? "#fff" : NAVY,
                     border: popular ? "none" : `2px solid ${NAVY}`,
                     textDecoration: "none",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
                     padding: "13px 24px", letterSpacing: "0.04em", display: "block",
                     textAlign: "center",
                   }}>{ENROL_READY ? "Join now →" : ENROL_PENDING_LABEL}</a>
