@@ -339,6 +339,7 @@ if (THEME !== "default" && typeof document !== "undefined") {
   s.setProperty("--eba-white", COLORS.white);
   s.setProperty("--eba-amber", COLORS.amber);
   s.setProperty("--eba-accent-grad", ACCENT.grad);
+  s.setProperty("--eba-accent-rgb", ACCENT.rgb);
 }
 
 /**

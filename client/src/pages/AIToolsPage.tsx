@@ -115,7 +115,7 @@ function OmManualDemo() {
   }, []);
 
   return (
-    <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
+    <div className="eba-grad-border--hover eba-lift" style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
       {/* Mock browser bar */}
       <div style={{ background: OAT, padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
@@ -215,7 +215,7 @@ function ComplianceChatDemo() {
   }, [visibleMessages]);
 
   return (
-    <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
+    <div className="eba-grad-border--hover eba-lift" style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
       <div style={{ background: OAT, padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />

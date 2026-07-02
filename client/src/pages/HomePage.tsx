@@ -409,11 +409,7 @@ export default function HomePage() {
               color: ON_DARK, margin: "0 0 24px",
             }}>
               Everything it takes to run a{" "}
-              <span style={{
-                background: CTA_PRIMARY_BG,
-                WebkitBackgroundClip: "text", backgroundClip: "text",
-                WebkitTextFillColor: "transparent", color: "transparent",
-              }}>profitable</span>{" "}M&amp;E business.
+              <span className="eba-grad-text" style={{ WebkitTextFillColor: "transparent" }}>profitable</span>{" "}M&amp;E business.
             </h1>
             {/* Feature strip — one horizontal row, left-aligned to the content column */}
             <div style={{
@@ -440,15 +436,12 @@ export default function HomePage() {
               The Academy, four AI tools built for M&amp;E, and a full template library — from the team behind a real M&amp;E group. The business side nobody taught you, plus the software to run it.
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-              <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+              <a className="eba-shine eba-lift" href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
                 background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
                 fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", letterSpacing: "0.04em",
-                transition: "opacity 0.2s",
                 display: "inline-block",
               }}
-                onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
-                onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
                 onClick={() => track("cta_join_cohort_hero")}
               >
                 {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}

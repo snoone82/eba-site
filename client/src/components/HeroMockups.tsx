@@ -6,6 +6,7 @@
  */
 import { useEffect, useRef, useState } from "react";
 import { NAVY, WHITE, RUST, RUST_RGB, NAVY_RGB, CTA_PRIMARY_BG } from "@/lib/constants";
+import { useTilt } from "@/hooks/useTilt";
 
 const MODULES = [
   "The Business You Own",
@@ -81,11 +82,13 @@ export function HeroMockups() {
     </div>
   );
 
+  const tiltRef = useTilt<HTMLDivElement>(6);
+
   return (
-    <div style={{ display: "flex", flexDirection: "column", gap: "18px", width: "100%" }}>
+    <div ref={tiltRef} className="eba-tilt" style={{ display: "flex", flexDirection: "column", gap: "18px", width: "100%" }}>
 
       {/* ── Card 1: Academy player ── */}
-      <div className="eba-float-slow" style={cardShell}>
+      <div className="eba-float-slow eba-grad-border" style={cardShell}>
         {chromeRow("The Academy")}
         <div style={{ display: "flex", minHeight: "196px" }}>
           <div style={{ width: "150px", borderRight: `1px solid ${border}`, padding: "14px 11px" }}>
@@ -114,7 +117,7 @@ export function HeroMockups() {
       </div>
 
       {/* ── Card 2: O&M Manual Compiler ── */}
-      <div className="eba-float" style={cardShell}>
+      <div className="eba-float eba-grad-border" style={cardShell}>
         {chromeRow("O&M Manual Compiler")}
         <div style={{ padding: "16px 18px 18px" }}>
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "13px" }}>
@@ -146,7 +149,7 @@ export function HeroMockups() {
       </div>
 
       {/* ── Card 3: Compliance Co-Pilot ── */}
-      <div className="eba-float-slow" style={cardShell}>
+      <div className="eba-float-slow eba-grad-border" style={cardShell}>
         {chromeRow("Compliance Co-Pilot")}
         <div style={{ padding: "16px 16px 18px" }}>
           <div style={{ display: "flex", justifyContent: "flex-end", marginBottom: "10px" }}>

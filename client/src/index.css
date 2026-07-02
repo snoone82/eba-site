@@ -53,6 +53,7 @@
   /* Active theme's signature gradient (mirrored from constants at runtime).
    * Default here = the KEYIS blue→red→yellow→green transition. */
   --eba-accent-grad: linear-gradient(95deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%);
+  --eba-accent-rgb: 233,66,92;
 
   /* Heading typeface — Roboto (KEYIS brand headline font, used at Bold/Black weights). */
   --eba-heading: 'Roboto', system-ui, sans-serif;
@@ -134,6 +135,8 @@
     right: 0;
     height: 3px;
     background: var(--eba-accent-grad);
+    background-size: 200% 100%;
+    animation: eba-drift 14s linear infinite;
     z-index: 200;
     pointer-events: none;
   }
@@ -146,9 +149,11 @@
   /* Signature gradient applied to text (used sparingly on hero/stat accents). */
   .eba-grad-text {
     background: var(--eba-accent-grad);
+    background-size: 200% auto;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
+    animation: eba-drift 9s linear infinite;
   }
 
   /* Thin gradient rule — replaces flat accent bars in a few key places. */
@@ -257,14 +262,98 @@ button, a[href], input, textarea, select { border-radius: 10px; }
   animation: eba-aurora 22s ease-in-out infinite;
 }
 
-/* Bento cards — hover lift */
+/* ── Signature motion layer ─────────────────────────────────────────────── */
+
+/* Slow travelling shimmer for gradient fills (hairline, borders, text). */
+@keyframes eba-drift {
+  0%   { background-position: 0% 50%;   }
+  100% { background-position: 200% 50%; }
+}
+/* Light sweep across a surface on hover. */
+@keyframes eba-shine-kf {
+  0%   { transform: translateX(-160%) skewX(-18deg); }
+  100% { transform: translateX(240%)  skewX(-18deg); }
+}
+
+/* Animated gradient hairline border via a masked ring. Element needs a radius. */
+.eba-grad-border { position: relative; isolation: isolate; }
+.eba-grad-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--eba-accent-grad);
+  background-size: 220% 220%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  animation: eba-drift 8s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+/* Hover-reveal variant — border fades in on hover only. */
+.eba-grad-border--hover::before { opacity: 0; transition: opacity 0.35s ease; }
+.eba-grad-border--hover:hover::before { opacity: 1; }
+
+/* Generic hover lift + depth. */
+.eba-lift { transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s ease; }
+.eba-lift:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 34px 64px -30px rgba(0,0,0,0.55),
+              0 0 46px -14px rgba(var(--eba-accent-rgb), 0.40);
+}
+
+/* Button shine sweep. */
+.eba-shine { position: relative; overflow: hidden; }
+.eba-shine::after {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 55%; height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,0.38), transparent);
+  transform: translateX(-160%) skewX(-18deg);
+  pointer-events: none;
+}
+.eba-shine:hover::after { animation: eba-shine-kf 0.85s ease; }
+
+/* Cursor-driven 3D tilt (JS sets --rx/--ry; falls back flat). */
+.eba-tilt {
+  transform: perspective(1000px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.2s ease-out;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Bento cards — hover lift + accent glow + gradient-border reveal */
 .eba-bento-card {
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  position: relative;
+  transition: transform 0.32s cubic-bezier(0.22,1,0.36,1), box-shadow 0.32s ease;
+}
+.eba-bento-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: var(--eba-accent-grad);
+  background-size: 220% 220%;
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+          mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  animation: eba-drift 8s linear infinite;
+  pointer-events: none;
 }
 .eba-bento-card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 32px 60px -28px rgba(0,0,0,0.30) !important;
+  box-shadow: 0 32px 60px -28px rgba(0,0,0,0.30),
+              0 0 44px -14px rgba(var(--eba-accent-rgb), 0.38) !important;
 }
+.eba-bento-card:hover::before { opacity: 1; }
 
 /* Dark-showcase glass cards — hover glow + lift */
 .eba-glass-card {
@@ -303,7 +392,11 @@ button, a[href], input, textarea, select { border-radius: 10px; }
 @media (prefers-reduced-motion: reduce) {
   .eba-float, .eba-float-slow, .eba-caret, .eba-scanline,
   .eba-pulse, .eba-row, .eba-marquee-track, .eba-aurora,
-  .eba-bento-card, .eba-glass-card { animation: none !important; transition: none !important; }
+  .eba-bento-card, .eba-glass-card,
+  .eba-grad-border::before, .eba-bento-card::before,
+  .eba-grad-text, .eba-lift, .eba-shine::after { animation: none !important; transition: none !important; }
+  body::before { animation: none !important; }
+  .eba-tilt { transform: none !important; }
   .eba-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
 }
 
