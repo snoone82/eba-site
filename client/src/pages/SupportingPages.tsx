@@ -264,8 +264,8 @@ export function OurStoryPage() {
         </div>
       </section>
 
-      {/* 5. CTA */}
-      <section style={{ background: CTA_BAND_BG, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
+      {/* 5. CTA — navy band (ON_DARK text needs a genuinely dark surface) */}
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -276,9 +276,9 @@ export function OurStoryPage() {
           </h2>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "our-story" })} style={{
-              background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
+              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
               fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "15px",
-              padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block",
+              padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
             }}>
               {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a>
@@ -723,13 +723,13 @@ export function DocumentsPage() {
       {/* Academy banner */}
       <div style={{ background: CTA_BAND_BG, padding: isMobile ? "16px 20px" : "16px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "16px" }}>
-          <p style={{ color: ON_DARK, fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
+          <p style={{ color: NAVY, fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
             <strong>Academy members receive the complete document library as part of their membership</strong> — no additional purchase required.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "documents" })} style={{
-            background: IS_VIVID ? CTA_DARK_BG : "#fff", color: IS_VIVID ? "#fff" : RUST, textDecoration: "none",
+            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
             fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "12px",
-            padding: "8px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0,
+            padding: "8px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0, borderRadius: "6px",
           }}>
             {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
           </a>

@@ -289,7 +289,7 @@ export default function AcademyPage() {
                   <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
                     {value}
                   </span>
-                  <span style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "14px", fontWeight: 500 }}>
+                  <span style={{ color: IS_VIVID ? `rgba(${NAVY_RGB},0.7)` : `rgba(${CREAM_RGB},0.7)`, fontSize: "14px", fontWeight: 500 }}>
                     {label}
                   </span>
                 </div>
