@@ -8,7 +8,7 @@ import {
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
+  IS_VIVID, IS_DARK, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
   HERO_GLOW, SECTION_GLOW, SECTION_TINT, ORB_ACCENT,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
@@ -179,7 +179,7 @@ function MentorWaitlist() {
   };
 
   const inputStyle: React.CSSProperties = {
-    width: "100%", background: "#fff", border: `1px solid rgba(${NAVY_RGB},0.2)`,
+    width: "100%", background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.2)`,
     padding: "13px 16px", fontFamily: "'Roboto', sans-serif", fontSize: "14px",
     color: NAVY, outline: "none", boxSizing: "border-box",
   };
@@ -211,7 +211,9 @@ function MentorWaitlist() {
           {MENTOR_INTAKES.map((intake) => {
             const isOpen = intake.status === "open";
             const isFull = intake.status === "full";
-            const rowBg = isOpen ? "#fff" : isFull ? NAVY : "#fff";
+            // Full rows are a dark band (light themes: NAVY; dark skin: a dark panel,
+            // since NAVY flips to light there). Open/soon rows use the card surface.
+            const rowBg = isFull ? (IS_DARK ? "#1A1A1F" : NAVY) : WHITE;
             const borderLeft = isOpen
               ? `3px solid ${RUST}`
               : isFull

@@ -830,7 +830,7 @@ export function DocumentsPage() {
                 {cat.docs.map((doc, i) => (
                   <RevealSection key={i} style={{ transitionDelay: `${i * 30}ms` }}>
                     <div style={{
-                      background: "#fff", borderLeft: `3px solid ${doc.bundle ? RUST : OAT}`,
+                      background: WHITE, borderLeft: `3px solid ${doc.bundle ? RUST : OAT}`,
                       padding: "20px 24px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr auto",
                       gap: isMobile ? "12px" : "24px", alignItems: "start",
                     }}>
@@ -950,7 +950,7 @@ export function ContactPage() {
   };
 
   const inputStyle: React.CSSProperties = {
-    width: "100%", background: "#fff", border: `1px solid ${OAT}`,
+    width: "100%", background: WHITE, border: `1px solid ${OAT}`,
     padding: "12px 16px", fontFamily: "'Roboto', sans-serif", fontSize: "15px",
     color: NAVY, outline: "none", boxSizing: "border-box",
     transition: "border-color 0.2s",
@@ -1079,7 +1079,7 @@ export function ContactPage() {
                   { label: "White-label deployments", detail: "For organisations requiring a managed compliance chatbot deployment. Please describe your organisation and approximate document volume." },
                   { label: "Mentorship applications", detail: "Places are limited and allocated by application. Please describe your business, turnover range, and the specific challenges you are seeking to address." },
                 ].map(({ label, detail }) => (
-                  <div key={label} style={{ background: "#fff", borderLeft: `3px solid ${OAT}`, padding: "20px 20px" }}>
+                  <div key={label} style={{ background: WHITE, borderLeft: `3px solid ${OAT}`, padding: "20px 20px" }}>
                     <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: NAVY, fontSize: "0.95rem", margin: "0 0 6px" }}>{label}</p>
                     <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
                   </div>

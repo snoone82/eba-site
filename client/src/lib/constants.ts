@@ -61,10 +61,10 @@ export const COLORS_NOIR = {
  * whole page renders one consistent theme; nothing is persisted, so each
  * `?theme=` URL always renders its own theme for side-by-side comparison.
  */
-export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis";
+export type ThemeName = "default" | "noir" | "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark";
 
-type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis";
-const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure", "keyis"];
+type LightThemeName = "vivid" | "emerald" | "plum" | "graphite" | "cobalt" | "azure" | "keyis" | "keyisdark";
+const LIGHT_THEMES: LightThemeName[] = ["vivid", "emerald", "plum", "graphite", "cobalt", "azure", "keyis", "keyisdark"];
 
 function detectTheme(): ThemeName {
   // The site currently ships on the "keyis" theme — the KEYIS Group brand
@@ -89,6 +89,8 @@ export const IS_NOIR = THEME === "noir";
 export const IS_LIGHT = (LIGHT_THEMES as string[]).includes(THEME);
 /** KEYIS Group brand theme — black/slate-white grounded, rainbow gradient accent. */
 export const IS_KEYIS = THEME === "keyis";
+/** KEYIS dark skin — reversed: near-black surfaces, light text, same red + gradient. */
+export const IS_DARK = THEME === "keyisdark";
 /** Back-compat flag: every modern light theme uses the white-site layout. */
 export const IS_VIVID = IS_LIGHT;
 
@@ -101,6 +103,15 @@ export const IS_VIVID = IS_LIGHT;
 type Accent = {
   hex: string; rgb: string; grad: string; band: string; glow: string;
   oat: string; ctaBand: string;
+};
+// Shared KEYIS accent (used by both the light `keyis` and dark `keyisdark` skins).
+const KEYIS_ACCENT: Accent = {
+  hex: "#E9425C", rgb: "233,66,92",
+  grad: "linear-gradient(95deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%)",
+  band: "radial-gradient(70% 140% at 16% 22%, rgba(115,202,235,0.50) 0%, transparent 60%), radial-gradient(65% 130% at 84% 78%, rgba(117,185,78,0.44) 0%, transparent 60%), radial-gradient(55% 120% at 50% 50%, rgba(255,207,71,0.42) 0%, transparent 65%), linear-gradient(90deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%)",
+  glow: "radial-gradient(55% 80% at 82% 8%, rgba(233,66,92,0.20) 0%, transparent 60%), radial-gradient(45% 70% at 98% 42%, rgba(115,202,235,0.18) 0%, transparent 60%), radial-gradient(40% 60% at 70% 0%, rgba(255,207,71,0.18) 0%, transparent 55%)",
+  oat: "#E4DFD3",
+  ctaBand: "linear-gradient(120deg, #EAF6FB 0%, #FDEEF0 50%, #EFF7E9 100%)",
 };
 const ACCENTS: Record<LightThemeName, Accent> = {
   // Electric indigo → fuchsia. AI-native, energetic.
@@ -151,17 +162,9 @@ const ACCENTS: Record<LightThemeName, Accent> = {
   },
   // KEYIS Group — grounded in black + slate white, with the brand's vibrant
   // "sustainable transition" gradient (blue → red → yellow → green) as the
-  // decorative accent. Nav / footer / primary buttons render near-black (see
-  // the IS_KEYIS overrides below); the gradient carries the vibrancy on bands,
-  // the hero glow and CTA washes. Accent hex = the KEYIS red.
-  keyis: {
-    hex: "#E9425C", rgb: "233,66,92",
-    grad: "linear-gradient(95deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%)",
-    band: "radial-gradient(70% 140% at 16% 22%, rgba(115,202,235,0.50) 0%, transparent 60%), radial-gradient(65% 130% at 84% 78%, rgba(117,185,78,0.44) 0%, transparent 60%), radial-gradient(55% 120% at 50% 50%, rgba(255,207,71,0.42) 0%, transparent 65%), linear-gradient(90deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%)",
-    glow: "radial-gradient(55% 80% at 82% 8%, rgba(233,66,92,0.20) 0%, transparent 60%), radial-gradient(45% 70% at 98% 42%, rgba(115,202,235,0.18) 0%, transparent 60%), radial-gradient(40% 60% at 70% 0%, rgba(255,207,71,0.18) 0%, transparent 55%)",
-    oat: "#E4DFD3",
-    ctaBand: "linear-gradient(120deg, #EAF6FB 0%, #FDEEF0 50%, #EFF7E9 100%)",
-  },
+  // decorative accent. Shared by the light `keyis` and dark `keyisdark` skins.
+  keyis: KEYIS_ACCENT,
+  keyisdark: KEYIS_ACCENT,
   // Graphite — refined near-monochrome. Restrained, "expensive" B2B.
   graphite: {
     hex: "#27272A", rgb: "39,39,42",
@@ -187,14 +190,22 @@ type Palette = {
 };
 
 /** Shared base for every light theme: white surfaces, true-black text, per-theme accent.
- *  KEYIS grounds the page in its warm slate-white instead of pure white. */
-const LIGHT_PALETTE: Palette = {
-  navy: "#000000", cream: IS_KEYIS ? "#EDEBE6" : "#FFFFFF", rust: ACCENT.hex,
-  oat: ACCENT.oat, white: "#FFFFFF", amber: IS_KEYIS ? "#FFCF47" : "#FF7A3D",
-};
+ *  KEYIS grounds the page in its warm slate-white; the dark skin reverses to near-black
+ *  surfaces with slate-white text (cards/alt-surfaces become dark panels). */
+const LIGHT_PALETTE: Palette = IS_DARK
+  ? {
+      navy: "#F4F2EE", cream: "#0C0C0E", rust: ACCENT.hex,
+      oat: "#111116", white: "#1A1A1F", amber: "#FFCF47",
+    }
+  : {
+      navy: "#000000", cream: IS_KEYIS ? "#EDEBE6" : "#FFFFFF", rust: ACCENT.hex,
+      oat: ACCENT.oat, white: "#FFFFFF", amber: IS_KEYIS ? "#FFCF47" : "#FF7A3D",
+    };
 
-/** KEYIS grounds nav / footer / primary buttons in near-black. */
+/** KEYIS grounds nav / footer / primary buttons in near-black (light skin). */
 const KEYIS_INK = "#141414";
+/** Dark-skin surfaces. */
+const DARK_INK = "#0A0A0C";
 
 /** Pick a value for the active theme group: (default, noir, light-family). */
 function pick<T>(d: T, noir: T, light: T): T {
@@ -220,9 +231,9 @@ export const AMBER = COLORS.amber;
  * In the light family, light-on-dark text/borders flip to TRUE BLACK on white,
  * and rust tints become the theme accent.
  */
-export const NAVY_RGB = pick("27,38,50", "26,26,28", "0,0,0");
+export const NAVY_RGB = pick("27,38,50", "26,26,28", IS_DARK ? "244,242,238" : "0,0,0");
 export const RUST_RGB = pick("163,81,57", "142,59,59", ACCENT.rgb);
-export const CREAM_RGB = pick("238,233,223", "244,242,238", "0,0,0");
+export const CREAM_RGB = pick("238,233,223", "244,242,238", IS_DARK ? "244,242,238" : "0,0,0");
 
 /**
  * Background for large sections that were dark (hero / founder / CTA / footers).
@@ -232,34 +243,34 @@ export const CREAM_RGB = pick("238,233,223", "244,242,238", "0,0,0");
 export const DARK_GRADIENT = pick(
   NAVY,
   "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)",
-  "#FFFFFF",
+  IS_DARK ? "linear-gradient(180deg, #0C0C0E 0%, #141419 100%)" : "#FFFFFF",
 );
 
 /**
  * Primary / muted text that previously sat on dark sections. Light in
  * default + noir (unchanged); TRUE BLACK in the light family so it reads on white.
  */
-export const ON_DARK = pick("#FFFFFF", "#FFFFFF", "#000000");
-export const ON_DARK_RGB = pick("255,255,255", "255,255,255", "0,0,0");
+export const ON_DARK = pick("#FFFFFF", "#FFFFFF", IS_DARK ? "#FFFFFF" : "#000000");
+export const ON_DARK_RGB = pick("255,255,255", "255,255,255", IS_DARK ? "255,255,255" : "0,0,0");
 
 /**
  * Genuinely dark CTA buttons (the navy "solid" buttons, distinct from sections).
  * Dark in default/noir; the theme's gradient fill in the light family.
  */
-export const CTA_DARK_BG = IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
+export const CTA_DARK_BG = IS_DARK ? DARK_INK : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
 
 /**
  * Primary action buttons (hero / nav / form CTAs) that use the rust accent fill
  * in the editorial themes. In the light family they take the gradient fill so the
  * main calls-to-action carry the brand colour.
  */
-export const CTA_PRIMARY_BG = IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : RUST;
+export const CTA_PRIMARY_BG = IS_DARK ? "#D6304A" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : RUST;
 
 /**
  * Navigation bar — a filled cobalt (brand-gradient) header with light content on
  * every theme. Centralised so all page navs stay consistent.
  */
-export const NAV_BAR_BG = IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
+export const NAV_BAR_BG = IS_DARK ? "#0E0E12" : IS_KEYIS ? KEYIS_INK : IS_LIGHT ? ACCENT.grad : DARK_GRADIENT;
 export const NAV_LINK = "rgba(255,255,255,0.82)";
 export const NAV_LINK_ACTIVE = "#FFFFFF";
 export const NAV_BORDER = "rgba(255,255,255,0.16)";
@@ -271,10 +282,12 @@ export const NAV_CTA_TEXT = ACCENT.hex;
  * editorial themes. In the light family they become a soft pastel wash with dark
  * text + a gradient button on top.
  */
-export const CTA_BAND_BG = IS_LIGHT ? ACCENT.ctaBand : RUST;
+export const CTA_BAND_BG = IS_DARK
+  ? "linear-gradient(120deg, #141419 0%, #0E0E12 100%)"
+  : IS_LIGHT ? ACCENT.ctaBand : RUST;
 
-/** Translucent nav-bar scrim. Dark in default/noir; white in the light family. */
-export const NAV_RGB = pick("27,38,50", "26,26,28", "255,255,255");
+/** Translucent nav-bar scrim. Dark in default/noir + dark skin; white in the light family. */
+export const NAV_RGB = pick("27,38,50", "26,26,28", IS_DARK ? "12,12,18" : "255,255,255");
 
 /**
  * Soft coloured glow layered over the white hero (light family only) — an

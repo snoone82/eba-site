@@ -18,6 +18,7 @@ import {
   NAVY,
   CREAM,
   OAT,
+  WHITE,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
@@ -175,7 +176,7 @@ function LeadMagnetForm() {
         required
         style={{
           padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: "#fff", fontFamily: "'Roboto', sans-serif", fontSize: "14px",
+          background: WHITE, fontFamily: "'Roboto', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
       />
@@ -187,7 +188,7 @@ function LeadMagnetForm() {
         required
         style={{
           padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: "#fff", fontFamily: "'Roboto', sans-serif", fontSize: "14px",
+          background: WHITE, fontFamily: "'Roboto', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
       />
@@ -485,7 +486,7 @@ export default function HomePage() {
           <h2 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: IS_VIVID ? (isMobile ? "1.6rem" : "clamp(1.8rem, 3.2vw, 2.6rem)") : "1rem",
-            lineHeight: 1.2, letterSpacing: "-0.015em", color: NAVY, margin: 0,
+            lineHeight: 1.2, letterSpacing: "-0.015em", color: "#0C0C0E", margin: 0,
             textTransform: IS_VIVID ? "none" : "uppercase",
           }}>
             The complete business toolkit for mechanical &amp; electrical contractors.
@@ -494,7 +495,7 @@ export default function HomePage() {
             <p style={{
               fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "12px" : "14px",
               fontWeight: 700, letterSpacing: "0.14em", textTransform: "uppercase",
-              color: `rgba(${NAVY_RGB},0.62)`, margin: "20px 0 0",
+              color: "rgba(12,12,14,0.62)", margin: "20px 0 0",
             }}>
               Training &nbsp;·&nbsp; AI compliance tools &nbsp;·&nbsp; 380 templates &nbsp;·&nbsp; Mentorship
             </p>

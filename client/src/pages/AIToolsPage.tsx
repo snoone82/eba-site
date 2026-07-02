@@ -115,7 +115,7 @@ function OmManualDemo() {
   }, []);
 
   return (
-    <div style={{ background: "#fff", border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
+    <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
       {/* Mock browser bar */}
       <div style={{ background: OAT, padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
@@ -215,7 +215,7 @@ function ComplianceChatDemo() {
   }, [visibleMessages]);
 
   return (
-    <div style={{ background: "#fff", border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
+    <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "16px", overflow: "hidden", boxShadow: "0 24px 50px -28px rgba(0,0,0,0.22)" }}>
       <div style={{ background: OAT, padding: "10px 16px", display: "flex", alignItems: "center", gap: "8px" }}>
         {["#ff5f57", "#febc2e", "#28c840"].map(c => (
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
@@ -719,7 +719,7 @@ export default function AIToolsPage() {
             {comingSoon.map((tool, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: "#fff", borderTop: `3px solid rgba(${RUST_RGB},0.25)`,
+                  background: WHITE, borderTop: `3px solid rgba(${RUST_RGB},0.25)`,
                   padding: "28px 28px", opacity: 0.8,
                 }}>
                   <span style={{
