@@ -9,9 +9,9 @@
  * Renders instantly, no network.
  */
 
-import { WHITE } from "@/lib/constants";
+import { WHITE, ACCENT_HEX } from "@/lib/constants";
 
-const BLUE = "#2563EB";          // brand blue — matches the cobalt gradient's mid-tone
+const BRAND = ACCENT_HEX;        // active theme's accent (cobalt blue / KEYIS red / …)
 const EBA_FONT = "'Arial Black', 'DM Sans', sans-serif";
 const WORD_FONT = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
 
@@ -33,10 +33,10 @@ export function EBALogo({
   navOnCobalt = false,
 }: EBALogoProps) {
   const onDark = light || navOnCobalt;
-  const markFill = onDark ? WHITE : BLUE;   // square fill
-  const lineColor = markFill;               // keyline border
-  const ebaColor = onDark ? BLUE : WHITE;   // letters inside the mark
-  const wordColor = onDark ? WHITE : BLUE;  // wordmark
+  const markFill = onDark ? WHITE : BRAND;   // square fill
+  const lineColor = markFill;                // keyline border
+  const ebaColor = onDark ? BRAND : WHITE;   // letters inside the mark
+  const wordColor = onDark ? WHITE : BRAND;  // wordmark
   const ruleColor = wordColor;
 
   const S = height;               // square side
