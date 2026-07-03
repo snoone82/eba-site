@@ -290,8 +290,15 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
         borderBottom: `1px solid ${NAV_BORDER}`,
         boxShadow: scrolled ? "0 12px 30px -18px rgba(0,0,0,0.5)" : "none",
         transition: "box-shadow 0.3s ease",
-        padding: "0 40px",
+        padding: 0,
       }}>
+        {/* Announce bar */}
+        <div style={{ background: CTA_BAND_BG, textAlign: "center", padding: "8px 40px" }}>
+          <Link href="/contact" style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
+            For organisations interested in in-house training for your team, <strong style={{ color: NAVY }}>get in touch →</strong>
+          </Link>
+        </div>
+        <div style={{ padding: "0 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
             <EBALogo height={42} light navOnCobalt />
@@ -332,6 +339,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               </a>
             </span>
           </div>
+        </div>
         </div>
     </nav>
   );
@@ -467,6 +475,96 @@ export default function HomePage() {
           Trusted by M&E contractors working across advanced manufacturing &nbsp;·&nbsp; healthcare &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres &nbsp;·&nbsp; defence
         </p>
       </div>
+
+      {/* ── WHAT'S INSIDE (photo-card grid) ── */}
+      <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "72px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.9rem, 3.4vw, 2.5rem)", letterSpacing: "-0.015em",
+              color: NAVY, margin: "0 0 8px", lineHeight: 1.1,
+            }}>
+              What's inside
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "16px", margin: "0 0 34px" }}>
+              Everything an M&E business owner needs, in one place.
+            </p>
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "20px" }}>
+            {[
+              { href: "/academy", img: "/mark-teaching.jpg", focus: "center 24%", tag: "The Academy", tagBg: NAVY, title: "The full M&E operating system", cat: "Video-led · pricing, contracts, cash flow, growth", meta: "101 lessons · 10 modules" },
+              { href: "/ai-tools", img: "/site-plantroom.jpg", focus: "center", tag: "AI Tools", tagBg: RUST, title: "Four tools built for M&E", cat: "O&M Compiler · RAMS · Compliance Co-Pilot · COSHH", meta: "Ready now" },
+              { href: "/documents", img: "/site-fitout.jpg", focus: "center", tag: "Documents", tagBg: NAVY, title: "380 documents. 25 years of practice.", cat: "Every template, form, checklist and procedure — Word & PDF", meta: "Included with membership" },
+              { href: "/mentorship", img: "/mark-1on1.jpg", focus: "center 22%", tag: "Mentorship", tagBg: RUST, title: "Direct access to Mark Poulton", cat: "Group & 1:1 · application-only", meta: "Limited intakes" },
+              { href: "/ai-tools", img: "/site-rooftop.jpg", focus: "center", tag: "Free Tool", tagBg: "#6B7B68", title: "Toolbox Talk Generator", cat: "Site-ready talk in a minute — no purchase", meta: "Free" },
+              { href: "/our-story", img: "/mark-seated.jpg", focus: "center 20%", tag: "Our Story", tagBg: NAVY, title: "Built by people who've done it", cat: "25 years running a real M&E business", meta: "Meet the founder" },
+            ].map(card => (
+              <Link key={card.title} href={card.href} className="eba-bento-card" style={{
+                background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderRadius: "12px",
+                overflow: "hidden", textDecoration: "none", color: NAVY, display: "flex", flexDirection: "column",
+              }}>
+                <Photo src={card.img} alt="" ratio="16 / 8" radius="0px" shadow={false} focus={card.focus} />
+                <div style={{ padding: "16px 18px 20px", display: "flex", flexDirection: "column", flex: 1 }}>
+                  <span style={{
+                    alignSelf: "flex-start", background: card.tagBg, color: "#fff",
+                    fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "10.5px",
+                    letterSpacing: "0.08em", textTransform: "uppercase",
+                    padding: "4px 9px", borderRadius: "4px", marginBottom: "10px",
+                  }}>{card.tag}</span>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "17.5px", lineHeight: 1.25, margin: "0 0 7px" }}>{card.title}</h3>
+                  <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, lineHeight: 1.5, margin: "0 0 14px" }}>{card.cat}</p>
+                  <span style={{ marginTop: "auto", fontFamily: "'Roboto', sans-serif", fontWeight: 800, fontSize: "15px", color: RUST }}>{card.meta}</span>
+                </div>
+              </Link>
+            ))}
+          </div>
+          <Link href="/academy" style={{
+            display: "inline-block", marginTop: "26px",
+            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+            fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
+            padding: "12px 24px", borderRadius: "6px", letterSpacing: "0.02em",
+          }}>
+            Explore the curriculum →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── THE AI TOOLS (three-card band) ── */}
+      <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "72px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.9rem, 3.4vw, 2.5rem)", letterSpacing: "-0.015em",
+              color: NAVY, margin: "0 0 8px", lineHeight: 1.12, maxWidth: "700px",
+            }}>
+              And the tools that prove we understand your world.
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "15.5px", margin: "0 0 30px", maxWidth: "760px", lineHeight: 1.6 }}>
+              Because we run M&E businesses too, we've built the tools we always wanted — exclusively for M&E. You review every output.
+            </p>
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "18px" }}>
+            {[
+              { label: "O&M Compiler", title: "Client-ready O&M manuals in minutes", body: "CDM-structured, from your project data.", price: "Pay per manual · from £99", border: NAVY },
+              { label: "RAMS Generator", title: "Compliant risk assessments, fast", body: "Formatted method statements, no specialist needed.", price: "Subscription · from £49/mo", border: RUST },
+              { label: "Compliance Co-Pilot", title: "Your HSEQ knowledge, on demand", body: "Answered instantly, cited to source.", price: "Subscription · from £99/mo", border: RUST },
+            ].map(t => (
+              <Link key={t.label} href="/ai-tools" className="eba-bento-card" style={{
+                background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderTop: `4px solid ${t.border}`,
+                borderRadius: "8px", padding: "20px 22px", textDecoration: "none", color: NAVY,
+                display: "flex", flexDirection: "column",
+              }}>
+                <span style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "10.5px", letterSpacing: "0.1em", textTransform: "uppercase", color: t.border === NAVY ? NAVY : RUST, marginBottom: "10px" }}>{t.label}</span>
+                <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "17px", lineHeight: 1.3, margin: "0 0 7px" }}>{t.title}</h3>
+                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, lineHeight: 1.55, margin: "0 0 16px" }}>{t.body}</p>
+                <span style={{ marginTop: "auto", fontFamily: "'Roboto', sans-serif", fontWeight: 800, fontSize: "14.5px", color: NAVY }}>{t.price}</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* ── PAIN POINTS ── */}
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
@@ -669,79 +767,6 @@ export default function HomePage() {
 
       {/* ── TESTIMONIALS ── */}
       <Testimonials />
-
-      {/* ── AI TOOLS + DOCUMENT LIBRARY (photo cards) ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "24px" }}>
-            <RevealSection>
-              <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderRadius: "12px", overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
-                <Photo src="/site-plantroom.jpg" alt="Engineers working on plant room pipework" ratio="16 / 8" radius="0px" shadow={false} />
-                <div style={{ padding: isMobile ? "24px 22px 28px" : "30px 32px 34px", display: "flex", flexDirection: "column", flex: 1 }}>
-                  <SectionLabel>AI Tools</SectionLabel>
-                  <h2 style={{
-                    fontFamily: "var(--eba-heading)", fontWeight: 800,
-                    fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.015em",
-                    color: NAVY, margin: "0 0 14px", lineHeight: 1.15,
-                  }}>
-                    And the tools that prove we understand your world.
-                  </h2>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.7, margin: "0 0 24px" }}>
-                    Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals generated in hours, RAMS in minutes, COSHH and toolbox talks on demand, and the Compliance Co-Pilot trained on your own company's safety knowledge. Built exclusively for M&E.
-                  </p>
-                  <Link href="/ai-tools" style={{
-                    marginTop: "auto", alignSelf: "flex-start",
-                    color: RUST, textDecoration: "none",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                    letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-                  }}>
-                    Explore the AI tools →
-                  </Link>
-                </div>
-              </div>
-            </RevealSection>
-            <RevealSection>
-              <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderRadius: "12px", overflow: "hidden", height: "100%", display: "flex", flexDirection: "column" }}>
-                <Photo src="/site-fitout.jpg" alt="M&E first-fix installation across a commercial fit-out" ratio="16 / 8" radius="0px" shadow={false} />
-                <div style={{ padding: isMobile ? "24px 22px 28px" : "30px 32px 34px", display: "flex", flexDirection: "column", flex: 1 }}>
-                  <SectionLabel>Document Library</SectionLabel>
-                  <h2 style={{
-                    fontFamily: "var(--eba-heading)", fontWeight: 800,
-                    fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.015em",
-                    color: NAVY, margin: "0 0 14px", lineHeight: 1.15,
-                  }}>
-                    380 documents. 25 years of practice. Ready to use.
-                  </h2>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.7, margin: "0 0 14px" }}>
-                    Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy.
-                  </p>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "6px", margin: "0 0 24px" }}>
-                    {[
-                      "Health, Safety & Environmental",
-                      "Commercial & Financial",
-                      "Technical & Commissioning",
-                      "Human Resources & Employment",
-                      "O&M Manuals + more",
-                    ].map(c => (
-                      <span key={c} style={{ display: "flex", gap: "8px", fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", lineHeight: 1.4, color: `rgba(${NAVY_RGB},0.62)` }}>
-                        <span style={{ color: RUST, fontWeight: 800 }} aria-hidden>·</span>{c}
-                      </span>
-                    ))}
-                  </div>
-                  <Link href="/documents" style={{
-                    marginTop: "auto", alignSelf: "flex-start",
-                    color: RUST, textDecoration: "none",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                    letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-                  }}>
-                    Browse the library →
-                  </Link>
-                </div>
-              </div>
-            </RevealSection>
-          </div>
-        </div>
-      </section>
 
       {/* ── DECARBONISATION OPPORTUNITY ── */}
       <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
