@@ -248,10 +248,10 @@ export default function AcademyPage() {
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
                 color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05,
               }}>
-                Everything they never taught you about running an M&E business.
+                You learned to run jobs. This is where you learn to run the business.
               </h1>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
-                Built from 25 years of running a principal M&E contracting business — through growth, restructuring and scale. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
+                Built from 15 years of running one of the UK's most respected M&E engineering groups — including multiple UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
@@ -277,7 +277,7 @@ export default function AcademyPage() {
               {[
                 { value: "101", label: "Lessons" },
                 { value: "10", label: "Modules" },
-                { value: "25+ years", label: "Operational M&E experience" },
+                { value: "15+ years", label: "M&E group experience" },
                 { value: "Lifetime", label: "Access at founding price" },
               ].map(({ value, label }) => (
                 <div key={label} style={{

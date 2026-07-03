@@ -278,7 +278,7 @@ const outcomes = [
 ];
 
 const credentials = [
-  "25 Years M&E Operations", "Mechanical & Electrical",
+  "15+ Years M&E Group Experience", "UK & Poland",
   "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
@@ -412,7 +412,7 @@ export default function HomePage() {
               display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
               gap: "6px 0", marginBottom: "24px",
             }}>
-              {["101 Lessons", "10 Modules", "25 Years M&E Experience", "UK & International", "Lifetime Founding Access"].map((stat, i) => (
+              {["101 Lessons", "10 Modules", "15+ Years M&E Group Experience", "UK & International"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.78)",
@@ -563,38 +563,52 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── THE AI TOOLS (three-card band) ── */}
-      <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "72px 40px" }}>
+      {/* ── AI TOOLS + DOCUMENT LIBRARY (compressed blocks) ── */}
+      <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "76px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <RevealSection>
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(1.9rem, 3.4vw, 2.5rem)", letterSpacing: "-0.015em",
-              color: NAVY, margin: "0 0 8px", lineHeight: 1.12, maxWidth: "700px",
-            }}>
-              And the tools that prove we understand your world.
-            </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "15.5px", margin: "0 0 30px", maxWidth: "760px", lineHeight: 1.6 }}>
-              Because we run M&E businesses too, we've built the tools we always wanted — exclusively for M&E. You review every output.
-            </p>
-          </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "18px" }}>
-            {[
-              { label: "O&M Compiler", title: "Client-ready O&M manuals in minutes", body: "CDM-structured, from your project data.", price: "Pay per manual · from £99", border: NAVY },
-              { label: "RAMS Generator", title: "Compliant risk assessments, fast", body: "Formatted method statements, no specialist needed.", price: "Subscription · from £49/mo", border: RUST },
-              { label: "Compliance Co-Pilot", title: "Your HSEQ knowledge, on demand", body: "Answered instantly, cited to source.", price: "Subscription · from £99/mo", border: RUST },
-            ].map(t => (
-              <Link key={t.label} href="/ai-tools" className="eba-bento-card" style={{
-                background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderTop: `4px solid ${t.border}`,
-                borderRadius: "8px", padding: "20px 22px", textDecoration: "none", color: NAVY,
-                display: "flex", flexDirection: "column",
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "72px", alignItems: "start" }}>
+            <RevealSection>
+              <SectionLabel>AI Tools</SectionLabel>
+              <RustRule />
+              <h2 style={{
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
+                fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
+                color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
               }}>
-                <span style={{ fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "10.5px", letterSpacing: "0.1em", textTransform: "uppercase", color: t.border === NAVY ? NAVY : RUST, marginBottom: "10px" }}>{t.label}</span>
-                <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "17px", lineHeight: 1.3, margin: "0 0 7px" }}>{t.title}</h3>
-                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, lineHeight: 1.55, margin: "0 0 16px" }}>{t.body}</p>
-                <span style={{ marginTop: "auto", fontFamily: "'Roboto', sans-serif", fontWeight: 800, fontSize: "14.5px", color: NAVY }}>{t.price}</span>
+                And the tools that prove we understand your world.
+              </h2>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
+                Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals delivered in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge. Built exclusively for M&E — and included with Academy membership.
+              </p>
+              <Link href="/ai-tools" style={{
+                color: RUST, textDecoration: "none",
+                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+              }}>
+                Explore the AI tools →
               </Link>
-            ))}
+            </RevealSection>
+            <RevealSection>
+              <SectionLabel>Document Library</SectionLabel>
+              <RustRule />
+              <h2 style={{
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
+                fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
+                color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
+              }}>
+                380 documents. 25 years of practice. Ready to use.
+              </h2>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
+                Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
+              </p>
+              <Link href="/documents" style={{
+                color: RUST, textDecoration: "none",
+                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+              }}>
+                Browse the library →
+              </Link>
+            </RevealSection>
           </div>
         </div>
       </section>
@@ -735,7 +749,7 @@ export default function HomePage() {
               <div style={{ position: "relative" }}>
                 <Photo
                   src={MARK_IMG}
-                  alt="Mark Poulton — Founder, Engineering Business Academy"
+                  alt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
                   ratio="4 / 5"
                   focus="center 22%"
                 />
@@ -748,7 +762,7 @@ export default function HomePage() {
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
-                    Mark Poulton — Founder, Engineering Business Academy
+                    Mark Poulton — CEO, KEYIS Group
                   </p>
                 </div>
               </div>
@@ -764,7 +778,7 @@ export default function HomePage() {
                 Taught by someone who has actually done it — including the hard version.
               </h2>
               <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                Over 25 years, Mark Poulton grew a single M&E firm into a substantial contracting operation. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
+                Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
@@ -819,7 +833,7 @@ export default function HomePage() {
                 The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Module 8 of the EBA curriculum covers how to identify, position for, and win this work — net zero treated as a growth strategy, not just a compliance cost.
+                Module 8 of the Academy covers how to identify, position for, and win this work — net zero, not treated as a bolt-on, but as a growth strategy, not just a compliance cost.
               </p>
               <Link href="/academy" style={{
                 color: RUST, textDecoration: "none",
@@ -841,29 +855,20 @@ export default function HomePage() {
                 The £2bn market your clients are already asking you about.
               </h2>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                Fire protection and security is a common adjacent service request in M&E contracting. The market is worth £2 billion and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
+                Fire protection and security is a common adjacent service request in M&E contracting. The market is worth £2bn and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on business diversification — a real case study in how to identify, enter, and build a profitable adjacent service line.
+                Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on how to identify, enter, and build a profitable adjacent service line.
               </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                {/* Outbound link points to /academy to keep visitors on the funnel. */}
-                <Link href="/academy" style={{
-                  color: RUST, textDecoration: "none",
-                  fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                  letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
-                  paddingBottom: "2px", display: "inline-block",
-                }}>
-                  See how Mark built it →
-                </Link>
-                <Link href="/academy" style={{
-                  color: `rgba(${NAVY_RGB},0.55)`, textDecoration: "none",
-                  fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: "13px",
-                  letterSpacing: "0.03em",
-                }}>
-                  View the diversification module →
-                </Link>
-              </div>
+              {/* Kept on the funnel — no outbound link to pro-defend.com. */}
+              <Link href="/our-story" style={{
+                color: RUST, textDecoration: "none",
+                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
+                paddingBottom: "2px", display: "inline-block",
+              }}>
+                See how Mark did it →
+              </Link>
             </RevealSection>
           </div>
         </div>
@@ -889,7 +894,7 @@ export default function HomePage() {
                 {[
                   { value: "£997–£1,997", label: "Setup fee" },
                   { value: "£149–£349", label: "Per month" },
-                  { value: "vs £25k+", label: "Agency alternative" },
+                  { value: "vs £25k+", label: "A fraction of agency-build cost" },
                 ].map(({ value, label }) => (
                   <div key={label}>
                     <p style={{
@@ -986,7 +991,7 @@ export default function HomePage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
-            {ENROL_READY ? "The founding cohort is open." : "The founding cohort is coming."}
+            The founding cohort is open.
           </h2>
           <p style={{
             color: `rgba(${ON_DARK_RGB},0.85)`, fontSize: "18px", lineHeight: 1.65,
