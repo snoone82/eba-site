@@ -464,16 +464,49 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TRUST STRIP ── */}
-      <div style={{ background: BAND_GRADIENT, padding: "15px 20px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)` }}>
+      {/* ── FEATURE STRIP ── one centred row, three distinct claims (numbers stay in the hero) */}
+      <div style={{ background: CREAM, padding: isMobile ? "18px 20px" : "20px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
         <p style={{
           textAlign: "center", margin: 0,
-          fontFamily: "'Roboto', sans-serif", fontSize: "12px",
-          fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},0.6)`,
+          fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
+          fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
+          color: `rgba(${NAVY_RGB},0.55)`,
         }}>
-          Trusted by M&E contractors working across advanced manufacturing &nbsp;·&nbsp; healthcare &nbsp;·&nbsp; clean energy &nbsp;·&nbsp; data centres &nbsp;·&nbsp; defence
+          Built for M&E business owners
+          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
+          Drawn from real operations
+          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
+          Lifetime founding access
         </p>
+      </div>
+
+      {/* ── TRUSTED-BY BANNER ── big animated sector marquee */}
+      <div style={{ background: BAND_GRADIENT, padding: isMobile ? "26px 0 30px" : "36px 0 42px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)`, overflow: "hidden" }}>
+        <p style={{
+          textAlign: "center", margin: isMobile ? "0 20px 18px" : "0 40px 22px",
+          fontFamily: "'Roboto', sans-serif", fontSize: "12px",
+          fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase",
+          color: `rgba(${NAVY_RGB},0.55)`,
+        }}>
+          Trusted by M&E contractors working across
+        </p>
+        <div className="eba-marquee-mask" style={{ overflow: "hidden" }}>
+          <div className="eba-marquee-track" style={{ display: "flex", alignItems: "center", width: "max-content" }}>
+            {[0, 1].map(dup => (
+              ["MOD / MOJ estates", "nuclear", "aerospace", "advanced manufacturing", "clean energy", "data centres"].map(sector => (
+                <span key={`${dup}-${sector}`} style={{
+                  display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
+                  fontFamily: "var(--eba-heading)", fontWeight: 800,
+                  fontSize: isMobile ? "1.5rem" : "clamp(1.8rem, 3vw, 2.4rem)",
+                  letterSpacing: "-0.01em", color: NAVY,
+                }}>
+                  <span aria-hidden style={{ color: RUST, margin: isMobile ? "0 18px" : "0 30px", fontWeight: 800 }}>·</span>
+                  {sector}
+                </span>
+              ))
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* ── WHAT'S INSIDE (photo-card grid) ── */}

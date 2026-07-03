@@ -40,7 +40,7 @@ export const PAGE_SEO = {
   aiTools: {
     title: "AI Tools for M&E Contractors — O&M, RAMS & Compliance",
     description:
-      "AI tools built only for M&E: O&M manuals in hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
+      "AI tools built specifically for M&E: O&M manuals in hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
     path: "/ai-tools",
   },
   omManual: {

@@ -270,7 +270,7 @@ export default function AcademyPage() {
                 </a>
               </div>
               <p style={{ marginTop: "26px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.6)`, maxWidth: "460px", lineHeight: 1.5 }}>
-                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>The only one built for M&amp;E.</span>
+                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>Built specifically for M&amp;E.</span>
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
