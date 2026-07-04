@@ -56,6 +56,12 @@ function Router() {
   );
 }
 
+// react-snap prerenders with a "ReactSnap" user agent. The Vercel analytics
+// scripts (/_vercel/*.js) don't exist during prerender and would 404 → HTML →
+// script parse errors that fail the static build, so skip them while snapping.
+const IS_PRERENDER =
+  typeof navigator !== "undefined" && navigator.userAgent.includes("ReactSnap");
+
 function App() {
   return (
     <ErrorBoundary>
@@ -66,8 +72,8 @@ function App() {
           <Router />
           <AssistantWidget />
           <CookieConsentBanner />
-          <Analytics />
-          <SpeedInsights />
+          {!IS_PRERENDER && <Analytics />}
+          {!IS_PRERENDER && <SpeedInsights />}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

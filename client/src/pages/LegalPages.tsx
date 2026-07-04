@@ -131,7 +131,7 @@ export function PrivacyPolicyPage() {
           }}>
             Privacy Policy
           </h1>
-          <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "14px", margin: 0 }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "14px", margin: 0 }}>
             Last updated: June 2026
           </p>
         </div>
@@ -146,7 +146,7 @@ export function PrivacyPolicyPage() {
               The Engineering Business Academy ("EBA", "we", "us", "our") is operated by The Engineering Business Academy Ltd. Company registration number: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}. Registered in England and Wales.
             </p>
             <p style={bodyText}>
-              We are the data controller for the personal data you provide to us when using this website and our services. If you have any questions about this policy, please contact us at <a href="mailto:hello@engineeringbusinessacademy.co.uk" style={{ color: RUST }}>hello@engineeringbusinessacademy.co.uk</a>.
+              We are the data controller for the personal data you provide to us when using this website and our services. If you have any questions about this policy, please contact us at <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>.
             </p>
           </LegalSection>
 
@@ -244,7 +244,7 @@ export function PrivacyPolicyPage() {
               <li style={{ marginBottom: "8px" }}>Rights relating to automated decision-making and profiling</li>
             </ul>
             <p style={bodyText}>
-              To exercise any of these rights, please contact us at <a href="mailto:hello@engineeringbusinessacademy.co.uk" style={{ color: RUST }}>hello@engineeringbusinessacademy.co.uk</a>. You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" style={{ color: RUST }}>ico.org.uk</a>.
+              To exercise any of these rights, please contact us at <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>. You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" style={{ color: RUST }}>ico.org.uk</a>.
             </p>
           </LegalSection>
 
@@ -256,7 +256,7 @@ export function PrivacyPolicyPage() {
 
           <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid ${RUST}`, marginTop: "40px" }}>
             <p style={{ ...bodyText, margin: 0 }}>
-              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@engineeringbusinessacademy.co.uk" style={{ color: RUST }}>hello@engineeringbusinessacademy.co.uk</a>
+              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>
             </p>
           </div>
         </div>
@@ -293,7 +293,7 @@ export function TermsPage() {
           }}>
             Terms &amp; Conditions
           </h1>
-          <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "14px", margin: 0 }}>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "14px", margin: 0 }}>
             Last updated: June 2026
           </p>
         </div>
@@ -305,7 +305,7 @@ export function TermsPage() {
 
           <LegalSection title="1. About these terms">
             <p style={bodyText}>
-              These Terms and Conditions ("Terms") govern your use of the website at engineeringbusinessacademy.co.uk and any products or services offered by The Engineering Business Academy Ltd ("EBA", "we", "us", "our"), Company Reg: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}, registered in England and Wales.
+              These Terms and Conditions ("Terms") govern your use of the website at eba.academy and any products or services offered by The Engineering Business Academy Ltd ("EBA", "we", "us", "our"), Company Reg: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}, registered in England and Wales.
             </p>
             <p style={bodyText}>
               By accessing our website or purchasing our products, you agree to be bound by these Terms. Please read them carefully. If you do not agree, you must not use our website or services.
@@ -389,7 +389,7 @@ export function TermsPage() {
 
           <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid ${RUST}`, marginTop: "40px" }}>
             <p style={{ ...bodyText, margin: 0 }}>
-              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@engineeringbusinessacademy.co.uk" style={{ color: RUST }}>hello@engineeringbusinessacademy.co.uk</a>
+              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>
             </p>
           </div>
         </div>
@@ -409,7 +409,9 @@ export function CookieConsentBanner() {
   const [accepted, setAccepted] = useState(false);
 
   useEffect(() => {
-    const consent = localStorage.getItem("eba-cookie-consent");
+    // Guarded for prerender + private modes where storage throws.
+    let consent: string | null = null;
+    try { consent = window.localStorage.getItem("eba-cookie-consent"); } catch { /* ignore */ }
     if (!consent) {
       // Small delay so it doesn't flash on first paint
       const t = setTimeout(() => setVisible(true), 1200);
@@ -418,13 +420,13 @@ export function CookieConsentBanner() {
   }, []);
 
   const handleAccept = () => {
-    localStorage.setItem("eba-cookie-consent", "accepted");
+    try { window.localStorage.setItem("eba-cookie-consent", "accepted"); } catch { /* ignore */ }
     setAccepted(true);
     setTimeout(() => setVisible(false), 300);
   };
 
   const handleDecline = () => {
-    localStorage.setItem("eba-cookie-consent", "declined");
+    try { window.localStorage.setItem("eba-cookie-consent", "declined"); } catch { /* ignore */ }
     setAccepted(true);
     setTimeout(() => setVisible(false), 300);
   };

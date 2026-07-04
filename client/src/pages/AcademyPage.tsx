@@ -269,7 +269,7 @@ export default function AcademyPage() {
                   View curriculum
                 </a>
               </div>
-              <p style={{ marginTop: "26px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.6)`, maxWidth: "460px", lineHeight: 1.5 }}>
+              <p style={{ marginTop: "26px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
                 More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>Built specifically for M&amp;E.</span>
               </p>
             </div>
@@ -324,7 +324,7 @@ export default function AcademyPage() {
             }}>
               What you will learn.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
               Ten modules covering every dimension of running an M&E business. Click any module to see the lesson breakdown.
             </p>
           </RevealSection>
@@ -450,7 +450,7 @@ export default function AcademyPage() {
                 }}>
                   <Icon size={26} strokeWidth={1.75} color={RUST} style={{ display: "block", marginBottom: "14px" }} />
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.1rem", color: ON_DARK, margin: "0 0 10px" }}>{label}</h3>
-                  <p style={{ color: `rgba(${CREAM_RGB},0.65)`, fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
                 </div>
               ))}
             </div>
@@ -478,7 +478,7 @@ export default function AcademyPage() {
             }}>
               Founding price. Locked in for life.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
               Founding members pay a permanently lower price than every member who joins after the cohort closes. There is no catch. It is how we reward the people who back EBA before the public launch.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "2px", marginBottom: "40px" }}>
@@ -568,7 +568,7 @@ export default function AcademyPage() {
                 </div>
               ))}
             </div>
-            <p style={{ color: `rgba(${NAVY_RGB},0.5)`, fontSize: "13px", textAlign: "center" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", textAlign: "center" }}>
               14-day money-back guarantee. If it isn't right for your business, you pay nothing.
             </p>
           </RevealSection>

@@ -35,7 +35,7 @@ export function DarkShowcase() {
             The compliance paperwork,{" "}
             <span style={{ background: CTA_PRIMARY_BG, WebkitBackgroundClip: "text", backgroundClip: "text", WebkitTextFillColor: "transparent", color: "transparent" }}>done in minutes.</span>
           </h2>
-          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "15px" : "18px", lineHeight: 1.6, color: "rgba(255,255,255,0.66)", margin: "20px 0 0", maxWidth: "620px" }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "15px" : "18px", lineHeight: 1.6, color: "rgba(255,255,255,0.72)", margin: "20px 0 0", maxWidth: "620px" }}>
             Four tools built for M&amp;E contractors — trained on real practice, priced pay-per-use or subscription. You review every output before it goes out.
           </p>
         </div>
@@ -54,7 +54,7 @@ export function DarkShowcase() {
               </span>
               <div>
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.25rem", color: "#fff", margin: "0 0 6px" }}>{name}</h3>
-                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14px", lineHeight: 1.55, color: "rgba(255,255,255,0.62)", margin: "0 0 10px" }}>{line}</p>
+                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14px", lineHeight: 1.55, color: "rgba(255,255,255,0.72)", margin: "0 0 10px" }}>{line}</p>
                 <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 700, letterSpacing: "0.02em", color: ACCENT_HEX }}>{price}</span>
               </div>
             </div>

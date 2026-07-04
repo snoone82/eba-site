@@ -73,7 +73,7 @@ export function Testimonials() {
                 }}>{initials}</span>
                 <span>
                   <span style={{ display: "block", fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "15px", color: NAVY }}>{name}</span>
-                  <span style={{ display: "block", fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.55)`, marginTop: "2px" }}>{role}</span>
+                  <span style={{ display: "block", fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, marginTop: "2px" }}>{role}</span>
                 </span>
               </figcaption>
             </figure>

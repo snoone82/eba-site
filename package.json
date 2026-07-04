@@ -47,7 +47,9 @@
     "waitFor": 1000,
     "puppeteerArgs": [
       "--no-sandbox",
-      "--disable-setuid-sandbox"
+      "--disable-setuid-sandbox",
+      "--proxy-server=direct://",
+      "--proxy-bypass-list=*"
     ],
     "include": [
       "/",
@@ -65,6 +67,9 @@
       "/privacy-policy",
       "/terms",
       "/404"
-    ]
+    ],
+    "puppeteerExecutablePath": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
+    "concurrency": 16,
+    "skipThirdPartyRequests": true
   }
 }

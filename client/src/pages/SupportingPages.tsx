@@ -713,7 +713,7 @@ export function DocumentsPage() {
             ].map(({ value, label }) => (
               <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
                 <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
-                <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{label}</p>
+                <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{label}</p>
               </div>
             ))}
           </div>
@@ -803,7 +803,7 @@ export function DocumentsPage() {
                     </p>
                   </div>
                   <div style={{ background: DARK_GRADIENT, padding: "24px 24px", borderLeft: `3px solid ${RUST}` }}>
-                    <p style={{ color: `rgba(${CREAM_RGB},0.55)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
+                    <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
                       Complete Pack
                     </p>
                     <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: ON_DARK, fontSize: "1.1rem", margin: "0 0 4px" }}>
@@ -812,7 +812,7 @@ export function DocumentsPage() {
                     <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
                       {BUNDLE_PRICES[cat.id].price}
                     </p>
-                    <p style={{ color: `rgba(${CREAM_RGB},0.45)`, fontSize: "12px", margin: "0 0 16px" }}>
+                    <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "0 0 16px" }}>
                       {BUNDLE_PRICES[cat.id].saving}
                     </p>
                     <Link href="/contact" style={{
@@ -850,7 +850,7 @@ export function DocumentsPage() {
                             </span>
                           )}
                         </div>
-                        <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
+                        <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
                           {doc.detail}
                         </p>
                       </div>
@@ -874,7 +874,7 @@ export function DocumentsPage() {
 
               <RevealSection style={{ marginTop: "32px" }}>
                 <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid rgba(${NAVY_RGB},0.2)` }}>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
                     All documents are provided in editable Microsoft Word or Excel format. Academy members receive the complete library — all 380 documents across all six categories — as part of their membership. To enquire about volume licensing or bespoke document development, please{" "}
                     <Link href="/contact" style={{ color: RUST, textDecoration: "none", fontWeight: 600 }}>contact us</Link>.
                   </p>
@@ -891,7 +891,7 @@ export function DocumentsPage() {
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.6rem", color: ON_DARK, margin: "0 0 8px" }}>
                     Select a category above to browse the library.
                   </h3>
-                  <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "15px", margin: 0 }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "15px", margin: 0 }}>
                     Or join the Academy and receive all 380 documents as part of your membership.
                   </p>
                 </div>
@@ -996,7 +996,7 @@ export function ContactPage() {
                 padding: "14px 0",
                 borderBottom: i < arr.length - 1 ? `1px solid rgba(${CREAM_RGB},0.12)` : "none",
               }}>
-                <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 4px" }}>{k}</p>
+                <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 4px" }}>{k}</p>
                 <p style={{ color: ON_DARK, fontFamily: "'Roboto', sans-serif", fontSize: "15px", fontWeight: 600, margin: 0 }}>{v}</p>
               </div>
             ))}
@@ -1081,7 +1081,7 @@ export function ContactPage() {
                 ].map(({ label, detail }) => (
                   <div key={label} style={{ background: WHITE, borderLeft: `3px solid ${OAT}`, padding: "20px 20px" }}>
                     <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: NAVY, fontSize: "0.95rem", margin: "0 0 6px" }}>{label}</p>
-                    <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
                   </div>
                 ))}
               </div>

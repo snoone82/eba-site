@@ -46,8 +46,8 @@ export function SiteFooter() {
   // Cobalt footer to bookend the cobalt header — white content on the brand fill.
   const heading = "rgba(255,255,255,0.95)";
   const linkCol = "rgba(255,255,255,0.72)";
-  const muted = "rgba(255,255,255,0.5)";
-  const eyebrow = "rgba(255,255,255,0.65)";
+  const muted = "rgba(255,255,255,0.72)";
+  const eyebrow = "rgba(255,255,255,0.75)";
 
   return (
     <footer style={{ background: FOOTER_BG, borderTop: `1px solid rgba(255,255,255,0.12)`, padding: isMobile ? "48px 20px 28px" : "64px 40px 36px" }}>

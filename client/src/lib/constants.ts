@@ -423,7 +423,36 @@ export const STRIPE = {
     "TODO(eba): Stripe Payment Link — Compliance Chatbot subscription",
 } as const;
 
+/**
+ * Testimonials are hidden until we have real founding-member quotes.
+ * Pre-launch we have none — an empty-but-honest site beats fake proof.
+ * Flip to true once real, attributable quotes are in Testimonials.tsx.
+ */
+export const SHOW_TESTIMONIALS = false;
+
 // ── Business facts (do NOT invent — confirm with Mark post-meeting) ──────────
+
+/**
+ * Launch pricing — single fill-in point. TODO(eba): confirm every figure at the
+ * meeting, then replace the placeholders. Values quoted in the planning doc:
+ * Academy £999 → £1,499 · +Documents £1,299 → £1,999 · O&M £299/manual ·
+ * tools £99 single / £179 all three · enterprise setup + monthly TBC.
+ */
+export const PRICING = {
+  academyFounding: "TODO(eba): Academy founding price (planned £999)",
+  academyStandard: "TODO(eba): Academy standard price (planned £1,499)",
+  academyDocsFounding: "TODO(eba): Academy+Documents founding price (planned £1,299)",
+  academyDocsStandard: "TODO(eba): Academy+Documents standard price (planned £1,999)",
+  omPerManual: "TODO(eba): O&M Compiler per-manual price (planned £299)",
+  toolSingle: "TODO(eba): single AI tool price (planned £99)",
+  toolBundle: "TODO(eba): all-three tools price (planned £179)",
+  enterpriseSetup: "TODO(eba): enterprise setup fee (currently shown £997–£1,997)",
+  enterpriseMonthly: "TODO(eba): enterprise monthly retainer (currently shown £149–£349)",
+} as const;
+
+/** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting
+ *  (mentorship months live in MENTOR_INTAKES below). */
+export const COHORT_START_DATE = "TODO(eba): founding cohort start date";
 
 /** Company registration number. Placeholder hides the footer reg line entirely. */
 export const COMPANY_REG = "TODO(eba): company reg";

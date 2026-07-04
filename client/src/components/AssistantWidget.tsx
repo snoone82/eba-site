@@ -239,7 +239,7 @@ export function AssistantWidget() {
             </button>
           </form>
           <div style={{ flexShrink: 0, textAlign: "center", padding: "0 0 10px" }}>
-            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'Roboto', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.5)` }}>
+            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'Roboto', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.72)` }}>
               Prefer to talk to a person? Contact us →
             </button>
           </div>

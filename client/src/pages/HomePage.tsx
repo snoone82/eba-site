@@ -23,6 +23,7 @@ import {
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, IS_LIGHT, IS_WINDSOR, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
+  SHOW_TESTIMONIALS,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -137,7 +138,7 @@ function LeadMagnetForm() {
         <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
           Form coming soon.
         </p>
-        <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
+        <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
           The M&E Business Health Check sign-up opens shortly.
           {/* TODO(eba): set FORM_ENDPOINT in client/src/lib/constants.ts to enable this form. */}
         </p>
@@ -151,7 +152,7 @@ function LeadMagnetForm() {
         <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
           Check your inbox.
         </p>
-        <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
+        <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
           Your M&E Business Health Check is on its way to {email}.
         </p>
       </div>
@@ -201,7 +202,7 @@ function LeadMagnetForm() {
       >
         {loading ? "Sending..." : "Send me the Health Check →"}
       </button>
-      <p style={{ color: `rgba(${NAVY_RGB},0.4)`, fontSize: "12px", margin: 0 }}>
+      <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "12px", margin: 0 }}>
         No spam. Unsubscribe any time. UK GDPR compliant.
       </p>
     </form>
@@ -470,7 +471,7 @@ export default function HomePage() {
           textAlign: "center", margin: 0,
           fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
           fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},0.55)`,
+          color: `rgba(${NAVY_RGB},0.72)`,
         }}>
           Built for M&E business owners
           <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
@@ -486,7 +487,7 @@ export default function HomePage() {
           textAlign: "center", margin: isMobile ? "0 20px 18px" : "0 40px 22px",
           fontFamily: "'Roboto', sans-serif", fontSize: "12px",
           fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},0.55)`,
+          color: `rgba(${NAVY_RGB},0.72)`,
         }}>
           Trusted by M&E contractors working across
         </p>
@@ -520,7 +521,7 @@ export default function HomePage() {
             }}>
               What's inside
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "16px", margin: "0 0 34px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", margin: "0 0 34px" }}>
               Everything an M&E business owner needs, in one place.
             </p>
           </RevealSection>
@@ -546,7 +547,7 @@ export default function HomePage() {
                     padding: "4px 9px", borderRadius: "4px", marginBottom: "10px",
                   }}>{card.tag}</span>
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "17.5px", lineHeight: 1.25, margin: "0 0 7px" }}>{card.title}</h3>
-                  <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, lineHeight: 1.5, margin: "0 0 14px" }}>{card.cat}</p>
+                  <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, lineHeight: 1.5, margin: "0 0 14px" }}>{card.cat}</p>
                   <span style={{ marginTop: "auto", fontFamily: "'Roboto', sans-serif", fontWeight: 800, fontSize: "15px", color: RUST }}>{card.meta}</span>
                 </div>
               </Link>
@@ -624,7 +625,7 @@ export default function HomePage() {
             }}>
               The engineering is not the problem. The business infrastructure around it is.
             </h2>
-            <p style={{ color: `rgba(${CREAM_RGB},0.6)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
+            <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
               Most M&E business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
             </p>
           </RevealSection>
@@ -812,8 +813,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ── */}
-      <Testimonials />
+      {/* ── TESTIMONIALS ── hidden until real founding-member quotes exist */}
+      {SHOW_TESTIMONIALS && <Testimonials />}
 
       {/* ── DECARBONISATION OPPORTUNITY ── */}
       <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
@@ -903,7 +904,7 @@ export default function HomePage() {
                     }}>
                       {value}
                     </p>
-                    <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                    <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                       {label}
                     </p>
                   </div>
@@ -930,7 +931,7 @@ export default function HomePage() {
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
                 </p>
-                <p style={{ color: `rgba(${CREAM_RGB},0.5)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                   From the EBA AI Tools Catalogue
                 </p>
               </div>
@@ -955,7 +956,7 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 12px" }}>
                 20 questions that reveal whether your M&amp;E business is built to last — or built to break under pressure.
               </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.55)`, fontSize: "14px", lineHeight: 1.65, margin: "0 0 32px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.65, margin: "0 0 32px" }}>
                 Covers pricing discipline, cash flow structure, contract exposure, compliance overhead, team dependency, and growth ceiling. Free. No obligation. Sent directly to your inbox.
               </p>
               <LeadMagnetForm />
@@ -975,7 +976,7 @@ export default function HomePage() {
                       <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{q}</p>
                     </div>
                   ))}
-                  <p style={{ color: `rgba(${CREAM_RGB},0.35)`, fontSize: "12px", margin: "8px 0 0", fontStyle: "italic" }}>...and 15 more in the full guide.</p>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "8px 0 0", fontStyle: "italic" }}>...and 15 more in the full guide.</p>
                 </div>
               </div>
             </RevealSection>

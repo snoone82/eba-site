@@ -174,7 +174,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
             {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
           </a>
           <p style={{
-            color: `rgba(${CREAM_RGB},0.4)`,
+            color: `rgba(${CREAM_RGB},0.72)`,
             fontFamily: "'Roboto', sans-serif",
             fontSize: "12px",
             letterSpacing: "0.08em",

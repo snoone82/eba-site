@@ -78,7 +78,7 @@ function CaptureForm() {
         </button>
       </div>
       {error && <p style={{ color: RUST, fontSize: "13px", margin: "10px 0 0" }} role="alert">{error}</p>}
-      <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.45)`, margin: "10px 0 0" }}>
+      <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: "10px 0 0" }}>
         Free. No card. Unsubscribe any time · UK GDPR compliant.
       </p>
     </form>
@@ -122,7 +122,7 @@ export function ToolboxLeadMagnet() {
                 <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, lineHeight: 1.45 }}>{line}</span>
               </div>
             ))}
-            <div style={{ marginTop: "16px", paddingTop: "14px", borderTop: `1px dashed ${border}`, display: "flex", justifyContent: "space-between", fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
+            <div style={{ marginTop: "16px", paddingTop: "14px", borderTop: `1px dashed ${border}`, display: "flex", justifyContent: "space-between", fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
               <span>Attendee sign-off ✎</span><span>Page 1 of 1</span>
             </div>
           </div>

@@ -122,8 +122,8 @@ function OmManualDemo() {
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
-          <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
-            tools.engineeringbusinessacademy.co.uk/om-manual
+          <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
+            eba.academy/ai-tools/om-manual
           </span>
         </div>
       </div>
@@ -176,7 +176,7 @@ function OmManualDemo() {
           ))}
         </div>
         <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${RUST_RGB},0.06)`, borderLeft: `3px solid ${RUST}` }}>
-          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0 }}>
+          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
             <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → under 30 minutes
           </p>
         </div>
@@ -221,8 +221,8 @@ function ComplianceChatDemo() {
           <div key={c} style={{ width: "10px", height: "10px", borderRadius: "50%", background: c }} />
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
-          <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.5)` }}>
-            tools.engineeringbusinessacademy.co.uk/compliance-chat
+          <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
+            eba.academy/ai-tools/compliance-chat
           </span>
         </div>
       </div>
@@ -280,7 +280,7 @@ function ComplianceChatDemo() {
         <div style={{ marginTop: "16px", borderTop: `1px solid ${OAT}`, paddingTop: "12px", display: "flex", gap: "8px" }}>
           <div style={{
             flex: 1, background: OAT, padding: "10px 14px",
-            fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.4)`,
+            fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`,
           }}>
             Ask a safety or compliance question...
           </div>
@@ -503,7 +503,7 @@ export default function AIToolsPage() {
                 <p style={{ fontFamily: "var(--eba-heading)", color: RUST, fontSize: "1.6rem", fontWeight: 800, margin: "0 0 4px" }}>
                   {value}
                 </p>
-                <p style={{ color: `rgba(${ON_DARK_RGB},0.55)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
                   {label}
                 </p>
               </div>
@@ -541,10 +541,10 @@ export default function AIToolsPage() {
                   </span>
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.35rem", letterSpacing: "-0.01em", color: NAVY, margin: 0 }}>{name}</h3>
                 </div>
-                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.62)`, margin: "0 0 18px" }}>{outcome}</p>
+                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.72)`, margin: "0 0 18px" }}>{outcome}</p>
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
                   <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", fontWeight: 700, color: RUST, background: `rgba(${RUST_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
-                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.5)` }}>
+                  <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.72)` }}>
                     <Check size={13} strokeWidth={2.5} /> You review every output
                   </span>
                 </div>
@@ -711,7 +711,7 @@ export default function AIToolsPage() {
             }}>
               More tools coming shortly.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", margin: "0 0 48px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", margin: "0 0 48px" }}>
               All included in the Academy subscription. Available standalone for non-members.
             </p>
           </RevealSection>
@@ -725,7 +725,7 @@ export default function AIToolsPage() {
                   <span style={{
                     fontFamily: "'Roboto', sans-serif", fontWeight: 600,
                     fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: `rgba(${NAVY_RGB},0.4)`, display: "block", marginBottom: "12px",
+                    color: `rgba(${NAVY_RGB},0.72)`, display: "block", marginBottom: "12px",
                   }}>
                     {tool.label}
                   </span>
@@ -735,12 +735,12 @@ export default function AIToolsPage() {
                   }}>
                     {tool.title}
                   </h4>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.6)`, fontSize: "13px", lineHeight: 1.6, margin: "0 0 16px" }}>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.6, margin: "0 0 16px" }}>
                     {tool.body}
                   </p>
                   <span style={{
                     fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                    color: `rgba(${RUST_RGB},0.6)`, fontSize: "13px",
+                    color: `rgba(${RUST_RGB},0.85)`, fontSize: "13px",
                   }}>
                     {tool.price}
                   </span>
@@ -779,7 +779,7 @@ export default function AIToolsPage() {
                       <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
                         {value}
                       </p>
-                      <p style={{ color: `rgba(${CREAM_RGB},0.45)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                      <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                         {label}
                       </p>
                     </div>
@@ -802,7 +802,7 @@ export default function AIToolsPage() {
                   }}>
                     "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
                   </p>
-                  <p style={{ color: `rgba(${CREAM_RGB},0.4)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                     EBA AI Tools Catalogue, June 2026
                   </p>
                 </div>

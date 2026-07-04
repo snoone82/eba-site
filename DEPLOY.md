@@ -9,13 +9,21 @@ required — every integration falls back to a safe placeholder until you wire i
 2. In Vercel: **Add New… → Project** and import the repo.
 3. Vercel auto-detects Vite. Confirm these settings:
 
-   | Setting            | Value          |
-   | ------------------ | -------------- |
-   | Framework Preset   | **Vite**       |
-   | Build Command      | `npm run build`|
-   | Output Directory   | `dist`         |
-   | Install Command    | `npm install`  |
-   | Node.js Version    | 18.x or 20.x   |
+   | Setting            | Value                    |
+   | ------------------ | ------------------------ |
+   | Framework Preset   | **Vite**                 |
+   | Build Command      | **`npm run build:static`** — REQUIRED for SEO (see below) |
+   | Output Directory   | `dist`                   |
+   | Install Command    | `npm install`            |
+   | Node.js Version    | 18.x or 20.x             |
+
+   > ⚠️ **The Build Command MUST be `npm run build:static`, not `npm run build`.**
+   > `build:static` runs the Vite build **and react-snap prerendering**, writing a
+   > real HTML file per route (unique <title>, meta, JSON-LD and full content) so
+   > crawlers and link previews see complete pages. Plain `npm run build` ships an
+   > empty SPA shell and the SEO work stays dormant. If react-snap ever fails on
+   > Vercel's build image, fall back to `npm run build` (the site still works as a
+   > SPA) and investigate — do not ship a broken build.
 
 4. Deploy. `vercel.json` adds an SPA rewrite so deep links (`/academy`,
    `/ai-tools/om-manual`, …) resolve to `index.html` instead of 404-ing, and

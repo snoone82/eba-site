@@ -175,7 +175,9 @@ export function Seo({ title, description, path, image = DEFAULT_OG_IMAGE, jsonLd
   const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
   return (
-    <Helmet prioritizeSeoTags>
+    // defer={false} — apply tags synchronously so react-snap's background tabs
+    // (where requestAnimationFrame never fires) still get per-route titles.
+    <Helmet prioritizeSeoTags defer={false}>
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={canonical} />
