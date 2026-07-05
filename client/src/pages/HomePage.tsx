@@ -62,6 +62,20 @@ function SectionLabel({ children, bg }: { children: string; bg?: string }) {
   );
 }
 
+
+// Oversized register numeral — quiet drawing-office wayfinding on light sections.
+function SectionNum({ n }: { n: string }) {
+  return (
+    <span aria-hidden style={{
+      display: "block", fontFamily: "var(--eba-heading)", fontWeight: 700,
+      fontSize: "56px", lineHeight: 1, letterSpacing: "-0.02em",
+      color: `rgba(${RUST_RGB},0.4)`, marginBottom: "10px",
+    }}>
+      {n}
+    </span>
+  );
+}
+
 function RustRule() {
   return (
     <div style={{ width: "48px", height: "3px", background: ACCENT_GRAD, borderRadius: "2px", marginBottom: "24px" }} />
@@ -367,15 +381,15 @@ export default function HomePage() {
       <MobileNav transparent={true} />
       <HomeNav scrolled={scrolled} />
 
-      {/* ── HERO ── (CIOB style: real photo under a deep navy overlay) */}
+      {/* ── HERO ── split layout: pitch left, "from the lessons" ledger right.
+          A curriculum business shows its lessons the way SaaS shows screens. */}
       <section style={{
         position: "relative",
-        minHeight: isMobile ? "auto" : "600px",
         display: "flex",
         alignItems: "center",
-        paddingTop: isMobile ? "108px" : "150px",
-        paddingBottom: isMobile ? "56px" : "84px",
-        background: "#1B2632", // fallback so a slow hero image degrades to clean navy
+        paddingTop: isMobile ? "104px" : "140px",
+        paddingBottom: isMobile ? "56px" : "88px",
+        background: "#0E2A25", // fallback so a slow hero image degrades cleanly
       }}>
         <div style={{
           position: "absolute", inset: 0,
@@ -384,86 +398,114 @@ export default function HomePage() {
         }} />
         <div style={{
           position: "absolute", inset: 0,
-          background: "linear-gradient(100deg, rgba(20,28,37,0.95) 0%, rgba(27,38,50,0.82) 48%, rgba(27,38,50,0.45) 100%)",
+          background: "linear-gradient(100deg, rgba(10,33,29,0.97) 0%, rgba(14,42,37,0.92) 52%, rgba(14,42,37,0.72) 100%)",
         }} />
-        <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
-          {/* Badge */}
-          <div style={{
-            display: "inline-block",
-            background: RUST,
-            color: "#fff",
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 700,
-            fontSize: "11px",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            padding: "6px 16px",
-            marginBottom: "24px",
-          }}>
-            {ENROL_READY
-              ? `FOUNDING COHORT · NOW OPEN · ${PLACES_REMAINING} OF ${COHORT_SIZE} PLACES REMAINING`
-              : `FOUNDING COHORT · ENROLMENT OPENS SOON · ${COHORT_SIZE} PLACES ONLY`}
-          </div>
-          <div style={{ maxWidth: "760px" }}>
+        <div style={{
+          position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto",
+          padding: isMobile ? "24px 20px 40px" : "0 40px",
+          display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.15fr 0.85fr",
+          gap: isMobile ? "44px" : "72px", alignItems: "center",
+        }}>
+          <div>
+            <div style={{
+              display: "inline-block", background: RUST_ON_DARK, color: NAVY,
+              fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px",
+              letterSpacing: "0.12em", textTransform: "uppercase", padding: "6px 16px", marginBottom: "24px",
+            }}>
+              {ENROL_READY
+                ? `FOUNDING COHORT · NOW OPEN · ${PLACES_REMAINING} OF ${COHORT_SIZE} PLACES REMAINING`
+                : `FOUNDING COHORT · ENROLMENT OPENS SOON · ${COHORT_SIZE} PLACES ONLY`}
+            </div>
             <h1 style={{
               fontFamily: "var(--eba-heading)",
-              fontWeight: 800, fontSize: isMobile ? "2.4rem" : "clamp(2.8rem, 4.6vw, 4rem)",
+              fontWeight: 700, fontSize: isMobile ? "2.3rem" : "clamp(2.6rem, 4.2vw, 3.7rem)",
               lineHeight: 1.08, letterSpacing: "-0.015em",
-              color: "#fff", margin: "0 0 22px", maxWidth: "20ch",
+              color: "#fff", margin: "0 0 22px", maxWidth: "18ch",
             }}>
               The business programme built for engineering services contractors.
             </h1>
-            {/* Stats strip */}
-            <div style={{
-              display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
-              gap: "6px 0", marginBottom: "24px",
-            }}>
-              {["101 Lessons", "10 Modules", "15+ Years M&E Group Experience", "UK & International"].map((stat, i) => (
-                <span key={i} style={{
-                  display: "inline-flex", alignItems: "center",
-                  color: "rgba(255,255,255,0.78)",
-                  fontFamily: "'Poppins', sans-serif",
-                  fontSize: "12px", fontWeight: 600,
-                  letterSpacing: "0.08em", textTransform: "uppercase",
-                }}>
-                  {i > 0 && <span style={{ margin: "0 14px", color: `rgba(${RUST_RGB},0.9)` }}>·</span>}
-                  {stat}
-                </span>
-              ))}
-            </div>
             <p style={{
-              color: "rgba(255,255,255,0.88)", fontSize: isMobile ? "16px" : "18px", lineHeight: 1.65,
-              fontWeight: 400, maxWidth: "600px", margin: "0 0 36px",
+              color: "rgba(255,255,255,0.88)", fontSize: isMobile ? "16px" : "17.5px", lineHeight: 1.65,
+              fontWeight: 300, maxWidth: "560px", margin: "0 0 32px",
             }}>
               You know how to deliver the engineering. Nobody taught you how to run the business around it — pricing, contracts, cash flow, compliance, teams, and growth. That changes here.
             </p>
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
+            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "26px" }}>
               <a className="eba-shine eba-lift" href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
                 background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
                 padding: "14px 32px", letterSpacing: "0.04em",
-                display: "inline-block",
+                display: "inline-block", borderRadius: "6px",
               }}
                 onClick={() => track("cta_join_cohort_hero")}
               >
                 {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
-              {/* Two-track CTA: Academy track = rust primary above; Tools track = cobalt outline below. */}
               <a href="/ai-tools#free-toolbox-talk" style={{
                 background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", border: `1.5px solid ${COBALT_ON_DARK}`,
-                transition: "background 0.2s, color 0.2s", borderRadius: "6px",
+                transition: "background 0.2s", borderRadius: "6px",
                 display: "inline-block",
               }}
-                onMouseEnter={e => { e.currentTarget.style.background = `rgba(${COBALT_RGB},0.18)`; }}
+                onMouseEnter={e => { e.currentTarget.style.background = `rgba(${COBALT_RGB},0.14)`; }}
                 onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
                 onClick={() => track("cta_free_tool_hero")}
               >
                 Try the free Toolbox Talk tool
               </a>
             </div>
+            <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "6px 0" }}>
+              {["101 Lessons", "10 Modules", "15+ Years M&E Group Experience"].map((stat, i) => (
+                <span key={i} style={{
+                  display: "inline-flex", alignItems: "center",
+                  color: "rgba(255,255,255,0.72)",
+                  fontFamily: "'Poppins', sans-serif",
+                  fontSize: "11.5px", fontWeight: 600,
+                  letterSpacing: "0.08em", textTransform: "uppercase",
+                }}>
+                  {i > 0 && <span style={{ margin: "0 13px", color: `rgba(${RUST_RGB},0.9)` }}>·</span>}
+                  {stat}
+                </span>
+              ))}
+            </div>
           </div>
+
+          {/* Ledger card — REAL lesson titles from the Kajabi curriculum. */}
+          <RevealSection>
+            <div style={{ background: WHITE, borderRadius: "14px", overflow: "hidden", boxShadow: "0 40px 80px -40px rgba(0,0,0,0.6)" }}>
+              <div style={{ padding: "16px 24px 14px", borderBottom: `1px solid rgba(${NAVY_RGB},0.10)`, display: "flex", justifyContent: "space-between", alignItems: "baseline", gap: "12px" }}>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "10.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: RUST }}>
+                  From the lessons
+                </span>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase", color: `rgba(${NAVY_RGB},0.45)` }}>
+                  {METHOD_NAME}
+                </span>
+              </div>
+              <div style={{ padding: "8px 24px" }}>
+                {[
+                  { ref: "Module 03", quote: "If You Need to Micromanage Someone They Must Go" },
+                  { ref: "Module 06", quote: "Money Is Made Before You Step on Site" },
+                  { ref: "Module 07", quote: "Never Accept 60-Day Terms" },
+                  { ref: "Module 09", quote: "My Experience of Going Bust — A Pre-Pack Administration" },
+                ].map(({ ref, quote }, i) => (
+                  <div key={ref} style={{ padding: "13px 0", borderTop: i > 0 ? `1px solid rgba(${NAVY_RGB},0.08)` : "none" }}>
+                    <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "10px", letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 3px" }}>{ref}</p>
+                    <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", fontWeight: 600, fontSize: "15px", lineHeight: 1.4, color: NAVY, margin: 0 }}>
+                      “{quote}”
+                    </p>
+                  </div>
+                ))}
+              </div>
+              <div style={{ padding: "12px 24px", background: CREAM, borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
+                <Link href="/academy" style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "13px", color: RUST, textDecoration: "none" }}
+                  onClick={() => track("cta_curriculum_hero_card")}
+                >
+                  See all 101 lessons →
+                </Link>
+              </div>
+            </div>
+          </RevealSection>
         </div>
       </section>
 
@@ -513,120 +555,49 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* ── PAIN POINTS ── */}
+      {/* ── THE TRANSFORMATION LEDGER ── pain and outcome merged into six
+          before → after rows: the whole argument in one section. */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "84px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
+            <SectionNum n="01" />
             <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontFamily: "var(--eba-heading)", fontWeight: 700,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 16px", maxWidth: "720px",
+              color: NAVY, margin: "0 0 16px", maxWidth: "720px", lineHeight: 1.12,
             }}>
               The engineering is not the problem. The business infrastructure around it is.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
-              Most engineering business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", fontWeight: 300, lineHeight: 1.65, maxWidth: "620px", margin: "0 0 44px" }}>
+              Most engineering business owners are exceptional engineers operating in a system that was never designed for them. Here is where that system leaks — and what it looks like fixed.
             </p>
           </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: "18px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             {painPoints.map((point, i) => (
-              <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
-                <div className="eba-bento-card" style={{
-                  height: "100%",
-                  background: WHITE,
-                  border: `1px solid rgba(${ACCENT_RGB},0.18)`,
-                  borderLeft: `3px solid ${ACCENT_HEX}`,
-                  borderRadius: "16px",
-                  boxShadow: "0 20px 44px -30px rgba(0,0,0,0.25)",
-                  padding: "28px 28px",
-                }}>
-                  <h3 style={{
-                    color: NAVY, fontFamily: "'Poppins', sans-serif",
-                    fontWeight: 700, fontSize: "13px", letterSpacing: "0.04em",
-                    textTransform: "uppercase", margin: "0 0 10px",
-                  }}>
-                    {point.title}
-                  </h3>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.65, margin: 0 }}>
-                    {point.body}
-                  </p>
-                </div>
-              </RevealSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── THE TRANSFORMATION (Academy) ── */}
-      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
-        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-          <RevealSection>
-            <SectionLabel>The Academy</SectionLabel>
-            <RustRule />
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
-            }}>
-              You learned to run jobs. This is where you learn to run the business.
-            </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
-              Every engineering contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
-            </p>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
-              The Academy teaches {METHOD_NAME} — 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
-            </p>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
-              Not generic business theory. Not a coaching framework. The specific operating knowledge of running an engineering business — from someone who has built one at scale.
-            </p>
-            <Link href="/academy" style={{
-              color: RUST, textDecoration: "none",
-              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
-              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-            }}>
-              See the curriculum →
-            </Link>
-            {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
-            <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14px", lineHeight: 1.6, margin: "22px 0 0", fontStyle: "italic" }}>
-              Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
-            </p>
-          </RevealSection>
-        </div>
-      </section>
-
-      {/* ── THE OUTCOME ── */}
-      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "96px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <RevealSection>
-            <SectionLabel>The Outcome</SectionLabel>
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
-            }}>
-              What it looks like on the other side.
-            </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
-              The point isn't more lessons. It's a business that finally works the way it should.
-            </p>
-          </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "2px", marginBottom: "48px" }}>
-            {outcomes.map((o, i) => (
-              <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
+              <RevealSection key={i} style={{ transitionDelay: `${i * 40}ms` }}>
                 <div style={{
-                  background: WHITE, borderLeft: `3px solid ${RUST}`, border: `1px solid rgba(${NAVY_RGB},0.08)`, borderLeftWidth: "3px", borderLeftColor: RUST,
-                  padding: "28px 28px", height: "100%",
+                  background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.08)`, borderRadius: "14px",
+                  display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 56px 1fr",
+                  alignItems: "center", padding: isMobile ? "22px 22px" : "24px 30px",
+                  gap: isMobile ? "14px" : "0",
+                  boxShadow: "0 16px 36px -30px rgba(0,0,0,0.25)",
                 }}>
-                  <h3 style={{
-                    color: NAVY, fontFamily: "'Poppins', sans-serif",
-                    fontWeight: 700, fontSize: "15px", letterSpacing: "0.01em",
-                    margin: "0 0 8px", lineHeight: 1.3,
-                  }}>
-                    {o.title}
-                  </h3>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
-                    {o.body}
-                  </p>
+                  <div>
+                    <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px", letterSpacing: "0.04em", textTransform: "uppercase", color: `rgba(${NAVY_RGB},0.55)`, margin: "0 0 6px" }}>
+                      {point.title}
+                    </h3>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.68)`, fontSize: "14.5px", fontWeight: 300, lineHeight: 1.6, margin: 0 }}>{point.body}</p>
+                  </div>
+                  <span aria-hidden style={{
+                    fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "22px", color: RUST,
+                    textAlign: "center", transform: isMobile ? "rotate(90deg)" : "none", justifySelf: "center",
+                  }}>→</span>
+                  <div>
+                    <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px", letterSpacing: "0.04em", textTransform: "uppercase", color: RUST, margin: "0 0 6px" }}>
+                      {outcomes[i].title}
+                    </h3>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "14.5px", fontWeight: 300, lineHeight: 1.6, margin: 0 }}>{outcomes[i].body}</p>
+                  </div>
                 </div>
               </RevealSection>
             ))}
@@ -634,11 +605,97 @@ export default function HomePage() {
           <RevealSection>
             <p style={{
               fontFamily: "var(--eba-heading)", fontStyle: "italic",
-              color: RUST, fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)", fontWeight: 700,
-              lineHeight: 1.4, maxWidth: "820px", margin: 0,
+              color: RUST, fontSize: "clamp(1.2rem, 2.3vw, 1.55rem)", fontWeight: 700,
+              lineHeight: 1.4, maxWidth: "820px", margin: "44px 0 0",
             }}>
               This is what "engineer your business, design your freedom" actually means. Not a slogan. A different way to run the company you already built.
             </p>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── THE ACADEMY ── narrative + the real module register side by side.
+          The curriculum IS the product; show it on the homepage. */}
+      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "92px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 0.95fr", gap: isMobile ? "44px" : "72px", alignItems: "start" }}>
+          <RevealSection>
+            <SectionNum n="02" />
+            <SectionLabel>The Academy</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 700,
+              fontSize: "clamp(1.9rem, 3.4vw, 2.7rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 24px", lineHeight: 1.12,
+            }}>
+              You learned to run jobs. This is where you learn to run the business.
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16.5px", fontWeight: 300, lineHeight: 1.75, margin: "0 0 18px" }}>
+              Every engineering contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
+            </p>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16.5px", fontWeight: 300, lineHeight: 1.75, margin: "0 0 18px" }}>
+              The Academy teaches {METHOD_NAME}. Half of it is commercial control — pricing, terms, cash, risk. The other half is leadership — culture, teams, and the standards you hold. It teaches both, because Mark ran both.
+            </p>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16.5px", fontWeight: 300, lineHeight: 1.75, margin: "0 0 28px" }}>
+              Not generic business theory. Not a coaching framework. The specific operating knowledge of running an engineering business — from someone who has built one at scale.
+            </p>
+            <Link href="/academy" style={{
+              color: RUST, textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
+              letterSpacing: "0.04em", borderBottom: `1.5px solid ${RUST}`, paddingBottom: "2px",
+            }}>
+              See the curriculum →
+            </Link>
+            {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
+            <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14px", fontWeight: 300, lineHeight: 1.6, margin: "22px 0 0", fontStyle: "italic" }}>
+              Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
+            </p>
+          </RevealSection>
+
+          {/* Module register — the REAL curriculum (lesson counts from Kajabi). */}
+          <RevealSection>
+            <div style={{ background: CREAM, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "14px", overflow: "hidden" }}>
+              <div style={{ padding: "16px 24px", borderBottom: `1px solid rgba(${NAVY_RGB},0.10)`, display: "flex", justifyContent: "space-between", alignItems: "baseline" }}>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "10.5px", letterSpacing: "0.14em", textTransform: "uppercase", color: RUST }}>
+                  Module register
+                </span>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "10px", letterSpacing: "0.08em", textTransform: "uppercase", color: `rgba(${NAVY_RGB},0.45)` }}>
+                  101 lessons
+                </span>
+              </div>
+              <div>
+                {[
+                  ["01", "The Job of the Leader", 17],
+                  ["02", "Culture & Standards", 12],
+                  ["03", "Leadership & Building Teams", 15],
+                  ["04", "Processes, Procedures & Other Controls", 8],
+                  ["05", "Sales, Marketing & Growth Discipline", 8],
+                  ["06", "Commercial Controls", 10],
+                  ["07", "Financial Control & Cash", 11],
+                  ["08", "Risk, Protection & Governance", 8],
+                  ["09", "The Dark Side of Business", 5],
+                  ["10", "Implementation Toolkit", 7],
+                ].map(([num, title, lessons], i) => (
+                  <Link key={String(num)} href="/academy" style={{
+                    display: "flex", alignItems: "baseline", gap: "14px", textDecoration: "none",
+                    padding: "10.5px 24px", borderTop: i > 0 ? `1px solid rgba(${NAVY_RGB},0.07)` : "none",
+                    background: num === "09" ? NAVY : "transparent",
+                  }}>
+                    <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", fontWeight: 700, fontSize: "13px", color: num === "09" ? RUST_ON_DARK : RUST, minWidth: "24px" }}>{num}</span>
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: "13.5px", color: num === "09" ? "#fff" : NAVY, flex: 1, lineHeight: 1.35 }}>
+                      {title}
+                      {num === "09" && (
+                        <span style={{ marginLeft: "10px", background: RUST_ON_DARK, color: NAVY, fontSize: "8.5px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", padding: "2px 7px", verticalAlign: "middle" }}>
+                          Rarely taught
+                        </span>
+                      )}
+                    </span>
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11.5px", fontWeight: 600, color: num === "09" ? `rgba(${CREAM_RGB},0.6)` : `rgba(${NAVY_RGB},0.5)`, whiteSpace: "nowrap" }}>
+                      {lessons} lessons
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
           </RevealSection>
         </div>
       </section>
@@ -726,6 +783,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr", gap: isMobile ? "36px" : "72px", alignItems: "center" }}>
             <RevealSection>
+              <SectionNum n="03" />
               <SectionLabel bg={COBALT}>AI Tools</SectionLabel>
               <div style={{ width: "48px", height: "3px", background: COBALT, borderRadius: "2px", marginBottom: "24px" }} />
               <h2 style={{
@@ -764,157 +822,143 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── DOCUMENT LIBRARY ── */}
-      <section style={{ background: CREAM, padding: isMobile ? "52px 20px" : "72px 40px" }}>
+      {/* ── THE THREE PILLARS ── Academy · Documents · Mentorship (mentorship was
+          previously absent from the homepage — it is a key differentiator). */}
+      <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel>Document Library</SectionLabel>
-            <RustRule />
+            <SectionNum n="04" />
             <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
-              color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
+              fontFamily: "var(--eba-heading)", fontWeight: 700,
+              fontSize: "clamp(1.8rem, 3.2vw, 2.5rem)", letterSpacing: "-0.015em",
+              color: NAVY, margin: "0 0 40px", lineHeight: 1.12,
             }}>
-              380 documents. 25 years of practice. Ready to use.
+              Three assets. One operating system.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
-              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
-            </p>
-            <Link href="/documents" style={{
-              color: RUST, textDecoration: "none",
-              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "18px" }}>
+            {[
+              { href: "/academy", stat: "101", unit: "lessons", title: "The Academy", body: "Ten modules of leadership and commercial control, video-led, self-paced, lifetime access.", note: "The founding membership" },
+              { href: "/documents", stat: "380", unit: "documents", title: "The Document Library", body: "Every template, form, checklist and procedure a contracting business runs on — Word and PDF.", note: "Included with the +Documents tier" },
+              { href: "/mentorship", stat: "1:1", unit: "access", title: "Mentorship", body: "Group sessions and direct access to Mark while you put the system into your business.", note: "Application-only, alongside membership" },
+            ].map(({ href, stat, unit, title, body, note }) => (
+              <RevealSection key={title}>
+                <Link href={href} className="eba-lift" style={{
+                  display: "flex", flexDirection: "column", height: "100%", textDecoration: "none",
+                  background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderTop: `3px solid ${RUST}`,
+                  borderRadius: "14px", padding: "28px 28px",
+                  boxShadow: "0 18px 40px -32px rgba(0,0,0,0.3)",
+                }}>
+                  <p style={{ margin: "0 0 2px" }}>
+                    <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", fontWeight: 700, fontSize: "2rem", color: RUST }}>{stat}</span>
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: `rgba(${NAVY_RGB},0.5)`, marginLeft: "8px" }}>{unit}</span>
+                  </p>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.2rem", color: NAVY, margin: "0 0 8px" }}>{title}</h3>
+                  <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 300, lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.7)`, margin: "0 0 18px" }}>{body}</p>
+                  <span style={{ marginTop: "auto", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase", color: `rgba(${NAVY_RGB},0.55)` }}>{note} →</span>
+                </Link>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SECTOR INSIGHTS ── compact duo (photos live on the detail pages). */}
+      <section style={{ background: WHITE, padding: isMobile ? "52px 20px" : "68px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionNum n="05" />
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "28px" : "40px", alignItems: "start" }}>
+            <RevealSection>
+              <div style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "24px" }}>
+                <SectionLabel>Sector Insight</SectionLabel>
+                <h2 style={{
+                  fontFamily: "var(--eba-heading)", fontWeight: 700,
+                  fontSize: "clamp(1.4rem, 2.4vw, 1.8rem)", letterSpacing: "-0.015em",
+                  color: NAVY, margin: "0 0 14px", lineHeight: 1.2,
+                }}>
+                  The biggest opportunity in M&E right now. Are you positioned for it?
+                </h2>
+                <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "15px", fontWeight: 300, lineHeight: 1.7, margin: "0 0 16px" }}>
+                  The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation — heat pumps, solar thermal, social housing retrofit, government-backed contracts worth billions.
+                </p>
+                {/* [DECIDE with Mark]: reframed as market insight + adjacent-line example —
+                    no module claim (real Module 8 = Risk, Protection & Governance). */}
+                <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "15px", fontWeight: 300, lineHeight: 1.7, margin: "0 0 20px" }}>
+                  Positioning for that work — entering it deliberately, pricing it properly, building it into a durable service line — is the adjacent-line playbook the Academy teaches, drawn from Mark's own move into decarbonisation.
+                </p>
+                <Link href="/academy" style={{
+                  color: RUST, textDecoration: "none",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                  letterSpacing: "0.04em", borderBottom: `1.5px solid ${RUST}`, paddingBottom: "2px",
+                }}>
+                  View the curriculum →
+                </Link>
+              </div>
+            </RevealSection>
+            <RevealSection>
+              <div style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "24px" }}>
+                <SectionLabel>Sector Insight</SectionLabel>
+                <h2 style={{
+                  fontFamily: "var(--eba-heading)", fontWeight: 700,
+                  fontSize: "clamp(1.4rem, 2.4vw, 1.8rem)", letterSpacing: "-0.015em",
+                  color: NAVY, margin: "0 0 14px", lineHeight: 1.2,
+                }}>
+                  The £2bn market your clients are already asking you about.
+                </h2>
+                <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "15px", fontWeight: 300, lineHeight: 1.7, margin: "0 0 16px" }}>
+                  Fire protection and security is a common adjacent service request in engineering contracting — a £2bn market growing on post-Grenfell regulation. Most contractors either decline the work or subcontract it blindly.
+                </p>
+                <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "15px", fontWeight: 300, lineHeight: 1.7, margin: "0 0 20px" }}>
+                  The EBA curriculum includes a dedicated module on how to identify, enter, and build a profitable adjacent service line.
+                </p>
+                {/* Curriculum case study — kept on the funnel, no outbound link to pro-defend.com. */}
+                <Link href="/academy" style={{
+                  color: RUST, textDecoration: "none",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                  letterSpacing: "0.04em", borderBottom: `1.5px solid ${RUST}`, paddingBottom: "2px",
+                }}>
+                  See how it's taught →
+                </Link>
+              </div>
+            </RevealSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── ENTERPRISE ── slim band (full detail lives on /ai-tools + /enterprise). */}
+      <section style={{ background: OAT, padding: isMobile ? "44px 20px" : "56px 40px" }}>
+        <div style={{
+          maxWidth: "1200px", margin: "0 auto",
+          display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr auto",
+          gap: isMobile ? "24px" : "48px", alignItems: "center",
+        }}>
+          <RevealSection>
+            <SectionLabel bg={COBALT}>For Companies</SectionLabel>
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 700,
+              fontSize: "clamp(1.4rem, 2.6vw, 1.9rem)", letterSpacing: "-0.015em",
+              color: NAVY, margin: "0 0 10px", lineHeight: 1.2,
             }}>
-              Browse the library →
+              Your own branded compliance assistant, deployed and managed for you.
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "15px", fontWeight: 300, lineHeight: 1.65, margin: 0, maxWidth: "640px" }}>
+              Trained on your company's HSEQ documents, branded with your identity, available to every engineer on site. Setup £997–£1,997 · from £149/month — a fraction of an agency build.
+            </p>
+          </RevealSection>
+          <RevealSection>
+            <Link href="/contact" style={{
+              background: COBALT, color: "#fff", textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14.5px",
+              padding: "14px 30px", letterSpacing: "0.03em", display: "inline-block", borderRadius: "6px",
+              whiteSpace: "nowrap",
+            }}
+              onClick={() => track("cta_enterprise_enquiry")}
+            >
+              Enquire about deployment →
             </Link>
           </RevealSection>
-        </div>
-      </section>
-
-      {/* ── DECARBONISATION OPPORTUNITY ── */}
-      <section style={{ background: WHITE, padding: isMobile ? "52px 20px" : "72px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
-            <RevealSection>
-              <Photo src="/site-rooftop.jpg" alt="Engineers commissioning rooftop chillers and heat pumps" ratio="16 / 10" style={{ marginBottom: "24px" }} />
-              <SectionLabel>Sector Insight</SectionLabel>
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
-              }}>
-                The biggest opportunity in M&E right now. Are you positioned for it?
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
-              </p>
-              {/* [DECIDE with Mark]: reframed as market insight + adjacent-line example —
-                  the old "Module 8 covers decarbonisation" claim was wrong (real Module 8 =
-                  Risk, Protection & Governance). Alternative: Mark adds the lessons to the course. */}
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Positioning for that work — entering it deliberately, pricing it properly, and building it into a durable service line — is the adjacent-line playbook the Academy teaches, drawn from Mark's own move into decarbonisation.
-              </p>
-              <Link href="/academy" style={{
-                color: RUST, textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
-                paddingBottom: "2px",
-              }}>
-                View the curriculum →
-              </Link>
-            </RevealSection>
-            <RevealSection>
-              <Photo src="/site-containment.jpg" alt="Electrical containment and cable tray installation on site" ratio="16 / 10" style={{ marginBottom: "24px" }} />
-              <SectionLabel>Sector Insight</SectionLabel>
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
-              }}>
-                The £2bn market your clients are already asking you about.
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                Fire protection and security is a common adjacent service request in engineering contracting. The market is worth £2bn and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
-              </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Most engineering contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on how to identify, enter, and build a profitable adjacent service line.
-              </p>
-              {/* Curriculum case study — kept on the funnel, no outbound link to pro-defend.com. */}
-              <Link href="/academy" style={{
-                color: RUST, textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
-                paddingBottom: "2px", display: "inline-block",
-              }}>
-                See how it's taught →
-              </Link>
-            </RevealSection>
-          </div>
-        </div>
-      </section>
-
-      {/* ── ENTERPRISE / WHITE-LABEL ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
-            <RevealSection>
-              <SectionLabel bg={COBALT}>For Companies</SectionLabel>
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
-              }}>
-                Your own branded compliance assistant. Deployed and managed for you.
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
-                We take the compliance chatbot — trained on your company's own documents, procedures, CDM obligations and HSE guidance — and deploy it as a fully managed, branded service for your organisation. Your staff get accurate answers. You get a documented audit trail. We handle the setup, hosting and updates.
-              </p>
-              <div style={{ display: "flex", gap: "24px", marginBottom: "36px", flexWrap: "wrap" }}>
-                {[
-                  { value: "£997–£1,997", label: "Setup fee" },
-                  { value: "£149–£349", label: "Per month" },
-                  { value: "vs £25k+", label: "A fraction of agency-build cost" },
-                ].map(({ value, label }) => (
-                  <div key={label}>
-                    <p style={{
-                      fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                      color: COBALT, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
-                    }}>
-                      {value}
-                    </p>
-                    <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <Link href="/contact" style={{
-                background: COBALT, color: "#fff", textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                transition: "opacity 0.2s",
-              }}
-                onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                onClick={() => track("cta_enterprise_enquiry")}
-              >
-                Enquire about enterprise deployment →
-              </Link>
-            </RevealSection>
-            <RevealSection>
-              <div style={{ background: WHITE, borderLeft: `3px solid ${COBALT}`, padding: "36px 32px", borderRadius: "10px" }}>
-                <p style={{
-                  fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                  color: NAVY, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
-                }}>
-                  "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
-                </p>
-                <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                  From the EBA AI Tools Catalogue
-                </p>
-              </div>
-            </RevealSection>
-          </div>
         </div>
       </section>
 
