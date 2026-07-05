@@ -69,7 +69,7 @@ function LegalNav({ active }: { active: string }) {
               fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
-              {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a>
           </span>
         </div>

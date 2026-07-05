@@ -8,7 +8,7 @@ import {
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, IS_DARK, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
   HERO_GLOW, SECTION_GLOW, SECTION_TINT, ORB_ACCENT,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
@@ -56,7 +56,7 @@ function PlaceholderNav({ active }: { active: string }) {
           fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "12px",
           padding: "9px 20px", letterSpacing: "0.06em", borderRadius: "10px",
         }}>
-          {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
+          {ENROL_READY ? "Apply for the Founding Cohort" : ENROL_PENDING_LABEL}
         </a>
       </div>
     </nav>
@@ -213,7 +213,7 @@ function MentorWaitlist() {
             const isFull = intake.status === "full";
             // Full rows are a dark band (light themes: NAVY; dark skin: a dark panel,
             // since NAVY flips to light there). Open/soon rows use the card surface.
-            const rowBg = isFull ? (IS_DARK ? "#1A1A1F" : NAVY) : WHITE;
+            const rowBg = isFull ? NAVY : WHITE;
             const borderLeft = isOpen
               ? `3px solid ${RUST}`
               : isFull
@@ -488,7 +488,7 @@ export function PricingPage() {
                   textDecoration: "none", fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
                   padding: "13px 24px", letterSpacing: "0.03em", display: "block",
                 }}>
-                  {ENROL_READY ? "Join the founding cohort →" : "Register your interest →"}
+                  {ENROL_READY ? "Apply for the Founding Cohort →" : "Register your interest →"}
                 </a>
               </div>
             ))}

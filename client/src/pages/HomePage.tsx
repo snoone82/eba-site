@@ -21,28 +21,32 @@ import {
   WHITE,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, IS_LIGHT, IS_WINDSOR, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
+  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   SHOW_TESTIMONIALS,
+  METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { Testimonials } from "@/components/Testimonials";
+import { CaseStudySection } from "@/components/CaseStudySection";
 import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
+import { RoiStatBand } from "@/components/RoiStatBand";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 
 // Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
 const MARK_IMG = "/mark-1on1.jpg";
 
-function SectionLabel({ children }: { children: string }) {
+// Defaults to the Academy accent (rust); pass bg for tools sections (cobalt).
+function SectionLabel({ children, bg }: { children: string; bg?: string }) {
   return (
     <span style={{
       display: "inline-block",
-      background: RUST,
+      background: bg ?? RUST,
       color: "#fff",
       fontFamily: "'Roboto', sans-serif",
       fontWeight: 600,
@@ -336,7 +340,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                 onClick={() => track("cta_join_cohort_nav")}
               >
-                {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
+                {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
             </span>
           </div>
@@ -441,26 +445,23 @@ export default function HomePage() {
               }}
                 onClick={() => track("cta_join_cohort_hero")}
               >
-                {ENROL_READY ? "Join the Founding Cohort →" : ENROL_PENDING_LABEL}
+                {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
-              <Link href="/ai-tools" style={{
-                background: "transparent", color: "#fff", textDecoration: "none",
+              {/* Two-track CTA: Academy track = rust primary above; Tools track = cobalt outline below. */}
+              <a href="/ai-tools#free-toolbox-talk" style={{
+                background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
                 fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
-                padding: "14px 32px", border: "1.5px solid rgba(255,255,255,0.55)",
-                transition: "border-color 0.2s", borderRadius: "6px",
+                padding: "14px 32px", border: `1.5px solid ${COBALT_ON_DARK}`,
+                transition: "background 0.2s, color 0.2s", borderRadius: "6px",
                 display: "inline-block",
               }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "#fff"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "rgba(255,255,255,0.55)"; }}
-                onClick={() => track("cta_explore_tools_hero")}
+                onMouseEnter={e => { e.currentTarget.style.background = `rgba(${COBALT_RGB},0.18)`; }}
+                onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+                onClick={() => track("cta_free_tool_hero")}
               >
-                Explore the AI Tools
-              </Link>
+                Try the free Toolbox Talk tool
+              </a>
             </div>
-            <p style={{ marginTop: "20px", fontFamily: "'Roboto', sans-serif", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.78)", display: "inline-flex", alignItems: "center", gap: "8px" }}>
-              <span style={{ display: "inline-flex", width: "18px", height: "18px", borderRadius: "5px", background: CTA_PRIMARY_BG, flexShrink: 0 }} />
-              Free Toolbox Talk Generator — no purchase, just your email.
-            </p>
           </div>
         </div>
       </section>
@@ -528,10 +529,10 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "20px" }}>
             {[
               { href: "/academy", img: "/mark-teaching.jpg", focus: "center 24%", tag: "The Academy", tagBg: NAVY, title: "The full M&E operating system", cat: "Video-led · pricing, contracts, cash flow, growth", meta: "101 lessons · 10 modules" },
-              { href: "/ai-tools", img: "/site-plantroom.jpg", focus: "center", tag: "AI Tools", tagBg: RUST, title: "Four tools built for M&E", cat: "O&M Compiler · RAMS · Compliance Co-Pilot · COSHH", meta: "Ready now" },
+              { href: "/ai-tools", img: "/site-plantroom.jpg", focus: "center", tag: "AI Tools", tagBg: COBALT, title: "Four tools built for M&E", cat: "O&M Compiler · RAMS · Compliance Co-Pilot · COSHH", meta: "Ready now" },
               { href: "/documents", img: "/site-fitout.jpg", focus: "center", tag: "Documents", tagBg: NAVY, title: "380 documents. 25 years of practice.", cat: "Every template, form, checklist and procedure — Word & PDF", meta: "Included with membership" },
               { href: "/mentorship", img: "/mark-1on1.jpg", focus: "center 22%", tag: "Mentorship", tagBg: RUST, title: "Direct access to Mark Poulton", cat: "Group & 1:1 · application-only", meta: "Limited intakes" },
-              { href: "/ai-tools", img: "/site-rooftop.jpg", focus: "center", tag: "Free Tool", tagBg: "#6B7B68", title: "Toolbox Talk Generator", cat: "Site-ready talk in a minute — no purchase", meta: "Free" },
+              { href: "/ai-tools", img: "/site-rooftop.jpg", focus: "center", tag: "Free Tool", tagBg: COBALT, title: "Toolbox Talk Generator", cat: "Site-ready talk in a minute — no purchase", meta: "Free" },
               { href: "/our-story", img: "/mark-seated.jpg", focus: "center 20%", tag: "Our Story", tagBg: NAVY, title: "Built by people who've done it", cat: "25 years running a real M&E business", meta: "Meet the founder" },
             ].map(card => (
               <Link key={card.title} href={card.href} className="eba-bento-card" style={{
@@ -569,8 +570,9 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "72px", alignItems: "start" }}>
             <RevealSection>
-              <SectionLabel>AI Tools</SectionLabel>
-              <RustRule />
+              {/* Tools block = tools accent (cobalt). */}
+              <SectionLabel bg={COBALT}>AI Tools</SectionLabel>
+              <div style={{ width: "48px", height: "3px", background: COBALT, borderRadius: "2px", marginBottom: "24px" }} />
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
@@ -582,9 +584,9 @@ export default function HomePage() {
                 Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals delivered in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge. Built exclusively for M&E — and included with Academy membership.
               </p>
               <Link href="/ai-tools" style={{
-                color: RUST, textDecoration: "none",
+                color: COBALT, textDecoration: "none",
                 fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${COBALT}`, paddingBottom: "2px",
               }}>
                 Explore the AI tools →
               </Link>
@@ -611,6 +613,10 @@ export default function HomePage() {
               </Link>
             </RevealSection>
           </div>
+          {/* Compact ROI band — what the tools actually save */}
+          <RevealSection style={{ marginTop: isMobile ? "40px" : "56px" }}>
+            <RoiStatBand compact />
+          </RevealSection>
         </div>
       </section>
 
@@ -677,7 +683,7 @@ export default function HomePage() {
               Every M&E contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
             </p>
             <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
-              The Academy is 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
+              The Academy teaches {METHOD_NAME} — 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
             </p>
             <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
               Not generic business theory. Not a coaching framework. The specific operating knowledge of running an M&E business — from someone who has built one at scale.
@@ -689,6 +695,10 @@ export default function HomePage() {
             }}>
               See the curriculum →
             </Link>
+            {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
+            <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14px", lineHeight: 1.6, margin: "22px 0 0", fontStyle: "italic" }}>
+              Built for established M&amp;E contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
+            </p>
           </RevealSection>
         </div>
       </section>
@@ -816,6 +826,10 @@ export default function HomePage() {
       {/* ── TESTIMONIALS ── hidden until real founding-member quotes exist */}
       {SHOW_TESTIMONIALS && <Testimonials />}
 
+      {/* ── CASE STUDIES ── gated behind SHOW_CASE_STUDIES; renders nothing
+          until real, verified member results exist (no invented examples) */}
+      <CaseStudySection />
+
       {/* ── DECARBONISATION OPPORTUNITY ── */}
       <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -880,7 +894,7 @@ export default function HomePage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
-              <SectionLabel>For Companies</SectionLabel>
+              <SectionLabel bg={COBALT}>For Companies</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
@@ -900,7 +914,7 @@ export default function HomePage() {
                   <div key={label}>
                     <p style={{
                       fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                      color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
+                      color: COBALT_ON_DARK, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
                     }}>
                       {value}
                     </p>
@@ -911,7 +925,7 @@ export default function HomePage() {
                 ))}
               </div>
               <Link href="/contact" style={{
-                background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+                background: COBALT, color: "#fff", textDecoration: "none",
                 fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                 padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 transition: "opacity 0.2s",
@@ -924,7 +938,7 @@ export default function HomePage() {
               </Link>
             </RevealSection>
             <RevealSection>
-              <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "36px 32px" }}>
+              <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${COBALT_ON_DARK}`, padding: "36px 32px" }}>
                 <p style={{
                   fontFamily: "var(--eba-heading)", fontStyle: "italic",
                   color: ON_DARK, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
@@ -1000,18 +1014,33 @@ export default function HomePage() {
           }}>
             Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. M&E contractors only. Limited places.
           </p>
-          <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "16px",
-            padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
-            transition: "opacity 0.2s", borderRadius: "6px",
-          }}
-            onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
-            onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
-            onClick={() => track("cta_join_cohort_footer")}
-          >
-            {ENROL_READY ? "Join the founding cohort →" : ENROL_PENDING_LABEL}
-          </a>
+          {/* Two-track CTA: Academy track = rust primary; Tools track = cobalt outline. */}
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
+            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
+              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "16px",
+              padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
+              transition: "opacity 0.2s", borderRadius: "6px",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
+              onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
+              onClick={() => track("cta_join_cohort_footer")}
+            >
+              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+            </a>
+            <a href="/ai-tools#free-toolbox-talk" style={{
+              background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
+              fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "16px",
+              padding: "16px 40px", border: `1.5px solid ${COBALT_ON_DARK}`,
+              transition: "background 0.2s", borderRadius: "6px", display: "inline-block",
+            }}
+              onMouseEnter={e => { e.currentTarget.style.background = `rgba(${COBALT_RGB},0.18)`; }}
+              onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
+              onClick={() => track("cta_free_tool_footer")}
+            >
+              Try the free Toolbox Talk tool
+            </a>
+          </div>
         </RevealSection>
       </section>
 

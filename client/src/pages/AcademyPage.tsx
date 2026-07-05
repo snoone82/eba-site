@@ -28,7 +28,7 @@ import {
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, ACCENT_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
-  HERO_GLOW, SECTION_GLOW,
+  HERO_GLOW, SECTION_GLOW, METHOD_NAME,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -206,7 +206,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
               fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
-              {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a></span>
           </div>
         </div>
@@ -259,7 +259,7 @@ export default function AcademyPage() {
                   fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
-                  {ENROL_READY ? "Join the founding cohort →" : ENROL_PENDING_LABEL}
+                  {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
                 </a>
                 <a href="#curriculum" style={{
                   background: "transparent", color: ON_DARK, textDecoration: "none",
@@ -271,6 +271,10 @@ export default function AcademyPage() {
               </div>
               <p style={{ marginTop: "26px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
                 More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>Built specifically for M&amp;E.</span>
+              </p>
+              {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
+              <p style={{ marginTop: "14px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "460px", lineHeight: 1.5 }}>
+                Built for established M&amp;E contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -312,6 +316,48 @@ export default function AcademyPage() {
         </div>
       </div>
 
+      {/* ── THE JOURNEY ── 4-step route through the programme (typographic — no icons) */}
+      <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "88px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)` }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel light>The Journey</SectionLabel>
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.8rem, 3.4vw, 2.5rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 44px", lineHeight: 1.12,
+            }}>
+              From application to a business that runs without you.
+            </h2>
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: isMobile ? "28px" : "32px" }}>
+              {[
+                { step: "1", title: "Join the founding cohort", body: "Apply, secure one of the limited places, and lock in the founding price for life." },
+                { step: "2", title: "Work the 10 modules", body: "Self-paced over 12–16 weeks — pricing, contracts, cash flow, teams, growth." },
+                { step: "3", title: "Mentorship & community", body: "Group sessions and 1:1 access while you put the system into your business." },
+                { step: "4", title: "The business on the other side", body: "Systems that run without you — priced right, paid on time, off your shoulders." },
+              ].map(({ step, title, body }, i) => (
+                <div key={step} style={{
+                  borderTop: `2px solid ${i === 3 ? RUST : `rgba(${NAVY_RGB},0.15)`}`,
+                  paddingTop: "20px",
+                }}>
+                  <span style={{
+                    fontFamily: "var(--eba-heading)", fontStyle: "italic", fontWeight: 700,
+                    color: RUST, fontSize: "1.6rem", display: "block", marginBottom: "10px",
+                  }}>
+                    {step}
+                  </span>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.05rem", color: NAVY, margin: "0 0 8px", lineHeight: 1.3 }}>
+                    {title}
+                  </h3>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.68)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
+                    {body}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </RevealSection>
+        </div>
+      </section>
+
       {/* ── CURRICULUM ── */}
       <section id="curriculum" style={{ backgroundColor: CREAM, backgroundImage: SECTION_GLOW, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
@@ -325,7 +371,7 @@ export default function AcademyPage() {
               What you will learn.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
-              Ten modules covering every dimension of running an M&E business. Click any module to see the lesson breakdown.
+              Ten modules — the ten components of {METHOD_NAME} — covering every dimension of running an M&E business. Click any module to see the lesson breakdown.
             </p>
           </RevealSection>
 
@@ -564,7 +610,7 @@ export default function AcademyPage() {
                     fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
                     padding: "13px 24px", letterSpacing: "0.04em", display: "block",
                     textAlign: "center",
-                  }}>{ENROL_READY ? "Join now →" : ENROL_PENDING_LABEL}</a>
+                  }}>{ENROL_READY ? "Apply now →" : ENROL_PENDING_LABEL}</a>
                 </div>
               ))}
             </div>

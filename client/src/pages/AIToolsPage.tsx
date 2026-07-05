@@ -31,19 +31,23 @@ import {
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   HERO_GLOW, SECTION_GLOW,
+  COBALT, COBALT_RGB, COBALT_ON_DARK,
 } from "@/lib/constants";
+import { RoiStatBand } from "@/components/RoiStatBand";
+import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 import { Check, FileText, ShieldCheck, MessageSquareText, FlaskConical, Sparkles } from "lucide-react";
 
 const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
 
+// Tools page = tools accent (cobalt). Academy/Mark/story sections keep rust.
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
   return (
     <span style={{
       display: "inline-block",
-      background: light ? `rgba(${RUST_RGB},0.15)` : RUST,
-      color: light ? RUST : "#fff",
+      background: light ? `rgba(${COBALT_RGB},0.12)` : COBALT,
+      color: light ? COBALT : "#fff",
       fontFamily: "'Roboto', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
@@ -144,13 +148,13 @@ function OmManualDemo() {
             <div key={i} style={{
               padding: "14px 18px",
               background: i === step ? NAVY : i < step ? `rgba(${NAVY_RGB},0.04)` : "transparent",
-              borderLeft: `3px solid ${i === step ? RUST : i < step ? `rgba(${RUST_RGB},0.3)` : OAT}`,
+              borderLeft: `3px solid ${i === step ? COBALT : i < step ? `rgba(${COBALT_RGB},0.3)` : OAT}`,
               transition: "all 0.4s ease",
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
                 <div style={{
                   width: "20px", height: "20px", borderRadius: "50%", flexShrink: 0,
-                  background: i < step ? RUST : i === step ? "#fff" : OAT,
+                  background: i < step ? COBALT : i === step ? "#fff" : OAT,
                   display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: "10px", fontWeight: 700,
                   color: i < step ? "#fff" : i === step ? NAVY : `rgba(${NAVY_RGB},0.4)`,
@@ -175,7 +179,7 @@ function OmManualDemo() {
             </div>
           ))}
         </div>
-        <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${RUST_RGB},0.06)`, borderLeft: `3px solid ${RUST}` }}>
+        <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${COBALT_RGB},0.06)`, borderLeft: `3px solid ${COBALT}` }}>
           <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
             <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → under 30 minutes
           </p>
@@ -269,7 +273,7 @@ function ComplianceChatDemo() {
               <div style={{ background: OAT, padding: "12px 16px", display: "flex", gap: "4px", alignItems: "center" }}>
                 {[0, 1, 2].map(i => (
                   <div key={i} style={{
-                    width: "6px", height: "6px", borderRadius: "50%", background: RUST,
+                    width: "6px", height: "6px", borderRadius: "50%", background: COBALT,
                     animation: `bounce 1.2s ease-in-out ${i * 0.2}s infinite`,
                   }} />
                 ))}
@@ -284,7 +288,7 @@ function ComplianceChatDemo() {
           }}>
             Ask a safety or compliance question...
           </div>
-          <div style={{ background: RUST, padding: "10px 16px", display: "flex", alignItems: "center" }}>
+          <div style={{ background: COBALT, padding: "10px 16px", display: "flex", alignItems: "center" }}>
             <span style={{ color: ON_DARK, fontSize: "16px" }}>→</span>
           </div>
         </div>
@@ -343,7 +347,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
 
   if (submitted) {
     return (
-      <p style={{ color: `rgba(${RUST_RGB},0.8)`, fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
+      <p style={{ color: COBALT, fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
         <Check size={13} strokeWidth={2.5} style={{ flexShrink: 0 }} /> We'll notify you when {toolName} is live.
       </p>
     );
@@ -367,7 +371,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
         type="submit"
         disabled={loading}
         style={{
-          background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: "pointer",
+          background: COBALT, color: "#fff", border: "none", cursor: "pointer",
           fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "11px",
           padding: "9px 16px", letterSpacing: "0.05em", opacity: loading ? 0.7 : 1,
           whiteSpace: "nowrap" as const,
@@ -417,7 +421,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
-              {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a></span>
           </div>
         </div>
@@ -461,7 +465,7 @@ export default function AIToolsPage() {
           <div style={{ position: "absolute", inset: 0, opacity: 0.12, backgroundImage: `url(${TOOLS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }} />
         )}
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "18px" }}>
+          <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: COBALT_ON_DARK, marginBottom: "18px" }}>
             · AI Tools · Built for M&amp;E ·
           </div>
           <h1 style={{
@@ -499,8 +503,8 @@ export default function AIToolsPage() {
               { value: "£0", label: "Extra staff required" },
               { value: "You", label: "Review every output" },
             ].map(({ value, label }) => (
-              <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
-                <p style={{ fontFamily: "var(--eba-heading)", color: RUST, fontSize: "1.6rem", fontWeight: 800, margin: "0 0 4px" }}>
+              <div key={label} style={{ borderLeft: `3px solid ${COBALT_ON_DARK}`, paddingLeft: "16px" }}>
+                <p style={{ fontFamily: "var(--eba-heading)", color: COBALT_ON_DARK, fontSize: "1.6rem", fontWeight: 800, margin: "0 0 4px" }}>
                   {value}
                 </p>
                 <p style={{ color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
@@ -509,6 +513,15 @@ export default function AIToolsPage() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── ROI STAT BAND ── what the tools actually save (tools accent) */}
+      <section style={{ background: CREAM, padding: isMobile ? "40px 20px" : "56px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <RoiStatBand />
+          </RevealSection>
         </div>
       </section>
 
@@ -523,27 +536,52 @@ export default function AIToolsPage() {
               Built for M&amp;E. Ready today.
             </h2>
           </div>
+          {/* Product-visual slots, not stock photos: each card shows the tool's
+              output in a browser-chrome frame (see ProductFrame). */}
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "18px" }}>
             {[
-              { Icon: FileText, name: "O&M Manual Compiler", outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.", note: "Pay per manual · from £99" },
-              { Icon: ShieldCheck, name: "RAMS Generator", outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.", note: "Subscription · from £49/mo" },
-              { Icon: MessageSquareText, name: "Compliance Co-Pilot", outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.", note: "Subscription · from £99/mo" },
-              { Icon: FlaskConical, name: "COSHH Generator", outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.", note: "Pay per use · pricing soon" },
-            ].map(({ Icon, name, outcome, note }) => (
+              {
+                Icon: FileText, name: "O&M Manual Compiler",
+                outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.",
+                note: "Pay per manual · from £99",
+                frame: { url: "eba.academy/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"] },
+              },
+              {
+                Icon: ShieldCheck, name: "RAMS Generator",
+                outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.",
+                note: "Subscription · from £49/mo",
+                frame: { url: "eba.academy/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"] },
+              },
+              {
+                Icon: MessageSquareText, name: "Compliance Co-Pilot",
+                outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.",
+                note: "Subscription · from £99/mo",
+                frame: { url: "eba.academy/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"] },
+              },
+              {
+                Icon: FlaskConical, name: "COSHH Generator",
+                outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.",
+                note: "Pay per use · pricing soon",
+                frame: { url: "eba.academy/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"] },
+              },
+            ].map(({ Icon, name, outcome, note, frame }) => (
               <div key={name} className="eba-bento-card" style={{
                 background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "20px",
                 padding: isMobile ? "26px 24px" : "30px 30px", display: "flex", flexDirection: "column",
                 boxShadow: "0 18px 40px -28px rgba(0,0,0,0.25)",
               }}>
                 <div style={{ display: "flex", alignItems: "center", gap: "14px", marginBottom: "16px" }}>
-                  <span style={{ width: "46px", height: "46px", borderRadius: "13px", background: CTA_PRIMARY_BG, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <span style={{ width: "46px", height: "46px", borderRadius: "13px", background: COBALT, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
                     <Icon size={22} color="#fff" strokeWidth={1.9} />
                   </span>
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.35rem", letterSpacing: "-0.01em", color: NAVY, margin: 0 }}>{name}</h3>
                 </div>
                 <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14.5px", lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.72)`, margin: "0 0 18px" }}>{outcome}</p>
+                <div style={{ marginBottom: "18px" }}>
+                  <ProductFrame {...frame} />
+                </div>
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
-                  <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", fontWeight: 700, color: RUST, background: `rgba(${RUST_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
+                  <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", fontWeight: 700, color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.72)` }}>
                     <Check size={13} strokeWidth={2.5} /> You review every output
                   </span>
@@ -601,7 +639,7 @@ export default function AIToolsPage() {
                         {tool.body}
                       </p>
                       <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "32px" }}>
-                        <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700 }}>
+                        <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: COBALT, fontSize: "1.1rem", fontWeight: 700 }}>
                           {tool.price}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#28c840", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em" }}>
@@ -611,7 +649,7 @@ export default function AIToolsPage() {
                       </div>
                       {!isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
-                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+                          background: COBALT, color: "#fff", textDecoration: "none",
                           fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -624,7 +662,7 @@ export default function AIToolsPage() {
                         </a>
                       ) : (
                         <Link href={tool.href} style={{
-                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+                          background: COBALT, color: "#fff", textDecoration: "none",
                           fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -655,7 +693,7 @@ export default function AIToolsPage() {
                         {tool.body}
                       </p>
                       <div style={{ display: "flex", alignItems: "center", gap: "24px", marginBottom: "32px" }}>
-                        <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700 }}>
+                        <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: COBALT, fontSize: "1.1rem", fontWeight: 700 }}>
                           {tool.price}
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#28c840", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em" }}>
@@ -665,7 +703,7 @@ export default function AIToolsPage() {
                       </div>
                       {!isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
-                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+                          background: COBALT, color: "#fff", textDecoration: "none",
                           fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -678,7 +716,7 @@ export default function AIToolsPage() {
                         </a>
                       ) : (
                         <Link href={tool.href} style={{
-                          background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+                          background: COBALT, color: "#fff", textDecoration: "none",
                           fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                           padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                           transition: "opacity 0.2s",
@@ -719,7 +757,7 @@ export default function AIToolsPage() {
             {comingSoon.map((tool, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: WHITE, borderTop: `3px solid rgba(${RUST_RGB},0.25)`,
+                  background: WHITE, borderTop: `3px solid rgba(${COBALT_RGB},0.35)`,
                   padding: "28px 28px", opacity: 0.8,
                 }}>
                   <span style={{
@@ -740,7 +778,7 @@ export default function AIToolsPage() {
                   </p>
                   <span style={{
                     fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                    color: `rgba(${RUST_RGB},0.85)`, fontSize: "13px",
+                    color: COBALT, fontSize: "13px",
                   }}>
                     {tool.price}
                   </span>
@@ -776,7 +814,7 @@ export default function AIToolsPage() {
                     { value: "vs £25k+", label: "Agency cost" },
                   ].map(({ value, label }) => (
                     <div key={label}>
-                      <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
+                      <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: COBALT_ON_DARK, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
                         {value}
                       </p>
                       <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
@@ -786,7 +824,7 @@ export default function AIToolsPage() {
                   ))}
                 </div>
                 <Link href="/contact" style={{
-                  background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
+                  background: COBALT, color: "#fff", textDecoration: "none",
                   fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
@@ -794,8 +832,14 @@ export default function AIToolsPage() {
                 </Link>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-                <Photo src="/site-plantroom.jpg" alt="An M&E engineer checking compliance on a tablet in a plant room" ratio="16 / 10" />
-                <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`, padding: "28px 30px", borderRadius: "12px" }}>
+                {/* Tools sections show the product, not stock photos. */}
+                <ProductFrame
+                  url="compliance.yourcompany.co.uk"
+                  docTitle="Your Company Compliance Assistant"
+                  docMeta="Your branding · trained on your HSEQ documents"
+                  lines={["Answers in your company's voice", "Cited to your source procedures", "Deployed to every engineer on site"]}
+                />
+                <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${COBALT_ON_DARK}`, padding: "28px 30px", borderRadius: "12px" }}>
                   <p style={{
                     fontFamily: "var(--eba-heading)", fontStyle: "italic",
                     color: ON_DARK, fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",

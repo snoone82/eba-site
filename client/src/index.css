@@ -50,13 +50,17 @@
   --eba-white: #FFFFFF;
   --eba-amber: #FFB162;
 
-  /* Active theme's signature gradient (mirrored from constants at runtime).
-   * Default here = the KEYIS blue→red→yellow→green transition. */
-  --eba-accent-grad: linear-gradient(95deg, #73CAEB 0%, #E9425C 35%, #FFCF47 65%, #75B94E 100%);
-  --eba-accent-rgb: 233,66,92;
+  /* Solid accent tokens. The KEYIS four-stop gradient has been removed from the
+   * brand — accents are flat rust (Academy) / cobalt (Tools) only. */
+  --eba-accent-grad: var(--eba-rust); /* legacy name; now a SOLID accent */
+  --eba-accent-rgb: 163,81,57;
+  --eba-cobalt: #2454C9;
 
-  /* Heading typeface — Roboto (KEYIS brand headline font, used at Bold/Black weights). */
-  --eba-heading: 'Roboto', system-ui, sans-serif;
+  /* Heading typeface — Playfair Display is the EBA editorial default (hero H1s,
+   * section headings). Roboto stays for UI/body/labels. The Roboto-heading look
+   * was the KEYIS-alignment experiment — to flip back, change this to
+   * 'Roboto', system-ui, sans-serif (or use ?font=modern at runtime). */
+  --eba-heading: 'Playfair Display', serif;
 
   /* ─── Semantic tokens (shadcn/ui) ─── */
   --radius: 0.25rem;
@@ -134,9 +138,7 @@
     left: 0;
     right: 0;
     height: 3px;
-    background: var(--eba-accent-grad);
-    background-size: 200% 100%;
-    animation: eba-drift 14s linear infinite;
+    background: var(--eba-rust);
     z-index: 200;
     pointer-events: none;
   }
@@ -148,17 +150,12 @@
 
   /* Signature gradient applied to text (used sparingly on hero/stat accents). */
   .eba-grad-text {
-    background: var(--eba-accent-grad);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: eba-drift 9s linear infinite;
+    color: var(--eba-rust);
   }
 
   /* Thin gradient rule — replaces flat accent bars in a few key places. */
   .eba-grad-rule {
-    background: var(--eba-accent-grad);
+    background: var(--eba-rust);
     border-radius: 2px;
   }
 
@@ -235,7 +232,7 @@
 }
 @keyframes eba-rowpop {
   0%, 70%, 100% { background: transparent; }
-  10%, 40%      { background: rgba(61,90,241,0.07); }
+  10%, 40%      { background: rgba(163,81,57,0.07); }
 }
 
 .eba-float       { animation: eba-float 6s ease-in-out infinite; }
@@ -264,18 +261,13 @@ button, a[href], input, textarea, select { border-radius: 10px; }
 
 /* ── Signature motion layer ─────────────────────────────────────────────── */
 
-/* Slow travelling shimmer for gradient fills (hairline, borders, text). */
-@keyframes eba-drift {
-  0%   { background-position: 0% 50%;   }
-  100% { background-position: 200% 50%; }
-}
 /* Light sweep across a surface on hover. */
 @keyframes eba-shine-kf {
   0%   { transform: translateX(-160%) skewX(-18deg); }
   100% { transform: translateX(240%)  skewX(-18deg); }
 }
 
-/* Animated gradient hairline border via a masked ring. Element needs a radius. */
+/* Accent hairline border via a masked ring (solid accent — no gradient). */
 .eba-grad-border { position: relative; isolation: isolate; }
 .eba-grad-border::before {
   content: "";
@@ -284,12 +276,10 @@ button, a[href], input, textarea, select { border-radius: 10px; }
   border-radius: inherit;
   padding: 1.5px;
   background: var(--eba-accent-grad);
-  background-size: 220% 220%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
-  animation: eba-drift 8s linear infinite;
   pointer-events: none;
   z-index: 1;
 }
@@ -338,14 +328,12 @@ button, a[href], input, textarea, select { border-radius: 10px; }
   border-radius: inherit;
   padding: 1.5px;
   background: var(--eba-accent-grad);
-  background-size: 220% 220%;
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
           mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
   -webkit-mask-composite: xor;
           mask-composite: exclude;
   opacity: 0;
   transition: opacity 0.35s ease;
-  animation: eba-drift 8s linear infinite;
   pointer-events: none;
 }
 .eba-bento-card:hover {

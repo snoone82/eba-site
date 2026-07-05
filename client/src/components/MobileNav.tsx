@@ -171,7 +171,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
               marginBottom: "24px",
             }}
           >
-            {ENROL_READY ? "Join the Academy →" : ENROL_PENDING_LABEL}
+            {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
           </a>
           <p style={{
             color: `rgba(${CREAM_RGB},0.72)`,
