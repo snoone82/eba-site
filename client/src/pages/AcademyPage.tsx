@@ -26,9 +26,10 @@ import {
   isPlaceholder,
   WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, ACCENT_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
-  HERO_GLOW, SECTION_GLOW, METHOD_NAME,
+  HERO_GLOW, SECTION_GLOW, METHOD_NAME, RUST_ON_DARK,
+  ENROL_DOCS_READY, ENROL_DOCS_HREF,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -46,7 +47,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
       display: "inline-block",
       background: light ? `rgba(${RUST_RGB},0.12)` : RUST,
       color: light ? RUST : "#fff",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Poppins', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
     }}>
@@ -207,7 +208,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/academy" ? NAV_LINK_ACTIVE : NAV_LINK,
-                textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+                textDecoration: "none", fontFamily: "'Poppins', sans-serif",
                 fontWeight: href === "/academy" ? 600 : 500, fontSize: "14px",
                 borderBottom: href === "/academy" ? `2px solid ${NAV_LINK_ACTIVE}` : "none",
                 paddingBottom: "2px",
@@ -217,7 +218,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             ))}
             <span><a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
@@ -239,7 +240,7 @@ export default function AcademyPage() {
 
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.academy} jsonLd={COURSE_JSONLD} />
       <MobileNav transparent={true} />
 
@@ -269,25 +270,25 @@ export default function AcademyPage() {
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
-                  background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                  background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
                   {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
                 </a>
                 <a href="#curriculum" style={{
                   background: "transparent", color: ON_DARK, textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.4)`, display: "inline-block",
                 }}>
                   View curriculum
                 </a>
               </div>
-              <p style={{ marginTop: "26px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
-                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>Built specifically for engineering contractors.</span>
+              <p style={{ marginTop: "26px", fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
+                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST_ON_DARK }}>Built specifically for engineering contractors.</span>
               </p>
               {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
-              <p style={{ marginTop: "14px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "460px", lineHeight: 1.5 }}>
+              <p style={{ marginTop: "14px", fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "460px", lineHeight: 1.5 }}>
                 Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
               </p>
             </div>
@@ -395,7 +396,7 @@ export default function AcademyPage() {
                 <div style={{
                   background: mod.dark ? NAVY : "#fff",
                   border: `1px solid rgba(${NAVY_RGB},0.08)`,
-                  borderLeft: `4px solid ${openModule === i ? RUST : mod.dark ? RUST : OAT}`,
+                  borderLeft: `4px solid ${openModule === i ? RUST : mod.dark ? RUST_ON_DARK : OAT}`,
                   borderRadius: "12px",
                   transition: "border-color 0.2s",
                   overflow: "hidden",
@@ -411,7 +412,7 @@ export default function AcademyPage() {
                   >
                     <span style={{
                       fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                      color: mod.dark ? RUST : openModule === i ? RUST : `rgba(${NAVY_RGB},0.25)`,
+                      color: mod.dark ? RUST_ON_DARK : openModule === i ? RUST : `rgba(${NAVY_RGB},0.25)`,
                       fontSize: "1.1rem", fontWeight: 700, minWidth: "36px",
                       transition: "color 0.2s",
                     }}>
@@ -427,7 +428,7 @@ export default function AcademyPage() {
                         {mod.dark && (
                           <span style={{
                             marginLeft: "12px", background: RUST, color: "#fff",
-                            fontSize: "9px", fontFamily: "'DM Sans', sans-serif",
+                            fontSize: "9px", fontFamily: "'Poppins', sans-serif",
                             fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                             padding: "2px 8px", verticalAlign: "middle",
                           }}>
@@ -436,7 +437,7 @@ export default function AcademyPage() {
                         )}
                       </h3>
                       <span style={{
-                        fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
+                        fontFamily: "'Poppins', sans-serif", fontSize: "12px",
                         color: mod.dark ? `rgba(${CREAM_RGB},0.45)` : `rgba(${NAVY_RGB},0.45)`,
                         fontWeight: 500,
                       }}>
@@ -467,7 +468,7 @@ export default function AcademyPage() {
                       {mod.standoutLessons && mod.standoutLessons.length > 0 && (
                         <div>
                           <p style={{
-                            fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "10.5px",
+                            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "10.5px",
                             letterSpacing: "0.1em", textTransform: "uppercase",
                             color: mod.dark ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.5)`,
                             margin: "0 0 8px",
@@ -479,7 +480,7 @@ export default function AcademyPage() {
                               <span key={j} style={{
                                 background: mod.dark ? `rgba(${ON_DARK_RGB},0.08)` : OAT,
                                 color: mod.dark ? `rgba(${CREAM_RGB},0.75)` : `rgba(${NAVY_RGB},0.75)`,
-                                fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", fontWeight: 500,
+                                fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 500,
                                 fontStyle: "italic", padding: "5px 12px",
                               }}>
                                 “{lesson}”
@@ -520,7 +521,7 @@ export default function AcademyPage() {
                   background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`,
                   padding: "28px 24px",
                 }}>
-                  <Icon size={26} strokeWidth={1.75} color={RUST} style={{ display: "block", marginBottom: "14px" }} />
+                  <Icon size={26} strokeWidth={1.75} color={RUST_ON_DARK} style={{ display: "block", marginBottom: "14px" }} />
                   <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.1rem", color: ON_DARK, margin: "0 0 10px" }}>{label}</h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "14px", lineHeight: 1.65, margin: 0 }}>{body}</p>
                 </div>
@@ -594,7 +595,7 @@ export default function AcademyPage() {
                     <div style={{
                       position: "absolute", top: "-1px", right: "20px",
                       background: RUST, color: "#fff",
-                      fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
+                      fontFamily: "'Poppins', sans-serif", fontWeight: 700,
                       fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "4px 12px",
                     }}>Most Popular</div>
@@ -606,7 +607,7 @@ export default function AcademyPage() {
                   }}>{tier}</h3>
                   <div style={{
                     fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                    color: RUST, fontSize: PRICING_ANNOUNCED ? "2.2rem" : "1.25rem", fontWeight: 700, margin: "0 0 4px",
+                    color: popular ? RUST_ON_DARK : RUST, fontSize: PRICING_ANNOUNCED ? "2.2rem" : "1.25rem", fontWeight: 700, margin: "0 0 4px",
                   }}>{PRICING_ANNOUNCED ? price : "Pricing announced soon"}</div>
                   {PRICING_ANNOUNCED && (
                     <div style={{ color: popular ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.45)`, fontSize: "13px", margin: "0 0 28px" }}>{monthly}</div>
@@ -614,20 +615,20 @@ export default function AcademyPage() {
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "28px" }}>
                     {includes.map((item, j) => (
                       <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
-                        <Check size={16} strokeWidth={2.5} color={RUST} style={{ flexShrink: 0, marginTop: "2px" }} />
+                        <Check size={16} strokeWidth={2.5} color={popular ? RUST_ON_DARK : RUST} style={{ flexShrink: 0, marginTop: "2px" }} />
                         <span style={{ color: popular ? `rgba(${CREAM_RGB},0.75)` : `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.5 }}>{item}</span>
                       </div>
                     ))}
                   </div>
-                  <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
+                  <a href={popular ? ENROL_DOCS_HREF : KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!(popular ? ENROL_DOCS_READY : ENROL_READY) || undefined} onClick={() => track("checkout_click", { source: "academy", tier: popular ? "academy+docs" : "academy" })} style={{
                     background: popular ? RUST : "transparent",
                     color: popular ? "#fff" : NAVY,
                     border: popular ? "none" : `2px solid ${NAVY}`,
                     textDecoration: "none",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                     padding: "13px 24px", letterSpacing: "0.04em", display: "block",
                     textAlign: "center",
-                  }}>{ENROL_READY ? "Apply now →" : ENROL_PENDING_LABEL}</a>
+                  }}>{(popular ? ENROL_DOCS_READY : ENROL_READY) ? "Apply now →" : ENROL_PENDING_LABEL}</a>
                 </div>
               ))}
             </div>

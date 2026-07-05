@@ -8,7 +8,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "wouter";
 import {
-  NAVY, WHITE, RUST, RUST_RGB, NAVY_RGB, CREAM, CTA_PRIMARY_BG, CTA_DARK_BG,
+  NAVY, WHITE, RUST, RUST_RGB, NAVY_RGB, CREAM, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_DARK_BG,
   ON_DARK, CREAM_RGB, IS_LIGHT,
 } from "@/lib/constants";
 import { track } from "@/lib/track";
@@ -21,7 +21,7 @@ const ASSISTANT_ENDPOINT: string =
   (import.meta as any).env?.VITE_ASSISTANT_ENDPOINT || "/api/assistant";
 
 const GREETING =
-  "Hi 👋 I'm the EBA assistant. Ask me about the Academy, the AI tools, the free Toolbox Talk Generator, documents, mentorship, pricing or enrolment.";
+  "Hi — I'm the EBA assistant. Ask me about the Academy, the AI tools, the free Toolbox Talk Generator, documents, mentorship, pricing or enrolment.";
 
 const SUGGESTIONS = [
   "What are the AI tools?",
@@ -177,7 +177,7 @@ export function AssistantWidget() {
             </span>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "15px", color: onDark }}>EBA Assistant</div>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: IS_LIGHT ? "rgba(255,255,255,0.85)" : `rgba(${CREAM_RGB},0.8)` }}>Ask me anything about EBA</div>
+              <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: IS_LIGHT ? "rgba(255,255,255,0.85)" : `rgba(${CREAM_RGB},0.8)` }}>Ask me anything about EBA</div>
             </div>
             <button onClick={toggle} aria-label="Close assistant" style={{ background: "transparent", border: "none", cursor: "pointer", color: onDark, display: "inline-flex", padding: "4px" }}>
               <X size={18} />
@@ -192,7 +192,7 @@ export function AssistantWidget() {
                   maxWidth: "86%",
                   background: m.role === "user" ? CTA_PRIMARY_BG : CREAM,
                   color: m.role === "user" ? "#fff" : NAVY,
-                  fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.5,
+                  fontFamily: "'Poppins', sans-serif", fontSize: "13.5px", lineHeight: 1.5,
                   padding: "10px 13px",
                   borderRadius: m.role === "user" ? "13px 13px 3px 13px" : "3px 13px 13px 13px",
                 }}>
@@ -216,7 +216,7 @@ export function AssistantWidget() {
                   <button key={s} onClick={() => ask(s)} style={{
                     background: `rgba(${RUST_RGB},0.08)`, color: RUST, border: `1px solid rgba(${RUST_RGB},0.2)`,
                     borderRadius: "18px", padding: "7px 12px", cursor: "pointer",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                   }}>{s}</button>
                 ))}
               </div>
@@ -228,18 +228,18 @@ export function AssistantWidget() {
             <input
               value={input} onChange={(e) => setInput(e.target.value)}
               placeholder="Ask a question…" aria-label="Ask a question"
-              style={{ flex: 1, minWidth: 0, background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.16)`, borderRadius: "22px", padding: "11px 15px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", color: NAVY, outline: "none" }}
+              style={{ flex: 1, minWidth: 0, background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.16)`, borderRadius: "22px", padding: "11px 15px", fontFamily: "'Poppins', sans-serif", fontSize: "13.5px", color: NAVY, outline: "none" }}
             />
             <button type="submit" disabled={!input.trim() || thinking} aria-label="Send" style={{
               width: "40px", height: "40px", borderRadius: "50%", border: "none", flexShrink: 0,
-              background: CTA_PRIMARY_BG, color: "#fff", cursor: input.trim() && !thinking ? "pointer" : "not-allowed",
+              background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, cursor: input.trim() && !thinking ? "pointer" : "not-allowed",
               display: "inline-flex", alignItems: "center", justifyContent: "center", opacity: input.trim() && !thinking ? 1 : 0.6,
             }}>
               <Send size={16} />
             </button>
           </form>
           <div style={{ flexShrink: 0, textAlign: "center", padding: "0 0 10px" }}>
-            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.72)` }}>
+            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'Poppins', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.72)` }}>
               Prefer to talk to a person? Contact us →
             </button>
           </div>

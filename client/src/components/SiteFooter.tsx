@@ -8,7 +8,7 @@ import { EBALogo } from "@/components/EBALogo";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
   DARK_GRADIENT, RUST, RUST_RGB, CREAM_RGB, IS_VIVID, COMPANY_REG, isPlaceholder,
-  NAV_BAR_BG, NAV_BORDER, FOOTER_BG,
+  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS,
 } from "@/lib/constants";
 
 const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
@@ -63,23 +63,27 @@ export function SiteFooter() {
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", marginBottom: "18px" }}>
               <EBALogo height={38} light />
             </Link>
+            {/* Brand-pack tagline (approved default).
+                TODO(eba): Mark to decide between this and the alternative line
+                "The operating system for engineering business owners. / Built by
+                someone who has run one." */}
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: "0 0 8px", maxWidth: "300px", lineHeight: 1.4 }}>
-              The operating system for engineering business owners.
+              Empowering Engineers.
             </p>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: muted, margin: 0, maxWidth: "300px", lineHeight: 1.6 }}>
-              Built by someone who has run one.
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: muted, margin: 0, maxWidth: "300px", lineHeight: 1.6 }}>
+              Building Exceptional Businesses.
             </p>
           </div>
 
           {/* Link columns */}
           {COLUMNS.map(col => (
             <div key={col.heading}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: eyebrow, margin: "0 0 16px" }}>
+              <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: eyebrow, margin: "0 0 16px" }}>
                 {col.heading}
               </p>
               <div style={{ display: "flex", flexDirection: "column", gap: "11px" }}>
                 {col.links.map(l => (
-                  <Link key={l.label} href={l.href} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: linkCol, textDecoration: "none", transition: "color 0.2s" }}
+                  <Link key={l.label} href={l.href} style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: linkCol, textDecoration: "none", transition: "color 0.2s" }}
                     onMouseEnter={e => (e.currentTarget.style.color = heading)}
                     onMouseLeave={e => (e.currentTarget.style.color = linkCol)}
                   >
@@ -91,12 +95,27 @@ export function SiteFooter() {
           ))}
         </div>
 
+        {/* Accreditation & membership strip — renders ONLY when ACCREDITATIONS
+            is non-empty (never show a badge we don't hold). */}
+        {ACCREDITATIONS.length > 0 && (
+          <div style={{ borderTop: `1px solid rgba(255,255,255,0.15)`, padding: "22px 0", display: "flex", alignItems: "center", gap: "28px", flexWrap: "wrap" }}>
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", textTransform: "uppercase", color: eyebrow }}>
+              Accreditation &amp; membership
+            </span>
+            {ACCREDITATIONS.map(a => (
+              a.url
+                ? <a key={a.name} href={a.url} target="_blank" rel="noopener noreferrer"><img src={a.logo} alt={a.name} style={{ height: "34px", display: "block", opacity: 0.9 }} loading="lazy" /></a>
+                : <img key={a.name} src={a.logo} alt={a.name} style={{ height: "34px", display: "block", opacity: 0.9 }} loading="lazy" />
+            ))}
+          </div>
+        )}
+
         {/* Bottom bar */}
         <div style={{ borderTop: `1px solid rgba(255,255,255,0.15)`, paddingTop: "22px", display: "flex", flexDirection: isMobile ? "column" : "row", justifyContent: "space-between", alignItems: isMobile ? "flex-start" : "center", gap: "8px" }}>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: muted, margin: 0 }}>
             © 2026 The Engineering Business Academy. All rights reserved.{!isPlaceholder(COMPANY_REG) && <> Company Reg: {COMPANY_REG}.</>} Registered in England &amp; Wales.
           </p>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", margin: 0 }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", margin: 0 }}>
             <Link href="/privacy-policy" style={{ color: linkCol, textDecoration: "none" }}>Privacy Policy</Link>
             <span style={{ color: muted, margin: "0 10px" }}>·</span>
             <Link href="/terms" style={{ color: linkCol, textDecoration: "none" }}>Terms &amp; Conditions</Link>

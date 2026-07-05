@@ -1,31 +1,35 @@
 /**
- * EBA Logo — inline SVG component.
- * A square mark with a thin keyline border, its top-left and bottom-right
- * corners diagonally cut (revealing the background), and heavy bold "EBA"
- * letterforms filling it — beside a double-rule divider and an uppercase
- * two-line wordmark. Filled contrasting block, never a hollow outline:
- *   • on dark / cobalt backgrounds → white mark, blue letters, white wordmark
- *   • on light backgrounds        → blue mark, white letters, blue wordmark
- * Renders instantly, no network.
+ * EBALogo — the brand lockup from the approved asset pack, as inline SVG:
+ *
+ *   THE
+ *   ENGINEERING
+ *   BUSINESS ACADEMY
+ *   ───────────────── (six-stop brand gradient underline)
+ *
+ * The gradient underline is one of the three allowed gradient hairline uses.
+ * Renders instantly with no network: the wordmark uses Poppins with
+ * WEB-SAFE FALLBACKS ('Helvetica Neue', Arial) so the logo is legible before
+ * webfonts load — this fix has regressed before, keep the fallback stack.
+ *
+ * On dark surfaces (black nav/footer, dark heroes) the wordmark is white; on
+ * light surfaces it is jet black. Props preserved from the previous logo so
+ * call sites don't change (`navOnCobalt` historically meant "on the nav bar").
  */
 
-import { ACCENT_HEX, NAV_ON_LIGHT } from "@/lib/constants";
-
-const BRAND = ACCENT_HEX;        // active theme's brand accent (rust in all three themes)
-const WHITE = "#FFFFFF";         // the logo's white is always genuine white (it sits on dark/cobalt)
-const EBA_FONT = "'Arial Black', 'DM Sans', sans-serif";
-const WORD_FONT = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
+const WORD_FONT = "'Poppins', 'Helvetica Neue', Arial, sans-serif";
 
 interface EBALogoProps {
   /** Height in px — width scales proportionally */
   height?: number;
-  /** "horizontal" = tile + wordmark (default) · "icon" = tile only */
+  /** "horizontal" (default) and "icon" both render the stacked brand lockup */
   variant?: "horizontal" | "icon";
-  /** White content for dark backgrounds */
+  /** White wordmark for dark backgrounds */
   light?: boolean;
-  /** On the filled cobalt header/footer */
+  /** Historical prop: rendered inside the (black) nav bar → white wordmark */
   navOnCobalt?: boolean;
 }
+
+let gradientIdCounter = 0;
 
 export function EBALogo({
   height = 44,
@@ -33,78 +37,48 @@ export function EBALogo({
   light = false,
   navOnCobalt = false,
 }: EBALogoProps) {
-  // Render light (white) on dark surfaces. Exception: on a light/white nav
-  // (Windsor), the nav-bar logo flips to its dark/accent form so it stays legible.
-  const onDark = (light || navOnCobalt) && !(NAV_ON_LIGHT && navOnCobalt);
-  const markFill = onDark ? WHITE : BRAND;   // square fill
-  const lineColor = markFill;                // keyline border
-  const ebaColor = onDark ? BRAND : WHITE;   // letters inside the mark
-  const wordColor = onDark ? WHITE : BRAND;  // wordmark
-  const ruleColor = wordColor;
+  const onDark = light || navOnCobalt;
+  const ink = onDark ? "#FFFFFF" : "#0A0A0A";
 
-  const S = height;               // square side
-  const sw = S * 0.05;            // keyline thickness
-  const c = S * 0.3;              // corner cut (top-left + bottom-right)
-  // Square fill with the top-left and bottom-right corners chamfered off.
-  const cut = `${c},0 ${S},0 ${S},${S - c} ${S - c},${S} 0,${S} 0,${c}`;
+  // Unique gradient id per instance so multiple logos on a page don't collide.
+  const gid = `eba-lg-${gradientIdCounter++}`;
 
-  const Icon = (
-    <>
-      <polygon points={cut} fill={markFill} />
-      {/* Full-square keyline drawn over the fill edges */}
-      <rect x={sw / 2} y={sw / 2} width={S - sw} height={S - sw} fill="none" stroke={lineColor} strokeWidth={sw} />
-      <text
-        x={S / 2}
-        y={S * 0.53}
-        textAnchor="middle"
-        dominantBaseline="central"
-        fill={ebaColor}
-        fontFamily={EBA_FONT}
-        fontWeight="900"
-        fontSize={S * 0.4}
-        letterSpacing="-1"
-      >
-        EBA
-      </text>
-    </>
-  );
-
-  if (variant === "icon") {
-    return (
-      <svg width={S} height={S} viewBox={`0 0 ${S} ${S}`} fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="EBA">
-        {Icon}
-      </svg>
-    );
-  }
-
-  // Horizontal lockup
-  const ruleX = S + 16;
-  const wordX = S + 34;
-  const totalW = S + 34 + 272;
-  const fs = S * 0.19;
+  // Lockup metrics (viewBox units; scaled by `height`).
+  const W = 168;
+  const H = 64;
 
   return (
     <svg
-      width={totalW}
-      height={S}
-      viewBox={`0 0 ${totalW} ${S}`}
-      fill="none"
+      width={(height / H) * W}
+      height={height}
+      viewBox={`0 0 ${W} ${H}`}
       xmlns="http://www.w3.org/2000/svg"
+      role="img"
       aria-label="The Engineering Business Academy"
       style={{ display: "block", maxWidth: "100%", height: "auto" }}
     >
-      {Icon}
+      <defs>
+        {/* Brand gradient — HAIRLINE RULES ONLY; here: the logo underline. */}
+        <linearGradient id={gid} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor="#FF5B6E" />
+          <stop offset="20%" stopColor="#FF9F1C" />
+          <stop offset="40%" stopColor="#D4FF00" />
+          <stop offset="60%" stopColor="#2ECC71" />
+          <stop offset="80%" stopColor="#18C1D6" />
+          <stop offset="100%" stopColor="#3AA0FF" />
+        </linearGradient>
+      </defs>
 
-      {/* Single-rule divider */}
-      <line x1={ruleX} y1={S * 0.1} x2={ruleX} y2={S * 0.9} stroke={ruleColor} strokeWidth="1.2" />
-
-      {/* Thin, wide-tracked uppercase wordmark */}
-      <text x={wordX} y={S * 0.42} fill={wordColor} fontFamily={WORD_FONT} fontWeight="300" fontSize={fs} letterSpacing="0.2em">
-        THE ENGINEERING
+      <text x="1" y="12" fill={ink} fontFamily={WORD_FONT} fontWeight="500" fontSize="9" letterSpacing="5.5">
+        THE
       </text>
-      <text x={wordX} y={S * 0.74} fill={wordColor} fontFamily={WORD_FONT} fontWeight="300" fontSize={fs} letterSpacing="0.2em">
+      <text x="0" y="36" fill={ink} fontFamily={WORD_FONT} fontWeight="700" fontSize="21.5" letterSpacing="0.4">
+        ENGINEERING
+      </text>
+      <text x="1" y="50" fill={ink} fontFamily={WORD_FONT} fontWeight="400" fontSize="8" letterSpacing="3.55">
         BUSINESS ACADEMY
       </text>
+      <rect x="1" y="57" width={W - 2} height="2.5" fill={`url(#${gid})`} />
     </svg>
   );
 }

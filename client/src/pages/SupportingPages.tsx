@@ -1,8 +1,8 @@
 /**
  * EBA Supporting Pages — About, Documents, Contact
  * Design: Warm Editorial Authority
- * Palette: Cream #EEE9DF | Navy #1B2632 | Rust #A35139 | Oat #DDD6C8
- * Fonts: Playfair Display (headings) | Roboto (body)
+ * Palette: approved brand — jet black / white / coral / sky (see constants.ts)
+ * Fonts: Poppins (brand typeface)
  */
 
 import { Link } from "wouter";
@@ -23,8 +23,8 @@ import {
   OAT,
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, NAV_RGB,
-  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB, ACCENT_GRAD,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB,
+  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB, ACCENT_GRAD, RUST_ON_DARK,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
@@ -41,7 +41,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
       display: "inline-block",
       background: light ? `rgba(${RUST_RGB},0.12)` : RUST,
       color: light ? RUST : "#fff",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Poppins', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
     }}>
@@ -119,7 +119,7 @@ function NavBar({ active }: { active: string }) {
           {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
               color: href === active ? NAV_LINK_ACTIVE : NAV_LINK,
-              textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
+              textDecoration: "none", fontFamily: "'Poppins', sans-serif",
               fontWeight: href === active ? 600 : 500, fontSize: "14px",
               borderBottom: href === active ? `2px solid ${NAV_LINK_ACTIVE}` : "none",
               paddingBottom: "2px",
@@ -130,7 +130,7 @@ function NavBar({ active }: { active: string }) {
           <span>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
@@ -154,7 +154,7 @@ export function OurStoryPage() {
   const isMobile = useIsMobile();
   const rule = { width: "48px", height: "3px", background: ACCENT_GRAD, borderRadius: "2px", margin: "0 0 24px" } as React.CSSProperties;
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.ourStory} />
       <MobileNav transparent={false} />
       <NavBar active="/our-story" />
@@ -189,7 +189,7 @@ export function OurStoryPage() {
                   ratio="4 / 3"
                 />
                 <div style={{ position: "absolute", bottom: "16px", left: "16px", zIndex: 2, background: RUST, padding: "12px 18px", borderRadius: "10px" }}>
-                  <p style={{ color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                  <p style={{ color: "#fff", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                     Mark Poulton — Founder, Engineering Business Academy
                   </p>
                 </div>
@@ -276,15 +276,15 @@ export function OurStoryPage() {
           </h2>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "our-story" })} style={{
-              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "15px",
+              background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
               padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
             }}>
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a>
             <Link href="/mentorship" style={{
               background: "transparent", color: ON_DARK, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
               padding: "15px 34px", border: `1px solid rgba(${ON_DARK_RGB},0.6)`, display: "inline-block",
             }}>
               Explore mentorship →
@@ -685,7 +685,7 @@ export function DocumentsPage() {
   const isMobile = useIsMobile();
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.documents} />
       <MobileNav transparent={false} />
       <NavBar active="/documents" />
@@ -711,8 +711,8 @@ export function DocumentsPage() {
               { value: "6", label: "Categories" },
               { value: "Academy", label: "Members get all included" },
             ].map(({ value, label }) => (
-              <div key={label} style={{ borderLeft: `3px solid ${RUST}`, paddingLeft: "16px" }}>
-                <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
+              <div key={label} style={{ borderLeft: `3px solid ${RUST_ON_DARK}`, paddingLeft: "16px" }}>
+                <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST_ON_DARK, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
                 <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>{label}</p>
               </div>
             ))}
@@ -723,12 +723,12 @@ export function DocumentsPage() {
       {/* Academy banner */}
       <div style={{ background: CTA_BAND_BG, padding: isMobile ? "16px 20px" : "16px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: isMobile ? "column" : "row", alignItems: isMobile ? "flex-start" : "center", justifyContent: "space-between", gap: "16px" }}>
-          <p style={{ color: NAVY, fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
+          <p style={{ color: NAVY, fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 500, margin: 0 }}>
             <strong>Academy members receive the complete document library as part of their membership</strong> — no additional purchase required.
           </p>
           <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "documents" })} style={{
-            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "12px",
+            background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "12px",
             padding: "8px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0, borderRadius: "6px",
           }}>
             {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
@@ -742,7 +742,7 @@ export function DocumentsPage() {
         <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, rgba(${NAVY_RGB},0.74) 0%, rgba(${NAVY_RGB},0.4) 45%, rgba(${ACCENT_RGB},0.28) 100%)` }} />
         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: "14px" }}>· Browse the library ·</div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.8)", marginBottom: "14px" }}>· Browse the library ·</div>
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: "#fff", fontSize: isMobile ? "1.5rem" : "clamp(1.8rem, 3.4vw, 2.8rem)", lineHeight: 1.12, letterSpacing: "-0.015em", maxWidth: "640px", margin: 0 }}>
               Everything an M&amp;E business actually runs on.
             </p>
@@ -765,7 +765,7 @@ export function DocumentsPage() {
                     background: openCategory === cat.id ? NAVY : "#fff",
                     color: openCategory === cat.id ? "#fff" : NAVY,
                     border: "none", cursor: "pointer",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.06em", textTransform: "uppercase",
                     padding: "10px 18px", transition: "all 0.2s",
                   }}
@@ -816,8 +816,8 @@ export function DocumentsPage() {
                       {BUNDLE_PRICES[cat.id].saving}
                     </p>
                     <Link href="/contact" style={{
-                      background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                      fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                      background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                      fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                       padding: "9px 18px", letterSpacing: "0.04em", display: "inline-block",
                     }}>
                       Purchase pack →
@@ -842,7 +842,7 @@ export function DocumentsPage() {
                           {doc.bundle && (
                             <span style={{
                               background: `rgba(${RUST_RGB},0.12)`, color: RUST,
-                              fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
+                              fontFamily: "'Poppins', sans-serif", fontWeight: 600,
                               fontSize: "9px", letterSpacing: "0.1em", textTransform: "uppercase",
                               padding: "2px 8px",
                             }}>
@@ -860,7 +860,7 @@ export function DocumentsPage() {
                         </p>
                         <Link href="/contact" style={{
                           background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
-                          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
+                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px",
                           padding: "7px 14px", letterSpacing: "0.04em", display: "inline-block",
                           whiteSpace: "nowrap",
                         }}>
@@ -896,8 +896,8 @@ export function DocumentsPage() {
                   </p>
                 </div>
                 <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "documents" })} style={{
-                  background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                  background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0,
                 }}>
                   {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
@@ -951,13 +951,13 @@ export function ContactPage() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%", background: WHITE, border: `1px solid ${OAT}`,
-    padding: "12px 16px", fontFamily: "'DM Sans', sans-serif", fontSize: "15px",
+    padding: "12px 16px", fontFamily: "'Poppins', sans-serif", fontSize: "15px",
     color: NAVY, outline: "none", boxSizing: "border-box",
     transition: "border-color 0.2s",
   };
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.contact} />
       <MobileNav transparent={false} />
       <NavBar active="/contact" />
@@ -996,8 +996,8 @@ export function ContactPage() {
                 padding: "14px 0",
                 borderBottom: i < arr.length - 1 ? `1px solid rgba(${CREAM_RGB},0.12)` : "none",
               }}>
-                <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 4px" }}>{k}</p>
-                <p style={{ color: ON_DARK, fontFamily: "'DM Sans', sans-serif", fontSize: "15px", fontWeight: 600, margin: 0 }}>{v}</p>
+                <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 4px" }}>{k}</p>
+                <p style={{ color: ON_DARK, fontFamily: "'Poppins', sans-serif", fontSize: "15px", fontWeight: 600, margin: 0 }}>{v}</p>
               </div>
             ))}
           </div>
@@ -1021,20 +1021,20 @@ export function ContactPage() {
                 <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                   <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "16px" }}>
                     <div>
-                      <label style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Name</label>
+                      <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Name</label>
                       <input type="text" required value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} style={inputStyle} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)} />
                     </div>
                     <div>
-                      <label style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Email</label>
+                      <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Email</label>
                       <input type="email" required value={form.email} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} style={inputStyle} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)} />
                     </div>
                   </div>
                   <div>
-                    <label style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Company</label>
+                    <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Company</label>
                     <input type="text" value={form.company} onChange={e => setForm(f => ({ ...f, company: e.target.value }))} style={inputStyle} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)} />
                   </div>
                   <div>
-                    <label style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Enquiry type</label>
+                    <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Enquiry type</label>
                     <select value={form.enquiry} onChange={e => setForm(f => ({ ...f, enquiry: e.target.value }))} style={{ ...inputStyle, cursor: "pointer" }} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)}>
                       <option value="academy">Academy — Founding Cohort Enrolment</option>
                       <option value="documents">Document Library — Purchase Enquiry</option>
@@ -1046,15 +1046,15 @@ export function ContactPage() {
                     </select>
                   </div>
                   <div>
-                    <label style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Message</label>
+                    <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Message</label>
                     <textarea required rows={5} value={form.message} onChange={e => setForm(f => ({ ...f, message: e.target.value }))} style={{ ...inputStyle, resize: "vertical" }} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)} />
                   </div>
                   {error && (
                     <p style={{ color: RUST, fontSize: "13px", margin: 0 }} role="alert">{error}</p>
                   )}
                   <button type="submit" disabled={loading} style={{
-                    background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                    background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none", cursor: loading ? "not-allowed" : "pointer",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                     padding: "14px 32px", letterSpacing: "0.04em", alignSelf: "flex-start",
                     opacity: loading ? 0.7 : 1,
                     transition: "opacity 0.2s, transform 0.16s",

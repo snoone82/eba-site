@@ -3,7 +3,7 @@
  * behind EBA. Theme-aware, editorial cards with an accent quote mark.
  */
 import {
-  NAVY, CREAM, WHITE, RUST, RUST_RGB, NAVY_RGB, SECTION_GLOW, CTA_PRIMARY_BG,
+  NAVY, CREAM, WHITE, RUST, RUST_RGB, NAVY_RGB, SECTION_GLOW, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT,
 } from "@/lib/constants";
 import { useIsMobile } from "@/hooks/useMobile";
 
@@ -40,7 +40,7 @@ export function Testimonials() {
     <section style={{ backgroundColor: CREAM, backgroundImage: SECTION_GLOW, padding: isMobile ? "64px 20px" : "104px 40px" }}>
       <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
         <div style={{ maxWidth: "680px", marginBottom: isMobile ? "36px" : "48px" }}>
-          <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
+          <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
             · From the operators ·
           </div>
           <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
@@ -62,18 +62,18 @@ export function Testimonials() {
               <span aria-hidden style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "3.2rem", lineHeight: 0.6, color: `rgba(${RUST_RGB},0.28)`, marginBottom: "18px", display: "block" }}>
                 &ldquo;
               </span>
-              <blockquote style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "15.5px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 26px", flex: 1 }}>
+              <blockquote style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15.5px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 26px", flex: 1 }}>
                 {quote}
               </blockquote>
               <figcaption style={{ display: "flex", alignItems: "center", gap: "14px", paddingTop: "20px", borderTop: `1px solid ${border}` }}>
                 <span style={{
-                  width: "46px", height: "46px", borderRadius: "50%", background: CTA_PRIMARY_BG, color: "#fff",
+                  width: "46px", height: "46px", borderRadius: "50%", background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT,
                   display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
                   fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "15px", letterSpacing: "0.02em",
                 }}>{initials}</span>
                 <span>
                   <span style={{ display: "block", fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "15px", color: NAVY }}>{name}</span>
-                  <span style={{ display: "block", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, marginTop: "2px" }}>{role}</span>
+                  <span style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, marginTop: "2px" }}>{role}</span>
                 </span>
               </figcaption>
             </figure>

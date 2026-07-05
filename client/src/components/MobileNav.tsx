@@ -1,14 +1,14 @@
 /**
  * MobileNav — shared hamburger navigation component
  * Design: EBA Warm Editorial Authority
- * Palette: Navy #1B2632 | Rust #A35139 | Cream #EEE9DF
+ * Palette: approved brand — jet black / white / coral / sky (see constants.ts)
  * Appears on screens < 768px; desktop nav handles larger viewports.
  */
 
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
-import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, NAV_RGB, NAV_BAR_BG, NAV_BORDER } from "@/lib/constants";
+import { ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, NAVY, RUST, RUST_ON_DARK, CREAM, DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB, NAV_BAR_BG, NAV_BORDER } from "@/lib/constants";
 import { track } from "@/lib/track";
 
 const NAV_LINKS = [
@@ -110,8 +110,8 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
         paddingTop: "80px", paddingBottom: "40px",
         paddingLeft: "32px", paddingRight: "32px",
       }}>
-        {/* Rust accent line */}
-        <div style={{ width: "40px", height: "3px", background: RUST, marginBottom: "48px" }} />
+        {/* Accent line (bright coral — on-dark accent) */}
+        <div style={{ width: "40px", height: "3px", background: RUST_ON_DARK, marginBottom: "48px" }} />
 
         {/* Nav links */}
         <nav>
@@ -131,15 +131,15 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
                   fontFamily: "var(--eba-heading)",
                   fontWeight: 700,
                   fontSize: "clamp(2rem, 8vw, 2.8rem)",
-                  color: location === href ? RUST : (IS_VIVID ? ON_DARK : CREAM),
+                  color: location === href ? RUST_ON_DARK : (IS_VIVID ? ON_DARK : CREAM),
                   textDecoration: "none",
                   lineHeight: 1.2,
                   marginBottom: "8px",
                   letterSpacing: "-0.02em",
                   transition: "color 0.2s",
                 }}
-                onMouseEnter={e => (e.currentTarget.style.color = RUST)}
-                onMouseLeave={e => (e.currentTarget.style.color = location === href ? RUST : (IS_VIVID ? ON_DARK : CREAM))}
+                onMouseEnter={e => (e.currentTarget.style.color = RUST_ON_DARK)}
+                onMouseLeave={e => (e.currentTarget.style.color = location === href ? RUST_ON_DARK : (IS_VIVID ? ON_DARK : CREAM))}
               >
                 {label}
               </Link>
@@ -162,9 +162,9 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
             onClick={() => track("cta_join_cohort_nav")}
             style={{
               display: "inline-block",
-              background: RUST, color: "#fff",
+              background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT,
               textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif",
+              fontFamily: "'Poppins', sans-serif",
               fontWeight: 600, fontSize: "15px",
               padding: "14px 32px",
               letterSpacing: "0.04em",
@@ -175,7 +175,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
           </a>
           <p style={{
             color: `rgba(${CREAM_RGB},0.72)`,
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             fontSize: "12px",
             letterSpacing: "0.08em",
             textTransform: "uppercase",

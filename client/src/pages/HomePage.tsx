@@ -1,8 +1,8 @@
 /**
  * EBA Homepage — The Engineering Business Academy
  * Design: Warm Editorial Authority
- * Palette: Cream #EEE9DF | Navy #1B2632 | Rust #A35139 | Oat #DDD6C8
- * Fonts: Playfair Display (headings) | Roboto (body)
+ * Palette: approved brand — jet black / white / coral / sky (see constants.ts)
+ * Fonts: Poppins (brand typeface)
  */
 
 import { Link } from "wouter";
@@ -21,7 +21,7 @@ import {
   WHITE,
   isPlaceholder,
   DARK_GRADIENT, BAND_GRADIENT, CTA_BAND_BG, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
+  IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   SHOW_TESTIMONIALS,
   METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB, RUST_ON_DARK,
@@ -49,7 +49,7 @@ function SectionLabel({ children, bg }: { children: string; bg?: string }) {
       display: "inline-block",
       background: bg ?? RUST,
       color: "#fff",
-      fontFamily: "'DM Sans', sans-serif",
+      fontFamily: "'Poppins', sans-serif",
       fontWeight: 600,
       fontSize: "11px",
       letterSpacing: "0.1em",
@@ -174,7 +174,7 @@ function LeadMagnetForm() {
         required
         style={{
           padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: WHITE, fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
+          background: WHITE, fontFamily: "'Poppins', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
       />
@@ -186,7 +186,7 @@ function LeadMagnetForm() {
         required
         style={{
           padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: WHITE, fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
+          background: WHITE, fontFamily: "'Poppins', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
       />
@@ -199,8 +199,8 @@ function LeadMagnetForm() {
         type="submit"
         disabled={loading}
         style={{
-          background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+          background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none", cursor: loading ? "not-allowed" : "pointer",
+          fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
           padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
           transition: "opacity 0.2s",
         }}
@@ -300,7 +300,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
       }}>
         {/* Announce bar */}
         <div style={{ background: CTA_BAND_BG, textAlign: "center", padding: "8px 40px" }}>
-          <Link href="/contact" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
+          <Link href="/contact" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
             For organisations interested in in-house training for your team, <strong style={{ color: NAVY }}>get in touch →</strong>
           </Link>
         </div>
@@ -320,7 +320,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: NAV_LINK, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: "14px",
                 transition: "color 0.2s",
               }}
                 onMouseEnter={e => (e.currentTarget.style.color = NAV_LINK_ACTIVE)}
@@ -332,7 +332,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
             <span>
               <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
                 background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
                 padding: "9px 20px", letterSpacing: "0.04em", borderRadius: "10px",
                 transition: "opacity 0.2s, transform 0.16s",
                 display: "inline-block",
@@ -362,7 +362,7 @@ export default function HomePage() {
   const isMobile = useIsMobile();
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.home} jsonLd={ORGANIZATION_JSONLD} />
       <MobileNav transparent={true} />
       <HomeNav scrolled={scrolled} />
@@ -392,7 +392,7 @@ export default function HomePage() {
             display: "inline-block",
             background: RUST,
             color: "#fff",
-            fontFamily: "'DM Sans', sans-serif",
+            fontFamily: "'Poppins', sans-serif",
             fontWeight: 700,
             fontSize: "11px",
             letterSpacing: "0.12em",
@@ -422,7 +422,7 @@ export default function HomePage() {
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.78)",
-                  fontFamily: "'DM Sans', sans-serif",
+                  fontFamily: "'Poppins', sans-serif",
                   fontSize: "12px", fontWeight: 600,
                   letterSpacing: "0.08em", textTransform: "uppercase",
                 }}>
@@ -439,8 +439,8 @@ export default function HomePage() {
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
               <a className="eba-shine eba-lift" href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-                background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", letterSpacing: "0.04em",
                 display: "inline-block",
               }}
@@ -451,7 +451,7 @@ export default function HomePage() {
               {/* Two-track CTA: Academy track = rust primary above; Tools track = cobalt outline below. */}
               <a href="/ai-tools#free-toolbox-talk" style={{
                 background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", border: `1.5px solid ${COBALT_ON_DARK}`,
                 transition: "background 0.2s, color 0.2s", borderRadius: "6px",
                 display: "inline-block",
@@ -471,7 +471,7 @@ export default function HomePage() {
       <div style={{ background: BAND_GRADIENT, padding: isMobile ? "26px 0 30px" : "36px 0 42px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)`, overflow: "hidden" }}>
         <p style={{
           textAlign: "center", margin: isMobile ? "0 20px 18px" : "0 40px 22px",
-          fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
+          fontFamily: "'Poppins', sans-serif", fontSize: "12px",
           fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase",
           color: `rgba(${NAVY_RGB},0.72)`,
         }}>
@@ -501,7 +501,7 @@ export default function HomePage() {
       <div style={{ background: CREAM, padding: isMobile ? "18px 20px" : "20px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
         <p style={{
           textAlign: "center", margin: 0,
-          fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
+          fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
           fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
           color: `rgba(${NAVY_RGB},0.72)`,
         }}>
@@ -541,7 +541,7 @@ export default function HomePage() {
                   padding: "28px 28px",
                 }}>
                   <h3 style={{
-                    color: NAVY, fontFamily: "'DM Sans', sans-serif",
+                    color: NAVY, fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700, fontSize: "13px", letterSpacing: "0.04em",
                     textTransform: "uppercase", margin: "0 0 10px",
                   }}>
@@ -581,7 +581,7 @@ export default function HomePage() {
             </p>
             <Link href="/academy" style={{
               color: RUST, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
               letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
             }}>
               See the curriculum →
@@ -618,7 +618,7 @@ export default function HomePage() {
                   padding: "28px 28px", height: "100%",
                 }}>
                   <h3 style={{
-                    color: NAVY, fontFamily: "'DM Sans', sans-serif",
+                    color: NAVY, fontFamily: "'Poppins', sans-serif",
                     fontWeight: 700, fontSize: "15px", letterSpacing: "0.01em",
                     margin: "0 0 8px", lineHeight: 1.3,
                   }}>
@@ -660,7 +660,7 @@ export default function HomePage() {
                   background: RUST, padding: "12px 18px", borderRadius: "10px",
                 }}>
                   <p style={{
-                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
+                    color: "#fff", fontFamily: "'Poppins', sans-serif",
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
@@ -693,7 +693,7 @@ export default function HomePage() {
                 {credentials.map((c) => (
                   <span key={c} style={{
                     background: `rgba(${ON_DARK_RGB},0.08)`, color: `rgba(${CREAM_RGB},0.85)`,
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600,
                     fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase",
                     padding: "5px 12px",
                   }}>
@@ -703,7 +703,7 @@ export default function HomePage() {
               </div>
               <Link href="/our-story" style={{
                 color: RUST_ON_DARK, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST_ON_DARK}`,
                 paddingBottom: "2px",
               }}>
@@ -742,7 +742,7 @@ export default function HomePage() {
               </p>
               <Link href="/ai-tools" style={{
                 color: COBALT, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${COBALT}`, paddingBottom: "2px",
               }}>
                 Explore the AI tools →
@@ -782,7 +782,7 @@ export default function HomePage() {
             </p>
             <Link href="/documents" style={{
               color: RUST, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
               letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
             }}>
               Browse the library →
@@ -816,7 +816,7 @@ export default function HomePage() {
               </p>
               <Link href="/academy" style={{
                 color: RUST, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px",
               }}>
@@ -842,7 +842,7 @@ export default function HomePage() {
               {/* Curriculum case study — kept on the funnel, no outbound link to pro-defend.com. */}
               <Link href="/academy" style={{
                 color: RUST, textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px", display: "inline-block",
               }}>
@@ -890,7 +890,7 @@ export default function HomePage() {
               </div>
               <Link href="/contact" style={{
                 background: COBALT, color: "#fff", textDecoration: "none",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 transition: "opacity 0.2s",
               }}
@@ -950,7 +950,7 @@ export default function HomePage() {
                     { q: "If you stepped away for 4 weeks, what would break?" },
                   ].map(({ q }, i) => (
                     <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                      <span style={{ color: RUST, fontFamily: "var(--eba-heading)", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 700, flexShrink: 0, marginTop: "2px" }}>{i + 1}.</span>
+                      <span style={{ color: RUST_ON_DARK, fontFamily: "var(--eba-heading)", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 700, flexShrink: 0, marginTop: "2px" }}>{i + 1}.</span>
                       <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{q}</p>
                     </div>
                   ))}
@@ -962,8 +962,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ── full-bleed RUST band (the accent deployed at scale) */}
-      <section style={{ background: RUST, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
+      {/* ── FINAL CTA ── black band per approved mockup A; the full-width brand
+          gradient hairline above it is one of the three allowed gradient uses. */}
+      <section style={{ position: "relative", background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
+        <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: ACCENT_GRAD }} />
         <RevealSection>
           <h2 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -981,8 +983,8 @@ export default function HomePage() {
           {/* Two-track CTA: Academy track = rust primary; Tools track = cobalt outline. */}
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-              background: "#fff", color: RUST, textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "16px",
+              background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "16px",
               padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
               transition: "opacity 0.2s", borderRadius: "6px",
             }}
@@ -994,7 +996,7 @@ export default function HomePage() {
             </a>
             <a href="/ai-tools#free-toolbox-talk" style={{
               background: "transparent", color: "#fff", textDecoration: "none",
-              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "16px",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "16px",
               padding: "16px 40px", border: "1.5px solid rgba(255,255,255,0.7)",
               transition: "background 0.2s", borderRadius: "6px", display: "inline-block",
             }}

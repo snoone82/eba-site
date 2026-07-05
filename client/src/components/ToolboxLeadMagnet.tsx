@@ -48,7 +48,7 @@ function CaptureForm() {
     return (
       <div style={{ background: `rgba(${COBALT_RGB},0.08)`, border: `1px solid rgba(${COBALT_RGB},0.25)`, borderRadius: "12px", padding: "18px 20px" }}>
         <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: COBALT, fontSize: "1rem", margin: "0 0 4px" }}>Opening shortly.</p>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: sub, lineHeight: 1.55, margin: 0 }}>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: sub, lineHeight: 1.55, margin: 0 }}>
           The free Toolbox Talk Generator launches with the founding cohort. Registration opens here soon.
         </p>
       </div>
@@ -59,7 +59,7 @@ function CaptureForm() {
     return (
       <div style={{ background: `rgba(${COBALT_RGB},0.08)`, border: `1px solid rgba(${COBALT_RGB},0.25)`, borderRadius: "12px", padding: "18px 20px", display: "flex", alignItems: "center", gap: "12px" }}>
         <span style={{ width: "34px", height: "34px", borderRadius: "50%", background: COBALT, color: "#fff", display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Check size={18} strokeWidth={3} /></span>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14.5px", color: NAVY, margin: 0, lineHeight: 1.5 }}>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: NAVY, margin: 0, lineHeight: 1.5 }}>
           Check your inbox — your access link is on its way to <strong>{email}</strong>.
         </p>
       </div>
@@ -72,14 +72,14 @@ function CaptureForm() {
         <input
           type="email" required placeholder="Your work email" value={email}
           onChange={e => setEmail(e.target.value)}
-          style={{ flex: 1, minWidth: "200px", padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`, background: WHITE, fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: NAVY, outline: "none" }}
+          style={{ flex: 1, minWidth: "200px", padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`, background: WHITE, fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: NAVY, outline: "none" }}
         />
-        <button type="submit" disabled={loading} style={{ background: COBALT, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px", padding: "13px 24px", letterSpacing: "0.03em", opacity: loading ? 0.7 : 1, whiteSpace: "nowrap" }}>
+        <button type="submit" disabled={loading} style={{ background: COBALT, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", padding: "13px 24px", letterSpacing: "0.03em", opacity: loading ? 0.7 : 1, whiteSpace: "nowrap" }}>
           {loading ? "…" : "Get instant access →"}
         </button>
       </div>
       {error && <p style={{ color: RUST, fontSize: "13px", margin: "10px 0 0" }} role="alert">{error}</p>}
-      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: "10px 0 0" }}>
+      <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: "10px 0 0" }}>
         Free. No card. Unsubscribe any time · UK GDPR compliant.
       </p>
     </form>
@@ -96,13 +96,13 @@ export function ToolboxLeadMagnet() {
       <div style={{ maxWidth: "1120px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.05fr 0.95fr", gap: isMobile ? "40px" : "64px", alignItems: "center" }}>
         {/* Copy + capture */}
         <div>
-          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: COBALT, marginBottom: "16px" }}>
+          <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: COBALT, marginBottom: "16px" }}>
             <Sparkles size={15} strokeWidth={2} /> Free tool · No purchase
           </div>
           <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
             The free Toolbox Talk Generator.
           </h2>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 28px", maxWidth: "480px" }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 28px", maxWidth: "480px" }}>
             Pick a task, get a site-ready toolbox talk in about a minute — with a sign-off sheet included. Free to use, no card required. Just tell us where to send it.
           </p>
           <CaptureForm />
@@ -112,18 +112,18 @@ export function ToolboxLeadMagnet() {
         <div style={{ background: WHITE, border: `1px solid ${border}`, borderRadius: "18px", overflow: "hidden", boxShadow: "0 30px 60px -32px rgba(0,0,0,0.28)" }}>
           <div style={{ padding: "12px 18px", borderBottom: `1px solid ${border}`, display: "flex", alignItems: "center", gap: "8px" }}>
             <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: COBALT }} />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY }}>Toolbox Talk</span>
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY }}>Toolbox Talk</span>
           </div>
           <div style={{ padding: "24px 26px" }}>
             <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.2rem", color: NAVY, marginBottom: "4px" }}>Working at Height</div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: sub, marginBottom: "18px" }}>Site: __________ · Date: __________ · Ref: TBT-014</div>
+            <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: sub, marginBottom: "18px" }}>Site: __________ · Date: __________ · Ref: TBT-014</div>
             {["Key hazards — falls, dropped objects, fragile surfaces", "Controls — inspected access equipment, edge protection, exclusion zones", "PPE — harness + lanyard where required, hard hat, hi-vis", "Emergency — rescue plan in place before work starts"].map((line, i) => (
               <div key={i} style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
                 <span style={{ width: "16px", height: "16px", borderRadius: "4px", background: `rgba(${COBALT_RGB},0.14)`, color: COBALT, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "10px", fontWeight: 800, marginTop: "2px" }}>✓</span>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, lineHeight: 1.45 }}>{line}</span>
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, lineHeight: 1.45 }}>{line}</span>
               </div>
             ))}
-            <div style={{ marginTop: "16px", paddingTop: "14px", borderTop: `1px dashed ${border}`, display: "flex", justifyContent: "space-between", fontFamily: "'DM Sans', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
+            <div style={{ marginTop: "16px", paddingTop: "14px", borderTop: `1px dashed ${border}`, display: "flex", justifyContent: "space-between", fontFamily: "'Poppins', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
               <span>Attendee sign-off ✎</span><span>Page 1 of 1</span>
             </div>
           </div>

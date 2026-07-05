@@ -42,7 +42,7 @@ export function CtaBanner({
             {title}
           </h2>
           {sub && (
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.6, color: IS_LIGHT ? "rgba(255,255,255,0.9)" : `rgba(${CREAM_RGB},0.8)`, margin: "12px 0 0", maxWidth: "560px" }}>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.6, color: IS_LIGHT ? "rgba(255,255,255,0.9)" : `rgba(${CREAM_RGB},0.8)`, margin: "12px 0 0", maxWidth: "560px" }}>
               {sub}
             </p>
           )}
@@ -52,7 +52,7 @@ export function CtaBanner({
           onClick={() => eventName && track(eventName)}
           style={{
             flexShrink: 0, background: "#fff", color: "#111",
-            textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 800,
+            textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 800,
             fontSize: isMobile ? "15px" : "16px", letterSpacing: "0.01em",
             padding: isMobile ? "14px 26px" : "16px 34px", borderRadius: "12px",
             display: "inline-flex", alignItems: "center", gap: "10px",

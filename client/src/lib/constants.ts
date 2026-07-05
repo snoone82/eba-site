@@ -2,124 +2,133 @@
  * EBA — The Engineering Business Academy
  * Single source of truth for brand colours, business facts and integrations.
  *
- * ONE theme. The palette is light-dominant paper/ink with a DUAL accent that
- * tells visitors which half of the business a section belongs to:
- *   RUST   → Academy / cohort / Mark / mentorship / story (human, education)
- *   COBALT → AI tools / product / pricing / enterprise (software, product)
- * Never both accents on the same element.
+ * APPROVED PALETTE (Mark, from the brand asset pack / mockup A):
+ * black/near-black wrapper + white content sections, coral Academy accent,
+ * sky Tools accent, six-stop brand gradient as HAIRLINE RULES ONLY.
  *
- * (The old ?theme= comparison system — default/noir/etc — was retired when the
- * rebuild shipped a single theme. Restore from git history if ever needed.)
+ * WAYFINDING RULE: Academy/cohort/Mark/mentorship/story sections take the
+ * CORAL accent; AI-tools/product/pricing/enterprise sections take the SKY
+ * accent. Never both accents on one element.
  */
 
 export const COLORS = {
-  ink:    "#16202B", // text; background of the two dark sections only
-  paper:  "#EEE9DF", // DEFAULT page background
-  rust:   "#A35139", // ACADEMY accent
-  cobalt: "#2454C9", // TOOLS accent
-  oat:    "#DDD6C8", // secondary surface / alternating cards
-  white:  "#FFFFFF", // cards and form surfaces
-  amber:  "#FFB162", // sparing highlight — "live" markers, one stat per page max
+  ink:    "#0A0A0A",  // jet black — nav, footer, hero, the two dark sections; text on light
+  inkDeep:"#101010",  // bottom stop of the dark-section gradient
+  white:  "#FFFFFF",  // content sections, cards
+  paper:  "#F6F5F3",  // alternating light sections
+  coral:  "#FF5B6E",  // ACADEMY accent — fills/chips/graphics + text on black only
+  sky:    "#3AA0FF",  // TOOLS accent — fills/frames/graphics + text on black only
+  sunset: "#FF9F1C",  // USAGE CAP: max ONE element per page (highlight stat / live badge)
+  lime:   "#D4FF00",  // USAGE CAP: gradient stop ONLY — never standalone
+  mint:   "#2ECC71",  // USAGE CAP: "live" markers only
+  teal:   "#18C1D6",  // separator dots / small graphic accents
 } as const;
 
-// Convenience named exports — used directly in the pages' inline styles.
-// (NAVY/CREAM are the historical names for ink/paper; kept to avoid a
-// thousand-line rename across the pages.)
-export const NAVY = COLORS.ink;
-export const CREAM = COLORS.paper;
-export const RUST = COLORS.rust;
-export const OAT = COLORS.oat;
+/**
+ * BRAND GRADIENT — the six-stop line from the brand asset pack.
+ * HAIRLINE RULES ONLY — never backgrounds, buttons, fills, or text.
+ * Allowed: logo underline · kicker underlines · one full-width rule before
+ * the final CTA. (#E9425C and the old KEYIS four-stop remain banned.)
+ */
+export const BRAND_GRAD =
+  "linear-gradient(90deg, #FF5B6E 0%, #FF9F1C 20%, #D4FF00 40%, #2ECC71 60%, #18C1D6 80%, #3AA0FF 100%)";
+
+// Convenience named exports. NAVY/CREAM/RUST/OAT/COBALT are the historical
+// token names used across the pages — kept to avoid a thousand-line rename;
+// their VALUES are the approved palette.
+export const NAVY = COLORS.ink;          // was navy — now jet black
+export const CREAM = COLORS.paper;       // was cream — now paper #F6F5F3
 export const WHITE = COLORS.white;
-export const AMBER = COLORS.amber;
+export const OAT = "#ECEBE8";            // secondary neutral surface (derived from paper)
+export const AMBER = COLORS.sunset;      // USAGE CAP: max one element per page
 
 /**
- * COBALT — the TOOLS accent.
- * AA notes (checked): #2454C9 on paper #EEE9DF ≈ 5.5:1 ✓, on white ≈ 6.6:1 ✓.
- * On ink it fails for text — use COBALT_ON_DARK (#7FA5FF ≈ 6.8:1 on ink) there.
+ * Academy accent. AA rule (enforced site-wide): pure CORAL is NEVER text on
+ * white/paper (3.0:1 ✗). As text on light use RUST (#C92B42, 5.4:1 ✓); as
+ * text on black use RUST_ON_DARK (#FF5B6E, 6.6:1 ✓). White text on RUST
+ * fills passes (5.4:1 ✓); black text on CORAL fills passes (6.6:1 ✓).
  */
-export const COBALT = COLORS.cobalt;
-export const COBALT_RGB = "36,84,201";
-/** Accent variants that pass AA as TEXT on ink/dark bands. */
-export const COBALT_ON_DARK = "#7FA5FF";
-export const RUST_ON_DARK = "#D98B6F"; // rust as TEXT on ink ≈ 6.2:1 ✓
+export const CORAL = COLORS.coral;
+export const RUST = "#C92B42";           // coral, text-safe on white/paper
+export const RUST_ON_DARK = COLORS.coral;
 
-// RGB triplets for inline rgba(...) literals.
-export const NAVY_RGB = "22,32,43";
-export const RUST_RGB = "163,81,57";
-export const CREAM_RGB = "238,233,223";
+/**
+ * Tools accent. Same AA rule: pure SKY is NEVER text on white/paper
+ * (2.7:1 ✗). As text on light use COBALT (#176BC4, 5.3:1 ✓); as text on
+ * black use COBALT_ON_DARK (#3AA0FF, 7.2:1 ✓). White on COBALT fills ✓;
+ * black on SKY fills ✓.
+ */
+export const SKY = COLORS.sky;
+export const COBALT = "#176BC4";         // sky, text-safe on white/paper
+export const COBALT_ON_DARK = COLORS.sky;
 
-/** Accent aliases (rust is the primary/Academy accent). ACCENT_GRAD is a
- *  historical token name — it has been a SOLID colour since the KEYIS
- *  four-stop gradient was removed from the brand. */
+// RGB triplets for inline rgba(...) tints (translucent fills/borders only —
+// tints come from the BRIGHT accents so washes stay on-brand).
+export const NAVY_RGB = "10,10,10";
+export const CREAM_RGB = "246,245,243";
+export const RUST_RGB = "255,91,110";    // coral tint base
+export const COBALT_RGB = "58,160,255";  // sky tint base
+
+/** Accent aliases. ACCENT_GRAD is the brand gradient — HAIRLINE RULES ONLY
+ *  (it is consumed exclusively by kicker-underline rules). */
 export const ACCENT_HEX = RUST;
 export const ACCENT_RGB = RUST_RGB;
-export const ACCENT_GRAD = RUST;
+export const ACCENT_GRAD = BRAND_GRAD;
 
 /** Layout flags kept for the pages' shared components (single light theme). */
 export const IS_LIGHT = true;
 export const IS_VIVID = true;
 
-/** Background for the ink-dark sections (founder band, dark page heroes). */
-export const DARK_GRADIENT = "linear-gradient(180deg, #16202B 0%, #121A23 100%)";
+/** Background for the ink-dark sections (hero, founder band, dark page heroes). */
+export const DARK_GRADIENT = "linear-gradient(180deg, #0A0A0A 0%, #101010 100%)";
 
 /** Primary / muted text on those dark sections. */
 export const ON_DARK = "#FFFFFF";
 export const ON_DARK_RGB = "255,255,255";
 
 /** Genuinely dark CTA buttons (distinct from sections). */
-export const CTA_DARK_BG = "#16202B";
+export const CTA_DARK_BG = "#0A0A0A";
 
-/** Primary action buttons — rust (Academy accent). */
-export const CTA_PRIMARY_BG = RUST;
+/** Primary action buttons — coral fill with near-black text (6.6:1 ✓),
+ *  exactly as approved in mockup A. */
+export const CTA_PRIMARY_BG = CORAL;
+export const CTA_PRIMARY_TEXT = "#0A0A0A";
 
-/** Navigation — clean white bar, distinct from the paper page. */
-export const NAV_ON_LIGHT = true;
-export const NAV_BAR_BG = "rgba(255,255,255,0.94)";
-export const NAV_LINK = "rgba(22,32,43,0.72)";
-export const NAV_LINK_ACTIVE = "#16202B";
-export const NAV_BORDER = "rgba(22,32,43,0.10)";
-export const NAV_CTA_BG = RUST;
-export const NAV_CTA_TEXT = "#FFFFFF";
+/** Navigation — jet black bar per the brand header asset. */
+export const NAV_ON_LIGHT = false;
+export const NAV_BAR_BG = "rgba(10,10,10,0.96)";
+export const NAV_LINK = "rgba(255,255,255,0.72)";
+export const NAV_LINK_ACTIVE = "#FFFFFF";
+export const NAV_BORDER = "rgba(255,255,255,0.10)";
+export const NAV_CTA_BG = CORAL;         // coral pill, black text (6.6:1 ✓)
+export const NAV_CTA_TEXT = "#0A0A0A";
 
-/** Footer background — deep ink. */
-export const FOOTER_BG = "#121A23";
+/** Footer background — jet black. */
+export const FOOTER_BG = "#0A0A0A";
 
-/** Full-bleed CTA bands (soft paper wash). */
-export const CTA_BAND_BG = "linear-gradient(120deg, #E7E1D4 0%, #EEE9DF 100%)";
+/** Full-bleed CTA bands (soft neutral wash). */
+export const CTA_BAND_BG = "linear-gradient(120deg, #EFEEEB 0%, #F6F5F3 100%)";
 
-/** Translucent nav-bar scrim. */
-export const NAV_RGB = "255,255,255";
+/** Translucent nav-bar scrim base. */
+export const NAV_RGB = "10,10,10";
 
-/** Soft hero glow — quiet rust/ink wash, no brand gradients. */
+/** Soft hero glow — quiet coral/sky washes on black (no gradient element). */
 export const HERO_GLOW =
-  "radial-gradient(55% 80% at 84% 6%, rgba(163,81,57,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(22,32,43,0.08) 0%, transparent 60%)";
+  "radial-gradient(55% 80% at 84% 6%, rgba(255,91,110,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(58,160,255,0.07) 0%, transparent 60%)";
 
 /** Band surface for the trust strip / marquee. */
-export const BAND_GRADIENT = "linear-gradient(90deg, #E7E1D4 0%, #DDD6C8 100%)";
+export const BAND_GRADIENT = "linear-gradient(90deg, #EFEEEB 0%, #F6F5F3 100%)";
 
 /** Faint depth wash behind key sections. */
 export const SECTION_GLOW =
-  "radial-gradient(60% 55% at 50% -8%, rgba(163,81,57,0.06) 0%, transparent 62%)";
+  "radial-gradient(60% 55% at 50% -8%, rgba(255,91,110,0.05) 0%, transparent 62%)";
 
 /** Alternating band tint. */
-export const SECTION_TINT = "#E7E1D4";
+export const SECTION_TINT = "#EFEEEB";
 
 /** Soft ambient orbs for empty areas. */
-export const ORB_ACCENT = "radial-gradient(circle, rgba(163,81,57,0.14) 0%, transparent 70%)";
-export const ORB_WARM = "radial-gradient(circle, rgba(36,84,201,0.10) 0%, transparent 70%)";
-
-/**
- * Heading typeface — Playfair Display for editorial headlines; DM Sans for
- * body/UI. ?font=modern flips headings to DM Sans for comparison.
- * (To flip permanently, change --eba-heading in index.css.)
- */
-export const IS_MODERN_FONT =
-  typeof window !== "undefined" &&
-  (() => { try { return new URLSearchParams(window.location.search).get("font") === "modern"; } catch { return false; } })();
-
-if (IS_MODERN_FONT && typeof document !== "undefined") {
-  document.documentElement.style.setProperty("--eba-heading", "'DM Sans', system-ui, sans-serif");
-}
+export const ORB_ACCENT = "radial-gradient(circle, rgba(255,91,110,0.12) 0%, transparent 70%)";
+export const ORB_WARM = "radial-gradient(circle, rgba(58,160,255,0.09) 0%, transparent 70%)";
 
 /**
  * The named methodology. The curriculum is presented everywhere as this System
@@ -143,6 +152,17 @@ export const METHOD_NAME = "The Engineering Operating System";
 export const KAJABI_CHECKOUT_URL =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL || "TODO(eba): live Kajabi checkout URL";
 
+/** Kajabi checkout for the Academy + Documents tier. Falls back to the main
+ *  checkout while unset so the tier CTA never dead-ends. */
+export const KAJABI_CHECKOUT_URL_DOCS =
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL_DOCS ||
+  "TODO(eba): Kajabi checkout URL — Academy + Documents tier";
+
+/** Kajabi-hosted O&M manual upload/enquiry flow. While unset, the O&M CTA
+ *  fails safe to the Stripe link (if set) or the internal tool page. */
+export const OM_SERVICE_URL =
+  import.meta.env.VITE_KAJABI_OM_SERVICE || "TODO(eba): Kajabi O&M service flow URL";
+
 /**
  * Lead-magnet / enquiry form POST endpoint (Kajabi form action or webhook).
  * Empty string = form disabled ("Form coming soon"); never fakes success.
@@ -156,7 +176,22 @@ export const STRIPE = {
   complianceChatbot:
     import.meta.env.VITE_STRIPE_COMPLIANCE_CHATBOT ||
     "TODO(eba): Stripe Payment Link — Compliance Chatbot subscription",
+  toolsSingle:
+    import.meta.env.VITE_STRIPE_TOOLS_SINGLE ||
+    "TODO(eba): Stripe Payment Link — single AI tool subscription",
+  toolsBundle:
+    import.meta.env.VITE_STRIPE_TOOLS_BUNDLE ||
+    "TODO(eba): Stripe Payment Link — all-tools bundle subscription",
 } as const;
+
+/**
+ * Accreditation & membership badges (CPD, sector bodies). Rendered ONLY when
+ * this array is non-empty — we never show a badge we don't hold.
+ * TODO(eba): populate when CPD accreditation is granted, e.g.
+ *   { name: "CPD Member", logo: "/accreditations/cpd.png", url: "https://..." }
+ */
+export interface Accreditation { name: string; logo: string; url?: string }
+export const ACCREDITATIONS: Accreditation[] = [];
 
 /**
  * Testimonials are hidden until we have real founding-member quotes.
@@ -259,3 +294,9 @@ export const ENROL_HREF: string | undefined = ENROL_READY ? KAJABI_CHECKOUT_URL 
 
 /** Label shown by enrolment CTAs while no live checkout URL is configured. */
 export const ENROL_PENDING_LABEL = "Enrolment opens soon";
+
+/** +Documents tier: true once its own checkout URL (or the main one) is live. */
+export const ENROL_DOCS_READY = !isPlaceholder(KAJABI_CHECKOUT_URL_DOCS) || ENROL_READY;
+export const ENROL_DOCS_HREF: string | undefined = !isPlaceholder(KAJABI_CHECKOUT_URL_DOCS)
+  ? KAJABI_CHECKOUT_URL_DOCS
+  : ENROL_HREF;

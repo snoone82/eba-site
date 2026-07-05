@@ -157,20 +157,23 @@ export const COURSE_JSONLD = {
   inLanguage: "en-GB",
   courseMode: "online",
   about: [
-    "M&E business growth",
-    "Construction pricing and estimating",
-    "Cash flow management",
-    "Tendering and contracts",
-    "Decarbonisation as a growth strategy",
+    "Engineering business growth",
+    "Leadership and culture",
+    "Building and leading teams",
+    "Commercial controls",
+    "Financial control and cash flow",
+    "Risk, protection and governance",
   ],
 };
 
 interface SeoProps extends SeoMeta {
   image?: string;
   jsonLd?: object | object[];
+  /** Render <meta name="robots" content="noindex"> (404 etc.). */
+  noIndex?: boolean;
 }
 
-export function Seo({ title, description, path, image = DEFAULT_OG_IMAGE, jsonLd }: SeoProps) {
+export function Seo({ title, description, path, image = DEFAULT_OG_IMAGE, jsonLd, noIndex }: SeoProps) {
   const canonical = `${SITE_URL}${path}`;
   const blocks = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
@@ -180,6 +183,7 @@ export function Seo({ title, description, path, image = DEFAULT_OG_IMAGE, jsonLd
     <Helmet prioritizeSeoTags defer={false}>
       <title>{title}</title>
       <meta name="description" content={description} />
+      {noIndex && <meta name="robots" content="noindex" />}
       <link rel="canonical" href={canonical} />
 
       <meta property="og:type" content="website" />

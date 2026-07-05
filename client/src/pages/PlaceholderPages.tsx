@@ -4,11 +4,12 @@ import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { EBALogo } from "@/components/EBALogo";
 import {
-  NAVY, CREAM, RUST, OAT, WHITE,
-  ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL,
+  NAVY, CREAM, RUST, OAT, WHITE, COBALT, COBALT_RGB,
+  ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, PRICING,
+  ENROL_DOCS_READY, ENROL_DOCS_HREF,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
-  IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_BAND_BG, NAV_RGB,
+  IS_VIVID, ON_DARK, ON_DARK_RGB, RUST_ON_DARK, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
   HERO_GLOW, SECTION_GLOW, SECTION_TINT, ORB_ACCENT,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
@@ -44,7 +45,7 @@ function PlaceholderNav({ active }: { active: string }) {
       <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         {links.map(l => (
           <Link key={l.href} href={l.href} style={{
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: "13px",
             letterSpacing: "0.04em", textDecoration: "none",
             color: l.href === active ? NAV_LINK_ACTIVE : NAV_LINK,
           }}>
@@ -53,7 +54,7 @@ function PlaceholderNav({ active }: { active: string }) {
         ))}
         <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
           background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "12px",
+          fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "12px",
           padding: "9px 20px", letterSpacing: "0.06em", borderRadius: "10px",
         }}>
           {ENROL_READY ? "Apply for the Founding Cohort" : ENROL_PENDING_LABEL}
@@ -77,8 +78,8 @@ function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: 
       }}>
         <div>
           <p style={{
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px",
-            letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 20px",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px",
+            letterSpacing: "0.12em", textTransform: "uppercase", color: RUST_ON_DARK, margin: "0 0 20px",
           }}>{label}</p>
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -115,7 +116,7 @@ function ComingSoonBody({ message }: { message: string }) {
           }}>{message}</p>
           <Link href="/contact" style={{
             background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>
             Register your interest →
@@ -180,7 +181,7 @@ function MentorWaitlist() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%", background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.2)`,
-    padding: "13px 16px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
+    padding: "13px 16px", fontFamily: "'Poppins', sans-serif", fontSize: "14px",
     color: NAVY, outline: "none", boxSizing: "border-box",
   };
 
@@ -190,7 +191,7 @@ function MentorWaitlist() {
         {/* Honest scarcity line — capacity, not fake history */}
         <span style={{
           display: "inline-block", background: RUST, color: "#fff",
-          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
+          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px",
           letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
         }}>Availability</span>
         <h2 style={{
@@ -245,7 +246,7 @@ function MentorWaitlist() {
                     {intake.label}
                   </span>
                   <span style={{
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.06em", textTransform: "uppercase", color: statusColor,
                   }}>
                     {statusText}
@@ -254,15 +255,15 @@ function MentorWaitlist() {
                 {isFull ? (
                   <button onClick={() => choose(intake.label, false)} style={{
                     background: "transparent", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.4)",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
                   }}>
                     Join the waitlist →
                   </button>
                 ) : isOpen ? (
                   <button onClick={() => choose(intake.label, true)} style={{
-                    background: CTA_PRIMARY_BG, color: "#fff", border: "none",
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
+                    background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
                     letterSpacing: "0.04em", padding: "10px 22px", cursor: "pointer",
                   }}>
                     {formReady ? "Register for this intake →" : "Register interest →"}
@@ -270,7 +271,7 @@ function MentorWaitlist() {
                 ) : (
                   <button onClick={() => choose(intake.label, false)} style={{
                     background: "transparent", color: NAVY, border: `1px solid ${NAVY}`,
-                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
                   }}>
                     Register interest →
@@ -308,7 +309,7 @@ function MentorWaitlist() {
               <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 4px" }}>
                 Register your interest.
               </h3>
-              <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'Poppins', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                 Intake
               </label>
               <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
@@ -322,8 +323,8 @@ function MentorWaitlist() {
               <input type="email" placeholder="Your business email" value={email} onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
               {error && <p style={{ color: "#FFB162", fontSize: "13px", margin: 0 }} role="alert">{error}</p>}
               <button type="submit" disabled={loading} style={{
-                background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+                background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none", cursor: loading ? "not-allowed" : "pointer",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                 padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
               }}>
                 {loading ? "Sending..." : "Join the waitlist →"}
@@ -339,7 +340,7 @@ function MentorWaitlist() {
 export function MentorshipPage() {
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.mentorship} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/mentorship" />
@@ -432,7 +433,7 @@ export function PricingPage() {
   const border = `rgba(${NAVY_RGB},0.10)`;
   const sub = `rgba(${NAVY_RGB},0.62)`;
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.pricing} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/pricing" />
@@ -455,36 +456,68 @@ export function PricingPage() {
                 boxShadow: tier.popular ? "0 40px 80px -40px rgba(0,0,0,0.35)" : "0 20px 44px -30px rgba(0,0,0,0.25)",
               }}>
                 {tier.popular && (
-                  <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: CTA_PRIMARY_BG, color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap" }}>
+                  <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap" }}>
                     Most popular
                   </span>
                 )}
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>{tier.name}</h3>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
+                <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
                 <div style={{ marginBottom: "22px" }}>
                   <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "1.6rem", color: NAVY, lineHeight: 1.1 }}>Announced soon</div>
-                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>Founding price · locked for life · rises after launch</div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>Founding price · locked for life · rises after launch</div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
                   {tier.features.map(f => (
                     <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                       <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: `rgba(${RUST_RGB},0.12)`, color: RUST, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "11px", fontWeight: 800, marginTop: "1px" }}>✓</span>
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: `rgba(${NAVY_RGB},0.75)`, lineHeight: 1.45 }}>{f}</span>
+                      <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: `rgba(${NAVY_RGB},0.75)`, lineHeight: 1.45 }}>{f}</span>
                     </div>
                   ))}
                 </div>
-                <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "pricing", tier: tier.name })} style={{
+                <a href={tier.popular ? ENROL_DOCS_HREF : ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!(tier.popular ? ENROL_DOCS_READY : ENROL_READY) || undefined} onClick={() => track("checkout_click", { source: "pricing", tier: tier.name })} style={{
                   marginTop: "auto", textAlign: "center",
                   background: tier.popular ? CTA_PRIMARY_BG : "transparent",
                   color: tier.popular ? "#fff" : NAVY,
                   border: tier.popular ? "none" : `1px solid rgba(${NAVY_RGB},0.25)`,
-                  textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
+                  textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                   padding: "13px 24px", letterSpacing: "0.03em", display: "block",
                 }}>
-                  {ENROL_READY ? "Apply for the Founding Cohort →" : "Register your interest →"}
+                  {(tier.popular ? ENROL_DOCS_READY : ENROL_READY) ? "Apply for the Founding Cohort →" : "Register your interest →"}
                 </a>
               </div>
             ))}
+          </div>
+
+          {/* ── AI TOOLS PRICING ── tools accent (sky/cobalt); every value pulls
+              from PRICING in constants.ts and stays gated until confirmed. */}
+          <div style={{ marginTop: "56px" }}>
+            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>
+              AI tools — priced separately.
+            </h2>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
+              The tools are pay-per-use or subscription and are not included in Academy membership.
+            </p>
+            <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
+              {[
+                { name: "Single AI tool", detail: "RAMS, COSHH or Compliance Co-Pilot — one tool, one subscription", value: PRICING.toolSingle, planned: "£99" },
+                { name: "All-tools bundle", detail: "Every live tool under one subscription", value: PRICING.toolBundle, planned: "£179" },
+                { name: "O&M manual service", detail: "Per manual — compiled and returned within 24 hours", value: PRICING.omPerManual, planned: "£299" },
+              ].map(({ name, detail, value, planned }, i) => (
+                <div key={name} style={{
+                  display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
+                  padding: "18px 24px", borderTop: i > 0 ? `1px solid rgba(${NAVY_RGB},0.08)` : "none",
+                }}>
+                  <div style={{ minWidth: "220px" }}>
+                    <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px", color: NAVY, margin: "0 0 2px" }}>{name}</p>
+                    <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0, lineHeight: 1.5 }}>{detail}</p>
+                  </div>
+                  <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "6px 14px", borderRadius: "8px", whiteSpace: "nowrap" }}>
+                    {/* TODO(eba): [CONFIRM] planned {planned} — shows once PRICING is set */}
+                    {isPlaceholder(value) ? "Pricing announced soon" : value}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Reassurance strip */}
@@ -494,12 +527,12 @@ export function PricingPage() {
               "14-day money-back guarantee",
               "Engineering contractors only",
             ].map(t => (
-              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
+              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Poppins', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
                 <span style={{ color: RUST, fontWeight: 800 }}>✓</span> {t}
               </span>
             ))}
           </div>
-          <p style={{ textAlign: "center", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
+          <p style={{ textAlign: "center", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
             Founding pricing is fixed for the first cohort and rises after launch. Prices shown will be confirmed before enrolment opens. The AI tools are priced separately — pay-per-use or subscription — and are not included in Academy membership.
           </p>
         </div>
@@ -520,7 +553,7 @@ export function PricingPage() {
 
 export function EnterprisePage() {
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.enterprise} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/enterprise" />
@@ -569,7 +602,7 @@ export function FAQPage() {
   ];
 
   return (
-    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.faq} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/faq" />
@@ -642,8 +675,8 @@ export function FAQPage() {
             Use the contact form and we'll respond within one business day.
           </p>
           <Link href="/contact" style={{
-            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
+            background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>
             Get in touch →
