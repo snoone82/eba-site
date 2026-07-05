@@ -2,72 +2,75 @@
  * EBA — The Engineering Business Academy
  * Single source of truth for brand colours, business facts and integrations.
  *
- * APPROVED PALETTE (Mark, from the brand asset pack / mockup A):
- * black/near-black wrapper + white content sections, coral Academy accent,
- * sky Tools accent, six-stop brand gradient as HAIRLINE RULES ONLY.
+ * "DRAWING OFFICE" PALETTE (alternative direction, this branch only):
+ * deep drawing-office green wrapper + warm ivory content sections,
+ * BRASS Academy accent, VERDIGRIS Tools accent. The hairline gradient runs
+ * brass → verdigris — raw metal weathering into a finished patina, the same
+ * transformation the Academy sells. Distinctive against a market that is
+ * uniformly navy, red/black or SaaS-blue; green reads growth/money globally.
  *
  * WAYFINDING RULE: Academy/cohort/Mark/mentorship/story sections take the
- * CORAL accent; AI-tools/product/pricing/enterprise sections take the SKY
- * accent. Never both accents on one element.
+ * BRASS accent; AI-tools/product/pricing/enterprise sections take the
+ * VERDIGRIS accent. Never both accents on one element.
  */
 
 export const COLORS = {
-  ink:    "#0A0A0A",  // jet black — nav, footer, hero, the two dark sections; text on light
-  inkDeep:"#101010",  // bottom stop of the dark-section gradient
+  ink:    "#0E2A25",  // drawing-office green — nav, footer, hero, dark sections; text on light
+  inkDeep:"#0A211D",  // bottom stop of the dark-section gradient
   white:  "#FFFFFF",  // content sections, cards
-  paper:  "#F6F5F3",  // alternating light sections
-  coral:  "#FF5B6E",  // ACADEMY accent — fills/chips/graphics + text on black only
-  sky:    "#3AA0FF",  // TOOLS accent — fills/frames/graphics + text on black only
-  sunset: "#FF9F1C",  // USAGE CAP: max ONE element per page (highlight stat / live badge)
-  lime:   "#D4FF00",  // USAGE CAP: gradient stop ONLY — never standalone
+  paper:  "#F5F3EB",  // warm ivory — alternating light sections (drafting paper)
+  coral:  "#C9982E",  // ACADEMY accent (brass) — fills/chips/graphics + text on dark only
+  sky:    "#2BC7B5",  // TOOLS accent (verdigris) — fills/frames/graphics + text on dark only
+  sunset: "#D9A83B",  // USAGE CAP: max ONE element per page (highlight stat / live badge)
+  lime:   "#9BBF3B",  // USAGE CAP: gradient stop ONLY — never standalone
   mint:   "#2ECC71",  // USAGE CAP: "live" markers only
-  teal:   "#18C1D6",  // separator dots / small graphic accents
+  teal:   "#2BC7B5",  // separator dots / small graphic accents
 } as const;
 
 /**
- * BRAND GRADIENT — the six-stop line from the brand asset pack.
+ * BRAND GRADIENT — brass into verdigris (metal → patina).
  * HAIRLINE RULES ONLY — never backgrounds, buttons, fills, or text.
  * Allowed: logo underline · kicker underlines · one full-width rule before
  * the final CTA. (#E9425C and the old KEYIS four-stop remain banned.)
  */
 export const BRAND_GRAD =
-  "linear-gradient(90deg, #FF5B6E 0%, #FF9F1C 20%, #D4FF00 40%, #2ECC71 60%, #18C1D6 80%, #3AA0FF 100%)";
+  "linear-gradient(90deg, #C9982E 0%, #9BBF3B 50%, #2BC7B5 100%)";
 
 // Convenience named exports. NAVY/CREAM/RUST/OAT/COBALT are the historical
 // token names used across the pages — kept to avoid a thousand-line rename;
 // their VALUES are the approved palette.
-export const NAVY = COLORS.ink;          // was navy — now jet black
-export const CREAM = COLORS.paper;       // was cream — now paper #F6F5F3
+export const NAVY = COLORS.ink;          // was navy — now drawing-office green
+export const CREAM = COLORS.paper;       // was cream — now warm ivory
 export const WHITE = COLORS.white;
-export const OAT = "#ECEBE8";            // secondary neutral surface (derived from paper)
+export const OAT = "#E9E6DB";            // secondary neutral surface (derived from ivory)
 export const AMBER = COLORS.sunset;      // USAGE CAP: max one element per page
 
 /**
- * Academy accent. AA rule (enforced site-wide): pure CORAL is NEVER text on
- * white/paper (3.0:1 ✗). As text on light use RUST (#C92B42, 5.4:1 ✓); as
- * text on black use RUST_ON_DARK (#FF5B6E, 6.6:1 ✓). White text on RUST
- * fills passes (5.4:1 ✓); black text on CORAL fills passes (6.6:1 ✓).
+ * Academy accent (BRASS). AA rule (enforced site-wide): bright brass is
+ * NEVER text on white/ivory. As text on light use RUST (#7D5B12, 5.6:1 ✓);
+ * as text on the green ink use RUST_ON_DARK (#C9982E, 5.8:1 ✓). White text
+ * on RUST fills passes (6.2:1 ✓); ink text on bright-brass fills ✓.
  */
-export const CORAL = COLORS.coral;
-export const RUST = "#C92B42";           // coral, text-safe on white/paper
+export const CORAL = COLORS.coral;       // historical name — bright brass
+export const RUST = "#7D5B12";           // brass, text-safe on white/ivory
 export const RUST_ON_DARK = COLORS.coral;
 
 /**
- * Tools accent. Same AA rule: pure SKY is NEVER text on white/paper
- * (2.7:1 ✗). As text on light use COBALT (#176BC4, 5.3:1 ✓); as text on
- * black use COBALT_ON_DARK (#3AA0FF, 7.2:1 ✓). White on COBALT fills ✓;
- * black on SKY fills ✓.
+ * Tools accent (VERDIGRIS). Same AA rule: bright verdigris is NEVER text on
+ * white/ivory. As text on light use COBALT (#0A6E63, 5.5:1 ✓); as text on
+ * the green ink use COBALT_ON_DARK (#2BC7B5, 7.2:1 ✓). White on COBALT
+ * fills ✓; ink on bright-verdigris fills ✓.
  */
 export const SKY = COLORS.sky;
-export const COBALT = "#176BC4";         // sky, text-safe on white/paper
+export const COBALT = "#0A6E63";         // verdigris, text-safe on white/ivory
 export const COBALT_ON_DARK = COLORS.sky;
 
 // RGB triplets for inline rgba(...) tints (translucent fills/borders only —
 // tints come from the BRIGHT accents so washes stay on-brand).
-export const NAVY_RGB = "10,10,10";
-export const CREAM_RGB = "246,245,243";
-export const RUST_RGB = "255,91,110";    // coral tint base
-export const COBALT_RGB = "58,160,255";  // sky tint base
+export const NAVY_RGB = "14,42,37";
+export const CREAM_RGB = "245,243,235";
+export const RUST_RGB = "201,152,46";    // brass tint base
+export const COBALT_RGB = "43,199,181";  // verdigris tint base
 
 /** Accent aliases. ACCENT_GRAD is the brand gradient — HAIRLINE RULES ONLY
  *  (it is consumed exclusively by kicker-underline rules). */
@@ -80,55 +83,54 @@ export const IS_LIGHT = true;
 export const IS_VIVID = true;
 
 /** Background for the ink-dark sections (hero, founder band, dark page heroes). */
-export const DARK_GRADIENT = "linear-gradient(180deg, #0A0A0A 0%, #101010 100%)";
+export const DARK_GRADIENT = "linear-gradient(180deg, #0E2A25 0%, #0A211D 100%)";
 
 /** Primary / muted text on those dark sections. */
 export const ON_DARK = "#FFFFFF";
 export const ON_DARK_RGB = "255,255,255";
 
 /** Genuinely dark CTA buttons (distinct from sections). */
-export const CTA_DARK_BG = "#0A0A0A";
+export const CTA_DARK_BG = "#0E2A25";
 
-/** Primary action buttons — coral fill with near-black text (6.6:1 ✓),
- *  exactly as approved in mockup A. */
-export const CTA_PRIMARY_BG = CORAL;
-export const CTA_PRIMARY_TEXT = "#0A0A0A";
+/** Primary action buttons — brass fill with deep-green text (7.0:1 ✓). */
+export const CTA_PRIMARY_BG = "#D9A83B";
+export const CTA_PRIMARY_TEXT = "#0E2A25";
 
-/** Navigation — jet black bar per the brand header asset. */
+/** Navigation — drawing-office green bar. */
 export const NAV_ON_LIGHT = false;
-export const NAV_BAR_BG = "rgba(10,10,10,0.96)";
+export const NAV_BAR_BG = "rgba(14,42,37,0.97)";
 export const NAV_LINK = "rgba(255,255,255,0.72)";
 export const NAV_LINK_ACTIVE = "#FFFFFF";
 export const NAV_BORDER = "rgba(255,255,255,0.10)";
-export const NAV_CTA_BG = CORAL;         // coral pill, black text (6.6:1 ✓)
-export const NAV_CTA_TEXT = "#0A0A0A";
+export const NAV_CTA_BG = "#D9A83B";     // brass pill, deep-green text (7.0:1 ✓)
+export const NAV_CTA_TEXT = "#0E2A25";
 
 /** Footer background — jet black. */
-export const FOOTER_BG = "#0A0A0A";
+export const FOOTER_BG = "#0A211D";
 
 /** Full-bleed CTA bands (soft neutral wash). */
-export const CTA_BAND_BG = "linear-gradient(120deg, #EFEEEB 0%, #F6F5F3 100%)";
+export const CTA_BAND_BG = "linear-gradient(120deg, #EDEADF 0%, #F5F3EB 100%)";
 
 /** Translucent nav-bar scrim base. */
-export const NAV_RGB = "10,10,10";
+export const NAV_RGB = "14,42,37";
 
 /** Soft hero glow — quiet coral/sky washes on black (no gradient element). */
 export const HERO_GLOW =
-  "radial-gradient(55% 80% at 84% 6%, rgba(255,91,110,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(58,160,255,0.07) 0%, transparent 60%)";
+  "radial-gradient(55% 80% at 84% 6%, rgba(201,152,46,0.12) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(43,199,181,0.07) 0%, transparent 60%)";
 
 /** Band surface for the trust strip / marquee. */
-export const BAND_GRADIENT = "linear-gradient(90deg, #EFEEEB 0%, #F6F5F3 100%)";
+export const BAND_GRADIENT = "linear-gradient(90deg, #EDEADF 0%, #F5F3EB 100%)";
 
 /** Faint depth wash behind key sections. */
 export const SECTION_GLOW =
-  "radial-gradient(60% 55% at 50% -8%, rgba(255,91,110,0.05) 0%, transparent 62%)";
+  "radial-gradient(60% 55% at 50% -8%, rgba(201,152,46,0.06) 0%, transparent 62%)";
 
 /** Alternating band tint. */
-export const SECTION_TINT = "#EFEEEB";
+export const SECTION_TINT = "#EDEADF";
 
 /** Soft ambient orbs for empty areas. */
-export const ORB_ACCENT = "radial-gradient(circle, rgba(255,91,110,0.12) 0%, transparent 70%)";
-export const ORB_WARM = "radial-gradient(circle, rgba(58,160,255,0.09) 0%, transparent 70%)";
+export const ORB_ACCENT = "radial-gradient(circle, rgba(201,152,46,0.13) 0%, transparent 70%)";
+export const ORB_WARM = "radial-gradient(circle, rgba(43,199,181,0.09) 0%, transparent 70%)";
 
 /**
  * The named methodology. The curriculum is presented everywhere as this System

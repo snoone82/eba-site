@@ -58,14 +58,12 @@ export function EBALogo({
       style={{ display: "block", maxWidth: "100%", height: "auto" }}
     >
       <defs>
-        {/* Brand gradient — HAIRLINE RULES ONLY; here: the logo underline. */}
+        {/* Brand gradient (brass → verdigris) — HAIRLINE RULES ONLY;
+            here: the logo underline. */}
         <linearGradient id={gid} x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#FF5B6E" />
-          <stop offset="20%" stopColor="#FF9F1C" />
-          <stop offset="40%" stopColor="#D4FF00" />
-          <stop offset="60%" stopColor="#2ECC71" />
-          <stop offset="80%" stopColor="#18C1D6" />
-          <stop offset="100%" stopColor="#3AA0FF" />
+          <stop offset="0%" stopColor="#C9982E" />
+          <stop offset="50%" stopColor="#9BBF3B" />
+          <stop offset="100%" stopColor="#2BC7B5" />
         </linearGradient>
       </defs>
 
