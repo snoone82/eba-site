@@ -48,14 +48,14 @@ export function ProductFrame({
         <span style={{
           flex: 1, marginLeft: "6px", background: WHITE,
           border: `1px solid rgba(${COBALT_RGB},0.2)`, borderRadius: "4px",
-          padding: "3px 10px", fontFamily: "'Roboto', sans-serif",
+          padding: "3px 10px", fontFamily: "'DM Sans', sans-serif",
           fontSize: "10.5px", color: `rgba(${NAVY_RGB},0.62)`,
           whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
         }}>
           {url}
         </span>
         <span style={{
-          fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "8.5px",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "8.5px",
           letterSpacing: "0.1em", textTransform: "uppercase",
           color: COBALT, whiteSpace: "nowrap",
         }}>
@@ -65,13 +65,13 @@ export function ProductFrame({
       {/* Mock document */}
       <div style={{ padding: "16px 18px 18px" }}>
         <p style={{
-          fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
           color: NAVY, margin: "0 0 3px", lineHeight: 1.35,
         }}>
           {docTitle}
         </p>
         {docMeta && (
-          <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "10.5px", color: `rgba(${NAVY_RGB},0.5)`, margin: "0 0 12px" }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "10.5px", color: `rgba(${NAVY_RGB},0.5)`, margin: "0 0 12px" }}>
             {docMeta}
           </p>
         )}
@@ -84,7 +84,7 @@ export function ProductFrame({
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
                 fontSize: "8px", fontWeight: 800,
               }}>✓</span>
-              <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11.5px", lineHeight: 1.45, color: `rgba(${NAVY_RGB},0.68)` }}>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", lineHeight: 1.45, color: `rgba(${NAVY_RGB},0.68)` }}>
                 {line}
               </span>
             </div>

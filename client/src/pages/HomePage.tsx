@@ -24,7 +24,7 @@ import {
   IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   SHOW_TESTIMONIALS,
-  METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB,
+  METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB, RUST_ON_DARK,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -35,6 +35,7 @@ import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { RoiStatBand } from "@/components/RoiStatBand";
+import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 
@@ -48,7 +49,7 @@ function SectionLabel({ children, bg }: { children: string; bg?: string }) {
       display: "inline-block",
       background: bg ?? RUST,
       color: "#fff",
-      fontFamily: "'Roboto', sans-serif",
+      fontFamily: "'DM Sans', sans-serif",
       fontWeight: 600,
       fontSize: "11px",
       letterSpacing: "0.1em",
@@ -143,7 +144,7 @@ function LeadMagnetForm() {
           Form coming soon.
         </p>
         <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
-          The M&E Business Health Check sign-up opens shortly.
+          The Engineering Business Health Check sign-up opens shortly.
           {/* TODO(eba): set FORM_ENDPOINT in client/src/lib/constants.ts to enable this form. */}
         </p>
       </div>
@@ -157,7 +158,7 @@ function LeadMagnetForm() {
           Check your inbox.
         </p>
         <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
-          Your M&E Business Health Check is on its way to {email}.
+          Your Engineering Business Health Check is on its way to {email}.
         </p>
       </div>
     );
@@ -173,7 +174,7 @@ function LeadMagnetForm() {
         required
         style={{
           padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: WHITE, fontFamily: "'Roboto', sans-serif", fontSize: "14px",
+          background: WHITE, fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
       />
@@ -185,7 +186,7 @@ function LeadMagnetForm() {
         required
         style={{
           padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: WHITE, fontFamily: "'Roboto', sans-serif", fontSize: "14px",
+          background: WHITE, fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
           color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
         }}
       />
@@ -199,7 +200,7 @@ function LeadMagnetForm() {
         disabled={loading}
         style={{
           background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
-          fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
           padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
           transition: "opacity 0.2s",
         }}
@@ -238,7 +239,7 @@ const painPoints = [
   },
   {
     title: "Contracts you sign without fully reading",
-    body: "JCT, NEC, bespoke novation clauses. Most M&E contractors sign what they're given and discover the liability when it's too late.",
+    body: "JCT, NEC, bespoke novation clauses. Most engineering contractors sign what they're given and discover the liability when it's too late.",
   },
   {
     title: "Compliance that consumes your people",
@@ -299,7 +300,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
       }}>
         {/* Announce bar */}
         <div style={{ background: CTA_BAND_BG, textAlign: "center", padding: "8px 40px" }}>
-          <Link href="/contact" style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
+          <Link href="/contact" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
             For organisations interested in in-house training for your team, <strong style={{ color: NAVY }}>get in touch →</strong>
           </Link>
         </div>
@@ -319,7 +320,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: NAV_LINK, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: "14px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "14px",
                 transition: "color 0.2s",
               }}
                 onMouseEnter={e => (e.currentTarget.style.color = NAV_LINK_ACTIVE)}
@@ -331,7 +332,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
             <span>
               <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
                 background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
                 padding: "9px 20px", letterSpacing: "0.04em", borderRadius: "10px",
                 transition: "opacity 0.2s, transform 0.16s",
                 display: "inline-block",
@@ -361,7 +362,7 @@ export default function HomePage() {
   const isMobile = useIsMobile();
 
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.home} jsonLd={ORGANIZATION_JSONLD} />
       <MobileNav transparent={true} />
       <HomeNav scrolled={scrolled} />
@@ -391,7 +392,7 @@ export default function HomePage() {
             display: "inline-block",
             background: RUST,
             color: "#fff",
-            fontFamily: "'Roboto', sans-serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontWeight: 700,
             fontSize: "11px",
             letterSpacing: "0.12em",
@@ -410,7 +411,7 @@ export default function HomePage() {
               lineHeight: 1.08, letterSpacing: "-0.015em",
               color: "#fff", margin: "0 0 22px", maxWidth: "20ch",
             }}>
-              The business programme built for M&amp;E engineering contractors.
+              The business programme built for engineering services contractors.
             </h1>
             {/* Stats strip */}
             <div style={{
@@ -421,7 +422,7 @@ export default function HomePage() {
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.78)",
-                  fontFamily: "'Roboto', sans-serif",
+                  fontFamily: "'DM Sans', sans-serif",
                   fontSize: "12px", fontWeight: 600,
                   letterSpacing: "0.08em", textTransform: "uppercase",
                 }}>
@@ -439,7 +440,7 @@ export default function HomePage() {
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
               <a className="eba-shine eba-lift" href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
                 background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", letterSpacing: "0.04em",
                 display: "inline-block",
               }}
@@ -450,7 +451,7 @@ export default function HomePage() {
               {/* Two-track CTA: Academy track = rust primary above; Tools track = cobalt outline below. */}
               <a href="/ai-tools#free-toolbox-talk" style={{
                 background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", border: `1.5px solid ${COBALT_ON_DARK}`,
                 transition: "background 0.2s, color 0.2s", borderRadius: "6px",
                 display: "inline-block",
@@ -466,36 +467,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FEATURE STRIP ── one centred row, three distinct claims (numbers stay in the hero) */}
-      <div style={{ background: CREAM, padding: isMobile ? "18px 20px" : "20px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
-        <p style={{
-          textAlign: "center", margin: 0,
-          fontFamily: "'Roboto', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
-          fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},0.72)`,
-        }}>
-          Built for M&E business owners
-          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
-          Drawn from real operations
-          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
-          Lifetime founding access
-        </p>
-      </div>
-
       {/* ── TRUSTED-BY BANNER ── big animated sector marquee */}
       <div style={{ background: BAND_GRADIENT, padding: isMobile ? "26px 0 30px" : "36px 0 42px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)`, overflow: "hidden" }}>
         <p style={{
           textAlign: "center", margin: isMobile ? "0 20px 18px" : "0 40px 22px",
-          fontFamily: "'Roboto', sans-serif", fontSize: "12px",
+          fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
           fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase",
           color: `rgba(${NAVY_RGB},0.72)`,
         }}>
-          Trusted by M&E contractors working across
+          Trusted across
         </p>
         <div className="eba-marquee-mask" style={{ overflow: "hidden" }}>
           <div className="eba-marquee-track" style={{ display: "flex", alignItems: "center", width: "max-content" }}>
             {[0, 1].map(dup => (
-              ["MOD / MOJ estates", "nuclear", "aerospace", "advanced manufacturing", "clean energy", "data centres"].map(sector => (
+              /* [CONFIRM] final sector order with Mark — lead with the three the target buyer most aspires to. */
+              ["M&E", "fire suppression & sprinklers", "MOD / MOJ estates", "nuclear", "aerospace", "data centres"].map(sector => (
                 <span key={`${dup}-${sector}`} style={{
                   display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
                   fontFamily: "var(--eba-heading)", fontWeight: 800,
@@ -511,128 +497,35 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── WHAT'S INSIDE (photo-card grid) ── */}
-      <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "72px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <RevealSection>
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(1.9rem, 3.4vw, 2.5rem)", letterSpacing: "-0.015em",
-              color: NAVY, margin: "0 0 8px", lineHeight: 1.1,
-            }}>
-              What's inside
-            </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", margin: "0 0 34px" }}>
-              Everything an M&E business owner needs, in one place.
-            </p>
-          </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "20px" }}>
-            {[
-              { href: "/academy", img: "/mark-teaching.jpg", focus: "center 24%", tag: "The Academy", tagBg: NAVY, title: "The full M&E operating system", cat: "Video-led · pricing, contracts, cash flow, growth", meta: "101 lessons · 10 modules" },
-              { href: "/ai-tools", img: "/site-plantroom.jpg", focus: "center", tag: "AI Tools", tagBg: COBALT, title: "Four tools built for M&E", cat: "O&M Compiler · RAMS · Compliance Co-Pilot · COSHH", meta: "Ready now" },
-              { href: "/documents", img: "/site-fitout.jpg", focus: "center", tag: "Documents", tagBg: NAVY, title: "380 documents. 25 years of practice.", cat: "Every template, form, checklist and procedure — Word & PDF", meta: "Included with membership" },
-              { href: "/mentorship", img: "/mark-1on1.jpg", focus: "center 22%", tag: "Mentorship", tagBg: RUST, title: "Direct access to Mark Poulton", cat: "Group & 1:1 · application-only", meta: "Limited intakes" },
-              { href: "/ai-tools", img: "/site-rooftop.jpg", focus: "center", tag: "Free Tool", tagBg: COBALT, title: "Toolbox Talk Generator", cat: "Site-ready talk in a minute — no purchase", meta: "Free" },
-              { href: "/our-story", img: "/mark-seated.jpg", focus: "center 20%", tag: "Our Story", tagBg: NAVY, title: "Built by people who've done it", cat: "25 years running a real M&E business", meta: "Meet the founder" },
-            ].map(card => (
-              <Link key={card.title} href={card.href} className="eba-bento-card" style={{
-                background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.1)`, borderRadius: "12px",
-                overflow: "hidden", textDecoration: "none", color: NAVY, display: "flex", flexDirection: "column",
-              }}>
-                <Photo src={card.img} alt="" ratio="16 / 8" radius="0px" shadow={false} focus={card.focus} />
-                <div style={{ padding: "16px 18px 20px", display: "flex", flexDirection: "column", flex: 1 }}>
-                  <span style={{
-                    alignSelf: "flex-start", background: card.tagBg, color: "#fff",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "10.5px",
-                    letterSpacing: "0.08em", textTransform: "uppercase",
-                    padding: "4px 9px", borderRadius: "4px", marginBottom: "10px",
-                  }}>{card.tag}</span>
-                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "17.5px", lineHeight: 1.25, margin: "0 0 7px" }}>{card.title}</h3>
-                  <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.72)`, lineHeight: 1.5, margin: "0 0 14px" }}>{card.cat}</p>
-                  <span style={{ marginTop: "auto", fontFamily: "'Roboto', sans-serif", fontWeight: 800, fontSize: "15px", color: RUST }}>{card.meta}</span>
-                </div>
-              </Link>
-            ))}
-          </div>
-          <Link href="/academy" style={{
-            display: "inline-block", marginTop: "26px",
-            background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
-            padding: "12px 24px", borderRadius: "6px", letterSpacing: "0.02em",
-          }}>
-            Explore the curriculum →
-          </Link>
-        </div>
-      </section>
-
-      {/* ── AI TOOLS + DOCUMENT LIBRARY (compressed blocks) ── */}
-      <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "76px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "48px" : "72px", alignItems: "start" }}>
-            <RevealSection>
-              {/* Tools block = tools accent (cobalt). */}
-              <SectionLabel bg={COBALT}>AI Tools</SectionLabel>
-              <div style={{ width: "48px", height: "3px", background: COBALT, borderRadius: "2px", marginBottom: "24px" }} />
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
-                color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
-              }}>
-                And the tools that prove we understand your world.
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
-                Because we run M&E businesses too, we've built the tools we always wanted: O&M manuals delivered in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge. Built exclusively for M&E — and included with Academy membership.
-              </p>
-              <Link href="/ai-tools" style={{
-                color: COBALT, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${COBALT}`, paddingBottom: "2px",
-              }}>
-                Explore the AI tools →
-              </Link>
-            </RevealSection>
-            <RevealSection>
-              <SectionLabel>Document Library</SectionLabel>
-              <RustRule />
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
-                color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
-              }}>
-                380 documents. 25 years of practice. Ready to use.
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
-                Every template, form, checklist and procedure an M&E business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
-              </p>
-              <Link href="/documents" style={{
-                color: RUST, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
-              }}>
-                Browse the library →
-              </Link>
-            </RevealSection>
-          </div>
-          {/* Compact ROI band — what the tools actually save */}
-          <RevealSection style={{ marginTop: isMobile ? "40px" : "56px" }}>
-            <RoiStatBand compact />
-          </RevealSection>
-        </div>
-      </section>
+      {/* ── FEATURE STRIP ── one centred row, three distinct claims (numbers stay in the hero) */}
+      <div style={{ background: CREAM, padding: isMobile ? "18px 20px" : "20px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
+        <p style={{
+          textAlign: "center", margin: 0,
+          fontFamily: "'DM Sans', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
+          fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
+          color: `rgba(${NAVY_RGB},0.72)`,
+        }}>
+          Built for engineering business owners
+          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
+          Drawn from real operations
+          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
+          Lifetime founding access
+        </p>
+      </div>
 
       {/* ── PAIN POINTS ── */}
-      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "84px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: ON_DARK, margin: "0 0 16px", maxWidth: "720px",
+              color: NAVY, margin: "0 0 16px", maxWidth: "720px",
             }}>
               The engineering is not the problem. The business infrastructure around it is.
             </h2>
-            <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
-              Most M&E business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
+              Most engineering business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
             </p>
           </RevealSection>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: "18px" }}>
@@ -640,23 +533,21 @@ export default function HomePage() {
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div className="eba-bento-card" style={{
                   height: "100%",
-                  background: IS_LIGHT
-                    ? `linear-gradient(160deg, rgba(${ACCENT_RGB},0.10) 0%, rgba(${ACCENT_RGB},0.03) 100%)`
-                    : `rgba(${ON_DARK_RGB},0.05)`,
-                  border: `1px solid rgba(${ACCENT_RGB},${IS_LIGHT ? 0.18 : 0.25})`,
+                  background: WHITE,
+                  border: `1px solid rgba(${ACCENT_RGB},0.18)`,
                   borderLeft: `3px solid ${ACCENT_HEX}`,
                   borderRadius: "16px",
-                  boxShadow: IS_LIGHT ? "0 20px 44px -30px rgba(0,0,0,0.35)" : "none",
+                  boxShadow: "0 20px 44px -30px rgba(0,0,0,0.25)",
                   padding: "28px 28px",
                 }}>
                   <h3 style={{
-                    color: ON_DARK, fontFamily: "'Roboto', sans-serif",
+                    color: NAVY, fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 700, fontSize: "13px", letterSpacing: "0.04em",
                     textTransform: "uppercase", margin: "0 0 10px",
                   }}>
                     {point.title}
                   </h3>
-                  <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "15px", lineHeight: 1.65, margin: 0 }}>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.65, margin: 0 }}>
                     {point.body}
                   </p>
                 </div>
@@ -667,7 +558,7 @@ export default function HomePage() {
       </section>
 
       {/* ── THE TRANSFORMATION (Academy) ── */}
-      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>The Academy</SectionLabel>
@@ -680,42 +571,42 @@ export default function HomePage() {
               You learned to run jobs. This is where you learn to run the business.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
-              Every M&E contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
+              Every engineering contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
             </p>
             <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
               The Academy teaches {METHOD_NAME} — 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
             </p>
             <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
-              Not generic business theory. Not a coaching framework. The specific operating knowledge of running an M&E business — from someone who has built one at scale.
+              Not generic business theory. Not a coaching framework. The specific operating knowledge of running an engineering business — from someone who has built one at scale.
             </p>
             <Link href="/academy" style={{
               color: RUST, textDecoration: "none",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
               letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
             }}>
               See the curriculum →
             </Link>
             {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
             <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14px", lineHeight: 1.6, margin: "22px 0 0", fontStyle: "italic" }}>
-              Built for established M&amp;E contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
+              Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
             </p>
           </RevealSection>
         </div>
       </section>
 
       {/* ── THE OUTCOME ── */}
-      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "96px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>The Outcome</SectionLabel>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: ON_DARK, margin: "0 0 16px", lineHeight: 1.1,
+              color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
             }}>
               What it looks like on the other side.
             </h2>
-            <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
+            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
               The point isn't more lessons. It's a business that finally works the way it should.
             </p>
           </RevealSection>
@@ -723,17 +614,17 @@ export default function HomePage() {
             {outcomes.map((o, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div style={{
-                  background: `rgba(${ON_DARK_RGB},0.04)`, borderLeft: `3px solid ${RUST}`,
+                  background: WHITE, borderLeft: `3px solid ${RUST}`, border: `1px solid rgba(${NAVY_RGB},0.08)`, borderLeftWidth: "3px", borderLeftColor: RUST,
                   padding: "28px 28px", height: "100%",
                 }}>
                   <h3 style={{
-                    color: ON_DARK, fontFamily: "'Roboto', sans-serif",
+                    color: NAVY, fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 700, fontSize: "15px", letterSpacing: "0.01em",
                     margin: "0 0 8px", lineHeight: 1.3,
                   }}>
                     {o.title}
                   </h3>
-                  <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
                     {o.body}
                   </p>
                 </div>
@@ -753,7 +644,7 @@ export default function HomePage() {
       </section>
 
       {/* ── FOUNDER CREDIBILITY ── */}
-      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -769,7 +660,7 @@ export default function HomePage() {
                   background: RUST, padding: "12px 18px", borderRadius: "10px",
                 }}>
                   <p style={{
-                    color: "#fff", fontFamily: "'Roboto', sans-serif",
+                    color: "#fff", fontFamily: "'DM Sans', sans-serif",
                     fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
                     textTransform: "uppercase", margin: 0,
                   }}>
@@ -784,25 +675,25 @@ export default function HomePage() {
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(2rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 24px", lineHeight: 1.1,
+                color: ON_DARK, margin: "0 0 24px", lineHeight: 1.1,
               }}>
                 Taught by someone who has actually done it — including the hard version.
               </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
               </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
                 That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
               </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
+              <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
                 Members get group sessions and direct 1:1 access. Not theory. Not a framework. The person who's been where you're going.
               </p>
               {/* Credential strip */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
                 {credentials.map((c) => (
                   <span key={c} style={{
-                    background: OAT, color: NAVY,
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600,
+                    background: `rgba(${ON_DARK_RGB},0.08)`, color: `rgba(${CREAM_RGB},0.85)`,
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600,
                     fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase",
                     padding: "5px 12px",
                   }}>
@@ -811,9 +702,9 @@ export default function HomePage() {
                 ))}
               </div>
               <Link href="/our-story" style={{
-                color: RUST, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
+                color: RUST_ON_DARK, textDecoration: "none",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST_ON_DARK}`,
                 paddingBottom: "2px",
               }}>
                 Read Mark's full story →
@@ -830,8 +721,78 @@ export default function HomePage() {
           until real, verified member results exist (no invented examples) */}
       <CaseStudySection />
 
+      {/* ── AI TOOLS ── one block + ROI stat band (tools accent = cobalt, product frame not stock photo) */}
+      <section style={{ background: WHITE, padding: isMobile ? "56px 20px" : "84px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr", gap: isMobile ? "36px" : "72px", alignItems: "center" }}>
+            <RevealSection>
+              <SectionLabel bg={COBALT}>AI Tools</SectionLabel>
+              <div style={{ width: "48px", height: "3px", background: COBALT, borderRadius: "2px", marginBottom: "24px" }} />
+              <h2 style={{
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
+                fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
+                color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
+              }}>
+                And the tools that prove we understand your world.
+              </h2>
+              {/* TODO(eba): confirm whether the tools are included with Academy membership
+                  or priced separately — the pricing page currently says separately. */}
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
+                Because we run engineering businesses too, we've built the tools we always wanted: O&M manuals delivered in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge.
+              </p>
+              <Link href="/ai-tools" style={{
+                color: COBALT, textDecoration: "none",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${COBALT}`, paddingBottom: "2px",
+              }}>
+                Explore the AI tools →
+              </Link>
+            </RevealSection>
+            <RevealSection>
+              <ProductFrame
+                url="eba.academy/ai-tools/om-manual"
+                docTitle="O&M Manual — Section 4: Mechanical Services"
+                docMeta="Project ref · Rev A · CDM 2015 structured"
+                lines={["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"]}
+              />
+            </RevealSection>
+          </div>
+          {/* Compact ROI band — what the tools actually save */}
+          <RevealSection style={{ marginTop: isMobile ? "36px" : "48px" }}>
+            <RoiStatBand compact />
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── DOCUMENT LIBRARY ── */}
+      <section style={{ background: CREAM, padding: isMobile ? "52px 20px" : "72px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>Document Library</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
+              color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
+            }}>
+              380 documents. 25 years of practice. Ready to use.
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
+              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
+            </p>
+            <Link href="/documents" style={{
+              color: RUST, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
+              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+            }}>
+              Browse the library →
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
+
       {/* ── DECARBONISATION OPPORTUNITY ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
+      <section style={{ background: WHITE, padding: isMobile ? "52px 20px" : "72px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -847,12 +808,15 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
                 The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
               </p>
+              {/* [DECIDE with Mark]: reframed as market insight + adjacent-line example —
+                  the old "Module 8 covers decarbonisation" claim was wrong (real Module 8 =
+                  Risk, Protection & Governance). Alternative: Mark adds the lessons to the course. */}
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Module 8 of the Academy covers how to identify, position for, and win this work — net zero, not treated as a bolt-on, but as a growth strategy, not just a compliance cost.
+                Positioning for that work — entering it deliberately, pricing it properly, and building it into a durable service line — is the adjacent-line playbook the Academy teaches, drawn from Mark's own move into decarbonisation.
               </p>
               <Link href="/academy" style={{
                 color: RUST, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px",
               }}>
@@ -870,19 +834,19 @@ export default function HomePage() {
                 The £2bn market your clients are already asking you about.
               </h2>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                Fire protection and security is a common adjacent service request in M&E contracting. The market is worth £2bn and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
+                Fire protection and security is a common adjacent service request in engineering contracting. The market is worth £2bn and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Most M&E contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on how to identify, enter, and build a profitable adjacent service line.
+                Most engineering contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on how to identify, enter, and build a profitable adjacent service line.
               </p>
-              {/* Kept on the funnel — no outbound link to pro-defend.com. */}
-              <Link href="/our-story" style={{
+              {/* Curriculum case study — kept on the funnel, no outbound link to pro-defend.com. */}
+              <Link href="/academy" style={{
                 color: RUST, textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px", display: "inline-block",
               }}>
-                See how Mark did it →
+                See how it's taught →
               </Link>
             </RevealSection>
           </div>
@@ -890,7 +854,7 @@ export default function HomePage() {
       </section>
 
       {/* ── ENTERPRISE / WHITE-LABEL ── */}
-      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -898,11 +862,11 @@ export default function HomePage() {
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
-                color: ON_DARK, margin: "0 0 20px", lineHeight: 1.1,
+                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
               }}>
                 Your own branded compliance assistant. Deployed and managed for you.
               </h2>
-              <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
                 We take the compliance chatbot — trained on your company's own documents, procedures, CDM obligations and HSE guidance — and deploy it as a fully managed, branded service for your organisation. Your staff get accurate answers. You get a documented audit trail. We handle the setup, hosting and updates.
               </p>
               <div style={{ display: "flex", gap: "24px", marginBottom: "36px", flexWrap: "wrap" }}>
@@ -914,11 +878,11 @@ export default function HomePage() {
                   <div key={label}>
                     <p style={{
                       fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                      color: COBALT_ON_DARK, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
+                      color: COBALT, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
                     }}>
                       {value}
                     </p>
-                    <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                       {label}
                     </p>
                   </div>
@@ -926,7 +890,7 @@ export default function HomePage() {
               </div>
               <Link href="/contact" style={{
                 background: COBALT, color: "#fff", textDecoration: "none",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "14px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "14px",
                 padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 transition: "opacity 0.2s",
               }}
@@ -938,14 +902,14 @@ export default function HomePage() {
               </Link>
             </RevealSection>
             <RevealSection>
-              <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${COBALT_ON_DARK}`, padding: "36px 32px" }}>
+              <div style={{ background: WHITE, borderLeft: `3px solid ${COBALT}`, padding: "36px 32px", borderRadius: "10px" }}>
                 <p style={{
                   fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                  color: ON_DARK, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
+                  color: NAVY, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
                 }}>
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
                 </p>
-                <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
                   From the EBA AI Tools Catalogue
                 </p>
               </div>
@@ -955,7 +919,7 @@ export default function HomePage() {
       </section>
 
       {/* ── LEAD MAGNET ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.1)` }}>
+      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
@@ -965,10 +929,10 @@ export default function HomePage() {
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
               }}>
-                The M&amp;E Business Health Check.
+                The Engineering Business Health Check.
               </h2>
               <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 12px" }}>
-                20 questions that reveal whether your M&amp;E business is built to last — or built to break under pressure.
+                20 questions that reveal whether your engineering business is built to last — or built to break under pressure.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.65, margin: "0 0 32px" }}>
                 Covers pricing discipline, cash flow structure, contract exposure, compliance overhead, team dependency, and growth ceiling. Free. No obligation. Sent directly to your inbox.
@@ -998,8 +962,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── FINAL CTA ── (navy band — ON_DARK text needs a genuinely dark surface here) */}
-      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
+      {/* ── FINAL CTA ── full-bleed RUST band (the accent deployed at scale) */}
+      <section style={{ background: RUST, padding: isMobile ? "60px 20px" : "100px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
@@ -1012,13 +976,13 @@ export default function HomePage() {
             color: `rgba(${ON_DARK_RGB},0.85)`, fontSize: "18px", lineHeight: 1.65,
             maxWidth: "520px", margin: "0 auto 40px",
           }}>
-            Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. M&E contractors only. Limited places.
+            Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. Engineering contractors only. Limited places.
           </p>
           {/* Two-track CTA: Academy track = rust primary; Tools track = cobalt outline. */}
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
-              background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "16px",
+              background: "#fff", color: RUST, textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "16px",
               padding: "16px 40px", letterSpacing: "0.04em", display: "inline-block",
               transition: "opacity 0.2s", borderRadius: "6px",
             }}
@@ -1029,12 +993,12 @@ export default function HomePage() {
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a>
             <a href="/ai-tools#free-toolbox-talk" style={{
-              background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "16px",
-              padding: "16px 40px", border: `1.5px solid ${COBALT_ON_DARK}`,
+              background: "transparent", color: "#fff", textDecoration: "none",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "16px",
+              padding: "16px 40px", border: "1.5px solid rgba(255,255,255,0.7)",
               transition: "background 0.2s", borderRadius: "6px", display: "inline-block",
             }}
-              onMouseEnter={e => { e.currentTarget.style.background = `rgba(${COBALT_RGB},0.18)`; }}
+              onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
               onClick={() => track("cta_free_tool_footer")}
             >

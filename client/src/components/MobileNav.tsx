@@ -164,7 +164,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
               display: "inline-block",
               background: RUST, color: "#fff",
               textDecoration: "none",
-              fontFamily: "'Roboto', sans-serif",
+              fontFamily: "'DM Sans', sans-serif",
               fontWeight: 600, fontSize: "15px",
               padding: "14px 32px",
               letterSpacing: "0.04em",
@@ -175,7 +175,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
           </a>
           <p style={{
             color: `rgba(${CREAM_RGB},0.72)`,
-            fontFamily: "'Roboto', sans-serif",
+            fontFamily: "'DM Sans', sans-serif",
             fontSize: "12px",
             letterSpacing: "0.08em",
             textTransform: "uppercase",

@@ -32,7 +32,7 @@ export function RoiStatBand({ compact = false }: { compact?: boolean }) {
       {ROI_STATS.map(({ figure, mechanism }) => (
         <div key={figure}>
           <p style={{
-            fontFamily: "'Roboto', sans-serif", fontWeight: 800,
+            fontFamily: "'DM Sans', sans-serif", fontWeight: 800,
             fontSize: compact ? "15px" : "clamp(16px, 1.6vw, 20px)",
             letterSpacing: "0.06em", textTransform: "uppercase",
             color: COBALT, margin: "0 0 6px", lineHeight: 1.3,
@@ -40,7 +40,7 @@ export function RoiStatBand({ compact = false }: { compact?: boolean }) {
             {figure}
           </p>
           <p style={{
-            fontFamily: "'Roboto', sans-serif", fontSize: compact ? "13px" : "14px",
+            fontFamily: "'DM Sans', sans-serif", fontSize: compact ? "13px" : "14px",
             lineHeight: 1.55, color: `rgba(${NAVY_RGB},0.7)`, margin: 0,
           }}>
             {mechanism}

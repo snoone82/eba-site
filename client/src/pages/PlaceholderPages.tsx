@@ -44,7 +44,7 @@ function PlaceholderNav({ active }: { active: string }) {
       <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         {links.map(l => (
           <Link key={l.href} href={l.href} style={{
-            fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: "13px",
+            fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
             letterSpacing: "0.04em", textDecoration: "none",
             color: l.href === active ? NAV_LINK_ACTIVE : NAV_LINK,
           }}>
@@ -53,7 +53,7 @@ function PlaceholderNav({ active }: { active: string }) {
         ))}
         <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
           background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-          fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "12px",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "12px",
           padding: "9px 20px", letterSpacing: "0.06em", borderRadius: "10px",
         }}>
           {ENROL_READY ? "Apply for the Founding Cohort" : ENROL_PENDING_LABEL}
@@ -77,7 +77,7 @@ function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: 
       }}>
         <div>
           <p style={{
-            fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "11px",
+            fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px",
             letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 20px",
           }}>{label}</p>
           <h1 style={{
@@ -115,7 +115,7 @@ function ComingSoonBody({ message }: { message: string }) {
           }}>{message}</p>
           <Link href="/contact" style={{
             background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "13px",
+            fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>
             Register your interest →
@@ -180,7 +180,7 @@ function MentorWaitlist() {
 
   const inputStyle: React.CSSProperties = {
     width: "100%", background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.2)`,
-    padding: "13px 16px", fontFamily: "'Roboto', sans-serif", fontSize: "14px",
+    padding: "13px 16px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px",
     color: NAVY, outline: "none", boxSizing: "border-box",
   };
 
@@ -190,7 +190,7 @@ function MentorWaitlist() {
         {/* Honest scarcity line — capacity, not fake history */}
         <span style={{
           display: "inline-block", background: RUST, color: "#fff",
-          fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "11px",
+          fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "11px",
           letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
         }}>Availability</span>
         <h2 style={{
@@ -245,7 +245,7 @@ function MentorWaitlist() {
                     {intake.label}
                   </span>
                   <span style={{
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.06em", textTransform: "uppercase", color: statusColor,
                   }}>
                     {statusText}
@@ -254,7 +254,7 @@ function MentorWaitlist() {
                 {isFull ? (
                   <button onClick={() => choose(intake.label, false)} style={{
                     background: "transparent", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.4)",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
                   }}>
                     Join the waitlist →
@@ -262,7 +262,7 @@ function MentorWaitlist() {
                 ) : isOpen ? (
                   <button onClick={() => choose(intake.label, true)} style={{
                     background: CTA_PRIMARY_BG, color: "#fff", border: "none",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
                     letterSpacing: "0.04em", padding: "10px 22px", cursor: "pointer",
                   }}>
                     {formReady ? "Register for this intake →" : "Register interest →"}
@@ -270,7 +270,7 @@ function MentorWaitlist() {
                 ) : (
                   <button onClick={() => choose(intake.label, false)} style={{
                     background: "transparent", color: NAVY, border: `1px solid ${NAVY}`,
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
                     letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
                   }}>
                     Register interest →
@@ -308,7 +308,7 @@ function MentorWaitlist() {
               <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 4px" }}>
                 Register your interest.
               </h3>
-              <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'Roboto', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'DM Sans', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
                 Intake
               </label>
               <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
@@ -323,7 +323,7 @@ function MentorWaitlist() {
               {error && <p style={{ color: "#FFB162", fontSize: "13px", margin: 0 }} role="alert">{error}</p>}
               <button type="submit" disabled={loading} style={{
                 background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: loading ? "not-allowed" : "pointer",
-                fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
+                fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
                 padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
               }}>
                 {loading ? "Sending..." : "Join the waitlist →"}
@@ -339,14 +339,14 @@ function MentorWaitlist() {
 export function MentorshipPage() {
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.mentorship} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/mentorship" />
       <PlaceholderHero
         label="Mentorship"
         title="Direct access to Mark Poulton."
-        sub="For M&E business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application."
+        sub="For engineering business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application."
         portrait="/mark-mentoring.jpg"
         portraitAlt="Mark Poulton leading a group mentorship session"
       />
@@ -357,7 +357,7 @@ export function MentorshipPage() {
             {[
               {
                 label: "Group Mentorship",
-                detail: "Monthly sessions with a small, curated cohort of M&E business owners. Structured around shared commercial challenges — pricing, cash flow, contract management, growth. Each session is facilitated by Mark and limited to six participants to ensure substantive discussion.",
+                detail: "Monthly sessions with a small, curated cohort of engineering business owners. Structured around shared commercial challenges — pricing, cash flow, contract management, growth. Each session is facilitated by Mark and limited to six participants to ensure substantive discussion.",
                 price: "Pricing on application",
                 img: "/mark-teaching.jpg",
                 imgAlt: "Mark Poulton facilitating a group mentorship session",
@@ -423,30 +423,23 @@ const PRICING_TIERS = [
       "All future document additions",
     ],
   },
-  {
-    name: "Academy + Docs + Mentorship",
-    tag: "The complete package, with Mark alongside you.",
-    popular: false,
-    features: [
-      "Everything in Academy + Documents",
-      "12 months of group mentorship",
-      "Priority for a 1:1 session with Mark",
-    ],
-  },
 ];
+// Mentorship remains application-only via /mentorship — the founding offer is
+// the two tiers above (Academy £999 → £1,499 · +Documents £1,299 → £1,999).
+// TODO(eba): [CONFIRM] final prices with Mark.
 
 export function PricingPage() {
   const border = `rgba(${NAVY_RGB},0.10)`;
   const sub = `rgba(${NAVY_RGB},0.62)`;
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.pricing} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/pricing" />
       <PlaceholderHero
         label="Founding Cohort Pricing"
         title="More depth than a course. Less than a coaching retainer."
-        sub="Three ways in — from the full curriculum to complete access with Mark alongside you. Founding members lock in the lowest price the Academy will ever be, for life."
+        sub="Two ways in — the full curriculum, or the curriculum with the complete document library. Founding members lock in the founding price for life; it rises after the cohort closes."
       />
 
       {/* ── TIERS ── */}
@@ -462,21 +455,21 @@ export function PricingPage() {
                 boxShadow: tier.popular ? "0 40px 80px -40px rgba(0,0,0,0.35)" : "0 20px 44px -30px rgba(0,0,0,0.25)",
               }}>
                 {tier.popular && (
-                  <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: CTA_PRIMARY_BG, color: "#fff", fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap" }}>
+                  <span style={{ position: "absolute", top: "-13px", left: "50%", transform: "translateX(-50%)", background: CTA_PRIMARY_BG, color: "#fff", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "6px 16px", borderRadius: "20px", whiteSpace: "nowrap" }}>
                     Most popular
                   </span>
                 )}
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>{tier.name}</h3>
-                <p style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
+                <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
                 <div style={{ marginBottom: "22px" }}>
                   <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "1.6rem", color: NAVY, lineHeight: 1.1 }}>Announced soon</div>
-                  <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>Founding price · locked for life · rises after launch</div>
+                  <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>Founding price · locked for life · rises after launch</div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
                   {tier.features.map(f => (
                     <div key={f} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
                       <span style={{ width: "18px", height: "18px", borderRadius: "50%", background: `rgba(${RUST_RGB},0.12)`, color: RUST, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0, fontSize: "11px", fontWeight: 800, marginTop: "1px" }}>✓</span>
-                      <span style={{ fontFamily: "'Roboto', sans-serif", fontSize: "14px", color: `rgba(${NAVY_RGB},0.75)`, lineHeight: 1.45 }}>{f}</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "14px", color: `rgba(${NAVY_RGB},0.75)`, lineHeight: 1.45 }}>{f}</span>
                     </div>
                   ))}
                 </div>
@@ -485,7 +478,7 @@ export function PricingPage() {
                   background: tier.popular ? CTA_PRIMARY_BG : "transparent",
                   color: tier.popular ? "#fff" : NAVY,
                   border: tier.popular ? "none" : `1px solid rgba(${NAVY_RGB},0.25)`,
-                  textDecoration: "none", fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
+                  textDecoration: "none", fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
                   padding: "13px 24px", letterSpacing: "0.03em", display: "block",
                 }}>
                   {ENROL_READY ? "Apply for the Founding Cohort →" : "Register your interest →"}
@@ -499,14 +492,14 @@ export function PricingPage() {
             {[
               "Founding price locked in for life",
               "14-day money-back guarantee",
-              "M&E contractors only",
+              "Engineering contractors only",
             ].map(t => (
-              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
+              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
                 <span style={{ color: RUST, fontWeight: 800 }}>✓</span> {t}
               </span>
             ))}
           </div>
-          <p style={{ textAlign: "center", fontFamily: "'Roboto', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
+          <p style={{ textAlign: "center", fontFamily: "'DM Sans', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
             Founding pricing is fixed for the first cohort and rises after launch. Prices shown will be confirmed before enrolment opens. The AI tools are priced separately — pay-per-use or subscription — and are not included in Academy membership.
           </p>
         </div>
@@ -527,14 +520,14 @@ export function PricingPage() {
 
 export function EnterprisePage() {
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.enterprise} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/enterprise" />
       <PlaceholderHero
         label="Enterprise"
         title="Deploy EBA across your entire organisation."
-        sub="For M&E engineering groups, principal contractors, and training providers who want to deploy the Academy curriculum and AI tools at scale. White-label licensing, group access, and managed implementation available."
+        sub="For engineering services groups, principal contractors, and training providers who want to deploy the Academy curriculum and AI tools at scale. White-label licensing, group access, and managed implementation available."
       />
       <ComingSoonBody message="Enterprise licensing details are being finalised. To discuss group access, white-label deployment, or custom implementation for your organisation, please get in touch." />
       <PlaceholderFooter />
@@ -547,11 +540,11 @@ export function FAQPage() {
   const faqs = [
     {
       q: "Who is the Academy for?",
-      a: "M&E engineering contractors — sole traders, small businesses, and growing companies — who are technically excellent but lack the business and commercial systems to scale profitably. If you run a plumbing, electrical, HVAC, or multi-trade M&E business, this is built for you.",
+      a: "Engineering services contractors — sole traders, small businesses, and growing companies — who are technically excellent but lack the business and commercial systems to scale profitably. If you run a plumbing, electrical, HVAC, or multi-trade engineering business, this is built for you.",
     },
     {
       q: "Do I need any prior business knowledge?",
-      a: "No. The Academy starts from first principles and builds systematically. The only prerequisite is that you are currently running or about to run an M&E contracting business.",
+      a: "No. The Academy starts from first principles and builds systematically. The only prerequisite is that you are currently running or about to run an engineering contracting business.",
     },
     {
       q: "How long does the programme take?",
@@ -576,7 +569,7 @@ export function FAQPage() {
   ];
 
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.faq} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/faq" />
@@ -650,7 +643,7 @@ export function FAQPage() {
           </p>
           <Link href="/contact" style={{
             background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-            fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "13px",
+            fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
             padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
           }}>
             Get in touch →

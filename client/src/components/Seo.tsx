@@ -26,27 +26,27 @@ export interface SeoMeta {
 /** Per-route metadata — verbatim from the EBA SEO spec. */
 export const PAGE_SEO = {
   home: {
-    title: "The Engineering Business Academy — For M&E Contractors",
+    title: "The Engineering Business Academy — For Engineering Contractors",
     description:
-      "Business growth for M&E engineering contractors. 101 lessons, AI tools and mentorship from a founder who built and rebuilt a £70m engineering group.",
+      "Business growth for engineering services contractors. 101 lessons, AI tools and mentorship from a founder who built and rebuilt a £70m engineering group.",
     path: "/",
   },
   academy: {
-    title: "The Academy — 101 Lessons for M&E Business Owners",
+    title: "The Academy — 101 Lessons for Engineering Business Owners",
     description:
-      "A 10-module business programme for M&E contractors: pricing, cash flow, contracts, tendering, teams and growth. Built from real operational experience, not theory.",
+      "A 10-module business programme for engineering contractors: leadership, culture, teams, commercial control, cash and growth. Built from real operational experience, not theory.",
     path: "/academy",
   },
   aiTools: {
-    title: "AI Tools for M&E Contractors — O&M, RAMS & Compliance",
+    title: "AI Tools for Engineering Contractors — O&M, RAMS & Compliance",
     description:
-      "AI tools built specifically for M&E: O&M manuals in hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
+      "AI tools built for engineering contractors: O&M manuals in hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
     path: "/ai-tools",
   },
   omManual: {
     title: "O&M Manual Compiler — Client-Ready Manuals in Hours",
     description:
-      "Upload project data and generate a fully formatted, CDM-structured O&M manual in a fraction of the time. Built for M&E engineering contractors.",
+      "Upload project data and generate a fully formatted, CDM-structured O&M manual in a fraction of the time. Built for engineering services contractors.",
     path: "/ai-tools/om-manual",
   },
   complianceChatbot: {
@@ -68,7 +68,7 @@ export const PAGE_SEO = {
     path: "/mentorship",
   },
   documents: {
-    title: "M&E Document Library — 380 Ready-to-Use Templates",
+    title: "Engineering Document Library — 380 Ready-to-Use Templates",
     description:
       "25 years of M&E practice distilled into a deployable document library: templates, forms, checklists and procedures in Word and PDF. Included with Academy membership.",
     path: "/documents",
@@ -88,7 +88,7 @@ export const PAGE_SEO = {
   contact: {
     title: "Contact The Engineering Business Academy",
     description:
-      "Talk to EBA about the founding cohort, the AI tools, mentorship or enterprise deployment for M&E engineering contractors.",
+      "Talk to EBA about the founding cohort, the AI tools, mentorship or enterprise deployment for engineering contractors.",
     path: "/contact",
   },
   faq: {
@@ -120,7 +120,7 @@ export const ORGANIZATION_JSONLD = {
   url: SITE_URL,
   logo: DEFAULT_OG_IMAGE,
   description:
-    "Business education and AI tools built exclusively for M&E engineering contractors — helping engineers grow into business owners.",
+    "Business education and AI tools built for engineering services contractors — helping engineers grow into business owners.",
   founder: { "@type": "Person", name: "Mark Poulton" },
   areaServed: "GB",
   knowsAbout: [
@@ -145,9 +145,9 @@ export const ORGANIZATION_JSONLD = {
 export const COURSE_JSONLD = {
   "@context": "https://schema.org",
   "@type": "Course",
-  name: "The Engineering Business Academy — M&E Business Programme",
+  name: "The Engineering Business Academy — Engineering Business Programme",
   description:
-    "A 10-module, 101-lesson business programme for M&E engineering contractors covering pricing, cash flow, tendering, contracts, compliance, hiring, growth and diversification.",
+    "A 10-module, 101-lesson business programme for engineering services contractors covering leadership, culture, teams, commercial control, cash, risk and growth.",
   provider: {
     "@type": "Organization",
     name: SITE_NAME,

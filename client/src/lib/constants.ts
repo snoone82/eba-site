@@ -2,221 +2,123 @@
  * EBA — The Engineering Business Academy
  * Single source of truth for brand colours, business facts and integrations.
  *
- * THEMES — exactly three, switched via ?theme= (nothing persisted):
- *   engineer (DEFAULT) — ink/paper editorial base with a DUAL accent:
- *                        rust = Academy/human side · cobalt = AI-tools/product side
- *   default (?theme=default or ?theme=classic) — the original navy/cream/rust
- *                        editorial theme, exactly as locked
- *   noir    (?theme=noir) — the dark/charcoal variant for comparison
- */
-
-/**
- * DEFAULT palette — the editorial navy / cream / rust identity. Unchanged.
- */
-export const COLORS_DEFAULT = {
-  navy: "#1B2632",  // primary text, dark sections
-  cream: "#EEE9DF", // primary page background
-  rust: "#A35139",  // single signature accent (CTAs, rules, labels)
-  oat: "#DDD6C8",   // secondary surface / alternating cards
-  white: "#FFFFFF", // cards and form surfaces only
-  amber: "#FFB162", // sparing highlight / "live" indicator only
-} as const;
-
-/**
- * NOIR palette — a restrained, law-firm-professional dark variant.
- * Same roles as the default so every component themes automatically.
- * Tuned for WCAG AA against the surfaces it lands on.
- */
-export const COLORS_NOIR = {
-  navy: "#1A1A1C",
-  cream: "#F4F2EE",
-  rust: "#8E3B3B",
-  oat: "#E9E5DD",
-  white: "#FFFFFF",
-  amber: "#C98A55",
-} as const;
-
-/**
- * ENGINEER palette — the shipped theme. Editorial ink/paper base with a dual
- * accent that tells visitors which half of the business a section belongs to:
+ * ONE theme. The palette is light-dominant paper/ink with a DUAL accent that
+ * tells visitors which half of the business a section belongs to:
  *   RUST   → Academy / cohort / Mark / mentorship / story (human, education)
  *   COBALT → AI tools / product / pricing / enterprise (software, product)
  * Never both accents on the same element.
+ *
+ * (The old ?theme= comparison system — default/noir/etc — was retired when the
+ * rebuild shipped a single theme. Restore from git history if ever needed.)
  */
-export const COLORS_ENGINEER = {
-  ink:    "#16202B",  // base dark — replaces navy roles
-  paper:  "#EEE9DF",  // primary background (unchanged cream)
-  rust:   "#A35139",  // ACADEMY accent — human/education
-  cobalt: "#2454C9",  // TOOLS accent — product/software
-  oat:    "#DDD6C8",  // secondary surface
-  white:  "#FFFFFF",
+
+export const COLORS = {
+  ink:    "#16202B", // text; background of the two dark sections only
+  paper:  "#EEE9DF", // DEFAULT page background
+  rust:   "#A35139", // ACADEMY accent
+  cobalt: "#2454C9", // TOOLS accent
+  oat:    "#DDD6C8", // secondary surface / alternating cards
+  white:  "#FFFFFF", // cards and form surfaces
+  amber:  "#FFB162", // sparing highlight — "live" markers, one stat per page max
 } as const;
 
-export type ThemeName = "default" | "noir" | "engineer";
-
-function detectTheme(): ThemeName {
-  // Ships on "engineer". ?theme=default (or the older ?theme=classic) restores
-  // the locked editorial theme; ?theme=noir the dark variant.
-  if (typeof window === "undefined") return "engineer";
-  try {
-    const t = new URLSearchParams(window.location.search).get("theme");
-    if (t === "noir") return "noir";
-    if (t === "default" || t === "classic") return "default";
-    return "engineer";
-  } catch {
-    return "engineer";
-  }
-}
-
-export const THEME: ThemeName = detectTheme();
-export const IS_NOIR = THEME === "noir";
-export const IS_ENGINEER = THEME === "engineer";
-/** Back-compat flags — the engineer theme is the sole "modern light" layout. */
-export const IS_LIGHT = IS_ENGINEER;
-export const IS_VIVID = IS_LIGHT;
-
-/** Pick a value for the active theme: (default, noir, engineer). */
-function pick<T>(d: T, noir: T, engineer: T): T {
-  return IS_NOIR ? noir : IS_ENGINEER ? engineer : d;
-}
-
-type Palette = {
-  readonly navy: string; readonly cream: string; readonly rust: string;
-  readonly oat: string; readonly white: string; readonly amber: string;
-};
-
-export const COLORS: Palette = IS_NOIR
-  ? COLORS_NOIR
-  : IS_ENGINEER
-    ? {
-        navy: COLORS_ENGINEER.ink,
-        cream: COLORS_ENGINEER.paper,
-        rust: COLORS_ENGINEER.rust,
-        oat: COLORS_ENGINEER.oat,
-        white: COLORS_ENGINEER.white,
-        amber: "#FFB162",
-      }
-    : COLORS_DEFAULT;
-
 // Convenience named exports — used directly in the pages' inline styles.
-export const NAVY = COLORS.navy;
-export const CREAM = COLORS.cream;
+// (NAVY/CREAM are the historical names for ink/paper; kept to avoid a
+// thousand-line rename across the pages.)
+export const NAVY = COLORS.ink;
+export const CREAM = COLORS.paper;
 export const RUST = COLORS.rust;
 export const OAT = COLORS.oat;
 export const WHITE = COLORS.white;
 export const AMBER = COLORS.amber;
 
 /**
- * COBALT — the TOOLS accent (engineer theme). In default/noir (single-accent
- * themes) it falls back to the theme accent so tools sections stay coherent.
+ * COBALT — the TOOLS accent.
  * AA notes (checked): #2454C9 on paper #EEE9DF ≈ 5.5:1 ✓, on white ≈ 6.6:1 ✓.
  * On ink it fails for text — use COBALT_ON_DARK (#7FA5FF ≈ 6.8:1 on ink) there.
  */
-export const COBALT = IS_ENGINEER ? COLORS_ENGINEER.cobalt : RUST;
-export const COBALT_RGB = IS_ENGINEER ? "36,84,201" : pick("163,81,57", "142,59,59", "163,81,57");
+export const COBALT = COLORS.cobalt;
+export const COBALT_RGB = "36,84,201";
 /** Accent variants that pass AA as TEXT on ink/dark bands. */
-export const COBALT_ON_DARK = IS_ENGINEER ? "#7FA5FF" : "#FFFFFF";
-export const RUST_ON_DARK = pick("#D98B6F", "#C98A55", "#D98B6F");
+export const COBALT_ON_DARK = "#7FA5FF";
+export const RUST_ON_DARK = "#D98B6F"; // rust as TEXT on ink ≈ 6.2:1 ✓
 
 // RGB triplets for inline rgba(...) literals.
-export const NAVY_RGB = pick("27,38,50", "26,26,28", "22,32,43");
-export const RUST_RGB = pick("163,81,57", "142,59,59", "163,81,57");
-export const CREAM_RGB = pick("238,233,223", "244,242,238", "238,233,223");
+export const NAVY_RGB = "22,32,43";
+export const RUST_RGB = "163,81,57";
+export const CREAM_RGB = "238,233,223";
 
-/** Back-compat accent aliases (rust is the primary/Academy accent). */
+/** Accent aliases (rust is the primary/Academy accent). ACCENT_GRAD is a
+ *  historical token name — it has been a SOLID colour since the KEYIS
+ *  four-stop gradient was removed from the brand. */
 export const ACCENT_HEX = RUST;
 export const ACCENT_RGB = RUST_RGB;
-/** Former gradient token — now a SOLID accent. The KEYIS four-stop gradient has
- *  been removed from the brand; components that used it take flat rust. */
 export const ACCENT_GRAD = RUST;
 
-/**
- * Background for large dark sections (hero bands / pain points / CTA / footers).
- */
-export const DARK_GRADIENT = pick(
-  NAVY,
-  "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)",
-  "linear-gradient(180deg, #16202B 0%, #121A23 100%)",
-);
+/** Layout flags kept for the pages' shared components (single light theme). */
+export const IS_LIGHT = true;
+export const IS_VIVID = true;
+
+/** Background for the ink-dark sections (founder band, dark page heroes). */
+export const DARK_GRADIENT = "linear-gradient(180deg, #16202B 0%, #121A23 100%)";
 
 /** Primary / muted text on those dark sections. */
 export const ON_DARK = "#FFFFFF";
 export const ON_DARK_RGB = "255,255,255";
 
 /** Genuinely dark CTA buttons (distinct from sections). */
-export const CTA_DARK_BG = pick(NAVY, "linear-gradient(180deg, #1A1A1C 0%, #242428 100%)", "#16202B");
+export const CTA_DARK_BG = "#16202B";
 
-/** Primary action buttons — rust (Academy accent) in every theme. */
+/** Primary action buttons — rust (Academy accent). */
 export const CTA_PRIMARY_BG = RUST;
 
-/**
- * Navigation bar. Engineer keeps the clean WHITE nav (distinct from the paper
- * page); default/noir keep their filled dark bar.
- */
-export const NAV_ON_LIGHT = IS_ENGINEER;
-export const NAV_BAR_BG = pick(DARK_GRADIENT, DARK_GRADIENT, "rgba(255,255,255,0.94)");
-export const NAV_LINK = NAV_ON_LIGHT ? "rgba(22,32,43,0.72)" : "rgba(255,255,255,0.82)";
-export const NAV_LINK_ACTIVE = NAV_ON_LIGHT ? "#16202B" : "#FFFFFF";
-export const NAV_BORDER = NAV_ON_LIGHT ? "rgba(22,32,43,0.10)" : "rgba(255,255,255,0.16)";
-export const NAV_CTA_BG = NAV_ON_LIGHT ? RUST : "#FFFFFF";
-export const NAV_CTA_TEXT = NAV_ON_LIGHT ? "#FFFFFF" : RUST;
+/** Navigation — clean white bar, distinct from the paper page. */
+export const NAV_ON_LIGHT = true;
+export const NAV_BAR_BG = "rgba(255,255,255,0.94)";
+export const NAV_LINK = "rgba(22,32,43,0.72)";
+export const NAV_LINK_ACTIVE = "#16202B";
+export const NAV_BORDER = "rgba(22,32,43,0.10)";
+export const NAV_CTA_BG = RUST;
+export const NAV_CTA_TEXT = "#FFFFFF";
 
-/** Footer background — engineer keeps a deep ink footer. */
-export const FOOTER_BG = pick(NAVY, "#161618", "#121A23");
+/** Footer background — deep ink. */
+export const FOOTER_BG = "#121A23";
 
-/** Full-bleed CTA bands (soft wash in engineer; rust band in default). */
-export const CTA_BAND_BG = pick(RUST, RUST, "linear-gradient(120deg, #E7E1D4 0%, #EEE9DF 100%)");
+/** Full-bleed CTA bands (soft paper wash). */
+export const CTA_BAND_BG = "linear-gradient(120deg, #E7E1D4 0%, #EEE9DF 100%)";
 
 /** Translucent nav-bar scrim. */
-export const NAV_RGB = pick("27,38,50", "26,26,28", "255,255,255");
+export const NAV_RGB = "255,255,255";
 
-/** Soft hero glow (engineer only) — quiet rust/ink wash, no gradients. */
-export const HERO_GLOW = IS_ENGINEER
-  ? "radial-gradient(55% 80% at 84% 6%, rgba(163,81,57,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(22,32,43,0.08) 0%, transparent 60%)"
-  : "";
+/** Soft hero glow — quiet rust/ink wash, no brand gradients. */
+export const HERO_GLOW =
+  "radial-gradient(55% 80% at 84% 6%, rgba(163,81,57,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(22,32,43,0.08) 0%, transparent 60%)";
 
 /** Band surface for the trust strip / marquee. */
-export const BAND_GRADIENT = pick(OAT, OAT, "linear-gradient(90deg, #E7E1D4 0%, #DDD6C8 100%)");
+export const BAND_GRADIENT = "linear-gradient(90deg, #E7E1D4 0%, #DDD6C8 100%)";
 
 /** Faint depth wash behind key sections. */
-export const SECTION_GLOW = IS_ENGINEER
-  ? "radial-gradient(60% 55% at 50% -8%, rgba(163,81,57,0.06) 0%, transparent 62%)"
-  : "none";
+export const SECTION_GLOW =
+  "radial-gradient(60% 55% at 50% -8%, rgba(163,81,57,0.06) 0%, transparent 62%)";
 
 /** Alternating band tint. */
-export const SECTION_TINT = pick(OAT, COLORS.cream, "#E7E1D4");
+export const SECTION_TINT = "#E7E1D4";
 
-/** Soft ambient orbs for empty areas (engineer only). */
-export const ORB_ACCENT = IS_ENGINEER ? "radial-gradient(circle, rgba(163,81,57,0.14) 0%, transparent 70%)" : "";
-export const ORB_WARM = IS_ENGINEER ? "radial-gradient(circle, rgba(36,84,201,0.10) 0%, transparent 70%)" : "";
-
-/**
- * Keep the CSS custom properties (used by index.css) in sync with the active
- * theme. Runs once at load; no-op during SSR/prerender.
- */
-if (THEME !== "default" && typeof document !== "undefined") {
-  const s = document.documentElement.style;
-  s.setProperty("--eba-navy", COLORS.navy);
-  s.setProperty("--eba-rust", COLORS.rust);
-  s.setProperty("--eba-cream", COLORS.cream);
-  s.setProperty("--eba-oat", COLORS.oat);
-  s.setProperty("--eba-white", COLORS.white);
-  s.setProperty("--eba-amber", COLORS.amber);
-  s.setProperty("--eba-cobalt", COBALT);
-}
+/** Soft ambient orbs for empty areas. */
+export const ORB_ACCENT = "radial-gradient(circle, rgba(163,81,57,0.14) 0%, transparent 70%)";
+export const ORB_WARM = "radial-gradient(circle, rgba(36,84,201,0.10) 0%, transparent 70%)";
 
 /**
- * Heading typeface — Playfair Display is the DEFAULT for editorial headings
- * (hero H1s, section headings). ?font=modern flips to Roboto for comparison.
- * (Roboto headings were the KEYIS-alignment experiment; Playfair is the EBA
- * editorial default unless told otherwise.)
+ * Heading typeface — Playfair Display for editorial headlines; DM Sans for
+ * body/UI. ?font=modern flips headings to DM Sans for comparison.
+ * (To flip permanently, change --eba-heading in index.css.)
  */
 export const IS_MODERN_FONT =
   typeof window !== "undefined" &&
   (() => { try { return new URLSearchParams(window.location.search).get("font") === "modern"; } catch { return false; } })();
 
 if (IS_MODERN_FONT && typeof document !== "undefined") {
-  document.documentElement.style.setProperty("--eba-heading", "'Roboto', system-ui, sans-serif");
+  document.documentElement.style.setProperty("--eba-heading", "'DM Sans', system-ui, sans-serif");
 }
 
 /**
@@ -224,7 +126,7 @@ if (IS_MODERN_FONT && typeof document !== "undefined") {
  * so a future rename is a one-line edit.
  * TODO(eba): trademark status unconfirmed — do NOT add ™ anywhere until cleared.
  */
-export const METHOD_NAME = "The M&E Operating System";
+export const METHOD_NAME = "The Engineering Operating System";
 
 // ── Integrations ───────────────────────────────────────────────────────────
 

@@ -33,7 +33,7 @@ const SUGGESTIONS = [
 // ── Curated EBA knowledge base — accurate answers drawn from the site ──────────
 const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(price|pricing|cost|how much|fee|fees|expensive|afford)\b/i,
-    answer: "Academy founding-cohort pricing is announced soon — founding members lock in the lowest price it'll ever be, for life. The four AI tools are priced separately (pay-per-use or subscription): O&M Compiler from £99/manual, RAMS from £49/mo, Compliance Co-Pilot from £99/mo, COSHH pricing soon. Full detail's on the Pricing page." },
+    answer: "Academy founding-cohort pricing is announced soon — founding members lock in the founding price for life — it rises after the cohort closes. The four AI tools are priced separately (pay-per-use or subscription): O&M Compiler from £99/manual, RAMS from £49/mo, Compliance Co-Pilot from £99/mo, COSHH pricing soon. Full detail's on the Pricing page." },
   { test: /\b(free|toolbox|talk generator|no cost|trial)\b/i,
     answer: "The Toolbox Talk Generator is free — pick a task and get a site-ready toolbox talk with a sign-off sheet in about a minute. Just drop your email on the AI Tools page to use it." },
   { test: /\b(o&m|om manual|manual compiler)\b/i,
@@ -45,17 +45,17 @@ const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(co-?pilot|chatbot|assistant|hseq|knowledge)\b/i,
     answer: "The Compliance Co-Pilot is trained on your company's HSEQ documentation — your team asks it questions and it answers instantly, in your firm's voice. Subscription from £99/mo, or a managed white-label deployment for your whole business." },
   { test: /\b(ai|tools|software|automat)\b/i,
-    answer: "We've built four AI tools for M&E: the O&M Manual Compiler, RAMS Generator, Compliance Co-Pilot and COSHH Generator. They're trained on real M&E practice and you review every output. They're pay-per-use or subscription — not included with Academy membership. The AI Tools page has live demos." },
+    answer: "We've built four AI tools for engineering contractors: the O&M Manual Compiler, RAMS Generator, Compliance Co-Pilot and COSHH Generator. They're trained on real contracting practice and you review every output. They're pay-per-use or subscription — not included with Academy membership. The AI Tools page has live demos." },
   { test: /\b(enrol|enroll|start|begin|when|join|sign ?up|cohort|waitlist|available)\b/i,
     answer: "Enrolment opens soon — we're forming the founding cohort (30 places only), who lock in the lowest price for life. Leave your email and we'll tell you the moment it opens. Want me to take your details?" },
   { test: /\b(academy|course|curriculum|module|lesson|learn|programme|program)\b/i,
-    answer: "The Academy is the full operating system for running an M&E business — 101 lessons across 10 modules covering pricing & margin, cash flow, contracts, compliance, winning work and growth. Built from a real M&E group, not theory. CPD accreditation is in progress." },
+    answer: "The Academy is the full operating system for running an engineering business — 101 lessons across 10 modules covering leadership, culture, teams, commercial control, cash and growth. Built from a real M&E group, not theory. CPD accreditation is in progress." },
   { test: /\b(document|library|template|form|register|policy|packs?)\b/i,
-    answer: "The Document Library is 380 operator-grade M&E documents — RAMS, O&M, CDM and compliance templates in Word + PDF, all developed in a real contracting business. Academy members get the full library included." },
+    answer: "The Document Library is 380 operator-grade contracting documents — RAMS, O&M, CDM and compliance templates in Word + PDF, all developed in a real contracting business. Academy members get the full library included." },
   { test: /\b(mentor|mentorship|1:?1|one to one|mark|poulton|coaching)\b/i,
     answer: "Mentorship is direct access to founder Mark Poulton — group sessions or 1:1, application-only and deliberately limited so the time's real. Pricing on application. The Mentorship page lets you register interest." },
   { test: /\b(who|suitable|right for|beginner|sole trader|small|electrician|plumb|hvac)\b/i,
-    answer: "It's built for M&E engineering contractors — sole traders through to growing multi-trade firms — who are technically excellent but want the commercial systems to scale profitably. No prior business knowledge needed." },
+    answer: "It's built for engineering services contractors — sole traders through to growing multi-trade firms — who are technically excellent but want the commercial systems to scale profitably. No prior business knowledge needed." },
   { test: /\b(refund|money ?back|guarantee|cancel)\b/i,
     answer: "There's a 14-day, no-questions-asked refund on Academy memberships. If it's not right for you, just get in touch within 14 days." },
   { test: /\b(keyis|about|behind|real|experience|who are you|legit|trust)\b/i,
@@ -177,7 +177,7 @@ export function AssistantWidget() {
             </span>
             <div style={{ flex: 1 }}>
               <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "15px", color: onDark }}>EBA Assistant</div>
-              <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "12px", color: IS_LIGHT ? "rgba(255,255,255,0.85)" : `rgba(${CREAM_RGB},0.8)` }}>Ask me anything about EBA</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "12px", color: IS_LIGHT ? "rgba(255,255,255,0.85)" : `rgba(${CREAM_RGB},0.8)` }}>Ask me anything about EBA</div>
             </div>
             <button onClick={toggle} aria-label="Close assistant" style={{ background: "transparent", border: "none", cursor: "pointer", color: onDark, display: "inline-flex", padding: "4px" }}>
               <X size={18} />
@@ -192,7 +192,7 @@ export function AssistantWidget() {
                   maxWidth: "86%",
                   background: m.role === "user" ? CTA_PRIMARY_BG : CREAM,
                   color: m.role === "user" ? "#fff" : NAVY,
-                  fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", lineHeight: 1.5,
+                  fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", lineHeight: 1.5,
                   padding: "10px 13px",
                   borderRadius: m.role === "user" ? "13px 13px 3px 13px" : "3px 13px 13px 13px",
                 }}>
@@ -216,7 +216,7 @@ export function AssistantWidget() {
                   <button key={s} onClick={() => ask(s)} style={{
                     background: `rgba(${RUST_RGB},0.08)`, color: RUST, border: `1px solid rgba(${RUST_RGB},0.2)`,
                     borderRadius: "18px", padding: "7px 12px", cursor: "pointer",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "12px",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "12px",
                   }}>{s}</button>
                 ))}
               </div>
@@ -228,7 +228,7 @@ export function AssistantWidget() {
             <input
               value={input} onChange={(e) => setInput(e.target.value)}
               placeholder="Ask a question…" aria-label="Ask a question"
-              style={{ flex: 1, minWidth: 0, background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.16)`, borderRadius: "22px", padding: "11px 15px", fontFamily: "'Roboto', sans-serif", fontSize: "13.5px", color: NAVY, outline: "none" }}
+              style={{ flex: 1, minWidth: 0, background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.16)`, borderRadius: "22px", padding: "11px 15px", fontFamily: "'DM Sans', sans-serif", fontSize: "13.5px", color: NAVY, outline: "none" }}
             />
             <button type="submit" disabled={!input.trim() || thinking} aria-label="Send" style={{
               width: "40px", height: "40px", borderRadius: "50%", border: "none", flexShrink: 0,
@@ -239,7 +239,7 @@ export function AssistantWidget() {
             </button>
           </form>
           <div style={{ flexShrink: 0, textAlign: "center", padding: "0 0 10px" }}>
-            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'Roboto', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.72)` }}>
+            <button onClick={() => { navigate("/contact"); setOpen(false); }} style={{ background: "transparent", border: "none", cursor: "pointer", fontFamily: "'DM Sans', sans-serif", fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.72)` }}>
               Prefer to talk to a person? Contact us →
             </button>
           </div>

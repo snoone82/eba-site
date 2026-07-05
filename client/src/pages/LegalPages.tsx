@@ -57,7 +57,7 @@ function LegalNav({ active }: { active: string }) {
           ].map(({ label, href }) => (
             <Link key={href} href={href} style={{
               color: href === active ? NAV_LINK_ACTIVE : NAV_LINK,
-              textDecoration: "none", fontFamily: "'Roboto', sans-serif",
+              textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
               fontWeight: href === active ? 600 : 500, fontSize: "14px",
             }}>
               {label}
@@ -66,7 +66,7 @@ function LegalNav({ active }: { active: string }) {
           <span>
             <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
@@ -102,7 +102,7 @@ function LegalSection({ title, children }: { title: string; children: React.Reac
 
 const bodyText: React.CSSProperties = {
   color: `rgba(${NAVY_RGB},0.72)`, fontSize: "15px", lineHeight: 1.8, margin: "0 0 16px",
-  fontFamily: "'Roboto', sans-serif",
+  fontFamily: "'DM Sans', sans-serif",
 };
 
 // ─────────────────────────────────────────────
@@ -112,7 +112,7 @@ const bodyText: React.CSSProperties = {
 export function PrivacyPolicyPage() {
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.privacy} />
       <MobileNav transparent={false} />
       <LegalNav active="/privacy-policy" />
@@ -121,7 +121,7 @@ export function PrivacyPolicyPage() {
       <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
         {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <p style={{ color: RUST, fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
+          <p style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
             Legal
           </p>
           <h1 style={{
@@ -274,7 +274,7 @@ export function PrivacyPolicyPage() {
 export function TermsPage() {
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.terms} />
       <MobileNav transparent={false} />
       <LegalNav active="/terms" />
@@ -283,7 +283,7 @@ export function TermsPage() {
       <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "90px" : "120px", paddingBottom: "60px", background: DARK_GRADIENT }}>
         {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />}
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
-          <p style={{ color: RUST, fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
+          <p style={{ color: RUST, fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", margin: "0 0 16px" }}>
             Legal
           </p>
           <h1 style={{
@@ -446,7 +446,7 @@ export function CookieConsentBanner() {
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between", gap: "20px", flexWrap: "wrap" }}>
         <p style={{
           flex: "1 1 320px", minWidth: 0,
-          color: `rgba(${CREAM_RGB},0.8)`, fontFamily: "'Roboto', sans-serif",
+          color: `rgba(${CREAM_RGB},0.8)`, fontFamily: "'DM Sans', sans-serif",
           fontSize: "13px", lineHeight: 1.5, margin: 0,
         }}>
           <strong style={{ color: ON_DARK, fontWeight: 600 }}>This website uses cookies</strong> — strictly necessary plus optional analytics (no advertising cookies).{" "}
@@ -459,7 +459,7 @@ export function CookieConsentBanner() {
             onClick={handleAccept}
             style={{
               background: CTA_PRIMARY_BG, color: "#fff", border: "none", cursor: "pointer",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "13px",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "13px",
               padding: "10px 24px", letterSpacing: "0.04em",
               transition: "opacity 0.2s",
             }}
@@ -473,7 +473,7 @@ export function CookieConsentBanner() {
             style={{
               background: "transparent", color: `rgba(${CREAM_RGB},0.7)`,
               border: `1px solid rgba(${CREAM_RGB},0.3)`, cursor: "pointer",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 500, fontSize: "13px",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 500, fontSize: "13px",
               padding: "10px 24px",
               transition: "border-color 0.2s, color 0.2s",
             }}

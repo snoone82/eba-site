@@ -13,8 +13,8 @@ import { ACCENT_HEX, NAV_ON_LIGHT } from "@/lib/constants";
 
 const BRAND = ACCENT_HEX;        // active theme's brand accent (rust in all three themes)
 const WHITE = "#FFFFFF";         // the logo's white is always genuine white (it sits on dark/cobalt)
-const EBA_FONT = "'Arial Black', 'Roboto', sans-serif";
-const WORD_FONT = "'Roboto', 'Helvetica Neue', Arial, sans-serif";
+const EBA_FONT = "'Arial Black', 'DM Sans', sans-serif";
+const WORD_FONT = "'DM Sans', 'Helvetica Neue', Arial, sans-serif";
 
 interface EBALogoProps {
   /** Height in px — width scales proportionally */

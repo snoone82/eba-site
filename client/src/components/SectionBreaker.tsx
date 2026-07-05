@@ -46,7 +46,7 @@ export function SectionBreaker({
         <div aria-hidden className="eba-aurora" style={{ position: "absolute", inset: 0, background: `radial-gradient(55% 90% at 15% 0%, rgba(${ACCENT_RGB},0.4) 0%, transparent 55%), radial-gradient(50% 80% at 90% 100%, rgba(${ACCENT_RGB},0.3) 0%, transparent 55%)`, pointerEvents: "none" }} />
       )}
       <div style={{ position: "relative", zIndex: 1, maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
-        <div style={{ fontFamily: "'Roboto', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: kickerColor, marginBottom: "18px" }}>
+        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: kickerColor, marginBottom: "18px" }}>
           · {kicker} ·
         </div>
         <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2.2rem" : "clamp(2.6rem, 5vw, 4.2rem)", lineHeight: 1.05, letterSpacing: "-0.025em", color: textColor, margin: 0 }}>

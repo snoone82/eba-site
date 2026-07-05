@@ -46,7 +46,7 @@ function SectionLabel({ children, light = false }: { children: string; light?: b
       display: "inline-block",
       background: light ? `rgba(${RUST_RGB},0.12)` : RUST,
       color: light ? RUST : "#fff",
-      fontFamily: "'Roboto', sans-serif",
+      fontFamily: "'DM Sans', sans-serif",
       fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
       textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
     }}>
@@ -101,77 +101,91 @@ function RevealSection({ children, style }: { children: React.ReactNode; style?:
   );
 }
 
-const modules = [
+/**
+ * The REAL curriculum — module names and lesson counts read directly from
+ * Kajabi (June 2026). Total = exactly 101 lessons. Do not "improve" these
+ * names; they are the product.
+ *
+ * `standoutLessons` are actual lesson titles from the course, surfaced because
+ * they sell better than marketing copy.
+ * TODO(eba): confirm the standout-lesson-to-module mapping against Kajabi —
+ * the titles are real, the module placement below is editorial.
+ */
+const modules: {
+  number: string;
+  title: string;
+  lessons: number;
+  description: string;
+  standoutLessons?: string[];
+  dark?: boolean;
+}[] = [
   {
     number: "01",
-    title: "The Business You Actually Own",
-    lessons: 9,
-    description: "Most M&E business owners don't have a business — they have a job with employees. This module establishes the difference, diagnoses where you are, and maps out where you need to get to. Covers business structure, owner dependency, the gap between turnover and real income, and what a sustainable M&E business actually looks like.",
-    topics: ["Business structure and owner dependency", "Turnover vs real income", "What a sustainable M&E business looks like", "Diagnosing where you are now"],
+    title: "The Job of the Leader",
+    lessons: 17,
+    description: "The biggest module in the course, because it's the biggest lever. What the owner of an engineering business is actually there to do: set direction, hold the standard, make the calls nobody else can make — and build a business that needs you less every month.",
+    standoutLessons: ["The Best Leaders Make Themselves Surplus to Requirements"],
   },
   {
     number: "02",
-    title: "Cash Flow and Financial Visibility",
-    lessons: 11,
-    description: "Cash flow kills profitable businesses. This module covers the mechanics of M&E cash flow — applications for payment, retentions, VAT timing, the gap between billing and collection — and how to build visibility and control. Includes the financial models used to run a real M&E business.",
-    topics: ["Applications for payment and retentions", "VAT timing and cash flow gaps", "Real-world financial models", "Building visibility and control"],
+    title: "Culture & Standards",
+    lessons: 12,
+    description: "Culture isn't a poster in the office. It's what you tolerate. This module covers setting the standards the business runs on, holding them when it's inconvenient, and building a company good people don't want to leave.",
+    standoutLessons: ["Your People Are Your Real Customers", "Attitude Over Ability"],
   },
   {
     number: "03",
-    title: "Pricing, Margins and Estimating",
-    lessons: 12,
-    description: "The most common reason M&E contractors fail is not losing work — it's winning work at the wrong price. This module covers estimating methodology, margin protection, variation recovery, and how to price for profit without pricing yourself out of the market.",
-    topics: ["Estimating methodology", "Margin protection", "Variation recovery", "Pricing for profit without losing bids"],
+    title: "Leadership & Building Teams",
+    lessons: 15,
+    description: "Building a team that runs the work without you in the van. Hiring, developing and holding people to the standard — and making the hard personnel decisions early instead of carrying them for years.",
+    standoutLessons: ["If You Need to Micromanage Someone They Must Go", "Always Get Rid of the Worst 10%"],
   },
   {
     number: "04",
-    title: "Tendering and Winning Work",
-    lessons: 10,
-    description: "How to build a bid pipeline, qualify opportunities before you invest time, write tenders that stand out, price competitively without being cheapest, and convert more of what you submit. Covers both private sector and public sector frameworks.",
-    topics: ["Building a bid pipeline", "Qualifying opportunities", "Writing tenders that stand out", "Private and public sector frameworks"],
+    title: "Processes, Procedures & Other Controls",
+    lessons: 8,
+    description: "The controls that make quality repeatable when you're not in the room. How to systemise the way the business delivers so the output doesn't depend on who happened to be on the job.",
   },
   {
     number: "05",
-    title: "Contracts, Risk and Commercial Management",
-    lessons: 11,
-    description: "JCT. NEC3. NEC4. Bespoke contracts. Most M&E contractors sign what they're given. This module covers what you're actually agreeing to, which clauses routinely damage M&E contractors, how to negotiate key terms, and how to manage a project commercially from day one.",
-    topics: ["JCT, NEC3, NEC4 and bespoke contracts", "Clauses that routinely damage M&E contractors", "Negotiating key terms", "Commercial management from day one"],
+    title: "Sales, Marketing & Growth Discipline",
+    lessons: 8,
+    description: "Growth as a discipline, not an accident. Winning the right work at the right price, saying no to the wrong work, and growing at a pace the business can actually absorb.",
   },
   {
     number: "06",
-    title: "Hiring, Teams and Operations",
+    title: "Commercial Controls",
     lessons: 10,
-    description: "Building a team that doesn't depend on you. Covers recruitment strategy, onboarding, TUPE, subcontractor management, field operations, and the management structures used to scale from a small team to multi-site operations across six divisions.",
-    topics: ["Recruitment strategy and onboarding", "TUPE and subcontractor management", "Field operations", "Management structures for multi-site scaling"],
+    description: "The commercial side of contracting: how the money is protected before and during the job — terms, variations, applications, and the commercial decisions that decide whether the margin you priced is the margin you keep.",
+    standoutLessons: ["Money Is Made Before You Step on Site"],
   },
   {
     number: "07",
-    title: "Health, Safety and Compliance",
-    lessons: 12,
-    description: "CDM 2015. RAMS. COSHH. Fire protection. Legionella. The compliance requirements for an M&E business are extensive and evolving. This module covers the full compliance landscape, how to build a robust safety management system, and how to use compliance as a commercial differentiator rather than a cost.",
-    topics: ["CDM 2015, RAMS, COSHH", "Fire protection and Legionella", "Building a safety management system", "Compliance as a commercial differentiator"],
+    title: "Financial Control & Cash",
+    lessons: 11,
+    description: "Cash kills profitable contractors. Payment terms, cash flow visibility, and the financial controls that keep a growing engineering business solvent while it grows.",
+    standoutLessons: ["Never Accept 60-Day Terms"],
   },
   {
     number: "08",
-    title: "Growth, Systems and Scaling",
-    lessons: 10,
-    description: "How to grow deliberately rather than accidentally. Covers operational systemisation, the technology stack for a growing M&E business, when and how to add a new division, and expanding into new territories and adjacent service lines — drawn directly from real experience doing exactly that.",
-    topics: ["Operational systemisation", "Technology stack for growing M&E businesses", "Adding a new division", "Expanding into new territories and services"],
+    title: "Risk, Protection & Governance",
+    lessons: 8,
+    description: "The risks that can take a contracting business down, and the protection and governance that stop them: liability, insurance, structure, and the decisions that protect what you've built.",
   },
   {
     number: "09",
     title: "The Dark Side of Business",
-    lessons: 8,
-    description: "Other programmes skip this. Pre-pack administration. Insolvency risk. Director liability. Contractor failure. Late payment enforcement. What to do when a major client doesn't pay. What happens when a project fails commercially. This module exists because Mark Poulton has been through it — and because every M&E contractor needs to understand the risks before they experience them.",
-    topics: ["Pre-pack administration", "Insolvency risk and director liability", "Late payment enforcement", "When a major client doesn't pay"],
+    lessons: 5,
+    // TODO(eba): confirm the public framing of the pre-pack story with Mark — it's his story.
+    description: "Other programmes skip this. Mark went bust — a pre-pack administration — and teaches exactly what happened, why, and what he'd never let happen again. Five lessons every contractor needs before they need them.",
+    standoutLessons: ["My Experience of Going Bust — A Pre-Pack Administration"],
     dark: true,
   },
   {
     number: "10",
-    title: "The Implementation Toolkit",
-    lessons: 8,
-    description: "The academy ends where the work begins. This module is the bridge between learning and doing — covering how to prioritise the changes you need to make, build a 90-day action plan, and implement across your business without disrupting live projects.",
-    topics: ["Prioritising changes", "Building a 90-day action plan", "Implementation without disrupting live projects", "Templates and frameworks ready to deploy"],
+    title: "Implementation Toolkit",
+    lessons: 7,
+    description: "The academy ends where the work begins. The bridge between learning and doing: prioritising the changes, building the plan, and implementing across your business without disrupting live projects.",
   },
 ];
 
@@ -193,7 +207,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             {[{ label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/academy" ? NAV_LINK_ACTIVE : NAV_LINK,
-                textDecoration: "none", fontFamily: "'Roboto', sans-serif",
+                textDecoration: "none", fontFamily: "'DM Sans', sans-serif",
                 fontWeight: href === "/academy" ? 600 : 500, fontSize: "14px",
                 borderBottom: href === "/academy" ? `2px solid ${NAV_LINK_ACTIVE}` : "none",
                 paddingBottom: "2px",
@@ -203,7 +217,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
             ))}
             <span><a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_nav")} style={{
               background: NAV_CTA_BG, color: NAV_CTA_TEXT, textDecoration: "none",
-              fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "13px",
+              fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
@@ -225,7 +239,7 @@ export default function AcademyPage() {
 
   const isMobile = useIsMobile();
   return (
-    <div style={{ fontFamily: "'Roboto', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
+    <div style={{ fontFamily: "'DM Sans', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.academy} jsonLd={COURSE_JSONLD} />
       <MobileNav transparent={true} />
 
@@ -251,30 +265,30 @@ export default function AcademyPage() {
                 You learned to run jobs. This is where you learn to run the business.
               </h1>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
-                Built from 15 years of running one of the UK's most respected M&E engineering groups — including multiple UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
+                Built from 15 years of running a UK M&E engineering group at scale — multiple UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
                   background: CTA_PRIMARY_BG, color: "#fff", textDecoration: "none",
-                  fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
+                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
                   {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
                 </a>
                 <a href="#curriculum" style={{
                   background: "transparent", color: ON_DARK, textDecoration: "none",
-                  fontFamily: "'Roboto', sans-serif", fontWeight: 600, fontSize: "15px",
+                  fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.4)`, display: "inline-block",
                 }}>
                   View curriculum
                 </a>
               </div>
-              <p style={{ marginTop: "26px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
-                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>Built specifically for M&amp;E.</span>
+              <p style={{ marginTop: "26px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
+                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST }}>Built specifically for engineering contractors.</span>
               </p>
               {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
-              <p style={{ marginTop: "14px", fontFamily: "'Roboto', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "460px", lineHeight: 1.5 }}>
-                Built for established M&amp;E contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
+              <p style={{ marginTop: "14px", fontFamily: "'DM Sans', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "460px", lineHeight: 1.5 }}>
+                Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
               </p>
             </div>
             <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
@@ -371,7 +385,7 @@ export default function AcademyPage() {
               What you will learn.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
-              Ten modules — the ten components of {METHOD_NAME} — covering every dimension of running an M&E business. Click any module to see the lesson breakdown.
+              Half of running a profitable engineering business is commercial control. The other half is leadership — culture, teams, and the standards you hold. The Academy teaches both, because Mark ran both. Ten modules — the ten components of {METHOD_NAME}. Click any module to see what's inside.
             </p>
           </RevealSection>
 
@@ -413,7 +427,7 @@ export default function AcademyPage() {
                         {mod.dark && (
                           <span style={{
                             marginLeft: "12px", background: RUST, color: "#fff",
-                            fontSize: "9px", fontFamily: "'Roboto', sans-serif",
+                            fontSize: "9px", fontFamily: "'DM Sans', sans-serif",
                             fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
                             padding: "2px 8px", verticalAlign: "middle",
                           }}>
@@ -422,7 +436,7 @@ export default function AcademyPage() {
                         )}
                       </h3>
                       <span style={{
-                        fontFamily: "'Roboto', sans-serif", fontSize: "12px",
+                        fontFamily: "'DM Sans', sans-serif", fontSize: "12px",
                         color: mod.dark ? `rgba(${CREAM_RGB},0.45)` : `rgba(${NAVY_RGB},0.45)`,
                         fontWeight: 500,
                       }}>
@@ -450,18 +464,30 @@ export default function AcademyPage() {
                       }}>
                         {mod.description}
                       </p>
-                      <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                        {mod.topics.map((topic, j) => (
-                          <span key={j} style={{
-                            background: mod.dark ? `rgba(${ON_DARK_RGB},0.08)` : OAT,
-                            color: mod.dark ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.7)`,
-                            fontFamily: "'Roboto', sans-serif", fontSize: "12px", fontWeight: 500,
-                            padding: "5px 12px",
+                      {mod.standoutLessons && mod.standoutLessons.length > 0 && (
+                        <div>
+                          <p style={{
+                            fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "10.5px",
+                            letterSpacing: "0.1em", textTransform: "uppercase",
+                            color: mod.dark ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.5)`,
+                            margin: "0 0 8px",
                           }}>
-                            {topic}
-                          </span>
-                        ))}
-                      </div>
+                            From the lessons
+                          </p>
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                            {mod.standoutLessons.map((lesson, j) => (
+                              <span key={j} style={{
+                                background: mod.dark ? `rgba(${ON_DARK_RGB},0.08)` : OAT,
+                                color: mod.dark ? `rgba(${CREAM_RGB},0.75)` : `rgba(${NAVY_RGB},0.75)`,
+                                fontFamily: "'DM Sans', sans-serif", fontSize: "12.5px", fontWeight: 500,
+                                fontStyle: "italic", padding: "5px 12px",
+                              }}>
+                                “{lesson}”
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -507,8 +533,8 @@ export default function AcademyPage() {
       {/* ── SECTION BREAKER ── */}
       <SectionBreaker
         kicker="Founding cohort"
-        title="Lock in the lowest price"
-        accent="it'll ever be."
+        title="The founding price rises"
+        accent="after launch."
         variant="tint"
       />
 
@@ -527,15 +553,17 @@ export default function AcademyPage() {
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
               Founding members pay a permanently lower price than every member who joins after the cohort closes. There is no catch. It is how we reward the people who back EBA before the public launch.
             </p>
-            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "2px", marginBottom: "40px" }}>
-              {/* TODO(eba): set real per-tier prices below, then set FOUNDING_PRICE in
-                  constants.ts to a real value to reveal them (until then each tier shows
-                  "Pricing announced soon" instead of the £[XX] placeholder). */}
+            <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "2px", marginBottom: "40px", maxWidth: "880px" }}>
+              {/* Two-tier founding pricing per the rebuild brief:
+                  Academy £999 → £1,499 · +Documents £1,299 → £1,999.
+                  TODO(eba): [CONFIRM] final prices with Mark, then set
+                  FOUNDING_PRICE in constants.ts to a real value to reveal them
+                  (until then each tier shows "Pricing announced soon"). */}
               {[
                 {
                   tier: "Founding Academy",
-                  price: "£[XX]",
-                  monthly: "or £[XX]/mo × 6",
+                  price: "£999",
+                  monthly: "rises to £1,499 after the founding cohort",
                   popular: false,
                   includes: [
                     "Full 101-lesson curriculum",
@@ -546,24 +574,13 @@ export default function AcademyPage() {
                 },
                 {
                   tier: "Founding Academy + Documents",
-                  price: "£[XX]",
-                  monthly: "or £[XX]/mo × 6",
+                  price: "£1,299",
+                  monthly: "rises to £1,999 after the founding cohort",
                   popular: true,
                   includes: [
                     "Everything in Founding Academy",
                     "Full 380-document library (Word + PDF)",
                     "All future document additions",
-                  ],
-                },
-                {
-                  tier: "Founding Academy + Documents + Mentorship",
-                  price: "£[XX]",
-                  monthly: "or £[XX]/mo × 6",
-                  popular: false,
-                  includes: [
-                    "Everything above",
-                    "12 months group mentorship access",
-                    "Priority for 1:1 sessions",
                   ],
                 },
               ].map(({ tier, price, monthly, popular, includes }, i) => (
@@ -577,7 +594,7 @@ export default function AcademyPage() {
                     <div style={{
                       position: "absolute", top: "-1px", right: "20px",
                       background: RUST, color: "#fff",
-                      fontFamily: "'Roboto', sans-serif", fontWeight: 700,
+                      fontFamily: "'DM Sans', sans-serif", fontWeight: 700,
                       fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
                       padding: "4px 12px",
                     }}>Most Popular</div>
@@ -607,7 +624,7 @@ export default function AcademyPage() {
                     color: popular ? "#fff" : NAVY,
                     border: popular ? "none" : `2px solid ${NAVY}`,
                     textDecoration: "none",
-                    fontFamily: "'Roboto', sans-serif", fontWeight: 700, fontSize: "14px",
+                    fontFamily: "'DM Sans', sans-serif", fontWeight: 700, fontSize: "14px",
                     padding: "13px 24px", letterSpacing: "0.04em", display: "block",
                     textAlign: "center",
                   }}>{ENROL_READY ? "Apply now →" : ENROL_PENDING_LABEL}</a>

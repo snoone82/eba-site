@@ -3,7 +3,7 @@
  * Design System: Editorial Precision
  *
  * Palette: Navy #1B2632 · Rust #A35139 · Cream #EEE9DF · Oat #DDD6C8
- * Type: Playfair Display (headings) + Roboto (body)
+ * Type: Playfair Display (headlines) + DM Sans (body/UI)
  */
 
 @import "tailwindcss";
@@ -43,7 +43,7 @@
   /* ─── EBA Colour Tokens ───
    * Single source of truth mirrored from client/src/lib/constants.ts (COLORS).
    * Keep these identical to the COLORS object. */
-  --eba-navy:  #1B2632;
+  --eba-navy:  #16202B; /* ink */
   --eba-rust:  #A35139;
   --eba-cream: #EEE9DF;
   --eba-oat:   #DDD6C8;
@@ -57,9 +57,9 @@
   --eba-cobalt: #2454C9;
 
   /* Heading typeface — Playfair Display is the EBA editorial default (hero H1s,
-   * section headings). Roboto stays for UI/body/labels. The Roboto-heading look
+   * section headings). DM Sans is the body/UI face. The sans-heading look
    * was the KEYIS-alignment experiment — to flip back, change this to
-   * 'Roboto', system-ui, sans-serif (or use ?font=modern at runtime). */
+   * 'DM Sans', system-ui, sans-serif (or use ?font=modern at runtime). */
   --eba-heading: 'Playfair Display', serif;
 
   /* ─── Semantic tokens (shadcn/ui) ─── */
@@ -124,7 +124,7 @@
   body {
     background-color: var(--eba-cream);
     color: var(--eba-navy);
-    font-family: 'Roboto', system-ui, -apple-system, sans-serif;
+    font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
     font-feature-settings: 'kern' 1, 'liga' 1;
     overflow-x: hidden;
   }
