@@ -62,9 +62,9 @@ export const PAGE_SEO = {
     path: "/our-story",
   },
   mentorship: {
-    title: "Mentorship — Direct Access to Mark Poulton | EBA",
+    title: "Mentorship for Engineering Business Owners | EBA",
     description:
-      "Group sessions and 1:1 access to founder Mark Poulton, who spent 25 years running a real M&E contracting business. Operational experience on demand — not a coaching framework.",
+      "Group and 1:1 mentorship from senior operators who have run engineering businesses — with strictly limited founder sessions led by Mark Poulton. Application-only.",
     path: "/mentorship",
   },
   documents: {

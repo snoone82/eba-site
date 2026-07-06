@@ -53,7 +53,7 @@ const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(document|library|template|form|register|policy|packs?)\b/i,
     answer: "The Document Library is 380 operator-grade contracting documents — RAMS, O&M, CDM and compliance templates in Word + PDF, all developed in a real contracting business. Academy members get the full library included." },
   { test: /\b(mentor|mentorship|1:?1|one to one|mark|poulton|coaching)\b/i,
-    answer: "Mentorship is direct access to founder Mark Poulton — group sessions or 1:1, application-only and deliberately limited so the time's real. Pricing on application. The Mentorship page lets you register interest." },
+    answer: "Mentorship is group or 1:1 sessions with the Academy's mentor team — senior operators who have run engineering businesses — plus strictly limited founder sessions led by Mark Poulton. Application-only. Pricing on application. The Mentorship page lets you register interest." },
   { test: /\b(who|suitable|right for|beginner|sole trader|small|electrician|plumb|hvac)\b/i,
     answer: "It's built for engineering services contractors — sole traders through to growing multi-trade firms — who are technically excellent but want the commercial systems to scale profitably. No prior business knowledge needed." },
   { test: /\b(refund|money ?back|guarantee|cancel)\b/i,

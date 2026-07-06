@@ -17,7 +17,6 @@ const NAV_LINKS = [
   { label: "Documents", href: "/documents" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "Our Story", href: "/our-story" },
-  { label: "Contact", href: "/contact" },
 ];
 
 interface MobileNavProps {
@@ -62,7 +61,7 @@ export function MobileNav({ transparent = true }: MobileNavProps) {
       }}>
         {/* Logo */}
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", minWidth: 0, flexShrink: 1, marginRight: "12px" }}>
-          <EBALogo height={32} light navOnCobalt />
+          <EBALogo height={40} light navOnCobalt />
         </Link>
 
         {/* Hamburger button */}

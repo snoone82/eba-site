@@ -6,7 +6,7 @@ import { EBALogo } from "@/components/EBALogo";
 import {
   NAVY, CREAM, RUST, OAT, WHITE, COBALT, COBALT_RGB,
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, PRICING,
-  ENROL_DOCS_READY, ENROL_DOCS_HREF,
+  ENROL_DOCS_READY, ENROL_DOCS_HREF, LEADERSHIP_TEAM,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, RUST_ON_DARK, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
@@ -29,7 +29,6 @@ function PlaceholderNav({ active }: { active: string }) {
     { href: "/documents", label: "Documents" },
     { href: "/mentorship", label: "Mentorship" },
     { href: "/our-story", label: "Our Story" },
-    { href: "/contact", label: "Contact" },
   ];
   return (
     <nav className="eba-desktop-nav" style={{
@@ -40,7 +39,7 @@ function PlaceholderNav({ active }: { active: string }) {
       padding: "0 40px", height: "60px",
     }}>
       <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-        <EBALogo height={34} light navOnCobalt />
+        <EBALogo height={44} light navOnCobalt />
       </Link>
       <div style={{ display: "flex", gap: "32px", alignItems: "center" }}>
         {links.map(l => (
@@ -346,33 +345,43 @@ export function MentorshipPage() {
       <PlaceholderNav active="/mentorship" />
       <PlaceholderHero
         label="Mentorship"
-        title="Direct access to Mark Poulton."
-        sub="For engineering business owners who require more than a structured programme. Group and 1:1 mentorship with Mark — working directly on your business, your commercial position, and your specific challenges. Places are strictly limited and allocated by application."
+        title="Mentorship for engineering business owners."
+        sub="For owners who require more than a structured programme. Group and 1:1 mentorship from senior operators who have run engineering businesses — with a strictly limited number of founder sessions led by Mark Poulton. Places are allocated by application."
         portrait="/mark-mentoring.jpg"
         portraitAlt="Mark Poulton leading a group mentorship session"
       />
       <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "80px 40px" }}>
         <AmbientOrbs />
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "20px", marginBottom: "8px" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "20px", marginBottom: "8px" }}>
+            {/* Structure per Mark's review: the standard offer is the mentor
+                team; founder sessions with Mark are the premium, most limited
+                tier — never positioned as the default. */}
             {[
               {
                 label: "Group Mentorship",
-                detail: "Monthly sessions with a small, curated cohort of engineering business owners. Structured around shared commercial challenges — pricing, cash flow, contract management, growth. Each session is facilitated by Mark and limited to six participants to ensure substantive discussion.",
+                detail: "Monthly sessions with a small, curated cohort of engineering business owners, facilitated by the Academy's mentor team. Structured around shared commercial challenges — pricing, cash flow, contract management, growth — and limited to six participants to ensure substantive discussion.",
                 price: "Pricing on application",
-                img: "/mark-teaching.jpg",
-                imgAlt: "Mark Poulton facilitating a group mentorship session",
+                img: undefined as string | undefined,
+                imgAlt: "",
               },
               {
                 label: "1:1 Mentorship",
-                detail: "Fortnightly sessions working directly with Mark on your business. Suitable for principals at an inflection point — scaling, restructuring, preparing for exit, or navigating a specific commercial or operational challenge. Application-only. Limited to a small number of principals at any one time.",
+                detail: "Fortnightly sessions working directly with a senior mentor — operators who have run engineering businesses at scale. Suitable for principals at an inflection point: scaling, restructuring, preparing for exit, or navigating a specific commercial or operational challenge. Application-only.",
                 price: "Pricing on application",
-                img: "/mark-seated.jpg",
-                imgAlt: "Mark Poulton in a one-to-one mentoring session",
+                img: undefined as string | undefined,
+                imgAlt: "",
+              },
+              {
+                label: "Founder Sessions with Mark",
+                detail: "The most limited tier. A small number of sessions each intake, led personally by Mark Poulton — for principals working through the decisions he has made himself: multi-division growth, restructuring, and the hard calls. Allocated by application, strictly capped.",
+                price: "Pricing on application",
+                img: "/mark-mentoring.jpg" as string | undefined,
+                imgAlt: "Mark Poulton leading a mentorship session",
               },
             ].map(({ label, detail, price, img, imgAlt }) => (
               <div key={label} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "18px", padding: "0", overflow: "hidden", boxShadow: "0 20px 46px -32px rgba(0,0,0,0.26)" }}>
-                <Photo src={img} alt={imgAlt} ratio="16 / 9" radius="0" shadow={false} />
+                {img && <Photo src={img} alt={imgAlt} ratio="16 / 9" radius="0" shadow={false} />}
                 <div style={{ padding: "28px 30px 32px" }}>
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.3rem", color: NAVY, margin: "0 0 14px" }}>
                   {label}
@@ -387,12 +396,34 @@ export function MentorshipPage() {
               </div>
             ))}
           </div>
+
+          {/* The mentor team — renders ONLY when LEADERSHIP_TEAM is populated
+              (see constants.ts). No invented people, ever. */}
+          {LEADERSHIP_TEAM.length > 0 && (
+            <div style={{ marginTop: "48px" }}>
+              <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "clamp(1.5rem, 2.6vw, 2rem)", color: NAVY, margin: "0 0 24px" }}>
+                The mentor team.
+              </h2>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(240px, 1fr))", gap: "18px" }}>
+                {LEADERSHIP_TEAM.map(m => (
+                  <div key={m.name} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "14px", overflow: "hidden" }}>
+                    {m.photo && <Photo src={m.photo} alt={m.name} ratio="4 / 3" radius="0" shadow={false} />}
+                    <div style={{ padding: "20px 22px" }}>
+                      <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.05rem", color: NAVY, margin: "0 0 2px" }}>{m.name}</h3>
+                      <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11.5px", letterSpacing: "0.06em", textTransform: "uppercase", color: RUST, margin: "0 0 10px" }}>{m.role}</p>
+                      <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13.5px", fontWeight: 300, lineHeight: 1.6, color: `rgba(${NAVY_RGB},0.7)`, margin: 0 }}>{m.bio}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
       </section>
       <MentorWaitlist />
       <CtaBanner
         title="Not sure which route fits your business?"
-        sub="Tell us where you are and what you're trying to solve. We'll point you to the right level — Academy, documents, or mentorship with Mark."
+        sub="Tell us where you are and what you're trying to solve. We'll point you to the right level — Academy, documents, or mentorship."
         cta="Talk to us"
         href="/contact"
         eventName="cta_banner_mentorship"
@@ -585,7 +616,7 @@ export function FAQPage() {
     },
     {
       q: "Is this just video content?",
-      a: "No. The Academy combines structured video lessons, downloadable frameworks and templates, AI tools, and — depending on your membership tier — direct access to Mark through group or 1:1 mentorship sessions.",
+      a: "No. The Academy combines structured video lessons, downloadable frameworks and templates, AI tools, and — depending on your membership tier — mentorship through group or 1:1 sessions with the mentor team — plus strictly limited founder sessions led by Mark.",
     },
     {
       q: "What is the founding cohort?",

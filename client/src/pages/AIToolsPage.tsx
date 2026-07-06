@@ -397,7 +397,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
       }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-            <EBALogo height={38} light navOnCobalt />
+            <EBALogo height={48} light navOnCobalt />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
             {[
@@ -406,7 +406,6 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               { label: "Documents", href: "/documents" },
               { label: "Mentorship", href: "/mentorship" },
               { label: "Our Story", href: "/our-story" },
-              { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: href === "/ai-tools" ? NAV_LINK_ACTIVE : NAV_LINK,

@@ -11,7 +11,21 @@ import {
   NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS,
 } from "@/lib/constants";
 
+// Per Mark's review: the footer must give a complete route around the site —
+// Explore mirrors the top navigation (incl. Documents and Mentorship), and
+// Contact lives here as the structured enquiry route rather than in the nav.
 const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] = [
+  {
+    heading: "Explore",
+    links: [
+      { label: "Academy", href: "/academy" },
+      { label: "AI Tools", href: "/ai-tools" },
+      { label: "Documents", href: "/documents" },
+      { label: "Mentorship", href: "/mentorship" },
+      { label: "Our Story", href: "/our-story" },
+      { label: "Contact", href: "/contact" },
+    ],
+  },
   {
     heading: "Academy",
     links: [
@@ -26,17 +40,8 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
     links: [
       { label: "O&M Manual", href: "/ai-tools" },
       { label: "Compliance Co-Pilot", href: "/ai-tools" },
-      { label: "RAMS Generator", href: "/ai-tools" },
+      { label: "Free Toolbox Talk", href: "/ai-tools" },
       { label: "Enterprise Deployment", href: "/contact" },
-    ],
-  },
-  {
-    heading: "Company",
-    links: [
-      { label: "Our Story", href: "/our-story" },
-      { label: "Mentorship", href: "/mentorship" },
-      { label: "Documents", href: "/documents" },
-      { label: "Contact", href: "/contact" },
     ],
   },
 ];
@@ -61,7 +66,7 @@ export function SiteFooter() {
           {/* Brand */}
           <div>
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", marginBottom: "18px" }}>
-              <EBALogo height={38} light />
+              <EBALogo height={46} light />
             </Link>
             {/* Brand-pack tagline (approved default).
                 TODO(eba): Mark to decide between this and the alternative line

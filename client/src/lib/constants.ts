@@ -185,6 +185,22 @@ export const STRIPE = {
 } as const;
 
 /**
+ * TODO(eba): Mark is reviewing whether the "EBA" abbreviation should be used
+ * at all. It currently appears in SEO title suffixes ("| EBA"), the assistant
+ * greeting and some body copy. If the decision is to drop it, sweep those and
+ * regenerate the favicon (currently the brand-pack "THE EBA" tile).
+ */
+
+/**
+ * Mentor team profiles — the mentorship page renders "The mentor team" ONLY
+ * when this array is non-empty. Never invent people; populate with real
+ * names, roles and photos once the wider leadership team is confirmed.
+ * TODO(eba): add mentor profiles (name, role, one-line background, photo).
+ */
+export interface Mentor { name: string; role: string; bio: string; photo?: string }
+export const LEADERSHIP_TEAM: Mentor[] = [];
+
+/**
  * Accreditation & membership badges (CPD, sector bodies). Rendered ONLY when
  * this array is non-empty — we never show a badge we don't hold.
  * TODO(eba): populate when CPD accreditation is granted, e.g.

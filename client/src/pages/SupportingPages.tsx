@@ -113,10 +113,10 @@ function NavBar({ active }: { active: string }) {
     }}>
       <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
         <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center" }}>
-          <EBALogo height={38} light navOnCobalt />
+          <EBALogo height={48} light navOnCobalt />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }, { label: "Contact", href: "/contact" }].map(({ label, href }) => (
+          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
               color: href === active ? NAV_LINK_ACTIVE : NAV_LINK,
               textDecoration: "none", fontFamily: "'Poppins', sans-serif",
@@ -681,6 +681,10 @@ const BUNDLE_PRICES: Record<string, { label: string; price: string; saving: stri
 };
 
 export function DocumentsPage() {
+  {/* TODO(eba): per Mark's review — consider re-cutting the six categories
+      toward: general business, health & safety, commercial, accounting,
+      sales, operations, HR, training, project management. The current six
+      reflect how the real library is organised; align with Mark. */}
   const [openCategory, setOpenCategory] = useState<string | null>("hs");
   const isMobile = useIsMobile();
 

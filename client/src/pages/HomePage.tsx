@@ -40,6 +40,8 @@ import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 
 // Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
+// TODO(eba): per Mark's review, refresh/regrade the photography set to sit
+// naturally with the final palette (hero + founder images first).
 const MARK_IMG = "/mark-1on1.jpg";
 
 // Defaults to the Academy accent (rust); pass bg for tools sections (cobalt).
@@ -307,7 +309,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
         <div style={{ padding: "0 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
-            <EBALogo height={42} light navOnCobalt />
+            <EBALogo height={48} light navOnCobalt />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
@@ -316,7 +318,6 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               { label: "Documents", href: "/documents" },
               { label: "Mentorship", href: "/mentorship" },
               { label: "Our Story", href: "/our-story" },
-              { label: "Contact", href: "/contact" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
                 color: NAV_LINK, textDecoration: "none",
@@ -480,8 +481,8 @@ export default function HomePage() {
         <div className="eba-marquee-mask" style={{ overflow: "hidden" }}>
           <div className="eba-marquee-track" style={{ display: "flex", alignItems: "center", width: "max-content" }}>
             {[0, 1].map(dup => (
-              /* [CONFIRM] final sector order with Mark — lead with the three the target buyer most aspires to. */
-              ["M&E", "fire suppression & sprinklers", "MOD / MOJ estates", "nuclear", "aerospace", "data centres"].map(sector => (
+              /* Sector list per Mark's review — the technical areas the Academy serves. */
+              ["mechanical", "electrical", "BMS", "controls", "fire alarms", "commissioning", "HV", "maintenance", "specialist contracting"].map(sector => (
                 <span key={`${dup}-${sector}`} style={{
                   display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
                   fontFamily: "var(--eba-heading)", fontWeight: 800,
@@ -686,7 +687,7 @@ export default function HomePage() {
                 That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
               </p>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
-                Members get group sessions and direct 1:1 access. Not theory. Not a framework. The person who's been where you're going.
+                Mentorship runs alongside membership — group sessions and 1:1 access with the mentor team, and strictly limited founder sessions with Mark. Not theory. Not a framework. People who've been where you're going.
               </p>
               {/* Credential strip */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
