@@ -8,7 +8,7 @@ import { EBALogo } from "@/components/EBALogo";
 import { useIsMobile } from "@/hooks/useMobile";
 import {
   DARK_GRADIENT, RUST, RUST_RGB, CREAM_RGB, IS_VIVID, COMPANY_REG, isPlaceholder,
-  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS,
+  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS, TAGLINE,
 } from "@/lib/constants";
 
 // Per Mark's review: the footer must give a complete route around the site —
@@ -68,15 +68,9 @@ export function SiteFooter() {
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", marginBottom: "18px" }}>
               <EBALogo height={46} light />
             </Link>
-            {/* Brand-pack tagline (approved default).
-                TODO(eba): Mark to decide between this and the alternative line
-                "The operating system for engineering business owners. / Built by
-                someone who has run one." */}
-            <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: "0 0 8px", maxWidth: "300px", lineHeight: 1.4 }}>
-              Empowering Engineers.
-            </p>
-            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: muted, margin: 0, maxWidth: "300px", lineHeight: 1.6 }}>
-              Building Exceptional Businesses.
+            {/* The locked tagline — read from constants, never hard-coded. */}
+            <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: 0, maxWidth: "300px", lineHeight: 1.5 }}>
+              {TAGLINE}
             </p>
           </div>
 

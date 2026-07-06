@@ -24,7 +24,7 @@ import {
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB,
-  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB, ACCENT_GRAD, RUST_ON_DARK,
+  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB, ACCENT_GRAD, RUST_ON_DARK, SHOW_DOC_PRICES, MARK_PHOTO_STORY,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
@@ -33,7 +33,8 @@ import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 
 // Founder photo (Mark Poulton) — client/public/.
-const MARK_IMG = "/mark-conversation.jpg";
+// TODO(eba): real-photo swap is constants-only (MARK_PHOTO_* in constants.ts).
+const MARK_IMG = MARK_PHOTO_STORY;
 
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
   return (
@@ -813,18 +814,27 @@ export function DocumentsPage() {
                     <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: ON_DARK, fontSize: "1.1rem", margin: "0 0 4px" }}>
                       {BUNDLE_PRICES[cat.id].label}
                     </p>
-                    <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
-                      {BUNDLE_PRICES[cat.id].price}
-                    </p>
-                    <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "0 0 16px" }}>
-                      {BUNDLE_PRICES[cat.id].saving}
-                    </p>
+                    {/* Prices gated behind SHOW_DOC_PRICES until confirmed. */}
+                    {SHOW_DOC_PRICES ? (
+                      <>
+                        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST_ON_DARK, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
+                          {BUNDLE_PRICES[cat.id].price}
+                        </p>
+                        <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "0 0 16px" }}>
+                          {BUNDLE_PRICES[cat.id].saving}
+                        </p>
+                      </>
+                    ) : (
+                      <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "0 0 16px" }}>
+                        Pack pricing announced soon.
+                      </p>
+                    )}
                     <Link href="/contact" style={{
                       background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
                       fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
                       padding: "9px 18px", letterSpacing: "0.04em", display: "inline-block",
                     }}>
-                      Purchase pack →
+                      {SHOW_DOC_PRICES ? "Purchase pack →" : "Enquire about this pack →"}
                     </Link>
                   </div>
                 </div>
@@ -859,9 +869,11 @@ export function DocumentsPage() {
                         </p>
                       </div>
                       <div style={{ textAlign: "right", flexShrink: 0 }}>
-                        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
-                          {doc.price}
-                        </p>
+                        {SHOW_DOC_PRICES && (
+                          <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
+                            {doc.price}
+                          </p>
+                        )}
                         <Link href="/contact" style={{
                           background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
                           fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px",

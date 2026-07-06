@@ -131,6 +131,29 @@ export const ORB_ACCENT = "radial-gradient(circle, rgba(255,91,110,0.12) 0%, tra
 export const ORB_WARM = "radial-gradient(circle, rgba(58,160,255,0.09) 0%, transparent 70%)";
 
 /**
+ * Founder photography — every Mark image placement reads one of these
+ * constants so the real-photography swap is a constants-only change.
+ * TODO(eba): replace with real photography (shoot in progress) — current
+ * files are stock placeholders in client/public/.
+ */
+export const MARK_PHOTO_HERO = "/mark-teaching.jpg";      // homepage hero background
+export const MARK_PHOTO_FOUNDER = "/mark-1on1.jpg";       // homepage founder section
+export const MARK_PHOTO_STORY = "/mark-conversation.jpg"; // /our-story hero portrait
+export const MARK_PHOTO_MENTORSHIP = "/mark-mentoring.jpg"; // /mentorship hero + founder-sessions card
+
+/** The locked brand tagline — the ONLY approved tagline. All components read
+ *  this constant; never hard-code a tagline in a component. */
+export const TAGLINE = "Engineer Your Business. Design Your Freedom.";
+
+/** O&M ROI band — LOCKED figures. Do not change without sign-off. */
+export const OM_TURNAROUND_STAT = "3 days → same day";
+export const OM_TURNAROUND_MECH = "O&M manuals returned in 24 hours, not compiled by hand";
+export const OM_SAVING_RANGE = "£600–£1,200 saved per manual";
+export const OM_SAVING_MECH = "the engineer time each manual replaces";
+export const TOOLS_SPEED_STAT = "Minutes, not afternoons";
+export const TOOLS_SPEED_MECH = "RAMS, COSHH and toolbox talks on demand";
+
+/**
  * The named methodology. The curriculum is presented everywhere as this System
  * so a future rename is a one-line edit.
  * TODO(eba): trademark status unconfirmed — do NOT add ™ anywhere until cleared.
@@ -249,8 +272,48 @@ export const PRICING = {
   omPerManual: "TODO(eba): O&M Compiler per-manual price (planned £299)",
   toolSingle: "TODO(eba): single AI tool price (planned £99)",
   toolBundle: "TODO(eba): all-three tools price (planned £179)",
-  enterpriseSetup: "TODO(eba): enterprise setup fee (currently shown £997–£1,997)",
-  enterpriseMonthly: "TODO(eba): enterprise monthly retainer (currently shown £149–£349)",
+  enterpriseSetup: "TODO(eba): enterprise setup fee",
+  enterpriseMonthly: "TODO(eba): enterprise monthly retainer",
+} as const;
+
+/**
+ * Enterprise / white-label pricing.
+ * TODO(eba): awaiting Mark's confirmation — do not publish a number until
+ * confirmed. The old TESA-era catalogue figures were never approved for EBA
+ * and must not return. While null, enterprise sections render
+ * "Priced per deployment — enquire for a quote."
+ */
+export const ENTERPRISE_PRICING: { setup: string; monthly: string } | null = null;
+
+/**
+ * Per-document and per-pack prices on /documents came from the original site
+ * export and are NOT on the confirmed price list.
+ * TODO(eba): confirm per-document/bundle pricing with Mark, then flip to true.
+ * While false, the page shows the documents without price tags and the pack
+ * CTA reads "Enquire about this pack".
+ */
+export const SHOW_DOC_PRICES = false;
+
+/**
+ * Sector-insight sections (decarbonisation / fire market commentary) on the
+ * homepage. Market commentary ONLY — there is no decarbonisation module in
+ * the course, so these sections must never claim or imply the content is
+ * taught in the Academy. Flip to false to remove both sections entirely.
+ */
+export const SHOW_SECTOR_INSIGHTS = true;
+
+/**
+ * Per-tool price notes ("from £99/manual", "from £49/mo", "from £99/mo")
+ * came from the original site copy and CONFLICT with the confirmed planning
+ * figures (O&M £299/manual · tools £99 single / £179 bundle).
+ * TODO(eba): confirm per-tool pricing with Mark, then set these strings.
+ * While placeholders, tool cards show "Pricing announced soon".
+ */
+export const TOOL_PRICE_NOTES = {
+  omManual: "TODO(eba): O&M per-manual price note",
+  rams: "TODO(eba): RAMS subscription price note",
+  coPilot: "TODO(eba): Compliance Co-Pilot subscription price note",
+  coshh: "TODO(eba): COSHH price note",
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting

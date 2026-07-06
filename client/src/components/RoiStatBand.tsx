@@ -6,13 +6,18 @@
  * homepage tools block.
  */
 
-import { COBALT, NAVY_RGB, WHITE } from "@/lib/constants";
+import {
+  COBALT, NAVY_RGB, WHITE,
+  OM_TURNAROUND_STAT, OM_TURNAROUND_MECH, OM_SAVING_RANGE, OM_SAVING_MECH,
+  TOOLS_SPEED_STAT, TOOLS_SPEED_MECH,
+} from "@/lib/constants";
 import { useIsMobile } from "@/hooks/useMobile";
 
+// LOCKED figures — values live in constants.ts, never here.
 const ROI_STATS = [
-  { figure: "3 days → same day", mechanism: "O&M manuals returned in 24 hours, not compiled by hand" },
-  { figure: "£600–£1,200 saved per manual", mechanism: "the engineer time each manual replaces" },
-  { figure: "Minutes, not afternoons", mechanism: "RAMS, COSHH and toolbox talks on demand" },
+  { figure: OM_TURNAROUND_STAT, mechanism: OM_TURNAROUND_MECH },
+  { figure: OM_SAVING_RANGE, mechanism: OM_SAVING_MECH },
+  { figure: TOOLS_SPEED_STAT, mechanism: TOOLS_SPEED_MECH },
 ];
 
 export function RoiStatBand({ compact = false }: { compact?: boolean }) {

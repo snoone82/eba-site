@@ -25,13 +25,13 @@ import {
   CREAM,
   OAT,
   AMBER,
-  isPlaceholder, OM_SERVICE_URL,
+  isPlaceholder, OM_SERVICE_URL, TOOL_PRICE_NOTES,
   WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   HERO_GLOW, SECTION_GLOW,
-  COBALT, COBALT_RGB, COBALT_ON_DARK,
+  COBALT, COBALT_RGB, COBALT_ON_DARK, ENTERPRISE_PRICING,
 } from "@/lib/constants";
 import { RoiStatBand } from "@/components/RoiStatBand";
 import { ProductFrame } from "@/components/ProductFrame";
@@ -305,7 +305,7 @@ const allTools = [
     label: "O&M MANUAL COMPILER",
     title: "O&M Manuals in hours, not days.",
     body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took. Every completed M&E project legally requires one — built to produce it without the manual slog.",
-    price: "From £99 per manual",
+    price: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pricing announced soon" : TOOL_PRICE_NOTES.omManual,
     status: "live",
     href: "/ai-tools/om-manual",
     // O&M flow preference: Kajabi-hosted service flow once set, else the
@@ -317,7 +317,7 @@ const allTools = [
     label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
     body: "The Compliance Co-Pilot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone subscription or as a fully managed white-label deployment for your entire organisation.",
-    price: "From £99 / month",
+    price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
     status: "live",
     href: "/ai-tools/compliance-chatbot",
     checkout: STRIPE.complianceChatbot,
@@ -544,19 +544,19 @@ export default function AIToolsPage() {
               {
                 Icon: FileText, name: "O&M Manual Compiler",
                 outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.",
-                note: "Pay per manual · from £99",
+                note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
                 frame: { url: "eba.academy/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"] },
               },
               {
                 Icon: ShieldCheck, name: "RAMS Generator",
                 outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.",
-                note: "Subscription · from £49/mo",
+                note: isPlaceholder(TOOL_PRICE_NOTES.rams) ? "Subscription · pricing soon" : TOOL_PRICE_NOTES.rams,
                 frame: { url: "eba.academy/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"] },
               },
               {
                 Icon: MessageSquareText, name: "Compliance Co-Pilot",
                 outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.",
-                note: "Subscription · from £99/mo",
+                note: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Subscription · pricing soon" : TOOL_PRICE_NOTES.coPilot,
                 frame: { url: "eba.academy/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"] },
               },
               {
@@ -808,12 +808,15 @@ export default function AIToolsPage() {
                 <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
                   The same AI technology that powers the EBA Compliance Co-Pilot — trained on your specific HSEQ documentation, branded with your company identity, deployed to every engineer in your business. Implementation: 2 weeks. Cost: a fraction of what a compliance consultancy charges. Capability: your entire safety knowledge base, available to every person on site, 24 hours a day.
                 </p>
-                <div style={{ display: "flex", gap: "32px", marginBottom: "36px" }}>
-                  {[
-                    { value: "£997–£1,997", label: "Setup" },
-                    { value: "£149–£349/mo", label: "Retainer" },
-                    { value: "vs £25k+", label: "Agency cost" },
-                  ].map(({ value, label }) => (
+                {/* Enterprise pricing GATED until confirmed (ENTERPRISE_PRICING). */}
+                <div style={{ display: "flex", gap: "32px", marginBottom: "36px", flexWrap: "wrap" }}>
+                  {(ENTERPRISE_PRICING
+                    ? [
+                        { value: ENTERPRISE_PRICING.setup, label: "Setup" },
+                        { value: ENTERPRISE_PRICING.monthly, label: "Retainer" },
+                      ]
+                    : [{ value: "Priced per deployment", label: "Enquire for a quote" }]
+                  ).map(({ value, label }) => (
                     <div key={label}>
                       <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: COBALT_ON_DARK, fontSize: "1.2rem", fontWeight: 700, margin: "0 0 4px" }}>
                         {value}
@@ -848,7 +851,7 @@ export default function AIToolsPage() {
                     "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
                   </p>
                   <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                    EBA AI Tools Catalogue, June 2026
+                    Market context — UK agency pricing for custom chatbot builds
                   </p>
                 </div>
               </div>

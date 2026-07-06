@@ -24,7 +24,8 @@ import {
   IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   SHOW_TESTIMONIALS,
-  METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB, RUST_ON_DARK,
+  METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB, RUST_ON_DARK, ENTERPRISE_PRICING,
+  MARK_PHOTO_HERO, MARK_PHOTO_FOUNDER, SHOW_SECTOR_INSIGHTS,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -39,10 +40,9 @@ import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
 
-// Founder photo (Mark Poulton) — client/public/mark-portrait.jpg.
-// TODO(eba): per Mark's review, refresh/regrade the photography set to sit
-// naturally with the final palette (hero + founder images first).
-const MARK_IMG = "/mark-1on1.jpg";
+// Founder photography reads from constants — TODO(eba): real-photo swap is
+// a constants-only change (see MARK_PHOTO_* in constants.ts).
+const MARK_IMG = MARK_PHOTO_FOUNDER;
 
 // Defaults to the Academy accent (rust); pass bg for tools sections (cobalt).
 function SectionLabel({ children, bg }: { children: string; bg?: string }) {
@@ -380,7 +380,7 @@ export default function HomePage() {
       }}>
         <div style={{
           position: "absolute", inset: 0,
-          backgroundImage: `url(/mark-teaching.jpg)`,
+          backgroundImage: `url(${MARK_PHOTO_HERO})`,
           backgroundSize: "cover", backgroundPosition: "center 24%",
         }} />
         <div style={{
@@ -792,7 +792,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── DECARBONISATION OPPORTUNITY ── */}
+      {/* ── SECTOR INSIGHTS ── market commentary only; gated by
+          SHOW_SECTOR_INSIGHTS so the pair can be pulled with one constant. */}
+      {SHOW_SECTOR_INSIGHTS && (
       <section style={{ background: WHITE, padding: isMobile ? "52px 20px" : "72px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
@@ -809,20 +811,19 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
                 The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
               </p>
-              {/* [DECIDE with Mark]: reframed as market insight + adjacent-line example —
-                  the old "Module 8 covers decarbonisation" claim was wrong (real Module 8 =
-                  Risk, Protection & Governance). Alternative: Mark adds the lessons to the course. */}
+              {/* Market commentary ONLY — no decarbonisation module exists in the
+                  course, so this section must not claim or link to curriculum. */}
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Positioning for that work — entering it deliberately, pricing it properly, and building it into a durable service line — is the adjacent-line playbook the Academy teaches, drawn from Mark's own move into decarbonisation.
+                For contractors weighing that move, the questions are commercial before they are technical: enter deliberately, price it properly, and build it as a durable service line rather than a bolt-on.
               </p>
-              <Link href="/academy" style={{
+              <a href="#health-check" style={{
                 color: RUST, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px",
               }}>
-                View the curriculum →
-              </Link>
+                Take the free Engineering Business Health Check →
+              </a>
             </RevealSection>
             <RevealSection>
               <Photo src="/site-containment.jpg" alt="Electrical containment and cable tray installation on site" ratio="16 / 10" style={{ marginBottom: "24px" }} />
@@ -837,22 +838,23 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
                 Fire protection and security is a common adjacent service request in engineering contracting. The market is worth £2bn and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
               </p>
+              {/* Market commentary ONLY — no curriculum claim, no outbound links. */}
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Most engineering contractors either decline the work or subcontract it blindly. The EBA curriculum includes a dedicated module on how to identify, enter, and build a profitable adjacent service line.
+                Most engineering contractors either decline the work or subcontract it blindly — and the ones who make it pay treat it as a business line with its own pricing and delivery discipline, not a favour to a client.
               </p>
-              {/* Curriculum case study — kept on the funnel, no outbound link to pro-defend.com. */}
-              <Link href="/academy" style={{
+              <Link href="/ai-tools#free-toolbox-talk" style={{
                 color: RUST, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
                 paddingBottom: "2px", display: "inline-block",
               }}>
-                See how it's taught →
+                Try the free Toolbox Talk tool →
               </Link>
             </RevealSection>
           </div>
         </div>
       </section>
+      )}
 
       {/* ── ENTERPRISE / WHITE-LABEL ── */}
       <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
@@ -870,12 +872,16 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
                 We take the compliance chatbot — trained on your company's own documents, procedures, CDM obligations and HSE guidance — and deploy it as a fully managed, branded service for your organisation. Your staff get accurate answers. You get a documented audit trail. We handle the setup, hosting and updates.
               </p>
+              {/* Enterprise pricing is GATED until confirmed (ENTERPRISE_PRICING
+                  in constants.ts) — never publish an unconfirmed number. */}
               <div style={{ display: "flex", gap: "24px", marginBottom: "36px", flexWrap: "wrap" }}>
-                {[
-                  { value: "£997–£1,997", label: "Setup fee" },
-                  { value: "£149–£349", label: "Per month" },
-                  { value: "vs £25k+", label: "A fraction of agency-build cost" },
-                ].map(({ value, label }) => (
+                {(ENTERPRISE_PRICING
+                  ? [
+                      { value: ENTERPRISE_PRICING.setup, label: "Setup fee" },
+                      { value: ENTERPRISE_PRICING.monthly, label: "Per month" },
+                    ]
+                  : [{ value: "Priced per deployment", label: "Enquire for a quote" }]
+                ).map(({ value, label }) => (
                   <div key={label}>
                     <p style={{
                       fontFamily: "var(--eba-heading)", fontStyle: "italic",
@@ -911,7 +917,7 @@ export default function HomePage() {
                   "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                  From the EBA AI Tools Catalogue
+                  Market context — UK agency pricing for custom chatbot builds
                 </p>
               </div>
             </RevealSection>
@@ -920,7 +926,7 @@ export default function HomePage() {
       </section>
 
       {/* ── LEAD MAGNET ── */}
-      <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
+      <section id="health-check" style={{ background: CREAM, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>

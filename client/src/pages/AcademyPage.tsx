@@ -29,7 +29,7 @@ import {
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   HERO_GLOW, SECTION_GLOW, METHOD_NAME, RUST_ON_DARK,
-  ENROL_DOCS_READY, ENROL_DOCS_HREF,
+  ENROL_DOCS_READY, ENROL_DOCS_HREF, PRICING,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -560,11 +560,13 @@ export default function AcademyPage() {
                   TODO(eba): [CONFIRM] final prices with Mark, then set
                   FOUNDING_PRICE in constants.ts to a real value to reveal them
                   (until then each tier shows "Pricing announced soon"). */}
+              {/* Confirmed planning figures — displayed values read from PRICING
+                  in constants.ts once set; gated by PRICING_ANNOUNCED until then. */}
               {[
                 {
                   tier: "Founding Academy",
-                  price: "£999",
-                  monthly: "rises to £1,499 after the founding cohort",
+                  price: isPlaceholder(PRICING.academyFounding) ? "£999" : PRICING.academyFounding,
+                  monthly: `rises to ${isPlaceholder(PRICING.academyStandard) ? "£1,499" : PRICING.academyStandard} after the founding cohort`,
                   popular: false,
                   includes: [
                     "Full 101-lesson curriculum",
@@ -575,8 +577,8 @@ export default function AcademyPage() {
                 },
                 {
                   tier: "Founding Academy + Documents",
-                  price: "£1,299",
-                  monthly: "rises to £1,999 after the founding cohort",
+                  price: isPlaceholder(PRICING.academyDocsFounding) ? "£1,299" : PRICING.academyDocsFounding,
+                  monthly: `rises to ${isPlaceholder(PRICING.academyDocsStandard) ? "£1,999" : PRICING.academyDocsStandard} after the founding cohort`,
                   popular: true,
                   includes: [
                     "Everything in Founding Academy",

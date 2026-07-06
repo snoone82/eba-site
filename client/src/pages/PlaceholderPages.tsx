@@ -6,7 +6,7 @@ import { EBALogo } from "@/components/EBALogo";
 import {
   NAVY, CREAM, RUST, OAT, WHITE, COBALT, COBALT_RGB,
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, PRICING,
-  ENROL_DOCS_READY, ENROL_DOCS_HREF, LEADERSHIP_TEAM,
+  ENROL_DOCS_READY, ENROL_DOCS_HREF, LEADERSHIP_TEAM, MARK_PHOTO_MENTORSHIP,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, RUST_ON_DARK, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
@@ -347,7 +347,7 @@ export function MentorshipPage() {
         label="Mentorship"
         title="Mentorship for engineering business owners."
         sub="For owners who require more than a structured programme. Group and 1:1 mentorship from senior operators who have run engineering businesses — with a strictly limited number of founder sessions led by Mark Poulton. Places are allocated by application."
-        portrait="/mark-mentoring.jpg"
+        portrait={MARK_PHOTO_MENTORSHIP}
         portraitAlt="Mark Poulton leading a group mentorship session"
       />
       <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "80px 40px" }}>
@@ -376,7 +376,7 @@ export function MentorshipPage() {
                 label: "Founder Sessions with Mark",
                 detail: "The most limited tier. A small number of sessions each intake, led personally by Mark Poulton — for principals working through the decisions he has made himself: multi-division growth, restructuring, and the hard calls. Allocated by application, strictly capped.",
                 price: "Pricing on application",
-                img: "/mark-mentoring.jpg" as string | undefined,
+                img: MARK_PHOTO_MENTORSHIP as string | undefined,
                 imgAlt: "Mark Poulton leading a mentorship session",
               },
             ].map(({ label, detail, price, img, imgAlt }) => (
