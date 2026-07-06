@@ -201,7 +201,7 @@ function MentorWaitlist() {
           Mentorship is deliberately limited.
         </h2>
         <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.7, maxWidth: "640px", margin: "0 0 40px" }}>
-          So Mark can give real 1:1 time, each cohort is{" "}
+          So mentors can give real 1:1 time, each cohort is{" "}
           {isPlaceholder(MENTOR_CAPACITY) ? "kept deliberately small" : `capped at ${MENTOR_CAPACITY}`}.
           When a month is full, it's full.{openMonth ? ` The next intake is ${openMonth}.` : ""}
         </p>
