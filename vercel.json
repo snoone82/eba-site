@@ -7,5 +7,11 @@
   ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
-  ]
+  ],
+  "functions": {
+    "api/generate-toolbox-talk.ts": {
+      "maxDuration": 60,
+      "memory": 2048
+    }
+  }
 }

@@ -1,7 +1,10 @@
 # Deploying the EBA site to Vercel
 
-The site is a **static Vite + React (TypeScript) SPA**. No backend, no env vars
-required — every integration falls back to a safe placeholder until you wire it.
+The site is a **static Vite + React (TypeScript) SPA** with a couple of small
+**Vercel serverless functions** under `api/` (the homepage assistant, and the
+free Toolbox Talk Generator). No env vars are required to deploy — every
+integration falls back to a safe placeholder or a "not configured" state until
+you wire it.
 
 ## Quick deploy (recommended for the demo)
 
@@ -15,7 +18,7 @@ required — every integration falls back to a safe placeholder until you wire i
    | Build Command      | **`npm run build:static`** — REQUIRED for SEO (see below) |
    | Output Directory   | `dist`                   |
    | Install Command    | `npm install`            |
-   | Node.js Version    | 18.x or 20.x             |
+   | Node.js Version    | **22.x** (required by `@sparticuz/chromium` / `puppeteer-core` — the Toolbox Talk Generator's PDF renderer) |
 
    > ⚠️ **The Build Command MUST be `npm run build:static`, not `npm run build`.**
    > `build:static` runs the Vite build **and react-snap prerendering**, writing a
@@ -112,3 +115,47 @@ How it behaves:
 
 To point the widget at a different backend instead, set `VITE_ASSISTANT_ENDPOINT`
 to its URL (optional; defaults to `/api/assistant`).
+
+## Toolbox Talk Generator — the free, public lead magnet
+
+`/toolbox-talk` is a public, no-login tool: visitor types a topic (+ optional
+trade/site) and an email, the backend calls Claude for a structured UK toolbox
+talk, renders it as a branded A4 PDF (headless Chromium), shows it on screen
+instantly, and emails a copy. It's the free demo that feeds the paid AI-tool
+suite and the course — see `client/src/pages/ToolboxTalkPage.tsx` and
+`api/generate-toolbox-talk.ts` + `api/lib/`.
+
+**Required to go live:**
+
+1. **`ANTHROPIC_API_KEY`** (see above) — without it the endpoint returns 501
+   and the page shows "Opening shortly." The generation call uses
+   `claude-sonnet-5` with structured JSON output (server-side only).
+2. **`DATABASE_URL`** — a Postgres connection string (this project uses the
+   [Neon](https://neon.tech) serverless driver, which works with Neon, the
+   Vercel Postgres/Neon marketplace integration, Supabase, or any standard
+   Postgres). Backs a single `toolbox_generations` table that doubles as the
+   **lead log** (source-tagged, for CRM export) and the **rate-limit ledger**
+   (5 generations/email/day, 15/IP/day — tune in `api/lib/db.ts`). The schema
+   is created automatically on first request (`CREATE TABLE IF NOT EXISTS`).
+   **Without this set, rate limiting is skipped entirely (fail-open)** — fine
+   for local dev, but set it before a public launch so a single email/IP can't
+   run up your Anthropic bill.
+3. **`RESEND_API_KEY`** + **`RESEND_FROM_EMAIL`** — a [Resend](https://resend.com)
+   account with a verified sending domain, for "email a copy of the PDF." If
+   unset, the tool still fully works (PDF renders on screen + downloads) — it
+   just skips the email step, and the page shows "Couldn't email a copy — use
+   the download button" rather than failing the request.
+
+**PDF rendering** uses `puppeteer-core` + `@sparticuz/chromium` (a
+Lambda-compatible headless Chromium build) — this is why `api/generate-toolbox-talk.ts`
+runs on Vercel's **Node.js** runtime, not Edge (Edge can't launch a browser).
+`vercel.json` gives this one function extra `memory` (2048 MB) and
+`maxDuration` (60s) headroom for the Chromium launch + Claude call + email
+send; adjust for your Vercel plan's limits if needed. Locally, set
+`PUPPETEER_EXECUTABLE_PATH` to a real Chromium/Chrome binary to test the
+endpoint outside Vercel (`@sparticuz/chromium`'s binary is built for the
+Lambda/Vercel runtime and won't run on an arbitrary dev machine).
+
+Fonts (Inter) are embedded as base64 in the generated HTML so the PDF renders
+identically regardless of network access at request time — see
+`api/lib/pdf/brand.ts`.

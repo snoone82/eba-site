@@ -85,6 +85,12 @@ export const PAGE_SEO = {
       "A white-label compliance chatbot trained on your company's documents and deployed as a fully managed, branded service. A fraction of agency build cost.",
     path: "/enterprise",
   },
+  toolboxTalk: {
+    title: "Free Toolbox Talk Generator | The Engineering Business Academy",
+    description:
+      "Generate a site-ready UK toolbox talk with a sign-off sheet in about a minute — genuinely free, just your email. No card required.",
+    path: "/toolbox-talk",
+  },
   contact: {
     title: "Contact The Engineering Business Academy",
     description:
