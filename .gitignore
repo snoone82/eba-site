@@ -17,3 +17,7 @@ dist
 .DS_Store
 *.tsbuildinfo
 npm-debug.log*
+
+# prospect script output (generated data, not source)
+scripts/checkpoint.json
+scripts/teba_prospects.csv
