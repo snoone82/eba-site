@@ -635,7 +635,7 @@ export function FAQPage() {
     },
     {
       q: "Can I access the AI tools without joining the Academy?",
-      a: "Yes. RAMS and COSHH are available on a monthly subscription, the O&M manual service is compiled for you per manual, and the Compliance Co-Pilot is built for your business and priced per deployment — none are included with Academy membership. The exception is the Toolbox Talk Generator, which is included with every Academy enrolment. Details are on the AI Tools page.",
+      a: "Yes. RAMS and COSHH are available on a monthly subscription, the O&M manual service is compiled for you per manual, and the Compliance Co-Pilot is built for your business and priced per deployment — none are included with Academy membership. The exception is the Toolbox Talk Generator, which is included with every Academy enrolment: your access link is provided once payment is complete. Details are on the AI Tools page.",
     },
     {
       q: "What is your refund policy?",
