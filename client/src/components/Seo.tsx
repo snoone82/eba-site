@@ -40,11 +40,11 @@ export const PAGE_SEO = {
   aiTools: {
     title: "AI Tools for Engineering Contractors — O&M, RAMS & Compliance",
     description:
-      "AI tools built for engineering contractors: O&M manuals in hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
+      "AI tools built for engineering contractors: O&M manuals in 24 hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
     path: "/ai-tools",
   },
   omManual: {
-    title: "O&M Manual Compiler — Client-Ready Manuals in Hours",
+    title: "O&M Manual Compiler — Client-Ready Manuals in 24 Hours",
     description:
       "Upload project data and generate a fully formatted, CDM-structured O&M manual in a fraction of the time. Built for engineering services contractors.",
     path: "/ai-tools/om-manual",

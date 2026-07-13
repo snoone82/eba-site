@@ -103,7 +103,7 @@ export function ToolboxLeadMagnet() {
             The free Toolbox Talk Generator.
           </h2>
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 28px", maxWidth: "480px" }}>
-            Pick a task, get a site-ready toolbox talk in about a minute — with a sign-off sheet included. Free to use, no card required. Just tell us where to send it.
+            Pick a task, get a site-ready toolbox talk in about a minute — with a sign-off sheet included. Free to use, no card required. Just tell us where to send it. Academy members get the full version included with enrolment.
           </p>
           <CaptureForm />
         </div>

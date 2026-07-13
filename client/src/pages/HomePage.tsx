@@ -736,10 +736,10 @@ export default function HomePage() {
               }}>
                 And the tools that prove we understand your world.
               </h2>
-              {/* TODO(eba): confirm whether the tools are included with Academy membership
-                  or priced separately — the pricing page currently says separately. */}
+              {/* CONFIRMED: tools are priced separately from Academy membership
+                  (the Toolbox Talk Generator is the one enrolment inclusion). */}
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
-                Because we run engineering businesses too, we've built the tools we always wanted: O&M manuals delivered in hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge.
+                Because we run engineering businesses too, we've built the tools we always wanted: O&M manuals delivered in 24 hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge.
               </p>
               <Link href="/ai-tools" style={{
                 color: COBALT, textDecoration: "none",

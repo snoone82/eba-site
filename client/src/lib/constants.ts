@@ -145,8 +145,9 @@ export const MARK_PHOTO_MENTORSHIP = "/mark-mentoring.jpg"; // /mentorship hero 
  *  this constant; never hard-code a tagline in a component. */
 export const TAGLINE = "Engineer Your Business. Design Your Freedom.";
 
-/** O&M ROI band — LOCKED figures. Do not change without sign-off. */
-export const OM_TURNAROUND_STAT = "3 days → same day";
+/** O&M ROI band — LOCKED figures (turnaround amended to 24 hours by Ste,
+ *  13 Jul 2026). Do not change without sign-off. */
+export const OM_TURNAROUND_STAT = "3 days → 24 hours";
 export const OM_TURNAROUND_MECH = "O&M manuals returned in 24 hours, not compiled by hand";
 export const OM_SAVING_RANGE = "£600–£1,200 saved per manual";
 export const OM_SAVING_MECH = "the engineer time each manual replaces";

@@ -181,7 +181,7 @@ function OmManualDemo() {
         </div>
         <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${COBALT_RGB},0.06)`, borderLeft: `3px solid ${COBALT}` }}>
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
-            <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → under 30 minutes
+            <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → returned within 24 hours
           </p>
         </div>
       </div>
@@ -303,7 +303,7 @@ function ComplianceChatDemo() {
 const allTools = [
   {
     label: "O&M MANUAL COMPILER",
-    title: "O&M Manuals in hours, not days.",
+    title: "O&M Manuals in 24 hours, not days.",
     body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took. Every completed M&E project legally requires one — built to produce it without the manual slog.",
     price: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pricing announced soon" : TOOL_PRICE_NOTES.omManual,
     status: "live",
@@ -500,7 +500,7 @@ export default function AIToolsPage() {
           </div>
           <div style={{ display: "flex", gap: isMobile ? "24px" : "40px", flexWrap: "wrap" }}>
             {[
-              { value: "30 min", label: "Per O&M manual, not 2–3 days" },
+              { value: "24 hrs", label: "Per O&M manual, not 2–3 days" },
               { value: "£0", label: "Extra staff required" },
               { value: "You", label: "Review every output" },
             ].map(({ value, label }) => (
@@ -543,7 +543,7 @@ export default function AIToolsPage() {
             {[
               {
                 Icon: FileText, name: "O&M Manual Compiler",
-                outcome: "A client-ready, CDM-structured O&M manual in under 30 minutes — from your project data.",
+                outcome: "A client-ready, CDM-structured O&M manual returned within 24 hours — from your project data.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
                 frame: { url: "eba.academy/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"] },
               },
