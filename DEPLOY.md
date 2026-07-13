@@ -32,11 +32,14 @@ required — every integration falls back to a safe placeholder until you wire i
 ## Custom domain: teb-academy.com — ALREADY CONNECTED
 
 Verified live 13 Jul 2026: `teb-academy.com` serves the site from Vercel
-(A `@` → `216.198.79.1`, CNAME `www` → apex) with valid HTTPS. The domain's
-DNS is managed at **GoDaddy** (nameservers `ns25/ns26.domaincontrol.com`) —
-NOT at 123 Reg, and not `eba.academy` (a different, unused domain). All
-canonical URLs, sitemap, robots and the Plausible `data-domain` in this repo
-use `https://teb-academy.com`.
+(A `@` → `216.198.79.1`, CNAME `www` → `cname.vercel-dns.com`) with valid
+HTTPS. The domain is registered at **123 Reg** and DNS is edited in the
+123 Reg panel (Manage DNS). Note: the nameservers show as
+`ns6x.domaincontrol.com` — that IS 123 Reg's DNS platform (123 Reg is a
+GoDaddy company; domaincontrol.com is their shared infrastructure). The
+unused `eba.academy` domain is a different registration and is not the
+site's domain. All canonical URLs, sitemap, robots and the Plausible
+`data-domain` in this repo use `https://teb-academy.com`.
 
 Remaining domain to-dos:
 - Submit `https://teb-academy.com/sitemap.xml` in Google Search Console
@@ -54,20 +57,19 @@ Starter** (≈ £5.75 + VAT per user/month) from
 the DKIM/SPF foundation Klaviyo/Kajabi sending will later build on. (Zoho
 Mail's free tier works if budget is zero, same DNS pattern.)
 
-All DNS records below go in **GoDaddy** (godaddy.com → My Products →
-teb-academy.com → DNS):
+All DNS records below go in the **123 Reg panel** (Domain names →
+teb-academy.com → Manage DNS):
 
 1. Sign up at workspace.google.com with domain `teb-academy.com`; create users
    (e.g. `mark@`, `ste@`) and the shared `hello@` (a user or a free alias).
 2. **Verify the domain**: Google gives a `google-site-verification=…` TXT —
-   add it at GoDaddy. (Google can often auto-configure GoDaddy DNS via
-   "Sign in to GoDaddy" in the wizard — let it, then just check the records.)
+   add it at 123 Reg.
 3. **MX**: as the wizard shows — modern setups use a single record:
    host `@` · `smtp.google.com` · priority `1`.
 4. **SPF**: add TXT · host `@` · `v=spf1 include:_spf.google.com ~all`
    (only one SPF TXT record may exist on the domain).
 5. **DKIM**: Google Admin → Apps → Google Workspace → Gmail → *Authenticate
-   email* → generate → add the `google._domainkey` TXT at GoDaddy → *Start
+   email* → generate → add the `google._domainkey` TXT at 123 Reg → *Start
    authentication*.
 6. **DMARC**: add TXT · host `_dmarc` · value
    `v=DMARC1; p=none; rua=mailto:hello@teb-academy.com` — monitor for a couple
