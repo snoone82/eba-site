@@ -316,7 +316,7 @@ const allTools = [
   {
     label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
-    body: "The Compliance Co-Pilot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone subscription or as a fully managed white-label deployment for your entire organisation.",
+    body: "The Compliance Co-Pilot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone tool or as a fully managed white-label deployment for your entire organisation.",
     price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
     status: "live",
     href: "/ai-tools/compliance-chatbot",
@@ -330,7 +330,7 @@ const comingSoon = [
     label: "TENDER ASSISTANT · IN DEVELOPMENT",
     title: "Win more bids. Lose fewer on price.",
     body: "Analyses your bid against project requirements, flags commercial risks, and helps you price accurately — without leaving margin on the table. Built for contractors without a bid team.",
-    price: "Included in subscription / standalone pricing TBC",
+    price: "Pricing announced at release",
   },
 ];
 
@@ -562,7 +562,7 @@ export default function AIToolsPage() {
               {
                 Icon: FlaskConical, name: "COSHH Generator",
                 outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.",
-                note: "Pay per use · pricing soon",
+                note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coshh,
                 frame: { url: "eba.academy/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"] },
               },
             ].map(({ Icon, name, outcome, note, frame }) => (
@@ -751,7 +751,7 @@ export default function AIToolsPage() {
               More tools coming shortly.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", margin: "0 0 48px" }}>
-              All included in the Academy subscription. Available standalone for non-members.
+              Priced separately from the Academy — available to members and non-members alike.
             </p>
           </RevealSection>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2px" }}>

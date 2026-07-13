@@ -259,19 +259,20 @@ export const CASE_STUDIES: CaseStudy[] = [];
 // ── Business facts (do NOT invent — confirm with Mark post-meeting) ──────────
 
 /**
- * Launch pricing — single fill-in point. TODO(eba): confirm every figure at the
- * meeting, then replace the placeholders. Values quoted in the planning doc:
+ * Launch pricing — single fill-in point. CONFIRMED by Ste (12 Jul 2026):
  * Academy £999 → £1,499 · +Documents £1,299 → £1,999 · O&M £299/manual ·
- * tools £99 single / £179 all three · enterprise setup + monthly TBC.
+ * tools £99 single / £179 all three. Enterprise remains unconfirmed (gated).
+ * NOTE: the tools' billing period (one-off vs monthly) is NOT yet confirmed —
+ * prices are displayed without a period until Mark confirms. Do not add "/mo".
  */
 export const PRICING = {
-  academyFounding: "TODO(eba): Academy founding price (planned £999)",
-  academyStandard: "TODO(eba): Academy standard price (planned £1,499)",
-  academyDocsFounding: "TODO(eba): Academy+Documents founding price (planned £1,299)",
-  academyDocsStandard: "TODO(eba): Academy+Documents standard price (planned £1,999)",
-  omPerManual: "TODO(eba): O&M Compiler per-manual price (planned £299)",
-  toolSingle: "TODO(eba): single AI tool price (planned £99)",
-  toolBundle: "TODO(eba): all-three tools price (planned £179)",
+  academyFounding: "£999",
+  academyStandard: "£1,499",
+  academyDocsFounding: "£1,299",
+  academyDocsStandard: "£1,999",
+  omPerManual: "£299",
+  toolSingle: "£99",
+  toolBundle: "£179",
   enterpriseSetup: "TODO(eba): enterprise setup fee",
   enterpriseMonthly: "TODO(eba): enterprise monthly retainer",
 } as const;
@@ -303,17 +304,16 @@ export const SHOW_DOC_PRICES = false;
 export const SHOW_SECTOR_INSIGHTS = true;
 
 /**
- * Per-tool price notes ("from £99/manual", "from £49/mo", "from £99/mo")
- * came from the original site copy and CONFLICT with the confirmed planning
- * figures (O&M £299/manual · tools £99 single / £179 bundle).
- * TODO(eba): confirm per-tool pricing with Mark, then set these strings.
- * While placeholders, tool cards show "Pricing announced soon".
+ * Per-tool price notes — CONFIRMED figures (O&M £299/manual · tools £99
+ * single / £179 all three). The tools' billing period (one-off vs monthly)
+ * is NOT yet confirmed, so these strings deliberately carry no "/mo" or
+ * "one-off" wording — update once Mark confirms the billing model.
  */
 export const TOOL_PRICE_NOTES = {
-  omManual: "TODO(eba): O&M per-manual price note",
-  rams: "TODO(eba): RAMS subscription price note",
-  coPilot: "TODO(eba): Compliance Co-Pilot subscription price note",
-  coshh: "TODO(eba): COSHH price note",
+  omManual: "£299 per manual",
+  rams: "£99 · all three tools £179",
+  coPilot: "£99 · all three tools £179",
+  coshh: "£99 · all three tools £179",
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting
@@ -323,9 +323,10 @@ export const COHORT_START_DATE = "TODO(eba): founding cohort start date";
 /** Company registration number. Placeholder hides the footer reg line entirely. */
 export const COMPANY_REG = "TODO(eba): company reg";
 
-/** Academy founding-cohort pricing. Placeholder renders "Pricing announced soon". */
-export const FOUNDING_PRICE = "TODO(eba): founding price";
-export const STANDARD_PRICE = "TODO(eba): standard price";
+/** Academy founding-cohort pricing — CONFIRMED. Setting these un-gates every
+ *  price display sitewide (PRICING_ANNOUNCED reads FOUNDING_PRICE). */
+export const FOUNDING_PRICE = "£999";
+export const STANDARD_PRICE = "£1,499";
 
 /**
  * Founding-cohort counter — set in ONE place and reused everywhere.

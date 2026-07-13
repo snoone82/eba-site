@@ -438,6 +438,8 @@ const PRICING_TIERS = [
     name: "Founding Academy",
     tag: "The full curriculum, for life.",
     popular: false,
+    price: PRICING.academyFounding,
+    rises: PRICING.academyStandard,
     features: [
       "101-lesson curriculum, 10 modules",
       "Lifetime access at the founding price",
@@ -449,6 +451,8 @@ const PRICING_TIERS = [
     name: "Academy + Documents",
     tag: "Everything you need to run the business.",
     popular: true,
+    price: PRICING.academyDocsFounding,
+    rises: PRICING.academyDocsStandard,
     features: [
       "Everything in Founding Academy",
       "Full 380-document library (Word + PDF)",
@@ -457,8 +461,7 @@ const PRICING_TIERS = [
   },
 ];
 // Mentorship remains application-only via /mentorship — the founding offer is
-// the two tiers above (Academy £999 → £1,499 · +Documents £1,299 → £1,999).
-// TODO(eba): [CONFIRM] final prices with Mark.
+// the two tiers above. Prices read from PRICING in constants.ts (confirmed).
 
 export function PricingPage() {
   const border = `rgba(${NAVY_RGB},0.10)`;
@@ -494,8 +497,14 @@ export function PricingPage() {
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>{tier.name}</h3>
                 <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
                 <div style={{ marginBottom: "22px" }}>
-                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "1.6rem", color: NAVY, lineHeight: 1.1 }}>Announced soon</div>
-                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>Founding price · locked for life · rises after launch</div>
+                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "2.4rem", color: NAVY, lineHeight: 1.1 }}>
+                    {isPlaceholder(tier.price) ? "Announced soon" : tier.price}
+                  </div>
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>
+                    {isPlaceholder(tier.rises)
+                      ? "Founding price · locked for life · rises after launch"
+                      : `Founding price · locked for life · rises to ${tier.rises} after the cohort closes`}
+                  </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
                   {tier.features.map(f => (
@@ -526,14 +535,14 @@ export function PricingPage() {
               AI tools — priced separately.
             </h2>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
-              The tools are pay-per-use or subscription and are not included in Academy membership.
+              The tools are priced separately and are not included in Academy membership.
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {[
-                { name: "Single AI tool", detail: "RAMS, COSHH or Compliance Co-Pilot — one tool, one subscription", value: PRICING.toolSingle, planned: "£99" },
-                { name: "All-tools bundle", detail: "Every live tool under one subscription", value: PRICING.toolBundle, planned: "£179" },
-                { name: "O&M manual service", detail: "Per manual — compiled and returned within 24 hours", value: PRICING.omPerManual, planned: "£299" },
-              ].map(({ name, detail, value, planned }, i) => (
+                { name: "Single AI tool", detail: "RAMS, COSHH or Compliance Co-Pilot — one tool", value: PRICING.toolSingle },
+                { name: "All-tools bundle", detail: "All three tools together", value: PRICING.toolBundle },
+                { name: "O&M manual service", detail: "Per manual — compiled and returned within 24 hours", value: PRICING.omPerManual },
+              ].map(({ name, detail, value }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
                   padding: "18px 24px", borderTop: i > 0 ? `1px solid rgba(${NAVY_RGB},0.08)` : "none",
@@ -543,7 +552,6 @@ export function PricingPage() {
                     <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0, lineHeight: 1.5 }}>{detail}</p>
                   </div>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "6px 14px", borderRadius: "8px", whiteSpace: "nowrap" }}>
-                    {/* TODO(eba): [CONFIRM] planned {planned} — shows once PRICING is set */}
                     {isPlaceholder(value) ? "Pricing announced soon" : value}
                   </span>
                 </div>
@@ -564,7 +572,7 @@ export function PricingPage() {
             ))}
           </div>
           <p style={{ textAlign: "center", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
-            Founding pricing is fixed for the first cohort and rises after launch. Prices shown will be confirmed before enrolment opens. The AI tools are priced separately — pay-per-use or subscription — and are not included in Academy membership.
+            Founding pricing is fixed for the first cohort and rises after it closes. The AI tools are priced separately and are not included in Academy membership.
           </p>
         </div>
       </section>
@@ -624,7 +632,7 @@ export function FAQPage() {
     },
     {
       q: "Can I access the AI tools without joining the Academy?",
-      a: "Yes. The O&M Manual Compiler and Compliance Co-Pilot are available on a pay-per-use or subscription basis — they are not included with Academy membership. Details are on the AI Tools page.",
+      a: "Yes. The O&M Manual Compiler and Compliance Co-Pilot are priced separately — they are not included with Academy membership. Details are on the AI Tools page.",
     },
     {
       q: "What is your refund policy?",
