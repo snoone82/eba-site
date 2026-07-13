@@ -221,6 +221,15 @@ export interface Mentor { name: string; role: string; bio: string; photo?: strin
 export const LEADERSHIP_TEAM: Mentor[] = [];
 
 /**
+ * Social profiles — ONLY real, live URLs go here. Consumed by the JSON-LD
+ * sameAs block (and any future footer icons); while empty, nothing renders
+ * and no sameAs claim is made. Never list an account that doesn't exist yet.
+ * TODO(eba): add the real YouTube channel URL, then Facebook/Instagram/
+ * LinkedIn as each account goes live.
+ */
+export const SOCIAL_LINKS: string[] = [];
+
+/**
  * Accreditation & membership badges (CPD, sector bodies). Rendered ONLY when
  * this array is non-empty — we never show a badge we don't hold.
  * TODO(eba): populate when CPD accreditation is granted, e.g.

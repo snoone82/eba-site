@@ -9,6 +9,7 @@
  */
 
 import { Helmet } from "react-helmet-async";
+import { SOCIAL_LINKS } from "@/lib/constants";
 
 export const SITE_URL = "https://teb-academy.com";
 export const SITE_NAME = "The Engineering Business Academy";
@@ -130,10 +131,9 @@ export const ORGANIZATION_JSONLD = {
     "Construction compliance",
     "Decarbonisation and net zero retrofit",
   ],
-  sameAs: [
-    "https://www.linkedin.com/company/engineering-business-academy",
-    "https://www.youtube.com/@engineeringbusinessacademy",
-  ],
+  // sameAs only claims profiles that actually exist — reads SOCIAL_LINKS in
+  // constants.ts (empty until real account URLs are confirmed).
+  ...(SOCIAL_LINKS.length ? { sameAs: SOCIAL_LINKS } : {}),
 };
 
 /**
