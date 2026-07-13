@@ -364,7 +364,7 @@ export function TermsPage() {
               Our AI tools (including the O&M Manual Compiler and Compliance Co-Pilot) are provided as productivity aids. The output of these tools should be reviewed by a competent person before use. EBA does not accept liability for any errors or omissions in AI-generated content.
             </p>
             <p style={bodyText}>
-              Where an AI tool is sold on a subscription basis, it is billed at the stated interval and may be cancelled at any time. Cancellation takes effect at the end of the current billing period.
+              Subscriptions to AI tools are billed monthly and may be cancelled at any time. Cancellation takes effect at the end of the current billing period. The O&M manual service is charged per manual.
             </p>
           </LegalSection>
 

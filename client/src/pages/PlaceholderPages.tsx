@@ -535,12 +535,12 @@ export function PricingPage() {
               AI tools — priced separately.
             </h2>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
-              The tools are priced separately and are not included in Academy membership.
+              The tools are monthly subscriptions (the O&M service is pay-per-manual) and are not included in Academy membership.
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {[
-                { name: "Single AI tool", detail: "RAMS, COSHH or Compliance Co-Pilot — one tool", value: PRICING.toolSingle },
-                { name: "All-tools bundle", detail: "All three tools together", value: PRICING.toolBundle },
+                { name: "Single AI tool", detail: "RAMS, COSHH or Compliance Co-Pilot — one tool, monthly subscription", value: PRICING.toolSingle },
+                { name: "All-tools bundle", detail: "All three tools under one monthly subscription", value: PRICING.toolBundle },
                 { name: "O&M manual service", detail: "Per manual — compiled and returned within 24 hours", value: PRICING.omPerManual },
               ].map(({ name, detail, value }, i) => (
                 <div key={name} style={{
@@ -632,7 +632,7 @@ export function FAQPage() {
     },
     {
       q: "Can I access the AI tools without joining the Academy?",
-      a: "Yes. The O&M Manual Compiler and Compliance Co-Pilot are priced separately — they are not included with Academy membership. Details are on the AI Tools page.",
+      a: "Yes. The AI tools are available on a monthly subscription and the O&M Manual Compiler is pay-per-manual — they are not included with Academy membership. Details are on the AI Tools page.",
     },
     {
       q: "What is your refund policy?",

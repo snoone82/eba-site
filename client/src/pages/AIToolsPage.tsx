@@ -316,7 +316,7 @@ const allTools = [
   {
     label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
-    body: "The Compliance Co-Pilot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone tool or as a fully managed white-label deployment for your entire organisation.",
+    body: "The Compliance Co-Pilot is trained on your company's HSEQ documentation. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Available as a standalone monthly subscription or as a fully managed white-label deployment for your entire organisation.",
     price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
     status: "live",
     href: "/ai-tools/compliance-chatbot",

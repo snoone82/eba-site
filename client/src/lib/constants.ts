@@ -163,23 +163,19 @@ export const METHOD_NAME = "The Engineering Operating System";
 // ── Integrations ───────────────────────────────────────────────────────────
 
 /**
- * Live Kajabi checkout URL. Until a real URL is set, every CTA that points here
- * fails safe (disabled / "Enrolment opens soon") rather than linking to a dead URL.
- *
- * NOTE: the original Manus export hard-coded a specific Kajabi offer link in the
- * placeholder pages: "https://teba.mykajabi.com/offers/hBoDne6F/checkout".
- * If that is the real, current checkout, paste it below (or set VITE_KAJABI_CHECKOUT_URL)
- * to go live everywhere at once.
- * TODO(eba): confirm and set the live Kajabi checkout URL.
+ * Live Kajabi checkout URLs — the published founding-cohort offers on
+ * teba.mykajabi.com (created 13 Jul 2026, £999 / £1,299 GBP one-time).
+ * The standard-price offers (£1,499 / £1,999) exist as drafts in Kajabi
+ * admin, ready to swap in here when the founding cohort closes.
  */
 export const KAJABI_CHECKOUT_URL =
-  import.meta.env.VITE_KAJABI_CHECKOUT_URL || "TODO(eba): live Kajabi checkout URL";
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL ||
+  "https://teba.mykajabi.com/offers/xWR6J4tA/checkout";
 
-/** Kajabi checkout for the Academy + Documents tier. Falls back to the main
- *  checkout while unset so the tier CTA never dead-ends. */
+/** Kajabi checkout for the Academy + Documents tier. */
 export const KAJABI_CHECKOUT_URL_DOCS =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL_DOCS ||
-  "TODO(eba): Kajabi checkout URL — Academy + Documents tier";
+  "https://teba.mykajabi.com/offers/HYFbPnn9/checkout";
 
 /** Kajabi-hosted O&M manual upload/enquiry flow. While unset, the O&M CTA
  *  fails safe to the Stripe link (if set) or the internal tool page. */
@@ -259,11 +255,10 @@ export const CASE_STUDIES: CaseStudy[] = [];
 // ── Business facts (do NOT invent — confirm with Mark post-meeting) ──────────
 
 /**
- * Launch pricing — single fill-in point. CONFIRMED by Ste (12 Jul 2026):
- * Academy £999 → £1,499 · +Documents £1,299 → £1,999 · O&M £299/manual ·
- * tools £99 single / £179 all three. Enterprise remains unconfirmed (gated).
- * NOTE: the tools' billing period (one-off vs monthly) is NOT yet confirmed —
- * prices are displayed without a period until Mark confirms. Do not add "/mo".
+ * Launch pricing — single fill-in point. CONFIRMED by Ste (13 Jul 2026):
+ * Academy £999 → £1,499 · +Documents £1,299 → £1,999 · O&M £299/manual
+ * (one-off) · AI tools on MONTHLY SUBSCRIPTION at £69/mo single tool /
+ * £149/mo all three. Enterprise remains unconfirmed (gated).
  */
 export const PRICING = {
   academyFounding: "£999",
@@ -271,8 +266,8 @@ export const PRICING = {
   academyDocsFounding: "£1,299",
   academyDocsStandard: "£1,999",
   omPerManual: "£299",
-  toolSingle: "£99",
-  toolBundle: "£179",
+  toolSingle: "£69/mo",
+  toolBundle: "£149/mo",
   enterpriseSetup: "TODO(eba): enterprise setup fee",
   enterpriseMonthly: "TODO(eba): enterprise monthly retainer",
 } as const;
@@ -304,16 +299,14 @@ export const SHOW_DOC_PRICES = false;
 export const SHOW_SECTOR_INSIGHTS = true;
 
 /**
- * Per-tool price notes — CONFIRMED figures (O&M £299/manual · tools £99
- * single / £179 all three). The tools' billing period (one-off vs monthly)
- * is NOT yet confirmed, so these strings deliberately carry no "/mo" or
- * "one-off" wording — update once Mark confirms the billing model.
+ * Per-tool price notes — CONFIRMED (13 Jul 2026): O&M £299 per manual
+ * (one-off) · AI tools £69/mo per tool or £149/mo for all three.
  */
 export const TOOL_PRICE_NOTES = {
   omManual: "£299 per manual",
-  rams: "£99 · all three tools £179",
-  coPilot: "£99 · all three tools £179",
-  coshh: "£99 · all three tools £179",
+  rams: "£69/mo · all three tools £149/mo",
+  coPilot: "£69/mo · all three tools £149/mo",
+  coshh: "£69/mo · all three tools £149/mo",
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting

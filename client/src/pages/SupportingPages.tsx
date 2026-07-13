@@ -1005,7 +1005,7 @@ export function ContactPage() {
             {[
               { k: "Response time", v: "Within 2 working days" },
               { k: "Founding cohort", v: ENROL_READY ? "Enrolling now" : "Opening soon — join the waitlist" },
-              { k: "AI tools", v: "Priced separately" },
+              { k: "AI tools", v: "Monthly subscription" },
               { k: "Mentorship", v: "By application · limited places" },
             ].map(({ k, v }, i, arr) => (
               <div key={k} style={{
