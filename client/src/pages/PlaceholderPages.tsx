@@ -535,13 +535,15 @@ export function PricingPage() {
               AI tools — priced separately.
             </h2>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
-              The tools are monthly subscriptions (the O&M service is pay-per-manual) and are not included in Academy membership.
+              RAMS and COSHH are monthly subscriptions. The O&M service is compiled for you, per manual. The Compliance Co-Pilot is built for your business and priced per deployment. None are included in Academy membership.
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {[
-                { name: "Single AI tool", detail: "RAMS, COSHH or Compliance Co-Pilot — one tool, monthly subscription", value: PRICING.toolSingle },
-                { name: "All-tools bundle", detail: "All three tools under one monthly subscription", value: PRICING.toolBundle },
-                { name: "O&M manual service", detail: "Per manual — compiled and returned within 24 hours", value: PRICING.omPerManual },
+                { name: "RAMS Generator", detail: "Monthly subscription", value: PRICING.ramsMonthly },
+                { name: "COSHH Generator", detail: "Monthly subscription", value: PRICING.coshhMonthly },
+                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription", value: PRICING.toolsBothMonthly },
+                { name: "O&M manual service", detail: "Compiled for you — per manual, returned within 24 hours", value: PRICING.omPerManual },
+                { name: "Compliance Co-Pilot", detail: "Built for your business — trained on your documents, hosted and maintained", value: "Priced per deployment" },
               ].map(({ name, detail, value }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
@@ -632,7 +634,7 @@ export function FAQPage() {
     },
     {
       q: "Can I access the AI tools without joining the Academy?",
-      a: "Yes. The AI tools are available on a monthly subscription and the O&M Manual Compiler is pay-per-manual — they are not included with Academy membership. Details are on the AI Tools page.",
+      a: "Yes. RAMS and COSHH are available on a monthly subscription, the O&M manual service is compiled for you per manual, and the Compliance Co-Pilot is built for your business and priced per deployment — none are included with Academy membership. Details are on the AI Tools page.",
     },
     {
       q: "What is your refund policy?",

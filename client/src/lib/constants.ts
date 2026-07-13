@@ -257,8 +257,14 @@ export const CASE_STUDIES: CaseStudy[] = [];
 /**
  * Launch pricing — single fill-in point. CONFIRMED by Ste (13 Jul 2026):
  * Academy £999 → £1,499 · +Documents £1,299 → £1,999 · O&M £299/manual
- * (one-off) · AI tools on MONTHLY SUBSCRIPTION at £69/mo single tool /
- * £149/mo all three. Enterprise remains unconfirmed (gated).
+ * (a compiled-FOR-you service, NOT part of any tool subscription).
+ *
+ * RAMS and COSHH will be monthly subscriptions — per-tool and both-tools
+ * prices to be chosen after market research (gated until then).
+ * The Compliance Co-Pilot is a BUILT-FOR-you deployment (trained on each
+ * customer's documents, hosted monthly) — setup fee + monthly subscription
+ * to be chosen after research; never show a self-serve price for it.
+ * Enterprise remains unconfirmed (gated).
  */
 export const PRICING = {
   academyFounding: "£999",
@@ -266,8 +272,11 @@ export const PRICING = {
   academyDocsFounding: "£1,299",
   academyDocsStandard: "£1,999",
   omPerManual: "£299",
-  toolSingle: "£69/mo",
-  toolBundle: "£149/mo",
+  ramsMonthly: "TODO(eba): RAMS monthly price — awaiting decision",
+  coshhMonthly: "TODO(eba): COSHH monthly price — awaiting decision",
+  toolsBothMonthly: "TODO(eba): RAMS+COSHH both-tools monthly price — awaiting decision",
+  coPilotSetup: "TODO(eba): Co-Pilot founder setup fee — awaiting decision",
+  coPilotMonthly: "TODO(eba): Co-Pilot monthly subscription — awaiting decision",
   enterpriseSetup: "TODO(eba): enterprise setup fee",
   enterpriseMonthly: "TODO(eba): enterprise monthly retainer",
 } as const;
@@ -299,14 +308,16 @@ export const SHOW_DOC_PRICES = false;
 export const SHOW_SECTOR_INSIGHTS = true;
 
 /**
- * Per-tool price notes — CONFIRMED (13 Jul 2026): O&M £299 per manual
- * (one-off) · AI tools £69/mo per tool or £149/mo for all three.
+ * Per-tool price notes. O&M £299/manual is confirmed (compiled-for-you
+ * service). RAMS/COSHH monthly prices are gated pending research + Ste's
+ * decision. The Co-Pilot note is deliberately unpriced — it is a per-customer
+ * deployment (setup + monthly), never a self-serve subscription price.
  */
 export const TOOL_PRICE_NOTES = {
-  omManual: "£299 per manual",
-  rams: "£69/mo · all three tools £149/mo",
-  coPilot: "£69/mo · all three tools £149/mo",
-  coshh: "£69/mo · all three tools £149/mo",
+  omManual: "£299 per manual · compiled for you",
+  rams: "TODO(eba): RAMS monthly price — awaiting decision",
+  coPilot: "Built for your business · priced per deployment",
+  coshh: "TODO(eba): COSHH monthly price — awaiting decision",
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting
