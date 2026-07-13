@@ -29,16 +29,69 @@ required — every integration falls back to a safe placeholder until you wire i
    `/ai-tools/om-manual`, …) resolve to `index.html` instead of 404-ing, and
    serves any prerendered static file first (see below).
 
-## Pointing eba.academy at it
+## Pointing eba.academy at it (domain is at 123 Reg)
 
-1. Vercel project → **Settings → Domains → Add** → `eba.academy` (and
-   `www.eba.academy`).
-2. At your DNS provider, add the records Vercel shows — typically:
-   - `A` record for the apex `eba.academy` → `76.76.21.21`, **or** a Vercel
-     `CNAME`/`ALIAS` if your DNS supports apex CNAME.
-   - `CNAME` for `www` → `cname.vercel-dns.com`.
-3. Vercel provisions HTTPS automatically. The canonical domain everywhere in the
-   code is already `https://eba.academy`.
+Pre-flight (found via live DNS, 13 Jul 2026): `eba.academy` + `www` currently
+point at a holding page (`185.179.91.174`); nameservers `ns53.io`/`ns53.be`;
+no MX records; a `v=spf1 -all` TXT says "this domain sends no email" — it must
+be replaced during email setup (below) or all outbound mail will bounce.
+
+1. **Vercel** ([vercel.com](https://vercel.com) → the eba-site project →
+   **Settings → Domains**):
+   - **Add** `eba.academy` — assign to Production.
+   - **Add** `www.eba.academy` — choose **Redirect to eba.academy** (308).
+   - Vercel will show the DNS records it needs (step 2) and verify them
+     automatically once they exist.
+2. **123 Reg** (Control Panel → **Domain names** → `eba.academy` → **Manage**
+   → **Manage DNS** → *Advanced DNS*):
+   - **Delete** the existing `A` record for `@` (points at the holding page).
+   - **Delete** any `A`/`CNAME` record for `www` doing the same.
+   - **Add** `A` · host `@` · value `76.76.21.21`.
+   - **Add** `CNAME` · host `www` · value `cname.vercel-dns.com`.
+   - Leave the nameservers alone — records-only is all Vercel needs.
+3. **Check the Production Branch** (Vercel → Settings → Git → Production
+   Branch): it must be the branch this site actually lives on, otherwise the
+   domain will serve the wrong build.
+4. Wait for DNS (123 Reg TTL is typically 1 hour; often minutes). Vercel
+   provisions HTTPS automatically. The canonical domain everywhere in the code
+   is already `https://eba.academy`, and the Plausible analytics tag already
+   covers both `eba.academy` and `eba-site.vercel.app`, so stats survive the
+   move.
+5. Afterwards: submit `https://eba.academy/sitemap.xml` in Google Search
+   Console (verify the domain there with a TXT record from the same 123 Reg
+   DNS panel).
+
+## Email on eba.academy (none exists yet)
+
+The site's legal pages promise `hello@eba.academy` — that mailbox must be real
+and monitored before launch. Recommended: **Google Workspace Business Starter**
+(≈ £5.75 + VAT per user/month) bought direct from
+[workspace.google.com](https://workspace.google.com) — best deliverability and
+the DKIM/SPF story Klaviyo/Kajabi sending will later build on. (Zoho Mail's
+free tier works if budget is zero, same DNS pattern.)
+
+Setup, all DNS at the same 123 Reg panel:
+
+1. Sign up at workspace.google.com with domain `eba.academy`; create users
+   (e.g. `mark@`, `ste@`) and the shared `hello@` (a user or a free alias).
+2. **Verify the domain**: Google gives a `google-site-verification=…` TXT —
+   add it at 123 Reg.
+3. **MX**: add what the wizard shows — modern setups use a single record:
+   host `@` · `smtp.google.com` · priority `1`.
+4. **SPF**: **delete** the `v=spf1 -all` TXT record, add
+   `v=spf1 include:_spf.google.com ~all`. (Skipping the delete leaves two SPF
+   records — an invalid state that hurts deliverability.)
+5. **DKIM**: Google Admin → Apps → Google Workspace → Gmail → *Authenticate
+   email* → generate → add the `google._domainkey` TXT at 123 Reg → *Start
+   authentication*.
+6. **DMARC**: add TXT · host `_dmarc` · value
+   `v=DMARC1; p=none; rua=mailto:hello@eba.academy` — monitor for a couple of
+   weeks, then tighten `p=none` → `p=quarantine`.
+7. Free aliases as needed: `support@`, `enquiries@` → `hello@`.
+
+Later (separate DNS entries, do not reuse the Google ones): Klaviyo's dedicated
+sending domain and Kajabi's custom email domain each add their own CNAME/DKIM
+records when those senders go live.
 
 ## SEO prerendering (optional, recommended after the demo)
 
