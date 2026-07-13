@@ -29,64 +29,49 @@ required — every integration falls back to a safe placeholder until you wire i
    `/ai-tools/om-manual`, …) resolve to `index.html` instead of 404-ing, and
    serves any prerendered static file first (see below).
 
-## Pointing eba.academy at it (domain is at 123 Reg)
+## Custom domain: teb-academy.com — ALREADY CONNECTED
 
-Pre-flight (found via live DNS, 13 Jul 2026): `eba.academy` + `www` currently
-point at a holding page (`185.179.91.174`); nameservers `ns53.io`/`ns53.be`;
-no MX records; a `v=spf1 -all` TXT says "this domain sends no email" — it must
-be replaced during email setup (below) or all outbound mail will bounce.
+Verified live 13 Jul 2026: `teb-academy.com` serves the site from Vercel
+(A `@` → `216.198.79.1`, CNAME `www` → apex) with valid HTTPS. The domain's
+DNS is managed at **GoDaddy** (nameservers `ns25/ns26.domaincontrol.com`) —
+NOT at 123 Reg, and not `eba.academy` (a different, unused domain). All
+canonical URLs, sitemap, robots and the Plausible `data-domain` in this repo
+use `https://teb-academy.com`.
 
-1. **Vercel** ([vercel.com](https://vercel.com) → the eba-site project →
-   **Settings → Domains**):
-   - **Add** `eba.academy` — assign to Production.
-   - **Add** `www.eba.academy` — choose **Redirect to eba.academy** (308).
-   - Vercel will show the DNS records it needs (step 2) and verify them
-     automatically once they exist.
-2. **123 Reg** (Control Panel → **Domain names** → `eba.academy` → **Manage**
-   → **Manage DNS** → *Advanced DNS*):
-   - **Delete** the existing `A` record for `@` (points at the holding page).
-   - **Delete** any `A`/`CNAME` record for `www` doing the same.
-   - **Add** `A` · host `@` · value `76.76.21.21`.
-   - **Add** `CNAME` · host `www` · value `cname.vercel-dns.com`.
-   - Leave the nameservers alone — records-only is all Vercel needs.
-3. **Check the Production Branch** (Vercel → Settings → Git → Production
-   Branch): it must be the branch this site actually lives on, otherwise the
-   domain will serve the wrong build.
-4. Wait for DNS (123 Reg TTL is typically 1 hour; often minutes). Vercel
-   provisions HTTPS automatically. The canonical domain everywhere in the code
-   is already `https://eba.academy`, and the Plausible analytics tag already
-   covers both `eba.academy` and `eba-site.vercel.app`, so stats survive the
-   move.
-5. Afterwards: submit `https://eba.academy/sitemap.xml` in Google Search
-   Console (verify the domain there with a TXT record from the same 123 Reg
-   DNS panel).
+Remaining domain to-dos:
+- Submit `https://teb-academy.com/sitemap.xml` in Google Search Console
+  (verify ownership with a TXT record in the GoDaddy DNS panel).
+- Plausible: make sure the site in plausible.io is registered as
+  `teb-academy.com` so the analytics tag matches.
 
-## Email on eba.academy (none exists yet)
+## Email on teb-academy.com (none exists yet)
 
-The site's legal pages promise `hello@eba.academy` — that mailbox must be real
-and monitored before launch. Recommended: **Google Workspace Business Starter**
-(≈ £5.75 + VAT per user/month) bought direct from
+Verified 13 Jul 2026: the domain has **no MX records** — no email exists.
+The site's legal pages promise `hello@teb-academy.com`; that mailbox must be
+real and monitored before launch. Recommended: **Google Workspace Business
+Starter** (≈ £5.75 + VAT per user/month) from
 [workspace.google.com](https://workspace.google.com) — best deliverability and
-the DKIM/SPF story Klaviyo/Kajabi sending will later build on. (Zoho Mail's
-free tier works if budget is zero, same DNS pattern.)
+the DKIM/SPF foundation Klaviyo/Kajabi sending will later build on. (Zoho
+Mail's free tier works if budget is zero, same DNS pattern.)
 
-Setup, all DNS at the same 123 Reg panel:
+All DNS records below go in **GoDaddy** (godaddy.com → My Products →
+teb-academy.com → DNS):
 
-1. Sign up at workspace.google.com with domain `eba.academy`; create users
+1. Sign up at workspace.google.com with domain `teb-academy.com`; create users
    (e.g. `mark@`, `ste@`) and the shared `hello@` (a user or a free alias).
 2. **Verify the domain**: Google gives a `google-site-verification=…` TXT —
-   add it at 123 Reg.
-3. **MX**: add what the wizard shows — modern setups use a single record:
+   add it at GoDaddy. (Google can often auto-configure GoDaddy DNS via
+   "Sign in to GoDaddy" in the wizard — let it, then just check the records.)
+3. **MX**: as the wizard shows — modern setups use a single record:
    host `@` · `smtp.google.com` · priority `1`.
-4. **SPF**: **delete** the `v=spf1 -all` TXT record, add
-   `v=spf1 include:_spf.google.com ~all`. (Skipping the delete leaves two SPF
-   records — an invalid state that hurts deliverability.)
+4. **SPF**: add TXT · host `@` · `v=spf1 include:_spf.google.com ~all`
+   (only one SPF TXT record may exist on the domain).
 5. **DKIM**: Google Admin → Apps → Google Workspace → Gmail → *Authenticate
-   email* → generate → add the `google._domainkey` TXT at 123 Reg → *Start
+   email* → generate → add the `google._domainkey` TXT at GoDaddy → *Start
    authentication*.
 6. **DMARC**: add TXT · host `_dmarc` · value
-   `v=DMARC1; p=none; rua=mailto:hello@eba.academy` — monitor for a couple of
-   weeks, then tighten `p=none` → `p=quarantine`.
+   `v=DMARC1; p=none; rua=mailto:hello@teb-academy.com` — monitor for a couple
+   of weeks, then tighten `p=none` → `p=quarantine`.
 7. Free aliases as needed: `support@`, `enquiries@` → `hello@`.
 
 Later (separate DNS entries, do not reuse the Google ones): Klaviyo's dedicated

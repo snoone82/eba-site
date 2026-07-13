@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://eba.academy/sitemap.xml
+Sitemap: https://teb-academy.com/sitemap.xml

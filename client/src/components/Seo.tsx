@@ -10,10 +10,10 @@
 
 import { Helmet } from "react-helmet-async";
 
-export const SITE_URL = "https://eba.academy";
+export const SITE_URL = "https://teb-academy.com";
 export const SITE_NAME = "The Engineering Business Academy";
 // On-brand 1200×630 og-image lives at client/public/og-image.png (served at /og-image.png).
-// This is an absolute eba.academy URL, so social link previews resolve once the custom
+// This is an absolute teb-academy.com URL, so social link previews resolve once the custom
 // domain is connected. TODO(eba): swap in a richer photo/hero version if desired.
 export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
 

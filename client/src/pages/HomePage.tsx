@@ -751,7 +751,7 @@ export default function HomePage() {
             </RevealSection>
             <RevealSection>
               <ProductFrame
-                url="eba.academy/ai-tools/om-manual"
+                url="teb-academy.com/ai-tools/om-manual"
                 docTitle="O&M Manual — Section 4: Mechanical Services"
                 docMeta="Project ref · Rev A · CDM 2015 structured"
                 lines={["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"]}

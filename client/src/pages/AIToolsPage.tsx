@@ -127,7 +127,7 @@ function OmManualDemo() {
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
           <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
-            eba.academy/ai-tools/om-manual
+            teb-academy.com/ai-tools/om-manual
           </span>
         </div>
       </div>
@@ -226,7 +226,7 @@ function ComplianceChatDemo() {
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
           <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
-            eba.academy/ai-tools/compliance-chat
+            teb-academy.com/ai-tools/compliance-chat
           </span>
         </div>
       </div>
@@ -545,25 +545,25 @@ export default function AIToolsPage() {
                 Icon: FileText, name: "O&M Manual Compiler",
                 outcome: "A client-ready, CDM-structured O&M manual returned within 24 hours — from your project data.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
-                frame: { url: "eba.academy/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"] },
+                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"] },
               },
               {
                 Icon: ShieldCheck, name: "RAMS Generator",
                 outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.rams) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.rams,
-                frame: { url: "eba.academy/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"] },
+                frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"] },
               },
               {
                 Icon: MessageSquareText, name: "Compliance Co-Pilot",
                 outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Built for you · priced per deployment" : TOOL_PRICE_NOTES.coPilot,
-                frame: { url: "eba.academy/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"] },
+                frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"] },
               },
               {
                 Icon: FlaskConical, name: "COSHH Generator",
                 outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.coshh,
-                frame: { url: "eba.academy/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"] },
+                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"] },
               },
             ].map(({ Icon, name, outcome, note, frame }) => (
               <div key={name} className="eba-bento-card" style={{

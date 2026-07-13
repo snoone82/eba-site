@@ -19,7 +19,7 @@ export function ProductFrame({
   docMeta,
   lines,
 }: {
-  /** Address-bar text, e.g. "eba.academy/ai-tools/om-manual" */
+  /** Address-bar text, e.g. "teb-academy.com/ai-tools/om-manual" */
   url: string;
   /** Mock document header, e.g. "O&M Manual — Section 4: Mechanical Services" */
   docTitle: string;

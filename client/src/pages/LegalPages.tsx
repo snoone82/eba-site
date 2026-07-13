@@ -110,7 +110,7 @@ const bodyText: React.CSSProperties = {
 
 export function PrivacyPolicyPage() {
   {/* TODO(eba): legal review before launch — this policy is a working draft. */}
-  {/* TODO(eba): confirm hello@eba.academy is a live, monitored mailbox. */}
+  {/* TODO(eba): confirm hello@teb-academy.com is a live, monitored mailbox. */}
   const isMobile = useIsMobile();
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
@@ -147,7 +147,7 @@ export function PrivacyPolicyPage() {
               The Engineering Business Academy ("EBA", "we", "us", "our") is operated by The Engineering Business Academy Ltd. Company registration number: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}. Registered in England and Wales.
             </p>
             <p style={bodyText}>
-              We are the data controller for the personal data you provide to us when using this website and our services. If you have any questions about this policy, please contact us at <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>.
+              We are the data controller for the personal data you provide to us when using this website and our services. If you have any questions about this policy, please contact us at <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>.
             </p>
           </LegalSection>
 
@@ -245,7 +245,7 @@ export function PrivacyPolicyPage() {
               <li style={{ marginBottom: "8px" }}>Rights relating to automated decision-making and profiling</li>
             </ul>
             <p style={bodyText}>
-              To exercise any of these rights, please contact us at <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>. You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" style={{ color: RUST }}>ico.org.uk</a>.
+              To exercise any of these rights, please contact us at <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>. You also have the right to lodge a complaint with the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk" target="_blank" rel="noopener noreferrer" style={{ color: RUST }}>ico.org.uk</a>.
             </p>
           </LegalSection>
 
@@ -257,7 +257,7 @@ export function PrivacyPolicyPage() {
 
           <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid ${RUST}`, marginTop: "40px" }}>
             <p style={{ ...bodyText, margin: 0 }}>
-              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>
+              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>
             </p>
           </div>
         </div>
@@ -307,7 +307,7 @@ export function TermsPage() {
 
           <LegalSection title="1. About these terms">
             <p style={bodyText}>
-              These Terms and Conditions ("Terms") govern your use of the website at eba.academy and any products or services offered by The Engineering Business Academy Ltd ("EBA", "we", "us", "our"), Company Reg: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}, registered in England and Wales.
+              These Terms and Conditions ("Terms") govern your use of the website at teb-academy.com and any products or services offered by The Engineering Business Academy Ltd ("EBA", "we", "us", "our"), Company Reg: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}, registered in England and Wales.
             </p>
             <p style={bodyText}>
               By accessing our website or purchasing our products, you agree to be bound by these Terms. Please read them carefully. If you do not agree, you must not use our website or services.
@@ -391,7 +391,7 @@ export function TermsPage() {
 
           <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid ${RUST}`, marginTop: "40px" }}>
             <p style={{ ...bodyText, margin: 0 }}>
-              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@eba.academy" style={{ color: RUST }}>hello@eba.academy</a>
+              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>
             </p>
           </div>
         </div>
