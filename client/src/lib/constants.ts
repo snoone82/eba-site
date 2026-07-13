@@ -224,12 +224,13 @@ export const LEADERSHIP_TEAM: Mentor[] = [];
  * Social profiles — ONLY real, live URLs go here. Consumed by the JSON-LD
  * sameAs block (and any future footer icons); while empty, nothing renders
  * and no sameAs claim is made. Never list an account that doesn't exist yet.
- * TODO(eba): swap the Facebook URL for facebook.com/<username> once the
- * page's username is claimed; add the real YouTube channel URL and
- * Instagram/LinkedIn as each account goes live.
+ * All three confirmed live on @engineeringbusinessacademy (13 Jul 2026).
+ * TODO(eba): add LinkedIn here if/when a company page goes live.
  */
 export const SOCIAL_LINKS: string[] = [
-  "https://www.facebook.com/profile.php?id=61591716428442",
+  "https://www.facebook.com/engineeringbusinessacademy",
+  "https://www.instagram.com/engineeringbusinessacademy",
+  "https://www.youtube.com/@engineeringbusinessacademy",
 ];
 
 /**
