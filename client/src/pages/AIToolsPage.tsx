@@ -316,7 +316,7 @@ const allTools = [
   {
     label: "COMPLIANCE CO-PILOT",
     title: "Your company's safety knowledge, on demand.",
-    body: "The Compliance Co-Pilot is built for your business: we take your company's HSEQ documentation, train the system on it, customise it to your way of working and host it for you. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Priced per deployment: a one-off setup plus a monthly subscription.",
+    body: "The Compliance Co-Pilot is built for your business: we take your company's HSEQ documentation, train the system on it, customise it to your way of working and host it for you. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Founder pricing: £499 setup plus £149 a month, rising to £1,999 setup plus £199 a month after the founding window.",
     price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
     status: "live",
     href: "/ai-tools/compliance-chatbot",

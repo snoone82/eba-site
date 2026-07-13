@@ -570,6 +570,7 @@ export default function AcademyPage() {
                   popular: false,
                   includes: [
                     "Full 101-lesson curriculum",
+                    "Toolbox Talk Generator included",
                     "Lifetime access",
                     "All future curriculum updates",
                     "Founding cohort group session with Mark",

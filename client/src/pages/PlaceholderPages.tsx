@@ -442,6 +442,7 @@ const PRICING_TIERS = [
     rises: PRICING.academyStandard,
     features: [
       "101-lesson curriculum, 10 modules",
+      "Toolbox Talk Generator included",
       "Lifetime access at the founding price",
       "All future updates included",
       "Founding group session with Mark",
@@ -535,15 +536,15 @@ export function PricingPage() {
               AI tools — priced separately.
             </h2>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
-              RAMS and COSHH are monthly subscriptions. The O&M service is compiled for you, per manual. The Compliance Co-Pilot is built for your business and priced per deployment. None are included in Academy membership.
+              RAMS and COSHH are monthly subscriptions. The O&M service is compiled for you, per manual. The Compliance Co-Pilot is built for your business and priced per deployment. None are included in Academy membership — though every Academy enrolment includes the Toolbox Talk Generator.
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {[
-                { name: "RAMS Generator", detail: "Monthly subscription", value: PRICING.ramsMonthly },
-                { name: "COSHH Generator", detail: "Monthly subscription", value: PRICING.coshhMonthly },
-                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription", value: PRICING.toolsBothMonthly },
+                { name: "RAMS Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.ramsMonthlyStandard}`, value: PRICING.ramsMonthly },
+                { name: "COSHH Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.coshhMonthlyStandard}`, value: PRICING.coshhMonthly },
+                { name: "RAMS + COSHH bundle", detail: `Both tools under one monthly subscription — founder price, rises to ${PRICING.toolsBothMonthlyStandard}`, value: PRICING.toolsBothMonthly },
                 { name: "O&M manual service", detail: "Compiled for you — per manual, returned within 24 hours", value: PRICING.omPerManual },
-                { name: "Compliance Co-Pilot", detail: "Built for your business — trained on your documents, hosted and maintained", value: "Priced per deployment" },
+                { name: "Compliance Co-Pilot", detail: `Built for your business — trained on your documents, hosted and maintained. Founder price; rises to ${PRICING.coPilotSetupStandard} + ${PRICING.coPilotMonthlyStandard}`, value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly}` },
               ].map(({ name, detail, value }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
@@ -634,7 +635,7 @@ export function FAQPage() {
     },
     {
       q: "Can I access the AI tools without joining the Academy?",
-      a: "Yes. RAMS and COSHH are available on a monthly subscription, the O&M manual service is compiled for you per manual, and the Compliance Co-Pilot is built for your business and priced per deployment — none are included with Academy membership. Details are on the AI Tools page.",
+      a: "Yes. RAMS and COSHH are available on a monthly subscription, the O&M manual service is compiled for you per manual, and the Compliance Co-Pilot is built for your business and priced per deployment — none are included with Academy membership. The exception is the Toolbox Talk Generator, which is included with every Academy enrolment. Details are on the AI Tools page.",
     },
     {
       q: "What is your refund policy?",
