@@ -224,10 +224,13 @@ export const LEADERSHIP_TEAM: Mentor[] = [];
  * Social profiles — ONLY real, live URLs go here. Consumed by the JSON-LD
  * sameAs block (and any future footer icons); while empty, nothing renders
  * and no sameAs claim is made. Never list an account that doesn't exist yet.
- * TODO(eba): add the real YouTube channel URL, then Facebook/Instagram/
- * LinkedIn as each account goes live.
+ * TODO(eba): swap the Facebook URL for facebook.com/<username> once the
+ * page's username is claimed; add the real YouTube channel URL and
+ * Instagram/LinkedIn as each account goes live.
  */
-export const SOCIAL_LINKS: string[] = [];
+export const SOCIAL_LINKS: string[] = [
+  "https://www.facebook.com/profile.php?id=61591716428442",
+];
 
 /**
  * Accreditation & membership badges (CPD, sector bodies). Rendered ONLY when
