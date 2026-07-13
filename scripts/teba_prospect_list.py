@@ -89,7 +89,16 @@ ESTABLISHED_YEARS = 5
 # Narrow by LOCATION or by incorporation date window to get full coverage.
 MAX_COMPANIES = 2000
 
-OUTPUT_CSV = "teba_prospects.csv"
+# TRANCHE 2 SETTINGS: skip past the first 2,000 search results, and skip any
+# company already present in a previous output (search ordering can shift
+# between runs, so both guards are needed).
+START_INDEX = 2000
+EXISTING_CSVS = [
+    "teba_prospects.csv",                     # tranche 1, if in this folder
+    "data/prospects/teba_prospects_master_2026-07-12.csv",  # repo copy
+]
+
+OUTPUT_CSV = "teba_prospects_tranche2.csv"
 CHECKPOINT = "checkpoint.json"
 
 # Seconds between requests. The limit is 600 req / 5 min (= 2.0 req/sec
@@ -186,7 +195,7 @@ def search_companies():
     print(f"Searching SIC {', '.join(SIC_CODES)}"
           f"{' in ' + LOCATION if LOCATION else ' (UK-wide)'}...")
 
-    hits, start = [], 0
+    hits, start = [], START_INDEX
     page_size = 100
 
     while len(hits) < MAX_COMPANIES:
@@ -296,8 +305,19 @@ def main():
         done = json.loads(Path(CHECKPOINT).read_text())
         print(f"Resuming — {len(done)} companies already enriched.\n")
 
+    # Skip companies already captured in earlier tranches.
+    already = set()
+    for prev in EXISTING_CSVS:
+        if Path(prev).exists():
+            with open(prev, newline="", encoding="utf-8") as f:
+                for row in csv.DictReader(f):
+                    already.add(row.get("company_number", ""))
+    if already:
+        print(f"Loaded {len(already)} previously captured company numbers — will skip.\n")
+
     hits, established_before = search_companies()
-    print(f"\nFound {len(hits)} active companies. Enriching...\n")
+    hits = [h for h in hits if h.get("company_number") not in already]
+    print(f"\nFound {len(hits)} NEW active companies after dedupe. Enriching...\n")
 
     rows = []
     for i, hit in enumerate(hits, 1):
