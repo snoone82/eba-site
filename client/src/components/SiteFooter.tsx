@@ -6,10 +6,22 @@
 import { Link } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { useIsMobile } from "@/hooks/useMobile";
+import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import {
   DARK_GRADIENT, RUST, RUST_RGB, CREAM_RGB, IS_VIVID, COMPANY_REG, isPlaceholder,
-  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS, TAGLINE,
+  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS, TAGLINE, SOCIAL_LINKS,
 } from "@/lib/constants";
+
+// Icon + accessible label per platform, detected from the URL. Renders only
+// for links present in SOCIAL_LINKS — never an icon for an account that
+// doesn't exist.
+function socialMeta(url: string) {
+  if (url.includes("facebook.com")) return { Icon: Facebook, label: "Facebook" };
+  if (url.includes("instagram.com")) return { Icon: Instagram, label: "Instagram" };
+  if (url.includes("youtube.com")) return { Icon: Youtube, label: "YouTube" };
+  if (url.includes("linkedin.com")) return { Icon: Linkedin, label: "LinkedIn" };
+  return null;
+}
 
 // Per Mark's review: the footer must give a complete route around the site —
 // Explore mirrors the top navigation (incl. Documents and Mentorship), and
@@ -72,6 +84,31 @@ export function SiteFooter() {
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: 0, maxWidth: "300px", lineHeight: 1.5 }}>
               {TAGLINE}
             </p>
+            {/* Social icons — click-through only (no embedded feeds); renders
+                solely from SOCIAL_LINKS so we never link a dead account. */}
+            {SOCIAL_LINKS.length > 0 && (
+              <div style={{ display: "flex", gap: "14px", marginTop: "20px" }}>
+                {SOCIAL_LINKS.map(url => {
+                  const meta = socialMeta(url);
+                  if (!meta) return null;
+                  const { Icon, label } = meta;
+                  return (
+                    <a key={url} href={url} target="_blank" rel="noopener noreferrer" aria-label={`EBA on ${label}`}
+                      style={{
+                        width: "38px", height: "38px", borderRadius: "10px",
+                        border: "1px solid rgba(255,255,255,0.18)",
+                        display: "inline-flex", alignItems: "center", justifyContent: "center",
+                        color: "rgba(255,255,255,0.75)", transition: "color 0.2s, border-color 0.2s",
+                      }}
+                      onMouseEnter={e => { e.currentTarget.style.color = "#fff"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.45)"; }}
+                      onMouseLeave={e => { e.currentTarget.style.color = "rgba(255,255,255,0.75)"; e.currentTarget.style.borderColor = "rgba(255,255,255,0.18)"; }}
+                    >
+                      <Icon size={18} strokeWidth={1.8} />
+                    </a>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* Link columns */}
