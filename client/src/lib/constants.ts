@@ -2,13 +2,18 @@
  * EBA — The Engineering Business Academy
  * Single source of truth for brand colours, business facts and integrations.
  *
- * APPROVED PALETTE (Mark, from the brand asset pack / mockup A):
- * black/near-black wrapper + white content sections, coral Academy accent,
- * sky Tools accent, six-stop brand gradient as HAIRLINE RULES ONLY.
+ * APPROVED PALETTE — "Drawing Office II" (approved by Ste, 14 Jul 2026):
+ * black/near-black wrapper + white content sections, BRASS Academy accent,
+ * VERDIGRIS Tools accent, six-stop brand gradient as HAIRLINE RULES ONLY
+ * (the gradient is locked to the logo and did not change).
  *
  * WAYFINDING RULE: Academy/cohort/Mark/mentorship/story sections take the
- * CORAL accent; AI-tools/product/pricing/enterprise sections take the SKY
- * accent. Never both accents on one element.
+ * BRASS accent; AI-tools/product/pricing/enterprise sections take the
+ * VERDIGRIS accent. Never both accents on one element. BRASS is the single
+ * CTA/action colour site-wide — verdigris never carries a primary CTA.
+ *
+ * NOTE: token names coral/sky/RUST/COBALT are historical — kept to avoid a
+ * thousand-line rename. Their VALUES are brass/verdigris.
  */
 
 export const COLORS = {
@@ -16,8 +21,8 @@ export const COLORS = {
   inkDeep:"#101010",  // bottom stop of the dark-section gradient
   white:  "#FFFFFF",  // content sections, cards
   paper:  "#F6F5F3",  // alternating light sections
-  coral:  "#FF5B6E",  // ACADEMY accent — fills/chips/graphics + text on black only
-  sky:    "#3AA0FF",  // TOOLS accent — fills/frames/graphics + text on black only
+  coral:  "#C9982E",  // BRASS — Academy accent: fills/chips/graphics + text on black only
+  sky:    "#2BC7B5",  // VERDIGRIS — Tools accent: fills/frames/graphics + text on black only
   sunset: "#FF9F1C",  // USAGE CAP: max ONE element per page (highlight stat / live badge)
   lime:   "#D4FF00",  // USAGE CAP: gradient stop ONLY — never standalone
   mint:   "#2ECC71",  // USAGE CAP: "live" markers only
@@ -43,31 +48,33 @@ export const OAT = "#ECEBE8";            // secondary neutral surface (derived f
 export const AMBER = COLORS.sunset;      // USAGE CAP: max one element per page
 
 /**
- * Academy accent. AA rule (enforced site-wide): pure CORAL is NEVER text on
- * white/paper (3.0:1 ✗). As text on light use RUST (#C92B42, 5.4:1 ✓); as
- * text on black use RUST_ON_DARK (#FF5B6E, 6.6:1 ✓). White text on RUST
- * fills passes (5.4:1 ✓); black text on CORAL fills passes (6.6:1 ✓).
+ * Academy accent (BRASS). AA rule (enforced site-wide): pure brass is NEVER
+ * text on white/paper (~2.6:1 ✗). As text on light use RUST (#7F611B,
+ * 5.79:1 white / 5.31:1 paper ✓); as text on black use RUST_ON_DARK
+ * (#C9982E, 7.55:1 ✓). White text on RUST fills passes (5.79:1 ✓);
+ * near-black text on BRASS fills passes (7.55:1 ✓).
  */
 export const CORAL = COLORS.coral;
-export const RUST = "#C92B42";           // coral, text-safe on white/paper
+export const RUST = "#7F611B";           // brass dark — text-safe on white/paper
 export const RUST_ON_DARK = COLORS.coral;
 
 /**
- * Tools accent. Same AA rule: pure SKY is NEVER text on white/paper
- * (2.7:1 ✗). As text on light use COBALT (#176BC4, 5.3:1 ✓); as text on
- * black use COBALT_ON_DARK (#3AA0FF, 7.2:1 ✓). White on COBALT fills ✓;
- * black on SKY fills ✓.
+ * Tools accent (VERDIGRIS). Same AA rule: pure verdigris is NEVER text on
+ * white/paper (✗), and white text on bright verdigris FAILS badly (2.11:1)
+ * — never pair them. As text on light use COBALT (#0C6B5F, 6.40:1 white /
+ * 5.87:1 paper ✓); as text on black use COBALT_ON_DARK (#2BC7B5, 9.37:1 ✓).
+ * White on COBALT fills ✓ (6.40:1); near-black on VERDIGRIS fills ✓ (9.37:1).
  */
 export const SKY = COLORS.sky;
-export const COBALT = "#176BC4";         // sky, text-safe on white/paper
+export const COBALT = "#0C6B5F";         // verdigris dark — text-safe on white/paper
 export const COBALT_ON_DARK = COLORS.sky;
 
 // RGB triplets for inline rgba(...) tints (translucent fills/borders only —
 // tints come from the BRIGHT accents so washes stay on-brand).
 export const NAVY_RGB = "10,10,10";
 export const CREAM_RGB = "246,245,243";
-export const RUST_RGB = "255,91,110";    // coral tint base
-export const COBALT_RGB = "58,160,255";  // sky tint base
+export const RUST_RGB = "201,152,46";    // brass tint base
+export const COBALT_RGB = "43,199,181";  // verdigris tint base
 
 /** Accent aliases. ACCENT_GRAD is the brand gradient — HAIRLINE RULES ONLY
  *  (it is consumed exclusively by kicker-underline rules). */
@@ -89,8 +96,8 @@ export const ON_DARK_RGB = "255,255,255";
 /** Genuinely dark CTA buttons (distinct from sections). */
 export const CTA_DARK_BG = "#0A0A0A";
 
-/** Primary action buttons — coral fill with near-black text (6.6:1 ✓),
- *  exactly as approved in mockup A. */
+/** Primary action buttons — brass fill with near-black text (7.55:1 ✓).
+ *  Brass is the single CTA colour site-wide (Drawing Office II). */
 export const CTA_PRIMARY_BG = CORAL;
 export const CTA_PRIMARY_TEXT = "#0A0A0A";
 
@@ -100,7 +107,7 @@ export const NAV_BAR_BG = "rgba(10,10,10,0.96)";
 export const NAV_LINK = "rgba(255,255,255,0.72)";
 export const NAV_LINK_ACTIVE = "#FFFFFF";
 export const NAV_BORDER = "rgba(255,255,255,0.10)";
-export const NAV_CTA_BG = CORAL;         // coral pill, black text (6.6:1 ✓)
+export const NAV_CTA_BG = CORAL;         // brass pill, black text (7.55:1 ✓)
 export const NAV_CTA_TEXT = "#0A0A0A";
 
 /** Footer background — jet black. */
@@ -112,23 +119,23 @@ export const CTA_BAND_BG = "linear-gradient(120deg, #EFEEEB 0%, #F6F5F3 100%)";
 /** Translucent nav-bar scrim base. */
 export const NAV_RGB = "10,10,10";
 
-/** Soft hero glow — quiet coral/sky washes on black (no gradient element). */
+/** Soft hero glow — quiet brass/verdigris washes on black (no gradient element). */
 export const HERO_GLOW =
-  "radial-gradient(55% 80% at 84% 6%, rgba(255,91,110,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(58,160,255,0.07) 0%, transparent 60%)";
+  "radial-gradient(55% 80% at 84% 6%, rgba(201,152,46,0.10) 0%, transparent 60%), radial-gradient(45% 70% at 98% 40%, rgba(43,199,181,0.07) 0%, transparent 60%)";
 
 /** Band surface for the trust strip / marquee. */
 export const BAND_GRADIENT = "linear-gradient(90deg, #EFEEEB 0%, #F6F5F3 100%)";
 
 /** Faint depth wash behind key sections. */
 export const SECTION_GLOW =
-  "radial-gradient(60% 55% at 50% -8%, rgba(255,91,110,0.05) 0%, transparent 62%)";
+  "radial-gradient(60% 55% at 50% -8%, rgba(201,152,46,0.05) 0%, transparent 62%)";
 
 /** Alternating band tint. */
 export const SECTION_TINT = "#EFEEEB";
 
 /** Soft ambient orbs for empty areas. */
-export const ORB_ACCENT = "radial-gradient(circle, rgba(255,91,110,0.12) 0%, transparent 70%)";
-export const ORB_WARM = "radial-gradient(circle, rgba(58,160,255,0.09) 0%, transparent 70%)";
+export const ORB_ACCENT = "radial-gradient(circle, rgba(201,152,46,0.12) 0%, transparent 70%)";
+export const ORB_WARM = "radial-gradient(circle, rgba(43,199,181,0.09) 0%, transparent 70%)";
 
 /**
  * Founder photography — every Mark image placement reads one of these

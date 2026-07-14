@@ -44,14 +44,14 @@
    * Single source of truth mirrored from client/src/lib/constants.ts (COLORS).
    * Keep these identical to the COLORS object. */
   --eba-navy:  #0A0A0A; /* jet black (ink) */
-  --eba-rust:  #C92B42; /* coral, text-safe on white/paper (Academy accent) */
-  --eba-coral: #FF5B6E; /* pure coral — fills/graphics + text on black ONLY */
+  --eba-rust:  #7F611B; /* brass dark, text-safe on white/paper (Academy accent) */
+  --eba-coral: #C9982E; /* brass — fills/graphics + text on black ONLY */
   --eba-cream: #F6F5F3; /* paper */
   --eba-oat:   #ECEBE8;
   --eba-white: #FFFFFF;
   --eba-amber: #FF9F1C; /* sunset — USAGE CAP: max one element per page */
-  --eba-cobalt: #176BC4; /* sky, text-safe on white/paper (Tools accent) */
-  --eba-sky:   #3AA0FF; /* pure sky — fills/graphics + text on black ONLY */
+  --eba-cobalt: #0C6B5F; /* verdigris dark, text-safe on white/paper (Tools accent) */
+  --eba-sky:   #2BC7B5; /* verdigris — fills/graphics + text on black ONLY */
 
   /* BRAND GRADIENT — HAIRLINE RULES ONLY: never backgrounds, buttons, fills,
    * or text. Allowed: logo underline · kicker underlines (.eba-grad-rule) ·
@@ -59,7 +59,7 @@
   --eba-grad: linear-gradient(90deg, #FF5B6E 0%, #FF9F1C 20%, #D4FF00 40%, #2ECC71 60%, #18C1D6 80%, #3AA0FF 100%);
   /* Solid-accent border token (border rings are NOT hairline rules). */
   --eba-accent-grad: var(--eba-rust);
-  --eba-accent-rgb: 255,91,110;
+  --eba-accent-rgb: 201,152,46;
 
   /* Brand typeface — Poppins only: 600/700 headings, 300/400 body. */
   --eba-heading: 'Poppins', system-ui, sans-serif;
@@ -241,7 +241,7 @@
 }
 @keyframes eba-rowpop {
   0%, 70%, 100% { background: transparent; }
-  10%, 40%      { background: rgba(255,91,110,0.07); }
+  10%, 40%      { background: rgba(201,152,46,0.07); }
 }
 
 .eba-float       { animation: eba-float 6s ease-in-out infinite; }
