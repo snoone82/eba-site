@@ -11,13 +11,15 @@
  * sections keep photographic imagery.
  */
 
-import { COBALT, COBALT_RGB, NAVY, NAVY_RGB, OAT, WHITE } from "@/lib/constants";
+import { COBALT, COBALT_RGB, COLORS, NAVY, NAVY_RGB, OAT, SKY, WHITE } from "@/lib/constants";
 
 export function ProductFrame({
   url,
   docTitle,
   docMeta,
   lines,
+  chip,
+  matrix = false,
 }: {
   /** Address-bar text, e.g. "teb-academy.com/ai-tools/om-manual" */
   url: string;
@@ -25,8 +27,12 @@ export function ProductFrame({
   docTitle: string;
   /** Small meta line under the header, e.g. "Project ref · Rev A · CDM 2015" */
   docMeta?: string;
-  /** Skeleton content lines (rendered as text rows with a cobalt tick) */
+  /** Completed content lines (rendered as text rows with a green tick) */
   lines: string[];
+  /** Optional status chip, e.g. "GENERATED IN 4M 12S" — the product's proof line */
+  chip?: string;
+  /** Optional mini risk matrix (RAMS-style coloured grid) */
+  matrix?: boolean;
 }) {
   return (
     <div style={{
@@ -75,14 +81,22 @@ export function ProductFrame({
             {docMeta}
           </p>
         )}
-        <div style={{ display: "flex", flexDirection: "column", gap: "7px", marginTop: docMeta ? 0 : "12px" }}>
+        {/* Mini risk matrix (RAMS-style) — green/amber/red assessment grid */}
+        {matrix && (
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 22px)", gap: "4px", margin: "0 0 12px" }}>
+            {["#2ECC71", "#2ECC71", "#FF9F1C", "#2ECC71", "#FF9F1C", "#FF5B6E", "#2ECC71", "#2ECC71", "#FF9F1C"].map((c, i) => (
+              <div key={i} style={{ width: "22px", height: "22px", borderRadius: "5px", background: c, opacity: 0.85 }} />
+            ))}
+          </div>
+        )}
+        <div style={{ display: "flex", flexDirection: "column", gap: "7px", marginTop: docMeta || matrix ? 0 : "12px" }}>
           {lines.map((line, i) => (
             <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "8px" }}>
               <span style={{
-                width: "13px", height: "13px", borderRadius: "3px", flexShrink: 0, marginTop: "1px",
-                background: `rgba(${COBALT_RGB},0.12)`, color: COBALT,
+                width: "15px", height: "15px", borderRadius: "50%", flexShrink: 0, marginTop: "1px",
+                border: `1.5px solid ${COLORS.mint}`, color: COLORS.mint,
                 display: "inline-flex", alignItems: "center", justifyContent: "center",
-                fontSize: "8px", fontWeight: 800,
+                fontSize: "9px", fontWeight: 800,
               }}>✓</span>
               <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11.5px", lineHeight: 1.45, color: `rgba(${NAVY_RGB},0.68)` }}>
                 {line}
@@ -96,6 +110,18 @@ export function ProductFrame({
             <div key={i} style={{ height: "6px", width: w, borderRadius: "3px", background: OAT }} />
           ))}
         </div>
+        {/* Status chip — the product's proof line, verdigris fill + ink text */}
+        {chip && (
+          <span style={{
+            display: "inline-block", marginTop: "14px",
+            background: SKY, color: "#0A0A0A",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "10px",
+            letterSpacing: "0.08em", textTransform: "uppercase",
+            padding: "6px 14px", borderRadius: "14px",
+          }}>
+            {chip}
+          </span>
+        )}
       </div>
     </div>
   );

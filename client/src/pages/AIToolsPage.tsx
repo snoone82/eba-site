@@ -39,7 +39,7 @@ import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 import { Check, FileText, ShieldCheck, MessageSquareText, FlaskConical, Sparkles } from "lucide-react";
 
-const TOOLS_IMG = "https://d2xsxph8kpxj0f.cloudfront.net/104280767/Hckr7ge87tHNputhSZAfow/eba-tools-hero-7Tmxbyb64azJnSqcMHzLQZ.webp";
+const TOOLS_IMG = "/site-steelwork.jpg"; // real project photography — no stock, no external host
 
 // Tools page = tools accent (cobalt). Academy/Mark/story sections keep rust.
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
@@ -460,11 +460,9 @@ export default function AIToolsPage() {
         background: DARK_GRADIENT,
         position: "relative", overflow: "hidden",
       }}>
-        {IS_VIVID ? (
-          <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />
-        ) : (
-          <div style={{ position: "absolute", inset: 0, opacity: 0.12, backgroundImage: `url(${TOOLS_IMG})`, backgroundSize: "cover", backgroundPosition: "center" }} />
-        )}
+        {/* Real project photography as a quiet texture layer, glow on top. */}
+        <div style={{ position: "absolute", inset: 0, opacity: 0.14, backgroundImage: `url(${TOOLS_IMG})`, backgroundSize: "cover", backgroundPosition: "center 30%" }} />
+        <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: COBALT_ON_DARK, marginBottom: "18px" }}>
             · AI Tools · Built for engineering contractors ·
@@ -545,25 +543,25 @@ export default function AIToolsPage() {
                 Icon: FileText, name: "O&M Manual Compiler",
                 outcome: "A client-ready, CDM-structured O&M manual returned within 24 hours — from your project data.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
-                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"] },
+                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"], chip: "Compiled · back in 24h" },
               },
               {
                 Icon: ShieldCheck, name: "RAMS Generator",
                 outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.rams) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.rams,
-                frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"] },
+                frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"], chip: "Generated in 4m 12s", matrix: true },
               },
               {
                 Icon: MessageSquareText, name: "Compliance Co-Pilot",
                 outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Built for you · priced per deployment" : TOOL_PRICE_NOTES.coPilot,
-                frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"] },
+                frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"], chip: "Cited to source" },
               },
               {
                 Icon: FlaskConical, name: "COSHH Generator",
                 outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.coshh,
-                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"] },
+                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"], chip: "Branded PDF ready" },
               },
             ].map(({ Icon, name, outcome, note, frame }) => (
               <div key={name} className="eba-bento-card" style={{

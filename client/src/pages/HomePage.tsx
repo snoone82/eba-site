@@ -755,6 +755,7 @@ export default function HomePage() {
                 docTitle="O&M Manual — Section 4: Mechanical Services"
                 docMeta="Project ref · Rev A · CDM 2015 structured"
                 lines={["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"]}
+                chip="Compiled · back in 24h"
               />
             </RevealSection>
           </div>
