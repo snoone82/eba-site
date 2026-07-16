@@ -28,6 +28,7 @@ function PlaceholderNav({ active }: { active: string }) {
     { href: "/ai-tools", label: "AI Tools" },
     { href: "/documents", label: "Documents" },
     { href: "/mentorship", label: "Mentorship" },
+    { href: "/pricing", label: "Pricing" },
     { href: "/our-story", label: "Our Story" },
   ];
   return (

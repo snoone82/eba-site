@@ -117,7 +117,7 @@ function NavBar({ active }: { active: string }) {
           <EBALogo height={48} light navOnCobalt />
         </Link>
         <div style={{ display: "flex", alignItems: "center", gap: "32px" }}>
-          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Our Story", href: "/our-story" }].map(({ label, href }) => (
+          {[            { label: "Academy", href: "/academy" }, { label: "AI Tools", href: "/ai-tools" }, { label: "Documents", href: "/documents" }, { label: "Mentorship", href: "/mentorship" }, { label: "Pricing", href: "/pricing" }, { label: "Our Story", href: "/our-story" }].map(({ label, href }) => (
             <Link key={label} href={href} style={{
               color: href === active ? NAV_LINK_ACTIVE : NAV_LINK,
               textDecoration: "none", fontFamily: "'Poppins', sans-serif",

@@ -405,6 +405,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               { label: "AI Tools", href: "/ai-tools" },
               { label: "Documents", href: "/documents" },
               { label: "Mentorship", href: "/mentorship" },
+              { label: "Pricing", href: "/pricing" },
               { label: "Our Story", href: "/our-story" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{

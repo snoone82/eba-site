@@ -42,7 +42,6 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
     heading: "Academy",
     links: [
       { label: "Curriculum", href: "/academy" },
-      { label: "Founding Cohort", href: "/pricing" },
       { label: "Pricing", href: "/pricing" },
       { label: "FAQ", href: "/faq" },
     ],
@@ -53,7 +52,7 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
       { label: "O&M Manual", href: "/ai-tools" },
       { label: "Compliance Co-Pilot", href: "/ai-tools" },
       { label: "Free Toolbox Talk", href: "/ai-tools" },
-      { label: "Enterprise Deployment", href: "/contact" },
+      { label: "Enterprise Deployment", href: "/enterprise" },
     ],
   },
 ];
