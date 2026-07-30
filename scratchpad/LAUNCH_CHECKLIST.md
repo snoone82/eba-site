@@ -1,6 +1,6 @@
 # TEBA Launch Checklist
 
-**Launch: Monday 3 August 2026** · Last verified: 30 July 2026
+**Launch: Monday 17 August 2026** (moved from 3 Aug) · Last verified: 30 July 2026
 
 Owner key: **[STE]** = needs you · **[CLAUDE]** = I can do it · **[BOTH]** = I build, you supply something
 
@@ -72,7 +72,7 @@ Add the records and I'll verify MX/SPF/DKIM/DMARC for you.*
 
 ---
 
-## 🟢 LAUNCH DAY — Monday 3 August
+## 🟢 LAUNCH DAY — Monday 17 August
 
 - [ ] Post the launch tile to Facebook, Instagram, YouTube community
 - [ ] Pin the launch post on each platform
@@ -92,6 +92,24 @@ Add the records and I'll verify MX/SPF/DKIM/DMARC for you.*
 - [ ] Post per the content calendar (concrete, script-level content — not motivational)
 - [ ] Review which source tag is actually producing leads
 - [ ] Decide on documents-pack permanent fulfilment if you took the manual route
+
+---
+
+## 🔵 CREDIBILITY BUILD — the extra 14 days buy this
+
+The single biggest weakness of the site is not design, it's **evidence**. One named human
+(Mark), zero testimonials, zero dated proof. That is what makes any site read as AI-built.
+
+| # | Task | Owner |
+|---|------|-------|
+| 13 | "About Ste" page — H&S → NEBOSH → Head of Automation → built the tools → vision | **[BOTH]** |
+| 14 | Put Ste's name on the AI Tools pages (Mark owns Academy, Ste owns Tools) | **[CLAUDE]** |
+| 15 | Testimonials from Group Directors — **must be labelled as KEYIS Group internal users** | **[STE]** |
+| 16 | Mark's new images + video, replacing remaining generic imagery | **[STE]** |
+| 17 | Proof artefact: screen-recording of a real (redacted) RAMS generated end to end | **[BOTH]** |
+| 18 | Break the 6-problems→6-outcomes symmetry; real businesses are lumpier | **[CLAUDE]** |
+| 19 | LinkedIn company page + Ste/Mark personal positioning — the ICP lives there | **[STE]** |
+| 20 | Waitlist capture live now, so 17 Aug launches warm rather than cold | **[CLAUDE]** |
 
 ---
 
