@@ -23,6 +23,7 @@ import AIToolsPage from "@/pages/AIToolsPage";
 import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
+import { AboutStePage } from "@/pages/AboutStePage";
 import { AssistantWidget } from "@/components/AssistantWidget";
 
 
@@ -37,6 +38,8 @@ function Router() {
       <Route path={"/ai-tools/om-manual"} component={AIToolsPage} />
       <Route path={"/ai-tools/compliance-chatbot"} component={AIToolsPage} />
       <Route path={"/our-story"} component={OurStoryPage} />
+      {/* DRAFT — noIndex, deliberately not in the nav or sitemap until copy is final. */}
+      <Route path={"/about-ste"} component={AboutStePage} />
       {/* Legacy /about → /our-story (client-side; a 308 redirect is also set in vercel.json) */}
       <Route path={"/about"}>{() => <Redirect to="/our-story" replace />}</Route>
       <Route path={"/documents"} component={DocumentsPage} />

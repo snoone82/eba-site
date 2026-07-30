@@ -62,6 +62,14 @@ export const PAGE_SEO = {
       "Why EBA exists: founder Mark Poulton spent 25 years building, rebuilding and running M&E contracting businesses — the operational experience behind the Academy.",
     path: "/our-story",
   },
+  // DRAFT page — still contains <Fill> placeholders. Keep noIndex until the
+  // copy is final, then delete this comment and remove `noIndex` at the call site.
+  aboutSte: {
+    title: "Ste — Head of Automation, KEYIS Group | EBA",
+    description:
+      "From health & safety and NEBOSH to building the AI compliance tools EBA sells — built inside a working engineering group before they were ever sold.",
+    path: "/about-ste",
+  },
   mentorship: {
     title: "Mentorship for Engineering Business Owners | EBA",
     description:
