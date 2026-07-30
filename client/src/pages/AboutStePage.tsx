@@ -38,7 +38,7 @@ import { Seo, PAGE_SEO } from "@/components/Seo";
 import { SiteFooter } from "@/components/SiteFooter";
 
 /**
- * Visible placeholder for a fact only Ste can supply. Deliberately loud —
+ * AMBER — a fact only Ste can supply, still missing. Deliberately loud;
  * this page must never go live with these still in it.
  */
 function Fill({ children }: { children: string }) {
@@ -50,6 +50,24 @@ function Fill({ children }: { children: string }) {
       fontStyle: "italic",
     }}>
       [{children}]
+    </span>
+  );
+}
+
+/**
+ * VERDIGRIS — copy drafted on Ste's behalf that states a view attributed to
+ * him. Reads as finished prose but is NOT yet his word. Must be approved,
+ * edited or replaced before the noIndex comes off: a vision statement in
+ * someone's name has to actually be their view.
+ */
+function Draft({ children }: { children: React.ReactNode }) {
+  return (
+    <span style={{
+      background: "rgba(43,199,181,0.14)",
+      borderBottom: "2px dotted rgba(12,107,95,0.75)",
+      padding: "0 4px",
+    }}>
+      {children}
     </span>
   );
 }
@@ -124,13 +142,21 @@ export function AboutStePage() {
               <h2 style={h2Light}>I came at this from health &amp; safety, not from tech.</h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={bodyLight}>
-                  My background is health and safety — <Fill>years in H&amp;S, roles held</Fill> — and I
-                  hold a NEBOSH qualification. That meant living inside the documentation that
-                  engineering contractors run on: RAMS, COSHH assessments, method statements, O&amp;M
-                  manuals, CDM records.
+                  My background is health and safety. Five years as an H&amp;S Manager, and a NEBOSH
+                  qualification behind it. That meant living inside the documentation engineering
+                  contractors run on: RAMS, COSHH assessments, method statements, O&amp;M manuals,
+                  CDM records.
                 </p>
                 <p style={bodyLight}>
-                  <Fill>The specific moment it became unbearable — a job, a deadline, a weekend lost to paperwork</Fill>
+                  {/* TODO(eba): CLIENT NAME — confirm KEYIS has consent to name Nutricia
+                      publicly. Construction contracts routinely carry confidentiality
+                      clauses. Fallback if not: "an £18m project for a household-name food
+                      manufacturer" — nearly as strong, zero risk. */}
+                  Then came an £18m project for KEYIS at Nutricia. A job that size generates
+                  documentation at a rate that no amount of personal organisation keeps up with —
+                  every package, every subcontractor, every revision. <Fill>One line on what
+                  actually happened to you on that job — the deadline, the evening, the thing that
+                  made you stop and think there has to be a better way</Fill>
                 </p>
                 <p style={bodyLight}>
                   The work itself was necessary. The way we were doing it wasn't. The same
@@ -150,12 +176,14 @@ export function AboutStePage() {
           <h2 style={h2Dark}>So I learned to build the thing I wanted.</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <p style={bodyDark}>
-              <Fill>How you started building — self-taught, what you learned first, roughly when</Fill>
+              Self-taught. No computer science background, no development team — just a problem I
+              understood better than anyone who'd have been hired to solve it.
             </p>
             <p style={bodyDark}>
-              The first version was for us. Not a product, not a demo — an internal tool that had
-              to work on real jobs, with real deadlines, or it got thrown out.
-              <Fill>What the first tool actually did</Fill>
+              The first thing I built was an H&amp;S dashboard for project managers: their compliance
+              position, visible whenever they needed to see it, instead of it living in my inbox
+              and my spreadsheets. Not a product, not a demo — an internal tool that had to work on
+              real jobs with real deadlines, or it got thrown out.
             </p>
             <p style={bodyDark}>
               That's the difference. Software built to be sold gets designed around what demos
@@ -174,9 +202,10 @@ export function AboutStePage() {
           <h2 style={h2Light}>Now Head of Automation for the group.</h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <p style={bodyLight}>
-              My role is automating the work that shouldn't need a person doing it by hand — so
-              engineers spend their time on engineering.
-              <Fill>What the role covers day to day</Fill>
+              The job is developing the group's automation strategy, integrating the digital and
+              physical tools used on site so they actually talk to each other, and managing the
+              change and training that makes any of it stick. That last part is the one people
+              underestimate: the technology is rarely the hard bit.
             </p>
             <p style={bodyLight}>
               The tools EBA sells are the same tools, productised. The RAMS generator, the COSHH
@@ -204,20 +233,35 @@ export function AboutStePage() {
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <Kicker light>The vision</Kicker>
           <h2 style={h2Dark}>Where I think this industry goes next.</h2>
+          {/* DRAFTED FOR APPROVAL — Ste asked me to propose a position. Everything
+              inside <Draft> is my wording of a view attributed to him, grounded in
+              the automation role he actually holds. He must approve, edit or replace
+              it before this page is indexed. Do not quietly promote it to plain text. */}
           <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
             <p style={bodyDark}>
-              <Fill>Your actual view — where AI goes in engineering services over the next few years</Fill>
+              <Draft>
+                I don't think AI replaces engineers, and I'm suspicious of anyone selling that.
+                What it changes is where the work sits. Compliance documents stop being written
+                from a blank page and start being generated from what the business already knows —
+                and the qualified person's job moves from producing them to checking them. That's
+                a better use of a NEBOSH-qualified brain than retyping a method statement.
+              </Draft>
             </p>
             <p style={bodyDark}>
-              <Fill>What you want to have built by then</Fill>
+              <Draft>
+                What I want to have built is the loop closed: what actually happens on site writes
+                the paperwork, rather than someone reconstructing it afterwards from memory and
+                photographs. The tools on site already produce that data. Almost nobody is
+                connecting it to the documents it should be generating. That's the gap I'm working
+                in, and it's where I think the next few years go.
+              </Draft>
             </p>
             <p style={bodyDark}>
-              The contractors who work this out early won't be the biggest ones. They'll be the
-              ones who stopped treating compliance as a cost of doing business and started
-              treating it as something a machine should handle.
-              {/* TODO(eba): Ste to confirm he stands behind this claim in his own words —
-                  it currently reads as mine, not his. A short pull-quote in his voice
-                  would land far harder than a written-for-him paragraph. */}
+              <Draft>
+                The contractors who work this out early won't be the biggest ones. They'll be the
+                ones who stopped treating compliance as a cost of doing business and started
+                treating it as something a machine should handle.
+              </Draft>
             </p>
           </div>
         </div>
