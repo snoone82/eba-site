@@ -413,6 +413,40 @@ scripts use to import the endpoints without a build step, requires the explicit 
 No `.ts` spelling satisfies both — a `.mjs` file does. Nothing is lost: tsconfig's
 `include` is `["client/src"]`, so `api/` was never typechecked.
 
+### 5.3a OPEN — nothing triggers the purchase half yet
+
+**This must be closed before the first sale.** A purchase that happens with no trigger
+connected does not become a deal, and there is no retrospective fix short of typing it in.
+
+The receiving end is built and tested: POST a purchase payload to
+`/api/kajabi-webhook?...&event=purchase` and it creates a deal in the Academy pipeline at
+`Closed Won — Enrolled`, associates it to the contact, and sets lifecycle `customer`.
+Verified on production with a `£1,299.00 GBP` event.
+
+What is missing is anything in Kajabi that *sends* that request:
+
+- **Kajabi form webhooks fire on form submissions only.** A checkout is not a form
+  submission, so the webhooks set on `Default Form` and `KEYIS Academy Waitlist` cover
+  opt-ins and nothing else.
+- **Kajabi Automations offers no webhook / HTTP-request action.** Confirmed by inspection
+  of the action list.
+- **Offer thank-you pages cannot redirect off-site.** `thank_you_preference` accepts only
+  `disabled`, `custom_message`, or a Kajabi-hosted `landing_page`.
+
+Two workable routes:
+
+1. **One Zap.** Trigger: Kajabi new purchase. Action: Webhooks by Zapier → POST to the
+   purchase URL. No field mapping — this endpoint parses the payload itself, so the
+   silent-enum-mismatch failure mode that motivated moving off Zapier does not apply to a
+   raw POST. Two steps, which fits Zapier's free tier.
+2. **Manual reconciliation.** At founding-cohort volume this is genuinely viable: read
+   Kajabi purchases, create any missing HubSpot deals. There is no script for it because
+   the repo holds no Kajabi API credentials — the Kajabi connection used during this build
+   was an assistant-side connector, not something the site can authenticate as. It is an
+   ask-and-run job, not an automated one.
+
+Route 1 is the only one that survives you being on holiday.
+
 ### 5.4 Zapier is not reachable from this repo's tooling
 
 The spec says Zapier "is already connected to this workspace". That is not true of the
