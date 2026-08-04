@@ -342,6 +342,13 @@ also costs nothing, runs on the Vercel project already deployed, and is version 
    `https://<your-domain>/api/kajabi-webhook?secret=<the-secret>`. For purchases, append
    `&event=purchase`.
 
+**Adding the variables is not enough — redeploy.** Vercel injects environment variables at
+build time, so a deployment that already exists never picks up a variable added afterwards.
+The endpoint keeps answering `501 not_configured` listing both names, which reads exactly
+like the variables were never set. Push any commit, or hit Redeploy on the deployment in
+the Vercel dashboard. Also make sure both variables are ticked for **Preview** as well as
+Production if you are testing on a branch URL — the two environments have separate values.
+
 **Check it before relying on it.** A `GET` on the same URL runs a read-only health check:
 
 ```bash
