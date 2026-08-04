@@ -1,6 +1,12 @@
 /**
  * Shared HubSpot helpers for the API routes.
  *
+ * Plain JavaScript, and deliberately so. A .ts module here cannot be imported by both
+ * consumers: Vercel's edge bundler rejects a "./_hubspot.ts" specifier outright, while
+ * Node's native type-stripping (used by the test scripts) requires the explicit extension
+ * and rejects the extensionless form Vercel wants. A real .mjs file resolves for both.
+ * The api/ directory is not in tsconfig's include, so nothing is lost in type coverage.
+ *
  * Underscore-prefixed, so Vercel treats it as a module rather than a route.
  *
  * Used by:
@@ -25,29 +31,23 @@ export const PRODUCT_INTEREST = new Set([
   "academy", "rams", "coshh", "o_m", "co_pilot", "mentorship", "enterprise",
 ]);
 
-export type HsError = Error & { status?: number; detail?: unknown };
-
-export function json(obj: unknown, status = 200, extraHeaders: Record<string, string> = {}): Response {
+export function json(obj, status = 200, extraHeaders = {}) {
   return new Response(JSON.stringify(obj), {
     status,
     headers: { "content-type": "application/json", "cache-control": "no-store", ...extraHeaders },
   });
 }
 
-export function env(name: string): string | undefined {
-  return (globalThis as any).process?.env?.[name];
+export function env(name) {
+  return globalThis.process?.env?.[name];
 }
 
-function safeParse(t: string): any {
+function safeParse(t) {
   try { return JSON.parse(t); } catch { return { raw: t }; }
 }
 
-export async function hs(
-  token: string,
-  method: string,
-  path: string,
-  body?: unknown,
-): Promise<any> {
+/** Throws on a non-2xx, with `.status` and `.detail` attached for the caller to branch on. */
+export async function hs(token, method, path, body) {
   const res = await fetch(`${HUBSPOT}${path}`, {
     method,
     headers: { authorization: `Bearer ${token}`, "content-type": "application/json" },
@@ -56,7 +56,7 @@ export async function hs(
   const text = await res.text();
   const parsed = text ? safeParse(text) : {};
   if (!res.ok) {
-    const err = new Error(`${method} ${path} → ${res.status}: ${parsed?.message ?? text}`) as HsError;
+    const err = new Error(`${method} ${path} → ${res.status}: ${parsed?.message ?? text}`);
     err.status = res.status;
     err.detail = parsed;
     throw err;
@@ -64,7 +64,7 @@ export async function hs(
   return parsed;
 }
 
-export async function findContactByEmail(token: string, email: string): Promise<string | undefined> {
+export async function findContactByEmail(token, email) {
   const res = await hs(token, "POST", "/crm/v3/objects/contacts/search", {
     limit: 1,
     properties: ["email"],
@@ -73,14 +73,8 @@ export async function findContactByEmail(token: string, email: string): Promise<
   return res?.results?.[0]?.id;
 }
 
-/**
- * Create or update by email. Never duplicates — a re-submitted form is an update.
- */
-export async function upsertContact(
-  token: string,
-  email: string,
-  properties: Record<string, string>,
-): Promise<{ id: string; created: boolean }> {
+/** Create or update by email. Never duplicates — a re-submitted form is an update. */
+export async function upsertContact(token, email, properties) {
   const existing = await findContactByEmail(token, email);
   if (existing) {
     if (Object.keys(properties).length) {
@@ -95,7 +89,7 @@ export async function upsertContact(
 }
 
 /** Split "Ste Noone" into first/last without inventing a surname for one-word names. */
-export function splitName(full?: string): { firstname?: string; lastname?: string } {
+export function splitName(full) {
   if (!full || typeof full !== "string") return {};
   const parts = full.trim().split(/\s+/);
   if (parts.length === 1) return { firstname: parts[0] };
@@ -110,7 +104,7 @@ export function splitName(full?: string): { firstname?: string; lastname?: strin
  * broken to them. The pattern is deliberately permissive; the goal is to reject junk, not
  * to police which addresses are valid.
  */
-export function normaliseEmail(v: unknown): string | undefined {
+export function normaliseEmail(v) {
   if (typeof v !== "string") return undefined;
   const e = v.trim().toLowerCase();
   if (e.length > 254 || !/^[^@\s]+@[^@\s.]+\.[^@\s]+$/.test(e)) return undefined;
@@ -118,7 +112,7 @@ export function normaliseEmail(v: unknown): string | undefined {
 }
 
 /** Trim and cap, so an oversized field cannot be used to bloat a record. */
-export function clip(v: unknown, max: number): string | undefined {
+export function clip(v, max) {
   if (typeof v !== "string") return undefined;
   const t = v.trim();
   return t ? t.slice(0, max) : undefined;

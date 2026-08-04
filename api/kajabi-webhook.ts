@@ -26,8 +26,10 @@
 import {
   json, env, hs, upsertContact, splitName, normaliseEmail,
   ACADEMY_PIPELINE, STAGE_CLOSED_WON_ENROLLED, TEBA_SOURCE, PRODUCT_INTEREST,
-  type HsError,
-} from "./_hubspot.ts";
+} from "./_hubspot.mjs";
+
+/** Error thrown by hs(): a normal Error with the HTTP status attached. */
+type HsError = Error & { status?: number; detail?: unknown };
 
 export const config = { runtime: "edge" };
 
