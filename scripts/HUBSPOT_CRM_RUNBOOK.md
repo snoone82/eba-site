@@ -12,11 +12,13 @@ HubSpot exposes no public API for them. Both halves are below.
 
 The script has been run against the live portal. What exists now:
 
+Spec §7 steps 1–3 are **complete**. `--verify` reports 12 of 12 present, 0 failures.
+
 | | State |
 |---|---|
 | `Academy` pipeline | **created** — id `4018643182`, 6 stages |
-| `Tools & Enterprise` pipeline | **not created** — blocked by the 2-pipeline cap, see §3.1 |
-| `Sales Pipeline` (HubSpot default) | still present, 0 deals, holding the second slot |
+| `Tools & Enterprise` pipeline | **created** — id `4018302178`, 7 stages |
+| `Sales Pipeline` (HubSpot default) | **deleted**, freeing the second of two slots (§3.1) |
 | 7 contact properties + `TEBA CRM` group | **created** |
 | 3 company properties + `TEBA CRM` group | **created** |
 | Account currency / time zone | GBP / Europe/London — correct, see §4.3 |
@@ -25,12 +27,12 @@ The script has been run against the live portal. What exists now:
 | §5 Zapier sync | **not started** — three prerequisites found, see §5.1 |
 | Kajabi currency | **USD**, against HubSpot's GBP — fix before any purchase syncs (§5.1) |
 
-Two things need a decision before the build can finish:
+The pipeline cap in §3.1 is resolved but the section is kept: the portal is now at 2 of 2
+again, so any future third pipeline hits the same wall.
 
-1. **§3.1** — the second pipeline cannot be created until the default `Sales Pipeline` is
-   deleted or the tier is raised.
-2. **§5.1** — Kajabi's currency and three tag names need aligning before the Zaps are
-   built. All are zero-cost to change today and expensive to change after the first sale.
+Outstanding before the Zaps are built, all in §5.1 and all zero-cost today:
+Kajabi's currency is USD against HubSpot's GBP, and three Kajabi tag names do not match
+their HubSpot options — Zapier writes nothing rather than erroring when they don't.
 
 `node scripts/hubspot_crm_setup.mjs --verify` reprints this from the live portal at any
 time, and is the source of truth if this table goes stale.
