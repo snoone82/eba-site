@@ -24,15 +24,16 @@ Spec §7 steps 1–3 are **complete**. `--verify` reports 12 of 12 present, 0 fa
 | Account currency / time zone | GBP / Europe/London — correct, see §4.3 |
 | Contacts without a company | 0 of 2 |
 | §4 manual steps (saved views, lifecycle) | **not started** |
-| §5 Zapier sync | **not started** — three prerequisites found, see §5.1 |
-| Kajabi currency | **USD**, against HubSpot's GBP — fix before any purchase syncs (§5.1) |
+| §5 Zapier sync | **not started** — the last substantial piece of work |
+| Kajabi readiness | **ready** — offers priced in GBP, tags aligned (§5.1) |
 
 The pipeline cap in §3.1 is resolved but the section is kept: the portal is now at 2 of 2
 again, so any future third pipeline hits the same wall.
 
-Outstanding before the Zaps are built, all in §5.1 and all zero-cost today:
-Kajabi's currency is USD against HubSpot's GBP, and three Kajabi tag names do not match
-their HubSpot options — Zapier writes nothing rather than erroring when they don't.
+Kajabi needs no changes before the Zaps are built. The currency mismatch flagged in an
+earlier revision was not real (§5.1), and the one tag-name mismatch that was real is fixed.
+Two `Interest ·` tags need explicit mapping inside the Zap rather than a rename, for the
+reason given in §5.1.
 
 `node scripts/hubspot_crm_setup.mjs --verify` reprints this from the live portal at any
 time, and is the source of truth if this table goes stale.
@@ -257,33 +258,55 @@ Re-run `--verify` after any HubSpot UI work to confirm the structure still match
 
 Read from Kajabi site `2148787052` (`teba.mykajabi.com`) before building the Zaps.
 
-**Kajabi's currency is USD; HubSpot's is GBP.** `default_currency` on the Kajabi site is
-`USD`, and contact revenue reads back as `$0.00 USD`. The purchase → Closed Won Zap writes
-a deal amount, so every synced amount would land in a GBP portal carrying a number that was
-denominated in dollars. Nothing has been sold yet — lifetime revenue is zero — so changing
-it now costs nothing and after the first sale costs a manual correction of every deal.
-Fix in Kajabi: Settings → Checkout / Payments → Currency. Do this **before** step 6.
+**Currency: no action needed.** An earlier version of this section called the Kajabi/HubSpot
+currency mismatch a blocker. That was wrong, and the correction matters because the Kajabi
+UI will not let you change it anyway — the dropdown greys out once a gateway is connected
+and priced offers are published.
 
-This is probably where the §4.3 error came from — the "USD" was real, just in Kajabi rather
-than HubSpot. Worth knowing that the two systems are configured independently.
+Kajabi's site `default_currency` is `USD`, but that only sets the default for **newly
+created** offers. It does not restate the price of an offer that already has one. Every
+offer that can take money is already GBP:
 
-**Three Kajabi tags have no matching HubSpot option.** Spec §5 says the 30 July tag layer
-"maps cleanly across". It does for the six `Stage ·` tags. It does not for these:
-
-| Kajabi tag | HubSpot option | Problem |
+| Offer | Price | Status |
 |---|---|---|
-| `Source · Social Media` | `teba_source` → "Social" | Different string. Zapier matches on exact value, so this silently writes nothing |
-| `Interest · AI Tools` | — | No equivalent. HubSpot splits tools into RAMS, COSHH, O&M, Co-Pilot |
-| `Interest · Enterprise / In-House Training` | `product_interest` → "Enterprise" | Different string |
+| The Engineering Business Academy — Founding Cohort | £999.00 GBP | published |
+| … + Documents — Founding Cohort | £1,299.00 GBP | published |
+| The Engineering Business Academy | £1,499.00 GBP | draft |
+| … + Documents | £1,999.00 GBP | draft |
+| KEYIS Academy / … limited access | $0.00 USD | draft, free, legacy |
 
-Also unmatched in the other direction: `teba_source` has an "Event" option with no Kajabi
-tag, and `product_interest` has RAMS, COSHH, O&M, Co-Pilot and Mentorship options that no
-Kajabi `Interest ·` tag feeds.
+The purchase Zap reads the currency off the purchase record, not off the site, so synced
+deal amounts arrive in GBP. The only USD offers are two free `$0.00` drafts left from the
+old KEYIS branding — no money passes through them. Worth deleting for tidiness, not for
+correctness.
 
-Decide per row before building the Zap — either rename the Kajabi tag, or map it explicitly
-in the Zap's field mapping. Renaming is cleaner and safe right now because **every one of
-these tags has 0 contacts on it**. A silent no-write is the failure mode to avoid: Zapier
-will not error on an unmatched enumeration value, it just leaves the property empty.
+**Tag mapping.** Spec §5 says the 30 July tag layer "maps cleanly across". It does for the
+six `Stage ·` tags. The rest:
+
+| Kajabi tag | HubSpot option | State |
+|---|---|---|
+| `Source · Website` / `Warm Network` / `Referral` | `teba_source` | matches |
+| `Source · Social Media` | `teba_source` → "Social Media" | **fixed** — the option was "Social", realigned via `--update` |
+| `Interest · Academy` | `product_interest` → "Academy" | matches |
+| `Interest · AI Tools` | — | needs explicit Zap mapping, see below |
+| `Interest · Enterprise / In-House Training` | `product_interest` → "Enterprise" | needs explicit Zap mapping |
+
+The two `Interest ·` rows are deliberately **not** realigned. HubSpot's `product_interest`
+carries seven options (Academy, RAMS, COSHH, O&M, Co-Pilot, Mentorship, Enterprise) against
+Kajabi's three tags, so there is no 1:1 to align to — renaming HubSpot's options to match
+would mean collapsing RAMS / COSHH / O&M / Co-Pilot into a single "AI Tools" bucket and
+losing the ability to see *which* tool a lead wants. Keep the finer taxonomy and translate
+in the Zap:
+
+- `Interest · AI Tools` → set `product_interest` to the specific tools if known, else leave
+  empty and let the sales conversation fill it in. Do not invent a value.
+- `Interest · Enterprise / In-House Training` → `Enterprise`.
+
+`teba_source` also has an "Event" option with no Kajabi tag; it is set by hand.
+
+The failure mode to design against: Zapier does **not** error on an unmatched enumeration
+value, it writes nothing. A mapping that looks fine in the Zap editor can silently leave
+the property empty on every synced contact.
 
 **Contact counts don't match.** Kajabi has 1 contact, HubSpot has 2. Neither is a
 migration in progress — Kajabi's is a test/admin record and both are pre-launch noise —

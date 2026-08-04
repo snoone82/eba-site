@@ -54,7 +54,12 @@ const opts = (...labels) =>
 const TRADE_DISCIPLINE = opts('Mechanical', 'Electrical', 'M&E', 'Fire', 'HVAC', 'Other');
 const TURNOVER_BAND = opts('Under £500k', '£500k–£1m', '£1m–£2m', '£2m–£5m', '£5m+');
 const TEAM_SIZE = opts('1–5', '6–15', '16–50', '50+');
-const TEBA_SOURCE = opts('Website', 'Social', 'Warm Network', 'Referral', 'Event');
+// "Social Media" not "Social": these values are matched verbatim against the Kajabi
+// "Source ·" tag names by the sync in spec §6, and Zapier writes nothing rather than
+// erroring when an enumeration value does not match. Kajabi's tag is "Source · Social
+// Media", so all four of its source tags now map exactly. "Event" has no Kajabi tag and
+// is set by hand.
+const TEBA_SOURCE = opts('Website', 'Social Media', 'Warm Network', 'Referral', 'Event');
 const PRODUCT_INTEREST = opts(
   'Academy', 'RAMS', 'COSHH', 'O&M', 'Co-Pilot', 'Mentorship', 'Enterprise',
 );
