@@ -12,18 +12,47 @@ required — every integration falls back to a safe placeholder until you wire i
    | Setting            | Value                    |
    | ------------------ | ------------------------ |
    | Framework Preset   | **Vite**                 |
-   | Build Command      | **`npm run build:static`** — REQUIRED for SEO (see below) |
-   | Output Directory   | `dist`                   |
+   | Build Command      | set in `vercel.json` — leave the dashboard field EMPTY |
+   | Output Directory   | set in `vercel.json` (`dist`) |
    | Install Command    | `npm install`            |
    | Node.js Version    | 18.x or 20.x             |
 
-   > ⚠️ **The Build Command MUST be `npm run build:static`, not `npm run build`.**
-   > `build:static` runs the Vite build **and react-snap prerendering**, writing a
-   > real HTML file per route (unique <title>, meta, JSON-LD and full content) so
-   > crawlers and link previews see complete pages. Plain `npm run build` ships an
-   > empty SPA shell and the SEO work stays dormant. If react-snap ever fails on
-   > Vercel's build image, fall back to `npm run build` (the site still works as a
-   > SPA) and investigate — do not ship a broken build.
+   > ⚠️ **The build command lives in `vercel.json` (`buildCommand: npm run build:vercel`),
+   > NOT in the Vercel dashboard.**
+   >
+   > This regressed once and cost the site its entire search visibility. Between
+   > 13 Jul and 2 Aug 2026 the dashboard build command was never set to
+   > `build:static`, so Vercel ran its default `npm run build`. react-snap never
+   > ran in deployment. The live site served a 1.9 KB shell — a title tag, a
+   > viewport meta, no body — and **every sub-route returned HTTP 404**.
+   > Google saw nothing. Nobody noticed for three weeks.
+   >
+   > Keeping it in `vercel.json` means it is version-controlled and reviewable.
+   > A dashboard setting is invisible in the repo and silently forgettable.
+   >
+   > `build:vercel` runs the Vite build, then attempts react-snap. **A prerender
+   > failure is tolerated** — it prints `PRERENDER FAILED` to the build log and
+   > deploys the SPA shell rather than failing the deploy and taking production
+   > down. Check the build log for that warning after any dependency change.
+
+   **Building locally:** react-snap's bundled Chromium is from 2019 and will not
+   launch in most modern containers (`libXss.so.1` missing). Pass a working
+   browser explicitly:
+
+   ```bash
+   PUPPETEER_EXECUTABLE_PATH=/opt/pw-browsers/chromium-1194/chrome-linux/chrome \
+     npm run build:static
+   ```
+
+   Do NOT hardcode that path back into `package.json` — it only exists in the dev
+   container and breaks the Vercel build.
+
+   **After any deploy, verify prerendering actually happened:**
+
+   ```bash
+   curl -s https://teb-academy.com/academy | wc -c     # expect ~70000, not ~1900
+   curl -so /dev/null -w '%{http_code}' https://teb-academy.com/pricing   # expect 200
+   ```
 
 4. Deploy. `vercel.json` adds an SPA rewrite so deep links (`/academy`,
    `/ai-tools/om-manual`, …) resolve to `index.html` instead of 404-ing, and
