@@ -246,8 +246,11 @@ const log = {
   },
   updated: (what) => { results.updated.push(what); console.log(`  updated  ${what}`); },
   failed: (what, err) => {
-    results.failed.push({ what, error: err.message });
-    console.log(`  FAILED   ${what}\n           ${err.message}`);
+    // Callers pass either an Error or a bare reason string ("missing"). Normalise, or
+    // --verify reports every absent item as "undefined" and the audit is unreadable.
+    const reason = err instanceof Error ? err.message : String(err);
+    results.failed.push({ what, error: reason });
+    console.log(`  FAILED   ${what}\n           ${reason}`);
   },
   planned: (what) => console.log(`  would create  ${what}`),
 };
@@ -294,6 +297,16 @@ async function syncPipelines() {
       log.created(`${what} — id ${created.id}`);
     } catch (err) {
       log.failed(what, err);
+      // The portal tier caps deal pipelines, and HubSpot's stock default pipeline occupies
+      // one slot. The raw 400 does not say that, so say it here.
+      if (/limit of \d+ deal pipelines/i.test(err.message)) {
+        const stock = existing.results.find((p) => p.id === 'default');
+        console.log('           The cap counts HubSpot\'s stock pipeline'
+          + `${stock ? ` ("${stock.label}")` : ''}, which this script will not delete.`);
+        console.log('           Delete it (Settings → Objects → Deals → Pipelines) and '
+          + 'rerun, or raise the cap.\n           See HUBSPOT_CRM_RUNBOOK.md §3.1 for the '
+          + 'three options.');
+      }
     }
   }
 }
@@ -406,6 +419,47 @@ async function reportAssociations() {
   }
 }
 
+// ── Section isolation ────────────────────────────────────────────────────────
+
+async function section(fn, name) {
+  try {
+    await fn();
+  } catch (err) {
+    log.failed(`${name} (section aborted)`, err);
+    if (err.status === 401 || err.status === 403) {
+      console.log('           Missing scope. This section needs both the crm.schemas.*.write');
+      console.log('           and crm.objects.*.read scope for that object type — HubSpot');
+      console.log('           does not auto-select the objects.read one. See RUNBOOK §2.');
+    }
+  }
+}
+
+// ── Account defaults ─────────────────────────────────────────────────────────
+// Checked rather than asserted. An earlier version of the runbook hardcoded "currency is
+// USD, fix it" — it was GBP all along, and a stale warning printed on every run is worse
+// than no warning, because it trains you to ignore the section it sits in.
+
+const WANT_CURRENCY = 'GBP';
+const WANT_TIMEZONE = 'Europe/London';
+
+async function checkAccountDefaults() {
+  try {
+    const info = await api('GET', '/account-info/v3/details');
+    const notes = [];
+    if (info.companyCurrency !== WANT_CURRENCY) {
+      notes.push(`account currency is ${info.companyCurrency}, the spec prices in `
+        + `${WANT_CURRENCY} — change it before the first deal is created, HubSpot does `
+        + 'not reinterpret amounts already entered');
+    }
+    if (info.timeZone !== WANT_TIMEZONE) {
+      notes.push(`account time zone is ${info.timeZone}, expected ${WANT_TIMEZONE}`);
+    }
+    return notes;
+  } catch (err) {
+    return [`could not read account defaults (${err.message})`];
+  }
+}
+
 // ── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -427,10 +481,16 @@ async function main() {
   console.log(`TEBA HubSpot CRM provisioner — ${mode}`);
   console.log(`API: ${BASE}`);
 
-  await syncPipelines();
-  await syncProperties('contacts', CONTACT_PROPERTIES, 'Contact properties (spec §2)');
-  await syncProperties('companies', COMPANY_PROPERTIES, 'Company properties (spec §3)');
-  await reportAssociations();
+  const accountNotes = await checkAccountDefaults();
+
+  // Each section is isolated. A missing scope makes the first read of an object type throw,
+  // and if that aborted the process you would learn nothing about the object types the
+  // token *can* reach — so a dry run under a half-scoped token would report nothing at all.
+  // Fail the section, keep going, and let the summary show the whole picture at once.
+  await section(syncPipelines, 'deal pipelines');
+  await section(() => syncProperties('contacts', CONTACT_PROPERTIES, 'Contact properties (spec §2)'), 'contact properties');
+  await section(() => syncProperties('companies', COMPANY_PROPERTIES, 'Company properties (spec §3)'), 'company properties');
+  await section(reportAssociations, 'association audit');
 
   console.log('\n─────────────────────────────────────────');
   console.log(`created ${results.created.length}  ·  updated ${results.updated.length}`
@@ -447,7 +507,7 @@ async function main() {
     console.log('See scripts/HUBSPOT_CRM_RUNBOOK.md §4:');
     console.log('  · saved deal views (Hot deals, Abandoned checkout, Enterprise, ICP-fit)');
     console.log('  · lifecycle stage automation');
-    console.log('  · account currency — currently USD, the spec prices in GBP');
+    for (const note of accountNotes) console.log(`  · ${note}`);
   }
 
   process.exit(results.failed.length ? 1 : 0);
