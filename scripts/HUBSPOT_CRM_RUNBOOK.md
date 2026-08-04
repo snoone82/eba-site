@@ -254,9 +254,14 @@ Spec §7 steps 6–7 are still open and need Zapier:
 
 Re-run `--verify` after any HubSpot UI work to confirm the structure still matches the spec.
 
-### 5.1 Kajabi-side readiness — checked, three things to fix first
+Click-by-click instructions for both Zaps and the four saved views, with the live pipeline
+and stage IDs already filled in, are in `scripts/ZAPIER_SETUP.md`.
 
-Read from Kajabi site `2148787052` (`teba.mykajabi.com`) before building the Zaps.
+### 5.1 Kajabi-side readiness — checked, ready
+
+Read from Kajabi site `2148787052` (`teba.mykajabi.com`). Nothing needs changing in Kajabi
+before the Zaps are built; this section records what was checked and why two earlier
+"blockers" were withdrawn.
 
 **Currency: no action needed.** An earlier version of this section called the Kajabi/HubSpot
 currency mismatch a blocker. That was wrong, and the correction matters because the Kajabi
