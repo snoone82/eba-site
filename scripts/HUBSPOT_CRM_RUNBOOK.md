@@ -22,10 +22,15 @@ The script has been run against the live portal. What exists now:
 | Account currency / time zone | GBP / Europe/London — correct, see §4.3 |
 | Contacts without a company | 0 of 2 |
 | §4 manual steps (saved views, lifecycle) | **not started** |
-| §5 Zapier sync | **not started** |
+| §5 Zapier sync | **not started** — three prerequisites found, see §5.1 |
+| Kajabi currency | **USD**, against HubSpot's GBP — fix before any purchase syncs (§5.1) |
 
-One outstanding decision, in §3.1: the second pipeline cannot be created until the default
-`Sales Pipeline` is deleted or the tier is raised.
+Two things need a decision before the build can finish:
+
+1. **§3.1** — the second pipeline cannot be created until the default `Sales Pipeline` is
+   deleted or the tier is raised.
+2. **§5.1** — Kajabi's currency and three tag names need aligning before the Zaps are
+   built. All are zero-cost to change today and expensive to change after the first sale.
 
 `node scripts/hubspot_crm_setup.mjs --verify` reprints this from the live portal at any
 time, and is the source of truth if this table goes stale.
@@ -245,6 +250,51 @@ Spec §7 steps 6–7 are still open and need Zapier:
 - **Step 7** — end-to-end test with a dummy contact, then delete it.
 
 Re-run `--verify` after any HubSpot UI work to confirm the structure still matches the spec.
+
+### 5.1 Kajabi-side readiness — checked, three things to fix first
+
+Read from Kajabi site `2148787052` (`teba.mykajabi.com`) before building the Zaps.
+
+**Kajabi's currency is USD; HubSpot's is GBP.** `default_currency` on the Kajabi site is
+`USD`, and contact revenue reads back as `$0.00 USD`. The purchase → Closed Won Zap writes
+a deal amount, so every synced amount would land in a GBP portal carrying a number that was
+denominated in dollars. Nothing has been sold yet — lifetime revenue is zero — so changing
+it now costs nothing and after the first sale costs a manual correction of every deal.
+Fix in Kajabi: Settings → Checkout / Payments → Currency. Do this **before** step 6.
+
+This is probably where the §4.3 error came from — the "USD" was real, just in Kajabi rather
+than HubSpot. Worth knowing that the two systems are configured independently.
+
+**Three Kajabi tags have no matching HubSpot option.** Spec §5 says the 30 July tag layer
+"maps cleanly across". It does for the six `Stage ·` tags. It does not for these:
+
+| Kajabi tag | HubSpot option | Problem |
+|---|---|---|
+| `Source · Social Media` | `teba_source` → "Social" | Different string. Zapier matches on exact value, so this silently writes nothing |
+| `Interest · AI Tools` | — | No equivalent. HubSpot splits tools into RAMS, COSHH, O&M, Co-Pilot |
+| `Interest · Enterprise / In-House Training` | `product_interest` → "Enterprise" | Different string |
+
+Also unmatched in the other direction: `teba_source` has an "Event" option with no Kajabi
+tag, and `product_interest` has RAMS, COSHH, O&M, Co-Pilot and Mentorship options that no
+Kajabi `Interest ·` tag feeds.
+
+Decide per row before building the Zap — either rename the Kajabi tag, or map it explicitly
+in the Zap's field mapping. Renaming is cleaner and safe right now because **every one of
+these tags has 0 contacts on it**. A silent no-write is the failure mode to avoid: Zapier
+will not error on an unmatched enumeration value, it just leaves the property empty.
+
+**Contact counts don't match.** Kajabi has 1 contact, HubSpot has 2. Neither is a
+migration in progress — Kajabi's is a test/admin record and both are pre-launch noise —
+but confirm which records are real before running the step 7 end-to-end test, so the test
+contact is distinguishable from live data.
+
+### 5.2 Zapier is not reachable from this repo's tooling
+
+The spec says Zapier "is already connected to this workspace". That is not true of the
+tooling this runbook is executed from — there is no Zapier tool available here, so the
+two Zaps in step 6 cannot be built or inspected programmatically. They are a manual job
+in the Zapier UI, the same as §4. Budget for that; it is the single largest remaining
+piece of work and it is the one that stops the two databases drifting apart.
 
 ---
 
