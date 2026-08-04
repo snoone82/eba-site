@@ -369,7 +369,51 @@ A purchase event additionally creates a deal in the Academy pipeline at
 **Tests:** `node scripts/kajabi_webhook_test.mjs` — 19 cases, stubs fetch, touches nothing
 live, needs no token.
 
-### 5.3 Zapier is not reachable from this repo's tooling
+### 5.3 `/api/lead` — the website's own forms
+
+`/api/kajabi-webhook` only fires for forms hosted **on Kajabi**. The teb-academy.com forms
+— homepage health check, toolbox talk generator, contact enquiry — POST straight to
+`FORM_ENDPOINT` from the browser and never touch Kajabi, so none of them reached the CRM.
+`api/lead.ts` closes that gap. `FORM_ENDPOINT` now defaults to `/api/lead`, so there is
+nothing to configure; same-origin, so no CORS.
+
+**It is unauthenticated on purpose, and it has to be.** `VITE_*` values are inlined into
+the public JavaScript bundle at build time, so a shared secret placed there would be
+readable from source — worse than no secret, because it would look protected. Any
+browser-submitted endpoint is public by nature. The defence is strict validation, field
+length caps, and a honeypot (`website_url` / `fax`: a bot filling every field it finds gets
+a `200` and is silently discarded).
+
+Do not "harden" it by moving the webhook secret into `VITE_FORM_ENDPOINT`. That publishes
+the secret and lets anyone write to the CRM through the server-to-server route as well.
+
+What it writes:
+
+| Site input | HubSpot |
+|---|---|
+| any submission | `teba_source: website` — the route is only reachable from the site |
+| `source` contains `toolbox-talk` | `toolbox_talk_user: true`, the spec §2 warm-lead signal |
+| `enquiry: academy` | `product_interest: academy` |
+| `enquiry: om-manual` | `o_m` |
+| `enquiry: chatbot` | `co_pilot` |
+| `enquiry: mentorship` | `mentorship` |
+| `enquiry: white-label` | `enterprise` |
+| `enquiry: documents` / `other` | left empty — no HubSpot option exists, and a guess would become a number in a report someone believes |
+| `company`, `message`, `name` | native `company`, `message`, `firstname`/`lastname` |
+
+Lifecycle `lead` is set on first sight only, so someone who is already a Customer is not
+dragged back down the ladder by filling in a form.
+
+**Tests:** `node scripts/lead_endpoint_test.mjs` — 27 cases, stubbed fetch, no token.
+
+**Note on the shared module.** `api/_hubspot.mjs` is plain JavaScript rather than
+TypeScript, and must stay that way. Vercel's edge bundler rejects a `./_hubspot.ts`
+specifier and wants the extensionless form; Node's native type-stripping, which the test
+scripts use to import the endpoints without a build step, requires the explicit extension.
+No `.ts` spelling satisfies both — a `.mjs` file does. Nothing is lost: tsconfig's
+`include` is `["client/src"]`, so `api/` was never typechecked.
+
+### 5.4 Zapier is not reachable from this repo's tooling
 
 The spec says Zapier "is already connected to this workspace". That is not true of the
 tooling this runbook is executed from — there is no Zapier tool available here, so the

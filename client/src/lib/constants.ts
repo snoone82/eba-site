@@ -191,10 +191,19 @@ export const OM_SERVICE_URL =
   import.meta.env.VITE_KAJABI_OM_SERVICE || "TODO(eba): Kajabi O&M service flow URL";
 
 /**
- * Lead-magnet / enquiry form POST endpoint (Kajabi form action or webhook).
+ * Lead-magnet / enquiry form POST endpoint.
+ *
+ * Defaults to this site's own /api/lead route, which writes straight into HubSpot
+ * (see api/lead.ts). Same-origin, so no CORS involved. Override with
+ * VITE_FORM_ENDPOINT only to point the forms somewhere else entirely.
+ *
+ * Do NOT put a secret in the override: VITE_* values are inlined into the public
+ * JavaScript bundle at build time and would be readable by anyone viewing source.
+ * /api/lead is unauthenticated by design for exactly this reason.
+ *
  * Empty string = form disabled ("Form coming soon"); never fakes success.
  */
-export const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || "";
+export const FORM_ENDPOINT = import.meta.env.VITE_FORM_ENDPOINT || "/api/lead";
 
 /** Stripe Payment Links for the standalone AI-tool purchases. */
 export const STRIPE = {
