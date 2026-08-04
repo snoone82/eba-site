@@ -23,24 +23,13 @@
  *
  * See scripts/HUBSPOT_CRM_RUNBOOK.md §5 and scripts/ZAPIER_SETUP.md.
  */
+import {
+  json, env, hs, upsertContact, splitName, normaliseEmail,
+  ACADEMY_PIPELINE, STAGE_CLOSED_WON_ENROLLED, TEBA_SOURCE, PRODUCT_INTEREST,
+  type HsError,
+} from "./_hubspot.ts";
+
 export const config = { runtime: "edge" };
-
-const HUBSPOT = "https://api.hubapi.com";
-
-// Live IDs, read from portal 149002234. Academy pipeline; a purchase is by
-// definition already won, so it lands directly in the closed-won stage.
-const ACADEMY_PIPELINE = "4018643182";
-const STAGE_CLOSED_WON_ENROLLED = "5818433734";
-
-// Enumeration values HubSpot will accept. Anything not in these sets is dropped
-// rather than sent: HubSpot rejects the whole write on an unknown enum value, so
-// one bad field would otherwise lose the entire contact.
-const TEBA_SOURCE = new Set([
-  "website", "social_media", "warm_network", "referral", "event",
-]);
-const PRODUCT_INTEREST = new Set([
-  "academy", "rams", "coshh", "o_m", "co_pilot", "mentorship", "enterprise",
-]);
 
 // Kajabi tag → HubSpot value. Only mappings that are certain live here.
 // "Interest · AI Tools" is deliberately absent: HubSpot splits tools into RAMS,
@@ -55,50 +44,6 @@ const TAG_MAP: Record<string, { prop: string; value: string }> = {
   "interest · academy": { prop: "product_interest", value: "academy" },
   "interest · enterprise / in-house training": { prop: "product_interest", value: "enterprise" },
 };
-
-function json(obj: unknown, status = 200): Response {
-  return new Response(JSON.stringify(obj), {
-    status,
-    headers: { "content-type": "application/json", "cache-control": "no-store" },
-  });
-}
-
-function env(name: string): string | undefined {
-  return (globalThis as any).process?.env?.[name];
-}
-
-type HsError = Error & { status?: number; detail?: unknown };
-
-async function hs(
-  token: string,
-  method: string,
-  path: string,
-  body?: unknown,
-): Promise<any> {
-  const res = await fetch(`${HUBSPOT}${path}`, {
-    method,
-    headers: {
-      authorization: `Bearer ${token}`,
-      "content-type": "application/json",
-    },
-    body: body === undefined ? undefined : JSON.stringify(body),
-  });
-  const text = await res.text();
-  const parsed = text ? safeParse(text) : {};
-  if (!res.ok) {
-    const err = new Error(
-      `${method} ${path} → ${res.status}: ${parsed?.message ?? text}`,
-    ) as HsError;
-    err.status = res.status;
-    err.detail = parsed;
-    throw err;
-  }
-  return parsed;
-}
-
-function safeParse(t: string): any {
-  try { return JSON.parse(t); } catch { return { raw: t }; }
-}
 
 /**
  * Kajabi does not publish one stable webhook envelope, and the shape differs
@@ -137,14 +82,6 @@ const AMOUNT_PATHS = [
 ];
 const OFFER_PATHS = ["offer_title", "offer.title", "offer_name", "product_title", "data.offer_title"];
 
-/** Split "Ste Noone" into first/last without inventing a surname for one-word names. */
-function splitName(full?: string): { firstname?: string; lastname?: string } {
-  if (!full || typeof full !== "string") return {};
-  const parts = full.trim().split(/\s+/);
-  if (parts.length === 1) return { firstname: parts[0] };
-  return { firstname: parts.slice(0, -1).join(" "), lastname: parts[parts.length - 1] };
-}
-
 /** "£999.00 GBP" / "99900" (cents) / 999 → 999. Returns undefined if unusable. */
 function parseAmount(raw: unknown, isCents: boolean): number | undefined {
   if (raw === undefined || raw === null) return undefined;
@@ -173,31 +110,6 @@ function propsFromTags(tags: unknown): Record<string, string> {
   // product_interest is a multi-checkbox: HubSpot takes semicolon-separated values.
   if (interests.length) out.product_interest = [...new Set(interests)].join(";");
   return out;
-}
-
-async function findContactByEmail(token: string, email: string): Promise<string | undefined> {
-  const res = await hs(token, "POST", "/crm/v3/objects/contacts/search", {
-    limit: 1,
-    properties: ["email"],
-    filterGroups: [{ filters: [{ propertyName: "email", operator: "EQ", value: email }] }],
-  });
-  return res?.results?.[0]?.id;
-}
-
-async function upsertContact(
-  token: string,
-  email: string,
-  properties: Record<string, string>,
-): Promise<{ id: string; created: boolean }> {
-  const existing = await findContactByEmail(token, email);
-  if (existing) {
-    await hs(token, "PATCH", `/crm/v3/objects/contacts/${existing}`, { properties });
-    return { id: existing, created: false };
-  }
-  const made = await hs(token, "POST", "/crm/v3/objects/contacts", {
-    properties: { email, ...properties },
-  });
-  return { id: made.id, created: true };
 }
 
 export default async function handler(req: Request): Promise<Response> {
@@ -249,8 +161,8 @@ export default async function handler(req: Request): Promise<Response> {
   let payload: any;
   try { payload = await req.json(); } catch { return json({ error: "bad_request" }, 400); }
 
-  const email = pick(payload, EMAIL_PATHS);
-  if (typeof email !== "string" || !email.includes("@")) {
+  const email = normaliseEmail(pick(payload, EMAIL_PATHS));
+  if (!email) {
     // Echo the keys received. Without this a shape mismatch looks like silence,
     // which is the failure mode this endpoint exists to avoid.
     return json({
