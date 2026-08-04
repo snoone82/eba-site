@@ -318,7 +318,51 @@ migration in progress — Kajabi's is a test/admin record and both are pre-launc
 but confirm which records are real before running the step 7 end-to-end test, so the test
 contact is distinguishable from live data.
 
-### 5.2 Zapier is not reachable from this repo's tooling
+### 5.2 The sync is code, not Zaps — `/api/kajabi-webhook`
+
+Spec §6 assumes Zapier. It is built as a Vercel serverless function instead, in
+`api/kajabi-webhook.ts`, following the same pattern as the existing
+`api/assistant.ts`. It replaces **both** Zaps.
+
+Why: Zapier is not reachable from this tooling (§5.3), and the endpoint is better on the
+merits. Zapier does not error when a value fails to match a HubSpot enumeration — it writes
+nothing and reports success. The endpoint validates every enum against an allowlist before
+sending and returns what it wrote, so a mapping failure is visible rather than silent. It
+also costs nothing, runs on the Vercel project already deployed, and is version controlled.
+
+**Setup — three things, all one-off:**
+
+1. **Add two scopes to the private app.** Record writes are separate from schema writes, so
+   the provisioner's six are not enough. Add `crm.objects.contacts.write` and
+   `crm.objects.deals.write`, then **Commit changes**. The token does not rotate.
+2. **Set two environment variables** in the Vercel project settings — never committed:
+   - `HUBSPOT_PRIVATE_APP_TOKEN` — the same `pat-eu1-…` token
+   - `KAJABI_WEBHOOK_SECRET` — any long random string you invent
+3. **Point Kajabi at it.** In each form's settings, set the webhook URL to
+   `https://<your-domain>/api/kajabi-webhook?secret=<the-secret>`. For purchases, append
+   `&event=purchase`.
+
+**Check it before relying on it.** A `GET` on the same URL runs a read-only health check:
+
+```bash
+curl "https://<your-domain>/api/kajabi-webhook?secret=<the-secret>"
+```
+
+It reports whether the token can read contacts, deals and the Academy pipeline. It cannot
+prove *write* access without writing, and says so — send one real test event to confirm.
+
+**What it does.** A contact event upserts the HubSpot contact by email (never duplicates),
+writes `kajabi_contact_id`, maps known `Source ·` and `Interest ·` tags, and sets lifecycle
+`lead` on first sight only — so an existing Customer is never dragged back down the ladder.
+A purchase event additionally creates a deal in the Academy pipeline at
+`Closed Won — Enrolled`, associates it to the contact, and sets lifecycle `customer`.
+
+`Interest · AI Tools` is deliberately unmapped, for the reason in §5.1.
+
+**Tests:** `node scripts/kajabi_webhook_test.mjs` — 19 cases, stubs fetch, touches nothing
+live, needs no token.
+
+### 5.3 Zapier is not reachable from this repo's tooling
 
 The spec says Zapier "is already connected to this workspace". That is not true of the
 tooling this runbook is executed from — there is no Zapier tool available here, so the
