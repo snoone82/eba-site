@@ -1,5 +1,8 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "//": "buildCommand MUST prerender. Plain `vite build` emits only the empty SPA shell — Google gets a title tag and nothing else, and every sub-route 404s. build:vercel tolerates a prerender failure so a broken Chromium cannot take production down; check the build log for the PRERENDER FAILED warning.",
+  "buildCommand": "npm run build:vercel",
+  "outputDirectory": "dist",
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [

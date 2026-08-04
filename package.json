@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "build:static": "npm run build && react-snap",
+    "prerender": "react-snap",
+    "build:static": "npm run build && npm run prerender",
+    "build:vercel": "npm run build && (npm run prerender || echo '::warning:: PRERENDER FAILED — deploying SPA shell only. Routes will rely on the rewrite and Google will see no server-rendered copy. Investigate before launch.')",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
@@ -68,7 +70,6 @@
       "/terms",
       "/404"
     ],
-    "puppeteerExecutablePath": "/opt/pw-browsers/chromium-1194/chrome-linux/chrome",
     "concurrency": 16,
     "skipThirdPartyRequests": true
   }
