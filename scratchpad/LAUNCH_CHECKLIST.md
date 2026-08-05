@@ -28,6 +28,23 @@ Owner key: **[STE]** = needs you · **[CLAUDE]** = I can do it · **[BOTH]** = I
 
 ## 🔴 BLOCKERS — money or trust breaks without these
 
+### 0. THE COURSE IS EMPTY — every module is in DRAFT **[STE / MARK]**
+Verified directly against Kajabi, 4 Aug 2026. The course product reads
+`status: published`, but **all 10 modules and all 101 lessons are
+`publishing_state: draft`.**
+
+A buyer paying £999 today logs in and finds nothing. Nothing else on this list
+matters until this is fixed — not the website, not SEO, not the CRM.
+
+Only **6 of 101 lessons have video attached** (3 in Module 1, 1 in Module 2,
+2 in Module 3). **95 lessons have no media.**
+
+Also visible to buyers: an empty module called **"Paywall Wrapper"** (0 lessons).
+Delete or rename it.
+
+*Sequence: attach the 95 videos → publish each module → publish lessons →
+then re-run the purchase test below.*
+
 ### 1. Test a real end-to-end purchase **[STE]**
 Buy your own course with a real card, confirm: payment succeeds → welcome email arrives →
 login works → course content is accessible → refund yourself.
