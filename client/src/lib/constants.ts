@@ -176,14 +176,33 @@ export const METHOD_NAME = "The Engineering Operating System";
  * The standard-price offers (£1,499 / £1,999) exist as drafts in Kajabi
  * admin, ready to swap in here when the founding cohort closes.
  */
+/**
+ * ⛔ ENROLMENT CLOSED — 5 Aug 2026, on Ste's instruction ("we don't want anything
+ * available for sale at the moment").
+ *
+ * Both Kajabi offers were unpublished the same day. The course itself is not
+ * deliverable yet: all 10 modules and all 101 lessons are still publishing_state
+ * draft, so a buyer would have paid £999 for an empty course.
+ *
+ * These placeholders flip ENROL_READY to false, so every enrolment CTA renders
+ * ENROL_PENDING_LABEL ("Enrolment opens soon") instead of linking to a checkout
+ * that would now 404.
+ *
+ * TO RE-OPEN: republish offers 2151280639 (£999) and 2151280640 (£1,299) in
+ * Kajabi, then restore the real URLs below. The checkout tokens are Kajabi-
+ * generated and were verified live on 30 Jul 2026 — do NOT reconstruct them
+ * from offer IDs, they are unrelated:
+ *   £999   → https://teba.mykajabi.com/offers/xWR6J4tA/checkout
+ *   £1,299 → https://teba.mykajabi.com/offers/HYFbPnn9/checkout
+ */
 export const KAJABI_CHECKOUT_URL =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL ||
-  "https://teba.mykajabi.com/offers/xWR6J4tA/checkout";
+  "TODO(eba): enrolment closed — restore xWR6J4tA checkout URL when offers republish";
 
-/** Kajabi checkout for the Academy + Documents tier. */
+/** Kajabi checkout for the Academy + Documents tier. See note above. */
 export const KAJABI_CHECKOUT_URL_DOCS =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL_DOCS ||
-  "https://teba.mykajabi.com/offers/HYFbPnn9/checkout";
+  "TODO(eba): enrolment closed — restore HYFbPnn9 checkout URL when offers republish";
 
 /** Kajabi-hosted O&M manual upload/enquiry flow. While unset, the O&M CTA
  *  fails safe to the Stripe link (if set) or the internal tool page. */

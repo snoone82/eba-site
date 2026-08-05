@@ -6,7 +6,14 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/about", "destination": "/our-story", "permanent": true }
+    { "source": "/about", "destination": "/our-story", "permanent": true },
+    {
+      "//": "www and non-www both served 200 with no redirect (checked 5 Aug 2026), which is duplicate content. Canonical tags point at the bare domain, so www 301s to match.",
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.teb-academy.com" }],
+      "destination": "https://teb-academy.com/:path*",
+      "permanent": true
+    }
   ],
   "rewrites": [
     { "source": "/((?!api/).*)", "destination": "/index.html" }
