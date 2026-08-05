@@ -101,8 +101,7 @@ export function ComingSoonPage() {
           fontSize: isMobile ? "16px" : "18px", lineHeight: 1.7,
           color: `rgba(${CREAM_RGB},0.74)`, margin: "0 0 8px", maxWidth: "56ch",
         }}>
-          Business growth and AI tools for engineering services contractors —
-          mechanical, electrical and M&amp;E.
+          Business growth and AI tools for M&amp;E and building services contractors.
         </p>
         <p style={{
           fontSize: isMobile ? "16px" : "18px", lineHeight: 1.7,
