@@ -25,7 +25,7 @@
  */
 import {
   json, env, hs, upsertContact, splitName, normaliseEmail, clip,
-  PRODUCT_INTEREST,
+  PRODUCT_INTEREST, TEBA_SOURCE, deriveSource, normalisePhone,
 } from "./_hubspot.mjs";
 
 /** Error thrown by hs(): a normal Error with the HTTP status attached. */
@@ -74,11 +74,39 @@ export default async function handler(req: Request): Promise<Response> {
   if (!email) return json({ error: "invalid_email" }, 422);
 
   const source = clip(body.source, MAX.source) ?? "";
-  const properties: Record<string, string> = {
-    // Every lead through this route came from the website, by definition — the endpoint is
-    // only reachable from a page on it. No inference required.
-    teba_source: "website",
-  };
+
+  /**
+   * Attribution. The browser sends utm_* (captured on first page view and held
+   * for the visit) plus document.referrer. utm_source wins where present because
+   * it is deliberate; the referrer is the fallback for untagged links — e.g. an
+   * Instagram bio tap where nobody remembered to tag the URL.
+   *
+   * Previously every lead was written as teba_source "website", which made
+   * Facebook, LinkedIn and Instagram indistinguishable. The values were being
+   * sent by the client and thrown away here.
+   */
+  const { source: derivedSource, detail } = deriveSource(
+    body.utm_source, body.utm_medium, body.referrer,
+  );
+
+  const properties: Record<string, string> = {};
+  if (TEBA_SOURCE.has(derivedSource)) properties.teba_source = derivedSource;
+  if (detail) properties.teba_source_detail = clip(detail, 120)!;
+
+  for (const [key, prop] of [
+    ["utm_campaign", "utm_campaign"],
+    ["utm_medium", "utm_medium"],
+    ["utm_content", "utm_content"],
+  ] as const) {
+    const v = clip(body[key], 120);
+    if (v) properties[prop] = v;
+  }
+
+  // Which form produced this lead — waitlist, toolbox talk, contact enquiry.
+  if (source) properties.teba_form = source;
+
+  const phone = normalisePhone(body.phone);
+  if (phone) properties.phone = phone;
 
   const { firstname, lastname } = splitName(clip(body.name, MAX.name));
   if (firstname) properties.firstname = firstname;
@@ -97,8 +125,35 @@ export default async function handler(req: Request): Promise<Response> {
   // property exists for exactly this.
   if (source.includes("toolbox-talk")) properties.toolbox_talk_user = "true";
 
+  /**
+   * Properties that only exist if the HubSpot CRM build has been done. HubSpot
+   * rejects the WHOLE write if one property name is unknown — so a half-built
+   * CRM would silently lose every lead. On a 400 we strip these and retry with
+   * standard properties only: an incompletely-tagged contact beats no contact.
+   */
+  const CUSTOM = [
+    "teba_source", "teba_source_detail", "teba_form",
+    "utm_campaign", "utm_medium", "utm_content",
+    "product_interest", "toolbox_talk_user",
+  ];
+
   try {
-    const contact = await upsertContact(token, email, properties);
+    let contact;
+    try {
+      contact = await upsertContact(token, email, properties);
+    } catch (first) {
+      const fe = first as HsError;
+      if (fe.status !== 400) throw first;
+      const reduced = Object.fromEntries(
+        Object.entries(properties).filter(([k]) => !CUSTOM.includes(k)),
+      );
+      console.warn(
+        "[api/lead] HubSpot rejected custom properties — retrying with standard only.",
+        "Create them in HubSpot (see scratchpad/TEBA_HUBSPOT_CRM_SPEC.md).",
+        fe.message,
+      );
+      contact = await upsertContact(token, email, reduced);
+    }
 
     // Only on first sight. Sending it on every submission would drag an existing Customer
     // back down to Lead the next time they filled in a form.

@@ -27,8 +27,23 @@ export function captureUtm(): void {
       const value = params.get(key);
       if (value) found[key] = value;
     }
+    /**
+     * The landing referrer, captured once per visit alongside the UTMs.
+     * This is what attributes an UNTAGGED link — someone tapping the Instagram
+     * bio when nobody remembered to add utm_source. Stored only if it is
+     * external, so internal navigation never overwrites the real origin.
+     */
+    const ref = document.referrer;
+    if (ref && !ref.includes(window.location.hostname)) {
+      found.referrer = ref.slice(0, 300);
+    }
+
     if (Object.keys(found).length > 0) {
-      sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(found));
+      // First write wins: the visit's original source, not the latest page.
+      const existing = sessionStorage.getItem(UTM_STORAGE_KEY);
+      if (!existing || existing === "{}") {
+        sessionStorage.setItem(UTM_STORAGE_KEY, JSON.stringify(found));
+      }
     }
   } catch {
     /* sessionStorage unavailable (private mode etc.) — ignore */
