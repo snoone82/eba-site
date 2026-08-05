@@ -8,7 +8,7 @@
     "build": "vite build",
     "prerender": "react-snap",
     "build:static": "npm run build && npm run prerender",
-    "build:vercel": "npm run build && (npm run prerender || echo '::warning:: PRERENDER FAILED — deploying SPA shell only. Routes will rely on the rewrite and Google will see no server-rendered copy. Investigate before launch.')",
+    "build:vercel": "npm run build && (timeout 600 npm run prerender || echo '::warning:: PRERENDER SKIPPED (failed or timed out after 10m) — deploying SPA shell only. Google sees no server-rendered copy. Check this log before launch.')",
     "preview": "vite preview",
     "typecheck": "tsc --noEmit"
   },
