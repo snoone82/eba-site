@@ -12,6 +12,8 @@ Launch: **17 August** (12 days). All statuses below checked live, not from memor
   No prices, no purchase buttons, nothing half-finished reachable.
 - Turning the full site back on at launch is one line (`COMING_SOON = false`)
 - Vercel connected to GitHub, deploying from `claude/new-session-60ynut`
+- All routes resolve (`/`, `/pricing`, `/academy`, `/ai-tools` …) — every one serves
+  the holding page. `/api/lead` healthy.
 
 **HubSpot**
 - Account connected; `HUBSPOT_PRIVATE_APP_TOKEN` set in Vercel
@@ -61,8 +63,9 @@ Launch: **17 August** (12 days). All statuses below checked live, not from memor
 ## 🟠 STILL TO DO — site
 
 - **Prerendering is off** — Google currently sees an empty shell. Fine for a holding
-  page, must be fixed before launch. Should move to GitHub Actions.
-- **Sub-routes 404** (`/pricing`, `/academy`) — fix pushed, not yet confirmed live
+  page, **must be fixed before launch** or the site launches invisible to search.
+  Confirmed react-snap cannot run on Vercel's build image; needs rebuilding in
+  GitHub Actions with a modern Chromium. Contained job, but not a config tweak.
 - **About Ste page** — drafted, needs 7 interview answers + a photo
 - **Testimonials** from Group Directors — must be labelled as KEYIS internal users
 - Mark's new photography and video
