@@ -159,6 +159,49 @@ const CONTACT_PROPERTIES = [
     options: TEBA_SOURCE,
     description: 'Where this contact came from. Maps from the Kajabi "Source ·" tags.',
   },
+  // ── Attribution written by api/lead.ts on every website submission ──────────
+  // Without these five, that endpoint's 400-fallback strips them and the lead
+  // lands with no attribution at all. See scratchpad/TEBA_LEAD_CAPTURE.md.
+  {
+    name: 'teba_source_detail',
+    label: 'TEBA Source Detail',
+    type: 'string',
+    fieldType: 'text',
+    description:
+      'The exact platform or referrer — "instagram", "linkedin", "facebook", '
+      + '"search:google.com", "direct". This is the field that distinguishes one '
+      + 'social channel from another; teba_source only gives the category.',
+  },
+  {
+    name: 'teba_form',
+    label: 'TEBA Form',
+    type: 'string',
+    fieldType: 'text',
+    description:
+      'Which form produced this lead — e.g. "waitlist:pre-launch", '
+      + '"lead-magnet:toolbox-talk-generator", "contact-enquiry".',
+  },
+  {
+    name: 'utm_campaign',
+    label: 'UTM Campaign',
+    type: 'string',
+    fieldType: 'text',
+    description: 'utm_campaign from the landing URL, held for the whole visit.',
+  },
+  {
+    name: 'utm_medium',
+    label: 'UTM Medium',
+    type: 'string',
+    fieldType: 'text',
+    description: 'utm_medium from the landing URL (e.g. "social", "email").',
+  },
+  {
+    name: 'utm_content',
+    label: 'UTM Content',
+    type: 'string',
+    fieldType: 'text',
+    description: 'utm_content from the landing URL — which specific post or ad.',
+  },
   {
     name: 'product_interest',
     label: 'Product Interest',
