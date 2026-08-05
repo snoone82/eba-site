@@ -451,7 +451,7 @@ export default function HomePage() {
                 {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
               </a>
               {/* Two-track CTA: Academy track = rust primary above; Tools track = cobalt outline below. */}
-              <a href="/ai-tools#free-toolbox-talk" style={{
+              <a href="/toolbox-talk" style={{
                 background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", border: `1.5px solid ${COBALT_ON_DARK}`,
@@ -844,7 +844,7 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
                 Most engineering contractors either decline the work or subcontract it blindly — and the ones who make it pay treat it as a business line with its own pricing and delivery discipline, not a favour to a client.
               </p>
-              <Link href="/ai-tools#free-toolbox-talk" style={{
+              <Link href="/toolbox-talk" style={{
                 color: RUST, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
@@ -1003,7 +1003,7 @@ export default function HomePage() {
             >
               {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
             </a>
-            <a href="/ai-tools#free-toolbox-talk" style={{
+            <a href="/toolbox-talk" style={{
               background: "transparent", color: "#fff", textDecoration: "none",
               fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "16px",
               padding: "16px 40px", border: "1.5px solid rgba(255,255,255,0.7)",

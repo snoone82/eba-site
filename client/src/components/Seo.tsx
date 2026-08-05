@@ -44,6 +44,12 @@ export const PAGE_SEO = {
       "AI tools built for engineering contractors: O&M manuals in 24 hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
     path: "/ai-tools",
   },
+  toolboxTalk: {
+    title: "Free Toolbox Talk Generator | The Engineering Business Academy",
+    description:
+      "Generate a site-ready UK toolbox talk with a sign-off sheet in about a minute — genuinely free, just your email. Academy members get it unlimited.",
+    path: "/toolbox-talk",
+  },
   omManual: {
     title: "O&M Manual Compiler — Client-Ready Manuals in 24 Hours",
     description:

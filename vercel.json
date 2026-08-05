@@ -14,5 +14,11 @@
   ],
   "rewrites": [
     { "source": "/:path*", "destination": "/index.html" }
-  ]
+  ],
+  "functions": {
+    "api/generate-toolbox-talk.ts": {
+      "maxDuration": 60,
+      "memory": 2048
+    }
+  }
 }

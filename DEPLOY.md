@@ -15,7 +15,7 @@ required — every integration falls back to a safe placeholder until you wire i
    | Build Command      | set in `vercel.json` — leave the dashboard field EMPTY |
    | Output Directory   | set in `vercel.json` (`dist`) |
    | Install Command    | `npm install`            |
-   | Node.js Version    | 18.x or 20.x             |
+   | Node.js Version    | **22.x** — required by `@sparticuz/chromium` / `puppeteer-core` (the Toolbox Talk Generator's PDF renderer, see below). 18.x/20.x will fail to install these. |
 
    > ⚠️ **The build command lives in `vercel.json` (`buildCommand: npm run build:vercel`),
    > NOT in the Vercel dashboard.**
@@ -181,3 +181,55 @@ How it behaves:
 
 To point the widget at a different backend instead, set `VITE_ASSISTANT_ENDPOINT`
 to its URL (optional; defaults to `/api/assistant`).
+
+## Toolbox Talk Generator — free tier + the Academy-member "full version"
+
+`/toolbox-talk` is a real, working generator (not the email-capture stub the
+`ToolboxLeadMagnet` section used to be): visitor types a topic, the backend
+calls Claude for a structured UK toolbox talk, renders it as a branded A4 PDF
+(headless Chromium), shows it on screen instantly, and emails a copy. Two
+modes, one page — see `client/src/pages/ToolboxTalkPage.tsx` and
+`api/generate-toolbox-talk.ts` + `api/lib/`:
+
+- **Public** (no `?access=` param) — email-gated, rate-limited (5/email/day,
+  15/IP/day). This is "the free basic version" promised on `/ai-tools`.
+- **Academy member** (`?access=<token>`, delivered by email after a Kajabi
+  purchase — see below) — no email step, effectively unlimited. This is "the
+  full Toolbox Talk Generator... included with every Academy enrolment"
+  promised on the FAQ and pricing pages.
+
+**Required to go live** (all server-side secrets — Vercel → Settings →
+Environment Variables, never committed):
+
+1. **`ANTHROPIC_API_KEY`** (see above) — without it, both modes return 501 and
+   the page shows "Opening shortly." Uses `claude-sonnet-5`, structured JSON
+   output.
+2. **`DATABASE_URL`** — a Postgres connection string (Neon serverless driver;
+   works with Neon, Supabase, or any standard Postgres). One table for the
+   free-tier lead log + rate limit (`toolbox_generations`), one for Academy
+   member entitlements (`academy_members`) — both created automatically on
+   first request. **Without this, rate limiting is skipped (fail-open) and
+   member access links can't be granted** — set it before launch.
+3. **`RESEND_API_KEY`** + **`RESEND_FROM_EMAIL`** — a [Resend](https://resend.com)
+   account with a verified sending domain (`teb-academy.com`), for emailing
+   the free-tier PDF copy and the member's access link. If unset, the free
+   tier still fully works (PDF renders/downloads, just isn't emailed); member
+   access links simply can't be sent until this is set.
+4. **`KAJABI_WEBHOOK_SECRET`** (already set for `/api/kajabi-webhook`) is
+   reused as-is by the new `/api/toolbox-talk-grant` endpoint — one secret,
+   two Kajabi automation steps on the same purchase trigger. See
+   `docs/TOOLBOX_TALK_GRANT_RUNBOOK.md` for the exact Kajabi dashboard steps
+   Ste/Mark need to add.
+
+**PDF rendering** uses `puppeteer-core` + `@sparticuz/chromium` (a
+Lambda-compatible headless Chromium build) — this is why
+`api/generate-toolbox-talk.ts` runs on Vercel's **Node.js** runtime, not Edge
+(Edge can't launch a browser). `vercel.json`'s `functions` block gives this
+one route extra `memory` (2048 MB) and `maxDuration` (60s) for the Chromium
+launch + Claude call + email send. `/api/toolbox-talk-grant` stays on Edge,
+same as `/api/kajabi-webhook` — it only talks to Postgres and Resend, no
+browser needed.
+
+Fonts (Inter) are embedded as base64 in the generated HTML so the PDF renders
+identically regardless of network access at request time — see
+`api/lib/pdf/brand.ts`.
