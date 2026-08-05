@@ -24,11 +24,24 @@ import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPage
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
 import { AboutStePage } from "@/pages/AboutStePage";
+import { ComingSoonPage } from "@/pages/ComingSoonPage";
+import { COMING_SOON } from "@/lib/constants";
 import { AssistantWidget } from "@/components/AssistantWidget";
 
 
 
 function Router() {
+  // PRE-LAUNCH: one flag takes over every route. Nothing unfinished is reachable —
+  // no purchase paths, no draft course, no half-written pages. Flip COMING_SOON
+  // to false in constants.ts to restore the full site.
+  if (COMING_SOON) {
+    return (
+      <Switch>
+        <Route component={ComingSoonPage} />
+      </Switch>
+    );
+  }
+
   return (
     <Switch>
       {/* EBA Marketing Site */}
@@ -73,7 +86,10 @@ function App() {
           <Toaster />
           <ScrollToTop />
           <Router />
-          <AssistantWidget />
+          {/* Pre-launch: the assistant answers questions about a site that isn't
+              live and a course that can't be bought yet — hide it until launch.
+              The cookie banner stays: the holding page still runs analytics. */}
+          {!COMING_SOON && <AssistantWidget />}
           <CookieConsentBanner />
           {!IS_PRERENDER && <Analytics />}
           {!IS_PRERENDER && <SpeedInsights />}

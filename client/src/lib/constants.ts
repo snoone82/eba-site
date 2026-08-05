@@ -152,6 +152,22 @@ export const MARK_PHOTO_MENTORSHIP = "/mark-mentoring.jpg"; // /mentorship hero 
  *  this constant; never hard-code a tagline in a component. */
 export const TAGLINE = "Engineer Your Business. Design Your Freedom.";
 
+/**
+ * PRE-LAUNCH HOLDING PAGE — when true, every route serves ComingSoonPage and
+ * nothing else on the site is reachable.
+ *
+ * On since 5 Aug 2026: enrolment is closed, both Kajabi offers are unpublished,
+ * and the course is not deliverable (all 10 modules and 101 lessons still draft).
+ * A live site offering a product that cannot be delivered is worse than no site.
+ *
+ * TO GO LIVE: set this to false. That is the whole job — routing, nav and every
+ * page are untouched underneath and come straight back.
+ */
+export const COMING_SOON = true;
+
+/** Public launch date, shown on the holding page. Update if the date moves again. */
+export const LAUNCH_DATE_LABEL = "17 August 2026";
+
 /** O&M ROI band — LOCKED figures (turnaround amended to 24 hours by Ste,
  *  13 Jul 2026). Do not change without sign-off. */
 export const OM_TURNAROUND_STAT = "3 days → 24 hours";

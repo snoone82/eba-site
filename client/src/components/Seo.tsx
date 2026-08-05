@@ -62,6 +62,14 @@ export const PAGE_SEO = {
       "Why EBA exists: founder Mark Poulton spent 25 years building, rebuilding and running M&E contracting businesses — the operational experience behind the Academy.",
     path: "/our-story",
   },
+  // Pre-launch holding page. Deliberately indexable: the point is to let Google
+  // start crawling the domain before launch, and it makes no claim we can't keep.
+  comingSoon: {
+    title: "The Engineering Business Academy — Launching 17 August 2026",
+    description:
+      "Business growth and AI tools for engineering services contractors. Join the waitlist to hear first when the founding cohort opens.",
+    path: "/",
+  },
   // DRAFT page — still contains <Fill> placeholders. Keep noIndex until the
   // copy is final, then delete this comment and remove `noIndex` at the call site.
   aboutSte: {
