@@ -209,8 +209,10 @@ export function AboutStePage() {
             </p>
             <p style={bodyLight}>
               The tools EBA sells are the same tools, productised. The RAMS generator, the COSHH
-              assessments, the O&amp;M compiler, the Compliance Co-Pilot — these were built for a real
-              operating group before they were ever offered to anyone else.
+              assessments, the O&amp;M compiler, the Compliance Co-Pilot — these were built for KEYIS
+              Group first, ran on live projects there, and only then were offered to anyone else.
+              EBA exists to put them in the hands of contractors who don't have an automation
+              team of their own.
             </p>
             <p style={bodyLight}>
               I'd rather tell you that plainly than dress it up. You're not buying a startup's

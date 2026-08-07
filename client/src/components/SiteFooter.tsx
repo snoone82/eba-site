@@ -49,6 +49,7 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
   {
     heading: "AI Tools",
     links: [
+      { label: "Who builds them", href: "/about-ste" },
       { label: "O&M Manual", href: "/ai-tools" },
       { label: "Compliance Co-Pilot", href: "/ai-tools" },
       { label: "Free Toolbox Talk", href: "/toolbox-talk" },

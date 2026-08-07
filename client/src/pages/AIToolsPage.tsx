@@ -592,6 +592,54 @@ export default function AIToolsPage() {
         </div>
       </section>
 
+      {/* ── WHO BUILT THESE ──
+          Answers the objection at the moment it occurs: "is this another
+          ChatGPT wrapper written by someone who has never seen a site?"
+          Deliberately placed here, immediately after the tool list and before
+          the demos — the point where a reader is deciding whether to trust the
+          output. The full story lives at /about-ste; this is the hook, not the
+          biography. */}
+      <section style={{ background: NAVY, padding: isMobile ? "56px 20px" : "84px 40px" }}>
+        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
+          <p style={{
+            fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700,
+            letterSpacing: "0.18em", textTransform: "uppercase",
+            color: COBALT_ON_DARK, margin: "0 0 18px",
+          }}>
+            Who built these
+          </p>
+          <h2 style={{
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
+            fontSize: isMobile ? "1.7rem" : "2.4rem", letterSpacing: "-0.02em",
+            color: ON_DARK, margin: "0 0 22px", lineHeight: 1.12, maxWidth: "20ch",
+          }}>
+            Built inside a working engineering group.
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "18px", maxWidth: "62ch" }}>
+            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
+              These tools were built by Ste, Head of Automation at KEYIS Group — five years an
+              H&amp;S Manager and NEBOSH-qualified before he wrote a line of code. He spent those
+              years inside the paperwork: RAMS, COSHH assessments, method statements, O&amp;M
+              manuals, CDM records.
+            </p>
+            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
+              Every tool here ran on live projects inside that group — with real deadlines and
+              real consequences — before it was ever offered to anyone else. Software built to be
+              sold gets designed around what demos well. Software built to be used gets designed
+              around what happens at 6pm on a Friday when the documents have to go out.
+            </p>
+          </div>
+          <Link href="/about-ste" style={{
+            display: "inline-block", marginTop: "28px",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
+            color: COBALT_ON_DARK, textDecoration: "none",
+            borderBottom: `2px solid ${COBALT_ON_DARK}`, paddingBottom: "3px",
+          }}>
+            Read the full story →
+          </Link>
+        </div>
+      </section>
+
       {/* ── FREE TOOLBOX TALK (lead magnet) ── */}
       <ToolboxLeadMagnet />
 
