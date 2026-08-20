@@ -71,7 +71,7 @@ export const PAGE_SEO = {
   // Pre-launch holding page. Deliberately indexable: the point is to let Google
   // start crawling the domain before launch, and it makes no claim we can't keep.
   comingSoon: {
-    title: "The Engineering Business Academy — Launching 17 August 2026",
+    title: "The Engineering Business Academy — Coming Soon",
     description:
       "Business growth and AI tools for engineering services contractors. Join the waitlist to hear first when the founding cohort opens.",
     path: "/",

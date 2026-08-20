@@ -85,7 +85,7 @@ export function ComingSoonPage() {
           fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em",
           textTransform: "uppercase", color: BRASS, margin: "0 0 18px",
         }}>
-          Launching {LAUNCH_DATE_LABEL}
+          {LAUNCH_DATE_LABEL}
         </p>
 
         <h1 style={{

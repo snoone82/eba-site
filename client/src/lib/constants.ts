@@ -165,8 +165,10 @@ export const TAGLINE = "Engineer Your Business. Design Your Freedom.";
  */
 export const COMING_SOON = true;
 
-/** Public launch date, shown on the holding page. Update if the date moves again. */
-export const LAUNCH_DATE_LABEL = "17 August 2026";
+/** Holding-page kicker. The 17 Aug 2026 launch date passed while the course was
+ *  still in production — no date is promised until a real one is confirmed.
+ *  Swap back to a "Launching <date>" form when Ste sets one. */
+export const LAUNCH_DATE_LABEL = "Coming soon";
 
 /** O&M ROI band — LOCKED figures (turnaround amended to 24 hours by Ste,
  *  13 Jul 2026). Do not change without sign-off. */
