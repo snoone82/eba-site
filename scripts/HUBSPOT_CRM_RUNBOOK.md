@@ -342,17 +342,18 @@ also costs nothing, runs on the Vercel project already deployed, and is version 
    `https://<your-domain>/api/kajabi-webhook?secret=<the-secret>`. For purchases, append
    `&event=purchase`.
 
-**Status, verified live 20 Aug 2026.** Steps 1–2 are done, and step 3 is done for the
-*contact* side: both Kajabi forms — Default Form (2149434520) and KEYIS Academy Waitlist
-(2149434582) — POST to `/api/kajabi-webhook?secret=…&event=contact`, and a GET health
-check with that secret returns `ok: true` on all three read checks. What remains is the
-**purchase** side: a Kajabi automation with a "Send Webhook" action pointing at the same
-URL with `&event=purchase` (plus the second webhook step in
-`TOOLBOX_TALK_GRANT_RUNBOOK.md`). That has to be built in the Kajabi admin UI — the
+**Status, 20 Aug 2026 — all three steps done.** Contact side: both Kajabi forms —
+Default Form (2149434520) and KEYIS Academy Waitlist (2149434582) — POST to
+`/api/kajabi-webhook?secret=…&event=contact`, and a GET health check with that secret
+returns `ok: true` on all three read checks. Purchase side: Ste built the purchase
+automation in the Kajabi admin UI with both "Send Webhook" steps (`&event=purchase` to
+this endpoint, plus the toolbox-talk-grant step). Admin UI was the only route — the
 Kajabi MCP's automations tools are not enabled for this account yet (rollout-gated;
-`list_automations` returns "still being rolled out"), so don't burn time retrying them.
-The exact URL to paste can be copied from either form's webhook field (change `event`),
-which avoids retyping the secret.
+`list_automations` returns "still being rolled out"), so don't burn time retrying them,
+and the automation's config can't be re-inspected from tooling either. **Not yet proven:**
+no purchase event has flowed, so payload shape and record writes are unverified until the
+end-to-end test purchase (launch checklist blocker #1) — after it, confirm the HubSpot
+deal, lifecycle `customer`, and the Toolbox Talk email all landed.
 
 **Adding the variables is not enough — redeploy.** Vercel injects environment variables at
 build time, so a deployment that already exists never picks up a variable added afterwards.

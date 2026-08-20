@@ -41,12 +41,12 @@ stops working (this is intended, not a bug — one active link per member).
    grants Toolbox Talk access. Neither depends on the other; if one fails, the
    other still runs.
 
-   **This is admin-UI work.** The Kajabi MCP's automations tools are not enabled
-   for this account yet (rollout-gated), so the purchase automation cannot be
-   created programmatically. The secret to paste is the one already embedded in
-   either Kajabi form's webhook URL — copy it from there rather than retyping.
-   Step 1 is done: the health check returned `ok: true` with database and Resend
-   both `configured` (verified 20 Aug 2026).
+   **Done, 20 Aug 2026.** Ste added both webhook steps to the purchase automation
+   in the Kajabi admin UI (the only route — the Kajabi MCP's automations tools are
+   rollout-gated for this account, so they can't be created or re-inspected
+   programmatically). The health check returns `ok: true` with database and Resend
+   both `configured`. Still unproven until the first real purchase flows: payload
+   shape and the access-link email — verify per the section below.
 
 **Adding the variables is not enough — redeploy.** Same as every other env-var
 change: Vercel injects them at build/deploy time, not live.
