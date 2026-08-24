@@ -15,7 +15,9 @@ Business growth training and AI compliance tools for M&E and building services c
   behind the product (not positioned as a co-founder).
 - **KEYIS Group** — the operating engineering group. Tools were built there first, on live
   projects, then productised for TEBA.
-- **Launch: Monday 17 August 2026** (moved from 3 Aug).
+- **Launch target: Monday 17 August 2026** (moved from 3 Aug). NOTE: the public
+  holding page no longer states a date — `LAUNCH_DATE_LABEL` was changed to
+  "Coming soon" by another session, so no public commitment has been made.
 
 **What's sold:** Academy course (£999 founding / £1,499 standard; £1,299 / £1,999 with the
 380-document library), AI tools (RAMS £39/mo, COSHH £29/mo, both £49/mo — standard tiers
@@ -100,9 +102,9 @@ assumed. Google currently sees a 1.9KB shell. Fine for a holding page; fatal at 
    (runbook in DEPLOY.md).
 3. **Kajabi sender authentication (SPF/DKIM)** — without it every course email lands in
    spam. **Has lead time — start now**, it's the only item not blocked by the videos.
-4. **Toolbox Talk Generator link** — promised on site and in purchase confirmations.
-   (Note: a `/toolbox-talk` page and generator API were added by another session — verify
-   whether this is now resolved.)
+4. ~~**Toolbox Talk Generator link**~~ — RESOLVED. Another session built `/toolbox-talk`
+   (live, 200) with `api/generate-toolbox-talk.ts`. Verify the Kajabi thank-you messages
+   now point at it.
 5. **Documents pack fulfilment** — the £1,299 tier has no documents product in Kajabi.
    Currently a manual email within 24 hours.
 6. **Prerendering** — see above. Site launches invisible to Google without it.
