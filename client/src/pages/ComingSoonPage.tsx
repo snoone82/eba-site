@@ -23,7 +23,7 @@ import { useIsMobile } from "@/hooks/useMobile";
 import {
   NAVY, NAVY_RGB, CREAM, CREAM_RGB, WHITE,
   RUST, SKY, ACCENT_GRAD,
-  TAGLINE, LAUNCH_DATE_LABEL, SOCIAL_LINKS, FORM_ENDPOINT, isPlaceholder,
+  LAUNCH_DATE_LABEL, SOCIAL_LINKS, FORM_ENDPOINT, isPlaceholder,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -74,7 +74,7 @@ export function ComingSoonPage() {
 
       <main style={{
         flex: 1, display: "flex", flexDirection: "column", justifyContent: "center",
-        maxWidth: "720px", width: "100%", margin: "0 auto",
+        maxWidth: "880px", width: "100%", margin: "0 auto",
         padding: isMobile ? "56px 24px" : "80px 40px",
       }}>
         <div style={{ marginBottom: isMobile ? "40px" : "56px" }}>
@@ -88,18 +88,35 @@ export function ComingSoonPage() {
           {LAUNCH_DATE_LABEL}
         </p>
 
-        <h1 style={{
-          fontFamily: "var(--eba-heading)", fontWeight: 900,
-          fontSize: isMobile ? "2.1rem" : "3.2rem",
-          letterSpacing: "-0.025em", lineHeight: 1.05,
-          margin: "0 0 22px", textWrap: "balance",
-        }}>
-          {TAGLINE}
+        {/* The positioning line, set as a turn: the belief the reader already
+            holds in light grey, the contradiction in heavy white. The accent is
+            BRASS — the approved Academy accent and the single accent colour on
+            this page. Deliberately not the locked TAGLINE: on a holding page a
+            positioning claim earns more attention than a brand line. */}
+        <h1 style={{ margin: 0, textWrap: "pretty" }}>
+          <span style={{
+            display: "block",
+            fontSize: isMobile ? "1.35rem" : "1.9rem",
+            fontWeight: 300, lineHeight: 1.2, letterSpacing: "-0.01em",
+            color: "rgba(255,255,255,0.42)",
+          }}>
+            The engineering is not the problem.
+          </span>
+          <span style={{
+            display: "block", marginTop: isMobile ? "10px" : "14px",
+            fontFamily: "var(--eba-heading)",
+            fontSize: isMobile ? "2.1rem" : "3.5rem",
+            fontWeight: 800, lineHeight: 1.04, letterSpacing: "-0.035em",
+            color: WHITE, maxWidth: "24ch", // 24ch not 18ch: 18 forced 3 lines on desktop; 24 gives the two-line set the spec asked for
+          }}>
+            The business infrastructure around it{" "}
+            <span style={{ color: BRASS }}>is.</span>
+          </span>
         </h1>
 
         <p style={{
           fontSize: isMobile ? "16px" : "18px", lineHeight: 1.7,
-          color: `rgba(${CREAM_RGB},0.74)`, margin: "0 0 8px", maxWidth: "56ch",
+          color: `rgba(${CREAM_RGB},0.74)`, margin: "40px 0 8px", maxWidth: "56ch",
         }}>
           Business growth and AI tools for M&amp;E and building services contractors.
         </p>
@@ -179,7 +196,7 @@ export function ComingSoonPage() {
       <footer style={{
         borderTop: "1px solid rgba(255,255,255,0.12)",
         padding: isMobile ? "24px" : "28px 40px",
-        maxWidth: "720px", width: "100%", margin: "0 auto",
+        maxWidth: "880px", width: "100%", margin: "0 auto",
         display: "flex", flexWrap: "wrap", gap: "16px",
         alignItems: "center", justifyContent: "space-between",
       }}>
