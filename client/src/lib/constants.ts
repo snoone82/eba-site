@@ -204,32 +204,46 @@ export const METHOD_NAME = "The Engineering Operating System";
  * admin, ready to swap in here when the founding cohort closes.
  */
 /**
- * ⛔ ENROLMENT CLOSED — 5 Aug 2026, on Ste's instruction ("we don't want anything
- * available for sale at the moment").
+ * KAJABI CHECKOUT — the real, verified checkout URLs.
  *
- * Both Kajabi offers were unpublished the same day. The course itself is not
- * deliverable yet: all 10 modules and all 101 lessons are still publishing_state
- * draft, so a buyer would have paid £999 for an empty course.
+ * These tokens are Kajabi-generated and cannot be derived from an offer ID.
+ * Each was read back from the Kajabi API on 24 Aug 2026, not from memory:
  *
- * These placeholders flip ENROL_READY to false, so every enrolment CTA renders
- * ENROL_PENDING_LABEL ("Enrolment opens soon") instead of linking to a checkout
- * that would now 404.
+ *   2151280639  £999    Founding Cohort              xWR6J4tA
+ *   2151280640  £1,299  Founding Cohort + Documents  HYFbPnn9
+ *   2151348610  £399    Document Library (standalone) zk28233C
  *
- * TO RE-OPEN: republish offers 2151280639 (£999) and 2151280640 (£1,299) in
- * Kajabi, then restore the real URLs below. The checkout tokens are Kajabi-
- * generated and were verified live on 30 Jul 2026 — do NOT reconstruct them
- * from offer IDs, they are unrelated:
- *   £999   → https://teba.mykajabi.com/offers/xWR6J4tA/checkout
- *   £1,299 → https://teba.mykajabi.com/offers/HYFbPnn9/checkout
+ * ⚠️ ALL THREE OFFERS ARE CURRENTLY DRAFT IN KAJABI. A draft offer's checkout
+ * page does not resolve, so linking a live button straight at one sends the
+ * buyer to a dead page — worse than saying nothing.
+ *
+ * OFFERS_LIVE below is the single switch. It stays false until the offers are
+ * published in Kajabi admin, which in turn waits on the course being
+ * deliverable (modules are still draft). Flip it to true the same day you
+ * publish and every CTA across the site goes live at once.
  */
 export const KAJABI_CHECKOUT_URL =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL ||
-  "TODO(eba): enrolment closed — restore xWR6J4tA checkout URL when offers republish";
+  "https://teba.mykajabi.com/offers/xWR6J4tA/checkout";
 
-/** Kajabi checkout for the Academy + Documents tier. See note above. */
+/** Kajabi checkout for the Academy + Documents tier. */
 export const KAJABI_CHECKOUT_URL_DOCS =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL_DOCS ||
-  "TODO(eba): enrolment closed — restore HYFbPnn9 checkout URL when offers republish";
+  "https://teba.mykajabi.com/offers/HYFbPnn9/checkout";
+
+/** Kajabi checkout for the standalone Document Library (£399). */
+export const KAJABI_CHECKOUT_URL_LIBRARY =
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL_LIBRARY ||
+  "https://teba.mykajabi.com/offers/zk28233C/checkout";
+
+/**
+ * Master switch for selling. False = every enrolment/buy CTA renders
+ * ENROL_PENDING_LABEL instead of linking out.
+ *
+ * Set to true ONLY once the Kajabi offers are published AND a real test
+ * purchase has been made end to end.
+ */
+export const OFFERS_LIVE = false;
 
 /** Kajabi-hosted O&M manual upload/enquiry flow. While unset, the O&M CTA
  *  fails safe to the Stripe link (if set) or the internal tool page. */
@@ -452,7 +466,7 @@ export function isPlaceholder(value: string | undefined | null): boolean {
 }
 
 /** True once a live Kajabi checkout URL is configured. */
-export const ENROL_READY = !isPlaceholder(KAJABI_CHECKOUT_URL);
+export const ENROL_READY = OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL);
 
 /** Safe href for enrolment CTAs — the live URL, or undefined when not yet configured. */
 export const ENROL_HREF: string | undefined = ENROL_READY ? KAJABI_CHECKOUT_URL : undefined;
@@ -461,7 +475,7 @@ export const ENROL_HREF: string | undefined = ENROL_READY ? KAJABI_CHECKOUT_URL 
 export const ENROL_PENDING_LABEL = "Enrolment opens soon";
 
 /** +Documents tier: true once its own checkout URL (or the main one) is live. */
-export const ENROL_DOCS_READY = !isPlaceholder(KAJABI_CHECKOUT_URL_DOCS) || ENROL_READY;
+export const ENROL_DOCS_READY = OFFERS_LIVE && (!isPlaceholder(KAJABI_CHECKOUT_URL_DOCS) || ENROL_READY);
 export const ENROL_DOCS_HREF: string | undefined = !isPlaceholder(KAJABI_CHECKOUT_URL_DOCS)
   ? KAJABI_CHECKOUT_URL_DOCS
   : ENROL_HREF;
