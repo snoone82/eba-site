@@ -292,25 +292,33 @@ export default function AcademyPage() {
                 Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
               </p>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            {/* Typographic stat grid — dark-native. The previous white pill cards
+                were a light-section treatment rendering on the dark ground, and
+                carried the disputed "15+ years" claim (the site says 25 elsewhere —
+                Mark to settle; until then no year figure appears here). */}
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: isMobile ? "22px 20px" : "30px 28px", alignContent: "center" }}>
               {[
                 { value: "101", label: "Lessons" },
                 { value: "10", label: "Modules" },
-                { value: "15+ years", label: "M&E group experience" },
+                { value: "UK & Poland", label: "Group operating experience" },
                 { value: "Lifetime", label: "Access at founding price" },
               ].map(({ value, label }) => (
-                <div key={label} style={{
-                  background: IS_VIVID ? WHITE : `rgba(${ON_DARK_RGB},0.06)`,
-                  border: `1px solid rgba(${NAVY_RGB},0.08)`, borderLeft: `3px solid ${RUST}`,
-                  borderRadius: "12px", boxShadow: IS_VIVID ? "0 12px 30px -24px rgba(0,0,0,0.25)" : "none",
-                  padding: "16px 20px", display: "flex", alignItems: "center", gap: "16px",
-                }}>
-                  <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.4rem", fontWeight: 700, minWidth: "80px" }}>
+                <div key={label} style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.18)`, paddingTop: "14px" }}>
+                  <p style={{
+                    fontFamily: "var(--eba-heading)", fontWeight: 800,
+                    fontSize: isMobile ? "1.55rem" : "1.9rem", letterSpacing: "-0.02em",
+                    color: RUST_ON_DARK, margin: 0, lineHeight: 1.1,
+                    fontVariantNumeric: "tabular-nums",
+                  }}>
                     {value}
-                  </span>
-                  <span style={{ color: IS_VIVID ? `rgba(${NAVY_RGB},0.7)` : `rgba(${CREAM_RGB},0.7)`, fontSize: "14px", fontWeight: 500 }}>
+                  </p>
+                  <p style={{
+                    fontFamily: "'Poppins', sans-serif", fontSize: "11.5px", fontWeight: 600,
+                    letterSpacing: "0.09em", textTransform: "uppercase",
+                    color: `rgba(${CREAM_RGB},0.62)`, margin: "7px 0 0", lineHeight: 1.5,
+                  }}>
                     {label}
-                  </span>
+                  </p>
                 </div>
               ))}
             </div>
