@@ -69,7 +69,7 @@ export interface MemberToolConfig<TDoc extends { title: string }> {
   invalidTitle: string;
   systemPrompt: string;
   buildUserTurn: (subject: string, trade: string, site: string) => string;
-  schema: object;
+  schema: Record<string, unknown>;
   maxTokens: number;
   renderHtml: (doc: TDoc, meta: { site?: string; trade?: string }) => string;
 }
