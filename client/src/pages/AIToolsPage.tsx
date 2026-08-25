@@ -320,7 +320,12 @@ const allTools = [
     price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
     status: "live",
     href: "/ai-tools/compliance-chatbot",
-    checkout: STRIPE.complianceChatbot,
+    // Deliberately NOT click-to-buy. The Co-Pilot is a custom build against the
+    // customer's own document set — it cannot be priced or promised before we
+    // have seen what they have. Selling it up front means refunds or building
+    // at a loss. Enquire → scope on a call → then invoice the setup fee.
+    checkout: "",
+    enquire: "/contact?enquiry=chatbot",
     demo: <ComplianceChatDemo />,
   },
 ];
@@ -695,7 +700,20 @@ export default function AIToolsPage() {
                           LIVE NOW
                         </span>
                       </div>
-                      {!isPlaceholder(tool.checkout) ? (
+                      {"enquire" in tool && tool.enquire ? (
+                        <Link href={tool.enquire} style={{
+                          background: COBALT, color: "#fff", textDecoration: "none",
+                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
+                          transition: "opacity 0.2s",
+                        }}
+                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                          onClick={() => track("cta_tool_enquire", { tool: tool.label })}
+                        >
+                          Request a build →
+                        </Link>
+                      ) : !isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
                           background: COBALT, color: "#fff", textDecoration: "none",
                           fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
@@ -749,7 +767,20 @@ export default function AIToolsPage() {
                           LIVE NOW
                         </span>
                       </div>
-                      {!isPlaceholder(tool.checkout) ? (
+                      {"enquire" in tool && tool.enquire ? (
+                        <Link href={tool.enquire} style={{
+                          background: COBALT, color: "#fff", textDecoration: "none",
+                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
+                          transition: "opacity 0.2s",
+                        }}
+                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
+                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+                          onClick={() => track("cta_tool_enquire", { tool: tool.label })}
+                        >
+                          Request a build →
+                        </Link>
+                      ) : !isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
                           background: COBALT, color: "#fff", textDecoration: "none",
                           fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",

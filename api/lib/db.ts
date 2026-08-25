@@ -180,3 +180,19 @@ export async function grantMemberAccess(email: string, tier: string | undefined)
   `;
   return token;
 }
+
+/**
+ * Revokes access on subscription cancellation or refund. The token stops
+ * working immediately (getMemberByToken filters revoked rows). The row is kept
+ * — a re-purchase re-grants via the same upsert. Returns false if the DB isn't
+ * configured or no row matched.
+ */
+export async function revokeMemberAccess(email: string): Promise<boolean> {
+  const sql = getSql();
+  if (!sql) return false;
+  await ensureSchema(sql);
+  const rows = await sql`
+    UPDATE academy_members SET revoked = true WHERE email = ${email} RETURNING email
+  `;
+  return rows.length > 0;
+}

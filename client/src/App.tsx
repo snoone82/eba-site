@@ -21,6 +21,8 @@ import HomePage from "@/pages/HomePage";
 import AcademyPage from "@/pages/AcademyPage";
 import AIToolsPage from "@/pages/AIToolsPage";
 import ToolboxTalkPage from "@/pages/ToolboxTalkPage";
+import { RamsGeneratorPage } from "@/pages/RamsGeneratorPage";
+import { CoshhGeneratorPage } from "@/pages/CoshhGeneratorPage";
 import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
@@ -56,6 +58,9 @@ function Router() {
       <Route path={"/ai-tools/om-manual"} component={AIToolsPage} />
       <Route path={"/ai-tools/compliance-chatbot"} component={AIToolsPage} />
       <Route path={"/toolbox-talk"} component={ToolboxTalkPage} />
+      {/* Subscriber-only generators — noIndex, reached via personal access links. */}
+      <Route path={"/rams-generator"} component={RamsGeneratorPage} />
+      <Route path={"/coshh-generator"} component={CoshhGeneratorPage} />
       <Route path={"/our-story"} component={OurStoryPage} />
       {/* DRAFT — noIndex, deliberately not in the nav or sitemap until copy is final. */}
       <Route path={"/about-ste"} component={AboutStePage} />

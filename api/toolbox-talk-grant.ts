@@ -28,8 +28,8 @@
  *   GET /api/toolbox-talk-grant?secret=…    reports config readiness
  */
 import { json, env, normaliseEmail } from "./_hubspot.mjs";
-import { grantMemberAccess } from "./lib/db.js";
-import { sendMemberAccessEmail } from "./lib/email.js";
+import { grantMemberAccess, revokeMemberAccess } from "./lib/db.js";
+import { sendMemberAccessEmail, sendToolAccessEmail, type ToolKey } from "./lib/email.js";
 
 export const config = { runtime: "edge" };
 
@@ -55,6 +55,20 @@ const AMOUNT_PATHS = [
   "data.amount", "amount_in_cents",
 ];
 const OFFER_PATHS = ["offer_title", "offer.title", "offer_name", "product_title", "data.offer_title"];
+
+/**
+ * Which generators an offer unlocks, from its title. The subscription offers
+ * are named so this stays a substring check: the bundle title contains both
+ * "RAMS" and "COSHH". Anything else (Academy, Academy + Documents) gets the
+ * Toolbox Talk Generator, as before.
+ */
+function toolsForOffer(offerTitle: string | undefined): ToolKey[] {
+  const t = (offerTitle ?? "").toLowerCase();
+  const tools: ToolKey[] = [];
+  if (t.includes("rams")) tools.push("rams");
+  if (t.includes("coshh")) tools.push("coshh");
+  return tools.length ? tools : ["toolbox-talk"];
+}
 
 export default async function handler(req: Request): Promise<Response> {
   const url = new URL(req.url);
@@ -95,6 +109,19 @@ export default async function handler(req: Request): Promise<Response> {
 
   // Same purchase-vs-contact inference as kajabi-webhook.ts.
   const declared = url.searchParams.get("event");
+
+  // ── Revoke on cancellation/refund ──────────────────────────────────────────
+  // A SEPARATE Kajabi automation ("subscription cancelled" / "offer revoked")
+  // posts to this same endpoint with ?event=revoke. The token stops working
+  // immediately; a re-purchase re-grants and mints a fresh link.
+  if (declared === "revoke") {
+    try {
+      const revoked = await revokeMemberAccess(email);
+      return json({ ok: true, event: "revoke", revoked });
+    } catch (e) {
+      return json({ error: "revoke_failed", message: (e as Error).message }, 502);
+    }
+  }
   const rawAmount = pick(payload, AMOUNT_PATHS);
   const isPurchase = declared === "purchase" || (declared !== "contact" && rawAmount !== undefined);
 
@@ -111,9 +138,15 @@ export default async function handler(req: Request): Promise<Response> {
       return json({ error: "not_configured", missing: ["DATABASE_URL"] }, 501);
     }
 
-    const emailResult = await sendMemberAccessEmail({ to: email, accessToken: token });
+    const tools = toolsForOffer(tier);
+    // Academy purchases keep the original welcome email; tool subscriptions get
+    // the per-tool links email.
+    const emailResult =
+      tools.length === 1 && tools[0] === "toolbox-talk"
+        ? await sendMemberAccessEmail({ to: email, accessToken: token })
+        : await sendToolAccessEmail({ to: email, accessToken: token, tools });
 
-    return json({ ok: true, event: "purchase", granted: true, emailed: emailResult.sent });
+    return json({ ok: true, event: "purchase", granted: true, tools, emailed: emailResult.sent });
   } catch (e) {
     return json({ error: "grant_failed", message: (e as Error).message }, 502);
   }

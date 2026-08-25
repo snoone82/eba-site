@@ -945,8 +945,19 @@ export function DocumentsPage() {
 // CONTACT PAGE
 // ─────────────────────────────────────────────
 
+const CONTACT_ENQUIRIES = ["academy", "documents", "om-manual", "chatbot", "white-label", "mentorship", "other"];
+
 export function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", company: "", enquiry: "academy", message: "" });
+  // "Request a build" CTAs land here as /contact?enquiry=chatbot etc. — preselect
+  // the dropdown so the visitor doesn't have to re-state what they clicked on.
+  const preselect = (() => {
+    if (typeof window === "undefined") return "academy";
+    try {
+      const q = new URLSearchParams(window.location.search).get("enquiry");
+      return q && CONTACT_ENQUIRIES.includes(q) ? q : "academy";
+    } catch { return "academy"; }
+  })();
+  const [form, setForm] = useState({ name: "", email: "", company: "", enquiry: preselect, message: "" });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -1041,7 +1052,9 @@ export function ContactPage() {
                     Enquiry received.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", margin: 0 }}>
-                    We will respond within two working days.
+                    {["chatbot", "white-label"].includes(form.enquiry)
+                      ? "We'll be in touch within one working day to scope your build."
+                      : "We will respond within two working days."}
                   </p>
                 </div>
               ) : (

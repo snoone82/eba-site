@@ -50,6 +50,20 @@ export const PAGE_SEO = {
       "Generate a site-ready UK toolbox talk with a sign-off sheet in about a minute — genuinely free, just your email. Academy members get it unlimited.",
     path: "/toolbox-talk",
   },
+  // Subscriber-only generator pages — always rendered with noIndex; kept out
+  // of the sitemap and nav. Subscribers arrive via their personal access link.
+  ramsGenerator: {
+    title: "RAMS Generator | The Engineering Business Academy",
+    description:
+      "Subscriber tool: generate a structured draft RAMS for review and sign-off by a competent person.",
+    path: "/rams-generator",
+  },
+  coshhGenerator: {
+    title: "COSHH Generator | The Engineering Business Academy",
+    description:
+      "Subscriber tool: generate a draft COSHH assessment structured for completion against the manufacturer's SDS.",
+    path: "/coshh-generator",
+  },
   omManual: {
     title: "O&M Manual Compiler — Client-Ready Manuals in 24 Hours",
     description:
