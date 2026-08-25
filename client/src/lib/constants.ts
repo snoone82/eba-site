@@ -138,15 +138,24 @@ export const ORB_ACCENT = "radial-gradient(circle, rgba(201,152,46,0.12) 0%, tra
 export const ORB_WARM = "radial-gradient(circle, rgba(43,199,181,0.09) 0%, transparent 70%)";
 
 /**
- * Founder photography — every Mark image placement reads one of these
- * constants so the real-photography swap is a constants-only change.
- * TODO(eba): replace with real photography (shoot in progress) — current
- * files are stock placeholders in client/public/.
+ * Founder photography — RETIRED 5 Aug 2026 on Mark's instruction.
+ *
+ * These pointed at stock photographs of a model, captioned as Mark Poulton.
+ * Presenting a stock model as the founder is misleading whatever it looks like,
+ * and a suited stranger in a boardroom was also the most corporate thing on the
+ * site — which was Mark's actual objection to the copy.
+ *
+ * Empty strings, and every call site guards on them, so nothing renders a broken
+ * image. The founder slots now use <TeachingPanel> instead: the substance of the
+ * programme, set typographically.
+ *
+ * TO RESTORE: put a real photograph of Mark in client/public/ and set the
+ * relevant constant. Never point these at stock imagery again.
  */
-export const MARK_PHOTO_HERO = "/mark-teaching.jpg";      // homepage hero background
-export const MARK_PHOTO_FOUNDER = "/mark-1on1.jpg";       // homepage founder section
-export const MARK_PHOTO_STORY = "/mark-conversation.jpg"; // /our-story hero portrait
-export const MARK_PHOTO_MENTORSHIP = "/mark-mentoring.jpg"; // /mentorship hero + founder-sessions card
+export const MARK_PHOTO_HERO = "/site-plantroom.jpg";     // real project photography, not a person
+export const MARK_PHOTO_FOUNDER = "";                     // was stock — now TeachingPanel
+export const MARK_PHOTO_STORY = "";                       // was stock — now TeachingPanel
+export const MARK_PHOTO_MENTORSHIP = "";                   // was stock — slot now omitted
 
 /** The locked brand tagline — the ONLY approved tagline. All components read
  *  this constant; never hard-code a tagline in a component. */

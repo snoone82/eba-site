@@ -33,6 +33,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Testimonials } from "@/components/Testimonials";
 import { CaseStudySection } from "@/components/CaseStudySection";
 import { Photo } from "@/components/Photo";
+import { TeachingPanel } from "@/components/TeachingPanel";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { RoiStatBand } from "@/components/RoiStatBand";
@@ -651,24 +652,22 @@ export default function HomePage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.4fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
               <div style={{ position: "relative" }}>
-                <Photo
-                  src={MARK_IMG}
-                  alt="Mark Poulton — CEO, KEYIS Group & Founder, EBA"
-                  ratio="4 / 5"
-                  focus="center 22%"
+                {/* Stock portraiture retired 5 Aug — see MARK_PHOTO_* in constants.
+                    The slot now carries the substance instead of a stranger's face. */}
+                <TeachingPanel
+                  kicker="Who teaches it"
+                  heading="Built by someone who ran the business, not studied it."
+                  attribution="Mark Poulton — CEO, KEYIS Group"
+                  rows={[
+                    // NOTE: years-of-experience deliberately omitted — the site claims BOTH
+                    // "25 years" (8 places) and "15+ years" (4 places). Flagged for Mark to
+                    // settle; do not put either number here until he has.
+                    { figure: "10", label: "Modules, covering the whole operating system of the business" },
+                    { figure: "101", label: "Lessons, each one drawn from a decision actually made" },
+                    { figure: "UK + PL", label: "Multiple divisions, plus international operations in Poland" },
+                  ]}
+                  onDark
                 />
-                <div style={{
-                  position: "absolute", bottom: "16px", left: "16px", zIndex: 2,
-                  background: RUST, padding: "12px 18px", borderRadius: "10px",
-                }}>
-                  <p style={{
-                    color: "#fff", fontFamily: "'Poppins', sans-serif",
-                    fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em",
-                    textTransform: "uppercase", margin: 0,
-                  }}>
-                    Mark Poulton — CEO, KEYIS Group
-                  </p>
-                </div>
               </div>
             </RevealSection>
             <RevealSection>

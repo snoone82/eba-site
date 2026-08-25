@@ -29,6 +29,7 @@ import {
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
 import { Photo } from "@/components/Photo";
+import { TeachingPanel } from "@/components/TeachingPanel";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 
@@ -184,10 +185,20 @@ export function OurStoryPage() {
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr", gap: isMobile ? "40px" : "80px", alignItems: "start" }}>
             <RevealSection>
               <div style={{ position: "relative" }}>
-                <Photo
-                  src={MARK_IMG}
-                  alt="Mark Poulton — Founder, Engineering Business Academy"
-                  ratio="4 / 3"
+                {/* Stock portraiture retired 5 Aug. Our Story leads with what he
+                    actually did, not a photograph of someone else. */}
+                <TeachingPanel
+                  kicker="The operator"
+                  heading="He has actually made these decisions."
+                  rows={[
+                    // Years omitted: the site says both 25 and 15+. Mark to settle.
+                    { figure: "1 → group", label: "Started with a single M&E firm and built it into a multi-division group" },
+                    // £70m removed: it appears only in one meta description, which is too thin a
+                    // source to headline. Restore once Mark confirms the figure.
+                    { figure: "UK + PL", label: "Divisions across the UK and operations in Poland" },
+                    { figure: "1", label: "Pre-pack administration, come back from — the lesson nobody teaches" },
+                  ]}
+                  onDark={false}
                 />
                 <div style={{ position: "absolute", bottom: "16px", left: "16px", zIndex: 2, background: RUST, padding: "12px 18px", borderRadius: "10px" }}>
                   <p style={{ color: "#fff", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
