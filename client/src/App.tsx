@@ -27,6 +27,7 @@ import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/Legal
 import { AboutStePage } from "@/pages/AboutStePage";
 import { ComingSoonPage } from "@/pages/ComingSoonPage";
 import { COMING_SOON } from "@/lib/constants";
+import { isPreview } from "@/lib/preview";
 import { AssistantWidget } from "@/components/AssistantWidget";
 
 
@@ -34,8 +35,11 @@ import { AssistantWidget } from "@/components/AssistantWidget";
 function Router() {
   // PRE-LAUNCH: one flag takes over every route. Nothing unfinished is reachable —
   // no purchase paths, no draft course, no half-written pages. Flip COMING_SOON
-  // to false in constants.ts to restore the full site.
-  if (COMING_SOON) {
+  // to false in constants.ts to restore the full site for everyone.
+  //
+  // ?preview=eba2026 bypasses it for one browser tab, so the build can be reviewed
+  // without taking the holding page down publicly. See lib/preview.ts.
+  if (COMING_SOON && !isPreview()) {
     return (
       <Switch>
         <Route component={ComingSoonPage} />
