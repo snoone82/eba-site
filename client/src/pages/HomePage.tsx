@@ -37,6 +37,7 @@ import { TeachingPanel } from "@/components/TeachingPanel";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { RoiStatBand } from "@/components/RoiStatBand";
+import { VideoEmbed } from "@/components/VideoEmbed";
 import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track, getStoredUtm } from "@/lib/track";
@@ -722,6 +723,37 @@ export default function HomePage() {
               }}>
                 Read Mark's full story →
               </Link>
+            </RevealSection>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FREE LESSON ── real, published Academy content (Module 9), watchable
+          without buying anything. Approved by Mark/Ste 1 Sep 2026 for public
+          embedding — see commit history. This is the "including the hard
+          version" claim from the section above, made concrete. */}
+      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.1fr", gap: isMobile ? "32px" : "64px", alignItems: "center" }}>
+            <RevealSection>
+              <SectionLabel>Watch A Real Lesson</SectionLabel>
+              <RustRule />
+              <h2 style={{
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
+                fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.02em",
+                color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
+              }}>
+                My experience of going bust — a pre-pack administration.
+              </h2>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 20px" }}>
+                Module 9 of the Academy, free to watch, no sign-up. Insolvency isn't just a financial event — it affects your health, your family, your team, your suppliers. This is Mark talking through what actually happens when it goes wrong, why early advice matters, and how to protect what can be protected.
+              </p>
+              <p style={{ color: `rgba(${NAVY_RGB},0.6)`, fontSize: "13.5px", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
+                This is one lesson from a full 101-lesson curriculum — free, so you can judge the material before you judge the price.
+              </p>
+            </RevealSection>
+            <RevealSection>
+              <VideoEmbed wistiaId="o7j9nnwhlu" title="My Experience of Going Bust — A Pre-Pack Administration" />
             </RevealSection>
           </div>
         </div>
