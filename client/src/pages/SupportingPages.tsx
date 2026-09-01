@@ -219,8 +219,10 @@ export function OurStoryPage() {
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  Over 25 years, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
-                  {/* TODO(eba): founding year + how the single firm grew. */}
+                  Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
+                  {/* TODO(eba): founding year + how the single firm grew. Duration deliberately
+                      omitted — site carried both "25 years" and "15+ years" unresolved; see
+                      HomePage.tsx line ~663. Do not add a year figure until Mark confirms one. */}
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.
@@ -320,7 +322,7 @@ const docCategories = [
     id: "hs",
     label: "Health, Safety & Environmental",
     count: 68,
-    description: "A comprehensive library of health, safety and environmental documents developed and refined across 25 years of M&E contracting. Every form, permit, checklist and register your business requires — structured, compliant and ready to use.",
+    description: "A comprehensive library of health, safety and environmental documents developed and refined across real M&E contracting operations. Every form, permit, checklist and register your business requires — structured, compliant and ready to use.",
     highlight: "68 documents",
     docs: [
       {
@@ -716,7 +718,7 @@ export function DocumentsPage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
-            380 documents. 25 years of M&E practice.
+            380 documents. Built from real M&E practice.
           </h1>
           <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px", margin: "0 0 32px" }}>
             Every document in this library was developed and used in the operation of a principal M&E contracting business. These are not generic templates. They are the actual forms, registers, contracts, and procedures that a serious M&E business requires.

@@ -17,6 +17,7 @@ const NAV_LINKS = [
   { label: "Documents", href: "/documents" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "Pricing", href: "/pricing" },
+  { label: "FAQ", href: "/faq" },
   { label: "Our Story", href: "/our-story" },
 ];
 

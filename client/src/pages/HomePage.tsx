@@ -287,7 +287,7 @@ const outcomes = [
 ];
 
 const credentials = [
-  "15+ Years M&E Group Experience", "UK & Poland",
+  "Multi-Division M&E Group", "UK & Poland",
   "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
@@ -319,6 +319,7 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               { label: "Documents", href: "/documents" },
               { label: "Mentorship", href: "/mentorship" },
               { label: "Pricing", href: "/pricing" },
+              { label: "FAQ", href: "/faq" },
               { label: "Our Story", href: "/our-story" },
             ].map(({ label, href }) => (
               <Link key={href} href={href} style={{
@@ -421,7 +422,7 @@ export default function HomePage() {
               display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
               gap: "6px 0", marginBottom: "24px",
             }}>
-              {["101 Lessons", "10 Modules", "15+ Years M&E Group Experience", "UK & International"].map((stat, i) => (
+              {["101 Lessons", "10 Modules", "Multi-Division M&E Group", "UK & International"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.78)",
@@ -465,6 +466,16 @@ export default function HomePage() {
               >
                 Try the free Toolbox Talk tool
               </a>
+            </div>
+            {/* Reassurance strip — same three claims already live on /pricing;
+                surfaced here because research shows risk-reversal belongs at
+                the point of decision, not buried on a page nobody reaches. */}
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", marginTop: "22px" }}>
+              {["14-day money-back guarantee", "Founding price locked in for life", "Engineering contractors only"].map(t => (
+                <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 600, color: "rgba(255,255,255,0.72)" }}>
+                  <span style={{ color: RUST_ON_DARK, fontWeight: 800 }}>✓</span> {t}
+                </span>
+              ))}
             </div>
           </div>
         </div>
@@ -659,9 +670,10 @@ export default function HomePage() {
                   heading="Built by someone who ran the business, not studied it."
                   attribution="Mark Poulton — CEO, KEYIS Group"
                   rows={[
-                    // NOTE: years-of-experience deliberately omitted — the site claims BOTH
-                    // "25 years" (8 places) and "15+ years" (4 places). Flagged for Mark to
-                    // settle; do not put either number here until he has.
+                    // NOTE: years-of-experience deliberately omitted. The site used to carry
+                    // both "25 years" and "15+ years" unresolved across ~12 places — swept and
+                    // neutralised sitewide (1 Sep 2026). Do not add a year figure here or
+                    // anywhere else until Mark gives one true number.
                     { figure: "10", label: "Modules, covering the whole operating system of the business" },
                     { figure: "101", label: "Lessons, each one drawn from a decision actually made" },
                     { figure: "UK + PL", label: "Multiple divisions, plus international operations in Poland" },
@@ -777,10 +789,10 @@ export default function HomePage() {
               fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
               color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
             }}>
-              380 documents. 25 years of practice. Ready to use.
+              380 documents. Built from practice, not theory. Ready to use.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
-              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Twenty-five years of practice, included with membership.
+              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Drawn from a real M&E group's own document set, included with membership.
             </p>
             <Link href="/documents" style={{
               color: RUST, textDecoration: "none",
@@ -1015,6 +1027,18 @@ export default function HomePage() {
               Try the free Toolbox Talk tool
             </a>
           </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", justifyContent: "center", marginTop: "28px" }}>
+            {["14-day money-back guarantee", "Founding price locked in for life", "Engineering contractors only"].map(t => (
+              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>
+                <span style={{ color: RUST_ON_DARK, fontWeight: 800 }}>✓</span> {t}
+              </span>
+            ))}
+          </div>
+          <p style={{ textAlign: "center", margin: "20px 0 0" }}>
+            <Link href="/faq" style={{ color: "rgba(255,255,255,0.6)", textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontSize: "13px", borderBottom: "1px solid rgba(255,255,255,0.3)", paddingBottom: "2px" }}>
+              Questions first? Read the FAQ →
+            </Link>
+          </p>
         </RevealSection>
       </section>
 

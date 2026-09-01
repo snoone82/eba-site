@@ -59,7 +59,7 @@ const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(refund|money ?back|guarantee|cancel)\b/i,
     answer: "There's a 14-day, no-questions-asked refund on Academy memberships. If it's not right for you, just get in touch within 14 days." },
   { test: /\b(keyis|about|behind|real|experience|who are you|legit|trust)\b/i,
-    answer: "EBA is built from 25 years of running a real M&E contracting business — through growth, restructuring and scale. Everything here comes from real operations, not theory." },
+    answer: "EBA is built from years of running a real M&E contracting business — through growth, restructuring and scale. Everything here comes from real operations, not theory." },
   { test: /\b(contact|human|person|speak|call|phone|email|reach|talk to)\b/i,
     answer: "Happy to connect you with the team — the contact form is the fastest route and we reply within two working days. Or tell me your question here and I'll do my best." },
   { test: /\b(hi|hello|hey|help|hiya|morning|afternoon)\b/i,
