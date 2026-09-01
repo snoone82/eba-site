@@ -79,7 +79,7 @@ export const PAGE_SEO = {
   ourStory: {
     title: "Our Story — Mark Poulton & The Engineering Business Academy",
     description:
-      "Why EBA exists: founder Mark Poulton spent years building, rebuilding and running M&E contracting businesses — the operational experience behind the Academy.",
+      "Why EBA exists: founder Mark Poulton spent 15 years building, rebuilding and running M&E contracting businesses — the operational experience behind the Academy.",
     path: "/our-story",
   },
   // Pre-launch holding page. Deliberately indexable: the point is to let Google
@@ -107,7 +107,7 @@ export const PAGE_SEO = {
   documents: {
     title: "Engineering Document Library — 380 Ready-to-Use Templates",
     description:
-      "Real M&E practice distilled into a deployable document library: templates, forms, checklists and procedures in Word and PDF. Included with Academy membership.",
+      "15 years of M&E practice distilled into a deployable document library: templates, forms, checklists and procedures in Word and PDF. Included with Academy membership.",
     path: "/documents",
   },
   pricing: {

@@ -294,14 +294,13 @@ export default function AcademyPage() {
             </div>
             {/* Typographic stat grid — dark-native. The previous white pill cards
                 were a light-section treatment rendering on the dark ground, and
-                carried the disputed "15+ years" claim. Sitewide sweep (1 Sep 2026)
-                removed every "25 years"/"15+ years" instance; Mark still needs to give
-                one true number before any year figure returns here. */}
+                carried the disputed "15+ years" claim. Mark confirmed 15 years
+                (1 Sep 2026) — restored below. */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: isMobile ? "22px 20px" : "30px 28px", alignContent: "center" }}>
               {[
                 { value: "101", label: "Lessons" },
                 { value: "10", label: "Modules" },
-                { value: "UK & Poland", label: "Group operating experience" },
+                { value: "15 Years", label: "M&E Group experience" },
                 { value: "Lifetime", label: "Access at founding price" },
               ].map(({ value, label }) => (
                 <div key={label} style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.18)`, paddingTop: "14px" }}>

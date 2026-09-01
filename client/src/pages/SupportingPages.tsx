@@ -219,10 +219,9 @@ export function OurStoryPage() {
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
-                  {/* TODO(eba): founding year + how the single firm grew. Duration deliberately
-                      omitted — site carried both "25 years" and "15+ years" unresolved; see
-                      HomePage.tsx line ~663. Do not add a year figure until Mark confirms one. */}
+                  Over 15 years, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
+                  {/* TODO(eba): founding year + how the single firm grew — still open.
+                      Duration confirmed by Mark as 15 years (1 Sep 2026). */}
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.
@@ -322,7 +321,7 @@ const docCategories = [
     id: "hs",
     label: "Health, Safety & Environmental",
     count: 68,
-    description: "A comprehensive library of health, safety and environmental documents developed and refined across real M&E contracting operations. Every form, permit, checklist and register your business requires — structured, compliant and ready to use.",
+    description: "A comprehensive library of health, safety and environmental documents developed and refined across 15 years of M&E contracting. Every form, permit, checklist and register your business requires — structured, compliant and ready to use.",
     highlight: "68 documents",
     docs: [
       {
@@ -718,7 +717,7 @@ export function DocumentsPage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
-            380 documents. Built from real M&E practice.
+            380 documents. 15 years of M&E practice.
           </h1>
           <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px", margin: "0 0 32px" }}>
             Every document in this library was developed and used in the operation of a principal M&E contracting business. These are not generic templates. They are the actual forms, registers, contracts, and procedures that a serious M&E business requires.
@@ -947,19 +946,26 @@ export function DocumentsPage() {
 // CONTACT PAGE
 // ─────────────────────────────────────────────
 
-const CONTACT_ENQUIRIES = ["academy", "documents", "om-manual", "chatbot", "white-label", "mentorship", "other"];
+const CONTACT_ENQUIRIES = ["academy", "pricing", "documents", "om-manual", "chatbot", "white-label", "mentorship", "other"];
 
 export function ContactPage() {
   // "Request a build" CTAs land here as /contact?enquiry=chatbot etc. — preselect
   // the dropdown so the visitor doesn't have to re-state what they clicked on.
-  const preselect = (() => {
-    if (typeof window === "undefined") return "academy";
+  // The pricing gate on /pricing also passes ?tier=... — prefill the message so
+  // the enquiry isn't context-free ("which tier?" shouldn't be our first reply).
+  const { preselect, prefillMessage } = (() => {
+    if (typeof window === "undefined") return { preselect: "academy", prefillMessage: "" };
     try {
-      const q = new URLSearchParams(window.location.search).get("enquiry");
-      return q && CONTACT_ENQUIRIES.includes(q) ? q : "academy";
-    } catch { return "academy"; }
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("enquiry");
+      const tier = params.get("tier");
+      return {
+        preselect: q && CONTACT_ENQUIRIES.includes(q) ? q : "academy",
+        prefillMessage: tier ? `I'd like founding pricing for: ${tier}` : "",
+      };
+    } catch { return { preselect: "academy", prefillMessage: "" }; }
   })();
-  const [form, setForm] = useState({ name: "", email: "", company: "", enquiry: preselect, message: "" });
+  const [form, setForm] = useState({ name: "", email: "", company: "", enquiry: preselect, message: prefillMessage });
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -1079,6 +1085,7 @@ export function ContactPage() {
                     <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Enquiry type</label>
                     <select value={form.enquiry} onChange={e => setForm(f => ({ ...f, enquiry: e.target.value }))} style={{ ...inputStyle, cursor: "pointer" }} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)}>
                       <option value="academy">Academy — Founding Cohort Enrolment</option>
+                      <option value="pricing">Academy — Pricing Enquiry</option>
                       <option value="documents">Document Library — Purchase Enquiry</option>
                       <option value="om-manual">AI Tool — O&M Manual Compiler</option>
                       <option value="chatbot">AI Tool — Compliance Co-Pilot</option>

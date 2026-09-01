@@ -499,13 +499,15 @@ export function PricingPage() {
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>{tier.name}</h3>
                 <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
                 <div style={{ marginBottom: "22px" }}>
-                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "2.4rem", color: NAVY, lineHeight: 1.1 }}>
-                    {isPlaceholder(tier.price) ? "Announced soon" : tier.price}
+                  {/* Pricing gated behind enquiry (Mark-approved, 1 Sep 2026) — the
+                      number itself no longer appears on the page. Watch the free
+                      lesson, ask, then we tell you. Do not reintroduce tier.price /
+                      tier.rises here without checking with Mark first. */}
+                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: NAVY, lineHeight: 1.2 }}>
+                    Founding price
                   </div>
                   <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>
-                    {isPlaceholder(tier.rises)
-                      ? "Founding price · locked for life · rises after launch"
-                      : `Founding price · locked for life · rises to ${tier.rises} after the cohort closes`}
+                    Locked for life · revealed when you enquire
                   </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
@@ -516,7 +518,7 @@ export function PricingPage() {
                     </div>
                   ))}
                 </div>
-                <a href={tier.popular ? ENROL_DOCS_HREF : ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!(tier.popular ? ENROL_DOCS_READY : ENROL_READY) || undefined} onClick={() => track("checkout_click", { source: "pricing", tier: tier.name })} style={{
+                <Link href={`/contact?enquiry=pricing&tier=${encodeURIComponent(tier.name)}`} onClick={() => track("pricing_enquiry_click", { tier: tier.name })} style={{
                   marginTop: "auto", textAlign: "center",
                   background: tier.popular ? CTA_PRIMARY_BG : "transparent",
                   color: tier.popular ? "#fff" : NAVY,
@@ -524,8 +526,8 @@ export function PricingPage() {
                   textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                   padding: "13px 24px", letterSpacing: "0.03em", display: "block",
                 }}>
-                  {(tier.popular ? ENROL_DOCS_READY : ENROL_READY) ? "Apply for the Founding Cohort →" : "Register your interest →"}
-                </a>
+                  Enquire about founding pricing →
+                </Link>
               </div>
             ))}
           </div>

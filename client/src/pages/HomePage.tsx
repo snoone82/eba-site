@@ -288,7 +288,7 @@ const outcomes = [
 ];
 
 const credentials = [
-  "Multi-Division M&E Group", "UK & Poland",
+  "15 Years M&E Group Experience", "UK & Poland",
   "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
@@ -423,7 +423,7 @@ export default function HomePage() {
               display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
               gap: "6px 0", marginBottom: "24px",
             }}>
-              {["101 Lessons", "10 Modules", "Multi-Division M&E Group", "UK & International"].map((stat, i) => (
+              {["101 Lessons", "10 Modules", "15 Years M&E Group Experience", "UK & International"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.78)",
@@ -671,10 +671,10 @@ export default function HomePage() {
                   heading="Built by someone who ran the business, not studied it."
                   attribution="Mark Poulton — CEO, KEYIS Group"
                   rows={[
-                    // NOTE: years-of-experience deliberately omitted. The site used to carry
-                    // both "25 years" and "15+ years" unresolved across ~12 places — swept and
-                    // neutralised sitewide (1 Sep 2026). Do not add a year figure here or
-                    // anywhere else until Mark gives one true number.
+                    // NOTE: Mark confirmed 15 years (1 Sep 2026) — restored sitewide, see
+                    // hero stats strip and credentials array below. Left out of this specific
+                    // 3-row grid deliberately (design choice, not a data gap): 10 / 101 / UK+PL
+                    // reads as the operating footprint, not a resume line.
                     { figure: "10", label: "Modules, covering the whole operating system of the business" },
                     { figure: "101", label: "Lessons, each one drawn from a decision actually made" },
                     { figure: "UK + PL", label: "Multiple divisions, plus international operations in Poland" },
@@ -821,10 +821,10 @@ export default function HomePage() {
               fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
               color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
             }}>
-              380 documents. Built from practice, not theory. Ready to use.
+              380 documents. 15 years of practice. Ready to use.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
-              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Drawn from a real M&E group's own document set, included with membership.
+              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Fifteen years of practice, included with membership.
             </p>
             <Link href="/documents" style={{
               color: RUST, textDecoration: "none",
