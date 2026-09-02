@@ -7,10 +7,10 @@
  * Requires an accessToken whose tier includes "rams" (the RAMS offer or the
  * bundle). No public/free mode — see api/lib/memberToolHandler.ts.
  */
-import { createMemberToolHandler } from "./lib/memberToolHandler.js";
-import { RAMS_SCHEMA, type RamsDocument } from "./lib/schemas/rams.js";
-import { RAMS_SYSTEM_PROMPT, buildRamsUserTurn } from "./lib/prompts/rams.js";
-import { renderRamsHtml } from "./lib/pdf/renderRamsHtml.js";
+import { createMemberToolHandler } from "./_lib/memberToolHandler.js";
+import { RAMS_SCHEMA, type RamsDocument } from "./_lib/schemas/rams.js";
+import { RAMS_SYSTEM_PROMPT, buildRamsUserTurn } from "./_lib/prompts/rams.js";
+import { renderRamsHtml } from "./_lib/pdf/renderRamsHtml.js";
 
 export default createMemberToolHandler<RamsDocument>({
   tool: "rams",

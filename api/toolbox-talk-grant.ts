@@ -28,8 +28,8 @@
  *   GET /api/toolbox-talk-grant?secret=…    reports config readiness
  */
 import { json, env, normaliseEmail } from "./_hubspot.mjs";
-import { grantMemberAccess, revokeMemberAccess } from "./lib/db.js";
-import { sendMemberAccessEmail, sendToolAccessEmail, type ToolKey } from "./lib/email.js";
+import { grantMemberAccess, revokeMemberAccess } from "./_lib/db.js";
+import { sendMemberAccessEmail, sendToolAccessEmail, type ToolKey } from "./_lib/email.js";
 
 export const config = { runtime: "edge" };
 

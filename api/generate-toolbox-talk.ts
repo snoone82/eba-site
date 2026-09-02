@@ -12,13 +12,13 @@
  * /api/toolbox-talk-grant): no email required, a much higher rate-limit
  * ceiling (a safety net against a leaked link, not a real limit).
  */
-import { generateDocument, GenerationError } from "./lib/anthropic.js";
-import { TOOLBOX_TALK_SCHEMA, type ToolboxTalk } from "./lib/schemas/toolboxTalk.js";
-import { TOOLBOX_TALK_SYSTEM_PROMPT, buildToolboxTalkUserTurn } from "./lib/prompts/toolboxTalk.js";
-import { renderToolboxTalkHtml } from "./lib/pdf/renderToolboxTalkHtml.js";
-import { renderHtmlToPdf } from "./lib/pdf/renderPdf.js";
-import { sendToolboxTalkEmail } from "./lib/email.js";
-import { checkRateLimit, checkMemberRateLimit, recordGeneration, getMemberByToken } from "./lib/db.js";
+import { generateDocument, GenerationError } from "./_lib/anthropic.js";
+import { TOOLBOX_TALK_SCHEMA, type ToolboxTalk } from "./_lib/schemas/toolboxTalk.js";
+import { TOOLBOX_TALK_SYSTEM_PROMPT, buildToolboxTalkUserTurn } from "./_lib/prompts/toolboxTalk.js";
+import { renderToolboxTalkHtml } from "./_lib/pdf/renderToolboxTalkHtml.js";
+import { renderHtmlToPdf } from "./_lib/pdf/renderPdf.js";
+import { sendToolboxTalkEmail } from "./_lib/email.js";
+import { checkRateLimit, checkMemberRateLimit, recordGeneration, getMemberByToken } from "./_lib/db.js";
 
 interface VercelLikeRequest {
   method?: string;

@@ -7,10 +7,10 @@
  * Requires an accessToken whose tier includes "coshh" (the COSHH offer or the
  * bundle). No public/free mode — see api/lib/memberToolHandler.ts.
  */
-import { createMemberToolHandler } from "./lib/memberToolHandler.js";
-import { COSHH_SCHEMA, type CoshhDocument } from "./lib/schemas/coshh.js";
-import { COSHH_SYSTEM_PROMPT, buildCoshhUserTurn } from "./lib/prompts/coshh.js";
-import { renderCoshhHtml } from "./lib/pdf/renderCoshhHtml.js";
+import { createMemberToolHandler } from "./_lib/memberToolHandler.js";
+import { COSHH_SCHEMA, type CoshhDocument } from "./_lib/schemas/coshh.js";
+import { COSHH_SYSTEM_PROMPT, buildCoshhUserTurn } from "./_lib/prompts/coshh.js";
+import { renderCoshhHtml } from "./_lib/pdf/renderCoshhHtml.js";
 
 export default createMemberToolHandler<CoshhDocument>({
   tool: "coshh",
