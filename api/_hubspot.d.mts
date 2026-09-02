@@ -22,7 +22,7 @@ export function deriveSource(
   utmSource?: string | null,
   utmMedium?: string | null,
   referrer?: string | null
-): string;
+): { source: string; detail: string };
 
 export function normalisePhone(v: unknown): string | undefined;
 
@@ -50,7 +50,7 @@ export function upsertContact(
   properties: Record<string, unknown>
 ): Promise<{ id: string; created: boolean }>;
 
-export function splitName(full: string): { firstname?: string; lastname?: string };
+export function splitName(full: string | undefined): { firstname?: string; lastname?: string };
 
 export function normaliseEmail(v: unknown): string | undefined;
 
