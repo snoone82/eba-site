@@ -27,6 +27,7 @@ import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPage
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
 import { AboutStePage } from "@/pages/AboutStePage";
+import { AutomationPage } from "@/pages/AutomationPage";
 import { ComingSoonPage } from "@/pages/ComingSoonPage";
 import { COMING_SOON } from "@/lib/constants";
 import { isPreview } from "@/lib/preview";
@@ -64,6 +65,7 @@ function Router() {
       <Route path={"/our-story"} component={OurStoryPage} />
       {/* DRAFT — noIndex, deliberately not in the nav or sitemap until copy is final. */}
       <Route path={"/about-ste"} component={AboutStePage} />
+      <Route path={"/automation"} component={AutomationPage} />
       {/* Legacy /about → /our-story (client-side; a 308 redirect is also set in vercel.json) */}
       <Route path={"/about"}>{() => <Redirect to="/our-story" replace />}</Route>
       <Route path={"/documents"} component={DocumentsPage} />

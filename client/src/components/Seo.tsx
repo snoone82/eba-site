@@ -98,6 +98,13 @@ export const PAGE_SEO = {
       "From health & safety and NEBOSH to building the AI compliance tools EBA sells — built inside a working engineering group before they were ever sold.",
     path: "/about-ste",
   },
+  // noIndex until Ste supplies real build examples and confirms the copy.
+  automation: {
+    title: "Automation & Systems, Built For You | EBA",
+    description:
+      "Dashboards, integrations and internal tools built around how your engineering business actually runs — by the Head of Automation of a working M&E group. Scoped and priced before anything is built.",
+    path: "/automation",
+  },
   mentorship: {
     title: "Mentorship for Engineering Business Owners | EBA",
     description:

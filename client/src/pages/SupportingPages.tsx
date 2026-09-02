@@ -946,7 +946,7 @@ export function DocumentsPage() {
 // CONTACT PAGE
 // ─────────────────────────────────────────────
 
-const CONTACT_ENQUIRIES = ["academy", "pricing", "documents", "om-manual", "chatbot", "white-label", "mentorship", "other"];
+const CONTACT_ENQUIRIES = ["academy", "pricing", "documents", "om-manual", "chatbot", "white-label", "automation", "mentorship", "other"];
 
 export function ContactPage() {
   // "Request a build" CTAs land here as /contact?enquiry=chatbot etc. — preselect
@@ -1090,6 +1090,7 @@ export function ContactPage() {
                       <option value="om-manual">AI Tool — O&M Manual Compiler</option>
                       <option value="chatbot">AI Tool — Compliance Co-Pilot</option>
                       <option value="white-label">AI Tool — White-Label Deployment</option>
+                      <option value="automation">Automation &amp; Systems — Bespoke Build</option>
                       <option value="mentorship">Mentorship — Application</option>
                       <option value="other">General Enquiry</option>
                     </select>
