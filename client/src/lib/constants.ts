@@ -384,6 +384,8 @@ export const PRICING = {
   academyDocsFounding: "£1,299",
   academyDocsStandard: "£1,999",
   omPerManual: "£299",
+  /** Standalone Document Library — Kajabi offer 2151348610, published 2 Sep 2026. */
+  libraryStandalone: "£399",
   ramsMonthly: "£39/mo",
   ramsMonthlyStandard: "£49/mo",
   coshhMonthly: "£29/mo",
@@ -500,6 +502,10 @@ export const ENROL_DOCS_READY = OFFERS_LIVE && (!isPlaceholder(KAJABI_CHECKOUT_U
 export const ENROL_DOCS_HREF: string | undefined = !isPlaceholder(KAJABI_CHECKOUT_URL_DOCS)
   ? KAJABI_CHECKOUT_URL_DOCS
   : ENROL_HREF;
+
+/** Standalone Document Library (£399): live checkout href, or undefined while not selling. */
+export const LIBRARY_HREF: string | undefined =
+  OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL_LIBRARY) ? KAJABI_CHECKOUT_URL_LIBRARY : undefined;
 
 /** Tool subscriptions (RAMS / COSHH / bundle): live checkout hrefs, or undefined while not selling. */
 export const TOOL_CHECKOUT = {

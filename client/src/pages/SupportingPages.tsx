@@ -24,7 +24,7 @@ import {
   isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_BAND_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB,
-  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB, ACCENT_GRAD, RUST_ON_DARK, SHOW_DOC_PRICES, MARK_PHOTO_STORY,
+  WHITE, HERO_GLOW, SECTION_GLOW, ACCENT_RGB, ACCENT_GRAD, RUST_ON_DARK, SHOW_DOC_PRICES, MARK_PHOTO_STORY, LIBRARY_HREF, PRICING,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
 } from "@/lib/constants";
 import { SectionBreaker } from "@/components/SectionBreaker";
@@ -750,6 +750,16 @@ export function DocumentsPage() {
           }}>
             {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
           </a>
+          {/* Standalone library purchase — Kajabi offer 2151348610. Hidden while OFFERS_LIVE is false. */}
+          {LIBRARY_HREF && (
+            <a href={LIBRARY_HREF} target="_blank" rel="noopener noreferrer" onClick={() => track("checkout_click", { source: "documents_library" })} style={{
+              background: "transparent", color: NAVY, border: `1px solid rgba(${NAVY_RGB},0.35)`, textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "12px",
+              padding: "7px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0, borderRadius: "6px",
+            }}>
+              Buy the library alone · {PRICING.libraryStandalone} →
+            </a>
+          )}
         </div>
       </div>
 
