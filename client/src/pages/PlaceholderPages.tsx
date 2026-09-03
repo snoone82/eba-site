@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { EBALogo } from "@/components/EBALogo";
 import {
   NAVY, CREAM, RUST, OAT, WHITE, COBALT, COBALT_RGB,
-  ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, PRICING,
+  ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, PRICING, TOOL_CHECKOUT,
   ENROL_DOCS_READY, ENROL_DOCS_HREF, LEADERSHIP_TEAM, MARK_PHOTO_MENTORSHIP,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
@@ -543,12 +543,12 @@ export function PricingPage() {
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {[
-                { name: "RAMS Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.ramsMonthlyStandard}`, value: PRICING.ramsMonthly },
-                { name: "COSHH Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.coshhMonthlyStandard}`, value: PRICING.coshhMonthly },
-                { name: "RAMS + COSHH bundle", detail: `Both tools under one monthly subscription — founder price, rises to ${PRICING.toolsBothMonthlyStandard}`, value: PRICING.toolsBothMonthly },
-                { name: "O&M manual service", detail: "Compiled for you — per manual, returned within 24 hours", value: PRICING.omPerManual },
-                { name: "Compliance Co-Pilot", detail: `Built for your business — trained on your documents, hosted and maintained. Founder price; rises to ${PRICING.coPilotSetupStandard} + ${PRICING.coPilotMonthlyStandard}`, value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly}` },
-              ].map(({ name, detail, value }, i) => (
+                { name: "RAMS Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.ramsMonthlyStandard}`, value: PRICING.ramsMonthly, checkout: TOOL_CHECKOUT.rams, key: "rams" },
+                { name: "COSHH Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.coshhMonthlyStandard}`, value: PRICING.coshhMonthly, checkout: TOOL_CHECKOUT.coshh, key: "coshh" },
+                { name: "RAMS + COSHH bundle", detail: `Both tools under one monthly subscription — founder price, rises to ${PRICING.toolsBothMonthlyStandard}`, value: PRICING.toolsBothMonthly, checkout: TOOL_CHECKOUT.bundle, key: "bundle" },
+                { name: "O&M manual service", detail: "Compiled for you — per manual, returned within 24 hours", value: PRICING.omPerManual, checkout: undefined, key: "om" },
+                { name: "Compliance Co-Pilot", detail: `Built for your business — trained on your documents, hosted and maintained. Founder price; rises to ${PRICING.coPilotSetupStandard} + ${PRICING.coPilotMonthlyStandard}`, value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly}`, checkout: undefined, key: "copilot" },
+              ].map(({ name, detail, value, checkout, key }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
                   padding: "18px 24px", borderTop: i > 0 ? `1px solid rgba(${NAVY_RGB},0.08)` : "none",
@@ -557,9 +557,19 @@ export function PricingPage() {
                     <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px", color: NAVY, margin: "0 0 2px" }}>{name}</p>
                     <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: `rgba(${NAVY_RGB},0.6)`, margin: 0, lineHeight: 1.5 }}>{detail}</p>
                   </div>
-                  <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "6px 14px", borderRadius: "8px", whiteSpace: "nowrap" }}>
-                    {isPlaceholder(value) ? "Pricing announced soon" : value}
-                  </span>
+                  <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap" }}>
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "6px 14px", borderRadius: "8px", whiteSpace: "nowrap" }}>
+                      {isPlaceholder(value) ? "Pricing announced soon" : value}
+                    </span>
+                    {/* Kajabi checkout for the subscriptions only; hidden while OFFERS_LIVE is false. */}
+                    {checkout && (
+                      <a href={checkout} target="_blank" rel="noopener noreferrer"
+                        onClick={() => track("cta_tool_subscribe", { tool: key })}
+                        style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13.5px", color: "#fff", background: CTA_PRIMARY_BG, padding: "8px 16px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
+                        Subscribe →
+                      </a>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>

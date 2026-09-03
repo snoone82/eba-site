@@ -2,6 +2,9 @@
 
 interface ImportMetaEnv {
   readonly VITE_KAJABI_CHECKOUT_URL?: string;
+  readonly VITE_KAJABI_CHECKOUT_URL_RAMS?: string;
+  readonly VITE_KAJABI_CHECKOUT_URL_COSHH?: string;
+  readonly VITE_KAJABI_CHECKOUT_URL_TOOLS_BUNDLE?: string;
   readonly VITE_FORM_ENDPOINT?: string;
   readonly VITE_STRIPE_OM_MANUAL?: string;
   readonly VITE_STRIPE_COMPLIANCE_CHATBOT?: string;

@@ -13,7 +13,7 @@ import { ToolboxLeadMagnet } from "@/components/ToolboxLeadMagnet";
 import { SectionBreaker } from "@/components/SectionBreaker";
 import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, type ComponentProps } from "react";
 import {
   ENROL_HREF,
   ENROL_READY,
@@ -25,7 +25,7 @@ import {
   CREAM,
   OAT,
   AMBER,
-  isPlaceholder, OM_SERVICE_URL, TOOL_PRICE_NOTES,
+  isPlaceholder, OM_SERVICE_URL, TOOL_PRICE_NOTES, TOOL_CHECKOUT,
   WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
@@ -555,6 +555,7 @@ export default function AIToolsPage() {
                 Icon: ShieldCheck, name: "RAMS Generator",
                 outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.rams) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.rams,
+                checkout: TOOL_CHECKOUT.rams, checkoutKey: "rams",
                 frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"], chip: "Generated in 4m 12s", matrix: true },
               },
               {
@@ -567,9 +568,13 @@ export default function AIToolsPage() {
                 Icon: FlaskConical, name: "COSHH Generator",
                 outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.coshh,
+                checkout: TOOL_CHECKOUT.coshh, checkoutKey: "coshh",
                 frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"], chip: "Branded PDF ready" },
               },
-            ].map(({ Icon, name, outcome, note, frame }) => (
+            ].map(({ Icon, name, outcome, note, frame, checkout, checkoutKey }: {
+              Icon: typeof FileText; name: string; outcome: string; note: string;
+              frame: ComponentProps<typeof ProductFrame>; checkout?: string; checkoutKey?: string;
+            }) => (
               <div key={name} className="eba-bento-card" style={{
                 background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "20px",
                 padding: isMobile ? "26px 24px" : "30px 30px", display: "flex", flexDirection: "column",
@@ -591,6 +596,20 @@ export default function AIToolsPage() {
                     <Check size={13} strokeWidth={2.5} /> You review every output
                   </span>
                 </div>
+                {/* Subscription CTA — only the RAMS/COSHH cards carry a Kajabi
+                    checkout; it renders nothing while OFFERS_LIVE is false. */}
+                {checkout && (
+                  <a href={checkout} target="_blank" rel="noopener noreferrer"
+                    onClick={() => track("cta_tool_subscribe", { tool: checkoutKey ?? "" })}
+                    style={{
+                      marginTop: "16px", display: "block", textAlign: "center",
+                      background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                      fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
+                      padding: "13px 22px", borderRadius: "10px", letterSpacing: "0.02em",
+                    }}>
+                    Subscribe · founder price →
+                  </a>
+                )}
               </div>
             ))}
           </div>

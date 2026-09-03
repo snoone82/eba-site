@@ -213,14 +213,18 @@ export const METHOD_NAME = "The Engineering Operating System";
  *   2151280640  £1,299  Founding Cohort + Documents  HYFbPnn9
  *   2151348610  £399    Document Library (standalone) zk28233C
  *
- * ⚠️ ALL THREE OFFERS ARE CURRENTLY DRAFT IN KAJABI. A draft offer's checkout
- * page does not resolve, so linking a live button straight at one sends the
- * buyer to a dead page — worse than saying nothing.
+ *   2151356807  £39/mo  RAMS Generator subscription  NFVL2ieT
+ *   2151356808  £29/mo  COSHH Generator subscription chGLpKFr
+ *   2151356809  £49/mo  RAMS + COSHH bundle          F7mzDeHX
  *
- * OFFERS_LIVE below is the single switch. It stays false until the offers are
- * published in Kajabi admin, which in turn waits on the course being
- * deliverable (modules are still draft). Flip it to true the same day you
- * publish and every CTA across the site goes live at once.
+ * All six offers were PUBLISHED in Kajabi on 2 Sep 2026 (every checkout URL
+ * verified 200). OFFERS_LIVE below is the single switch: set it back to false
+ * and every buy/enrol CTA across the site reverts to ENROL_PENDING_LABEL at once.
+ *
+ * Fulfilment reminder: the three tool subscriptions deliver access by email via
+ * the /api/toolbox-talk-grant webhook. That webhook must be attached to each
+ * offer as a Kajabi automation (docs/TOOL_SUBSCRIPTION_WIRING_RUNBOOK.md) —
+ * publishing the offer alone takes payment but delivers nothing.
  */
 export const KAJABI_CHECKOUT_URL =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL ||
@@ -236,14 +240,31 @@ export const KAJABI_CHECKOUT_URL_LIBRARY =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL_LIBRARY ||
   "https://teba.mykajabi.com/offers/zk28233C/checkout";
 
+/** Kajabi checkout for the RAMS Generator subscription (£39/mo founder price). */
+export const KAJABI_CHECKOUT_URL_RAMS =
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL_RAMS ||
+  "https://teba.mykajabi.com/offers/NFVL2ieT/checkout";
+
+/** Kajabi checkout for the COSHH Generator subscription (£29/mo founder price). */
+export const KAJABI_CHECKOUT_URL_COSHH =
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL_COSHH ||
+  "https://teba.mykajabi.com/offers/chGLpKFr/checkout";
+
+/** Kajabi checkout for the RAMS + COSHH bundle subscription (£49/mo founder price). */
+export const KAJABI_CHECKOUT_URL_TOOLS_BUNDLE =
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL_TOOLS_BUNDLE ||
+  "https://teba.mykajabi.com/offers/F7mzDeHX/checkout";
+
 /**
  * Master switch for selling. False = every enrolment/buy CTA renders
  * ENROL_PENDING_LABEL instead of linking out.
  *
- * Set to true ONLY once the Kajabi offers are published AND a real test
- * purchase has been made end to end.
+ * Switched to true on 2 Sep 2026 once all six Kajabi offers were published
+ * (Ste + Mark approved). Note /pricing deliberately still gates the Academy
+ * price behind an enquiry; the direct enrol CTAs elsewhere go straight to
+ * Kajabi checkout, where the price is shown.
  */
-export const OFFERS_LIVE = false;
+export const OFFERS_LIVE = true;
 
 /** Kajabi-hosted O&M manual upload/enquiry flow. While unset, the O&M CTA
  *  fails safe to the Stripe link (if set) or the internal tool page. */
@@ -479,3 +500,10 @@ export const ENROL_DOCS_READY = OFFERS_LIVE && (!isPlaceholder(KAJABI_CHECKOUT_U
 export const ENROL_DOCS_HREF: string | undefined = !isPlaceholder(KAJABI_CHECKOUT_URL_DOCS)
   ? KAJABI_CHECKOUT_URL_DOCS
   : ENROL_HREF;
+
+/** Tool subscriptions (RAMS / COSHH / bundle): live checkout hrefs, or undefined while not selling. */
+export const TOOL_CHECKOUT = {
+  rams: OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL_RAMS) ? KAJABI_CHECKOUT_URL_RAMS : undefined,
+  coshh: OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL_COSHH) ? KAJABI_CHECKOUT_URL_COSHH : undefined,
+  bundle: OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL_TOOLS_BUNDLE) ? KAJABI_CHECKOUT_URL_TOOLS_BUNDLE : undefined,
+} as const;
