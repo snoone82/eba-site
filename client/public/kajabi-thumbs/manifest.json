@@ -1,0 +1,971 @@
+[
+ {
+  "type": "module",
+  "id": 2159559988,
+  "file": "M01-the-job-of-the-leader.png",
+  "title": "The Job of the Leader"
+ },
+ {
+  "type": "lesson",
+  "id": 2196386383,
+  "module": 1,
+  "lesson": 1,
+  "file": "M01-L01-what-is-your-job-as-a-leader.png",
+  "title": "What Is Your Job as a Leader",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197189864,
+  "module": 1,
+  "lesson": 2,
+  "file": "M01-L02-you-need-a-goal-what-is-the-bhag.png",
+  "title": "You Need a Goal – What is the BHAG",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197192459,
+  "module": 1,
+  "lesson": 3,
+  "file": "M01-L03-the-hands-off-business-owner-how-i-achieved-this.png",
+  "title": "The Hands-Off Business Owner – How I Achieved This With My Mentor",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197192472,
+  "module": 1,
+  "lesson": 4,
+  "file": "M01-L04-the-importance-of-being-the-dumbest-guy-in-the-r.png",
+  "title": "The Importance of Being the Dumbest Guy in the Room",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197192633,
+  "module": 1,
+  "lesson": 5,
+  "file": "M01-L05-the-power-of-a-mentor.png",
+  "title": "The Power of a Mentor",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197169820,
+  "module": 1,
+  "lesson": 6,
+  "file": "M01-L06-read-read-read.png",
+  "title": "Read, Read, Read.",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197192639,
+  "module": 1,
+  "lesson": 7,
+  "file": "M01-L07-daily-gratitudes.png",
+  "title": "Daily Gratitudes",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197192726,
+  "module": 1,
+  "lesson": 8,
+  "file": "M01-L08-three-goals-for-every-business.png",
+  "title": "Three Goals for Every Business",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197192861,
+  "module": 1,
+  "lesson": 9,
+  "file": "M01-L09-check-in-with-yourself-what-are-you-spending-you.png",
+  "title": "Check In With Yourself – What Are You Spending Your Time On?",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193025,
+  "module": 1,
+  "lesson": 10,
+  "file": "M01-L10-all-about-giving-energy-desire-and-leadership.png",
+  "title": "All About Giving Energy, Desire and Leadership",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193225,
+  "module": 1,
+  "lesson": 11,
+  "file": "M01-L11-solving-the-problems-stopping-you-being-the-best.png",
+  "title": "Solving the Problems Stopping You Being the Best – What Are Your Blockers Stopping You From Being The Best",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193419,
+  "module": 1,
+  "lesson": 12,
+  "file": "M01-L12-passion-and-finding-your-role.png",
+  "title": "Passion and Finding Your Role",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193446,
+  "module": 1,
+  "lesson": 13,
+  "file": "M01-L13-your-360-leadership-report.png",
+  "title": "Your 360° Leadership Report",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193774,
+  "module": 1,
+  "lesson": 14,
+  "file": "M01-L14-what-is-your-hedgehog-concept.png",
+  "title": "What Is Your Hedgehog Concept?",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193825,
+  "module": 1,
+  "lesson": 15,
+  "file": "M01-L15-your-core-values.png",
+  "title": "Your Core Values",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197193920,
+  "module": 1,
+  "lesson": 16,
+  "file": "M01-L16-monthly-stakeholder-meetings.png",
+  "title": "Monthly Stakeholder Meetings",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197194090,
+  "module": 1,
+  "lesson": 17,
+  "file": "M01-L17-what-you-can-leverage-people-knowledge-finance-p.png",
+  "title": "What You Can Leverage – People, Knowledge, Finance, Personal Brand, Technology",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560011,
+  "file": "M02-culture-and-standards.png",
+  "title": "Culture & Standards"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198571,
+  "module": 2,
+  "lesson": 1,
+  "file": "M02-L01-why-culture-determines-your-quality-of-life-as-a.png",
+  "title": "Why Culture Determines Your Quality of Life as a Leader",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198787,
+  "module": 2,
+  "lesson": 2,
+  "file": "M02-L02-our-core-values.png",
+  "title": "Our Core Values",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198791,
+  "module": 2,
+  "lesson": 3,
+  "file": "M02-L03-attitude-over-ability.png",
+  "title": "Attitude Over Ability",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198793,
+  "module": 2,
+  "lesson": 4,
+  "file": "M02-L04-fifo-the-system-that-changed-our-culture.png",
+  "title": "FIFO – The System That Changed Our Culture",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198800,
+  "module": 2,
+  "lesson": 5,
+  "file": "M02-L05-eradicate-them-and-us.png",
+  "title": "Eradicate “Them and Us”",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198806,
+  "module": 2,
+  "lesson": 6,
+  "file": "M02-L06-your-people-are-your-real-customers.png",
+  "title": "Your People Are Your Real Customers",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2196395012,
+  "module": 2,
+  "lesson": 7,
+  "file": "M02-L07-if-you-need-to-micromanage-someone-they-must-go.png",
+  "title": "If You Need to Micromanage Someone They Must Go",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198909,
+  "module": 2,
+  "lesson": 8,
+  "file": "M02-L08-always-get-rid-of-the-worst-10.png",
+  "title": "Always Get Rid of the Worst 10%",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350285,
+  "module": 2,
+  "lesson": 9,
+  "file": "M02-L09-packards-law-why-people-limit-growth.png",
+  "title": "Packard's Law – Why People Limit Growth",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350291,
+  "module": 2,
+  "lesson": 10,
+  "file": "M02-L10-aligning-your-people.png",
+  "title": "Aligning Your People",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350292,
+  "module": 2,
+  "lesson": 11,
+  "file": "M02-L11-importance-of-good-and-clear-communication-get-p.png",
+  "title": "Importance of Good & Clear Communication – Get People Behind the Mission",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350294,
+  "module": 2,
+  "lesson": 12,
+  "file": "M02-L12-the-desktop-background-should-explain-it-all.png",
+  "title": "The Desktop Background Should Explain It All",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560014,
+  "file": "M03-leadership-and-building-teams.png",
+  "title": "Leadership & Building Teams"
+ },
+ {
+  "type": "lesson",
+  "id": 2196000904,
+  "module": 3,
+  "lesson": 1,
+  "file": "M03-L01-start-with-an-organogram-the-football-team.png",
+  "title": "Start With an Organogram – The Football Team",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2196397221,
+  "module": 3,
+  "lesson": 2,
+  "file": "M03-L02-the-mitie-model.png",
+  "title": "The Mitie Model",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350322,
+  "module": 3,
+  "lesson": 3,
+  "file": "M03-L03-reports-how-they-add-huge-value.png",
+  "title": "Reports – How They Add Huge Value",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350325,
+  "module": 3,
+  "lesson": 4,
+  "file": "M03-L04-the-best-leaders-make-themselves-surplus-to-requ.png",
+  "title": "The Best Leaders Make Themselves Surplus to Requirements",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350327,
+  "module": 3,
+  "lesson": 5,
+  "file": "M03-L05-what-i-look-for-in-a-leader.png",
+  "title": "What I Look For in a Leader",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350331,
+  "module": 3,
+  "lesson": 6,
+  "file": "M03-L06-finding-talent-recruiters-headhunters-and-sales-.png",
+  "title": "Finding Talent – Recruiters, Headhunters & Sales Navigator",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350335,
+  "module": 3,
+  "lesson": 7,
+  "file": "M03-L07-onboarding-and-the-induction-process.png",
+  "title": "Onboarding and the Induction Process",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350337,
+  "module": 3,
+  "lesson": 8,
+  "file": "M03-L08-your-first-employees-are-the-most-important.png",
+  "title": "Your First Employees Are the Most Important",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350340,
+  "module": 3,
+  "lesson": 9,
+  "file": "M03-L09-graduates-and-apprentices.png",
+  "title": "Graduates and Apprentices",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350344,
+  "module": 3,
+  "lesson": 10,
+  "file": "M03-L10-employee-surveys.png",
+  "title": "Employee Surveys",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350351,
+  "module": 3,
+  "lesson": 11,
+  "file": "M03-L11-the-importance-of-appraisals.png",
+  "title": "The Importance of Appraisals",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350353,
+  "module": 3,
+  "lesson": 12,
+  "file": "M03-L12-360-reports-for-leaders.png",
+  "title": "360 Reports for Leaders",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2196396260,
+  "module": 3,
+  "lesson": 13,
+  "file": "M03-L13-16-personalities-tests.png",
+  "title": "16 Personalities Tests",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350358,
+  "module": 3,
+  "lesson": 14,
+  "file": "M03-L14-goal-setting.png",
+  "title": "Goal Setting",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350362,
+  "module": 3,
+  "lesson": 15,
+  "file": "M03-L15-succession-planning-you-should-always-have-one-e.png",
+  "title": "Succession Planning – You Should Always Have One Eye on This",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560012,
+  "file": "M04-processes-procedures-and-other-controls.png",
+  "title": "Processes, Procedures & Other Controls"
+ },
+ {
+  "type": "lesson",
+  "id": 2197197386,
+  "module": 4,
+  "lesson": 1,
+  "file": "M04-L01-the-importance-of-processes-and-procedures.png",
+  "title": "The Importance of Processes and Procedures",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197197419,
+  "module": 4,
+  "lesson": 2,
+  "file": "M04-L02-the-complete-set-of-documents-in-this-pack.png",
+  "title": "The Complete Set of Documents in This Pack",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197197559,
+  "module": 4,
+  "lesson": 3,
+  "file": "M04-L03-the-importance-of-tidiness.png",
+  "title": "The Importance of Tidiness",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197197566,
+  "module": 4,
+  "lesson": 4,
+  "file": "M04-L04-the-importance-of-sharing-ideas.png",
+  "title": "The Importance of Sharing Ideas",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350519,
+  "module": 4,
+  "lesson": 5,
+  "file": "M04-L05-our-playbook.png",
+  "title": "Our Playbook",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197197939,
+  "module": 4,
+  "lesson": 6,
+  "file": "M04-L06-when-do-you-need-a-process.png",
+  "title": "When Do You Need a Process?",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197197965,
+  "module": 4,
+  "lesson": 7,
+  "file": "M04-L07-weekly-check-in-with-the-team.png",
+  "title": "Weekly Check-In With the Team",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2197198158,
+  "module": 4,
+  "lesson": 8,
+  "file": "M04-L08-the-importance-of-4-eyes.png",
+  "title": "The Importance of “4 Eyes”",
+  "state": "draft"
+ },
+ {
+  "type": "module",
+  "id": 2159560030,
+  "file": "M05-sales-marketing-and-growth-discipline.png",
+  "title": "Sales, Marketing & Growth Discipline"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350532,
+  "module": 5,
+  "lesson": 1,
+  "file": "M05-L01-sectors-and-customer-types.png",
+  "title": "Sectors and Customer Types",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350536,
+  "module": 5,
+  "lesson": 2,
+  "file": "M05-L02-weekly-sales-meetings.png",
+  "title": "Weekly Sales Meetings",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350541,
+  "module": 5,
+  "lesson": 3,
+  "file": "M05-L03-importance-of-a-crm.png",
+  "title": "Importance of a CRM",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350546,
+  "module": 5,
+  "lesson": 4,
+  "file": "M05-L04-importance-of-the-pipeline.png",
+  "title": "Importance of the Pipeline",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350547,
+  "module": 5,
+  "lesson": 5,
+  "file": "M05-L05-brand-guidelines.png",
+  "title": "Brand Guidelines",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350548,
+  "module": 5,
+  "lesson": 6,
+  "file": "M05-L06-what-customers-you-start-with-will-not-be-your-l.png",
+  "title": "What Customers You Start With Will Not Be Your Long-Term Customers",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350550,
+  "module": 5,
+  "lesson": 7,
+  "file": "M05-L07-do-a-good-job-clean-up-and-go-your-biggest-sales.png",
+  "title": "Do a Good Job, Clean Up & Go – Your Biggest Sales Tool",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350554,
+  "module": 5,
+  "lesson": 8,
+  "file": "M05-L08-strategy-how-i-approach-it.png",
+  "title": "Strategy – How I Approach It",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560031,
+  "file": "M06-commercial-controls.png",
+  "title": "Commercial Controls"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350563,
+  "module": 6,
+  "lesson": 1,
+  "file": "M06-L01-commercial-management.png",
+  "title": "Commercial Management",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350565,
+  "module": 6,
+  "lesson": 2,
+  "file": "M06-L02-variations-change-management.png",
+  "title": "Variations – Change Management",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350570,
+  "module": 6,
+  "lesson": 3,
+  "file": "M06-L03-last-shot-protocol.png",
+  "title": "Last Shot Protocol",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350572,
+  "module": 6,
+  "lesson": 4,
+  "file": "M06-L04-cashflow-optimisation.png",
+  "title": "Cashflow Optimisation",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350573,
+  "module": 6,
+  "lesson": 5,
+  "file": "M06-L05-letters-of-intent.png",
+  "title": "Letters of Intent",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350575,
+  "module": 6,
+  "lesson": 6,
+  "file": "M06-L06-payment-notices-and-payless-notices.png",
+  "title": "Payment Notices & Payless Notices",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350626,
+  "module": 6,
+  "lesson": 7,
+  "file": "M06-L07-bonds-and-warranties.png",
+  "title": "Bonds & Warranties",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350627,
+  "module": 6,
+  "lesson": 8,
+  "file": "M06-L08-money-is-made-before-you-step-on-site.png",
+  "title": "Money Is Made Before You Step on Site",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350629,
+  "module": 6,
+  "lesson": 9,
+  "file": "M06-L09-improving-margin-reduce-mistakes.png",
+  "title": "Improving Margin – Reduce Mistakes",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350634,
+  "module": 6,
+  "lesson": 10,
+  "file": "M06-L10-dashboards.png",
+  "title": "Dashboards",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560033,
+  "file": "M07-financial-control-and-cash.png",
+  "title": "Financial Control & Cash"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350746,
+  "module": 7,
+  "lesson": 1,
+  "file": "M07-L01-payment-terms-never-accept-60-day-terms.png",
+  "title": "Payment Terms – Never Accept 60-Day Terms",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350757,
+  "module": 7,
+  "lesson": 2,
+  "file": "M07-L02-weekly-supplier-payments.png",
+  "title": "Weekly Supplier Payments",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350760,
+  "module": 7,
+  "lesson": 3,
+  "file": "M07-L03-factoring.png",
+  "title": "Factoring",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350761,
+  "module": 7,
+  "lesson": 4,
+  "file": "M07-L04-payroll-always-pay-monthly.png",
+  "title": "Payroll – Always Pay Monthly",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350783,
+  "module": 7,
+  "lesson": 5,
+  "file": "M07-L05-credit-control.png",
+  "title": "Credit Control",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350787,
+  "module": 7,
+  "lesson": 6,
+  "file": "M07-L06-profit-as-a-percentage-of-costs-incurred.png",
+  "title": "Profit as a Percentage of Costs Incurred",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350792,
+  "module": 7,
+  "lesson": 7,
+  "file": "M07-L07-get-a-cfo-as-soon-as-you-can.png",
+  "title": "Get a CFO as Soon as You Can",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350795,
+  "module": 7,
+  "lesson": 8,
+  "file": "M07-L08-fixed-dates-close-off-and-management-accounts.png",
+  "title": "Fixed Dates, Close Off & Management Accounts",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350809,
+  "module": 7,
+  "lesson": 9,
+  "file": "M07-L09-nominal-code-lists.png",
+  "title": "Nominal Code Lists",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350813,
+  "module": 7,
+  "lesson": 10,
+  "file": "M07-L10-the-balance-sheet-the-roots-of-the-tree.png",
+  "title": "The Balance Sheet – The Roots of the Tree",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350816,
+  "module": 7,
+  "lesson": 11,
+  "file": "M07-L11-credit-referencing-vs-credit-insurance.png",
+  "title": "Credit Referencing vs Credit Insurance",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560038,
+  "file": "M08-risk-protection-and-governance.png",
+  "title": "Risk, Protection & Governance"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350996,
+  "module": 8,
+  "lesson": 1,
+  "file": "M08-L01-always-watch-out-for-the-next-risk-the-risk-regi.png",
+  "title": "Always Watch Out for the Next Risk – The Risk Register & Audit Sheet",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198350998,
+  "module": 8,
+  "lesson": 2,
+  "file": "M08-L02-cybersecurity-and-it.png",
+  "title": "Cybersecurity and IT",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351008,
+  "module": 8,
+  "lesson": 3,
+  "file": "M08-L03-advice-on-service-agreements.png",
+  "title": "Advice on Service Agreements",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351010,
+  "module": 8,
+  "lesson": 4,
+  "file": "M08-L04-advice-on-shareholders-agreements.png",
+  "title": "Advice on Shareholders Agreements",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351012,
+  "module": 8,
+  "lesson": 5,
+  "file": "M08-L05-advice-on-articles-of-association.png",
+  "title": "Advice on Articles of Association",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351014,
+  "module": 8,
+  "lesson": 6,
+  "file": "M08-L06-unfixed-labour-costs.png",
+  "title": "Unfixed Labour Costs",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351017,
+  "module": 8,
+  "lesson": 7,
+  "file": "M08-L07-the-importance-of-credit-insurance.png",
+  "title": "The Importance of Credit Insurance",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351022,
+  "module": 8,
+  "lesson": 8,
+  "file": "M08-L08-the-importance-of-who-you-work-for.png",
+  "title": "The Importance of Who You Work For",
+  "state": "published"
+ },
+ {
+  "type": "module",
+  "id": 2159560041,
+  "file": "M09-the-dark-side-of-business.png",
+  "title": "The Dark Side of Business"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351193,
+  "module": 9,
+  "lesson": 1,
+  "file": "M09-L01-why-companies-go-bust.png",
+  "title": "Why Companies Go Bust",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351196,
+  "module": 9,
+  "lesson": 2,
+  "file": "M09-L02-what-to-do-when-customers-go-bust.png",
+  "title": "What to Do When Customers Go Bust",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351197,
+  "module": 9,
+  "lesson": 3,
+  "file": "M09-L03-distressed-businesses.png",
+  "title": "Distressed Businesses",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351202,
+  "module": 9,
+  "lesson": 4,
+  "file": "M09-L04-my-experience-of-going-bust-a-pre-pack-administr.png",
+  "title": "My Experience of Going Bust – A Pre-Pack Administration",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351205,
+  "module": 9,
+  "lesson": 5,
+  "file": "M09-L05-shrinking-businesses-and-fixed-overheads.png",
+  "title": "Shrinking Businesses and Fixed Overheads",
+  "state": "draft"
+ },
+ {
+  "type": "module",
+  "id": 2159655821,
+  "file": "M10-implementation-toolkit.png",
+  "title": "Implementation Toolkit"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351211,
+  "module": 10,
+  "lesson": 1,
+  "file": "M10-L01-how-to-complete-a-business-plan.png",
+  "title": "How to Complete a Business Plan",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351215,
+  "module": 10,
+  "lesson": 2,
+  "file": "M10-L02-how-to-complete-a-cash-forecast.png",
+  "title": "How to Complete a Cash Forecast",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351219,
+  "module": 10,
+  "lesson": 3,
+  "file": "M10-L03-the-importance-of-audits.png",
+  "title": "The Importance of Audits",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351221,
+  "module": 10,
+  "lesson": 4,
+  "file": "M10-L04-board-meeting-templates.png",
+  "title": "Board Meeting Templates",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351226,
+  "module": 10,
+  "lesson": 5,
+  "file": "M10-L05-shared-services-forum.png",
+  "title": "Shared Services Forum",
+  "state": "draft"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351232,
+  "module": 10,
+  "lesson": 6,
+  "file": "M10-L06-value-levers.png",
+  "title": "Value Levers",
+  "state": "published"
+ },
+ {
+  "type": "lesson",
+  "id": 2198351235,
+  "module": 10,
+  "lesson": 7,
+  "file": "M10-L07-what-to-look-for-in-a-business.png",
+  "title": "What to Look for in a Business",
+  "state": "draft"
+ }
+]
