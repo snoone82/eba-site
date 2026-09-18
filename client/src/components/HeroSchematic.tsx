@@ -49,7 +49,7 @@ const CALLOUTS: Callout[] = [
   { anchor: [1010, 244], elbow: [1040, 205], shelfEnd: 1150, label: "Margin", sub: "True cost, priced properly", delay: 1.9 },
   { anchor: [960, 562], elbow: [905, 605], shelfEnd: 1010, label: "Cash flow", sub: "Applications, retentions, terms", delay: 2.15 },
   { anchor: [1170, 375], elbow: [1180, 330], shelfEnd: 1250, label: "People", sub: "Roles, leaders, ownership", delay: 2.4 },
-  { anchor: [1355, 500], elbow: [1296, 560], shelfEnd: 1400, label: "Systems", sub: "Procedures that repeat", delay: 2.65 },
+  { anchor: [1355, 500], elbow: [1282, 560], shelfEnd: 1400, label: "Systems", sub: "Repeatable processes", delay: 2.65 },
   { anchor: [1245, 770], elbow: [1200, 808], shelfEnd: 1340, label: "Contract", sub: "Understood before you sign", delay: 2.9 },
   { anchor: [935, 770], elbow: [880, 805], shelfEnd: 1030, label: "Compliance", sub: "Built into the way you work", delay: 3.15 },
 ];
