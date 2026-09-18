@@ -222,19 +222,12 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
         transition: "box-shadow 0.3s ease",
         padding: 0,
       }}>
-        {/* Announce bar */}
-        <div style={{ background: CTA_BAND_BG, padding: "8px 40px" }}>
-          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px" }}>
-            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", fontWeight: 700, letterSpacing: "0.04em", color: NAVY }}>teb-academy.com</span>
-            <Link href="/enterprise" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
-              Bring the Academy into your engineering business <strong style={{ color: NAVY }}>→</strong>
-            </Link>
-          </div>
-        </div>
+        {/* Announce bar removed (Ste, 18 Sep): the logo is the brand feature of
+            the header, so the large lockup lives here rather than in the hero. */}
         <div style={{ padding: "0 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "82px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "148px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
-            <EBALogo height={62} light navOnCobalt />
+            <EBALogo height={118} light navOnCobalt />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
@@ -301,7 +294,7 @@ export default function HomePage() {
         minHeight: isMobile ? "auto" : "600px",
         display: "flex",
         alignItems: "center",
-        paddingTop: isMobile ? "108px" : "150px",
+        paddingTop: isMobile ? "108px" : "212px",
         paddingBottom: isMobile ? "56px" : "84px",
         background: "#1B2632", // fallback so a slow hero image degrades to clean navy
       }}>
@@ -315,10 +308,6 @@ export default function HomePage() {
           background: "linear-gradient(100deg, rgba(20,28,37,0.95) 0%, rgba(27,38,50,0.82) 48%, rgba(27,38,50,0.45) 100%)",
         }} />
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
-          {/* Brand lockup — the logo is the main feature of the hero (schedule, section 1). */}
-          <div style={{ marginBottom: isMobile ? "28px" : "36px" }}>
-            <EBALogo height={isMobile ? 84 : 118} light />
-          </div>
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{
               fontFamily: "var(--eba-heading)",
