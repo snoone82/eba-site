@@ -27,9 +27,9 @@ export interface SeoMeta {
 /** Per-route metadata — verbatim from the EBA SEO spec. */
 export const PAGE_SEO = {
   home: {
-    title: "The Engineering Business Academy — For Engineering Contractors",
+    title: "The Engineering Business Academy | Business Training for Engineering & Technical Services Businesses",
     description:
-      "Business growth for engineering services contractors. 101 lessons, AI tools and mentorship from a founder who built and rebuilt a £70m engineering group.",
+      "Practical business training for owners and leaders of engineering and technical services businesses, with 100+ lessons covering margin, contracts, cash flow, people, systems, compliance, leadership and growth.",
     path: "/",
   },
   academy: {

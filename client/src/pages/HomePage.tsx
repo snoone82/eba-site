@@ -10,10 +10,6 @@ import {
   ENROL_HREF,
   ENROL_READY,
   ENROL_PENDING_LABEL,
-  FORM_ENDPOINT,
-  COMPANY_REG,
-  PLACES_REMAINING,
-  COHORT_SIZE,
   RUST,
   NAVY,
   CREAM,
@@ -24,8 +20,8 @@ import {
   IS_VIVID, IS_LIGHT, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, HERO_GLOW, NAV_RGB, ACCENT_RGB, ACCENT_HEX, ACCENT_GRAD,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   SHOW_TESTIMONIALS,
-  METHOD_NAME, COBALT, COBALT_ON_DARK, COBALT_RGB, RUST_ON_DARK, ENTERPRISE_PRICING,
-  MARK_PHOTO_HERO, MARK_PHOTO_FOUNDER, SHOW_SECTOR_INSIGHTS,
+  COBALT, COBALT_ON_DARK, COBALT_RGB, RUST_ON_DARK,
+  MARK_PHOTO_HERO, MARK_PHOTO_FOUNDER,
 } from "@/lib/constants";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
@@ -36,11 +32,10 @@ import { Photo } from "@/components/Photo";
 import { TeachingPanel } from "@/components/TeachingPanel";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
-import { RoiStatBand } from "@/components/RoiStatBand";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
-import { track, getStoredUtm } from "@/lib/track";
+import { track } from "@/lib/track";
 
 // Founder photography reads from constants — TODO(eba): real-photo swap is
 // a constants-only change (see MARK_PHOTO_* in constants.ts).
@@ -104,120 +99,6 @@ function useReveal() {
   return { ref, visible };
 }
 
-function LeadMagnetForm() {
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-
-  // Only treat the form as live once a real endpoint is configured.
-  const formReady = !isPlaceholder(FORM_ENDPOINT);
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !name) return;
-    setError("");
-    setLoading(true);
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          source: "lead-magnet:business-health-check",
-          ...getStoredUtm(),
-        }),
-      });
-      if (!res.ok) throw new Error(`Request failed (${res.status})`);
-      track("lead_health_check_submit");
-      setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again, or email us directly.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Fail safe: no endpoint wired yet — show an honest "coming soon", never a fake success.
-  if (!formReady) {
-    return (
-      <div style={{ background: `rgba(${RUST_RGB},0.1)`, border: `1px solid rgba(${RUST_RGB},0.3)`, padding: "24px 28px" }}>
-        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
-          Form coming soon.
-        </p>
-        <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
-          The Engineering Business Health Check sign-up opens shortly.
-          {/* TODO(eba): set FORM_ENDPOINT in client/src/lib/constants.ts to enable this form. */}
-        </p>
-      </div>
-    );
-  }
-
-  if (submitted) {
-    return (
-      <div style={{ background: `rgba(${RUST_RGB},0.1)`, border: `1px solid rgba(${RUST_RGB},0.3)`, padding: "24px 28px" }}>
-        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
-          Check your inbox.
-        </p>
-        <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>
-          Your Engineering Business Health Check is on its way to {email}.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-      <input
-        type="text"
-        placeholder="Your first name"
-        value={name}
-        onChange={e => setName(e.target.value)}
-        required
-        style={{
-          padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: WHITE, fontFamily: "'Poppins', sans-serif", fontSize: "14px",
-          color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
-        }}
-      />
-      <input
-        type="email"
-        placeholder="Your business email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        required
-        style={{
-          padding: "13px 16px", border: `1px solid rgba(${NAVY_RGB},0.2)`,
-          background: WHITE, fontFamily: "'Poppins', sans-serif", fontSize: "14px",
-          color: NAVY, outline: "none", width: "100%", boxSizing: "border-box" as const,
-        }}
-      />
-      {error && (
-        <p style={{ color: RUST, fontSize: "13px", margin: 0 }} role="alert">
-          {error}
-        </p>
-      )}
-      <button
-        type="submit"
-        disabled={loading}
-        style={{
-          background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none", cursor: loading ? "not-allowed" : "pointer",
-          fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
-          padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
-          transition: "opacity 0.2s",
-        }}
-      >
-        {loading ? "Sending..." : "Send me the Health Check →"}
-      </button>
-      <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "12px", margin: 0 }}>
-        No spam. Unsubscribe any time. UK GDPR compliant.
-      </p>
-    </form>
-  );
-}
-
 function RevealSection({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
   const { ref, visible } = useReveal();
   return (
@@ -232,63 +113,102 @@ function RevealSection({ children, style }: { children: React.ReactNode; style?:
   );
 }
 
-const painPoints = [
+// Business challenge tiles — Mark's amendment schedule (17 Sep 2026), section 5.
+// Constructive framing: recognise the challenge, never accuse the reader.
+const challenges = [
   {
-    title: "Pricing that doesn't protect you",
-    body: "You price to win, not to profit. Variations go unrecovered. Every project costs more than it should and you're too busy delivering to fix it.",
+    title: "Protecting your margin",
+    body: "Winning work is only part of the equation. Strong engineering businesses understand their true costs, protect margin, manage variations and make sure every project contributes properly to the business.",
   },
   {
-    title: "Cash flow that runs the business, not you",
-    body: "Retentions held. Applications late. VAT due before you've been paid. The gap between billing and banking kills good businesses.",
+    title: "Better control of cash flow",
+    body: "Applications, payment terms, retentions, VAT and project timing can put pressure on even profitable businesses. Better processes and greater visibility give you more control over the cash coming in and going out.",
   },
   {
-    title: "Contracts you sign without fully reading",
-    body: "JCT, NEC, bespoke novation clauses. Most engineering contractors sign what they're given and discover the liability when it's too late.",
+    title: "Contracts you understand before you sign",
+    body: "JCT, NEC and bespoke contracts can create significant commercial risk. Understanding the key clauses, obligations and liabilities before work begins can protect both your margin and your business.",
   },
   {
-    title: "Compliance that consumes your people",
-    body: "RAMS, COSHH, O&M manuals, CDM records. The paperwork has become a second job — and it still gets rejected first time.",
+    title: "Compliance that supports delivery",
+    body: "RAMS, COSHH, O&M manuals, CDM requirements and increasing client demands all create workload. The right systems and procedures make compliance easier to manage, repeat and scale.",
   },
   {
-    title: "A team you're carrying rather than building",
-    body: "You hire fast, train poorly, and end up doing the work yourself. The business grows, but your dependence on it grows faster.",
+    title: "Building a team that doesn't depend on you",
+    body: "Growth becomes difficult when every decision still comes back to the owner. Clear roles, stronger leadership, better training and the right processes allow your people to take more responsibility.",
   },
   {
-    title: "A growth ceiling you can't break through",
-    body: "You've hit £1m, maybe £2m. Getting to the next level requires systems, strategy, and decisions you've never been taught to make.",
+    title: "Building the business for the next stage",
+    body: "As an engineering business grows, what worked at the beginning will not always work at the next level. Sustainable growth requires better systems, stronger leadership, commercial discipline and a clear strategy.",
   },
 ];
 
-// Outcome section — mirrors the six pain points, flipped to the result.
+// Outcome section — section 10 of the schedule; mirrors the six challenges.
 const outcomes = [
   {
-    title: "Pricing that protects your margin.",
-    body: "You price to profit, not just to win. Variations get recovered. You know your real numbers on every job.",
+    title: "Protecting your margin",
+    body: "You understand your true costs, price with greater confidence, manage variations properly and have better visibility of performance across every project.",
   },
   {
-    title: "Cash that's in the bank before it's owed out.",
-    body: "Applications on time, retentions chased, the gap between billing and banking closed.",
+    title: "Better control of cash flow",
+    body: "Applications go in on time, retentions and outstanding debt are actively managed, and you have greater visibility of the cash coming into and going out of the business.",
   },
   {
-    title: "Contracts you understand before you sign.",
-    body: "You know your liability going in — not when it's already too late.",
+    title: "Contracts understood before you commit",
+    body: "You understand the key obligations, liabilities and commercial risks before committing to the work, allowing you to make better-informed decisions from the outset.",
   },
   {
-    title: "Compliance that runs in the background.",
-    body: "The paperwork stops being a second job. It gets done, it gets accepted, and it doesn't eat your people.",
+    title: "Compliance built into the way you work",
+    body: "Clear procedures, responsibilities and documentation make compliance more consistent, repeatable and easier to manage as the business grows.",
   },
   {
-    title: "A team that carries the work, not you.",
-    body: "You hire well, train properly, and step out of the van — and the business holds without you in it.",
+    title: "A stronger team with greater ownership",
+    body: "Clear roles, better training, stronger leadership and greater accountability allow your people to take more responsibility and reduce the dependence of the business on any one person.",
   },
   {
-    title: "A business you own, not one that owns you.",
-    body: "Past the ceiling, with the systems and the freedom to choose what you build next.",
+    title: "A business built for the next stage",
+    body: "Better systems, stronger leadership and greater commercial control give you the foundations to grow sustainably and make clearer decisions about what comes next.",
   },
+];
+
+// What's Included — section 7. Access labels keep the proposition honest:
+// templates are the +Documents tier, tools are priced separately, mentoring
+// is application-only. Never imply one membership includes everything.
+const included = [
+  { title: "100+ Practical Lessons", access: "Academy membership", href: "/academy", cta: "Explore the Full Curriculum",
+    body: "Focused, practical lessons covering the commercial, operational and leadership areas that matter when building and growing an engineering business." },
+  { title: "Procedures & Templates", access: "Academy + Documents", href: "/documents", cta: "Browse the library",
+    body: "Practical procedures, templates and business tools that help turn what you learn into repeatable processes inside your own business." },
+  { title: "AI Tools & Agents", access: "Priced separately", href: "/ai-tools", cta: "Explore the AI Tools",
+    body: "Practical AI tools designed to save time, improve productivity and help you apply the Academy's knowledge in the day-to-day running of the business." },
+  { title: "Mentoring", access: "Application-only", href: "/mentorship", cta: "Explore Mentoring",
+    body: "Direct access to real-world business experience to help you work through challenges, decisions and opportunities within your own engineering business." },
+];
+
+// Curriculum — section 8. Module names and lesson counts are the real Kajabi
+// structure (pulled 3 Sep 2026). Descriptions explain what each module covers.
+const curriculum = [
+  { n: "01", title: "The Job of the Leader", lessons: 17, body: "Set the direction, define the standards and build a business that relies less on you: goals, values, mentors, leverage and where your time actually goes." },
+  { n: "02", title: "Culture & Standards", lessons: 12, body: "Establish the values, standards and communication that shape how your people work, and align the team behind the mission." },
+  { n: "03", title: "Leadership & Building Teams", lessons: 15, body: "Plan the structure, find and onboard the right people, develop leaders, run appraisals and 360 reviews, and plan for succession." },
+  { n: "04", title: "Processes, Procedures & Other Controls", lessons: 8, body: "Build the procedures, playbook and routine controls that make quality repeatable and the business easier to manage." },
+  { n: "05", title: "Sales, Marketing & Growth Discipline", lessons: 8, body: "Understand your sectors and customers, run a disciplined pipeline and CRM, and develop the brand and strategy behind sustainable growth." },
+  { n: "06", title: "Commercial Controls", lessons: 10, body: "Understand the commercial principles, processes and controls required to protect margin from estimating through to final account." },
+  { n: "07", title: "Financial Control & Cash", lessons: 11, body: "Payment terms, credit control, cash forecasting, management accounts and the financial disciplines that keep a growing business healthy." },
+  { n: "08", title: "Risk, Protection & Governance", lessons: 8, body: "Identify and manage business risk: cyber security, service and shareholder agreements, articles of association, labour costs and credit insurance." },
+  { n: "09", title: "The Dark Side of Business", lessons: 5, body: "Understand why businesses fail, how to respond when customers do, and the lessons from distressed situations, so you can protect your own." },
+  { n: "10", title: "Implementation Toolkit", lessons: 7, body: "Business plans, cash forecasts, audits, board templates and value levers to put the Academy into practice in your own business." },
+];
+
+// Company access — section 13.
+const companyPoints = [
+  { title: "Develop your managers and future leaders", body: "Give your people a broader understanding of how an engineering business works beyond their own role or department." },
+  { title: "Build greater commercial awareness", body: "Help teams understand margin, cash flow, contracts, project performance and the commercial impact of the decisions they make." },
+  { title: "Create more consistent ways of working", body: "Use the Academy alongside your own procedures and systems to build common standards and better business disciplines across teams." },
+  { title: "Reduce dependence on key individuals", body: "Build knowledge deeper into the organisation so that experience, decision-making and responsibility are shared more widely." },
 ];
 
 const credentials = [
-  "15 Years M&E Group Experience", "UK & Poland",
+  "Decades of real-world industry experience", "UK & International",
   "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
@@ -303,15 +223,18 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
         padding: 0,
       }}>
         {/* Announce bar */}
-        <div style={{ background: CTA_BAND_BG, textAlign: "center", padding: "8px 40px" }}>
-          <Link href="/contact" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
-            For organisations interested in in-house training for your team, <strong style={{ color: NAVY }}>get in touch →</strong>
-          </Link>
+        <div style={{ background: CTA_BAND_BG, padding: "8px 40px" }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px" }}>
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "13px", fontWeight: 700, letterSpacing: "0.04em", color: NAVY }}>teb-academy.com</span>
+            <Link href="/enterprise" style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: `rgba(${NAVY_RGB},0.7)`, textDecoration: "none" }}>
+              Bring the Academy into your engineering business <strong style={{ color: NAVY }}>→</strong>
+            </Link>
+          </div>
         </div>
         <div style={{ padding: "0 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "68px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "82px" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
-            <EBALogo height={48} light navOnCobalt />
+            <EBALogo height={62} light navOnCobalt />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
@@ -344,9 +267,9 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
               }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = "0.88")}
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                onClick={() => track("cta_join_cohort_nav")}
+                onClick={() => track("cta_join_academy_nav")}
               >
-                {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+                {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
               </a>
             </span>
           </div>
@@ -392,22 +315,9 @@ export default function HomePage() {
           background: "linear-gradient(100deg, rgba(20,28,37,0.95) 0%, rgba(27,38,50,0.82) 48%, rgba(27,38,50,0.45) 100%)",
         }} />
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
-          {/* Badge */}
-          <div style={{
-            display: "inline-block",
-            background: RUST,
-            color: "#fff",
-            fontFamily: "'Poppins', sans-serif",
-            fontWeight: 700,
-            fontSize: "11px",
-            letterSpacing: "0.12em",
-            textTransform: "uppercase",
-            padding: "6px 16px",
-            marginBottom: "24px",
-          }}>
-            {ENROL_READY
-              ? `FOUNDING COHORT · NOW OPEN · ${PLACES_REMAINING} OF ${COHORT_SIZE} PLACES REMAINING`
-              : `FOUNDING COHORT · ENROLMENT OPENS SOON · ${COHORT_SIZE} PLACES ONLY`}
+          {/* Brand lockup — the logo is the main feature of the hero (schedule, section 1). */}
+          <div style={{ marginBottom: isMobile ? "28px" : "36px" }}>
+            <EBALogo height={isMobile ? 84 : 118} light />
           </div>
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{
@@ -416,14 +326,14 @@ export default function HomePage() {
               lineHeight: 1.08, letterSpacing: "-0.015em",
               color: "#fff", margin: "0 0 22px", maxWidth: "20ch",
             }}>
-              The business programme built for engineering services contractors.
+              You know how to deliver on site. Nobody taught you how to build the business around it.
             </h1>
             {/* Stats strip */}
             <div style={{
               display: "flex", flexWrap: "wrap", justifyContent: "flex-start", alignItems: "center",
               gap: "6px 0", marginBottom: "24px",
             }}>
-              {["101 Lessons", "10 Modules", "15 Years M&E Group Experience", "UK & International"].map((stat, i) => (
+              {["100+ Lessons", "10 Practical Modules", "Decades of Real-World Industry Experience"].map((stat, i) => (
                 <span key={i} style={{
                   display: "inline-flex", alignItems: "center",
                   color: "rgba(255,255,255,0.78)",
@@ -440,7 +350,7 @@ export default function HomePage() {
               color: "rgba(255,255,255,0.88)", fontSize: isMobile ? "16px" : "18px", lineHeight: 1.65,
               fontWeight: 400, maxWidth: "600px", margin: "0 0 36px",
             }}>
-              You know how to deliver the engineering. Nobody taught you how to run the business around it — pricing, contracts, cash flow, compliance, teams, and growth. That changes here.
+              Margin, contracts, cash flow, compliance, people, systems, leadership and growth: practical business knowledge built specifically for engineering and technical services businesses.
             </p>
             <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
               <a className="eba-shine eba-lift" href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} style={{
@@ -449,12 +359,11 @@ export default function HomePage() {
                 padding: "14px 32px", letterSpacing: "0.04em",
                 display: "inline-block",
               }}
-                onClick={() => track("cta_join_cohort_hero")}
+                onClick={() => track("cta_join_academy_hero")}
               >
-                {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+                {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
               </a>
-              {/* Two-track CTA: Academy track = rust primary above; Tools track = cobalt outline below. */}
-              <a href="/toolbox-talk" style={{
+              <Link href="/academy" style={{
                 background: "transparent", color: COBALT_ON_DARK, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                 padding: "14px 32px", border: `1.5px solid ${COBALT_ON_DARK}`,
@@ -463,16 +372,16 @@ export default function HomePage() {
               }}
                 onMouseEnter={e => { e.currentTarget.style.background = `rgba(${COBALT_RGB},0.18)`; }}
                 onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
-                onClick={() => track("cta_free_tool_hero")}
+                onClick={() => track("cta_explore_academy_hero")}
               >
-                Try the free Toolbox Talk tool
-              </a>
+                Explore the Academy
+              </Link>
             </div>
             {/* Reassurance strip — same three claims already live on /pricing;
                 surfaced here because research shows risk-reversal belongs at
                 the point of decision, not buried on a page nobody reaches. */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", marginTop: "22px" }}>
-              {["14-day money-back guarantee", "Founding price locked in for life", "Engineering contractors only"].map(t => (
+              {["14-day money-back guarantee", "Lifetime access to the Academy", "Built from real-world engineering business experience"].map(t => (
                 <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 600, color: "rgba(255,255,255,0.72)" }}>
                   <span style={{ color: RUST_ON_DARK, fontWeight: 800 }}>✓</span> {t}
                 </span>
@@ -490,13 +399,13 @@ export default function HomePage() {
           fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase",
           color: `rgba(${NAVY_RGB},0.72)`,
         }}>
-          Trusted across
+          Built for engineering and technical services businesses
         </p>
         <div className="eba-marquee-mask" style={{ overflow: "hidden" }}>
           <div className="eba-marquee-track" style={{ display: "flex", alignItems: "center", width: "max-content" }}>
             {[0, 1].map(dup => (
-              /* Sector list per Mark's review — the technical areas the Academy serves. */
-              ["mechanical", "electrical", "BMS", "controls", "fire alarms", "commissioning", "HV", "maintenance", "specialist contracting"].map(sector => (
+              /* Sector categories — schedule section 3 (17 Sep 2026). */
+              ["Mechanical & Electrical", "HVAC, Plumbing & Refrigeration", "Fire & Security", "HV, LV & Power", "Facilities & Maintenance", "Controls & Automation", "Renewables & Energy", "Data & Communications", "Industrial & Specialist Engineering Services"].map(sector => (
                 <span key={`${dup}-${sector}`} style={{
                   display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
                   fontFamily: "var(--eba-heading)", fontWeight: 800,
@@ -512,23 +421,37 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* ── FEATURE STRIP ── one centred row, three distinct claims (numbers stay in the hero) */}
-      <div style={{ background: CREAM, padding: isMobile ? "18px 20px" : "20px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
-        <p style={{
-          textAlign: "center", margin: 0,
-          fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "11px" : "12.5px",
-          fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase",
-          color: `rgba(${NAVY_RGB},0.72)`,
-        }}>
-          Built for engineering business owners
-          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
-          Drawn from real operations
-          <span style={{ color: `rgba(${RUST_RGB},0.8)`, margin: "0 14px" }}>·</span>
-          Lifetime founding access
-        </p>
-      </div>
+      {/* ── WHO THE ACADEMY IS FOR ── schedule section 3 */}
+      <section style={{ background: WHITE, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>Who it is for</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 22px", lineHeight: 1.12,
+            }}>
+              Built for engineering and technical services businesses
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 18px" }}>
+              The Engineering Business Academy is for owners and leaders who want stronger commercial control, better procedures, better teams and a business that can continue to grow without becoming increasingly dependent on them.
+            </p>
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 28px" }}>
+              Whether you're strengthening the foundations of the business, developing your leadership team or preparing for the next stage of growth, the Academy gives you practical knowledge, systems and tools to help move the business forward.
+            </p>
+            <Link href="/academy" style={{
+              color: RUST, textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
+              letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+            }}>
+              Explore the Academy →
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
 
-      {/* ── PAIN POINTS ── */}
+      {/* ── THE CHALLENGES ── schedule sections 4 and 5 */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "84px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
@@ -537,14 +460,17 @@ export default function HomePage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px", maxWidth: "720px",
             }}>
-              The engineering is not the problem. The business infrastructure around it is.
+              The challenges change as the business grows
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 48px" }}>
-              Most engineering business owners are exceptional engineers operating in a system that was never designed for them. The result is predictable: excellent work, terrible margins.
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 14px" }}>
+              More projects, more people and more responsibility bring a different set of challenges. As the business grows, margin, cash flow, contracts, compliance, people, systems and leadership all require greater control.
+            </p>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 48px" }}>
+              The strongest engineering businesses build their commercial, operational and leadership capability alongside their technical capability.
             </p>
           </RevealSection>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fit, minmax(320px, 1fr))", gap: "18px" }}>
-            {painPoints.map((point, i) => (
+            {challenges.map((point, i) => (
               <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
                 <div className="eba-bento-card" style={{
                   height: "100%",
@@ -583,33 +509,148 @@ export default function HomePage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 28px", lineHeight: 1.12,
             }}>
-              You learned to run jobs. This is where you learn to run the business.
+              You know how to deliver on site. This is where you learn to build the business around it.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
-              Every engineering contractor reaches the same point. The work comes in, the team grows, the turnover climbs — and somehow it gets harder, not easier. More risk, thinner margins, less of your own time. Not because you're doing the engineering wrong. Because nobody ever taught you the business that sits underneath it.
-            </p>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 20px" }}>
-              The Academy teaches {METHOD_NAME} — 101 lessons across 10 modules, built around the decisions you're actually making: how to price so the profit is real, how to read a contract before you sign your liability away, how to get paid on time, how to build a team that runs the work without you in the van, and how to break the ceiling at £1m, £2m and beyond.
-            </p>
-            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: "0 0 32px" }}>
-              Not generic business theory. Not a coaching framework. The specific operating knowledge of running an engineering business — from someone who has built one at scale.
-            </p>
+            {[
+              "As an engineering business grows, the challenges change. More people, more projects, more responsibility, more commercial risk and more pressure on your time.",
+              "The technical knowledge that helped you build the business will only take you so far. The next stage requires stronger commercial thinking, better systems, better leadership and a clearer understanding of how every part of the business works together.",
+              "The Engineering Business Academy brings that knowledge into one place, with 100+ practical lessons covering pricing, contracts, cash flow, compliance, people, systems, leadership, strategy and growth.",
+              "It is built around the real decisions engineering business owners and leaders make every day: how to protect margin, manage commercial risk, improve cash flow, build stronger teams, create better systems and grow a business that is less dependent on you.",
+              "This is not generic business theory. It is practical, real-world knowledge built specifically for engineering and technical services businesses, based on the lessons, systems and experience gained from building and scaling engineering businesses in the real world.",
+            ].map((para, i, arr) => (
+              <p key={i} style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.75, margin: i === arr.length - 1 ? "0 0 32px" : "0 0 20px" }}>
+                {para}
+              </p>
+            ))}
             <Link href="/academy" style={{
               color: RUST, textDecoration: "none",
               fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
               letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
             }}>
-              See the curriculum →
+              Explore the Academy →
             </Link>
-            {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
-            <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14px", lineHeight: 1.6, margin: "22px 0 0", fontStyle: "italic" }}>
-              Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
-            </p>
           </RevealSection>
         </div>
       </section>
 
-      {/* ── THE OUTCOME ── */}
+      {/* ── WHAT'S INCLUDED ── schedule section 7 */}
+      <section id="whats-included" style={{ background: CREAM, padding: isMobile ? "60px 20px" : "88px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>What's included</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 14px", lineHeight: 1.12, maxWidth: "720px",
+            }}>
+              Practical learning you can put to work in the business
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 40px" }}>
+              The Academy is designed to help you not only understand what good looks like, but put it into practice in your own business.
+            </p>
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "18px" }}>
+            {included.map((item, i) => (
+              <RevealSection key={item.title} style={{ transitionDelay: `${i * 60}ms` }}>
+                <div className="eba-bento-card" style={{
+                  height: "100%", background: WHITE, borderRadius: "16px",
+                  border: `1px solid rgba(${NAVY_RGB},0.08)`, boxShadow: "0 20px 44px -30px rgba(0,0,0,0.25)",
+                  padding: "28px 28px", display: "flex", flexDirection: "column",
+                }}>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "12px", marginBottom: "10px" }}>
+                    <h3 style={{ color: NAVY, fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.25rem", letterSpacing: "-0.01em", margin: 0 }}>{item.title}</h3>
+                    <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.06em", textTransform: "uppercase", color: RUST, background: `rgba(${RUST_RGB},0.10)`, padding: "4px 10px", borderRadius: "999px", whiteSpace: "nowrap" }}>{item.access}</span>
+                  </div>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15px", lineHeight: 1.65, margin: "0 0 18px" }}>{item.body}</p>
+                  <Link href={item.href} style={{ marginTop: "auto", color: RUST, textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px", letterSpacing: "0.03em" }}>
+                    {item.cta} →
+                  </Link>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CURRICULUM ── schedule section 8. Real module names and lesson counts. */}
+      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "88px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel>The curriculum</SectionLabel>
+            <RustRule />
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 14px", lineHeight: 1.12,
+            }}>
+              100+ lessons across 10 practical modules
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "680px", margin: "0 0 40px" }}>
+              A practical business curriculum built around the decisions engineering business owners and leaders actually make, from winning and delivering profitable work to building the people, systems and strategy required for growth.
+            </p>
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "2px" }}>
+            {curriculum.map((m, i) => (
+              <RevealSection key={m.n} style={{ transitionDelay: `${i * 40}ms` }}>
+                <div style={{ background: CREAM, border: `1px solid rgba(${NAVY_RGB},0.08)`, padding: "22px 24px", height: "100%", display: "grid", gridTemplateColumns: "56px 1fr", gap: "16px" }}>
+                  <span style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.8rem", color: RUST, lineHeight: 1, letterSpacing: "-0.03em" }}>{m.n}</span>
+                  <div>
+                    <div style={{ display: "flex", justifyContent: "space-between", gap: "12px", alignItems: "baseline", flexWrap: "wrap", marginBottom: "6px" }}>
+                      <h3 style={{ color: NAVY, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15.5px", margin: 0 }}>{m.title}</h3>
+                      <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.55)`, whiteSpace: "nowrap" }}>{m.lessons} lessons</span>
+                    </div>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.6, margin: 0 }}>{m.body}</p>
+                  </div>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+          <RevealSection style={{ marginTop: "32px" }}>
+            <Link href="/academy" style={{
+              background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
+              padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
+            }} onClick={() => track("cta_explore_curriculum_home")}>
+              Explore the Full Curriculum
+            </Link>
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── WHY THIS IS DIFFERENT ── schedule section 16: explain what it is, never attack alternatives. */}
+      <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <RevealSection>
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 14px", lineHeight: 1.12,
+            }}>
+              Built specifically for engineering businesses
+            </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16.5px", lineHeight: 1.7, maxWidth: "720px", margin: "0 0 32px" }}>
+              The challenges of running an engineering business are different. Projects, applications, retentions, variations, contracts, compliance, labour, subcontractors and cash flow all interact. The Academy is built around that reality.
+            </p>
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "18px" }}>
+            {[
+              { title: "Practical, not theoretical", body: "The lessons focus on real decisions, processes and challenges faced by engineering business owners and leaders." },
+              { title: "Built from experience", body: "The content comes from practical experience building and scaling engineering businesses, not generic business theory adapted for the sector." },
+              { title: "Designed to be applied", body: "The aim is not simply to learn more. It is to take what you learn and use it to improve the way your own business operates." },
+            ].map((d, i) => (
+              <RevealSection key={d.title} style={{ transitionDelay: `${i * 60}ms` }}>
+                <div style={{ background: WHITE, borderTop: `3px solid ${RUST}`, padding: "24px 24px", height: "100%", borderRadius: "10px" }}>
+                  <h3 style={{ color: NAVY, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px", margin: "0 0 8px" }}>{d.title}</h3>
+                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.6, margin: 0 }}>{d.body}</p>
+                </div>
+              </RevealSection>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── THE OUTCOME ── schedule section 10 */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "96px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
@@ -619,10 +660,10 @@ export default function HomePage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              What it looks like on the other side.
+              What better looks like in the business.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
-              The point isn't more lessons. It's a business that finally works the way it should.
+              The value isn't simply in completing lessons. It's in applying what you learn to build a stronger, better-run and more scalable engineering business.
             </p>
           </RevealSection>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: "2px", marginBottom: "48px" }}>
@@ -652,7 +693,7 @@ export default function HomePage() {
               color: RUST, fontSize: "clamp(1.3rem, 2.5vw, 1.7rem)", fontWeight: 700,
               lineHeight: 1.4, maxWidth: "820px", margin: 0,
             }}>
-              This is what "engineer your business, design your freedom" actually means. Not a slogan. A different way to run the company you already built.
+              The aim is a stronger, more profitable and better-run engineering business, with greater control, clearer systems, stronger people and less dependence on the owner.
             </p>
           </RevealSection>
         </div>
@@ -668,16 +709,13 @@ export default function HomePage() {
                     The slot now carries the substance instead of a stranger's face. */}
                 <TeachingPanel
                   kicker="Who teaches it"
-                  heading="Built by someone who ran the business, not studied it."
-                  attribution="Mark Poulton — CEO, KEYIS Group"
+                  heading="Built from real-world engineering business experience."
+                  attribution="Mark Poulton — CEO, KEYIS Group · Founder, The Engineering Business Academy"
                   rows={[
-                    // NOTE: Mark confirmed 15 years (1 Sep 2026) — restored sitewide, see
-                    // hero stats strip and credentials array below. Left out of this specific
-                    // 3-row grid deliberately (design choice, not a data gap): 10 / 101 / UK+PL
-                    // reads as the operating footprint, not a resume line.
-                    { figure: "10", label: "Modules, covering the whole operating system of the business" },
-                    { figure: "101", label: "Lessons, each one drawn from a decision actually made" },
-                    { figure: "UK + PL", label: "Multiple divisions, plus international operations in Poland" },
+                    // Schedule section 11 (17 Sep 2026). Mark's preferred "UK + International".
+                    { figure: "10", label: "Practical modules covering the commercial, operational and leadership areas of an engineering business" },
+                    { figure: "100+", label: "Practical lessons built from real decisions, challenges and experience gained in engineering businesses" },
+                    { figure: "UK + International", label: "Experience building and leading engineering businesses across multiple divisions and international operations" },
                   ]}
                   onDark
                 />
@@ -691,16 +729,13 @@ export default function HomePage() {
                 fontSize: "clamp(2rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
                 color: ON_DARK, margin: "0 0 24px", lineHeight: 1.1,
               }}>
-                Taught by someone who has actually done it — including the hard version.
+                Built from real-world engineering business experience.
               </h2>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                Mark Poulton built a single M&E firm into a multi-division engineering group with operations across the UK and Poland. He has priced the jobs, signed the contracts, carried the team, met the payroll, and made the decisions that don't appear in any textbook — including rebuilding after a pre-pack and coming back stronger.
-              </p>
-              <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                That's the difference. This isn't business advice from someone who read about your industry. It's operational experience from someone who has run exactly the business you're running — at every stage you're trying to reach.
+                The Academy is based on Mark's experience of building, leading and scaling engineering businesses in the real world. The lessons come from the decisions, challenges, systems and processes involved in growing engineering businesses, including what has worked, what hasn't, and what has been learned along the way.
               </p>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
-                Mentorship runs alongside membership — group sessions and 1:1 access with the mentor team, and strictly limited founder sessions with Mark. Not theory. Not a framework. People who've been where you're going.
+                Mentoring runs alongside the Academy: direct access to real-world business experience to help you work through challenges, decisions and opportunities within your own engineering business.
               </p>
               {/* Credential strip */}
               <div style={{ display: "flex", flexWrap: "wrap", gap: "8px", marginBottom: "32px" }}>
@@ -715,45 +750,64 @@ export default function HomePage() {
                   </span>
                 ))}
               </div>
-              <Link href="/our-story" style={{
-                color: RUST_ON_DARK, textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST_ON_DARK}`,
-                paddingBottom: "2px",
-              }}>
-                Read Mark's full story →
-              </Link>
+              <div style={{ display: "flex", gap: "28px", flexWrap: "wrap" }}>
+                <Link href="/our-story" style={{
+                  color: RUST_ON_DARK, textDecoration: "none",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                  letterSpacing: "0.04em", borderBottom: `1px solid ${RUST_ON_DARK}`,
+                  paddingBottom: "2px",
+                }}>
+                  Read Mark's full story →
+                </Link>
+                <Link href="/mentorship" style={{
+                  color: RUST_ON_DARK, textDecoration: "none",
+                  fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                  letterSpacing: "0.04em", borderBottom: `1px solid ${RUST_ON_DARK}`,
+                  paddingBottom: "2px",
+                }}>
+                  Explore Mentoring →
+                </Link>
+              </div>
             </RevealSection>
           </div>
         </div>
       </section>
 
-      {/* ── FREE LESSON ── real, published Academy content (Module 9), watchable
-          without buying anything. Approved by Mark/Ste 1 Sep 2026 for public
-          embedding — see commit history. This is the "including the hard
-          version" claim from the section above, made concrete. */}
-      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
+      {/* ── LESSON PREVIEW ── schedule section 9. Real, published Module 6 lesson
+          (Kajabi 2198350627), chosen for a practical, constructive subject:
+          margin protected through preparation. Copy is drawn from the real
+          lesson description, not invented. */}
+      <section id="preview-lesson" style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.1fr", gap: isMobile ? "32px" : "64px", alignItems: "center" }}>
             <RevealSection>
-              <SectionLabel>Watch A Real Lesson</SectionLabel>
+              <SectionLabel>Watch a lesson from the Academy</SectionLabel>
               <RustRule />
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
               }}>
-                My experience of going bust — a pre-pack administration.
+                Money is made before you step on site.
               </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                Module 9 of the Academy, free to watch, no sign-up. Insolvency isn't just a financial event — it affects your health, your family, your team, your suppliers. This is Mark talking through what actually happens when it goes wrong, why early advice matters, and how to protect what can be protected.
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 14px" }}>
+                See exactly what to expect inside The Engineering Business Academy. Watch one of the practical lessons and get a feel for the content, approach and level of detail.
               </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.6)`, fontSize: "13.5px", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
-                This is one lesson from a full 101-lesson curriculum — free, so you can judge the material before you judge the price.
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 24px" }}>
+                From Module 6, Commercial Controls: why margin is protected through design, planning, procurement, labour selection and preparation before the job begins, rather than recovered during delivery.
               </p>
+              <a href="#preview-lesson-video" style={{
+                background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
+                padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
+              }} onClick={() => track("cta_watch_lesson_home")}>
+                Watch the Lesson
+              </a>
             </RevealSection>
             <RevealSection>
-              <VideoEmbed wistiaId="o7j9nnwhlu" title="My Experience of Going Bust — A Pre-Pack Administration" />
+              <div id="preview-lesson-video">
+                <VideoEmbed wistiaId="dqmf23wn6f" title="Money Is Made Before You Step on Site" />
+              </div>
             </RevealSection>
           </div>
         </div>
@@ -778,19 +832,26 @@ export default function HomePage() {
                 fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
                 color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
               }}>
-                And the tools that prove we understand your world.
+                Practical AI tools built for engineering businesses
               </h2>
-              {/* CONFIRMED: tools are priced separately from Academy membership
-                  (the Toolbox Talk Generator is the one enrolment inclusion). */}
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px" }}>
-                Because we run engineering businesses too, we've built the tools we always wanted: O&M manuals delivered in 24 hours, RAMS in minutes, COSHH and toolbox talks on demand, and a compliance chatbot trained on your own company's safety knowledge.
+              {/* Schedule section 12. Tools are priced separately from Academy
+                  membership. The second paragraph names the tools that actually
+                  exist rather than generic capabilities. */}
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 16px" }}>
+                Use AI to save time, improve productivity and put better business processes into practice. The Academy's AI tools are designed around the real tasks engineering business owners and leaders deal with every day.
+              </p>
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 16px" }}>
+                From RAMS, COSHH assessments and toolbox talks to O&M manuals and a compliance co-pilot trained on your own company's documents, the aim is simple: help your people work more efficiently and make better use of the knowledge inside the Academy.
+              </p>
+              <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14.5px", lineHeight: 1.65, margin: "0 0 26px", fontStyle: "italic" }}>
+                AI should make good people more productive, not replace the judgement, experience and accountability required to run an engineering business.
               </p>
               <Link href="/ai-tools" style={{
                 color: COBALT, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 letterSpacing: "0.04em", borderBottom: `1px solid ${COBALT}`, paddingBottom: "2px",
               }}>
-                Explore the AI tools →
+                Explore the AI Tools →
               </Link>
             </RevealSection>
             <RevealSection>
@@ -803,10 +864,7 @@ export default function HomePage() {
               />
             </RevealSection>
           </div>
-          {/* Compact ROI band — what the tools actually save */}
-          <RevealSection style={{ marginTop: isMobile ? "36px" : "48px" }}>
-            <RoiStatBand compact />
-          </RevealSection>
+
         </div>
       </section>
 
@@ -821,10 +879,10 @@ export default function HomePage() {
               fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
               color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
             }}>
-              380 documents. 15 years of practice. Ready to use.
+              380 documents. Built from real practice. Ready to use.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
-              Every template, form, checklist and procedure an engineering business runs on — in Word and PDF, ready to deploy. Fifteen years of practice, included with membership.
+              Every template, form, checklist and procedure an engineering business runs on, in Word and PDF, ready to adapt and deploy. Drawn from decades of real-world industry experience and included with Academy + Documents membership.
             </p>
             <Link href="/documents" style={{
               color: RUST, textDecoration: "none",
@@ -837,110 +895,27 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── SECTOR INSIGHTS ── market commentary only; gated by
-          SHOW_SECTOR_INSIGHTS so the pair can be pulled with one constant. */}
-      {SHOW_SECTOR_INSIGHTS && (
-      <section style={{ background: WHITE, padding: isMobile ? "52px 20px" : "72px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
-            <RevealSection>
-              <Photo src="/site-rooftop.jpg" alt="Engineers commissioning rooftop chillers and heat pumps" ratio="16 / 10" style={{ marginBottom: "24px" }} />
-              <SectionLabel>Sector Insight</SectionLabel>
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
-              }}>
-                The biggest opportunity in M&E right now. Are you positioned for it?
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                The UK's decarbonisation agenda is creating the largest sustained flow of M&E work this industry has seen in a generation. Heat pumps. Solar thermal. Social housing retrofit. Government-backed contracts worth billions — going to the M&E contractors who know how to price, deliver, and document renewable energy installations.
-              </p>
-              {/* Market commentary ONLY — no decarbonisation module exists in the
-                  course, so this section must not claim or link to curriculum. */}
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                For contractors weighing that move, the questions are commercial before they are technical: enter deliberately, price it properly, and build it as a durable service line rather than a bolt-on.
-              </p>
-              <a href="#health-check" style={{
-                color: RUST, textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
-                paddingBottom: "2px",
-              }}>
-                Take the free Engineering Business Health Check →
-              </a>
-            </RevealSection>
-            <RevealSection>
-              <Photo src="/site-containment.jpg" alt="Electrical containment and cable tray installation on site" ratio="16 / 10" style={{ marginBottom: "24px" }} />
-              <SectionLabel>Sector Insight</SectionLabel>
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
-              }}>
-                The £2bn market your clients are already asking you about.
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 28px" }}>
-                Fire protection and security is a common adjacent service request in engineering contracting. The market is worth £2bn and growing — driven by post-Grenfell regulation and heightened compliance requirements across commercial and industrial sectors.
-              </p>
-              {/* Market commentary ONLY — no curriculum claim, no outbound links. */}
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 32px" }}>
-                Most engineering contractors either decline the work or subcontract it blindly — and the ones who make it pay treat it as a business line with its own pricing and delivery discipline, not a favour to a client.
-              </p>
-              <Link href="/toolbox-talk" style={{
-                color: RUST, textDecoration: "none",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`,
-                paddingBottom: "2px", display: "inline-block",
-              }}>
-                Try the free Toolbox Talk tool →
-              </Link>
-            </RevealSection>
-          </div>
-        </div>
-      </section>
-      )}
 
       {/* ── ENTERPRISE / WHITE-LABEL ── */}
       <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <RevealSection>
-              <SectionLabel bg={COBALT}>For Companies</SectionLabel>
+              <SectionLabel bg={COBALT}>Company access</SectionLabel>
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.8rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
               }}>
-                Your own branded compliance assistant. Deployed and managed for you.
+                Bring the Academy into your engineering business
               </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
-                We take the compliance chatbot — trained on your company's own documents, procedures, CDM obligations and HSE guidance — and deploy it as a fully managed, branded service for your organisation. Your staff get accurate answers. You get a documented audit trail. We handle the setup, hosting and updates.
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 16px" }}>
+                The Engineering Business Academy isn't only for individual owners and leaders. It can also be used across your business to develop managers, strengthen future leaders and build greater commercial and operational understanding throughout your team.
               </p>
-              {/* Enterprise pricing is GATED until confirmed (ENTERPRISE_PRICING
-                  in constants.ts) — never publish an unconfirmed number. */}
-              <div style={{ display: "flex", gap: "24px", marginBottom: "36px", flexWrap: "wrap" }}>
-                {(ENTERPRISE_PRICING
-                  ? [
-                      { value: ENTERPRISE_PRICING.setup, label: "Setup fee" },
-                      { value: ENTERPRISE_PRICING.monthly, label: "Per month" },
-                    ]
-                  : [{ value: "Priced per deployment", label: "Enquire for a quote" }]
-                ).map(({ value, label }) => (
-                  <div key={label}>
-                    <p style={{
-                      fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                      color: COBALT, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px",
-                    }}>
-                      {value}
-                    </p>
-                    <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                      {label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <Link href="/contact" style={{
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
+                Give your people access to the same practical knowledge, tools and ways of working, helping create greater consistency across the business and reducing the reliance on knowledge sitting with only a few individuals.
+              </p>
+              <Link href="/enterprise" style={{
                 background: COBALT, color: "#fff", textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                 padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
@@ -948,71 +923,25 @@ export default function HomePage() {
               }}
                 onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                 onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                onClick={() => track("cta_enterprise_enquiry")}
+                onClick={() => track("cta_company_access_home")}
               >
-                Enquire about enterprise deployment →
+                Explore Company Access →
               </Link>
             </RevealSection>
             <RevealSection>
-              <div style={{ background: WHITE, borderLeft: `3px solid ${COBALT}`, padding: "36px 32px", borderRadius: "10px" }}>
-                <p style={{
-                  fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                  color: NAVY, fontSize: "1.1rem", lineHeight: 1.7, margin: "0 0 20px",
-                }}>
-                  "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support."
-                </p>
-                <p style={{ color: `rgba(${NAVY_RGB},0.65)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                  Market context — UK agency pricing for custom chatbot builds
-                </p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+                {companyPoints.map(cp => (
+                  <div key={cp.title} style={{ background: WHITE, borderLeft: `3px solid ${COBALT}`, padding: "18px 22px", borderRadius: "8px" }}>
+                    <h3 style={{ color: NAVY, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14.5px", margin: "0 0 6px" }}>{cp.title}</h3>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{cp.body}</p>
+                  </div>
+                ))}
               </div>
             </RevealSection>
           </div>
         </div>
       </section>
 
-      {/* ── LEAD MAGNET ── */}
-      <section id="health-check" style={{ background: CREAM, padding: isMobile ? "60px 20px" : "80px 40px", borderTop: `1px solid rgba(${NAVY_RGB},0.08)` }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
-            <RevealSection>
-              <SectionLabel>Free Download</SectionLabel>
-              <h2 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 800,
-                fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-                color: NAVY, margin: "0 0 20px", lineHeight: 1.1,
-              }}>
-                The Engineering Business Health Check.
-              </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 12px" }}>
-                20 questions that reveal whether your engineering business is built to last — or built to break under pressure.
-              </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.65, margin: "0 0 32px" }}>
-                Covers pricing discipline, cash flow structure, contract exposure, compliance overhead, team dependency, and growth ceiling. Free. No obligation. Sent directly to your inbox.
-              </p>
-              <LeadMagnetForm />
-            </RevealSection>
-            <RevealSection>
-              <div style={{ background: DARK_GRADIENT, padding: "40px 36px" }}>
-                <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-                  {[
-                    { q: "Are you pricing to win, or pricing to profit?" },
-                    { q: "Do you know your gross margin on every project?" },
-                    { q: "Could your business survive a 90-day payment delay?" },
-                    { q: "Have you read every contract you've signed this year?" },
-                    { q: "If you stepped away for 4 weeks, what would break?" },
-                  ].map(({ q }, i) => (
-                    <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "14px" }}>
-                      <span style={{ color: RUST_ON_DARK, fontFamily: "var(--eba-heading)", fontStyle: "italic", fontSize: "1.1rem", fontWeight: 700, flexShrink: 0, marginTop: "2px" }}>{i + 1}.</span>
-                      <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "14px", lineHeight: 1.6, margin: 0 }}>{q}</p>
-                    </div>
-                  ))}
-                  <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "8px 0 0", fontStyle: "italic" }}>...and 15 more in the full guide.</p>
-                </div>
-              </div>
-            </RevealSection>
-          </div>
-        </div>
-      </section>
 
       {/* ── FINAL CTA ── black band per approved mockup A; the full-width brand
           gradient hairline above it is one of the three allowed gradient uses. */}
@@ -1024,13 +953,13 @@ export default function HomePage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
-            The founding cohort is open.
+            Build a stronger business around the engineering.
           </h2>
           <p style={{
             color: `rgba(${ON_DARK_RGB},0.85)`, fontSize: "18px", lineHeight: 1.65,
             maxWidth: "520px", margin: "0 auto 40px",
           }}>
-            Founding members lock in lifetime access at the founding price before it rises — and shape the programme as it's built. Engineering contractors only. Limited places.
+            Get the practical knowledge, systems and tools to strengthen your commercial control, improve your operations, develop your people and build a business capable of sustainable growth.
           </p>
           {/* Two-track CTA: Academy track = rust primary; Tools track = cobalt outline. */}
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", justifyContent: "center" }}>
@@ -1042,11 +971,11 @@ export default function HomePage() {
             }}
               onMouseEnter={e => { e.currentTarget.style.opacity = "0.88"; }}
               onMouseLeave={e => { e.currentTarget.style.opacity = "1"; }}
-              onClick={() => track("cta_join_cohort_footer")}
+              onClick={() => track("cta_join_academy_footer")}
             >
-              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
             </a>
-            <a href="/toolbox-talk" style={{
+            <a href="#whats-included" style={{
               background: "transparent", color: "#fff", textDecoration: "none",
               fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "16px",
               padding: "16px 40px", border: "1.5px solid rgba(255,255,255,0.7)",
@@ -1054,13 +983,13 @@ export default function HomePage() {
             }}
               onMouseEnter={e => { e.currentTarget.style.background = "rgba(255,255,255,0.12)"; }}
               onMouseLeave={e => { e.currentTarget.style.background = "transparent"; }}
-              onClick={() => track("cta_free_tool_footer")}
+              onClick={() => track("cta_whats_included_footer")}
             >
-              Try the free Toolbox Talk tool
+              Explore What's Included
             </a>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", justifyContent: "center", marginTop: "28px" }}>
-            {["14-day money-back guarantee", "Founding price locked in for life", "Engineering contractors only"].map(t => (
+            {["14-day money-back guarantee", "Lifetime access to the Academy"].map(t => (
               <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>
                 <span style={{ color: RUST_ON_DARK, fontWeight: 800 }}>✓</span> {t}
               </span>

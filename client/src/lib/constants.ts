@@ -160,6 +160,10 @@ export const MARK_PHOTO_MENTORSHIP = "";                   // was stock — slot
 /** The locked brand tagline — the ONLY approved tagline. All components read
  *  this constant; never hard-code a tagline in a component. */
 export const TAGLINE = "Engineer Your Business. Design Your Freedom.";
+/** Footer statement — Mark's homepage schedule, 17 Sep 2026 (section 19). The
+ *  slogan above is no longer used on the homepage or footer; TAGLINE remains
+ *  only for the pre-launch holding page until that is reviewed. */
+export const FOOTER_STATEMENT = "Practical business education for owners and leaders of engineering, technical services and specialist contracting businesses.";
 
 /**
  * PRE-LAUNCH HOLDING PAGE — when true, every route serves ComingSoonPage and

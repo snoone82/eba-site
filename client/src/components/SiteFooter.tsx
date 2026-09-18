@@ -9,7 +9,7 @@ import { useIsMobile } from "@/hooks/useMobile";
 import { Facebook, Instagram, Youtube, Linkedin } from "lucide-react";
 import {
   DARK_GRADIENT, RUST, RUST_RGB, CREAM_RGB, IS_VIVID, COMPANY_REG, isPlaceholder,
-  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS, TAGLINE, SOCIAL_LINKS,
+  NAV_BAR_BG, NAV_BORDER, FOOTER_BG, ACCREDITATIONS, FOOTER_STATEMENT, SOCIAL_LINKS,
 } from "@/lib/constants";
 
 // Icon + accessible label per platform, detected from the URL. Renders only
@@ -81,9 +81,13 @@ export function SiteFooter() {
             <Link href="/" style={{ textDecoration: "none", display: "inline-flex", alignItems: "center", marginBottom: "18px" }}>
               <EBALogo height={46} light />
             </Link>
-            {/* The locked tagline — read from constants, never hard-coded. */}
-            <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "15px", color: heading, margin: 0, maxWidth: "300px", lineHeight: 1.5 }}>
-              {TAGLINE}
+            {/* Footer statement per Mark's 17 Sep schedule (section 19); the old
+                slogan is retired from the homepage and footer. */}
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 500, fontSize: "14.5px", color: heading, margin: "0 0 12px", maxWidth: "340px", lineHeight: 1.55 }}>
+              {FOOTER_STATEMENT}
+            </p>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", letterSpacing: "0.04em", color: heading, margin: 0 }}>
+              teb-academy.com
             </p>
             {/* Social icons — click-through only (no embedded feeds); renders
                 solely from SOCIAL_LINKS so we never link a dead account. */}
