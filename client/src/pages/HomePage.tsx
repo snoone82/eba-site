@@ -34,6 +34,7 @@ import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import { VideoEmbed } from "@/components/VideoEmbed";
 import { ProductFrame } from "@/components/ProductFrame";
+import { HeroSchematic } from "@/components/HeroSchematic";
 import { Seo, PAGE_SEO, ORGANIZATION_JSONLD } from "@/components/Seo";
 import { track } from "@/lib/track";
 
@@ -291,7 +292,8 @@ export default function HomePage() {
       <MobileNav transparent={true} />
       <HomeNav scrolled={scrolled} />
 
-      {/* ── HERO ── (CIOB style: real photo under a deep navy overlay) */}
+      {/* ── HERO ── the business drawn around the engineering (HeroSchematic),
+          replacing the plant-room photograph (Ste, 18 Sep). */}
       <section style={{
         position: "relative",
         minHeight: isMobile ? "auto" : "600px",
@@ -299,17 +301,18 @@ export default function HomePage() {
         alignItems: "center",
         paddingTop: isMobile ? "108px" : "212px",
         paddingBottom: isMobile ? "56px" : "84px",
-        background: "#1B2632", // fallback so a slow hero image degrades to clean navy
+        background: `${HERO_GLOW}, ${DARK_GRADIENT}`,
       }}>
-        <div style={{
-          position: "absolute", inset: 0,
-          backgroundImage: `url(${MARK_PHOTO_HERO})`,
-          backgroundSize: "cover", backgroundPosition: "center 24%",
-        }} />
-        <div style={{
-          position: "absolute", inset: 0,
-          background: "linear-gradient(100deg, rgba(20,28,37,0.95) 0%, rgba(27,38,50,0.82) 48%, rgba(27,38,50,0.45) 100%)",
-        }} />
+        {/* Desktop: the drawing sits behind and to the right of the copy.
+            Mobile: it follows the copy as its own block (see below). */}
+        {!isMobile && <HeroSchematic />}
+        {!isMobile && (
+          /* Legibility wash under the copy; fades out before the drawing. */
+          <div style={{
+            position: "absolute", inset: 0, pointerEvents: "none",
+            background: "linear-gradient(100deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.25) 40%, rgba(10,10,10,0) 62%)",
+          }} />
+        )}
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{
@@ -380,6 +383,11 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+          {isMobile && (
+            <div style={{ marginTop: "40px" }}>
+              <HeroSchematic inline />
+            </div>
+          )}
         </div>
       </section>
 
