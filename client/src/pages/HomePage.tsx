@@ -224,10 +224,13 @@ function HomeNav({ scrolled }: { scrolled: boolean }) {
       }}>
         {/* Announce bar removed (Ste, 18 Sep): the logo is the brand feature of
             the header, so the large lockup lives here rather than in the hero. */}
+        {/* The bar is fixed, so it shrinks once the page scrolls: the full-size
+            lockup at the top, a compact one over the content so the logo never
+            sits on top of the page's own text. */}
         <div style={{ padding: "0 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: "148px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between", height: scrolled ? "72px" : "148px", transition: "height 0.25s ease" }}>
           <Link href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", flexShrink: 0, marginRight: "24px" }}>
-            <EBALogo height={118} light navOnCobalt />
+            <EBALogo height={scrolled ? 52 : 118} light navOnCobalt />
           </Link>
           <div style={{ display: "flex", alignItems: "center", gap: "22px", flexShrink: 0 }}>
             {[
