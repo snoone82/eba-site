@@ -162,9 +162,11 @@ const KEYFRAMES = `
 interface Props {
   /** Render as a block in the flow (mobile) instead of a full-bleed background. */
   inline?: boolean;
+  /** Background mode only: fraction of the hero the drawing may occupy (right-anchored). */
+  scale?: number;
 }
 
-export function HeroSchematic({ inline = false }: Props) {
+export function HeroSchematic({ inline = false, scale = 1 }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   // Inline mode waits until the block is on screen before drawing.
   const [go, setGo] = useState(!inline);
@@ -205,7 +207,13 @@ export function HeroSchematic({ inline = false }: Props) {
     );
   }
 
-  const svgStyle: React.CSSProperties = { position: "absolute", inset: 0, width: "100%", height: "100%", display: "block" };
+  // Labels grow as the drawing shrinks so they stay readable.
+  const labelScale = Math.min(1.4, 1 / scale);
+  // Right-anchored, vertically centred; `scale` shrinks the box the drawing fits in.
+  const svgStyle: React.CSSProperties = {
+    position: "absolute", right: 0, top: "50%", transform: "translateY(-50%)",
+    width: `${scale * 100}%`, height: `${scale * 100}%`, display: "block",
+  };
   const mask = "radial-gradient(circle 260px at var(--mx) var(--my), rgba(0,0,0,1) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 100%)";
 
   return (
@@ -219,11 +227,11 @@ export function HeroSchematic({ inline = false }: Props) {
       }}
     >
       <svg viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMid meet" style={svgStyle}>
-        <Drawing lit={false} id="eba-hero-base" />
+        <Drawing lit={false} id="eba-hero-base" labelScale={labelScale} />
       </svg>
       <div style={{ position: "absolute", inset: 0, WebkitMaskImage: mask, maskImage: mask }}>
         <svg viewBox="0 0 1440 900" preserveAspectRatio="xMaxYMid meet" style={svgStyle}>
-          <Drawing lit id="eba-hero-lit" grid={false} />
+          <Drawing lit id="eba-hero-lit" grid={false} labelScale={labelScale} />
         </svg>
       </div>
       <style>{KEYFRAMES}</style>

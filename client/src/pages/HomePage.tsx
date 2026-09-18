@@ -286,14 +286,22 @@ export default function HomePage() {
 
   const isMobile = useIsMobile();
 
+  // Review switch for the animated hero: /?hero=drawing (see the hero comment).
+  const [drawingHero] = useState(() =>
+    typeof window !== "undefined" && new URLSearchParams(window.location.search).get("hero") === "drawing"
+  );
+
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.home} jsonLd={ORGANIZATION_JSONLD} />
       <MobileNav transparent={true} />
       <HomeNav scrolled={scrolled} />
 
-      {/* ── HERO ── the business drawn around the engineering (HeroSchematic),
-          replacing the plant-room photograph (Ste, 18 Sep). */}
+      {/* ── HERO ── the plant-room photograph by default. The animated schematic
+          (HeroSchematic, "the business drawn around the engineering") is kept
+          behind ?hero=drawing for side-by-side review; Ste's first reaction
+          (18 Sep) was that the drawing and the headline fought for space, so
+          that variant runs the drawing smaller and the headline a size down. */}
       <section style={{
         position: "relative",
         minHeight: isMobile ? "auto" : "600px",
@@ -301,23 +309,38 @@ export default function HomePage() {
         alignItems: "center",
         paddingTop: isMobile ? "108px" : "212px",
         paddingBottom: isMobile ? "56px" : "84px",
-        background: `${HERO_GLOW}, ${DARK_GRADIENT}`,
+        background: drawingHero ? `${HERO_GLOW}, ${DARK_GRADIENT}` : "#1B2632",
       }}>
-        {/* Desktop: the drawing sits behind and to the right of the copy.
-            Mobile: it follows the copy as its own block (see below). */}
-        {!isMobile && <HeroSchematic />}
-        {!isMobile && (
-          /* Legibility wash under the copy; fades out before the drawing. */
-          <div style={{
-            position: "absolute", inset: 0, pointerEvents: "none",
-            background: "linear-gradient(100deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.25) 40%, rgba(10,10,10,0) 62%)",
-          }} />
+        {drawingHero ? (
+          !isMobile && (
+            <>
+              <HeroSchematic scale={0.7} />
+              {/* Legibility wash under the copy; fades out before the drawing. */}
+              <div style={{
+                position: "absolute", inset: 0, pointerEvents: "none",
+                background: "linear-gradient(100deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.25) 40%, rgba(10,10,10,0) 62%)",
+              }} />
+            </>
+          )
+        ) : (
+          <>
+            <div style={{
+              position: "absolute", inset: 0,
+              backgroundImage: `url(${MARK_PHOTO_HERO})`,
+              backgroundSize: "cover", backgroundPosition: "center 24%",
+            }} />
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(100deg, rgba(20,28,37,0.95) 0%, rgba(27,38,50,0.82) 48%, rgba(27,38,50,0.45) 100%)",
+            }} />
+          </>
         )}
         <div style={{ position: "relative", zIndex: 2, width: "100%", maxWidth: "1280px", margin: "0 auto", padding: isMobile ? "24px 20px 60px" : "0 40px 80px" }}>
           <div style={{ maxWidth: "760px" }}>
             <h1 style={{
               fontFamily: "var(--eba-heading)",
-              fontWeight: 800, fontSize: isMobile ? "2.4rem" : "clamp(2.8rem, 4.6vw, 4rem)",
+              fontWeight: 800,
+              fontSize: isMobile ? "2.4rem" : drawingHero ? "clamp(2.3rem, 3.5vw, 3.1rem)" : "clamp(2.8rem, 4.6vw, 4rem)",
               lineHeight: 1.08, letterSpacing: "-0.015em",
               color: "#fff", margin: "0 0 22px", maxWidth: "20ch",
             }}>
@@ -383,7 +406,7 @@ export default function HomePage() {
               ))}
             </div>
           </div>
-          {isMobile && (
+          {drawingHero && isMobile && (
             <div style={{ marginTop: "40px" }}>
               <HeroSchematic inline />
             </div>
