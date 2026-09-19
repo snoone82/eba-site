@@ -101,17 +101,13 @@ function RevealSection({ children, style }: { children: React.ReactNode; style?:
 }
 
 /**
- * The curriculum — lesson counts read directly from Kajabi (101 lessons in
- * total, shown as "100+" per Mark's schedule). Descriptions and the module
- * labels for 04, 07 and 09 follow Mark's Academy page amendment schedule
- * (19 Sep 2026); the Kajabi course itself still carries the original labels
- * ("…& Other Controls", "…& Cash", "The Dark Side of Business") until Mark
- * renames it, so the two will differ until then.
+ * The curriculum — module titles and lesson counts match Kajabi (101 lessons
+ * in total, shown as "100+" per Mark's schedule). Modules 04, 07 and 09 and
+ * four lesson titles were renamed in Kajabi on 19 Sep 2026 to Mark's wording,
+ * so site and course agree. Descriptions follow Mark's Academy page schedule.
  *
- * `standoutLessons` are ACTUAL lesson titles from the course, shown as quotes.
- * `topics` are Mark's softer phrasings of lessons whose real titles are more
- * confrontational — shown as topics, never as quoted titles, because they are
- * not what the lesson is called.
+ * `standoutLessons` are ACTUAL lesson titles from the course, in the module
+ * they actually belong to, shown as quotes.
  */
 const modules: {
   number: string;
@@ -119,7 +115,6 @@ const modules: {
   lessons: number;
   description: string;
   standoutLessons?: string[];
-  topics?: string[];
   dark?: boolean;
 }[] = [
   {
@@ -127,21 +122,24 @@ const modules: {
     title: "The Job of the Leader",
     lessons: 17,
     description: "Leadership sets the direction for the whole business. This module covers the role of the owner and senior leader in setting priorities, maintaining standards, making difficult decisions, developing people and creating a business that becomes less dependent on any one individual.",
-    standoutLessons: ["The Best Leaders Make Themselves Surplus to Requirements"],
+    // Real Module 1 lessons in Kajabi ("Surplus to Requirements" sits in Module 3).
+    standoutLessons: ["What Is Your Job as a Leader", "The Hands-Off Business Owner – How I Achieved This With My Mentor"],
   },
   {
     number: "02",
     title: "Culture & Standards",
     lessons: 12,
     description: "Culture is shaped by the standards leaders set, reinforce and consistently uphold. This module covers how to define those standards, embed them into day-to-day behaviour and build an environment where good people can perform, develop and want to stay.",
-    standoutLessons: ["Your People Are Your Real Customers", "Attitude Over Ability"],
+    // The two people lessons Mark quoted under Module 3 actually sit in
+    // Module 2 in Kajabi; they are shown where they live.
+    standoutLessons: ["Your People Are Your Real Customers", "Attitude Over Ability", "When Micromanagement Becomes a Warning Sign", "Addressing Underperformance Early"],
   },
   {
     number: "03",
     title: "Leadership & Building Teams",
     lessons: 15,
     description: "Building a strong team requires more than hiring good people. This module covers recruitment, development, accountability, performance management and creating a leadership structure where responsibility is shared and people are clear on the standards expected of them.",
-    topics: ["When micromanagement becomes a warning sign", "Addressing underperformance early"],
+    standoutLessons: ["The Best Leaders Make Themselves Surplus to Requirements", "Succession Planning – You Should Always Have One Eye on This"],
   },
   {
     number: "04",
@@ -167,7 +165,7 @@ const modules: {
     title: "Financial Control & Cash Flow",
     lessons: 11,
     description: "Profit and cash are not the same thing. This module covers payment terms, cash flow visibility, working capital and the financial controls required to support growth while maintaining a healthy and resilient business.",
-    topics: ["Why payment terms matter"],
+    standoutLessons: ["Why Payment Terms Matter"],
   },
   {
     number: "08",
@@ -180,7 +178,7 @@ const modules: {
     title: "Business Challenges & Lessons Learned",
     lessons: 5,
     description: "Some of the most valuable business lessons come from difficult periods. In this module, Mark shares his experience of a pre-pack administration, what led to it, what he learned from it, and the controls, decisions and warning signs he would approach differently today.",
-    topics: ["What I learned from a pre-pack administration"],
+    standoutLessons: ["What I Learned from a Pre-Pack Administration"],
   },
   {
     number: "10",
@@ -483,28 +481,6 @@ export default function AcademyPage() {
                                 fontStyle: "italic", padding: "5px 12px",
                               }}>
                                 “{lesson}”
-                              </span>
-                            ))}
-                          </div>
-                        </div>
-                      )}
-                      {mod.topics && mod.topics.length > 0 && (
-                        <div>
-                          <p style={{
-                            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "10.5px",
-                            letterSpacing: "0.1em", textTransform: "uppercase",
-                            color: `rgba(${NAVY_RGB},0.5)`, margin: "0 0 8px",
-                          }}>
-                            Topics include
-                          </p>
-                          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-                            {mod.topics.map((topic, j) => (
-                              <span key={j} style={{
-                                background: OAT, color: `rgba(${NAVY_RGB},0.75)`,
-                                fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 500,
-                                padding: "5px 12px",
-                              }}>
-                                {topic}
                               </span>
                             ))}
                           </div>

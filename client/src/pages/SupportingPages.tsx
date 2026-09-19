@@ -219,9 +219,11 @@ export function OurStoryPage() {
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  Over 15 years, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
-                  {/* TODO(eba): founding year + how the single firm grew — still open.
-                      Duration confirmed by Mark as 15 years (1 Sep 2026). */}
+                  Over the years, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
+                  {/* Duration: Mark confirmed 15 years on 1 Sep 2026, then asked for
+                      "decades of real-world industry experience" in his 17 and 19 Sep
+                      schedules; no specific figure is stated here until he settles it.
+                      TODO(eba): founding year + how the single firm grew — still open. */}
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
                   He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.
@@ -321,7 +323,7 @@ const docCategories = [
     id: "hs",
     label: "Health, Safety & Environmental",
     count: 68,
-    description: "A comprehensive library of health, safety and environmental documents developed and refined across 15 years of M&E contracting. Every form, permit, checklist and register your business requires — structured, compliant and ready to use.",
+    description: "A comprehensive library of health, safety and environmental documents developed and refined across decades of engineering contracting. Every form, permit, checklist and register your business requires, structured and ready to adapt to your own arrangements.",
     highlight: "68 documents",
     docs: [
       {
@@ -717,7 +719,7 @@ export function DocumentsPage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
-            380 documents. 15 years of M&E practice.
+            380 documents. Decades of real-world practice.
           </h1>
           <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px", margin: "0 0 32px" }}>
             Every document in this library was developed and used in the operation of a principal M&E contracting business. These are not generic templates. They are the actual forms, registers, contracts, and procedures that a serious M&E business requires.
@@ -971,7 +973,7 @@ export function ContactPage() {
       const tier = params.get("tier");
       return {
         preselect: q && CONTACT_ENQUIRIES.includes(q) ? q : "academy",
-        prefillMessage: tier ? `I'd like founding pricing for: ${tier}` : "",
+        prefillMessage: tier ? `I'd like pricing for: ${tier}` : "",
       };
     } catch { return { preselect: "academy", prefillMessage: "" }; }
   })();
@@ -1044,7 +1046,7 @@ export function ContactPage() {
           }}>
             {[
               { k: "Response time", v: "Within 2 working days" },
-              { k: "Founding cohort", v: ENROL_READY ? "Enrolling now" : "Opening soon — join the waitlist" },
+              { k: "The Academy", v: ENROL_READY ? "Enrolling now" : "Opening soon — join the waitlist" },
               { k: "AI tools", v: "Priced per tool" },
               { k: "Mentorship", v: "By application · limited places" },
             ].map(({ k, v }, i, arr) => (
@@ -1094,7 +1096,7 @@ export function ContactPage() {
                   <div>
                     <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Enquiry type</label>
                     <select value={form.enquiry} onChange={e => setForm(f => ({ ...f, enquiry: e.target.value }))} style={{ ...inputStyle, cursor: "pointer" }} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)}>
-                      <option value="academy">Academy — Founding Cohort Enrolment</option>
+                      <option value="academy">Academy — Enrolment</option>
                       <option value="pricing">Academy — Pricing Enquiry</option>
                       <option value="documents">Document Library — Purchase Enquiry</option>
                       <option value="om-manual">AI Tool — O&M Manual Compiler</option>
@@ -1133,7 +1135,7 @@ export function ContactPage() {
             <RevealSection>
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                 {[
-                  { label: "Academy enrolment", detail: "Questions regarding the founding cohort, curriculum, pricing, or access. Select Academy in the enquiry type." },
+                  { label: "Academy enrolment", detail: "Questions regarding enrolment, the curriculum, pricing, or access. Select Academy in the enquiry type." },
                   { label: "Document purchases", detail: "Individual documents or complete category packs. We will confirm availability and provide a payment link within two working days." },
                   { label: "AI tool enquiries", detail: "Demonstrations of the O&M Manual Compiler or Compliance Co-Pilot can be arranged on request. Select the relevant tool." },
                   { label: "White-label deployments", detail: "For organisations requiring a managed compliance chatbot deployment. Please describe your organisation and approximate document volume." },

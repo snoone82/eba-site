@@ -464,7 +464,7 @@ export default function ToolboxTalkPage() {
             </h2>
             <p style={{ fontSize: "15px", lineHeight: 1.65, color: "rgba(255,255,255,0.72)", margin: "0 0 24px" }}>
               Academy members get this generator unlimited, plus the full curriculum and, on the +Documents
-              tier, the 380-document library. Join the founding cohort.
+              tier, the 380-document library. Join the Academy.
             </p>
             <Link
               href="/ai-tools"

@@ -191,12 +191,12 @@ const curriculum = [
   { n: "01", title: "The Job of the Leader", lessons: 17, body: "Set the direction, define the standards and build a business that relies less on you: goals, values, mentors, leverage and where your time actually goes." },
   { n: "02", title: "Culture & Standards", lessons: 12, body: "Establish the values, standards and communication that shape how your people work, and align the team behind the mission." },
   { n: "03", title: "Leadership & Building Teams", lessons: 15, body: "Plan the structure, find and onboard the right people, develop leaders, run appraisals and 360 reviews, and plan for succession." },
-  { n: "04", title: "Processes, Procedures & Other Controls", lessons: 8, body: "Build the procedures, playbook and routine controls that make quality repeatable and the business easier to manage." },
+  { n: "04", title: "Processes, Procedures & Controls", lessons: 8, body: "Build the procedures, playbook and routine controls that make quality repeatable and the business easier to manage." },
   { n: "05", title: "Sales, Marketing & Growth Discipline", lessons: 8, body: "Understand your sectors and customers, run a disciplined pipeline and CRM, and develop the brand and strategy behind sustainable growth." },
   { n: "06", title: "Commercial Controls", lessons: 10, body: "Understand the commercial principles, processes and controls required to protect margin from estimating through to final account." },
-  { n: "07", title: "Financial Control & Cash", lessons: 11, body: "Payment terms, credit control, cash forecasting, management accounts and the financial disciplines that keep a growing business healthy." },
+  { n: "07", title: "Financial Control & Cash Flow", lessons: 11, body: "Payment terms, credit control, cash forecasting, management accounts and the financial disciplines that keep a growing business healthy." },
   { n: "08", title: "Risk, Protection & Governance", lessons: 8, body: "Identify and manage business risk: cyber security, service and shareholder agreements, articles of association, labour costs and credit insurance." },
-  { n: "09", title: "The Dark Side of Business", lessons: 5, body: "Understand why businesses fail, how to respond when customers do, and the lessons from distressed situations, so you can protect your own." },
+  { n: "09", title: "Business Challenges & Lessons Learned", lessons: 5, body: "Understand why businesses fail, how to respond when customers do, and the lessons from distressed situations, so you can protect your own." },
   { n: "10", title: "Implementation Toolkit", lessons: 7, body: "Business plans, cash forecasts, audits, board templates and value levers to put the Academy into practice in your own business." },
 ];
 
@@ -864,7 +864,7 @@ export default function HomePage() {
                 Use AI to save time, improve productivity and put better business processes into practice. The Academy's AI tools are designed around the real tasks engineering business owners and leaders deal with every day.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 16px" }}>
-                From RAMS, COSHH assessments and toolbox talks to O&M manuals and a compliance co-pilot trained on your own company's documents, the aim is simple: help your people work more efficiently and make better use of the knowledge inside the Academy.
+                From RAMS, COSHH assessments and toolbox talks to O&M manuals and a compliance co-pilot configured around your own company's documents, the aim is simple: help your people work more efficiently and make better use of the knowledge inside the Academy.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14.5px", lineHeight: 1.65, margin: "0 0 26px", fontStyle: "italic" }}>
                 AI should make good people more productive, not replace the judgement, experience and accountability required to run an engineering business.

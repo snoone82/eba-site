@@ -434,36 +434,35 @@ export function MentorshipPage() {
   );
 }
 
+// Tier wording matches the Academy page (Mark's schedule, 19 Sep 2026): no
+// founding-cohort or "rises to" language anywhere.
 const PRICING_TIERS = [
   {
-    name: "Founding Academy",
+    name: "The Academy",
     tag: "The full curriculum, for life.",
     popular: false,
     price: PRICING.academyFounding,
-    rises: PRICING.academyStandard,
     features: [
-      "101-lesson curriculum, 10 modules",
-      "Full Toolbox Talk Generator included",
-      "Lifetime access at the founding price",
-      "All future updates included",
-      "Founding group session with Mark",
+      "Full 100+ lesson curriculum across 10 modules",
+      "Toolbox Talk Generator included",
+      "Lifetime access",
+      "Future curriculum updates included",
     ],
   },
   {
     name: "Academy + Documents",
-    tag: "Everything you need to run the business.",
+    tag: "The curriculum plus the complete document library.",
     popular: true,
     price: PRICING.academyDocsFounding,
-    rises: PRICING.academyDocsStandard,
     features: [
-      "Everything in Founding Academy",
-      "Full 380-document library (Word + PDF)",
-      "All future document additions",
+      "Everything in The Academy",
+      "Full 380-document library in editable Word and PDF formats",
+      "Future document additions included",
     ],
   },
 ];
-// Mentorship remains application-only via /mentorship — the founding offer is
-// the two tiers above. Prices read from PRICING in constants.ts (confirmed).
+// Mentorship remains application-only via /mentorship. Prices read from
+// PRICING in constants.ts (confirmed).
 
 export function PricingPage() {
   const border = `rgba(${NAVY_RGB},0.10)`;
@@ -474,9 +473,9 @@ export function PricingPage() {
       <MobileNav transparent={false} />
       <PlaceholderNav active="/pricing" />
       <PlaceholderHero
-        label="Founding Cohort Pricing"
-        title="More depth than a course. Less than a coaching retainer."
-        sub="Two ways in — the full curriculum, or the curriculum with the complete document library. Founding members lock in the founding price for life; it rises after the cohort closes."
+        label="Academy Pricing"
+        title="Straightforward access to practical business learning built for engineering businesses."
+        sub="Choose the Academy on its own or combine it with the document library for a broader set of practical resources you can use inside the business."
       />
 
       {/* ── TIERS ── */}
@@ -504,10 +503,10 @@ export function PricingPage() {
                       lesson, ask, then we tell you. Do not reintroduce tier.price /
                       tier.rises here without checking with Mark first. */}
                   <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: NAVY, lineHeight: 1.2 }}>
-                    Founding price
+                    One-time payment
                   </div>
                   <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>
-                    Locked for life · revealed when you enquire
+                    Lifetime access · price confirmed when you enquire
                   </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
@@ -526,7 +525,7 @@ export function PricingPage() {
                   textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                   padding: "13px 24px", letterSpacing: "0.03em", display: "block",
                 }}>
-                  Enquire about founding pricing →
+                  Enquire about pricing →
                 </Link>
               </div>
             ))}
@@ -539,15 +538,15 @@ export function PricingPage() {
               AI tools — priced separately.
             </h2>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
-              RAMS and COSHH are monthly subscriptions. The O&M service is compiled for you, per manual. The Compliance Co-Pilot is built for your business and priced per deployment. None are included in Academy membership — though every Academy enrolment includes the full Toolbox Talk Generator, and a free basic version lives on the AI Tools page.
+              RAMS and COSHH are monthly subscriptions. The O&M service is compiled for you, per manual. The Compliance Co-Pilot is configured around your business and priced per deployment. None are included in Academy membership, though every Academy enrolment includes the full Toolbox Talk Generator, and a free version lives on the AI Tools page.
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {[
-                { name: "RAMS Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.ramsMonthlyStandard}`, value: PRICING.ramsMonthly, checkout: TOOL_CHECKOUT.rams, key: "rams" },
-                { name: "COSHH Generator", detail: `Monthly subscription — founder price, rises to ${PRICING.coshhMonthlyStandard}`, value: PRICING.coshhMonthly, checkout: TOOL_CHECKOUT.coshh, key: "coshh" },
-                { name: "RAMS + COSHH bundle", detail: `Both tools under one monthly subscription — founder price, rises to ${PRICING.toolsBothMonthlyStandard}`, value: PRICING.toolsBothMonthly, checkout: TOOL_CHECKOUT.bundle, key: "bundle" },
-                { name: "O&M manual service", detail: "Compiled for you — per manual, returned within 24 hours", value: PRICING.omPerManual, checkout: undefined, key: "om" },
-                { name: "Compliance Co-Pilot", detail: `Built for your business — trained on your documents, hosted and maintained. Founder price; rises to ${PRICING.coPilotSetupStandard} + ${PRICING.coPilotMonthlyStandard}`, value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly}`, checkout: undefined, key: "copilot" },
+                { name: "RAMS Generator", detail: "Monthly subscription. Structured RAMS drafts for competent review.", value: PRICING.ramsMonthly, checkout: TOOL_CHECKOUT.rams, key: "rams" },
+                { name: "COSHH Generator", detail: "Monthly subscription. Structured COSHH assessment drafts for competent review.", value: PRICING.coshhMonthly, checkout: TOOL_CHECKOUT.coshh, key: "coshh" },
+                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription.", value: PRICING.toolsBothMonthly, checkout: TOOL_CHECKOUT.bundle, key: "bundle" },
+                { name: "O&M manual service", detail: "Compiled for you, per manual. Returned for your review within 24 hours.", value: PRICING.omPerManual, checkout: undefined, key: "om" },
+                { name: "Compliance Co-Pilot", detail: "Configured around your own documents, hosted and supported. Includes setup, hosting and ongoing support.", value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly}`, checkout: undefined, key: "copilot" },
               ].map(({ name, detail, value, checkout, key }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
@@ -578,9 +577,9 @@ export function PricingPage() {
           {/* Reassurance strip */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "14px 28px", marginTop: "40px" }}>
             {[
-              "Founding price locked in for life",
+              "Lifetime access to the Academy",
               "14-day money-back guarantee",
-              "Engineering contractors only",
+              "Built for engineering and technical services businesses",
             ].map(t => (
               <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Poppins', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
                 <span style={{ color: RUST, fontWeight: 800 }}>✓</span> {t}
@@ -588,16 +587,16 @@ export function PricingPage() {
             ))}
           </div>
           <p style={{ textAlign: "center", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
-            Founding pricing is fixed for the first cohort and rises after it closes. The AI tools are priced separately and are not included in Academy membership.
+            The AI tools are priced separately and are not included in Academy membership. Mentorship is application-only and priced on application.
           </p>
         </div>
       </section>
 
       {/* ── SECTION BREAKER ── */}
       <SectionBreaker
-        kicker="Founding cohort"
-        title="Get on the list before"
-        accent="prices rise."
+        kicker="Questions about pricing"
+        title="Not sure which level fits?"
+        accent="Talk to us."
         variant="gradient"
       />
 
@@ -628,23 +627,23 @@ export function FAQPage() {
   const faqs = [
     {
       q: "Who is the Academy for?",
-      a: "Engineering services contractors — sole traders, small businesses, and growing companies — who are technically excellent but lack the business and commercial systems to scale profitably. If you run a plumbing, electrical, HVAC, or multi-trade engineering business, this is built for you.",
+      a: "Owners and leaders of engineering and technical services businesses who want stronger commercial control, better systems, stronger teams and a business that is ready for its next stage of growth. Mechanical and electrical, HVAC, fire and security, power, facilities, controls, renewables, data and specialist engineering services are all covered by the same principles.",
     },
     {
       q: "Do I need any prior business knowledge?",
-      a: "No. The Academy starts from first principles and builds systematically. The only prerequisite is that you are currently running or about to run an engineering contracting business.",
+      a: "No. The Academy starts from first principles and builds systematically. The only prerequisite is that you are running, leading or about to run an engineering or technical services business.",
     },
     {
       q: "How long does the programme take?",
-      a: "The Academy contains 101 lessons across 10 modules. Most members work through it at their own pace over 3–6 months, fitting study around their business. There is no deadline.",
+      a: "The Academy contains 100+ lessons across 10 modules and is self-paced. As a guide, working through the full curriculum over three to six months alongside the business is realistic, and you can return to individual lessons whenever they become relevant. There is no deadline.",
     },
     {
       q: "Is this just video content?",
-      a: "No. The Academy combines structured video lessons, downloadable frameworks and templates, AI tools, and — depending on your membership tier — mentorship through group or 1:1 sessions with the mentor team — plus strictly limited founder sessions led by Mark.",
+      a: "No. The Academy combines structured video lessons with downloadable frameworks and templates you can put to work in the business. The Academy + Documents option adds the full 380-document library. Mentorship and the AI tools are available separately.",
     },
     {
-      q: "What is the founding cohort?",
-      a: "The founding cohort is the first group of members to join the Academy. Founding members receive a permanently reduced price that will not be offered again, plus direct input into how the Academy develops. Places are strictly limited.",
+      q: "What does Academy membership include?",
+      a: "Lifetime access to 100+ lessons across 10 modules, the Toolbox Talk Generator, and future updates to the curriculum. Academy + Documents adds the 380-document library. AI tools and mentorship are priced separately.",
     },
     {
       q: "Can I access the AI tools without joining the Academy?",

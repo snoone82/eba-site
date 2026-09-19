@@ -33,7 +33,6 @@ import {
   HERO_GLOW, SECTION_GLOW,
   COBALT, COBALT_RGB, COBALT_ON_DARK, ENTERPRISE_PRICING,
 } from "@/lib/constants";
-import { RoiStatBand } from "@/components/RoiStatBand";
 import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
@@ -539,14 +538,9 @@ export default function AIToolsPage() {
         </div>
       </section>
 
-      {/* ── ROI STAT BAND ── what the tools actually save (tools accent) */}
-      <section style={{ background: CREAM, padding: isMobile ? "40px 20px" : "56px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.06)` }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <RevealSection>
-            <RoiStatBand />
-          </RevealSection>
-        </div>
-      </section>
+      {/* ROI stat band removed 19 Sep 2026: its "£600–£1,200 saved per manual"
+          figure is unverified and the 24-hour turnaround is stated on the O&M
+          card itself. Reinstate only with figures Mark has confirmed. */}
 
       {/* ── AVAILABLE NOW (overview) ── a grid that grows as agents are released;
           nothing here fixes the range at four (Mark, 19 Sep 2026). */}

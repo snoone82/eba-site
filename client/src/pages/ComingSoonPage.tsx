@@ -118,14 +118,14 @@ export function ComingSoonPage() {
           fontSize: isMobile ? "16px" : "18px", lineHeight: 1.7,
           color: `rgba(${CREAM_RGB},0.74)`, margin: "40px 0 8px", maxWidth: "56ch",
         }}>
-          Business growth and AI tools for M&amp;E and building services contractors.
+          Practical business education and AI tools for engineering and technical services businesses.
         </p>
         <p style={{
           fontSize: isMobile ? "16px" : "18px", lineHeight: 1.7,
           color: `rgba(${CREAM_RGB},0.74)`, margin: "0 0 40px", maxWidth: "56ch",
         }}>
           We're finishing the build. Leave your email and you'll hear first when
-          the founding cohort opens.
+          the Academy opens.
         </p>
 
         {/* ── Waitlist ── */}

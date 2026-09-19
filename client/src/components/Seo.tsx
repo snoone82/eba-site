@@ -82,7 +82,7 @@ export const PAGE_SEO = {
   ourStory: {
     title: "Our Story — Mark Poulton & The Engineering Business Academy",
     description:
-      "Why EBA exists: founder Mark Poulton spent 15 years building, rebuilding and running M&E contracting businesses — the operational experience behind the Academy.",
+      "Why the Academy exists: founder Mark Poulton has spent decades building, rebuilding and running engineering businesses. That operational experience is what the Academy is built from.",
     path: "/our-story",
   },
   // Pre-launch holding page. Deliberately indexable: the point is to let Google
@@ -90,7 +90,7 @@ export const PAGE_SEO = {
   comingSoon: {
     title: "The Engineering Business Academy — Coming Soon",
     description:
-      "Business growth and AI tools for engineering services contractors. Join the waitlist to hear first when the founding cohort opens.",
+      "Practical business education and AI tools for engineering and technical services businesses. Join the waitlist to hear first when the Academy opens.",
     path: "/",
   },
   // DRAFT page — still contains <Fill> placeholders. Keep noIndex until the
@@ -117,31 +117,31 @@ export const PAGE_SEO = {
   documents: {
     title: "Engineering Document Library — 380 Ready-to-Use Templates",
     description:
-      "15 years of M&E practice distilled into a deployable document library: templates, forms, checklists and procedures in Word and PDF. Included with Academy membership.",
+      "Decades of engineering practice distilled into a deployable document library: templates, forms, checklists and procedures in Word and PDF. Included with Academy + Documents membership.",
     path: "/documents",
   },
   pricing: {
-    title: "Pricing — Founding Cohort Access | EBA",
+    title: "Academy Pricing | The Engineering Business Academy",
     description:
-      "Founding members lock in lifetime access at the founding price before it rises. See what's included across the Academy, AI tools, mentorship and document library.",
+      "Straightforward access to practical business learning built for engineering businesses. See what's included across the Academy, the document library, the AI tools and mentorship.",
     path: "/pricing",
   },
   enterprise: {
     title: "Enterprise — Branded Compliance Assistant, Managed | EBA",
     description:
-      "A white-label compliance chatbot trained on your company's documents and deployed as a fully managed, branded service. A fraction of agency build cost.",
+      "AI tools configured and deployed around your own documents, procedures and workflows, as a fully managed, branded service for engineering businesses.",
     path: "/enterprise",
   },
   contact: {
     title: "Contact The Engineering Business Academy",
     description:
-      "Talk to EBA about the founding cohort, the AI tools, mentorship or enterprise deployment for engineering contractors.",
+      "Talk to The Engineering Business Academy about enrolment, the AI tools, mentorship or company deployments for engineering and technical services businesses.",
     path: "/contact",
   },
   faq: {
     title: "FAQ — The Engineering Business Academy",
     description:
-      "Who the Academy is for, what's included, how long it takes, the founding cohort, AI tool access and the refund policy — answered.",
+      "Who the Academy is for, what's included, how long it takes, AI tool access and the refund policy, answered.",
     path: "/faq",
   },
   privacy: {

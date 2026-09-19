@@ -320,7 +320,7 @@ export function TermsPage() {
               The Engineering Business Academy is an online business education programme delivered via the Kajabi platform. Upon purchase, you will receive access to the programme content as described at the time of purchase.
             </p>
             <p style={bodyText}>
-              <strong>Founding cohort pricing:</strong> Founding cohort prices are offered for a limited time and to a limited number of members. Once the founding cohort closes, these prices will not be offered again. Founding members receive lifetime access at the founding price.
+              <strong>Pricing and access period:</strong> The price payable is the price displayed at the time of purchase. Academy membership includes lifetime access to the programme content, including future updates to the curriculum, for as long as the Academy continues to be operated.
             </p>
             <p style={bodyText}>
               <strong>Access:</strong> Access to the Academy is personal and non-transferable. You may not share your login credentials with any other person.
