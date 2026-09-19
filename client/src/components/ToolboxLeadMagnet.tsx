@@ -27,7 +27,7 @@ function TryItButton() {
         padding: "14px 28px", letterSpacing: "0.02em",
       }}
     >
-      Generate a toolbox talk now →
+      Generate a Toolbox Talk →
     </Link>
   );
 }
@@ -46,10 +46,18 @@ export function ToolboxLeadMagnet() {
             <Sparkles size={15} strokeWidth={2} /> Free tool · No purchase
           </div>
           <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
-            The free Toolbox Talk Generator.
+            Try the Toolbox Talk Generator.
           </h2>
-          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 28px", maxWidth: "480px" }}>
-            Pick a task, get a site-ready toolbox talk in about a minute — with a sign-off sheet included. Free to use, no card required. Just tell us where to send it. Academy members get the full version included with enrolment.
+          {/* Copy per Mark's AI Tools schedule (19 Sep 2026), section 11: a
+              draft for review, never "site-ready". */}
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 14px", maxWidth: "500px" }}>
+            Enter the task and generate a structured toolbox talk draft in minutes, complete with key hazards, controls, PPE considerations and an attendee sign-off section.
+          </p>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 14px", maxWidth: "500px" }}>
+            Free to use, with no card required. Review the content before using it with your team.
+          </p>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", lineHeight: 1.6, color: sub, margin: "0 0 28px", maxWidth: "500px" }}>
+            Academy members receive access to the full version as part of their membership.
           </p>
           <TryItButton />
         </div>

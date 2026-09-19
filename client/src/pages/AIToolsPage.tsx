@@ -104,11 +104,12 @@ function RevealSection({ children, style }: { children: React.ReactNode; style?:
 }
 
 // ── O&M MANUAL DEMO ──
+// Process steps per Mark's AI Tools schedule (19 Sep 2026), section 13.
 const omSteps = [
-  { label: "Upload documents", detail: "Manufacturer datasheets, as-built drawings, commissioning records, certificates" },
-  { label: "AI processes & structures", detail: "Extracts equipment schedules, maintenance intervals, spare parts lists, emergency procedures" },
-  { label: "Review and customise", detail: "Add your company branding, adjust section order, add project-specific notes" },
-  { label: "Download professional PDF", detail: "Fully structured O&M manual — compliant, branded, ready for handover" },
+  { label: "Send your project documents", detail: "Provide the relevant project, equipment and commissioning information" },
+  { label: "Documents are processed and structured", detail: "The information is organised into the required O&M sections" },
+  { label: "Review and customise", detail: "Check the content, add project-specific information and confirm your company requirements" },
+  { label: "Approve and issue", detail: "Download the completed document once your review is complete" },
 ];
 
 function OmManualDemo() {
@@ -181,7 +182,7 @@ function OmManualDemo() {
         </div>
         <div style={{ marginTop: "20px", padding: "14px 18px", background: `rgba(${COBALT_RGB},0.06)`, borderLeft: `3px solid ${COBALT}` }}>
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
-            <strong style={{ color: NAVY }}>Time saved:</strong> 2–3 days of manual compilation → returned within 24 hours
+            <strong style={{ color: NAVY }}>Turnaround:</strong> designed to reduce days of manual compilation to a managed 24-hour turnaround
           </p>
         </div>
       </div>
@@ -234,7 +235,7 @@ function ComplianceChatDemo() {
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
           <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#28c840", animation: "pulse 2s infinite" }} />
           <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#28c840" }}>
-            Trained on your documents
+            Configured around your documents
           </span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "12px", minHeight: "280px" }}>
@@ -303,8 +304,8 @@ function ComplianceChatDemo() {
 const allTools = [
   {
     label: "O&M MANUAL COMPILER",
-    title: "O&M Manuals in 24 hours, not days.",
-    body: "Upload your project data. The system compiles a fully formatted, client-ready O&M manual — structured to UK CDM requirements — in a fraction of the time it previously took. Every completed M&E project legally requires one — built to produce it without the manual slog.",
+    title: "A faster way to compile O&M manuals.",
+    body: "Provide the project documents and information and the service brings them together into a structured O&M manual ready for your review. It is designed to reduce the time spent manually compiling equipment information, maintenance requirements, commissioning records and other handover documentation.",
     price: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pricing announced soon" : TOOL_PRICE_NOTES.omManual,
     status: "live",
     href: "/ai-tools/om-manual",
@@ -315,8 +316,8 @@ const allTools = [
   },
   {
     label: "COMPLIANCE CO-PILOT",
-    title: "Your company's safety knowledge, on demand.",
-    body: "The Compliance Co-Pilot is built for your business: we take your company's HSEQ documentation, train the system on it, customise it to your way of working and host it for you. Your engineers ask it questions — it answers instantly, accurately, and in your company's voice. Founder pricing: £499 setup plus £149 a month, rising to £1,999 setup plus £199 a month after the founding window.",
+    title: "Your HSEQ information, easier to find and use.",
+    body: "The Compliance Co-Pilot is configured around your own HSEQ procedures and documentation. Your team can ask questions and receive responses that reference the relevant source documents, making important information quicker and easier to find. We configure and host the system for you and provide ongoing support as your documentation and requirements develop.",
     price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
     status: "live",
     href: "/ai-tools/compliance-chatbot",
@@ -333,8 +334,8 @@ const allTools = [
 const comingSoon = [
   {
     label: "TENDER ASSISTANT · IN DEVELOPMENT",
-    title: "Win more bids. Lose fewer on price.",
-    body: "Analyses your bid against project requirements, flags commercial risks, and helps you price accurately — without leaving margin on the table. Built for contractors without a bid team.",
+    title: "Smarter support for tender review.",
+    body: "Designed to help review tender requirements, highlight commercial considerations and bring greater structure to bid preparation and pricing decisions. Useful for businesses that want a more consistent approach to reviewing opportunities before committing resources or submitting a price.",
     price: "Pricing announced at release",
   },
 ];
@@ -384,7 +385,7 @@ function NotifyMeForm({ toolName }: { toolName: string }) {
           whiteSpace: "nowrap" as const,
         }}
       >
-        {loading ? "..." : "Notify me"}
+        {loading ? "..." : "Register interest"}
       </button>
     </form>
   );
@@ -428,7 +429,7 @@ function AIToolsNav({ scrolled }: { scrolled: boolean }) {
               fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
-              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
             </a></span>
           </div>
         </div>
@@ -471,48 +472,65 @@ export default function AIToolsPage() {
         <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: COBALT_ON_DARK, marginBottom: "18px" }}>
-            · AI Tools · Built for engineering contractors ·
+            · AI Tools &amp; Agents · Built for engineering businesses ·
           </div>
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5.5vw, 4.6rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 22px", lineHeight: 1.04, maxWidth: "820px",
           }}>
-            The compliance paperwork, done in minutes.
+            Practical AI tools built around engineering business workflows.
           </h1>
+          {/* Hero copy per Mark's AI Tools schedule (19 Sep 2026): a growing suite,
+              not a fixed range of four; the tools are sold separately from the
+              Academy, so no "join the Academy" CTA here. */}
           <p style={{
             color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: isMobile ? "16px" : "19px", lineHeight: 1.65,
-            maxWidth: "620px", margin: "0 0 36px",
+            maxWidth: "640px", margin: "0 0 16px",
           }}>
-            Four AI tools built for how engineering contracting actually works — O&amp;M manuals, RAMS, COSHH, and a compliance co-pilot trained on your own documents. You stay in control: review every output before it leaves your desk.
+            A growing suite of practical AI tools and agents designed to save time across the commercial, operational, compliance and administrative needs of engineering businesses, built around the way engineering businesses actually work.
+          </p>
+          <p style={{
+            color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65,
+            maxWidth: "640px", margin: "0 0 16px",
+          }}>
+            From project documentation and compliance to commercial tasks, business administration and operational support, new tools will continue to be developed around the work engineering teams deal with every day.
+          </p>
+          <p style={{
+            color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65,
+            maxWidth: "640px", margin: "0 0 36px",
+          }}>
+            AI helps with the administration, information and first draft. Your people remain in control, with outputs reviewed before they are issued or relied upon.
           </p>
           <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", marginBottom: "44px" }}>
-            <a href={ENROL_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("cta_join_cohort_aitools")} style={{
+            <a href="#tools" onClick={() => track("cta_explore_tools_aitools")} style={{
               background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
               fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
               padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
             }}>
-              {ENROL_READY ? "Get the tools — join the Academy" : ENROL_PENDING_LABEL}
+              Explore the AI Tools
             </a>
-            <a href="#tools" style={{
+            <a href="#in-development" style={{
               background: "transparent", color: ON_DARK, textDecoration: "none",
               fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
               padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.28)`, display: "inline-block",
             }}>
-              See the four tools ↓
+              See What's Coming
             </a>
           </div>
+          {/* Evergreen proof points — no per-product statistics here, so the hero
+              stays true as new agents are released. */}
           <div style={{ display: "flex", gap: isMobile ? "24px" : "40px", flexWrap: "wrap" }}>
             {[
-              { value: "24 hrs", label: "Per O&M manual, not 2–3 days" },
-              { value: "£0", label: "Extra staff required" },
-              { value: "You", label: "Review every output" },
+              { value: "Built for Engineering", label: "Tools designed around real engineering business workflows" },
+              { value: "Practical Productivity", label: "Reduce repetitive operational and administrative work" },
+              { value: "Human Reviewed", label: "Your people remain responsible for review and approval" },
             ].map(({ value, label }) => (
-              <div key={label} style={{ borderLeft: `3px solid ${COBALT_ON_DARK}`, paddingLeft: "16px" }}>
-                <p style={{ fontFamily: "var(--eba-heading)", color: COBALT_ON_DARK, fontSize: "1.6rem", fontWeight: 800, margin: "0 0 4px" }}>
+              <div key={label} style={{ borderLeft: `3px solid ${COBALT_ON_DARK}`, paddingLeft: "16px", maxWidth: "260px" }}>
+                <p style={{ fontFamily: "var(--eba-heading)", color: COBALT_ON_DARK, fontSize: "1.15rem", fontWeight: 800, margin: "0 0 6px", letterSpacing: "-0.01em" }}>
                   {value}
                 </p>
-                <p style={{ color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase", margin: 0 }}>
+                <p style={{ color: `rgba(${ON_DARK_RGB},0.72)`, fontSize: "12px", fontWeight: 600, letterSpacing: "0.04em", margin: 0, lineHeight: 1.5 }}>
                   {label}
                 </p>
               </div>
@@ -530,50 +548,60 @@ export default function AIToolsPage() {
         </div>
       </section>
 
-      {/* ── THE FOUR TOOLS (overview) ── */}
+      {/* ── AVAILABLE NOW (overview) ── a grid that grows as agents are released;
+          nothing here fixes the range at four (Mark, 19 Sep 2026). */}
       <section id="tools" style={{ backgroundColor: WHITE, backgroundImage: SECTION_GLOW, padding: isMobile ? "64px 20px" : "104px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", maxWidth: "680px", margin: "0 auto 48px" }}>
+          <div style={{ textAlign: "center", maxWidth: "720px", margin: "0 auto 48px" }}>
             <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: COBALT, marginBottom: "14px" }}>
-              · Four tools · Live now ·
+              · AI Tools &amp; Agents · Available Now ·
             </div>
-            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
-              Built for engineering contractors. Ready today.
+            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
+              Practical tools available now.
             </h2>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "16px", lineHeight: 1.65, color: `rgba(${NAVY_RGB},0.72)`, margin: "0 0 10px" }}>
+              Explore the AI tools currently available, each designed around a real workflow inside an engineering business.
+            </p>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "16px", lineHeight: 1.65, color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
+              These are the first tools in a growing suite, with further agents already being developed across commercial, operational, project delivery, compliance and administrative areas.
+            </p>
           </div>
           {/* Product-visual slots, not stock photos: each card shows the tool's
-              output in a browser-chrome frame (see ProductFrame). */}
+              output in a browser-chrome frame (see ProductFrame). Wording follows
+              the "ready for review, not ready to issue" principle throughout. */}
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "18px" }}>
             {[
               {
                 Icon: FileText, name: "O&M Manual Compiler",
-                outcome: "A client-ready, CDM-structured O&M manual returned within 24 hours — from your project data.",
+                outcome: "Send us your project documents and information and receive a structured O&M manual ready for review within 24 hours. The service brings together equipment information, maintenance requirements, commissioning records and project documentation into one consistent handover document.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
-                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"], chip: "Compiled · back in 24h" },
+                review: "You review and approve the final document before issue",
+                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance information compiled", "Commissioning records indexed"], chip: "Returned for review within 24 hours" },
               },
               {
                 Icon: ShieldCheck, name: "RAMS Generator",
-                outcome: "A fully formatted, compliant Risk Assessment & Method Statement in minutes — no specialist needed.",
+                outcome: "Create a structured Risk Assessment & Method Statement draft in minutes using the details of the task, hazards, controls, PPE and permits. The output is designed to give competent people a faster starting point while keeping review and approval with your team.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.rams) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.rams,
-                checkout: TOOL_CHECKOUT.rams, checkoutKey: "rams",
-                frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards identified", "Control measures sequenced", "Permits and PPE listed"], chip: "Generated in 4m 12s", matrix: true },
+                checkout: TOOL_CHECKOUT.rams, checkoutKey: "rams", checkoutLabel: "Subscribe to RAMS",
+                frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards considered", "Control measures structured", "Permits and PPE prompts included"], chip: "First draft generated in minutes", matrix: true },
               },
               {
                 Icon: MessageSquareText, name: "Compliance Co-Pilot",
-                outcome: "Your company's HSEQ knowledge, answered instantly and cited to the source document.",
+                outcome: "Make your company's HSEQ information easier to find and use. Ask questions against your own procedures and documents and receive responses with references back to the source.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Built for you · priced per deployment" : TOOL_PRICE_NOTES.coPilot,
-                frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Instant answer in your company's voice", "Cited to the source document", "Available to every engineer, 24/7"], chip: "Cited to source" },
+                review: "Includes setup, hosting and ongoing support",
+                frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Answers based on your company's documents", "Cited to the source document", "Available to authorised users across the business"], chip: "Cited to source" },
               },
               {
                 Icon: FlaskConical, name: "COSHH Generator",
-                outcome: "A branded COSHH assessment from substance, task and exposure route — in about a minute.",
+                outcome: "Create a structured COSHH assessment draft from the substance, task and exposure information you provide, ready for competent review before issue.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.coshh,
-                checkout: TOOL_CHECKOUT.coshh, checkoutKey: "coshh",
-                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard classification pulled in", "Exposure controls specified", "Branded PDF ready to issue"], chip: "Branded PDF ready" },
+                checkout: TOOL_CHECKOUT.coshh, checkoutKey: "coshh", checkoutLabel: "Subscribe to COSHH",
+                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard information structured", "Exposure controls prompted", "Branded PDF ready for review"], chip: "Branded PDF ready for review" },
               },
-            ].map(({ Icon, name, outcome, note, frame, checkout, checkoutKey }: {
-              Icon: typeof FileText; name: string; outcome: string; note: string;
-              frame: ComponentProps<typeof ProductFrame>; checkout?: string; checkoutKey?: string;
+            ].map(({ Icon, name, outcome, note, review, frame, checkout, checkoutKey, checkoutLabel }: {
+              Icon: typeof FileText; name: string; outcome: string; note: string; review?: string;
+              frame: ComponentProps<typeof ProductFrame>; checkout?: string; checkoutKey?: string; checkoutLabel?: string;
             }) => (
               <div key={name} className="eba-bento-card" style={{
                 background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "20px",
@@ -593,7 +621,7 @@ export default function AIToolsPage() {
                 <div style={{ marginTop: "auto", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
                   <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 700, color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "5px 12px", borderRadius: "8px" }}>{note}</span>
                   <span style={{ display: "inline-flex", alignItems: "center", gap: "6px", fontFamily: "'Poppins', sans-serif", fontSize: "12px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.72)` }}>
-                    <Check size={13} strokeWidth={2.5} /> You review every output
+                    <Check size={13} strokeWidth={2.5} /> {review ?? "You review every output"}
                   </span>
                 </div>
                 {/* Subscription CTA — only the RAMS/COSHH cards carry a Kajabi
@@ -607,11 +635,23 @@ export default function AIToolsPage() {
                       fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                       padding: "13px 22px", borderRadius: "10px", letterSpacing: "0.02em",
                     }}>
-                    Subscribe · founder price →
+                    {checkoutLabel ?? "Subscribe"} →
                   </a>
                 )}
               </div>
             ))}
+          </div>
+
+          {/* Standing human-review message (schedule section 9). Applies to every
+              agent, present and future; kept visible without reading as a legal
+              disclaimer. */}
+          <div style={{ marginTop: "40px", background: `rgba(${COBALT_RGB},0.07)`, borderLeft: `3px solid ${COBALT}`, borderRadius: "12px", padding: isMobile ? "22px 22px" : "26px 30px", maxWidth: "880px" }}>
+            <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.25rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 8px" }}>
+              AI supports the process. Your people make the decision.
+            </h3>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "15px", lineHeight: 1.65, color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
+              These tools are designed to reduce administration, improve productivity and create greater consistency. Outputs should always be reviewed by the appropriate person before being issued, relied upon or used within the business.
+            </p>
           </div>
         </div>
       </section>
@@ -637,20 +677,25 @@ export default function AIToolsPage() {
             fontSize: isMobile ? "1.7rem" : "2.4rem", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 22px", lineHeight: 1.12, maxWidth: "20ch",
           }}>
-            Built inside a working engineering group.
+            Built inside engineering businesses, for engineering businesses.
           </h2>
           <div style={{ display: "flex", flexDirection: "column", gap: "18px", maxWidth: "62ch" }}>
             <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
-              These tools were built by Ste, Head of Automation at KEYIS Group — five years an
-              H&amp;S Manager and NEBOSH-qualified before he wrote a line of code. He spent those
-              years inside the paperwork: RAMS, COSHH assessments, method statements, O&amp;M
-              manuals, CDM records.
+              The tools are led and developed by Ste, Head of Automation at KEYIS Group. Before
+              moving into software and automation, Ste spent years working in health and safety
+              and is NEBOSH qualified.
             </p>
             <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
-              Every tool here ran on live projects inside that group — with real deadlines and
-              real consequences — before it was ever offered to anyone else. Software built to be
-              sold gets designed around what demos well. Software built to be used gets designed
-              around what happens at 6pm on a Friday when the documents have to go out.
+              That combination of engineering-business experience, compliance knowledge, software
+              and automation means the tools are developed around the real processes and
+              requirements engineering teams deal with every day.
+            </p>
+            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
+              The tools are developed around real workflows and problems identified inside working
+              engineering businesses, with the focus always on practical use rather than technology
+              for technology's sake. The objective is simple: identify repetitive, time-consuming or
+              inefficient work and develop tools that help people complete it faster, more
+              consistently and with less administration.
             </p>
           </div>
           <Link href="/about-ste" style={{
@@ -659,7 +704,7 @@ export default function AIToolsPage() {
             color: COBALT_ON_DARK, textDecoration: "none",
             borderBottom: `2px solid ${COBALT_ON_DARK}`, paddingBottom: "3px",
           }}>
-            Read the full story →
+            Meet Ste &amp; Read the Story →
           </Link>
         </div>
       </section>
@@ -669,24 +714,27 @@ export default function AIToolsPage() {
 
       {/* ── SECTION BREAKER ── */}
       <SectionBreaker
-        kicker="See them work"
-        title="Not slideware."
-        accent="Real tools, real output."
+        kicker="Featured tools"
+        title="See the tools"
+        accent="in practice."
         variant="dark"
       />
 
-      {/* ── LIVE TOOLS WITH DEMOS ── */}
+      {/* ── FEATURED TOOLS WITH DEMOS ── a rotating selection, never "the range" */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel light>See it work</SectionLabel>
+            <SectionLabel light>Featured tools</SectionLabel>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 64px",
+              color: NAVY, margin: "0 0 16px",
             }}>
-              See two of them in action.
+              Take a closer look at some of the tools available now.
             </h2>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 64px" }}>
+              See how some of the tools already available fit into real engineering workflows and the type of output they produce.
+            </p>
           </RevealSection>
 
           {allTools.map((tool, i) => (
@@ -716,7 +764,7 @@ export default function AIToolsPage() {
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#28c840", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em" }}>
                           <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#28c840", display: "inline-block", animation: "pulse 2s infinite" }} />
-                          LIVE NOW
+                          AVAILABLE NOW
                         </span>
                       </div>
                       {"enquire" in tool && tool.enquire ? (
@@ -730,7 +778,7 @@ export default function AIToolsPage() {
                           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                           onClick={() => track("cta_tool_enquire", { tool: tool.label })}
                         >
-                          Request a build →
+                          Enquire About a Compliance Co-Pilot →
                         </Link>
                       ) : !isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
@@ -783,7 +831,7 @@ export default function AIToolsPage() {
                         </span>
                         <span style={{ display: "flex", alignItems: "center", gap: "6px", color: "#28c840", fontSize: "12px", fontWeight: 600, letterSpacing: "0.08em" }}>
                           <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#28c840", display: "inline-block", animation: "pulse 2s infinite" }} />
-                          LIVE NOW
+                          AVAILABLE NOW
                         </span>
                       </div>
                       {"enquire" in tool && tool.enquire ? (
@@ -797,7 +845,7 @@ export default function AIToolsPage() {
                           onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                           onClick={() => track("cta_tool_enquire", { tool: tool.label })}
                         >
-                          Request a build →
+                          Enquire About a Compliance Co-Pilot →
                         </Link>
                       ) : !isPlaceholder(tool.checkout) ? (
                         <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
@@ -835,8 +883,34 @@ export default function AIToolsPage() {
         </div>
       </section>
 
-      {/* ── COMING SOON ── */}
-      <section style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
+      {/* ── THE BROADER AI DIRECTION ── schedule section 17 */}
+      <section style={{ background: WHITE, padding: isMobile ? "60px 20px" : "88px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <RevealSection>
+            <SectionLabel light>The direction</SectionLabel>
+            <h2 style={{
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
+              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
+              color: NAVY, margin: "0 0 22px", lineHeight: 1.12,
+            }}>
+              More than individual AI tools.
+            </h2>
+            {[
+              "Our aim is to build a practical AI toolkit around the engineering business as a whole.",
+              "Commercial teams, project teams, finance, compliance, administration and leadership all have different workflows and different pressures. We are developing AI tools and agents around those real activities to reduce repetitive work and make better use of people's time.",
+              "Some tools will help create documents. Others will interrogate information, support processes, make company knowledge easier to access or automate repetitive administrative tasks.",
+              "The common principle is simple: every tool should solve a genuine business problem and be practical enough to use as part of the working day.",
+            ].map((para, i) => (
+              <p key={i} style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "17px", lineHeight: 1.75, margin: i === 3 ? 0 : "0 0 18px" }}>
+                {para}
+              </p>
+            ))}
+          </RevealSection>
+        </div>
+      </section>
+
+      {/* ── IN DEVELOPMENT ── */}
+      <section id="in-development" style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
             <SectionLabel>In Development</SectionLabel>
@@ -845,10 +919,16 @@ export default function AIToolsPage() {
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px",
             }}>
-              More tools coming shortly.
+              More AI tools and agents are already in development.
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "520px", margin: "0 0 48px" }}>
-              Priced separately from the Academy — available to members and non-members alike.
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 14px" }}>
+              The tools available today are the first part of a growing AI platform for engineering businesses.
+            </p>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 14px" }}>
+              Further agents are being developed around commercial, operational, project delivery, compliance and administrative workflows, focusing on areas where repetitive work, large volumes of information or manual processes consume valuable time.
+            </p>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 48px" }}>
+              New tools will be added as they are developed and tested around real engineering business workflows.
             </p>
           </RevealSection>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2px" }}>
@@ -900,10 +980,18 @@ export default function AIToolsPage() {
                   fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                   color: ON_DARK, margin: "0 0 20px", lineHeight: 1.1,
                 }}>
-                  Your own branded compliance assistant. Deployed across your entire organisation.
+                  AI tools built around your own business.
                 </h2>
+                {/* Widened beyond the Co-Pilot (schedule section 18); the Co-Pilot
+                    frame alongside is one example of a company deployment. */}
+                <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 14px" }}>
+                  For larger engineering businesses, we can also configure and deploy AI tools around your own documents, procedures, information and workflows.
+                </p>
+                <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 14px" }}>
+                  This could include company knowledge assistants, compliance support, operational tools, document generation, administrative workflows and other areas where AI and automation can reduce repetitive work or make information easier to access.
+                </p>
                 <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "16px", lineHeight: 1.65, margin: "0 0 32px" }}>
-                  The same AI technology that powers the EBA Compliance Co-Pilot — trained on your specific HSEQ documentation, branded with your company identity, deployed to every engineer in your business. Implementation: 2 weeks. Cost: a fraction of what a compliance consultancy charges. Capability: your entire safety knowledge base, available to every person on site, 24 hours a day.
+                  The approach is practical: understand the workflow, identify where technology can genuinely improve it and build the right solution around the business.
                 </p>
                 {/* Enterprise pricing GATED until confirmed (ENTERPRISE_PRICING). */}
                 <div style={{ display: "flex", gap: "32px", marginBottom: "36px", flexWrap: "wrap" }}>
@@ -929,26 +1017,24 @@ export default function AIToolsPage() {
                   fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
-                  Enquire about a deployment →
+                  Talk to Us About AI for Your Business →
                 </Link>
               </div>
               <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-                {/* Tools sections show the product, not stock photos. */}
+                {/* One example of a company deployment, not the whole offer. */}
+                <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: COBALT_ON_DARK, margin: 0 }}>
+                  Example · Compliance Co-Pilot deployment
+                </p>
                 <ProductFrame
                   url="compliance.yourcompany.co.uk"
                   docTitle="Your Company Compliance Assistant"
-                  docMeta="Your branding · trained on your HSEQ documents"
-                  lines={["Answers in your company's voice", "Cited to your source procedures", "Deployed to every engineer on site"]}
+                  docMeta="Your branding · configured around your HSEQ documents"
+                  lines={["Answers based on your company's documents", "Cited to your source procedures", "Available across your authorised teams"]}
                 />
-                <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${COBALT_ON_DARK}`, padding: "28px 30px", borderRadius: "12px" }}>
-                  <p style={{
-                    fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                    color: ON_DARK, fontSize: "1rem", lineHeight: 1.75, margin: "0 0 20px",
-                  }}>
-                    "UK agencies charge £3,000–£25,000 to build custom AI chatbots. We are the accessible, managed end of that market — lower setup, plus a recurring retainer that covers hosting, updates and support. Cheaper than the agencies, and far cheaper than per-seat AI licences for a whole workforce."
-                  </p>
-                  <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                    Market context — UK agency pricing for custom chatbot builds
+                {/* Agency price comparison removed (schedule section 20). */}
+                <div style={{ background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${COBALT_ON_DARK}`, padding: "22px 26px", borderRadius: "12px" }}>
+                  <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "14.5px", lineHeight: 1.7, margin: 0 }}>
+                    Deployment pricing depends on the scope of the solution, the information involved and the implementation requirements. Contact us to discuss the right approach for your business.
                   </p>
                 </div>
               </div>

@@ -135,7 +135,7 @@ function NavBar({ active }: { active: string }) {
               fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
-              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
             </a>
           </span>
         </div>
@@ -293,7 +293,7 @@ export function OurStoryPage() {
               fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
               padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
             }}>
-              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
             </a>
             <Link href="/mentorship" style={{
               background: "transparent", color: ON_DARK, textDecoration: "none",
@@ -748,7 +748,7 @@ export function DocumentsPage() {
             fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "12px",
             padding: "8px 18px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0, borderRadius: "6px",
           }}>
-            {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+            {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
           </a>
           {/* Standalone library purchase — Kajabi offer 2151348610. Hidden while OFFERS_LIVE is false. */}
           {LIBRARY_HREF && (
@@ -938,7 +938,7 @@ export function DocumentsPage() {
                   fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block", flexShrink: 0,
                 }}>
-                  {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+                  {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
                 </a>
               </div>
             </RevealSection>

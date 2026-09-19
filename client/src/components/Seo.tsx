@@ -32,16 +32,19 @@ export const PAGE_SEO = {
       "Practical business training for owners and leaders of engineering and technical services businesses, with 100+ lessons covering margin, contracts, cash flow, people, systems, compliance, leadership and growth.",
     path: "/",
   },
+  // Academy and AI Tools wording per Mark's amendment schedules (19 Sep 2026).
+  // The Academy title keeps "The Academy |" in front so it is not a duplicate
+  // of the homepage title.
   academy: {
-    title: "The Academy — 101 Lessons for Engineering Business Owners",
+    title: "The Academy | Practical Business Training for Engineering & Technical Services Businesses",
     description:
-      "A 10-module business programme for engineering contractors: leadership, culture, teams, commercial control, cash and growth. Built from real operational experience, not theory.",
+      "Explore 100+ practical lessons across 10 modules covering margin, contracts, cash flow, people, systems, leadership, risk and growth, built for engineering and technical services businesses.",
     path: "/academy",
   },
   aiTools: {
-    title: "AI Tools for Engineering Contractors — O&M, RAMS & Compliance",
+    title: "AI Tools & Agents for Engineering Businesses | The Engineering Business Academy",
     description:
-      "AI tools built for engineering contractors: O&M manuals in 24 hours, RAMS in minutes, and a compliance chatbot trained on your firm's safety knowledge. Cut paperwork, not corners.",
+      "A growing suite of practical AI tools and agents built for engineering businesses, designed to reduce administration, improve productivity and support commercial, operational, compliance and project workflows.",
     path: "/ai-tools",
   },
   toolboxTalk: {
@@ -71,9 +74,9 @@ export const PAGE_SEO = {
     path: "/ai-tools/om-manual",
   },
   complianceChatbot: {
-    title: "Compliance Co-Pilot — Your Safety Knowledge On Demand",
+    title: "Compliance Co-Pilot — Your HSEQ Information, Easier to Find",
     description:
-      "An AI assistant trained on your company's HSEQ documentation. Your engineers ask, it answers instantly and accurately — in your firm's own voice.",
+      "An AI assistant configured around your company's HSEQ documentation. Your team asks a question and gets a response that references the relevant source documents.",
     path: "/ai-tools/compliance-chatbot",
   },
   ourStory: {
@@ -190,7 +193,7 @@ export const COURSE_JSONLD = {
   "@type": "Course",
   name: "The Engineering Business Academy — Engineering Business Programme",
   description:
-    "A 10-module, 101-lesson business programme for engineering services contractors covering leadership, culture, teams, commercial control, cash, risk and growth.",
+    "A 10-module business programme of more than 100 lessons for engineering and technical services businesses, covering leadership, culture, teams, commercial control, cash, risk and growth.",
   provider: {
     "@type": "Organization",
     name: SITE_NAME,

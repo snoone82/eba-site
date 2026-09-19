@@ -47,13 +47,16 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
     ],
   },
   {
-    heading: "AI Tools",
+    // Per Mark's AI Tools schedule (19 Sep 2026): "Explore AI Tools" is the
+    // route to the whole range; individual tools are not listed here forever.
+    heading: "AI Tools & Agents",
     links: [
-      { label: "Who builds them", href: "/about-ste" },
-      { label: "O&M Manual", href: "/ai-tools" },
-      { label: "Compliance Co-Pilot", href: "/ai-tools" },
-      { label: "Free Toolbox Talk", href: "/toolbox-talk" },
-      { label: "Enterprise Deployment", href: "/enterprise" },
+      { label: "Explore AI Tools", href: "/ai-tools" },
+      { label: "O&M Manual Compiler", href: "/ai-tools/om-manual" },
+      { label: "Compliance Co-Pilot", href: "/ai-tools/compliance-chatbot" },
+      { label: "Toolbox Talk Generator", href: "/toolbox-talk" },
+      { label: "AI for Companies", href: "/enterprise" },
+      { label: "Who Builds the Tools", href: "/about-ste" },
       { label: "Automation & Systems", href: "/automation" },
     ],
   },

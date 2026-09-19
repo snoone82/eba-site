@@ -431,15 +431,16 @@ export const SHOW_DOC_PRICES = false;
 export const SHOW_SECTOR_INSIGHTS = true;
 
 /**
- * Per-tool price notes — CONFIRMED founder prices (13 Jul 2026).
- * O&M £299/manual is a compiled-for-you service. The Co-Pilot note shows
+ * Per-tool price notes — CONFIRMED prices (13 Jul 2026). Wording per Mark's
+ * AI Tools schedule (19 Sep 2026): no "founder price" language on the tools
+ * page. O&M £299/manual is a compiled-for-you service. The Co-Pilot note shows
  * the deployment price (setup + monthly), never a self-serve tool price.
  */
 export const TOOL_PRICE_NOTES = {
   omManual: "£299 per manual · compiled for you",
-  rams: "£39/mo · with COSHH £49/mo",
-  coPilot: "Built for you · £499 setup + £149/mo founder price",
-  coshh: "£29/mo · with RAMS £49/mo",
+  rams: "£39/month · RAMS + COSHH £49/month",
+  coPilot: "£499 setup + £149/month",
+  coshh: "£29/month · RAMS + COSHH £49/month",
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting

@@ -17,8 +17,6 @@ import {
   ENROL_PENDING_LABEL,
   COMPANY_REG,
   FOUNDING_PRICE,
-  PLACES_REMAINING,
-  COHORT_SIZE,
   RUST,
   NAVY,
   CREAM,
@@ -28,7 +26,7 @@ import {
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB, ACCENT_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
-  HERO_GLOW, SECTION_GLOW, METHOD_NAME, RUST_ON_DARK,
+  HERO_GLOW, SECTION_GLOW, RUST_ON_DARK,
   ENROL_DOCS_READY, ENROL_DOCS_HREF, PRICING,
 } from "@/lib/constants";
 import { Seo, PAGE_SEO, COURSE_JSONLD } from "@/components/Seo";
@@ -103,14 +101,17 @@ function RevealSection({ children, style }: { children: React.ReactNode; style?:
 }
 
 /**
- * The REAL curriculum — module names and lesson counts read directly from
- * Kajabi (June 2026). Total = exactly 101 lessons. Do not "improve" these
- * names; they are the product.
+ * The curriculum — lesson counts read directly from Kajabi (101 lessons in
+ * total, shown as "100+" per Mark's schedule). Descriptions and the module
+ * labels for 04, 07 and 09 follow Mark's Academy page amendment schedule
+ * (19 Sep 2026); the Kajabi course itself still carries the original labels
+ * ("…& Other Controls", "…& Cash", "The Dark Side of Business") until Mark
+ * renames it, so the two will differ until then.
  *
- * `standoutLessons` are actual lesson titles from the course, surfaced because
- * they sell better than marketing copy.
- * TODO(eba): confirm the standout-lesson-to-module mapping against Kajabi —
- * the titles are real, the module placement below is editorial.
+ * `standoutLessons` are ACTUAL lesson titles from the course, shown as quotes.
+ * `topics` are Mark's softer phrasings of lessons whose real titles are more
+ * confrontational — shown as topics, never as quoted titles, because they are
+ * not what the lesson is called.
  */
 const modules: {
   number: string;
@@ -118,54 +119,55 @@ const modules: {
   lessons: number;
   description: string;
   standoutLessons?: string[];
+  topics?: string[];
   dark?: boolean;
 }[] = [
   {
     number: "01",
     title: "The Job of the Leader",
     lessons: 17,
-    description: "The biggest module in the course, because it's the biggest lever. What the owner of an engineering business is actually there to do: set direction, hold the standard, make the calls nobody else can make — and build a business that needs you less every month.",
+    description: "Leadership sets the direction for the whole business. This module covers the role of the owner and senior leader in setting priorities, maintaining standards, making difficult decisions, developing people and creating a business that becomes less dependent on any one individual.",
     standoutLessons: ["The Best Leaders Make Themselves Surplus to Requirements"],
   },
   {
     number: "02",
     title: "Culture & Standards",
     lessons: 12,
-    description: "Culture isn't a poster in the office. It's what you tolerate. This module covers setting the standards the business runs on, holding them when it's inconvenient, and building a company good people don't want to leave.",
+    description: "Culture is shaped by the standards leaders set, reinforce and consistently uphold. This module covers how to define those standards, embed them into day-to-day behaviour and build an environment where good people can perform, develop and want to stay.",
     standoutLessons: ["Your People Are Your Real Customers", "Attitude Over Ability"],
   },
   {
     number: "03",
     title: "Leadership & Building Teams",
     lessons: 15,
-    description: "Building a team that runs the work without you in the van. Hiring, developing and holding people to the standard — and making the hard personnel decisions early instead of carrying them for years.",
-    standoutLessons: ["If You Need to Micromanage Someone They Must Go", "Always Get Rid of the Worst 10%"],
+    description: "Building a strong team requires more than hiring good people. This module covers recruitment, development, accountability, performance management and creating a leadership structure where responsibility is shared and people are clear on the standards expected of them.",
+    topics: ["When micromanagement becomes a warning sign", "Addressing underperformance early"],
   },
   {
     number: "04",
-    title: "Processes, Procedures & Other Controls",
+    title: "Processes, Procedures & Controls",
     lessons: 8,
-    description: "The controls that make quality repeatable when you're not in the room. How to systemise the way the business delivers so the output doesn't depend on who happened to be on the job.",
+    description: "Strong businesses rely on consistent ways of working. This module covers how to build practical processes, procedures and controls that improve consistency, protect quality and reduce reliance on individual knowledge across the business.",
   },
   {
     number: "05",
     title: "Sales, Marketing & Growth Discipline",
     lessons: 8,
-    description: "Growth as a discipline, not an accident. Winning the right work at the right price, saying no to the wrong work, and growing at a pace the business can actually absorb.",
+    description: "Sustainable growth requires discipline and clear choices. This module covers how to build a stronger pipeline, win the right work at the right margin, say no when an opportunity does not fit, and grow at a pace the business can support.",
   },
   {
     number: "06",
     title: "Commercial Controls",
     lessons: 10,
-    description: "The commercial side of contracting: how the money is protected before and during the job — terms, variations, applications, and the commercial decisions that decide whether the margin you priced is the margin you keep.",
+    description: "Strong commercial control protects the margin from the point the work is won through to final account. This module covers contract terms, variations, applications, commercial decision-making and the disciplines required to protect the value built into every project.",
     standoutLessons: ["Money Is Made Before You Step on Site"],
   },
   {
     number: "07",
-    title: "Financial Control & Cash",
+    title: "Financial Control & Cash Flow",
     lessons: 11,
-    description: "Cash kills profitable contractors. Payment terms, cash flow visibility, and the financial controls that keep a growing engineering business solvent while it grows.",
-    standoutLessons: ["Never Accept 60-Day Terms"],
+    description: "Profit and cash are not the same thing. This module covers payment terms, cash flow visibility, working capital and the financial controls required to support growth while maintaining a healthy and resilient business.",
+    topics: ["Why payment terms matter"],
   },
   {
     number: "08",
@@ -175,12 +177,10 @@ const modules: {
   },
   {
     number: "09",
-    title: "The Dark Side of Business",
+    title: "Business Challenges & Lessons Learned",
     lessons: 5,
-    // TODO(eba): confirm the public framing of the pre-pack story with Mark — it's his story.
-    description: "Other programmes skip this. Mark went bust — a pre-pack administration — and teaches exactly what happened, why, and what he'd never let happen again. Five lessons every contractor needs before they need them.",
-    standoutLessons: ["My Experience of Going Bust — A Pre-Pack Administration"],
-    dark: true,
+    description: "Some of the most valuable business lessons come from difficult periods. In this module, Mark shares his experience of a pre-pack administration, what led to it, what he learned from it, and the controls, decisions and warning signs he would approach differently today.",
+    topics: ["What I learned from a pre-pack administration"],
   },
   {
     number: "10",
@@ -221,7 +221,7 @@ function AcademyNav({ scrolled }: { scrolled: boolean }) {
               fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
               padding: "9px 20px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "10px",
             }}>
-              {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+              {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
             </a></span>
           </div>
         </div>
@@ -257,16 +257,17 @@ export default function AcademyPage() {
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.2fr 1fr", gap: isMobile ? "40px" : "80px", alignItems: "center" }}>
             <div>
-              <SectionLabel>{ENROL_READY ? `Founding Cohort — ${PLACES_REMAINING} of ${COHORT_SIZE} Places Remaining` : `Founding Cohort — Enrolment Opens Soon · ${COHORT_SIZE} Places Only`}</SectionLabel>
+              {/* Founding-cohort / places-remaining label removed (Mark, 19 Sep). */}
+              <SectionLabel>The Academy</SectionLabel>
               <h1 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 900,
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
                 color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05,
               }}>
-                You learned to run jobs. This is where you learn to run the business.
+                You know how to deliver on site. This is where you learn to build the business around it.
               </h1>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "17px", lineHeight: 1.7, margin: "0 0 40px" }}>
-                Built from 15 years of running a UK M&E engineering group at scale — multiple UK divisions, international operations in Poland, and the launch of two adjacent businesses in fire protection and decarbonisation. Every lesson is drawn from direct operational experience. Nothing is theory. Nothing is recycled from a generic business course and rebranded for construction.
+                The Engineering Business Academy is built from decades of real-world experience building, leading and scaling engineering businesses. Every lesson is grounded in practical commercial, operational and leadership experience, from managing projects, people and cash flow to building systems, developing teams and growing businesses across multiple divisions and international operations.
               </p>
               <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
                 <a href={KAJABI_URL} target="_blank" rel="noopener noreferrer" aria-disabled={!ENROL_READY || undefined} onClick={() => track("checkout_click", { source: "academy" })} style={{
@@ -274,34 +275,32 @@ export default function AcademyPage() {
                   fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", letterSpacing: "0.04em", display: "inline-block",
                 }}>
-                  {ENROL_READY ? "Apply for the Founding Cohort →" : ENROL_PENDING_LABEL}
+                  {ENROL_READY ? "Join the Academy" : ENROL_PENDING_LABEL}
                 </a>
                 <a href="#curriculum" style={{
                   background: "transparent", color: ON_DARK, textDecoration: "none",
                   fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
                   padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.4)`, display: "inline-block",
                 }}>
-                  View curriculum
+                  View the Curriculum
                 </a>
               </div>
-              <p style={{ marginTop: "26px", fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "460px", lineHeight: 1.5 }}>
-                More depth than a course. More accessible than a coaching retainer. <span style={{ color: RUST_ON_DARK }}>Built specifically for engineering contractors.</span>
+              <p style={{ marginTop: "26px", fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontWeight: 600, color: `rgba(${ON_DARK_RGB},0.72)`, maxWidth: "500px", lineHeight: 1.5 }}>
+                Practical business education built specifically for engineering and technical services businesses, combining real-world experience, structured learning and tools you can apply in your own company.
               </p>
-              {/* TODO(eba): confirm the £500k–£5m turnover band with Mark before launch. */}
-              <p style={{ marginTop: "14px", fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "460px", lineHeight: 1.5 }}>
-                Built for established engineering services contractors — typically £500k–£5m turnover. If that's you, apply for the founding cohort.
+              <p style={{ marginTop: "14px", fontFamily: "'Poppins', sans-serif", fontSize: "14px", fontStyle: "italic", color: `rgba(${ON_DARK_RGB},0.62)`, maxWidth: "500px", lineHeight: 1.5 }}>
+                Built for owners and leaders of engineering and technical services businesses who want stronger commercial control, better systems, stronger teams and a business that is ready for its next stage of growth.
               </p>
             </div>
-            {/* Typographic stat grid — dark-native. The previous white pill cards
-                were a light-section treatment rendering on the dark ground, and
-                carried the disputed "15+ years" claim. Mark confirmed 15 years
-                (1 Sep 2026) — restored below. */}
+            {/* Typographic stat grid — dark-native. Wording per Mark's Academy
+                schedule (19 Sep 2026): 100+ lessons, decades of experience,
+                no founding-price reference. */}
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: isMobile ? "22px 20px" : "30px 28px", alignContent: "center" }}>
               {[
-                { value: "101", label: "Lessons" },
-                { value: "10", label: "Modules" },
-                { value: "15 Years", label: "M&E Group experience" },
-                { value: "Lifetime", label: "Access at founding price" },
+                { value: "100+", label: "Practical Lessons" },
+                { value: "10", label: "Practical Modules" },
+                { value: "Decades", label: "Real-world industry experience" },
+                { value: "Lifetime", label: "Access" },
               ].map(({ value, label }) => (
                 <div key={label} style={{ borderTop: `1px solid rgba(${ON_DARK_RGB},0.18)`, paddingTop: "14px" }}>
                   <p style={{
@@ -333,7 +332,7 @@ export default function AcademyPage() {
         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: "#fff", fontSize: isMobile ? "1.4rem" : "clamp(1.6rem, 3vw, 2.4rem)", lineHeight: 1.15, letterSpacing: "-0.01em", maxWidth: "620px", margin: 0 }}>
-              Written for the business behind the toolbox — not the tools.
+              Built for the business behind the engineering.
             </p>
           </div>
         </div>
@@ -343,20 +342,22 @@ export default function AcademyPage() {
       <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "88px 40px", borderBottom: `1px solid rgba(${NAVY_RGB},0.08)` }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel light>The Journey</SectionLabel>
+            <SectionLabel light>How the Academy Works</SectionLabel>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(1.8rem, 3.4vw, 2.5rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 44px", lineHeight: 1.12,
             }}>
-              From application to a business that runs without you.
+              A practical route from learning to implementation.
             </h2>
+            {/* Mentorship is a separate, application-only product, so step 3 no
+                longer implies 1:1 access comes with every purchase (Mark, 19 Sep). */}
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: isMobile ? "28px" : "32px" }}>
               {[
-                { step: "1", title: "Join the founding cohort", body: "Apply, secure one of the limited places, and lock in the founding price for life." },
-                { step: "2", title: "Work the 10 modules", body: "Self-paced over 12–16 weeks — pricing, contracts, cash flow, teams, growth." },
-                { step: "3", title: "Mentorship & community", body: "Group sessions and 1:1 access while you put the system into your business." },
-                { step: "4", title: "The business on the other side", body: "Systems that run without you — priced right, paid on time, off your shoulders." },
+                { step: "1", title: "Join the Academy", body: "Get access to the Academy and start with the areas most relevant to your business and role." },
+                { step: "2", title: "Work through the 10 modules", body: "Learn at your own pace across the commercial, operational and leadership areas that matter as an engineering business grows." },
+                { step: "3", title: "Apply what you learn", body: "Use the lessons, tools and supporting resources to strengthen the way your own business operates." },
+                { step: "4", title: "Build for the next stage", body: "Create stronger commercial control, clearer systems, better leadership and a business that is less dependent on any one person." },
               ].map(({ step, title, body }, i) => (
                 <div key={step} style={{
                   borderTop: `2px solid ${i === 3 ? RUST : `rgba(${NAVY_RGB},0.15)`}`,
@@ -391,10 +392,10 @@ export default function AcademyPage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px",
             }}>
-              What you will learn.
+              What you will learn
             </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "560px", margin: "0 0 56px" }}>
-              Half of running a profitable engineering business is commercial control. The other half is leadership — culture, teams, and the standards you hold. The Academy teaches both, because Mark ran both. Ten modules — the ten components of {METHOD_NAME}. Click any module to see what's inside.
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 56px" }}>
+              The Academy brings together the commercial, operational and leadership knowledge required to build and grow a stronger engineering business. Across 10 practical modules, you will cover the areas that influence margin, cash, risk, people, delivery, leadership and long-term growth. Select any module to explore the lessons inside.
             </p>
           </RevealSection>
 
@@ -433,16 +434,6 @@ export default function AcademyPage() {
                         margin: "0 0 4px",
                       }}>
                         {mod.title}
-                        {mod.dark && (
-                          <span style={{
-                            marginLeft: "12px", background: RUST, color: "#fff",
-                            fontSize: "9px", fontFamily: "'Poppins', sans-serif",
-                            fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase",
-                            padding: "2px 8px", verticalAlign: "middle",
-                          }}>
-                            Rarely taught
-                          </span>
-                        )}
                       </h3>
                       <span style={{
                         fontFamily: "'Poppins', sans-serif", fontSize: "12px",
@@ -497,6 +488,28 @@ export default function AcademyPage() {
                           </div>
                         </div>
                       )}
+                      {mod.topics && mod.topics.length > 0 && (
+                        <div>
+                          <p style={{
+                            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "10.5px",
+                            letterSpacing: "0.1em", textTransform: "uppercase",
+                            color: `rgba(${NAVY_RGB},0.5)`, margin: "0 0 8px",
+                          }}>
+                            Topics include
+                          </p>
+                          <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+                            {mod.topics.map((topic, j) => (
+                              <span key={j} style={{
+                                background: OAT, color: `rgba(${NAVY_RGB},0.75)`,
+                                fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 500,
+                                padding: "5px 12px",
+                              }}>
+                                {topic}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>
@@ -516,14 +529,14 @@ export default function AcademyPage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 56px", lineHeight: 1.1,
             }}>
-              How it works.
+              How It Works
             </h2>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: isMobile ? "2px" : "2px" }}>
               {[
-                { Icon: Play, label: "Video-led lessons", body: "Each lesson is delivered by Mark Poulton directly to camera. No slides. No talking heads. No stock footage." },
-                { Icon: Clock, label: "Self-paced", body: "Work through the curriculum at your pace. Most members complete the full academy in 12–16 weeks at 2–3 hours per week." },
-                { Icon: Smartphone, label: "Mobile-ready", body: "Access every lesson on desktop, tablet, or phone. Learn on site, in the van, or at the kitchen table." },
-                { Icon: InfinityIcon, label: "Lifetime access", body: "Your founding membership gives you permanent access. Every new module and update added to the curriculum is included at no extra cost." },
+                { Icon: Play, label: "Video-led lessons", body: "Each lesson is delivered directly by Mark Poulton in a clear, practical format focused on one subject at a time. The emphasis is on useful experience, examples and actions you can take back into the business." },
+                { Icon: Clock, label: "Self-paced", body: "Work through the curriculum at your own pace and return to individual lessons whenever they become relevant to the challenges or decisions in your business." },
+                { Icon: Smartphone, label: "Mobile-ready", body: "Access the Academy on desktop, tablet or phone, making it easy to learn wherever you are and revisit lessons when you need them." },
+                { Icon: InfinityIcon, label: "Lifetime access", body: "Your membership gives you lifetime access to the Academy, including future updates to the curriculum." },
               ].map(({ Icon, label, body }, i) => (
                 <div key={i} style={{
                   background: `rgba(${ON_DARK_RGB},0.05)`, borderLeft: `3px solid ${RUST}`,
@@ -541,9 +554,9 @@ export default function AcademyPage() {
 
       {/* ── SECTION BREAKER ── */}
       <SectionBreaker
-        kicker="Founding cohort"
-        title="The founding price rises"
-        accent="after launch."
+        kicker="Academy pricing"
+        title="Choose the level of access"
+        accent="that is right for your business."
         variant="tint"
       />
 
@@ -551,51 +564,46 @@ export default function AcademyPage() {
       <section id="pricing" style={{ background: OAT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel light>Founding Cohort Pricing</SectionLabel>
+            <SectionLabel light>Academy Pricing</SectionLabel>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              Founding price. Locked in for life.
+              Straightforward access to practical business learning built for engineering businesses.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
-              Founding members pay a permanently lower price than every member who joins after the cohort closes. There is no catch. It is how we reward the people who back EBA before the public launch.
+              Choose the Academy on its own or combine it with the document library for a broader set of practical resources you can use inside the business.
             </p>
             <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "2px", marginBottom: "40px", maxWidth: "880px" }}>
-              {/* Two-tier founding pricing per the rebuild brief:
-                  Academy £999 → £1,499 · +Documents £1,299 → £1,999.
-                  TODO(eba): [CONFIRM] final prices with Mark, then set
-                  FOUNDING_PRICE in constants.ts to a real value to reveal them
-                  (until then each tier shows "Pricing announced soon"). */}
-              {/* Confirmed planning figures — displayed values read from PRICING
-                  in constants.ts once set; gated by PRICING_ANNOUNCED until then. */}
+              {/* Two tiers, prices from PRICING in constants.ts (gated by
+                  PRICING_ANNOUNCED). The founding-cohort "rises to" mechanic and
+                  the group session were removed per Mark's schedule (19 Sep). */}
               {[
                 {
-                  tier: "Founding Academy",
+                  tier: "The Academy",
                   price: isPlaceholder(PRICING.academyFounding) ? "£999" : PRICING.academyFounding,
-                  monthly: `rises to ${isPlaceholder(PRICING.academyStandard) ? "£1,499" : PRICING.academyStandard} after the founding cohort`,
                   popular: false,
                   includes: [
-                    "Full 101-lesson curriculum",
-                    "Full Toolbox Talk Generator included",
+                    "Full 100+ lesson curriculum",
+                    "Toolbox Talk Generator included",
                     "Lifetime access",
-                    "All future curriculum updates",
-                    "Founding cohort group session with Mark",
+                    "Future curriculum updates included",
                   ],
+                  cta: "Join the Academy",
                 },
                 {
-                  tier: "Founding Academy + Documents",
+                  tier: "Academy + Documents",
                   price: isPlaceholder(PRICING.academyDocsFounding) ? "£1,299" : PRICING.academyDocsFounding,
-                  monthly: `rises to ${isPlaceholder(PRICING.academyDocsStandard) ? "£1,999" : PRICING.academyDocsStandard} after the founding cohort`,
                   popular: true,
                   includes: [
-                    "Everything in Founding Academy",
-                    "Full 380-document library (Word + PDF)",
-                    "All future document additions",
+                    "Everything in The Academy",
+                    "Full 380-document library in editable Word and PDF formats",
+                    "Future document additions included",
                   ],
+                  cta: "Join the Academy + Documents",
                 },
-              ].map(({ tier, price, monthly, popular, includes }, i) => (
+              ].map(({ tier, price, popular, includes, cta }, i) => (
                 <div key={i} style={{
                   background: popular ? NAVY : "#fff",
                   padding: "36px 28px",
@@ -620,9 +628,7 @@ export default function AcademyPage() {
                     fontFamily: "var(--eba-heading)", fontStyle: "italic",
                     color: popular ? RUST_ON_DARK : RUST, fontSize: PRICING_ANNOUNCED ? "2.2rem" : "1.25rem", fontWeight: 700, margin: "0 0 4px",
                   }}>{PRICING_ANNOUNCED ? price : "Pricing announced soon"}</div>
-                  {PRICING_ANNOUNCED && (
-                    <div style={{ color: popular ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.45)`, fontSize: "13px", margin: "0 0 28px" }}>{monthly}</div>
-                  )}
+                  <div style={{ color: popular ? `rgba(${CREAM_RGB},0.5)` : `rgba(${NAVY_RGB},0.45)`, fontSize: "13px", margin: "0 0 28px" }}>one-time payment</div>
                   <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "28px" }}>
                     {includes.map((item, j) => (
                       <div key={j} style={{ display: "flex", alignItems: "flex-start", gap: "10px" }}>
@@ -639,13 +645,12 @@ export default function AcademyPage() {
                     fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
                     padding: "13px 24px", letterSpacing: "0.04em", display: "block",
                     textAlign: "center",
-                  }}>{(popular ? ENROL_DOCS_READY : ENROL_READY) ? "Apply now →" : ENROL_PENDING_LABEL}</a>
+                  }}>{(popular ? ENROL_DOCS_READY : ENROL_READY) ? cta : ENROL_PENDING_LABEL}</a>
                 </div>
               ))}
             </div>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", textAlign: "center" }}>
-              14-day money-back guarantee. If it isn't right for your business, you pay nothing.
-            </p>
+            {/* Guarantee line removed from this page per Mark's schedule (19 Sep);
+                the 14-day guarantee itself is unchanged in the Terms and on /pricing. */}
           </RevealSection>
         </div>
       </section>
