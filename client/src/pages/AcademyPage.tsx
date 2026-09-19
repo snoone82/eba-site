@@ -103,8 +103,9 @@ function RevealSection({ children, style }: { children: React.ReactNode; style?:
 /**
  * The curriculum — module titles and lesson counts match Kajabi (101 lessons
  * in total, shown as "100+" per Mark's schedule). Modules 04, 07 and 09 and
- * four lesson titles were renamed in Kajabi on 19 Sep 2026 to Mark's wording,
- * so site and course agree. Descriptions follow Mark's Academy page schedule.
+ * four lesson titles were renamed in Kajabi on 19 Sep 2026 to Mark's wording
+ * (confirmed by Mark the same day), so site and course agree. Descriptions
+ * follow Mark's Academy page schedule.
  *
  * `standoutLessons` are ACTUAL lesson titles from the course, in the module
  * they actually belong to, shown as quotes.

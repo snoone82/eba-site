@@ -219,10 +219,9 @@ export function OurStoryPage() {
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  Over the years, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
-                  {/* Duration: Mark confirmed 15 years on 1 Sep 2026, then asked for
-                      "decades of real-world industry experience" in his 17 and 19 Sep
-                      schedules; no specific figure is stated here until he settles it.
+                  Across decades in the industry, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
+                  {/* "Decades" is Mark's confirmed wording (19 Sep 2026, via Ste); it
+                      supersedes the 15-year figure from 1 Sep. No exact number is stated.
                       TODO(eba): founding year + how the single firm grew — still open. */}
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
