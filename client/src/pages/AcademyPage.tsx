@@ -623,7 +623,7 @@ export default function AcademyPage() {
               ))}
             </div>
             {/* Guarantee line removed from this page per Mark's schedule (19 Sep);
-                the 14-day guarantee itself is unchanged in the Terms and on /pricing. */}
+                the 14-day guarantee was withdrawn entirely on 20 Sep 2026 (Ste). */}
           </RevealSection>
         </div>
       </section>

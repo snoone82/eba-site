@@ -49,13 +49,11 @@ const COLUMNS: { heading: string; links: { label: string; href: string }[] }[] =
   {
     // Per Mark's final amendments (20 Sep 2026): the range will expand, so the
     // footer carries only the broad routes — never individual tool links.
-    // "Who Builds the Tools" stays until Ste confirms the About Ste page is
-    // retired (Mark's AI Tools schedule, item 11).
+    // "Who Builds the Tools" retired with the About Ste page (Ste, 20 Sep).
     heading: "AI Tools & Agents",
     links: [
       { label: "Explore AI Tools", href: "/ai-tools" },
       { label: "AI for Companies", href: "/enterprise" },
-      { label: "Who Builds the Tools", href: "/about-ste" },
       { label: "Automation & Systems", href: "/automation" },
     ],
   },

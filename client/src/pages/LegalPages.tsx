@@ -336,12 +336,15 @@ export function TermsPage() {
             </p>
           </LegalSection>
 
-          <LegalSection title="4. Refund policy">
+          <LegalSection title="4. Cancellation and refunds">
             <p style={bodyText}>
-              We offer a <strong>14-day money-back guarantee</strong> on all Academy memberships. If you are not satisfied with the programme for any reason, contact us within 14 days of your purchase date and we will issue a full refund, no questions asked.
+              Academy memberships, the Document Library and the AI tools provide immediate access to digital content. By completing your purchase you agree that access begins straight away and acknowledge that, once it has, you lose the statutory right to cancel under the Consumer Contracts Regulations 2013. We do not offer a money-back guarantee on these products.
             </p>
             <p style={bodyText}>
-              Refund requests received after 14 days of purchase will be considered at our discretion. Document library purchases are non-refundable once the documents have been downloaded.
+              Monthly tool subscriptions can be cancelled at any time. Cancellation stops future payments and access ends at the close of the current billing period; payments already made are not refunded.
+            </p>
+            <p style={bodyText}>
+              If you have a problem with your access or believe you have been charged in error, contact us and we will put it right. Any other refund request will be considered at our discretion and nothing in these terms affects your statutory rights.
             </p>
           </LegalSection>
 

@@ -57,7 +57,7 @@ const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(who|suitable|right for|beginner|sole trader|small|electrician|plumb|hvac)\b/i,
     answer: "It's built for owners and leaders of engineering and technical services businesses who want stronger commercial control, better systems, stronger teams and a business ready for its next stage of growth. No prior business training needed." },
   { test: /\b(refund|money ?back|guarantee|cancel)\b/i,
-    answer: "There's a 14-day money-back guarantee on Academy memberships. If it's not right for your business, get in touch within 14 days." },
+    answer: "Academy membership and the Document Library give immediate, lifetime access to digital content, so there isn't a money-back guarantee. If you're unsure before enrolling, get in touch and we'll help you decide. Tool subscriptions can be cancelled at any time." },
   { test: /\b(keyis|about|behind|real|experience|who are you|legit|trust)\b/i,
     answer: "The Academy is built from decades of real-world experience building, leading and scaling engineering businesses across multiple divisions and international operations. Everything here comes from real operations, not theory." },
   { test: /\b(contact|human|person|speak|call|phone|email|reach|talk to)\b/i,

@@ -638,58 +638,9 @@ export default function AIToolsPage() {
         </div>
       </section>
 
-      {/* ── WHO BUILT THESE ──
-          Answers the objection at the moment it occurs: "is this another
-          ChatGPT wrapper written by someone who has never seen a site?"
-          Deliberately placed here, immediately after the tool list and before
-          the demos — the point where a reader is deciding whether to trust the
-          output. The full story lives at /about-ste; this is the hook, not the
-          biography. */}
-      <section style={{ background: NAVY, padding: isMobile ? "56px 20px" : "84px 40px" }}>
-        <div style={{ maxWidth: "900px", margin: "0 auto" }}>
-          <p style={{
-            fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700,
-            letterSpacing: "0.18em", textTransform: "uppercase",
-            color: COBALT_ON_DARK, margin: "0 0 18px",
-          }}>
-            Who built these
-          </p>
-          <h2 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 800,
-            fontSize: isMobile ? "1.7rem" : "2.4rem", letterSpacing: "-0.02em",
-            color: ON_DARK, margin: "0 0 22px", lineHeight: 1.12, maxWidth: "20ch",
-          }}>
-            Built inside engineering businesses, for engineering businesses.
-          </h2>
-          <div style={{ display: "flex", flexDirection: "column", gap: "18px", maxWidth: "62ch" }}>
-            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
-              The tools are led and developed by Ste, Head of Automation at KEYIS Group. Before
-              moving into software and automation, Ste spent years working in health and safety
-              and is NEBOSH qualified.
-            </p>
-            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
-              That combination of engineering-business experience, compliance knowledge, software
-              and automation means the tools are developed around the real processes and
-              requirements engineering teams deal with every day.
-            </p>
-            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "16.5px", lineHeight: 1.75, margin: 0 }}>
-              The tools are developed around real workflows and problems identified inside working
-              engineering businesses, with the focus always on practical use rather than technology
-              for technology's sake. The objective is simple: identify repetitive, time-consuming or
-              inefficient work and develop tools that help people complete it faster, more
-              consistently and with less administration.
-            </p>
-          </div>
-          <Link href="/about-ste" style={{
-            display: "inline-block", marginTop: "28px",
-            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
-            color: COBALT_ON_DARK, textDecoration: "none",
-            borderBottom: `2px solid ${COBALT_ON_DARK}`, paddingBottom: "3px",
-          }}>
-            Meet Ste &amp; Read the Story →
-          </Link>
-        </div>
-      </section>
+      {/* "Who Built These" section and the About Ste link removed (Mark's final
+          AI Tools schedule item 11, confirmed by Ste 20 Sep 2026): the AI
+          proposition is led by the tools and use cases, not one individual. */}
 
       {/* ── FREE TOOLBOX TALK (lead magnet) ── */}
       <ToolboxLeadMagnet />

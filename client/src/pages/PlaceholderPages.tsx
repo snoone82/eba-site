@@ -737,7 +737,7 @@ export function FAQPage() {
     },
     {
       q: "What is your refund policy?",
-      a: "We offer a 14-day refund on all Academy memberships, no questions asked. If the programme is not right for you, contact us within 14 days of purchase.",
+      a: "Academy membership and the Document Library are digital products with immediate, lifetime access, so we do not offer a money-back guarantee. If you are unsure whether the Academy is right for your business, contact us before you enrol and we will help you decide. If anything is wrong with your access after purchase, tell us and we will put it right.",
     },
   ];
 

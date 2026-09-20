@@ -26,7 +26,6 @@ import { CoshhGeneratorPage } from "@/pages/CoshhGeneratorPage";
 import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
-import { AboutStePage } from "@/pages/AboutStePage";
 import { AutomationPage } from "@/pages/AutomationPage";
 import { ComingSoonPage } from "@/pages/ComingSoonPage";
 import { COMING_SOON } from "@/lib/constants";
@@ -63,8 +62,10 @@ function Router() {
       <Route path={"/rams-generator"} component={RamsGeneratorPage} />
       <Route path={"/coshh-generator"} component={CoshhGeneratorPage} />
       <Route path={"/our-story"} component={OurStoryPage} />
-      {/* DRAFT — noIndex, deliberately not in the nav or sitemap until copy is final. */}
-      <Route path={"/about-ste"} component={AboutStePage} />
+      {/* About Ste page retired from the customer journey (Ste, 20 Sep 2026):
+          the AI proposition is led by the tools, not one individual. The
+          component is kept on disk; the route now sends visitors to /ai-tools. */}
+      <Route path={"/about-ste"}>{() => <Redirect to="/ai-tools" replace />}</Route>
       <Route path={"/automation"} component={AutomationPage} />
       {/* Legacy /about → /our-story (client-side; a 308 redirect is also set in vercel.json) */}
       <Route path={"/about"}>{() => <Redirect to="/our-story" replace />}</Route>
