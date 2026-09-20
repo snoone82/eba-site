@@ -109,15 +109,15 @@ export const PAGE_SEO = {
     path: "/automation",
   },
   mentorship: {
-    title: "Mentorship for Engineering Business Owners | EBA",
+    title: "Engineering Business Mentorship | The Engineering Business Academy",
     description:
-      "Group and 1:1 mentorship from senior operators who have run engineering businesses — with strictly limited founder sessions led by Mark Poulton. Application-only.",
+      "Practical group and 1:1 mentorship for engineering business owners and leaders, covering commercial performance, leadership, systems, growth, strategy and business development.",
     path: "/mentorship",
   },
   documents: {
-    title: "Engineering Document Library — 380 Ready-to-Use Templates",
+    title: "Engineering Business Document Library | The Engineering Business Academy",
     description:
-      "Decades of engineering practice distilled into a deployable document library: templates, forms, checklists and procedures in Word and PDF. Included with Academy + Documents membership.",
+      "A library of 380 editable documents for engineering and technical services businesses, covering HSEQ, commercial, financial, technical, subcontractor, people and operational processes.",
     path: "/documents",
   },
   pricing: {

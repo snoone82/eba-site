@@ -64,9 +64,11 @@ function PlaceholderNav({ active }: { active: string }) {
   );
 }
 
-function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: string; title: string; sub: string; portrait?: string; portraitAlt?: string }) {
+type HeroCta = { label: string; href: string; secondary?: boolean; event?: string };
+function PlaceholderHero({ label, title, sub, portrait, portraitAlt, ctas }: { label: string; title: string; sub: string | string[]; portrait?: string; portraitAlt?: string; ctas?: HeroCta[] }) {
   const isMobile = useIsMobile();
   const hasPortrait = !!portrait && !isMobile;
+  const paras = Array.isArray(sub) ? sub : [sub];
   return (
     <section style={{ position: "relative", overflow: "hidden", paddingTop: isMobile ? "96px" : "128px", paddingBottom: isMobile ? "56px" : "72px", background: DARK_GRADIENT }}>
       {IS_VIVID && <div className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW }} />}
@@ -86,9 +88,24 @@ function PlaceholderHero({ label, title, sub, portrait, portraitAlt }: { label: 
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
           }}>{title}</h1>
-          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px" }}>
-            {sub}
-          </p>
+          {paras.map((p, i) => (
+            <p key={i} style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "580px", margin: i === paras.length - 1 ? 0 : "0 0 14px" }}>
+              {p}
+            </p>
+          ))}
+          {ctas && ctas.length > 0 && (
+            <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", marginTop: "32px" }}>
+              {ctas.map(c => {
+                const style: React.CSSProperties = c.secondary
+                  ? { background: "transparent", color: ON_DARK, border: `1px solid rgba(${ON_DARK_RGB},0.5)`, textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px", padding: "13px 26px", letterSpacing: "0.04em", display: "inline-block" }
+                  : { background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", padding: "13px 26px", letterSpacing: "0.04em", display: "inline-block" };
+                const onClick = () => c.event && track(c.event);
+                return c.href.startsWith("#")
+                  ? <a key={c.label} href={c.href} onClick={onClick} style={style}>{c.label}</a>
+                  : <Link key={c.label} href={c.href} onClick={onClick} style={style}>{c.label}</Link>;
+              })}
+            </div>
+          )}
         </div>
         {hasPortrait && (
           <div className="eba-hero-portrait" style={{ position: "relative" }}>
@@ -133,212 +150,73 @@ function PlaceholderFooter() {
   );
 }
 
-// ── Mentor availability + waitlist (real scarcity, honest fail-safe) ──────────
-function MentorWaitlist() {
-  const openIntake = MENTOR_INTAKES.find((m) => m.status === "open");
-  const openMonth = openIntake?.label;
-  const [selectedMonth, setSelectedMonth] = useState(openMonth || MENTOR_INTAKES[0]?.label || "");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const formReady = !isPlaceholder(FORM_ENDPOINT);
+// ── Mentorship page ─────────────────────────────────────────────────────────
+// Copy per Mark's Mentorship page amendment schedule (19 Sep 2026): practical,
+// high-touch support; limited numbers explained by the time mentoring takes,
+// never used as the proposition. The dated month-by-month availability grid
+// and waitlist form were removed because nothing drives them live.
 
-  const choose = (month: string, isOpen: boolean) => {
-    setSelectedMonth(month);
-    if (isOpen) track("cta_mentor_enrol", { month });
-    const el = document.getElementById("mentor-waitlist");
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
-  };
+const MENTOR_ROUTES: {
+  key: string; label: string; paras: string[]; suited: string; cadence?: string; pricing: string; cta: string;
+}[] = [
+  {
+    key: "Group Mentorship",
+    label: "Group Mentorship",
+    paras: [
+      "Monthly small-group sessions with engineering business owners and leaders, facilitated by an experienced Academy mentor.",
+      "Sessions are structured around the real commercial, operational and leadership challenges participants are dealing with, including margin, cash flow, contracts, people, systems and growth.",
+      "Groups are kept small, with up to six participants, so there is time to discuss each business properly and learn from the experience of others facing similar challenges.",
+    ],
+    suited: "Best suited to owners and leaders who value regular challenge, shared learning and the perspective that comes from discussing business issues with other engineering-business owners.",
+    pricing: "Contact us for current pricing.",
+    cta: "Enquire About Group Mentorship →",
+  },
+  {
+    key: "1:1 Mentorship",
+    label: "1:1 Mentorship",
+    paras: [
+      "Regular 1:1 sessions with an experienced engineering business leader, focused entirely on your business, priorities and current challenges.",
+      "This can include scaling the business, improving commercial or operational performance, strengthening the leadership team, restructuring, preparing for succession or exit, or working through a specific issue that requires experienced external perspective.",
+      "The agenda is built around what is happening in your business rather than a fixed mentoring programme.",
+    ],
+    suited: "Best suited to owners and senior leaders who want regular confidential support around the decisions and challenges specific to their own business.",
+    cadence: "Typically fortnightly, with the structure agreed around the needs of the business.",
+    pricing: "Pricing agreed according to the mentoring structure and level of support required.",
+    cta: "Enquire About 1:1 Mentorship →",
+  },
+  {
+    key: "Founder Sessions with Mark",
+    label: "Founder Sessions with Mark",
+    paras: [
+      "A limited number of 1:1 sessions are available directly with Mark Poulton, founder of The Engineering Business Academy and CEO of KEYIS Group.",
+      "These sessions are designed for owners and senior leaders working through significant business decisions where Mark's own experience of building, growing and managing engineering businesses can provide useful perspective.",
+      "Typical discussions may include growth strategy, business structure, leadership, commercial performance, building management teams, acquisitions, restructuring, succession and reducing the dependence of the business on the owner.",
+      "Sessions are deliberately limited so Mark can remain actively involved in each business he works with.",
+    ],
+    suited: "Best suited to owners and senior leaders facing significant decisions about the structure, growth or future of the business.",
+    pricing: "Pricing confirmed following an initial discussion about the support required.",
+    cta: "Discuss Founder Mentorship →",
+  },
+];
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email || !name) return;
-    setError("");
-    setLoading(true);
-    try {
-      const res = await fetch(FORM_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          email,
-          interest: "mentorship",
-          month: selectedMonth,
-          ...getStoredUtm(),
-        }),
-      });
-      if (!res.ok) throw new Error(`Request failed (${res.status})`);
-      track("mentor_waitlist_submit", { month: selectedMonth });
-      setSubmitted(true);
-    } catch {
-      setError("Something went wrong. Please try again, or use the contact form.");
-    } finally {
-      setLoading(false);
-    }
-  };
+const MENTOR_WORK_ON = [
+  { title: "Commercial performance", body: "Margin, project performance, commercial controls, contracts, variations and improving visibility across the business." },
+  { title: "Cash & financial control", body: "Cash flow, working capital, forecasting, financial reporting and understanding what is driving business performance." },
+  { title: "Leadership & people", body: "Leadership structure, accountability, recruitment, developing managers and reducing dependence on the owner." },
+  { title: "Systems & operations", body: "Processes, procedures, management information, operational structure and creating more consistent ways of working." },
+  { title: "Growth & strategy", body: "Growth plans, new divisions, acquisitions, market expansion and deciding where the business should focus next." },
+  { title: "Structure, succession & exit", body: "Building the leadership and organisational structure required for the next stage, including preparing the business for succession or eventual exit." },
+];
 
-  const inputStyle: React.CSSProperties = {
-    width: "100%", background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.2)`,
-    padding: "13px 16px", fontFamily: "'Poppins', sans-serif", fontSize: "14px",
-    color: NAVY, outline: "none", boxSizing: "border-box",
-  };
-
-  return (
-    <section style={{ background: OAT, padding: "clamp(48px,9vw,80px) clamp(20px,5vw,40px)" }}>
-      <div style={{ maxWidth: "880px", margin: "0 auto" }}>
-        {/* Honest scarcity line — capacity, not fake history */}
-        <span style={{
-          display: "inline-block", background: RUST, color: "#fff",
-          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px",
-          letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px",
-        }}>Availability</span>
-        <h2 style={{
-          fontFamily: "var(--eba-heading)", fontWeight: 800,
-          fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-          color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
-        }}>
-          Mentorship is deliberately limited.
-        </h2>
-        <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16px", lineHeight: 1.7, maxWidth: "640px", margin: "0 0 40px" }}>
-          So mentors can give real 1:1 time, each cohort is{" "}
-          {isPlaceholder(MENTOR_CAPACITY) ? "kept deliberately small" : `capped at ${MENTOR_CAPACITY}`}.
-          When a month is full, it's full.{openMonth ? ` The next intake is ${openMonth}.` : ""}
-        </p>
-
-        {/* Intake rows */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "56px" }}>
-          {MENTOR_INTAKES.map((intake) => {
-            const isOpen = intake.status === "open";
-            const isFull = intake.status === "full";
-            // Full rows are a dark band (light themes: NAVY; dark skin: a dark panel,
-            // since NAVY flips to light there). Open/soon rows use the card surface.
-            const rowBg = isFull ? NAVY : WHITE;
-            const borderLeft = isOpen
-              ? `3px solid ${RUST}`
-              : isFull
-                ? `3px solid rgba(${RUST_RGB},0.4)`
-                : `3px solid ${OAT}`;
-            const monthColor = isFull ? "#fff" : NAVY;
-            // Until the waitlist endpoint is live we cannot honestly say "now
-            // enrolling" — the open intake presents as the next intake to
-            // register interest in, matching the form's "opening soon" state.
-            const statusText = isOpen
-              ? (formReady ? "Now enrolling — limited places" : "Next intake — register interest")
-              : isFull
-                ? "Fully booked"
-                : "Dates released soon";
-            // Full rows are a solid black band on every theme — force white text
-            // (CREAM_RGB is 0,0,0 in the vivid/light family, which would vanish).
-            const statusColor = isOpen ? RUST : isFull ? "rgba(255,255,255,0.75)" : `rgba(${NAVY_RGB},0.55)`;
-            return (
-              <div key={intake.label} style={{
-                background: rowBg, borderLeft, border: isOpen ? `1px solid ${RUST}` : `1px solid rgba(${NAVY_RGB},0.08)`,
-                padding: "20px 24px", display: "flex", flexWrap: "wrap", alignItems: "center",
-                justifyContent: "space-between", gap: "12px",
-              }}>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-                  {isFull && (
-                    <span style={{ width: "9px", height: "9px", background: RUST, display: "inline-block", flexShrink: 0 }} />
-                  )}
-                  <span style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.15rem", color: monthColor }}>
-                    {intake.label}
-                  </span>
-                  <span style={{
-                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
-                    letterSpacing: "0.06em", textTransform: "uppercase", color: statusColor,
-                  }}>
-                    {statusText}
-                  </span>
-                </div>
-                {isFull ? (
-                  <button onClick={() => choose(intake.label, false)} style={{
-                    background: "transparent", color: "rgba(255,255,255,0.85)", border: "1px solid rgba(255,255,255,0.4)",
-                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
-                    letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
-                  }}>
-                    Join the waitlist →
-                  </button>
-                ) : isOpen ? (
-                  <button onClick={() => choose(intake.label, true)} style={{
-                    background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none",
-                    fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13px",
-                    letterSpacing: "0.04em", padding: "10px 22px", cursor: "pointer",
-                  }}>
-                    {formReady ? "Register for this intake →" : "Register interest →"}
-                  </button>
-                ) : (
-                  <button onClick={() => choose(intake.label, false)} style={{
-                    background: "transparent", color: NAVY, border: `1px solid ${NAVY}`,
-                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
-                    letterSpacing: "0.04em", padding: "8px 16px", cursor: "pointer",
-                  }}>
-                    Register interest →
-                  </button>
-                )}
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Waitlist form */}
-        <div id="mentor-waitlist" style={{ background: DARK_GRADIENT, padding: "40px", maxWidth: "560px", scrollMarginTop: "80px" }}>
-          {!formReady ? (
-            <>
-              <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 12px" }}>
-                Registration opening soon.
-              </h3>
-              <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
-                The mentorship waitlist opens shortly. In the meantime you can reach us via the{" "}
-                <Link href="/contact" style={{ color: RUST }}>contact form</Link>.
-                {/* TODO(eba): set FORM_ENDPOINT in constants.ts to enable the waitlist. */}
-              </p>
-            </>
-          ) : submitted ? (
-            <>
-              <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 12px" }}>
-                You're on the list for {selectedMonth}.
-              </h3>
-              <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.6, margin: 0 }}>
-                We'll be in touch when places open.
-              </p>
-            </>
-          ) : (
-            <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-              <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: ON_DARK, margin: "0 0 4px" }}>
-                Register your interest.
-              </h3>
-              <label style={{ color: `rgba(${CREAM_RGB},0.7)`, fontFamily: "'Poppins', sans-serif", fontSize: "12px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
-                Intake
-              </label>
-              <select value={selectedMonth} onChange={(e) => setSelectedMonth(e.target.value)} style={inputStyle}>
-                {MENTOR_INTAKES.map((m) => (
-                  <option key={m.label} value={m.label}>
-                    {m.label}{m.status === "full" ? " — waitlist" : m.status === "open" ? (formReady ? " — now enrolling" : " — next intake") : " — dates soon"}
-                  </option>
-                ))}
-              </select>
-              <input type="text" placeholder="Your first name" value={name} onChange={(e) => setName(e.target.value)} required style={inputStyle} />
-              <input type="email" placeholder="Your business email" value={email} onChange={(e) => setEmail(e.target.value)} required style={inputStyle} />
-              {error && <p style={{ color: "#FFB162", fontSize: "13px", margin: 0 }} role="alert">{error}</p>}
-              <button type="submit" disabled={loading} style={{
-                background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, border: "none", cursor: loading ? "not-allowed" : "pointer",
-                fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
-                padding: "14px 28px", letterSpacing: "0.04em", opacity: loading ? 0.7 : 1,
-              }}>
-                {loading ? "Sending..." : "Join the waitlist →"}
-              </button>
-            </form>
-          )}
-        </div>
-      </div>
-    </section>
-  );
-}
+const mentorEnquiry = (route?: string) =>
+  route ? `/contact?enquiry=mentorship&tier=${encodeURIComponent(route)}` : "/contact?enquiry=mentorship";
 
 export function MentorshipPage() {
   const isMobile = useIsMobile();
+  const h2: React.CSSProperties = { fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "clamp(1.8rem, 3.4vw, 2.5rem)", letterSpacing: "-0.02em", color: NAVY, margin: "0 0 20px", lineHeight: 1.12 };
+  const body: React.CSSProperties = { color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16.5px", lineHeight: 1.75, margin: "0 0 16px" };
+  const primaryBtn: React.CSSProperties = { background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", padding: "13px 26px", letterSpacing: "0.04em", display: "inline-block" };
+
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.mentorship} />
@@ -346,53 +224,50 @@ export function MentorshipPage() {
       <PlaceholderNav active="/mentorship" />
       <PlaceholderHero
         label="Mentorship"
-        title="Mentorship for engineering business owners."
-        sub="For owners who require more than a structured programme. Group and 1:1 mentorship from senior operators who have run engineering businesses — with a strictly limited number of founder sessions led by Mark Poulton. Places are allocated by application."
+        title="Practical mentorship for engineering business owners and leaders."
+        sub={[
+          "For engineering business owners and leaders who want experienced input on the decisions, challenges and opportunities they are dealing with in the business.",
+          "Choose from small-group mentorship, 1:1 support with an experienced engineering business leader, or a limited number of founder sessions with Mark Poulton.",
+          "The focus is practical: understanding the situation, challenging the thinking where needed and helping you make clearer decisions about what comes next.",
+        ]}
+        ctas={[
+          { label: "Explore Mentorship Options ↓", href: "#mentorship-options", event: "cta_mentor_explore_options" },
+          { label: "Talk to Us About Mentorship →", href: mentorEnquiry(), secondary: true, event: "cta_mentor_talk_hero" },
+        ]}
         portrait={MARK_PHOTO_MENTORSHIP}
         portraitAlt="Mark Poulton leading a group mentorship session"
       />
-      <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+
+      {/* ── Positioning ── */}
+      <section style={{ background: WHITE, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <h2 style={h2}>Sometimes you need more than a lesson.</h2>
+          <p style={body}>The Academy gives you the knowledge, systems and tools. Mentorship gives you the opportunity to apply that thinking directly to your own business.</p>
+          <p style={body}>Sessions can focus on the issues that matter most at the time: margin, cash flow, contracts, people, structure, leadership, growth, operational performance, acquisitions, succession or the wider direction of the business.</p>
+          <p style={{ ...body, margin: 0 }}>There is no fixed script. The value comes from discussing the real situation with someone who understands the decisions engineering business owners have to make.</p>
+        </div>
+      </section>
+
+      {/* ── Mentorship options ── */}
+      <section id="mentorship-options" style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "80px 40px", scrollMarginTop: "80px" }}>
         <AmbientOrbs />
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "20px", marginBottom: "8px" }}>
-            {/* Structure per Mark's review: the standard offer is the mentor
-                team; founder sessions with Mark are the premium, most limited
-                tier — never positioned as the default. */}
-            {[
-              {
-                label: "Group Mentorship",
-                detail: "Monthly sessions with a small, curated cohort of engineering business owners, facilitated by the Academy's mentor team. Structured around shared commercial challenges — pricing, cash flow, contract management, growth — and limited to six participants to ensure substantive discussion.",
-                price: "Pricing on application",
-                img: undefined as string | undefined,
-                imgAlt: "",
-              },
-              {
-                label: "1:1 Mentorship",
-                detail: "Fortnightly sessions working directly with a senior mentor — operators who have run engineering businesses at scale. Suitable for principals at an inflection point: scaling, restructuring, preparing for exit, or navigating a specific commercial or operational challenge. Application-only.",
-                price: "Pricing on application",
-                img: undefined as string | undefined,
-                imgAlt: "",
-              },
-              {
-                label: "Founder Sessions with Mark",
-                detail: "The most limited tier. A small number of sessions each intake, led personally by Mark Poulton — for principals working through the decisions he has made himself: multi-division growth, restructuring, and the hard calls. Allocated by application, strictly capped.",
-                price: "Pricing on application",
-                img: MARK_PHOTO_MENTORSHIP as string | undefined,
-                imgAlt: "Mark Poulton leading a mentorship session",
-              },
-            ].map(({ label, detail, price, img, imgAlt }) => (
-              <div key={label} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "18px", padding: "0", overflow: "hidden", boxShadow: "0 20px 46px -32px rgba(0,0,0,0.26)" }}>
-                {img && <Photo src={img} alt={imgAlt} ratio="16 / 9" radius="0" shadow={false} />}
-                <div style={{ padding: "28px 30px 32px" }}>
-                <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.3rem", color: NAVY, margin: "0 0 14px" }}>
-                  {label}
-                </h3>
-                <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                  {detail}
-                </p>
-                <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "14px" }}>
-                  {price}
-                </span>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: RUST, margin: "0 0 14px" }}>Mentorship options</p>
+          <h2 style={{ ...h2, margin: "0 0 36px" }}>Three ways to work with experienced engineering business leaders.</h2>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "20px" }}>
+            {MENTOR_ROUTES.map(r => (
+              <div key={r.key} style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "18px", overflow: "hidden", boxShadow: "0 20px 46px -32px rgba(0,0,0,0.26)", display: "flex", flexDirection: "column" }}>
+                <div style={{ padding: "28px 30px 32px", display: "flex", flexDirection: "column", flex: 1 }}>
+                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.3rem", color: NAVY, margin: "0 0 14px" }}>{r.label}</h3>
+                  {r.paras.map((p, i) => (
+                    <p key={i} style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.75, margin: "0 0 12px" }}>{p}</p>
+                  ))}
+                  {r.cadence && (
+                    <p style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "14px", lineHeight: 1.75, margin: "0 0 12px" }}><strong style={{ color: NAVY }}>Format:</strong> {r.cadence}</p>
+                  )}
+                  <p style={{ color: `rgba(${NAVY_RGB},0.8)`, fontSize: "13.5px", lineHeight: 1.7, margin: "6px 0 18px", paddingLeft: "14px", borderLeft: `3px solid rgba(${RUST_RGB},0.6)` }}>{r.suited}</p>
+                  <span style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "14px", display: "block", marginBottom: "20px", marginTop: "auto" }}>{r.pricing}</span>
+                  <Link href={mentorEnquiry(r.key)} onClick={() => track("cta_mentor_enquire", { route: r.key })} style={{ ...primaryBtn, textAlign: "center" }}>{r.cta}</Link>
                 </div>
               </div>
             ))}
@@ -421,11 +296,80 @@ export function MentorshipPage() {
           )}
         </div>
       </section>
-      <MentorWaitlist />
+
+      {/* ── Mark's relevant experience ── */}
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "56px 20px" : "84px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: RUST_ON_DARK, margin: "0 0 14px" }}>Founder sessions</p>
+          <h2 style={{ ...h2, color: ON_DARK }}>Experience from inside the business.</h2>
+          {[
+            "Mark's mentoring is based on practical experience rather than business-coaching theory.",
+            "His experience includes building and leading engineering businesses across multiple disciplines and divisions, developing senior leadership teams, expanding into new markets, managing periods of rapid growth and restructuring, and dealing with the commercial and operational pressures that come with scale.",
+            "The purpose of the sessions is not to tell an owner how to run their business. It is to bring another experienced perspective to the decisions they are making.",
+          ].map((p, i, arr) => (
+            <p key={i} style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16.5px", lineHeight: 1.75, margin: i === arr.length - 1 ? 0 : "0 0 16px" }}>{p}</p>
+          ))}
+        </div>
+      </section>
+
+      {/* ── What we can work on ── */}
+      <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "84px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <h2 style={{ ...h2, margin: "0 0 32px" }}>What we can work on together.</h2>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "18px" }}>
+            {MENTOR_WORK_ON.map(w => (
+              <div key={w.title} style={{ background: WHITE, borderTop: `3px solid ${RUST}`, borderRadius: "12px", padding: "24px 24px" }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px", color: NAVY, margin: "0 0 8px" }}>{w.title}</h3>
+                <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.6, margin: 0 }}>{w.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Availability ── no static month grid: nothing drives it live */}
+      <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr", gap: isMobile ? "32px" : "56px", alignItems: "start" }}>
+          <div>
+            <span style={{ display: "inline-block", background: RUST, color: "#fff", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px" }}>Availability</span>
+            <h2 style={h2}>Mentorship availability</h2>
+            <p style={body}>Mentorship numbers are kept intentionally small so each mentor has enough time to understand the businesses and people they are supporting.</p>
+            <p style={{ ...body, margin: 0 }}>Availability varies depending on the mentoring format and mentor capacity.</p>
+          </div>
+          <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "16px", padding: "28px 30px" }}>
+            <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.2rem", color: NAVY, margin: "0 0 10px" }}>Current availability</h3>
+            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.7, margin: "0 0 20px" }}>
+              We accept a limited number of new mentorship clients at any one time. Contact us to check current availability and discuss which format may be most appropriate for you.
+            </p>
+            <Link href={mentorEnquiry()} onClick={() => track("cta_mentor_check_availability")} style={primaryBtn}>Check Mentorship Availability →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Principle ── */}
+      <section style={{ background: WHITE, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <h2 style={h2}>Your business. Your decisions.</h2>
+          <p style={body}>Mentorship is there to challenge thinking, share experience and help you see the situation more clearly.</p>
+          <p style={{ ...body, margin: 0 }}>The decisions remain yours. Good mentorship should help you make those decisions with better information, stronger perspective and greater confidence in the reasoning behind them.</p>
+        </div>
+      </section>
+
+      {/* ── Start a conversation ── replaces the old waitlist form */}
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <h2 style={{ ...h2, color: ON_DARK }}>Talk to us about mentorship.</h2>
+          <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16.5px", lineHeight: 1.75, margin: "0 0 28px" }}>
+            Tell us a little about your business, where you are now and the areas you would like support with. We can then recommend the most appropriate mentoring format and confirm current availability.
+          </p>
+          <Link href={mentorEnquiry()} onClick={() => track("cta_mentor_start_conversation")} style={primaryBtn}>Start a Mentorship Conversation →</Link>
+        </div>
+      </section>
+
       <CtaBanner
-        title="Not sure which route fits your business?"
-        sub="Tell us where you are and what you're trying to solve. We'll point you to the right level — Academy, documents, or mentorship."
-        cta="Talk to us"
+        title="Not sure which option is right for you?"
+        sub="Tell us a little about your business, what you are trying to improve and the support you are looking for. We can help you decide whether the Academy, Document Library, AI Tools or Mentorship is the most appropriate place to start."
+        cta="Talk to Us"
         href="/contact"
         eventName="cta_banner_mentorship"
       />
@@ -587,7 +531,7 @@ export function PricingPage() {
             ))}
           </div>
           <p style={{ textAlign: "center", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
-            The AI tools are priced separately and are not included in Academy membership. Mentorship is application-only and priced on application.
+            The AI tools are priced separately and are not included in Academy membership. Mentorship is arranged separately, with pricing agreed after an initial conversation.
           </p>
         </div>
       </section>

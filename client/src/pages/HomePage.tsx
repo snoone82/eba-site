@@ -181,7 +181,7 @@ const included = [
     body: "Practical procedures, templates and business tools that help turn what you learn into repeatable processes inside your own business." },
   { title: "AI Tools & Agents", access: "Priced separately", href: "/ai-tools", cta: "Explore the AI Tools",
     body: "Practical AI tools designed to save time, improve productivity and help you apply the Academy's knowledge in the day-to-day running of the business." },
-  { title: "Mentoring", access: "Application-only", href: "/mentorship", cta: "Explore Mentoring",
+  { title: "Mentoring", access: "Arranged separately", href: "/mentorship", cta: "Explore Mentoring",
     body: "Direct access to real-world business experience to help you work through challenges, decisions and opportunities within your own engineering business." },
 ];
 
@@ -902,7 +902,7 @@ export default function HomePage() {
               fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
               color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
             }}>
-              380 documents. Built from real practice. Ready to use.
+              380 documents. Built from real practice. Ready to adapt.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
               Every template, form, checklist and procedure an engineering business runs on, in Word and PDF, ready to adapt and deploy. Drawn from decades of real-world industry experience and included with Academy + Documents membership.

@@ -53,7 +53,7 @@ const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(document|library|template|form|register|policy|packs?)\b/i,
     answer: "The Document Library is 380 ready-to-use documents: templates, forms, checklists and procedures in editable Word and PDF formats, drawn from real practice. It's included with Academy + Documents membership, or available on its own." },
   { test: /\b(mentor|mentorship|1:?1|one to one|mark|poulton|coaching)\b/i,
-    answer: "Mentorship is group or 1:1 sessions with the Academy's mentor team, senior operators who have run engineering businesses, plus a strictly limited number of sessions led by Mark Poulton. Application-only, priced on application. The Mentorship page lets you register interest." },
+    answer: "Mentorship is small-group or 1:1 sessions with experienced engineering business leaders, plus a limited number of founder sessions with Mark Poulton. Pricing is agreed after an initial conversation about the support you need. The Mentorship page explains the options and how to start a conversation." },
   { test: /\b(who|suitable|right for|beginner|sole trader|small|electrician|plumb|hvac)\b/i,
     answer: "It's built for owners and leaders of engineering and technical services businesses who want stronger commercial control, better systems, stronger teams and a business ready for its next stage of growth. No prior business training needed." },
   { test: /\b(refund|money ?back|guarantee|cancel)\b/i,
