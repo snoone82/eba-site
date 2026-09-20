@@ -159,6 +159,54 @@ export async function sendGeneratedDocEmail({
   }
 }
 
+export interface SendOmOrderEmailParams {
+  to: string;
+}
+
+/**
+ * Sent after an O&M Manual Compiler purchase (£299 per manual): tells the
+ * customer where to send their project documents. The manual itself is
+ * compiled by the team and returned for review within 24 hours of receipt.
+ * Replies go to OM_INTAKE_EMAIL when set, otherwise the from address.
+ */
+export async function sendOmOrderEmail({ to }: SendOmOrderEmailParams): Promise<SendEmailResult> {
+  const client = getResend();
+  if (!client) return { sent: false, error: "not_configured" };
+
+  const fromAddress = process.env.RESEND_FROM_EMAIL || FROM_FALLBACK;
+  const replyTo = process.env.OM_INTAKE_EMAIL || undefined;
+
+  try {
+    const { error } = await client.emails.send({
+      from: fromAddress,
+      to,
+      ...(replyTo ? { replyTo } : {}),
+      subject: "Your O&M manual order — where to send your documents",
+      html: `
+        <p>Thanks for your order,</p>
+        <p>To compile your O&amp;M manual we need the project information you hold. Reply to this
+        email with the documents attached, or with a link to a shared folder, including as much of
+        the following as you have:</p>
+        <ul>
+          <li>Project details: name, address, client and your company details for the front matter</li>
+          <li>Equipment schedules, data sheets and manufacturer information</li>
+          <li>Maintenance requirements and intervals</li>
+          <li>Commissioning records, test certificates and as-installed drawings</li>
+          <li>Any company template, branding or section structure you need followed</li>
+        </ul>
+        <p>Your manual is returned for review within 24 hours of us receiving the documents. It is
+        a draft: check the content, add anything project-specific and have the appropriate person
+        approve it before it is issued.</p>
+        <p>&mdash; The Engineering Business Academy</p>
+      `,
+    });
+    if (error) return { sent: false, error: error.message };
+    return { sent: true };
+  } catch (err) {
+    return { sent: false, error: err instanceof Error ? err.message : "unknown_error" };
+  }
+}
+
 /** Which generators a purchase unlocks — used by the grant hook to email the right links. */
 export type ToolKey = "toolbox-talk" | "rams" | "coshh";
 

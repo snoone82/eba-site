@@ -395,6 +395,12 @@ button, a[href], input, textarea, select { border-radius: 10px; }
   body::before { animation: none !important; }
   .eba-tilt { transform: none !important; }
   .eba-reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  /* With the marquee stopped, the seamless-loop duplicate would read as a
+     repeated list — hide it and let the single copy wrap instead. */
+  .eba-marquee-dup { display: none !important; }
+  .eba-marquee-track { width: auto !important; flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+  .eba-marquee-track > span { flex-wrap: wrap; justify-content: center; row-gap: 10px; }
+  .eba-marquee-mask { -webkit-mask-image: none; mask-image: none; }
 }
 
 /* ─── Scrollbar ─── */

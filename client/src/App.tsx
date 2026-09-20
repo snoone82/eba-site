@@ -73,6 +73,8 @@ function Router() {
       <Route path={"/mentorship"} component={MentorshipPage} />
       <Route path={"/pricing"} component={PricingPage} />
       <Route path={"/enterprise"} component={EnterprisePage} />
+      {/* Renamed "AI for Companies" (Mark, 20 Sep 2026); /enterprise kept for existing links. */}
+      <Route path={"/ai-for-companies"} component={EnterprisePage} />
       <Route path={"/faq"} component={FAQPage} />
       <Route path={"/privacy-policy"} component={PrivacyPolicyPage} />
       <Route path={"/terms"} component={TermsPage} />

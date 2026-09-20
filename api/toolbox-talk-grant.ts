@@ -29,7 +29,7 @@
  */
 import { json, env, normaliseEmail } from "./_hubspot.mjs";
 import { grantMemberAccess, revokeMemberAccess } from "./_lib/db.js";
-import { sendMemberAccessEmail, sendToolAccessEmail, type ToolKey } from "./_lib/email.js";
+import { sendMemberAccessEmail, sendToolAccessEmail, sendOmOrderEmail, type ToolKey } from "./_lib/email.js";
 
 export const config = { runtime: "edge" };
 
@@ -131,6 +131,14 @@ export default async function handler(req: Request): Promise<Response> {
 
   const offer = pick(payload, OFFER_PATHS);
   const tier = typeof offer === "string" ? offer : undefined;
+
+  // O&M Manual Compiler (£299 per manual) is a compiled-for-you service, not a
+  // generator: no access token, just the "send us your documents" email. The
+  // title check keeps every other offer on the existing grant path.
+  if (/o&m|o&amp;m|manual compiler/i.test(tier ?? "")) {
+    const emailResult = await sendOmOrderEmail({ to: email });
+    return json({ ok: true, event: "purchase", granted: false, service: "om-manual", emailed: emailResult.sent });
+  }
 
   try {
     const token = await grantMemberAccess(email, tier);

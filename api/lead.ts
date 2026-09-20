@@ -41,11 +41,17 @@ export const config = { runtime: "edge" };
  * property is a known unknown; a wrong one becomes a number in a report someone believes.
  */
 const ENQUIRY_TO_INTEREST: Record<string, string> = {
+  // Current /contact dropdown values (Mark's Contact schedule, 20 Sep 2026).
+  // "ai-tools" spans several products, so it is left unmapped like "documents".
   "academy": "academy",
+  "ai-companies": "enterprise",
+  "mentorship": "mentorship",
+  // Legacy values still reachable from old links / cached pages.
   "om-manual": "o_m",
   "chatbot": "co_pilot",
-  "mentorship": "mentorship",
   "white-label": "enterprise",
+  "automation": "enterprise",
+  "pricing": "academy",
 };
 
 /** Cap what we accept. Generous enough for a real enquiry, small enough to be useless for abuse. */

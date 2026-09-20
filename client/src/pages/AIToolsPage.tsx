@@ -10,7 +10,6 @@ import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ToolboxLeadMagnet } from "@/components/ToolboxLeadMagnet";
-import { SectionBreaker } from "@/components/SectionBreaker";
 import { Photo } from "@/components/Photo";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef, type ComponentProps } from "react";
@@ -18,14 +17,13 @@ import {
   ENROL_HREF,
   ENROL_READY,
   ENROL_PENDING_LABEL,
-  STRIPE,
   COMPANY_REG,
   RUST,
   NAVY,
   CREAM,
   OAT,
   AMBER,
-  isPlaceholder, OM_SERVICE_URL, TOOL_PRICE_NOTES, TOOL_CHECKOUT,
+  isPlaceholder, TOOL_PRICE_NOTES, TOOL_CHECKOUT, OM_CHECKOUT_HREF, OM_ENQUIRY_HREF,
   WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
@@ -136,7 +134,7 @@ function OmManualDemo() {
         <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "20px" }}>
           <div style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#28c840", animation: "pulse 2s infinite" }} />
           <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.08em", textTransform: "uppercase", color: "#28c840" }}>
-            Live Tool
+            Available Now
           </span>
         </div>
         <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.1rem", color: NAVY, margin: "0 0 24px" }}>
@@ -169,11 +167,11 @@ function OmManualDemo() {
                   }}>
                     {s.label}
                   </p>
-                  {i === step && (
-                    <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: `rgba(${CREAM_RGB},0.7)`, margin: 0 }}>
-                      {s.detail}
-                    </p>
-                  )}
+                  {/* Every step's description stays visible (Mark's final AI Tools
+                      schedule, item 6); only the emphasis follows the active step. */}
+                  <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: i === step ? `rgba(${CREAM_RGB},0.7)` : `rgba(${NAVY_RGB},0.55)`, margin: 0 }}>
+                    {s.detail}
+                  </p>
                 </div>
               </div>
             </div>
@@ -297,20 +295,25 @@ function ComplianceChatDemo() {
   );
 }
 
-// `checkout` is the single place to wire each tool's Stripe Payment Link (see
-// STRIPE in constants.ts). While it is a TODO placeholder the CTA stays an
-// internal "details & pricing" link; once a real link is set the CTA buys directly.
-const allTools = [
+// Every featured tool carries either a direct checkout or an enquiry route
+// (Mark's final AI Tools schedule, 20 Sep 2026, items 8–9). Nothing links back
+// to this page.
+const allTools: {
+  label: string; title: string; body: string; price: string;
+  checkout?: string; checkoutLabel?: string; enquire?: string; enquireLabel?: string;
+  demo: JSX.Element;
+}[] = [
   {
     label: "O&M MANUAL COMPILER",
     title: "A faster way to compile O&M manuals.",
     body: "Provide the project documents and information and the service brings them together into a structured O&M manual ready for your review. It is designed to reduce the time spent manually compiling equipment information, maintenance requirements, commissioning records and other handover documentation.",
     price: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pricing announced soon" : TOOL_PRICE_NOTES.omManual,
-    status: "live",
-    href: "/ai-tools/om-manual",
-    // O&M flow preference: Kajabi-hosted service flow once set, else the
-    // Stripe Payment Link, else the internal detail page (fail-safe chain).
-    checkout: !isPlaceholder(OM_SERVICE_URL) ? OM_SERVICE_URL : STRIPE.omManual,
+    // Direct Kajabi checkout once the £299 offer is published (OM_OFFER_LIVE in
+    // constants.ts); an honest enquiry route until then.
+    checkout: OM_CHECKOUT_HREF,
+    checkoutLabel: "Order an O&M Manual · £299 →",
+    enquire: OM_ENQUIRY_HREF,
+    enquireLabel: "Enquire About an O&M Manual →",
     demo: <OmManualDemo />,
   },
   {
@@ -318,77 +321,48 @@ const allTools = [
     title: "Your HSEQ information, easier to find and use.",
     body: "The Compliance Co-Pilot is configured around your own HSEQ procedures and documentation. Your team can ask questions and receive responses that reference the relevant source documents, making important information quicker and easier to find. We configure and host the system for you and provide ongoing support as your documentation and requirements develop.",
     price: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Pricing announced soon" : TOOL_PRICE_NOTES.coPilot,
-    status: "live",
-    href: "/ai-tools/compliance-chatbot",
-    // Deliberately NOT click-to-buy. The Co-Pilot is a custom build against the
-    // customer's own document set — it cannot be priced or promised before we
-    // have seen what they have. Selling it up front means refunds or building
-    // at a loss. Enquire → scope on a call → then invoice the setup fee.
-    checkout: "",
-    enquire: "/contact?enquiry=chatbot",
+    // Deliberately NOT click-to-buy: a custom deployment against the customer's
+    // own document set, scoped on a call before anything is invoiced.
+    enquire: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot",
+    enquireLabel: "Enquire About a Compliance Co-Pilot →",
     demo: <ComplianceChatDemo />,
   },
 ];
 
-const comingSoon = [
-  {
-    label: "TENDER ASSISTANT · IN DEVELOPMENT",
-    title: "Smarter support for tender review.",
-    body: "Designed to help review tender requirements, highlight commercial considerations and bring greater structure to bid preparation and pricing decisions. Useful for businesses that want a more consistent approach to reviewing opportunities before committing resources or submitting a price.",
-    price: "Pricing announced at release",
-  },
-];
-
-
-function NotifyMeForm({ toolName }: { toolName: string }) {
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!email) return;
-    setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 800);
+function ToolCta({ tool }: { tool: (typeof allTools)[number] }) {
+  const style: React.CSSProperties = {
+    background: COBALT, color: "#fff", textDecoration: "none",
+    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+    padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
+    transition: "opacity 0.2s",
   };
-
-  if (submitted) {
+  const hover = {
+    onMouseEnter: (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "0.85"),
+    onMouseLeave: (e: React.MouseEvent<HTMLElement>) => (e.currentTarget.style.opacity = "1"),
+  };
+  if (tool.checkout) {
     return (
-      <p style={{ color: COBALT, fontFamily: "'Poppins', sans-serif", fontSize: "12px", fontStyle: "italic", margin: "12px 0 0", display: "flex", alignItems: "center", gap: "6px" }}>
-        <Check size={13} strokeWidth={2.5} style={{ flexShrink: 0 }} /> We'll notify you when {toolName} is live.
-      </p>
+      <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={style} {...hover}
+        onClick={() => track("cta_tool_checkout", { tool: tool.label })}>
+        {tool.checkoutLabel ?? "Buy now →"}
+      </a>
     );
   }
-
-  return (
-    <form onSubmit={handleSubmit} style={{ display: "flex", gap: "8px", marginTop: "16px", flexWrap: "wrap" }}>
-      <input
-        type="email"
-        placeholder="Your email"
-        value={email}
-        onChange={e => setEmail(e.target.value)}
-        required
-        style={{
-          flex: 1, minWidth: "160px", padding: "9px 12px",
-          border: `1px solid rgba(${NAVY_RGB},0.2)`, background: `rgba(${CREAM_RGB},0.6)`,
-          fontFamily: "'Poppins', sans-serif", fontSize: "12px", color: NAVY, outline: "none",
-        }}
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        style={{
-          background: COBALT, color: "#fff", border: "none", cursor: "pointer",
-          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px",
-          padding: "9px 16px", letterSpacing: "0.05em", opacity: loading ? 0.7 : 1,
-          whiteSpace: "nowrap" as const,
-        }}
-      >
-        {loading ? "..." : "Register interest"}
-      </button>
-    </form>
-  );
+  if (tool.enquire) {
+    return (
+      <Link href={tool.enquire} style={style} {...hover}
+        onClick={() => track("cta_tool_enquire", { tool: tool.label })}>
+        {tool.enquireLabel ?? "Enquire →"}
+      </Link>
+    );
+  }
+  return null;
 }
+
+// The "In Development" section (Tender Assistant card + register-interest
+// form) was removed per Mark's final AI Tools schedule (20 Sep 2026): the page
+// lists only products that can be bought or enquired about today. New releases
+// are announced to the database by email, not trailed here.
 
 function AIToolsNav({ scrolled }: { scrolled: boolean }) {
   return (
@@ -509,13 +483,8 @@ export default function AIToolsPage() {
             }}>
               Explore the AI Tools
             </a>
-            <a href="#in-development" style={{
-              background: "transparent", color: ON_DARK, textDecoration: "none",
-              fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
-              padding: "14px 32px", border: `1px solid rgba(${ON_DARK_RGB},0.28)`, display: "inline-block",
-            }}>
-              See What's Coming
-            </a>
+            {/* No "coming soon" / roadmap CTA here — the page shows only what is
+                available today (Mark's final AI Tools schedule, 20 Sep 2026). */}
           </div>
           {/* Evergreen proof points — no per-product statistics here, so the hero
               stays true as new agents are released. */}
@@ -570,7 +539,9 @@ export default function AIToolsPage() {
                 outcome: "Send us your project documents and information and receive a structured O&M manual ready for review within 24 hours. The service brings together equipment information, maintenance requirements, commissioning records and project documentation into one consistent handover document.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
                 review: "You review and approve the final document before issue",
-                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A · CDM 2015 structured", lines: ["Equipment schedules extracted", "Maintenance information compiled", "Commissioning records indexed"], chip: "Returned for review within 24 hours" },
+                checkout: OM_CHECKOUT_HREF, checkoutKey: "om", checkoutLabel: "Order an O&M Manual · £299",
+                enquire: OM_ENQUIRY_HREF, enquireLabel: "Enquire About an O&M Manual",
+                frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A", lines: ["Equipment schedules extracted", "Maintenance information compiled", "Commissioning records indexed"], chip: "Returned for review within 24 hours" },
               },
               {
                 Icon: ShieldCheck, name: "RAMS Generator",
@@ -584,6 +555,7 @@ export default function AIToolsPage() {
                 outcome: "Make your company's HSEQ information easier to find and use. Ask questions against your own procedures and documents and receive responses with references back to the source.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Built for you · priced per deployment" : TOOL_PRICE_NOTES.coPilot,
                 review: "Includes setup, hosting and ongoing support",
+                enquire: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot", enquireLabel: "Enquire About a Compliance Co-Pilot",
                 frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Answers based on your company's documents", "Cited to the source document", "Available to authorised users across the business"], chip: "Cited to source" },
               },
               {
@@ -591,11 +563,12 @@ export default function AIToolsPage() {
                 outcome: "Create a structured COSHH assessment draft from the substance, task and exposure information you provide, ready for competent review before issue.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.coshh,
                 checkout: TOOL_CHECKOUT.coshh, checkoutKey: "coshh", checkoutLabel: "Subscribe to COSHH",
-                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard information structured", "Exposure controls prompted", "Branded PDF ready for review"], chip: "Branded PDF ready for review" },
+                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard information structured", "Exposure controls prompted", "Branded PDF ready for review"] },
               },
-            ].map(({ Icon, name, outcome, note, review, frame, checkout, checkoutKey, checkoutLabel }: {
+            ].map(({ Icon, name, outcome, note, review, frame, checkout, checkoutKey, checkoutLabel, enquire, enquireLabel }: {
               Icon: typeof FileText; name: string; outcome: string; note: string; review?: string;
               frame: ComponentProps<typeof ProductFrame>; checkout?: string; checkoutKey?: string; checkoutLabel?: string;
+              enquire?: string; enquireLabel?: string;
             }) => (
               <div key={name} className="eba-bento-card" style={{
                 background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderRadius: "20px",
@@ -631,6 +604,21 @@ export default function AIToolsPage() {
                     }}>
                     {checkoutLabel ?? "Subscribe"} →
                   </a>
+                )}
+                {/* Enquiry route for tools without a live checkout (Co-Pilot; O&M
+                    until its offer is published) — every card has a next step. */}
+                {!checkout && enquire && (
+                  <Link href={enquire}
+                    onClick={() => track("cta_tool_enquire", { tool: name })}
+                    style={{
+                      marginTop: "16px", display: "block", textAlign: "center",
+                      background: "transparent", color: NAVY, textDecoration: "none",
+                      border: `1px solid rgba(${NAVY_RGB},0.25)`,
+                      fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
+                      padding: "12px 22px", borderRadius: "10px", letterSpacing: "0.02em",
+                    }}>
+                    {enquireLabel ?? "Enquire"} →
+                  </Link>
                 )}
               </div>
             ))}
@@ -706,15 +694,8 @@ export default function AIToolsPage() {
       {/* ── FREE TOOLBOX TALK (lead magnet) ── */}
       <ToolboxLeadMagnet />
 
-      {/* ── SECTION BREAKER ── */}
-      <SectionBreaker
-        kicker="Featured tools"
-        title="See the tools"
-        accent="in practice."
-        variant="dark"
-      />
-
-      {/* ── FEATURED TOOLS WITH DEMOS ── a rotating selection, never "the range" */}
+      {/* ── FEATURED TOOLS WITH DEMOS ── one label, one heading, one supporting
+          line (Mark's final AI Tools schedule, 20 Sep 2026, item 5). */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
@@ -724,10 +705,10 @@ export default function AIToolsPage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px",
             }}>
-              Take a closer look at some of the tools available now.
+              See the tools in practice.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "620px", margin: "0 0 64px" }}>
-              See how some of the tools already available fit into real engineering workflows and the type of output they produce.
+              Take a closer look at some of the tools available now and see how they fit into real engineering workflows and the type of output they produce.
             </p>
           </RevealSection>
 
@@ -761,46 +742,7 @@ export default function AIToolsPage() {
                           AVAILABLE NOW
                         </span>
                       </div>
-                      {"enquire" in tool && tool.enquire ? (
-                        <Link href={tool.enquire} style={{
-                          background: COBALT, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                          transition: "opacity 0.2s",
-                        }}
-                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                          onClick={() => track("cta_tool_enquire", { tool: tool.label })}
-                        >
-                          Enquire About a Compliance Co-Pilot →
-                        </Link>
-                      ) : !isPlaceholder(tool.checkout) ? (
-                        <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
-                          background: COBALT, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                          transition: "opacity 0.2s",
-                        }}
-                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                          onClick={() => track("cta_tool_checkout", { tool: tool.label })}
-                        >
-                          Buy now →
-                        </a>
-                      ) : (
-                        <Link href={tool.href} style={{
-                          background: COBALT, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                          transition: "opacity 0.2s",
-                        }}
-                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                          onClick={() => track("cta_tool_detail", { tool: tool.label })}
-                        >
-                          See full details & pricing →
-                        </Link>
-                      )}
+                      <ToolCta tool={tool} />
                     </div>
                     <div>{tool.demo}</div>
                   </>
@@ -828,46 +770,7 @@ export default function AIToolsPage() {
                           AVAILABLE NOW
                         </span>
                       </div>
-                      {"enquire" in tool && tool.enquire ? (
-                        <Link href={tool.enquire} style={{
-                          background: COBALT, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                          transition: "opacity 0.2s",
-                        }}
-                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                          onClick={() => track("cta_tool_enquire", { tool: tool.label })}
-                        >
-                          Enquire About a Compliance Co-Pilot →
-                        </Link>
-                      ) : !isPlaceholder(tool.checkout) ? (
-                        <a href={tool.checkout} target="_blank" rel="noopener noreferrer" style={{
-                          background: COBALT, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                          transition: "opacity 0.2s",
-                        }}
-                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                          onClick={() => track("cta_tool_checkout", { tool: tool.label })}
-                        >
-                          Buy now →
-                        </a>
-                      ) : (
-                        <Link href={tool.href} style={{
-                          background: COBALT, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
-                          padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",
-                          transition: "opacity 0.2s",
-                        }}
-                          onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
-                          onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
-                          onClick={() => track("cta_tool_detail", { tool: tool.label })}
-                        >
-                          See full details & pricing →
-                        </Link>
-                      )}
+                      <ToolCta tool={tool} />
                     </div>
                   </>
                 )}
@@ -903,66 +806,7 @@ export default function AIToolsPage() {
         </div>
       </section>
 
-      {/* ── IN DEVELOPMENT ── */}
-      <section id="in-development" style={{ background: OAT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
-          <RevealSection>
-            <SectionLabel>In Development</SectionLabel>
-            <h2 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
-              color: NAVY, margin: "0 0 16px",
-            }}>
-              More AI tools and agents are already in development.
-            </h2>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 14px" }}>
-              The tools available today are the first part of a growing AI platform for engineering businesses.
-            </p>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 14px" }}>
-              Further agents are being developed around commercial, operational, project delivery, compliance and administrative workflows, focusing on areas where repetitive work, large volumes of information or manual processes consume valuable time.
-            </p>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "16px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 48px" }}>
-              New tools will be added as they are developed and tested around real engineering business workflows.
-            </p>
-          </RevealSection>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))", gap: "2px" }}>
-            {comingSoon.map((tool, i) => (
-              <RevealSection key={i} style={{ transitionDelay: `${i * 60}ms` }}>
-                <div style={{
-                  background: WHITE, borderTop: `3px solid rgba(${COBALT_RGB},0.35)`,
-                  padding: "28px 28px", opacity: 0.8,
-                }}>
-                  <span style={{
-                    fontFamily: "'Poppins', sans-serif", fontWeight: 600,
-                    fontSize: "10px", letterSpacing: "0.1em", textTransform: "uppercase",
-                    color: `rgba(${NAVY_RGB},0.72)`, display: "block", marginBottom: "12px",
-                  }}>
-                    {tool.label}
-                  </span>
-                  <h4 style={{
-                    fontFamily: "var(--eba-heading)", fontWeight: 700,
-                    fontSize: "1.1rem", color: NAVY, margin: "0 0 10px",
-                  }}>
-                    {tool.title}
-                  </h4>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.6, margin: "0 0 16px" }}>
-                    {tool.body}
-                  </p>
-                  <span style={{
-                    fontFamily: "var(--eba-heading)", fontStyle: "italic",
-                    color: COBALT, fontSize: "13px",
-                  }}>
-                    {tool.price}
-                  </span>
-                  <NotifyMeForm toolName={tool.title} />
-                </div>
-              </RevealSection>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── WHITE LABEL ── */}
+      {/* ── FOR COMPANIES ── */}
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
@@ -1006,7 +850,7 @@ export default function AIToolsPage() {
                     </div>
                   ))}
                 </div>
-                <Link href="/contact" style={{
+                <Link href="/contact?enquiry=ai-companies" style={{
                   background: COBALT, color: "#fff", textDecoration: "none",
                   fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
                   padding: "12px 28px", letterSpacing: "0.04em", display: "inline-block",

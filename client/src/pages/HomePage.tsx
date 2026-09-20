@@ -191,12 +191,12 @@ const curriculum = [
   { n: "01", title: "The Job of the Leader", lessons: 17, body: "Set the direction, define the standards and build a business that relies less on you: goals, values, mentors, leverage and where your time actually goes." },
   { n: "02", title: "Culture & Standards", lessons: 12, body: "Establish the values, standards and communication that shape how your people work, and align the team behind the mission." },
   { n: "03", title: "Leadership & Building Teams", lessons: 15, body: "Plan the structure, find and onboard the right people, develop leaders, run appraisals and 360 reviews, and plan for succession." },
-  { n: "04", title: "Processes, Procedures & Controls", lessons: 8, body: "Build the procedures, playbook and routine controls that make quality repeatable and the business easier to manage." },
+  { n: "04", title: "Processes, Procedures & Other Controls", lessons: 8, body: "Build the procedures, playbook and routine controls that make quality repeatable and the business easier to manage." },
   { n: "05", title: "Sales, Marketing & Growth Discipline", lessons: 8, body: "Understand your sectors and customers, run a disciplined pipeline and CRM, and develop the brand and strategy behind sustainable growth." },
   { n: "06", title: "Commercial Controls", lessons: 10, body: "Understand the commercial principles, processes and controls required to protect margin from estimating through to final account." },
-  { n: "07", title: "Financial Control & Cash Flow", lessons: 11, body: "Payment terms, credit control, cash forecasting, management accounts and the financial disciplines that keep a growing business healthy." },
+  { n: "07", title: "Financial Control & Cash", lessons: 11, body: "Payment terms, credit control, cash forecasting, management accounts and the financial disciplines that keep a growing business healthy." },
   { n: "08", title: "Risk, Protection & Governance", lessons: 8, body: "Identify and manage business risk: cyber security, service and shareholder agreements, articles of association, labour costs and credit insurance." },
-  { n: "09", title: "Business Challenges & Lessons Learned", lessons: 5, body: "Understand why businesses fail, how to respond when customers do, and the lessons from distressed situations, so you can protect your own." },
+  { n: "09", title: "Hard Lessons in Business", lessons: 5, body: "Some of the most valuable business lessons come from difficult periods. This module shares real experience of challenging business situations, what led to them, what was learned and the controls, decisions and warning signs that would be approached differently today." },
   { n: "10", title: "Implementation Toolkit", lessons: 7, body: "Business plans, cash forecasts, audits, board templates and value levers to put the Academy into practice in your own business." },
 ];
 
@@ -208,9 +208,10 @@ const companyPoints = [
   { title: "Reduce dependence on key individuals", body: "Build knowledge deeper into the organisation so that experience, decision-making and responsibility are shared more widely." },
 ];
 
+// Sector badges (Advanced Manufacturing, Healthcare, Clean Energy, Defence)
+// removed per Mark's final Home schedule (20 Sep 2026).
 const credentials = [
   "Decades of real-world industry experience", "UK & International",
-  "Advanced Manufacturing", "Healthcare", "Clean Energy", "Defence",
 ];
 
 function HomeNav({ scrolled }: { scrolled: boolean }) {
@@ -399,7 +400,7 @@ export default function HomePage() {
                 surfaced here because research shows risk-reversal belongs at
                 the point of decision, not buried on a page nobody reaches. */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", marginTop: "22px" }}>
-              {["14-day money-back guarantee", "Lifetime access to the Academy", "Built from real-world engineering business experience"].map(t => (
+              {["Lifetime access to the Academy", "Built from real-world engineering business experience"].map(t => (
                 <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 600, color: "rgba(255,255,255,0.72)" }}>
                   <span style={{ color: RUST_ON_DARK, fontWeight: 800 }}>✓</span> {t}
                 </span>
@@ -427,18 +428,23 @@ export default function HomePage() {
         <div className="eba-marquee-mask" style={{ overflow: "hidden" }}>
           <div className="eba-marquee-track" style={{ display: "flex", alignItems: "center", width: "max-content" }}>
             {[0, 1].map(dup => (
-              /* Sector categories — schedule section 3 (17 Sep 2026). */
-              ["Mechanical & Electrical", "HVAC, Plumbing & Refrigeration", "Fire & Security", "HV, LV & Power", "Facilities & Maintenance", "Controls & Automation", "Renewables & Energy", "Data & Communications", "Industrial & Specialist Engineering Services"].map(sector => (
-                <span key={`${dup}-${sector}`} style={{
-                  display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
-                  fontFamily: "var(--eba-heading)", fontWeight: 800,
-                  fontSize: isMobile ? "1.5rem" : "clamp(1.8rem, 3vw, 2.4rem)",
-                  letterSpacing: "-0.01em", color: NAVY,
-                }}>
-                  <span aria-hidden style={{ color: RUST, margin: isMobile ? "0 18px" : "0 30px", fontWeight: 800 }}>·</span>
-                  {sector}
-                </span>
-              ))
+              /* Sector categories — schedule section 3 (17 Sep 2026). The second
+                 copy exists only to make the loop seamless; it is hidden from
+                 assistive tech and, via .eba-marquee-dup, from anyone whose
+                 browser disables the animation (Mark's final Home schedule, 9). */
+              <span key={dup} className={dup === 1 ? "eba-marquee-dup" : undefined} aria-hidden={dup === 1 || undefined} style={{ display: "flex", alignItems: "center" }}>
+                {["Mechanical & Electrical", "HVAC, Plumbing & Refrigeration", "Fire & Security", "HV, LV & Power", "Facilities & Maintenance", "Controls & Automation", "Renewables & Energy", "Data & Communications", "Industrial & Specialist Engineering Services"].map(sector => (
+                  <span key={`${dup}-${sector}`} style={{
+                    display: "inline-flex", alignItems: "center", whiteSpace: "nowrap",
+                    fontFamily: "var(--eba-heading)", fontWeight: 800,
+                    fontSize: isMobile ? "1.5rem" : "clamp(1.8rem, 3vw, 2.4rem)",
+                    letterSpacing: "-0.01em", color: NAVY,
+                  }}>
+                    <span aria-hidden style={{ color: RUST, margin: isMobile ? "0 18px" : "0 30px", fontWeight: 800 }}>·</span>
+                    {sector}
+                  </span>
+                ))}
+              </span>
             ))}
           </div>
         </div>
@@ -755,7 +761,7 @@ export default function HomePage() {
                 Built from real-world engineering business experience.
               </h2>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                The Academy is based on Mark's experience of building, leading and scaling engineering businesses in the real world. The lessons come from the decisions, challenges, systems and processes involved in growing engineering businesses, including what has worked, what hasn't, and what has been learned along the way.
+                The Academy is based on Mark Poulton's experience of building, leading and scaling engineering businesses in the real world. The lessons come from the decisions, challenges, systems and processes involved in growing engineering businesses, including what has worked, what hasn't, and what has been learned along the way.
               </p>
               <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 24px" }}>
                 Mentoring runs alongside the Academy: direct access to real-world business experience to help you work through challenges, decisions and opportunities within your own engineering business.
@@ -857,14 +863,14 @@ export default function HomePage() {
               }}>
                 Practical AI tools built for engineering businesses
               </h2>
-              {/* Schedule section 12. Tools are priced separately from Academy
-                  membership. The second paragraph names the tools that actually
-                  exist rather than generic capabilities. */}
+              {/* Mark's final Home schedule (20 Sep 2026), section 5: evergreen
+                  copy that does not name individual tools, so the section stays
+                  current as the range grows. */}
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 16px" }}>
-                Use AI to save time, improve productivity and put better business processes into practice. The Academy's AI tools are designed around the real tasks engineering business owners and leaders deal with every day.
+                A growing suite of practical AI tools and agents designed around real engineering business workflows — helping teams reduce repetitive work, access information faster and improve productivity across commercial, operational, compliance and administrative tasks.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 16px" }}>
-                From RAMS, COSHH assessments and toolbox talks to O&M manuals and a compliance co-pilot configured around your own company's documents, the aim is simple: help your people work more efficiently and make better use of the knowledge inside the Academy.
+                Some tools help create or compile documents. Others help teams interrogate information, support processes or automate repetitive administrative work. New tools and agents will continue to be added around the work engineering businesses deal with every day.
               </p>
               <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14.5px", lineHeight: 1.65, margin: "0 0 26px", fontStyle: "italic" }}>
                 AI should make good people more productive, not replace the judgement, experience and accountability required to run an engineering business.
@@ -881,9 +887,9 @@ export default function HomePage() {
               <ProductFrame
                 url="teb-academy.com/ai-tools/om-manual"
                 docTitle="O&M Manual — Section 4: Mechanical Services"
-                docMeta="Project ref · Rev A · CDM 2015 structured"
-                lines={["Equipment schedules extracted", "Maintenance intervals compiled", "Commissioning records indexed"]}
-                chip="Compiled · back in 24h"
+                docMeta="Project ref · Rev A"
+                lines={["Equipment schedules extracted", "Maintenance information compiled", "Commissioning records indexed"]}
+                chip="Returned for review within 24 hours"
               />
             </RevealSection>
           </div>
@@ -902,10 +908,10 @@ export default function HomePage() {
               fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.015em",
               color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
             }}>
-              380 documents. Built from real practice. Ready to adapt.
+              380 documents. Built from real experience. Ready to adapt.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.7, margin: "0 0 26px", maxWidth: "640px" }}>
-              Every template, form, checklist and procedure an engineering business runs on, in Word and PDF, ready to adapt and deploy. Drawn from decades of real-world industry experience and included with Academy + Documents membership.
+              A practical library of editable forms, registers, procedures, templates and business documents developed through real-world engineering operations. Supplied in Word and Excel formats, ready to review and adapt to your own business, and included with Academy + Documents membership.
             </p>
             <Link href="/documents" style={{
               color: RUST, textDecoration: "none",
@@ -976,7 +982,7 @@ export default function HomePage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>
-            Build a stronger business around the engineering.
+            Build a stronger business to enable you to grow.
           </h2>
           <p style={{
             color: `rgba(${ON_DARK_RGB},0.85)`, fontSize: "18px", lineHeight: 1.65,
@@ -1012,7 +1018,7 @@ export default function HomePage() {
             </a>
           </div>
           <div style={{ display: "flex", flexWrap: "wrap", gap: "10px 22px", justifyContent: "center", marginTop: "28px" }}>
-            {["14-day money-back guarantee", "Lifetime access to the Academy"].map(t => (
+            {["Lifetime access to the Academy"].map(t => (
               <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "7px", fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", fontWeight: 600, color: "rgba(255,255,255,0.65)" }}>
                 <span style={{ color: RUST_ON_DARK, fontWeight: 800 }}>✓</span> {t}
               </span>

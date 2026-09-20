@@ -64,24 +64,31 @@ export function TeachingPanel({
       <div style={{ height: "2px", width: "56px", background: ACCENT_GRAD, borderRadius: "2px", marginBottom: "24px" }} />
 
       <div style={{ display: "flex", flexDirection: "column", gap: "18px" }}>
-        {rows.map(r => (
-          <div key={r.label} style={{ display: "flex", gap: "16px", alignItems: "baseline" }}>
-            <span style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 800,
-              fontSize: isMobile ? "1.5rem" : "1.8rem", letterSpacing: "-0.03em",
-              color: accent, minWidth: isMobile ? "68px" : "84px",
-              fontVariantNumeric: "tabular-nums", lineHeight: 1,
-            }}>
-              {r.figure}
-            </span>
-            <span style={{
-              fontFamily: "'Poppins', sans-serif", fontSize: "14.5px",
-              color: muted, lineHeight: 1.5,
-            }}>
-              {r.label}
-            </span>
-          </div>
-        ))}
+        {rows.map(r => {
+          // Long word-figures ("UK + Europe", "Decades") were overflowing into the
+          // label at display size (Mark's Home schedule, 20 Sep). They now set
+          // smaller, keep their own column, and the label takes the remaining width.
+          const longFigure = r.figure.length > 6;
+          return (
+            <div key={r.label} style={{ display: "flex", gap: "16px", alignItems: "baseline" }}>
+              <span style={{
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
+                fontSize: longFigure ? (isMobile ? "1.05rem" : "1.2rem") : (isMobile ? "1.5rem" : "1.8rem"),
+                letterSpacing: longFigure ? "-0.01em" : "-0.03em",
+                color: accent, flex: "0 0 auto", width: isMobile ? "104px" : "124px",
+                fontVariantNumeric: "tabular-nums", lineHeight: 1.15,
+              }}>
+                {r.figure}
+              </span>
+              <span style={{
+                fontFamily: "'Poppins', sans-serif", fontSize: "14.5px",
+                color: muted, lineHeight: 1.5, flex: 1, minWidth: 0,
+              }}>
+                {r.label}
+              </span>
+            </div>
+          );
+        })}
       </div>
 
       {attribution && (

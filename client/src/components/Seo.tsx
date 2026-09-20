@@ -103,9 +103,9 @@ export const PAGE_SEO = {
   },
   // noIndex until Ste supplies real build examples and confirms the copy.
   automation: {
-    title: "Automation & Systems, Built For You | EBA",
+    title: "Automation & Systems for Engineering Businesses | The Engineering Business Academy",
     description:
-      "Dashboards, integrations and internal tools built around how your engineering business actually runs — by the Head of Automation of a working M&E group. Scoped and priced before anything is built.",
+      "Practical dashboards, system integrations, workflow automation and bespoke internal tools built around how engineering and technical services businesses actually work. Scope and price agreed before development begins.",
     path: "/automation",
   },
   mentorship: {
@@ -121,21 +121,21 @@ export const PAGE_SEO = {
     path: "/documents",
   },
   pricing: {
-    title: "Academy Pricing | The Engineering Business Academy",
+    title: "Pricing | The Engineering Business Academy",
     description:
-      "Straightforward access to practical business learning built for engineering businesses. See what's included across the Academy, the document library, the AI tools and mentorship.",
+      "Academy £999, Academy + Documents £1,299, Complete Document Library £399, and AI tools priced individually. Straightforward access to practical business learning built for engineering businesses.",
     path: "/pricing",
   },
   enterprise: {
-    title: "Enterprise — Branded Compliance Assistant, Managed | EBA",
+    title: "AI for Companies — AI & Automation Built Around Your Business | The Engineering Business Academy",
     description:
-      "AI tools configured and deployed around your own documents, procedures and workflows, as a fully managed, branded service for engineering businesses.",
+      "Practical AI, automation and bespoke applications built around your own documents, information, processes and workflows, for engineering businesses, technical services companies and larger organisations.",
     path: "/enterprise",
   },
   contact: {
     title: "Contact The Engineering Business Academy",
     description:
-      "Talk to The Engineering Business Academy about enrolment, the AI tools, mentorship or company deployments for engineering and technical services businesses.",
+      "Questions about the Academy, documents, AI tools and agents, mentorship or a solution for your business. We reply within two working days.",
     path: "/contact",
   },
   faq: {

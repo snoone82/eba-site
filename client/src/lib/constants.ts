@@ -244,6 +244,19 @@ export const KAJABI_CHECKOUT_URL_LIBRARY =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL_LIBRARY ||
   "https://teba.mykajabi.com/offers/zk28233C/checkout";
 
+/**
+ * Kajabi checkout for the O&M Manual Compiler (£299 per manual, one-time).
+ * Offer created as a DRAFT via the Kajabi API on 20 Sep 2026 (MCP-created
+ * offers cannot be published programmatically). Set OM_OFFER_LIVE to true
+ * once Ste has published it in Kajabi admin and attached the purchase
+ * automation (/api/toolbox-talk-grant sends the "where to send your
+ * documents" email). Until then every O&M CTA falls back to an enquiry.
+ */
+export const KAJABI_CHECKOUT_URL_OM =
+  import.meta.env.VITE_KAJABI_CHECKOUT_URL_OM ||
+  "https://teba.mykajabi.com/offers/chfw3LbF/checkout"; // offer 2151402960, DRAFT
+export const OM_OFFER_LIVE = false;
+
 /** Kajabi checkout for the RAMS Generator subscription (£39/mo founder price). */
 export const KAJABI_CHECKOUT_URL_RAMS =
   import.meta.env.VITE_KAJABI_CHECKOUT_URL_RAMS ||
@@ -437,7 +450,7 @@ export const SHOW_SECTOR_INSIGHTS = true;
  * the deployment price (setup + monthly), never a self-serve tool price.
  */
 export const TOOL_PRICE_NOTES = {
-  omManual: "£299 per manual · compiled for you",
+  omManual: "£299 per manual",
   rams: "£39/month · RAMS + COSHH £49/month",
   coPilot: "£499 setup + £149/month",
   coshh: "£29/month · RAMS + COSHH £49/month",
@@ -511,6 +524,13 @@ export const ENROL_DOCS_HREF: string | undefined = !isPlaceholder(KAJABI_CHECKOU
 /** Standalone Document Library (£399): live checkout href, or undefined while not selling. */
 export const LIBRARY_HREF: string | undefined =
   OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL_LIBRARY) ? KAJABI_CHECKOUT_URL_LIBRARY : undefined;
+
+/** O&M Manual Compiler (£299 per manual): live checkout href, or undefined until the offer is published. */
+export const OM_CHECKOUT_HREF: string | undefined =
+  OFFERS_LIVE && OM_OFFER_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL_OM) ? KAJABI_CHECKOUT_URL_OM : undefined;
+
+/** Enquiry fallback for the O&M CTA while no checkout is live. */
+export const OM_ENQUIRY_HREF = "/contact?enquiry=ai-tools&tier=O%26M%20Manual%20Compiler";
 
 /** Tool subscriptions (RAMS / COSHH / bundle): live checkout hrefs, or undefined while not selling. */
 export const TOOL_CHECKOUT = {

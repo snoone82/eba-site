@@ -6,12 +6,14 @@ import { EBALogo } from "@/components/EBALogo";
 import {
   NAVY, CREAM, RUST, OAT, WHITE, COBALT, COBALT_RGB,
   ENROL_HREF, ENROL_READY, ENROL_PENDING_LABEL, PRICING, TOOL_CHECKOUT,
-  ENROL_DOCS_READY, ENROL_DOCS_HREF, LEADERSHIP_TEAM, MARK_PHOTO_MENTORSHIP,
+  ENROL_DOCS_READY, ENROL_DOCS_HREF, LIBRARY_HREF, OM_CHECKOUT_HREF, OM_ENQUIRY_HREF,
+  LEADERSHIP_TEAM, MARK_PHOTO_MENTORSHIP,
   MENTOR_INTAKES, MENTOR_CAPACITY, FORM_ENDPOINT, isPlaceholder,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, RUST_ON_DARK, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
   HERO_GLOW, SECTION_GLOW, SECTION_TINT, ORB_ACCENT,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
+  COBALT_ON_DARK,
 } from "@/lib/constants";
 import { AmbientOrbs } from "@/components/AmbientOrbs";
 import { CtaBanner } from "@/components/CtaBanner";
@@ -241,7 +243,7 @@ export function MentorshipPage() {
       {/* ── Positioning ── */}
       <section style={{ background: WHITE, padding: isMobile ? "56px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
-          <h2 style={h2}>Sometimes you need more than a lesson.</h2>
+          <h2 style={h2}>Apply the learning directly to your own business.</h2>
           <p style={body}>The Academy gives you the knowledge, systems and tools. Mentorship gives you the opportunity to apply that thinking directly to your own business.</p>
           <p style={body}>Sessions can focus on the issues that matter most at the time: margin, cash flow, contracts, people, structure, leadership, growth, operational performance, acquisitions, succession or the wider direction of the business.</p>
           <p style={{ ...body, margin: 0 }}>There is no fixed script. The value comes from discussing the real situation with someone who understands the decisions engineering business owners have to make.</p>
@@ -301,9 +303,9 @@ export function MentorshipPage() {
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "56px 20px" : "84px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: RUST_ON_DARK, margin: "0 0 14px" }}>Founder sessions</p>
-          <h2 style={{ ...h2, color: ON_DARK }}>Experience from inside the business.</h2>
+          <h2 style={{ ...h2, color: ON_DARK }}>Experience from building and leading engineering businesses.</h2>
           {[
-            "Mark's mentoring is based on practical experience rather than business-coaching theory.",
+            "Mark's mentoring draws on practical experience building, leading and growing engineering businesses.",
             "His experience includes building and leading engineering businesses across multiple disciplines and divisions, developing senior leadership teams, expanding into new markets, managing periods of rapid growth and restructuring, and dealing with the commercial and operational pressures that come with scale.",
             "The purpose of the sessions is not to tell an owner how to run their business. It is to bring another experienced perspective to the decisions they are making.",
           ].map((p, i, arr) => (
@@ -327,22 +329,14 @@ export function MentorshipPage() {
         </div>
       </section>
 
-      {/* ── Availability ── no static month grid: nothing drives it live */}
+      {/* ── Availability ── one block, no repeated label/card structure
+          (Mark's final Mentorship schedule, 20 Sep 2026, item 3). */}
       <section style={{ background: OAT, padding: isMobile ? "56px 20px" : "80px 40px" }}>
-        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr", gap: isMobile ? "32px" : "56px", alignItems: "start" }}>
-          <div>
-            <span style={{ display: "inline-block", background: RUST, color: "#fff", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", padding: "5px 14px", marginBottom: "20px" }}>Availability</span>
-            <h2 style={h2}>Mentorship availability</h2>
-            <p style={body}>Mentorship numbers are kept intentionally small so each mentor has enough time to understand the businesses and people they are supporting.</p>
-            <p style={{ ...body, margin: 0 }}>Availability varies depending on the mentoring format and mentor capacity.</p>
-          </div>
-          <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderRadius: "16px", padding: "28px 30px" }}>
-            <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.2rem", color: NAVY, margin: "0 0 10px" }}>Current availability</h3>
-            <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.7, margin: "0 0 20px" }}>
-              We accept a limited number of new mentorship clients at any one time. Contact us to check current availability and discuss which format may be most appropriate for you.
-            </p>
-            <Link href={mentorEnquiry()} onClick={() => track("cta_mentor_check_availability")} style={primaryBtn}>Check Mentorship Availability →</Link>
-          </div>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <h2 style={h2}>Mentorship availability</h2>
+          <p style={body}>Mentorship numbers are kept intentionally small so each mentor has enough time to understand the businesses and people they are supporting.</p>
+          <p style={{ ...body, margin: "0 0 28px" }}>Availability varies depending on the mentoring format and mentor capacity. Contact us to discuss your business, the support you are looking for and current availability.</p>
+          <Link href={mentorEnquiry()} onClick={() => track("cta_mentor_check_availability")} style={primaryBtn}>Check Mentorship Availability →</Link>
         </div>
       </section>
 
@@ -359,56 +353,83 @@ export function MentorshipPage() {
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "56px 20px" : "80px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <h2 style={{ ...h2, color: ON_DARK }}>Talk to us about mentorship.</h2>
+          <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16.5px", lineHeight: 1.75, margin: "0 0 16px" }}>
+            Tell us a little about your business, where you are now and the areas you would like support with. We can then discuss which mentoring format is most appropriate and confirm current availability.
+          </p>
           <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16.5px", lineHeight: 1.75, margin: "0 0 28px" }}>
-            Tell us a little about your business, where you are now and the areas you would like support with. We can then recommend the most appropriate mentoring format and confirm current availability.
+            If mentorship is not the right starting point, we can also help you understand whether the Academy, Document Library or AI Tools may be more appropriate for what you are trying to achieve.
           </p>
           <Link href={mentorEnquiry()} onClick={() => track("cta_mentor_start_conversation")} style={primaryBtn}>Start a Mentorship Conversation →</Link>
         </div>
       </section>
 
-      <CtaBanner
-        title="Not sure which option is right for you?"
-        sub="Tell us a little about your business, what you are trying to improve and the support you are looking for. We can help you decide whether the Academy, Document Library, AI Tools or Mentorship is the most appropriate place to start."
-        cta="Talk to Us"
-        href="/contact"
-        eventName="cta_banner_mentorship"
-      />
+      {/* The separate "Not sure which option is right for you?" banner was
+          folded into the section above (Mark's final Mentorship schedule, item 4). */}
       <PlaceholderFooter />
     </div>
   );
 }
 
-// Tier wording matches the Academy page (Mark's schedule, 19 Sep 2026): no
-// founding-cohort or "rises to" language anywhere.
-const PRICING_TIERS = [
+// Fixed prices shown openly with direct Kajabi checkouts (Mark's final Pricing
+// schedule, 20 Sep 2026). Only bespoke services stay enquiry-led.
+const PRICING_TIERS: {
+  name: string; tag: string; popular: boolean; price: string; priceNote: string;
+  features: string[]; cta: string; href: string | undefined; event: string;
+}[] = [
   {
     name: "The Academy",
     tag: "The full curriculum, for life.",
     popular: false,
     price: PRICING.academyFounding,
+    priceNote: "One-time payment · Lifetime access",
     features: [
-      "Full 100+ lesson curriculum across 10 modules",
-      "Toolbox Talk Generator included",
+      "100+ practical lessons across 10 modules",
+      "Full Toolbox Talk Generator included",
       "Lifetime access",
       "Future curriculum updates included",
     ],
+    cta: `Join the Academy · ${PRICING.academyFounding} →`,
+    href: ENROL_HREF,
+    event: "checkout_click_academy",
   },
   {
     name: "Academy + Documents",
     tag: "The curriculum plus the complete document library.",
     popular: true,
     price: PRICING.academyDocsFounding,
+    priceNote: "One-time payment · Lifetime access",
     features: [
       "Everything in The Academy",
-      "Full 380-document library in editable Word and PDF formats",
-      "Future document additions included",
+      "Complete 380-document library in editable Word and Excel formats",
+      "Future curriculum updates included",
+      "Future document library additions included",
+      "Full Toolbox Talk Generator included",
     ],
+    cta: `Get Academy + Documents · ${PRICING.academyDocsFounding} →`,
+    href: ENROL_DOCS_HREF,
+    event: "checkout_click_academy_docs",
+  },
+  {
+    name: "Complete Document Library",
+    tag: "The full library on its own, without the Academy.",
+    popular: false,
+    price: PRICING.libraryStandalone,
+    priceNote: "One-time payment",
+    features: [
+      "Complete 380-document library",
+      "Commercial, financial, people, HSEQ, technical, subcontractor and operational documents",
+      "Editable Word and Excel formats",
+      "Future document library additions included",
+    ],
+    cta: `Buy the Complete Document Library · ${PRICING.libraryStandalone} →`,
+    href: LIBRARY_HREF,
+    event: "checkout_click_library",
   },
 ];
-// Mentorship remains application-only via /mentorship. Prices read from
-// PRICING in constants.ts (confirmed).
+// Mentorship remains enquiry-led via /mentorship.
 
 export function PricingPage() {
+  const isMobile = useIsMobile();
   const border = `rgba(${NAVY_RGB},0.10)`;
   const sub = `rgba(${NAVY_RGB},0.62)`;
   return (
@@ -417,9 +438,9 @@ export function PricingPage() {
       <MobileNav transparent={false} />
       <PlaceholderNav active="/pricing" />
       <PlaceholderHero
-        label="Academy Pricing"
+        label="Pricing"
         title="Straightforward access to practical business learning built for engineering businesses."
-        sub="Choose the Academy on its own or combine it with the document library for a broader set of practical resources you can use inside the business."
+        sub="Choose the Academy on its own, combine it with the complete document library, purchase the document library separately, or access individual AI tools built around engineering business workflows."
       />
 
       {/* ── TIERS ── */}
@@ -442,15 +463,12 @@ export function PricingPage() {
                 <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>{tier.name}</h3>
                 <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14px", color: sub, margin: "0 0 22px", lineHeight: 1.5 }}>{tier.tag}</p>
                 <div style={{ marginBottom: "22px" }}>
-                  {/* Pricing gated behind enquiry (Mark-approved, 1 Sep 2026) — the
-                      number itself no longer appears on the page. Watch the free
-                      lesson, ask, then we tell you. Do not reintroduce tier.price /
-                      tier.rises here without checking with Mark first. */}
-                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.5rem", color: NAVY, lineHeight: 1.2 }}>
-                    One-time payment
+                  {/* Prices shown openly (Mark's final Pricing schedule, 20 Sep 2026). */}
+                  <div style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "2.4rem", letterSpacing: "-0.02em", color: NAVY, lineHeight: 1.1 }}>
+                    {tier.price}
                   </div>
-                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "4px" }}>
-                    Lifetime access · price confirmed when you enquire
+                  <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "12.5px", color: RUST, fontWeight: 600, marginTop: "6px" }}>
+                    {tier.priceNote}
                   </div>
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "11px", marginBottom: "28px" }}>
@@ -461,16 +479,19 @@ export function PricingPage() {
                     </div>
                   ))}
                 </div>
-                <Link href={`/contact?enquiry=pricing&tier=${encodeURIComponent(tier.name)}`} onClick={() => track("pricing_enquiry_click", { tier: tier.name })} style={{
+                {/* Direct Kajabi checkout; falls back to the pending label if a
+                    checkout URL is ever unset (OFFERS_LIVE / constants.ts). */}
+                <a href={tier.href} target="_blank" rel="noopener noreferrer" aria-disabled={!tier.href || undefined}
+                  onClick={() => track(tier.event, { source: "pricing" })} style={{
                   marginTop: "auto", textAlign: "center",
                   background: tier.popular ? CTA_PRIMARY_BG : "transparent",
-                  color: tier.popular ? "#fff" : NAVY,
+                  color: tier.popular ? CTA_PRIMARY_TEXT : NAVY,
                   border: tier.popular ? "none" : `1px solid rgba(${NAVY_RGB},0.25)`,
                   textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px",
-                  padding: "13px 24px", letterSpacing: "0.03em", display: "block",
+                  padding: "13px 20px", letterSpacing: "0.03em", display: "block",
                 }}>
-                  Enquire about pricing →
-                </Link>
+                  {tier.href ? tier.cta : ENROL_PENDING_LABEL}
+                </a>
               </div>
             ))}
           </div>
@@ -481,17 +502,20 @@ export function PricingPage() {
             <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "clamp(1.5rem, 2.6vw, 2rem)", letterSpacing: "-0.01em", color: NAVY, margin: "0 0 6px" }}>
               AI tools — priced separately.
             </h2>
-            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "560px", lineHeight: 1.6 }}>
-              RAMS and COSHH are monthly subscriptions. The O&M service is compiled for you, per manual. The Compliance Co-Pilot is configured around your business and priced per deployment. None are included in Academy membership, though every Academy enrolment includes the full Toolbox Talk Generator, and a free version lives on the AI Tools page.
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "14.5px", color: `rgba(${NAVY_RGB},0.65)`, margin: "0 0 24px", maxWidth: "620px", lineHeight: 1.6 }}>
+              AI tools and agents are priced separately from Academy membership, with pricing shown against each available tool. Depending on the product, this may be a monthly subscription, one-off purchase, per-use charge or bespoke deployment. Academy membership includes the full Toolbox Talk Generator, with a free version also available on the AI Tools page.
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
-              {[
-                { name: "RAMS Generator", detail: "Monthly subscription. Structured RAMS drafts for competent review.", value: PRICING.ramsMonthly, checkout: TOOL_CHECKOUT.rams, key: "rams" },
-                { name: "COSHH Generator", detail: "Monthly subscription. Structured COSHH assessment drafts for competent review.", value: PRICING.coshhMonthly, checkout: TOOL_CHECKOUT.coshh, key: "coshh" },
-                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription.", value: PRICING.toolsBothMonthly, checkout: TOOL_CHECKOUT.bundle, key: "bundle" },
-                { name: "O&M manual service", detail: "Compiled for you, per manual. Returned for your review within 24 hours.", value: PRICING.omPerManual, checkout: undefined, key: "om" },
-                { name: "Compliance Co-Pilot", detail: "Configured around your own documents, hosted and supported. Includes setup, hosting and ongoing support.", value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly}`, checkout: undefined, key: "copilot" },
-              ].map(({ name, detail, value, checkout, key }, i) => (
+              {([
+                { name: "RAMS Generator", detail: "Monthly subscription. Structured RAMS drafts for competent review.", value: "£39/month", checkout: TOOL_CHECKOUT.rams, checkoutLabel: "Subscribe →", key: "rams" },
+                { name: "COSHH Generator", detail: "Monthly subscription. Structured COSHH assessment drafts for competent review.", value: "£29/month", checkout: TOOL_CHECKOUT.coshh, checkoutLabel: "Subscribe →", key: "coshh" },
+                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription.", value: "£49/month", checkout: TOOL_CHECKOUT.bundle, checkoutLabel: "Subscribe →", key: "bundle" },
+                // O&M: direct checkout once the Kajabi offer is published
+                // (OM_OFFER_LIVE); enquiry route until then, never a dead button.
+                { name: "O&M Manual Compiler", detail: "Compiled for you, per manual. Returned for your review within 24 hours.", value: `${PRICING.omPerManual} per manual`, checkout: OM_CHECKOUT_HREF, checkoutLabel: `Order an O&M Manual · ${PRICING.omPerManual} →`, enquire: OM_ENQUIRY_HREF, enquireLabel: "Enquire About an O&M Manual →", key: "om" },
+                // Enquiry-led by design: configured around the customer's own documents.
+                { name: "Compliance Co-Pilot", detail: "Configured around your own documents, hosted and supported. Includes setup, hosting and ongoing support.", value: `${PRICING.coPilotSetup} setup + £149/month`, checkout: undefined, enquire: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot", enquireLabel: "Enquire About Compliance Co-Pilot →", key: "copilot" },
+              ] as { name: string; detail: string; value: string; checkout?: string; checkoutLabel?: string; enquire?: string; enquireLabel?: string; key: string }[]).map(({ name, detail, value, checkout, checkoutLabel, enquire, enquireLabel, key }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",
                   padding: "18px 24px", borderTop: i > 0 ? `1px solid rgba(${NAVY_RGB},0.08)` : "none",
@@ -504,63 +528,181 @@ export function PricingPage() {
                     <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", color: COBALT, background: `rgba(${COBALT_RGB},0.10)`, padding: "6px 14px", borderRadius: "8px", whiteSpace: "nowrap" }}>
                       {isPlaceholder(value) ? "Pricing announced soon" : value}
                     </span>
-                    {/* Kajabi checkout for the subscriptions only; hidden while OFFERS_LIVE is false. */}
-                    {checkout && (
+                    {/* Direct checkout where one exists; otherwise the enquiry route. */}
+                    {checkout ? (
                       <a href={checkout} target="_blank" rel="noopener noreferrer"
-                        onClick={() => track("cta_tool_subscribe", { tool: key })}
-                        style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13.5px", color: "#fff", background: CTA_PRIMARY_BG, padding: "8px 16px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
-                        Subscribe →
+                        onClick={() => track("cta_tool_checkout", { tool: key, source: "pricing" })}
+                        style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13.5px", color: CTA_PRIMARY_TEXT, background: CTA_PRIMARY_BG, padding: "8px 16px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
+                        {checkoutLabel ?? "Buy →"}
                       </a>
-                    )}
+                    ) : enquire ? (
+                      <Link href={enquire}
+                        onClick={() => track("cta_tool_enquire", { tool: key, source: "pricing" })}
+                        style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "13.5px", color: NAVY, border: `1px solid rgba(${NAVY_RGB},0.25)`, padding: "7px 16px", borderRadius: "8px", textDecoration: "none", whiteSpace: "nowrap" }}>
+                        {enquireLabel ?? "Enquire →"}
+                      </Link>
+                    ) : null}
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Reassurance strip */}
-          <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "14px 28px", marginTop: "40px" }}>
-            {[
-              "Lifetime access to the Academy",
-              "14-day money-back guarantee",
-              "Built for engineering and technical services businesses",
-            ].map(t => (
-              <span key={t} style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Poppins', sans-serif", fontSize: "13.5px", fontWeight: 600, color: `rgba(${NAVY_RGB},0.7)` }}>
-                <span style={{ color: RUST, fontWeight: 800 }}>✓</span> {t}
-              </span>
-            ))}
-          </div>
-          <p style={{ textAlign: "center", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "28px auto 0", lineHeight: 1.6 }}>
-            The AI tools are priced separately and are not included in Academy membership. Mentorship is arranged separately, with pricing agreed after an initial conversation.
+          {/* Benefits strip removed (Mark's final Pricing schedule, item 9). */}
+          <p style={{ textAlign: "center", fontFamily: "'Poppins', sans-serif", fontSize: "13px", color: sub, maxWidth: "620px", margin: "36px auto 0", lineHeight: 1.6 }}>
+            Mentorship is arranged separately, with pricing agreed according to the mentoring format and level of support required.
           </p>
         </div>
       </section>
 
-      {/* ── SECTION BREAKER ── */}
-      <SectionBreaker
-        kicker="Questions about pricing"
-        title="Not sure which level fits?"
-        accent="Talk to us."
-        variant="gradient"
-      />
+      {/* ── FINAL CTA ── */}
+      <section style={{ position: "relative", overflow: "hidden", background: CTA_DARK_BG, padding: isMobile ? "60px 20px" : "96px 40px", textAlign: "center" }}>
+        <div aria-hidden className="eba-aurora" style={{ position: "absolute", inset: 0, background: HERO_GLOW, pointerEvents: "none" }} />
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "760px", margin: "0 auto" }}>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: RUST_ON_DARK, margin: "0 0 18px" }}>
+            · Questions about pricing ·
+          </p>
+          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2.2rem" : "clamp(2.6rem, 5vw, 4rem)", lineHeight: 1.05, letterSpacing: "-0.025em", color: "#fff", margin: "0 0 32px" }}>
+            Not sure which level fits? Talk to us.
+          </h2>
+          <Link href="/contact" onClick={() => track("cta_pricing_talk_to_us")} style={{
+            background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
+            padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
+          }}>
+            Talk to Us About the Right Option →
+          </Link>
+        </div>
+      </section>
 
       <SiteFooter />
     </div>
   );
 }
 
+// ── AI for Companies ────────────────────────────────────────────────────────
+// Rewritten per Mark's final AI for Companies schedule (20 Sep 2026): an
+// available service today, not a future enterprise/licensing proposition.
+// Enquiry-led pricing; no "white-label" as the headline concept.
+
+const COMPANY_AREAS = [
+  { title: "Company knowledge", body: "Make procedures, policies, technical information and internal knowledge easier for people to find and use." },
+  { title: "Commercial workflows", body: "Support tender review, contract information, project documentation, variations, reporting and other repetitive commercial processes." },
+  { title: "Operations & project delivery", body: "Improve the way teams create, process, review and access information across live projects and operational activities." },
+  { title: "Compliance & HSEQ", body: "Build tools around company procedures, risk information, assessments, records and other controlled documentation while keeping competent review with your people." },
+  { title: "Administration", body: "Reduce repetitive data entry, document creation, information handling and routine administrative work." },
+  { title: "Bespoke applications", body: "Develop practical applications and agents around specific workflows where an off-the-shelf product does not meet the requirement." },
+];
+
+const COMPANY_STEPS = [
+  { n: "1", t: "Understand the workflow", d: "We look at the process, information involved and the problem you are trying to solve." },
+  { n: "2", t: "Identify the opportunity", d: "We determine where AI, automation or a bespoke application could improve the way the work is carried out." },
+  { n: "3", t: "Build and test", d: "The solution is developed around your requirements and tested with the people who will actually use it." },
+  { n: "4", t: "Deploy and improve", d: "Once live, the solution can be supported and developed as your requirements evolve." },
+];
+
+const COMPANY_ENQUIRY = "/contact?enquiry=ai-companies";
+
 export function EnterprisePage() {
+  const isMobile = useIsMobile();
+  const h2: React.CSSProperties = { fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "clamp(1.8rem, 3.4vw, 2.5rem)", letterSpacing: "-0.02em", color: NAVY, margin: "0 0 20px", lineHeight: 1.12 };
+  const body: React.CSSProperties = { color: `rgba(${NAVY_RGB},0.75)`, fontSize: "16.5px", lineHeight: 1.75, margin: "0 0 16px" };
+  const kicker: React.CSSProperties = { fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.12em", textTransform: "uppercase", color: COBALT, margin: "0 0 14px" };
+  const primaryBtn: React.CSSProperties = { background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "14px", padding: "13px 26px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px" };
+
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
       <Seo {...PAGE_SEO.enterprise} />
       <MobileNav transparent={false} />
       <PlaceholderNav active="/enterprise" />
       <PlaceholderHero
-        label="Enterprise"
-        title="Deploy EBA across your entire organisation."
-        sub="For engineering services groups, principal contractors, and training providers who want to deploy the Academy curriculum and AI tools at scale. White-label licensing, group access, and managed implementation available."
+        label="AI for Companies"
+        title="AI and automation built around your business."
+        sub={[
+          "For engineering and technical services businesses looking to use AI and automation around their own documents, information, processes and workflows.",
+          "We can work with your team to understand where time is being lost, where information is difficult to access and where repetitive processes could be improved - then develop practical solutions around the way your business actually operates.",
+        ]}
+        ctas={[{ label: "Talk to Us About AI for Your Business →", href: COMPANY_ENQUIRY, event: "cta_companies_hero" }]}
       />
-      <ComingSoonBody message="Enterprise licensing details are being finalised. To discuss group access, white-label deployment, or custom implementation for your organisation, please get in touch." />
+
+      {/* Audience */}
+      <section style={{ background: WHITE, padding: isMobile ? "48px 20px" : "64px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto" }}>
+          <p style={kicker}>Who it is for</p>
+          <p style={{ ...body, margin: 0, fontSize: "18px", color: NAVY }}>
+            Engineering businesses, technical services companies and larger organisations looking to improve productivity through practical AI and automation.
+          </p>
+        </div>
+      </section>
+
+      {/* Where AI and automation can help */}
+      <section style={{ position: "relative", overflow: "hidden", background: SECTION_TINT, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <AmbientOrbs />
+        <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>
+          <h2 style={{ ...h2, margin: "0 0 32px" }}>Where AI and automation can help.</h2>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: "18px" }}>
+            {COMPANY_AREAS.map(a => (
+              <div key={a.title} style={{ background: WHITE, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", padding: "24px 24px" }}>
+                <h3 style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px", color: NAVY, margin: "0 0 8px" }}>{a.title}</h3>
+                <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14.5px", lineHeight: 1.6, margin: 0 }}>{a.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Approach + human oversight */}
+      <section style={{ background: WHITE, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: isMobile ? "40px" : "64px" }}>
+          <div>
+            <p style={kicker}>Our approach</p>
+            <h2 style={h2}>Start with the workflow, not the technology.</h2>
+            <p style={body}>We begin by understanding how the work is currently carried out, where time is being lost and what information or decisions are involved.</p>
+            <p style={body}>From there, we identify where AI, automation or a purpose-built application could genuinely improve the process.</p>
+            <p style={{ ...body, margin: 0 }}>The objective is not to introduce technology for its own sake. It is to reduce repetitive work, make information easier to use and help people work more efficiently.</p>
+          </div>
+          <div>
+            <p style={kicker}>Human oversight</p>
+            <h2 style={h2}>Your people remain in control.</h2>
+            <p style={{ ...body, margin: 0 }}>AI and automation should support people, not remove appropriate responsibility or judgement. Solutions are designed around the business's own controls, with appropriate review and approval remaining with the people responsible for the work.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* How it works */}
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "56px 20px" : "84px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <h2 style={{ ...h2, color: ON_DARK, margin: "0 0 36px" }}>How it works</h2>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(4, 1fr)", gap: isMobile ? "24px" : "28px" }}>
+            {COMPANY_STEPS.map(s => (
+              <div key={s.n} style={{ borderTop: `2px solid ${COBALT_ON_DARK}`, paddingTop: "18px" }}>
+                <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: COBALT_ON_DARK, fontSize: "14px", letterSpacing: "0.08em", margin: "0 0 8px" }}>{s.n}</p>
+                <h3 style={{ color: ON_DARK, fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "17px", margin: "0 0 10px", lineHeight: 1.3 }}>{s.t}</h3>
+                <p style={{ color: `rgba(${CREAM_RGB},0.75)`, fontSize: "15px", lineHeight: 1.65, margin: 0 }}>{s.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Pricing (enquiry-led) + Academy group access */}
+      <section style={{ background: CREAM, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.1fr 0.9fr", gap: isMobile ? "32px" : "48px", alignItems: "start" }}>
+          <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderTop: `3px solid ${COBALT}`, borderRadius: "16px", padding: isMobile ? "26px 24px" : "32px 34px" }}>
+            <p style={kicker}>Pricing</p>
+            <h2 style={{ ...h2, fontSize: "clamp(1.5rem, 2.6vw, 2rem)" }}>Built around the scope of the requirement.</h2>
+            <p style={{ ...body, margin: "0 0 24px" }}>Every business and workflow is different. Pricing depends on the complexity of the solution, the information involved, integrations required and the level of implementation and ongoing support.</p>
+            <Link href={COMPANY_ENQUIRY} onClick={() => track("cta_companies_pricing")} style={primaryBtn}>Discuss Your Requirements →</Link>
+          </div>
+          <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.09)`, borderTop: `3px solid ${RUST}`, borderRadius: "16px", padding: isMobile ? "26px 24px" : "32px 34px" }}>
+            <p style={{ ...kicker, color: RUST }}>The Academy</p>
+            <h2 style={{ ...h2, fontSize: "clamp(1.5rem, 2.6vw, 2rem)" }}>Academy access for teams</h2>
+            <p style={{ ...body, margin: "0 0 24px" }}>Organisations looking to provide The Engineering Business Academy to multiple leaders or team members can also speak to us about group access and organisational requirements.</p>
+            <Link href="/contact?enquiry=academy&tier=Group%20access" onClick={() => track("cta_companies_group_access")} style={{ ...primaryBtn, background: "transparent", color: NAVY, border: `1px solid rgba(${NAVY_RGB},0.25)` }}>Talk to Us About Group Access →</Link>
+          </div>
+        </div>
+      </section>
+
       <PlaceholderFooter />
     </div>
   );

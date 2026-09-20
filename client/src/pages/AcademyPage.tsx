@@ -8,7 +8,6 @@ import { Link } from "wouter";
 import { EBALogo } from "@/components/EBALogo";
 import { MobileNav } from "@/components/MobileNav";
 import { SiteFooter } from "@/components/SiteFooter";
-import { SectionBreaker } from "@/components/SectionBreaker";
 import { useIsMobile } from "@/hooks/useMobile";
 import { useState, useEffect, useRef } from "react";
 import {
@@ -144,7 +143,7 @@ const modules: {
   },
   {
     number: "04",
-    title: "Processes, Procedures & Controls",
+    title: "Processes, Procedures & Other Controls",
     lessons: 8,
     description: "Strong businesses rely on consistent ways of working. This module covers how to build practical processes, procedures and controls that improve consistency, protect quality and reduce reliance on individual knowledge across the business.",
   },
@@ -163,7 +162,7 @@ const modules: {
   },
   {
     number: "07",
-    title: "Financial Control & Cash Flow",
+    title: "Financial Control & Cash",
     lessons: 11,
     description: "Profit and cash are not the same thing. This module covers payment terms, cash flow visibility, working capital and the financial controls required to support growth while maintaining a healthy and resilient business.",
     standoutLessons: ["Why Payment Terms Matter"],
@@ -176,7 +175,7 @@ const modules: {
   },
   {
     number: "09",
-    title: "Business Challenges & Lessons Learned",
+    title: "Hard Lessons in Business",
     lessons: 5,
     description: "Some of the most valuable business lessons come from difficult periods. In this module, Mark shares his experience of a pre-pack administration, what led to it, what he learned from it, and the controls, decisions and warning signs he would approach differently today.",
     standoutLessons: ["What I Learned from a Pre-Pack Administration"],
@@ -331,7 +330,7 @@ export default function AcademyPage() {
         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>
             <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, color: "#fff", fontSize: isMobile ? "1.4rem" : "clamp(1.6rem, 3vw, 2.4rem)", lineHeight: 1.15, letterSpacing: "-0.01em", maxWidth: "620px", margin: 0 }}>
-              Built for the business behind the engineering.
+              Built from the realities of running and growing engineering businesses.
             </p>
           </div>
         </div>
@@ -500,7 +499,8 @@ export default function AcademyPage() {
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel>How It Works</SectionLabel>
+            {/* One "How It Works" only — the duplicate label was removed per
+                Mark's final Academy schedule (20 Sep 2026). */}
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
@@ -529,15 +529,9 @@ export default function AcademyPage() {
         </div>
       </section>
 
-      {/* ── SECTION BREAKER ── */}
-      <SectionBreaker
-        kicker="Academy pricing"
-        title="Choose the level of access"
-        accent="that is right for your business."
-        variant="tint"
-      />
-
-      {/* ── PRICING / CTA ── */}
+      {/* ── PRICING / CTA ── one header block only (Mark's final Academy
+          schedule, 20 Sep 2026: the breaker + repeated "Straightforward
+          access" block were collapsed into this). */}
       <section id="pricing" style={{ background: OAT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <RevealSection>
@@ -547,7 +541,7 @@ export default function AcademyPage() {
               fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
               color: NAVY, margin: "0 0 16px", lineHeight: 1.1,
             }}>
-              Straightforward access to practical business learning built for engineering businesses.
+              Choose the level of access that is right for your business.
             </h2>
             <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "640px", margin: "0 0 56px" }}>
               Choose the Academy on its own or combine it with the document library for a broader set of practical resources you can use inside the business.
@@ -563,7 +557,9 @@ export default function AcademyPage() {
                   popular: false,
                   includes: [
                     "Full 100+ lesson curriculum",
-                    "Toolbox Talk Generator included",
+                    // Members get the unlimited, no-email version (see
+                    // ToolboxTalkPage isMember), so "Full" is accurate.
+                    "Full Toolbox Talk Generator included",
                     "Lifetime access",
                     "Future curriculum updates included",
                   ],
@@ -575,7 +571,7 @@ export default function AcademyPage() {
                   popular: true,
                   includes: [
                     "Everything in The Academy",
-                    "Full 380-document library in editable Word and PDF formats",
+                    "Full 380-document library in editable Word and Excel formats",
                     "Future document additions included",
                   ],
                   cta: "Join the Academy + Documents",

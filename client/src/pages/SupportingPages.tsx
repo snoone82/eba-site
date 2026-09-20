@@ -170,110 +170,125 @@ export function OurStoryPage() {
           <h1 style={{
             fontFamily: "var(--eba-heading)", fontWeight: 900,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
-            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
+            color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "800px",
           }}>
-            Why EBA exists.
+            Why The Engineering Business Academy exists.
           </h1>
-          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "600px" }}>
-            Engineers are taught to build. Nobody teaches them how to run the business around the building — pricing, contracts, cash flow, compliance, people, growth. EBA exists to close that gap.
-          </p>
+          {/* Copy per Mark's final Our Story schedule (20 Sep 2026). No absolute
+              claims ("nobody teaches this", "exactly the business you're running")
+              and no credibility-by-comparison with other coaches or courses. */}
+          {[
+            "Technical expertise is only one part of running a successful engineering business.",
+            "Building the business around the work - commercial control, cash flow, contracts, people, systems, leadership and growth - brings a completely different set of challenges.",
+            "The Engineering Business Academy was created to share practical knowledge, tools and experience developed through actually running and growing engineering businesses.",
+          ].map((p, i, arr) => (
+            <p key={i} style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "640px", margin: i === arr.length - 1 ? 0 : "0 0 14px" }}>
+              {p}
+            </p>
+          ))}
         </div>
       </section>
 
-      {/* 2. The operator's story */}
+      {/* 2. Real-world experience */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.6fr", gap: isMobile ? "40px" : "80px", alignItems: "start" }}>
             <RevealSection>
               <div style={{ position: "relative" }}>
-                {/* Stock portraiture retired 5 Aug. Our Story leads with what he
-                    actually did, not a photograph of someone else. */}
+                {/* Stock portraiture retired 5 Aug. The slot carries the substance
+                    instead. Three headline proof points per Mark (20 Sep 2026); the
+                    pre-pack experience stays in the narrative, not the strip. */}
                 <TeachingPanel
-                  kicker="The operator"
-                  heading="He has actually made these decisions."
+                  kicker="Real-world experience"
+                  heading="Built from experience inside engineering businesses."
+                  attribution="Mark Poulton — Founder, The Engineering Business Academy"
                   rows={[
-                    // Years omitted: the site says both 25 and 15+. Mark to settle.
-                    { figure: "1 → group", label: "Started with a single M&E firm and built it into a multi-division group" },
-                    // £70m removed: it appears only in one meta description, which is too thin a
-                    // source to headline. Restore once Mark confirms the figure.
-                    { figure: "UK + PL", label: "Divisions across the UK and operations in Poland" },
-                    { figure: "1", label: "Pre-pack administration, come back from — the lesson nobody teaches" },
+                    { figure: "1 → Group", label: "From one engineering business to a multi-division group" },
+                    { figure: "UK + Europe", label: "Businesses and operations across the UK and Europe" },
+                    { figure: "Decades", label: "Of practical engineering-business experience" },
                   ]}
                   onDark={false}
                 />
-                <div style={{ position: "absolute", bottom: "16px", left: "16px", zIndex: 2, background: RUST, padding: "12px 18px", borderRadius: "10px" }}>
-                  <p style={{ color: "#fff", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", margin: 0 }}>
-                    Mark Poulton — Founder, Engineering Business Academy
-                  </p>
-                </div>
               </div>
             </RevealSection>
             <RevealSection>
-              <SectionLabel>The operator's story</SectionLabel>
+              <SectionLabel>The founder</SectionLabel>
               <div style={rule} />
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 24px", lineHeight: 1.1,
               }}>
-                He has actually made these decisions.
+                Experience from building and leading engineering businesses.
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  Across decades in the industry, Mark Poulton started with a single M&E firm and built it into a substantial contracting operation.
-                  {/* "Decades" is Mark's confirmed wording (19 Sep 2026, via Ste); it
-                      supersedes the 15-year figure from 1 Sep. No exact number is stated.
-                      TODO(eba): founding year + how the single firm grew — still open. */}
+                  Across decades in the industry, Mark Poulton has built, led and grown engineering businesses from individual operations into a wider multi-division group.
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  He has priced the jobs, signed the contracts, carried payroll, and made the calls that don't appear in any textbook — including rebuilding the group after a pre-pack and coming back stronger.
-                  {/* TODO(eba): the pre-pack and rebuild — Mark has authorised mentioning it; confirm exactly how much detail is public and how he wants it framed before adding specifics here. */}
+                  Along the way, he has dealt first-hand with the realities of running and scaling a business: winning work, pricing projects, negotiating contracts, managing cash and payroll, building leadership teams, launching new divisions, entering new markets and making difficult decisions when circumstances change.
                 </p>
                 <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "16px", lineHeight: 1.8, margin: 0 }}>
-                  This isn't someone who read about your industry. It's someone who has run exactly the business you're running — at every stage you're trying to reach.
+                  That journey has included periods of strong growth as well as significant challenge, restructuring and rebuilding. The lessons from both have shaped the practical thinking, systems and approach behind The Engineering Business Academy.
                 </p>
               </div>
+              <a href="https://uk.linkedin.com/in/mark-poulton-8221772b" target="_blank" rel="noopener noreferrer" onClick={() => track("cta_our_story_linkedin")} style={{
+                display: "inline-block", marginTop: "24px",
+                color: RUST, textDecoration: "none",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${RUST}`, paddingBottom: "2px",
+              }}>
+                View Mark Poulton's LinkedIn profile →
+              </a>
             </RevealSection>
           </div>
         </div>
       </section>
 
-      {/* 3. Why teach it now */}
+      {/* 3. Why create the Academy? */}
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel>Why teach it now</SectionLabel>
+            <SectionLabel>The Academy</SectionLabel>
             <h2 style={{
               fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(1.8rem, 3.5vw, 2.6rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "24px 0 28px", lineHeight: 1.1,
             }}>
-              From operator to academy.
+              Why create the Academy?
             </h2>
-            <p style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "17px", lineHeight: 1.75, margin: 0 }}>
-              The business skills it takes to run a serious engineering business aren't taught anywhere. Mark learned them the hard way, over years of running the company. The Academy is him opening that up, so the next generation of owners and leaders don't have to learn it the same way.
-            </p>
-            {/* TODO(eba): replace or supplement the paragraph above with Mark's own reason in his words — a short pull-quote works well here. */}
+            {[
+              "Much of what owners and leaders need to know about running an engineering business is learned through experience.",
+              "Over the years, Mark built processes, procedures, commercial controls, leadership structures and ways of working to deal with the challenges that came with growing the businesses around him.",
+              "The Engineering Business Academy brings that experience together in one place so other owners and leaders can learn from it, adapt it to their own businesses and make better-informed decisions as they grow.",
+            ].map((p, i, arr) => (
+              <p key={i} style={{ color: `rgba(${CREAM_RGB},0.8)`, fontSize: "17px", lineHeight: 1.75, margin: i === arr.length - 1 ? 0 : "0 0 16px" }}>
+                {p}
+              </p>
+            ))}
           </RevealSection>
         </div>
       </section>
 
       {/* Section breaker */}
       <SectionBreaker
-        kicker="What EBA is"
-        title="Not a course."
-        accent="An operating system."
+        kicker="What we offer"
+        title="More than"
+        accent="the Academy alone."
         variant="tint"
       />
 
-      {/* 4. What EBA is */}
+      {/* 4. What the Academy brings together */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "100px 40px" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto" }}>
           <RevealSection>
-            <SectionLabel>What EBA is</SectionLabel>
+            <SectionLabel>What we offer</SectionLabel>
             <div style={rule} />
+            <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.8, margin: "0 0 16px" }}>
+              The Engineering Business Academy brings together practical business learning, a comprehensive document library, AI tools and agents, and access to mentorship - all developed around the realities of running engineering and technical services businesses, and built for owners and leaders of engineering and technical services businesses.
+            </p>
             <p style={{ color: `rgba(${NAVY_RGB},0.78)`, fontSize: "17px", lineHeight: 1.8, margin: 0 }}>
-              EBA is the thing Mark wishes he'd had: a business academy, AI tools, mentorship and a document library — built for engineering services contractors, from operational experience rather than theory. The academy and the tools carry the knowledge; the mentorship and documents put it to work in your business.
+              The aim is to provide owners and leaders with practical knowledge and resources they can use as they build stronger, better-run businesses.
             </p>
           </RevealSection>
         </div>
@@ -302,7 +317,7 @@ export function OurStoryPage() {
               fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "15px",
               padding: "15px 34px", border: `1px solid rgba(${ON_DARK_RGB},0.6)`, display: "inline-block",
             }}>
-              Explore mentorship →
+              Explore Mentorship →
             </Link>
           </div>
         </RevealSection>
@@ -891,103 +906,38 @@ export function DocumentsPage() {
           {/* Active category */}
           {docCategories.map((cat) => openCategory === cat.id && (
             <div key={cat.id} style={{ animation: "expandIn 0.25s ease-out" }}>
+              {/* Category-pack sales block removed for launch (Mark's final
+                  Documents schedule, 20 Sep 2026): documents are browsable but
+                  only the complete £399 library is sold on its own. */}
               <RevealSection style={{ marginBottom: "40px" }}>
-                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1.5fr 1fr", gap: isMobile ? "32px" : "48px", alignItems: "start" }}>
-                  <div>
-                    <h2 style={{
-                      fontFamily: "var(--eba-heading)", fontWeight: 800,
-                      fontSize: "clamp(1.8rem, 3vw, 2.4rem)", letterSpacing: "-0.02em",
-                      color: NAVY, margin: "0 0 16px",
-                    }}>
-                      {cat.label}
-                    </h2>
-                    {cat.description.map((para, pi) => (
-                      <p key={pi} style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "15px", lineHeight: 1.75, margin: pi === cat.description.length - 1 ? 0 : "0 0 12px" }}>
-                        {para}
-                      </p>
-                    ))}
-                  </div>
-                  <div style={{ background: DARK_GRADIENT, padding: "24px 24px", borderLeft: `3px solid ${RUST}` }}>
-                    <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "11px", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", margin: "0 0 8px" }}>
-                      Complete Pack
+                <div style={{ maxWidth: "820px" }}>
+                  <h2 style={{
+                    fontFamily: "var(--eba-heading)", fontWeight: 800,
+                    fontSize: "clamp(1.8rem, 3vw, 2.4rem)", letterSpacing: "-0.02em",
+                    color: NAVY, margin: "0 0 16px",
+                  }}>
+                    {cat.label}
+                  </h2>
+                  {cat.description.map((para, pi) => (
+                    <p key={pi} style={{ color: `rgba(${NAVY_RGB},0.7)`, fontSize: "15px", lineHeight: 1.75, margin: pi === cat.description.length - 1 ? 0 : "0 0 12px" }}>
+                      {para}
                     </p>
-                    <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: ON_DARK, fontSize: "1.1rem", margin: "0 0 4px" }}>
-                      {BUNDLE_PRICES[cat.id].label}
-                    </p>
-                    {/* Prices gated behind SHOW_DOC_PRICES until confirmed. */}
-                    {SHOW_DOC_PRICES ? (
-                      <>
-                        <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST_ON_DARK, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 6px" }}>
-                          {BUNDLE_PRICES[cat.id].price}
-                        </p>
-                        <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "0 0 16px" }}>
-                          {BUNDLE_PRICES[cat.id].saving}
-                        </p>
-                      </>
-                    ) : (
-                      <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "12px", margin: "0 0 16px" }}>
-                        {cat.availability}
-                      </p>
-                    )}
-                    {/* No pack checkout exists yet, so this is an enquiry, labelled
-                        as one (Mark, section 16). Switch to "Buy the Complete Pack →"
-                        with the checkout URL when it is live. */}
-                    <Link href="/contact?enquiry=documents" onClick={() => track("docs_pack_enquiry", { pack: cat.id })} style={{
-                      background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
-                      fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px",
-                      padding: "9px 18px", letterSpacing: "0.04em", display: "inline-block",
-                    }}>
-                      Enquire About the Complete Pack →
-                    </Link>
-                  </div>
+                  ))}
                 </div>
               </RevealSection>
 
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
                 {cat.docs.map((doc, i) => (
                   <RevealSection key={i} style={{ transitionDelay: `${i * 30}ms` }}>
-                    <div style={{
-                      background: WHITE, borderLeft: `3px solid ${doc.bundle ? RUST : OAT}`,
-                      padding: "20px 24px", display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr auto",
-                      gap: isMobile ? "12px" : "24px", alignItems: "start",
-                    }}>
-                      <div>
-                        <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "6px" }}>
-                          <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1rem", color: NAVY, margin: 0 }}>
-                            {doc.title}
-                          </h4>
-                          {doc.bundle && (
-                            <span style={{
-                              background: `rgba(${RUST_RGB},0.12)`, color: RUST,
-                              fontFamily: "'Poppins', sans-serif", fontWeight: 600,
-                              fontSize: "9px", letterSpacing: "0.1em", textTransform: "uppercase",
-                              padding: "2px 8px",
-                            }}>
-                              Pack
-                            </span>
-                          )}
-                        </div>
-                        <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
-                          {doc.detail}
-                        </p>
-                      </div>
-                      <div style={{ textAlign: "right", flexShrink: 0 }}>
-                        {SHOW_DOC_PRICES && (
-                          <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST, fontSize: "1.1rem", fontWeight: 700, margin: "0 0 8px" }}>
-                            {doc.price}
-                          </p>
-                        )}
-                        {/* Individual documents have no direct checkout yet: label the
-                            button honestly as an enquiry (Mark, section 16). */}
-                        <Link href="/contact?enquiry=documents" onClick={() => track("docs_item_enquiry", { doc: doc.title })} style={{
-                          background: CTA_DARK_BG, color: "#fff", textDecoration: "none",
-                          fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11px",
-                          padding: "7px 14px", letterSpacing: "0.04em", display: "inline-block",
-                          whiteSpace: "nowrap",
-                        }}>
-                          Enquire →
-                        </Link>
-                      </div>
+                    {/* Browse-only rows: no per-document purchase or enquiry
+                        button at launch (Mark's final Documents schedule, item 1). */}
+                    <div style={{ background: WHITE, borderLeft: `3px solid ${OAT}`, padding: "20px 24px" }}>
+                      <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1rem", color: NAVY, margin: "0 0 6px" }}>
+                        {doc.title}
+                      </h4>
+                      <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
+                        {doc.detail}
+                      </p>
                     </div>
                   </RevealSection>
                 ))}
@@ -1006,10 +956,17 @@ export function DocumentsPage() {
                   <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: "0 0 8px" }}>
                     Documents are supplied in editable Microsoft Word and Excel formats so they can be reviewed and adapted to suit your own business. The complete library can be purchased separately or accessed through the Academy + Documents package.
                   </p>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
-                    For company-wide licensing, document packs or bespoke document-development requirements, talk to us about the right option for your business.{" "}
+                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: "0 0 14px" }}>
+                    For company-wide licensing or bespoke document-development requirements, talk to us about the right option for your business.{" "}
                     <Link href="/contact?enquiry=documents" style={{ color: RUST, textDecoration: "none", fontWeight: 600 }}>Contact Us About Documents →</Link>
                   </p>
+                  <a href={LIBRARY_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!LIBRARY_HREF || undefined} onClick={() => track("checkout_click", { source: "documents-category", tier: "library" })} style={{
+                    background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+                    fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12.5px",
+                    padding: "10px 20px", letterSpacing: "0.04em", display: "inline-block",
+                  }}>
+                    {LIBRARY_HREF ? `Buy the Complete Document Library · ${PRICING.libraryStandalone} →` : ENROL_PENDING_LABEL}
+                  </a>
                 </div>
               </RevealSection>
             </div>
@@ -1080,7 +1037,17 @@ export function DocumentsPage() {
 // CONTACT PAGE
 // ─────────────────────────────────────────────
 
-const CONTACT_ENQUIRIES = ["academy", "pricing", "documents", "om-manual", "chatbot", "white-label", "automation", "mentorship", "other"];
+// Broad enquiry categories (Mark's final Contact schedule, 20 Sep 2026) so the
+// form never needs updating when a new AI tool is launched. Legacy values from
+// older links are mapped onto the new set rather than dropped.
+const CONTACT_ENQUIRIES = ["academy", "documents", "ai-tools", "ai-companies", "mentorship", "account", "other"];
+const LEGACY_ENQUIRIES: Record<string, string> = {
+  pricing: "academy",
+  "om-manual": "ai-tools",
+  chatbot: "ai-tools",
+  "white-label": "ai-companies",
+  automation: "ai-companies",
+};
 
 export function ContactPage() {
   // "Request a build" CTAs land here as /contact?enquiry=chatbot etc. — preselect
@@ -1088,16 +1055,17 @@ export function ContactPage() {
   // The pricing gate on /pricing also passes ?tier=... — prefill the message so
   // the enquiry isn't context-free ("which tier?" shouldn't be our first reply).
   const { preselect, prefillMessage } = (() => {
-    if (typeof window === "undefined") return { preselect: "academy", prefillMessage: "" };
+    if (typeof window === "undefined") return { preselect: "other", prefillMessage: "" };
     try {
       const params = new URLSearchParams(window.location.search);
-      const q = params.get("enquiry");
+      const raw = params.get("enquiry") ?? "";
+      const q = LEGACY_ENQUIRIES[raw] ?? raw;
       const tier = params.get("tier");
       return {
-        preselect: q && CONTACT_ENQUIRIES.includes(q) ? q : "academy",
-        prefillMessage: tier ? (q === "mentorship" ? `I'm interested in: ${tier}` : `I'd like pricing for: ${tier}`) : "",
+        preselect: q && CONTACT_ENQUIRIES.includes(q) ? q : "other",
+        prefillMessage: tier ? `I'm interested in: ${tier}` : "",
       };
-    } catch { return { preselect: "academy", prefillMessage: "" }; }
+    } catch { return { preselect: "other", prefillMessage: "" }; }
   })();
   const [form, setForm] = useState({ name: "", email: "", company: "", enquiry: preselect, message: prefillMessage });
   const [submitted, setSubmitted] = useState(false);
@@ -1154,8 +1122,8 @@ export function ContactPage() {
             }}>
               Get in touch.
             </h1>
-            <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "480px" }}>
-              Academy enrolment, document purchases, AI tool enquiries, white-label deployments, and mentorship applications. Use the form below and we will respond within two working days.
+            <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "520px" }}>
+              Whether you have a question about the Academy, documents, AI tools and agents, mentorship or a solution for your business, use the form below and we will get back to you within two working days.
             </p>
           </div>
 
@@ -1167,10 +1135,10 @@ export function ContactPage() {
             backdropFilter: "blur(6px)",
           }}>
             {[
-              { k: "Response time", v: "Within 2 working days" },
-              { k: "The Academy", v: ENROL_READY ? "Enrolling now" : "Opening soon — join the waitlist" },
-              { k: "AI tools", v: "Priced per tool" },
-              { k: "Mentorship", v: "By application · limited places" },
+              { k: "The Academy", v: ENROL_READY ? "Available now" : "Opening soon" },
+              { k: "Documents", v: "Complete library available" },
+              { k: "AI Tools & Agents", v: "Available individually" },
+              { k: "Mentorship", v: "Enquiry-led · limited availability" },
             ].map(({ k, v }, i, arr) => (
               <div key={k} style={{
                 padding: "14px 0",
@@ -1194,9 +1162,7 @@ export function ContactPage() {
                     Enquiry received.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", margin: 0 }}>
-                    {["chatbot", "white-label"].includes(form.enquiry)
-                      ? "We'll be in touch within one working day to scope your build."
-                      : "We will respond within two working days."}
+                    We will get back to you within two working days.
                   </p>
                 </div>
               ) : (
@@ -1218,14 +1184,12 @@ export function ContactPage() {
                   <div>
                     <label style={{ display: "block", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", letterSpacing: "0.08em", textTransform: "uppercase", color: NAVY, marginBottom: "8px" }}>Enquiry type</label>
                     <select value={form.enquiry} onChange={e => setForm(f => ({ ...f, enquiry: e.target.value }))} style={{ ...inputStyle, cursor: "pointer" }} onFocus={e => (e.target.style.borderColor = RUST)} onBlur={e => (e.target.style.borderColor = OAT)}>
-                      <option value="academy">Academy — Enrolment</option>
-                      <option value="pricing">Academy — Pricing Enquiry</option>
-                      <option value="documents">Document Library — Purchase Enquiry</option>
-                      <option value="om-manual">AI Tool — O&M Manual Compiler</option>
-                      <option value="chatbot">AI Tool — Compliance Co-Pilot</option>
-                      <option value="white-label">AI Tool — White-Label Deployment</option>
-                      <option value="automation">Automation &amp; Systems — Bespoke Build</option>
+                      <option value="academy">Academy — General Enquiry</option>
+                      <option value="documents">Document Library — General Enquiry</option>
+                      <option value="ai-tools">AI Tools &amp; Agents — General Enquiry</option>
+                      <option value="ai-companies">AI for Companies / Bespoke Automation</option>
                       <option value="mentorship">Mentorship — Enquiry</option>
+                      <option value="account">Account / Access Support</option>
                       <option value="other">General Enquiry</option>
                     </select>
                   </div>
@@ -1255,17 +1219,23 @@ export function ContactPage() {
             </RevealSection>
 
             <RevealSection>
+              {/* A contact and support page, not an alternative checkout route:
+                  fixed-price products are bought from the product/pricing pages. */}
               <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                {[
-                  { label: "Academy enrolment", detail: "Questions regarding enrolment, the curriculum, pricing, or access. Select Academy in the enquiry type." },
-                  { label: "Document purchases", detail: "Individual documents or complete category packs. We will confirm availability and provide a payment link within two working days." },
-                  { label: "AI tool enquiries", detail: "Demonstrations of the O&M Manual Compiler or Compliance Co-Pilot can be arranged on request. Select the relevant tool." },
-                  { label: "White-label deployments", detail: "For organisations requiring a managed compliance chatbot deployment. Please describe your organisation and approximate document volume." },
-                  { label: "Mentorship enquiries", detail: "Tell us a little about your business, where you are now and the areas you would like support with. We will recommend the most appropriate format and confirm current availability." },
-                ].map(({ label, detail }) => (
+                {([
+                  { label: "The Academy", detail: "Questions about the curriculum, what is included or access after enrolment. Academy pricing is published on the Pricing page, with direct enrolment from there. Select Academy in the enquiry form." , cta: "See Academy Pricing →", href: "/pricing" },
+                  { label: "Document Library", detail: "The complete 380-document library is available to purchase directly from the website. If you have a question about the library, document formats or access after purchase, select Document Library in the enquiry form.", cta: "Explore the Document Library →", href: "/documents" },
+                  { label: "AI Tools & Agents", detail: "Our AI tools and agents are available through the AI Tools section of the website. If you have a question about an available tool, your subscription or how a tool could be used within your business, select AI Tools & Agents in the enquiry form.", cta: "Explore AI Tools →", href: "/ai-tools" },
+                  { label: "AI for Companies & Bespoke Automation", detail: "For businesses looking to use AI or automation around their own documents, information, processes or workflows, tell us a little about what you are trying to improve. We can then discuss the most appropriate approach for your organisation." },
+                  { label: "Mentorship", detail: "Tell us a little about your business, where you are now and the areas where you would like support. We can then discuss the most appropriate mentoring format and confirm current availability." },
+                  { label: "Account & access support", detail: "If you already have an account and need help with access, a purchase or one of your subscriptions, select Account / Access Support in the enquiry form and include the email address associated with your account." },
+                ] as { label: string; detail: string; cta?: string; href?: string }[]).map(({ label, detail, cta, href }) => (
                   <div key={label} style={{ background: WHITE, borderLeft: `3px solid ${OAT}`, padding: "20px 20px" }}>
                     <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, color: NAVY, fontSize: "0.95rem", margin: "0 0 6px" }}>{label}</p>
-                    <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>{detail}</p>
+                    <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: cta ? "0 0 10px" : 0 }}>{detail}</p>
+                    {cta && href && (
+                      <Link href={href} style={{ color: RUST, textDecoration: "none", fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "13px" }}>{cta}</Link>
+                    )}
                   </div>
                 ))}
               </div>
