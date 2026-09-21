@@ -19,7 +19,7 @@ export function VideoEmbed({
   return (
     <div style={{ position: "relative", width: "100%", aspectRatio: ratio, background: "#000", overflow: "hidden" }}>
       <iframe
-        src={`https://fast.wistia.net/embed/iframe/${wistiaId}?seo=true&videoFoam=true`}
+        src={`https://fast.wistia.net/embed/iframe/${wistiaId}?seo=true&videoFoam=true&playerColor=C9982E`}
         title={title}
         allow="autoplay; fullscreen"
         allowFullScreen

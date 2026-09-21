@@ -453,7 +453,7 @@ export const TOOL_PRICE_NOTES = {
   omManual: "£299 per manual",
   rams: "£39/month · RAMS + COSHH £49/month",
   coPilot: "£499 setup + £149/month",
-  coshh: "£29/month · RAMS + COSHH £49/month",
+  coshh: "£29/month · COSHH + RAMS £49/month", // wording per Mark, 20 Sep
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting
