@@ -51,7 +51,7 @@ const KB: { test: RegExp; answer: string }[] = [
   { test: /\b(academy|course|curriculum|module|lesson|learn|programme|program)\b/i,
     answer: "The Academy is 100+ practical lessons across 10 modules covering leadership, culture, teams, processes, sales, commercial controls, cash flow, risk and growth, built from decades of real-world experience building and scaling engineering businesses. CPD accreditation is in progress." },
   { test: /\b(document|library|template|form|register|policy|packs?)\b/i,
-    answer: "The Document Library is 380 ready-to-use documents: templates, forms, checklists and procedures in editable Word and PDF formats, drawn from real practice. It's included with Academy + Documents membership, or available on its own." },
+    answer: "The Document Library is 380 ready-to-use documents: templates, forms, checklists and procedures in editable Word and Excel formats, drawn from real practice. It's included with Academy + Documents membership, or available on its own for £399." },
   { test: /\b(mentor|mentorship|1:?1|one to one|mark|poulton|coaching)\b/i,
     answer: "Mentorship is small-group or 1:1 sessions with experienced engineering business leaders, plus a limited number of founder sessions with Mark Poulton. Pricing is agreed after an initial conversation about the support you need. The Mentorship page explains the options and how to start a conversation." },
   { test: /\b(who|suitable|right for|beginner|sole trader|small|electrician|plumb|hvac)\b/i,

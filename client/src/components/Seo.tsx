@@ -96,9 +96,9 @@ export const PAGE_SEO = {
   // DRAFT page — still contains <Fill> placeholders. Keep noIndex until the
   // copy is final, then delete this comment and remove `noIndex` at the call site.
   aboutSte: {
-    title: "Ste — Head of Automation, KEYIS Group | EBA",
+    title: "Ste — Head of Automation, KEYIS Group | The Engineering Business Academy",
     description:
-      "From health & safety and NEBOSH to building the AI compliance tools EBA sells — built inside a working engineering group before they were ever sold.",
+      "From health & safety and NEBOSH to building the AI compliance tools The Engineering Business Academy sells — built inside a working engineering group before they were ever sold.",
     path: "/about-ste",
   },
   // noIndex until Ste supplies real build examples and confirms the copy.
@@ -145,13 +145,13 @@ export const PAGE_SEO = {
     path: "/faq",
   },
   privacy: {
-    title: "Privacy Policy | EBA",
+    title: "Privacy Policy | The Engineering Business Academy",
     description:
       "How The Engineering Business Academy collects, uses and protects your data. UK GDPR compliant.",
     path: "/privacy-policy",
   },
   terms: {
-    title: "Terms & Conditions | EBA",
+    title: "Terms & Conditions | The Engineering Business Academy",
     description:
       "The terms governing use of The Engineering Business Academy website, programme, AI tools and document library.",
     path: "/terms",
