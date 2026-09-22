@@ -67,6 +67,12 @@ export const PAGE_SEO = {
       "Subscriber tool: generate a draft COSHH assessment structured for completion against the manufacturer's SDS.",
     path: "/coshh-generator",
   },
+  documentsLibrary: {
+    title: "Document Library | The Engineering Business Academy",
+    description:
+      "Subscriber area: browse and download the 380-document library, organised by category with search.",
+    path: "/documents-library",
+  },
   omManual: {
     title: "O&M Manual Compiler — Client-Ready Manuals in 24 Hours",
     description:

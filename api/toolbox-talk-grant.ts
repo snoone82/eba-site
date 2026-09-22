@@ -57,16 +57,32 @@ const AMOUNT_PATHS = [
 const OFFER_PATHS = ["offer_title", "offer.title", "offer_name", "product_title", "data.offer_title"];
 
 /**
- * Which generators an offer unlocks, from its title. The subscription offers
- * are named so this stays a substring check: the bundle title contains both
- * "RAMS" and "COSHH". Anything else (Academy, Academy + Documents) gets the
- * Toolbox Talk Generator, as before.
+ * Which tools/generators an offer unlocks, from its title — a substring check
+ * against each independent axis. Every offer title is brand-prefixed with
+ * "The Engineering Business Academy", so a bare "academy" check would match
+ * everything (including the standalone Document Library) — "library" is
+ * excluded from the Academy-enrolment check for that reason. Current real
+ * offer titles this depends on (site 2148787052, checked 22 Sep 2026):
+ *   "...Academy - Full Academy Access"        → toolbox-talk
+ *   "...Academy + Documents - Full Access"     → toolbox-talk, documents
+ *   "...Academy — Complete Document Library"   → documents only
+ *   "RAMS Generator — Monthly Subscription"    → rams
+ *   "COSHH Generator — Monthly Subscription"   → coshh
+ *   "RAMS + COSHH Bundle — Monthly Subscription" → rams, coshh
+ * Falls back to Toolbox Talk only if an offer title matches none of the
+ * above, so an unrecognised offer still gets *something* rather than silence.
+ *
+ * Fixes a bug where the standalone Document Library purchase fell through to
+ * the Toolbox Talk default and got the "Welcome to the Academy" email despite
+ * not being an Academy member.
  */
 function toolsForOffer(offerTitle: string | undefined): ToolKey[] {
   const t = (offerTitle ?? "").toLowerCase();
   const tools: ToolKey[] = [];
   if (t.includes("rams")) tools.push("rams");
   if (t.includes("coshh")) tools.push("coshh");
+  if (t.includes("document")) tools.push("documents");
+  if (t.includes("academy") && !t.includes("library")) tools.push("toolbox-talk");
   return tools.length ? tools : ["toolbox-talk"];
 }
 

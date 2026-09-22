@@ -23,6 +23,7 @@ import AIToolsPage from "@/pages/AIToolsPage";
 import ToolboxTalkPage from "@/pages/ToolboxTalkPage";
 import { RamsGeneratorPage } from "@/pages/RamsGeneratorPage";
 import { CoshhGeneratorPage } from "@/pages/CoshhGeneratorPage";
+import { DocumentsLibraryPage } from "@/pages/DocumentsLibraryPage";
 import { OurStoryPage, DocumentsPage, ContactPage } from "@/pages/SupportingPages";
 import { MentorshipPage, PricingPage, EnterprisePage, FAQPage } from "@/pages/PlaceholderPages";
 import { PrivacyPolicyPage, TermsPage, CookieConsentBanner } from "@/pages/LegalPages";
@@ -61,6 +62,7 @@ function Router() {
       {/* Subscriber-only generators — noIndex, reached via personal access links. */}
       <Route path={"/rams-generator"} component={RamsGeneratorPage} />
       <Route path={"/coshh-generator"} component={CoshhGeneratorPage} />
+      <Route path={"/documents-library"} component={DocumentsLibraryPage} />
       <Route path={"/our-story"} component={OurStoryPage} />
       {/* About Ste page retired from the customer journey (Ste, 20 Sep 2026):
           the AI proposition is led by the tools, not one individual. The

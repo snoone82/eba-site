@@ -207,13 +207,14 @@ export async function sendOmOrderEmail({ to }: SendOmOrderEmailParams): Promise<
   }
 }
 
-/** Which generators a purchase unlocks — used by the grant hook to email the right links. */
-export type ToolKey = "toolbox-talk" | "rams" | "coshh";
+/** Which generators/tools a purchase unlocks — used by the grant hook to email the right links. */
+export type ToolKey = "toolbox-talk" | "rams" | "coshh" | "documents";
 
 const TOOL_META: Record<ToolKey, { path: string; label: string }> = {
   "toolbox-talk": { path: "/toolbox-talk", label: "Toolbox Talk Generator" },
   rams: { path: "/rams-generator", label: "RAMS Generator" },
   coshh: { path: "/coshh-generator", label: "COSHH Generator" },
+  documents: { path: "/documents-library", label: "Document Library" },
 };
 
 export interface SendToolAccessEmailParams {
