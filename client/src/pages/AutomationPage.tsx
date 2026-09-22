@@ -18,7 +18,7 @@
  * and recurring costs are agreed in the scope, so the page never promises
  * "yours, no ongoing tie".
  *
- * noIndex remains until Ste confirms the page is ready for search.
+ * Indexable since launch (22 Sep 2026): the copy is Mark's final wording.
  */
 
 import { Link } from "wouter";
@@ -108,7 +108,7 @@ export function AutomationPage() {
 
   return (
     <div style={{ fontFamily: "'Poppins', sans-serif", background: CREAM, color: NAVY, overflowX: "hidden" }}>
-      <Seo {...PAGE_SEO.automation} noIndex />
+      <Seo {...PAGE_SEO.automation} />
       <MobileNav transparent={false} />
 
       {/* 1. HERO */}

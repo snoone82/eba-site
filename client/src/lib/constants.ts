@@ -176,7 +176,7 @@ export const FOOTER_STATEMENT = "Practical business education for owners and lea
  * TO GO LIVE: set this to false. That is the whole job — routing, nav and every
  * page are untouched underneath and come straight back.
  */
-export const COMING_SOON = true;
+export const COMING_SOON = false; // LIVE — switched off by Ste, 22 Sep 2026
 
 /** Holding-page kicker. The 17 Aug 2026 launch date passed while the course was
  *  still in production — no date is promised until a real one is confirmed.

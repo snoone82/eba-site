@@ -14,4 +14,6 @@
   <url><loc>https://teb-academy.com/faq</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
   <url><loc>https://teb-academy.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
   <url><loc>https://teb-academy.com/terms</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://teb-academy.com/automation</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://teb-academy.com/toolbox-talk</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
