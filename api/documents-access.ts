@@ -7,7 +7,7 @@
  * rather than a generator form).
  */
 import { getMemberByToken } from "./_lib/db.js";
-import { hasDocumentsEntitlement } from "./_lib/documents.js";
+import { hasDocumentsEntitlement } from "./_lib/documentsShared.js";
 
 export const config = { runtime: "edge" };
 

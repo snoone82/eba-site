@@ -22,6 +22,9 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { getMemberByToken } from "./db.js";
+import { hasDocumentsEntitlement } from "./documentsShared.js";
+
+export { hasDocumentsEntitlement };
 
 export interface DocumentEntry {
   category_slug: string;
@@ -55,12 +58,6 @@ function getCatalogue(): DocumentEntry[] {
     catalogue = JSON.parse(raw) as DocumentEntry[];
   }
   return catalogue;
-}
-
-/** Tier check, same shape as hasToolEntitlement in memberToolHandler.ts. "document" matches both the standalone Document Library and the Academy + Documents bundle. */
-export function hasDocumentsEntitlement(tier: string | null): boolean {
-  if (!tier) return false;
-  return tier.toLowerCase().includes("document");
 }
 
 const MIME_TYPES: Record<string, string> = {
