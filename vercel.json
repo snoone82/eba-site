@@ -40,35 +40,11 @@
       "maxDuration": 60,
       "memory": 2048
     },
-    "api/doc-dl-procedures.ts": {
-      "includeFiles": "api/_documents/procedures/**"
+    "api/doc-dl-1.ts": {
+      "includeFiles": "api/_documents/group-1/**"
     },
-    "api/doc-dl-templates.ts": {
-      "includeFiles": "api/_documents/templates/**"
-    },
-    "api/doc-dl-human-resources.ts": {
-      "includeFiles": "api/_documents/human-resources/**"
-    },
-    "api/doc-dl-health-safety.ts": {
-      "includeFiles": "api/_documents/health-safety/**"
-    },
-    "api/doc-dl-commercial.ts": {
-      "includeFiles": "api/_documents/commercial/**"
-    },
-    "api/doc-dl-technical.ts": {
-      "includeFiles": "api/_documents/technical/**"
-    },
-    "api/doc-dl-manuals.ts": {
-      "includeFiles": "api/_documents/manuals/**"
-    },
-    "api/doc-dl-tenders.ts": {
-      "includeFiles": "api/_documents/tenders/**"
-    },
-    "api/doc-dl-environmental.ts": {
-      "includeFiles": "api/_documents/environmental/**"
-    },
-    "api/doc-dl-subcontracting.ts": {
-      "includeFiles": "api/_documents/subcontracting/**"
+    "api/doc-dl-2.ts": {
+      "includeFiles": "api/_documents/group-2/**"
     }
   }
 }

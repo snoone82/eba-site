@@ -31,6 +31,20 @@ import {
 
 type GateState = "checking" | "no-token" | "invalid" | "wrong-product" | "ready" | "error";
 
+/** category_slug → doc-dl function suffix. Keep in sync with CATEGORY_GROUP in api/_lib/documents.ts. */
+const CATEGORY_TO_FUNCTION: Record<string, string> = {
+  technical: "1",
+  tenders: "1",
+  environmental: "1",
+  procedures: "2",
+  templates: "2",
+  "human-resources": "2",
+  "health-safety": "2",
+  commercial: "2",
+  manuals: "2",
+  subcontracting: "2",
+};
+
 function formatSize(bytes: number): string {
   if (bytes < 1024 * 1024) return `${Math.max(1, Math.round(bytes / 1024))} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
@@ -98,8 +112,12 @@ export function DocumentsLibraryPage() {
     }));
   }, [filtered]);
 
-  const downloadUrl = (d: DocumentEntry) =>
-    `/api/doc-dl-${d.categorySlug}?access=${encodeURIComponent(token ?? "")}&file=${encodeURIComponent(d.relWithinCat)}`;
+  // Category → shipping group → which of the two doc-dl functions serves it.
+  // Keep in sync with CATEGORY_GROUP in api/_lib/documents.ts.
+  const downloadUrl = (d: DocumentEntry) => {
+    const fn = CATEGORY_TO_FUNCTION[d.categorySlug] ?? "1";
+    return `/api/doc-dl-${fn}?access=${encodeURIComponent(token ?? "")}&category=${encodeURIComponent(d.categorySlug)}&file=${encodeURIComponent(d.relWithinCat)}`;
+  };
 
   const panel: React.CSSProperties = {
     background: WHITE,
