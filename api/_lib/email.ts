@@ -246,20 +246,33 @@ export async function sendToolAccessEmail({
     .join("");
   const plural = tools.length > 1;
 
+  // Tool-appropriate caveats: RAMS/COSHH/Toolbox Talk are AI-drafted on demand;
+  // the Document Library is pre-made templates. Neither line fits the other
+  // product, so only include the ones that apply to what's actually in `tools`.
+  const hasGenerated = tools.some((t) => t === "rams" || t === "coshh" || t === "toolbox-talk");
+  const hasDocuments = tools.includes("documents");
+  const caveats = [
+    hasGenerated &&
+      "<p>Every generated document must be reviewed and signed off by a competent person before use on site.</p>",
+    hasDocuments &&
+      "<p>The documents in the library are templates &mdash; review and adapt them to your business, and have a competent person check anything safety-related before use.</p>",
+  ]
+    .filter(Boolean)
+    .join("\n        ");
+
   try {
     const { error } = await client.emails.send({
       from: fromAddress,
       to,
-      subject: plural ? "Your generator access links" : `Your ${TOOL_META[tools[0]].label} access link`,
+      subject: plural ? "Your access links" : `Your ${TOOL_META[tools[0]].label} access link`,
       html: `
-        <p>Thanks for subscribing,</p>
+        <p>Thanks for your purchase,</p>
         <p>Here ${plural ? "are your personal links" : "is your personal link"} &mdash; no login
         needed, ${plural ? "they work" : "it works"} every time:</p>
         <ul>${items}</ul>
         <p>Bookmark ${plural ? "them" : "it"}. ${plural ? "They're" : "It's"} personal to you;
-        if you cancel, the link${plural ? "s" : ""} stop${plural ? "" : "s"} working.</p>
-        <p>Every generated document must be reviewed and signed off by a competent person
-        before use on site.</p>
+        if this purchase is ever cancelled or refunded, the link${plural ? "s" : ""} stop${plural ? "" : "s"} working.</p>
+        ${caveats}
         <p>&mdash; The Engineering Business Academy</p>
       `,
     });
