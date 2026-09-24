@@ -23,7 +23,7 @@
 - [x] **Free ($0) offer confirmed intentional** — "The Engineering Business
       Academy - limited access" (2151374092) is deliberately live, for staff
       testing. Leave as is, nothing to do.
-- [ ] **Delete the 10 orphaned Kajabi Digital Download "collections"** —
-      leftover from before discovering `create_download` makes standalone
-      products, not sub-folders. No delete tool available — Kajabi admin
-      only, no rush.
+- [x] **10 orphaned Kajabi Digital Download "collections"** — checked 24 Sep,
+      they're already gone. Kajabi's product list shows only 3 products
+      total (Course, free staff-testing tier, the one real Document
+      Library) — nothing left to delete.
