@@ -18,6 +18,7 @@
  * Health check, writes nothing:
  *   GET /api/kajabi-purchase?secret=…    reports both endpoints' config readiness
  */
+import { env } from "./_hubspot.mjs";
 import grantHandler from "./toolbox-talk-grant.js";
 import hubspotHandler from "./kajabi-webhook.js";
 
@@ -37,6 +38,18 @@ async function summarise(label: string, res: Response) {
 }
 
 export default async function handler(req: Request): Promise<Response> {
+  // Kajabi (and most webhook UIs) send a HEAD request to check the URL is
+  // reachable when you save it — no body, so there's nothing to relay to
+  // either sub-handler. Answer it directly and fast, same secret check as
+  // everything else, empty body (HEAD responses carry no body by convention).
+  if (req.method === "HEAD") {
+    const url = new URL(req.url);
+    const secret = env("KAJABI_WEBHOOK_SECRET");
+    const supplied = url.searchParams.get("secret");
+    const status = !secret ? 501 : supplied !== secret ? 401 : 200;
+    return new Response(null, { status });
+  }
+
   if (req.method !== "GET" && req.method !== "POST") {
     return json({ error: "method_not_allowed" }, 405);
   }

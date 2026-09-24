@@ -97,6 +97,10 @@ export default async function handler(req: Request): Promise<Response> {
   const supplied = req.headers.get("x-teba-secret") ?? url.searchParams.get("secret");
   if (supplied !== secret) return json({ error: "unauthorised" }, 401);
 
+  // Kajabi sends a HEAD request to check the URL is reachable when a webhook
+  // is saved — answer it directly, no body, secret already verified above.
+  if (req.method === "HEAD") return new Response(null, { status: 200 });
+
   // ── Health check ───────────────────────────────────────────────────────────
   if (req.method === "GET") {
     return json({
