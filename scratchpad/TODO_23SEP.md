@@ -20,10 +20,9 @@
       still unused TODO placeholders). Needs the Stripe connector authorised
       in claude.ai connector settings first. Not started — deprioritised
       behind the Kajabi fix, which was done first per Ste's choice.
-- [ ] **Decide on the free ($0) offer** — "The Engineering Business Academy -
-      limited access" (2151374092) is live and grants product access.
-      Confirm this is an intentional free preview tier, or close it if not.
-      Not yet answered.
+- [x] **Free ($0) offer confirmed intentional** — "The Engineering Business
+      Academy - limited access" (2151374092) is deliberately live, for staff
+      testing. Leave as is, nothing to do.
 - [ ] **Delete the 10 orphaned Kajabi Digital Download "collections"** —
       leftover from before discovering `create_download` makes standalone
       products, not sub-folders. No delete tool available — Kajabi admin
