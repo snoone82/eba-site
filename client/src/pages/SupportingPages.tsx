@@ -337,447 +337,113 @@ export function OurStoryPage() {
 // starting points developed from real engineering-business experience, never
 // "compliant", "ready to issue" or "suitable for all". Counts to be verified
 // before launch (Mark's note, section 7).
+// Real document catalogue derived from the uploaded library. Structure and
+// wording per Mark/Duane's "Documents Page & Checkout - Final Amendments"
+// brief (24 Sep 2026): the website mirrors the actual customer library —
+// 380 files in these 10 folders, in this order. No per-folder document
+// counts shown (the library is intentionally uneven by category). No
+// individual-document or category-pack purchase routes — the complete
+// £399 library (or Academy + Documents) is the only document-only route.
 type DocCategory = {
-  id: string; label: string; count: number; highlight: string;
-  description: string[]; availability: string;
-  note: { title: string; body: string };
-  docs: { title: string; detail: string; price: string; bundle?: boolean }[];
+  id: string; label: string;
+  description: string[];
 };
 const docCategories: DocCategory[] = [
   {
-    id: "hs",
-    label: "Health, Safety & Environmental",
-    count: 68,
-    highlight: "68 documents",
+    id: "procedures",
+    label: "Procedures",
     description: [
-      "A practical library of health, safety and environmental forms, permits, checklists, registers and supporting documents developed through real engineering operations.",
-      "The documents provide a strong starting point for building consistent HSEQ processes within your business and can be edited to suit your activities, clients, projects and management systems.",
-      "All health, safety and compliance documents should be reviewed and adapted by a competent person before use.",
+      "A comprehensive procedure framework covering the key functions involved in running and controlling an engineering business.",
+      "The procedures cover quality and document control, sales and marketing, estimating and purchasing, design and project management, high-voltage electrical work, manufacturing, commercial and accounting controls, environmental and health & safety, human resources and training, subcontractors and equipment, IT and cyber security, software and digital systems, customer complaints and accreditations.",
+      "They are designed to help businesses create clearer responsibilities, greater consistency and more structured ways of working.",
     ],
-    availability: "Available as a complete document pack.",
-    note: {
-      title: "Built to support consistent HSEQ processes.",
-      body: "These documents provide practical structures for recording and managing health, safety and environmental information. They should be reviewed and adapted to the particular business, activity, project and applicable requirements before use.",
-    },
-    docs: [
-      {
-        title: "Permits to Work — Full Suite (11 permits)",
-        detail: "A suite of editable permit templates covering hot works, ladders, excavation, confined spaces, general works, electrical activities, sanction to test, limitation of access, isolation of supply, energisation and work at height. Designed to provide a structured starting point that can be adapted to your own procedures, projects and risk controls.",
-        price: "£45",
-        bundle: true,
-      },
-      {
-        title: "Risk Assessment Template",
-        detail: "Structured risk assessment template designed for engineering installation, service and maintenance activities. Includes hazard identification, likelihood and severity assessment, control measures and responsibility fields. Designed to be adapted to the specific task, environment and risks involved.",
-        price: "£15",
-      },
-      {
-        title: "Method Statement Template",
-        detail: "Structured method statement template covering scope, sequence of operations, plant and equipment, PPE, emergency arrangements, responsibilities and sign-off. Designed to help engineering teams prepare consistent project-specific method statements for review and submission.",
-        price: "£15",
-      },
-      {
-        title: "Small Works Method Statement & Risk Assessment",
-        detail: "Combined risk assessment and method statement template designed for smaller engineering works where a concise document is appropriate. Provides a structured way to capture the task, hazards, controls, working method and responsibilities without unnecessary complexity.",
-        price: "£12",
-      },
-      {
-        title: "COSHH Assessment & Inventory",
-        detail: "COSHH assessment template and accompanying substance inventory register covering hazard information, exposure routes, control measures and emergency arrangements. Designed to support consistent recording and management of substances used across engineering and technical services activities.",
-        price: "£18",
-      },
-      {
-        title: "Site Health & Safety Monitoring Pack (20 checklists)",
-        detail: "A practical suite of site-monitoring checklists covering areas including electrical safety, fire and emergency arrangements, vibration, hot works, housekeeping, manual handling, RAMS, roof works, access, towers, welfare, inductions, confined spaces, work equipment and MEWPs. Designed to support structured site inspections and consistent recording by supervisors, managers and HSEQ teams.",
-        price: "£55",
-        bundle: true,
-      },
-      {
-        title: "Subcontractor RAMS Review Form",
-        detail: "Structured form for reviewing subcontractor risk assessments and method statements before work begins. Includes document references, review prompts, competency considerations, actions and sign-off fields.",
-        price: "£12",
-      },
-      {
-        title: "Monthly Health & Safety Report",
-        detail: "Monthly H&S reporting template covering incidents, near misses, inspections, training, actions and other key safety information. Designed to provide management teams with a consistent overview of health and safety performance and outstanding actions.",
-        price: "£20",
-      },
-      {
-        title: "Site Induction Record & Induction Checklist",
-        detail: "Site induction record and supporting checklist covering emergency arrangements, welfare, site rules, PPE, key risks and other project-specific information. Designed to provide a consistent record of site induction for employees, subcontractors and visitors where appropriate.",
-        price: "£12",
-      },
-      {
-        title: "Subcontractor Health & Safety Register",
-        detail: "Editable register for maintaining key subcontractor health and safety information, including insurance details, RAMS status, inductions, reviews and other relevant records across projects.",
-        price: "£18",
-      },
-      {
-        title: "MEWP Inspection Checklist & Emergency Rescue Plan",
-        detail: "Pre-use MEWP inspection checklist together with a supporting emergency rescue-plan template. Designed to help teams document equipment checks, responsibilities and rescue arrangements relevant to the planned activity.",
-        price: "£15",
-      },
-      {
-        title: "Accident & Incident Investigation Form",
-        detail: "Structured form for investigating accidents, incidents and near misses, including immediate actions, contributing factors, root-cause analysis, corrective actions and reporting considerations.",
-        price: "£12",
-      },
-      {
-        title: "Environmental Pack (4 documents)",
-        detail: "Includes an environmental update register, environmental incident investigation form, site environmental checklist and waste management plan. Designed to support more consistent environmental management and record keeping within engineering businesses. Where relevant, the documents can support organisations operating within an ISO 14001-aligned environmental management system.",
-        price: "£28",
-        bundle: true,
-      },
+  },
+  {
+    id: "templates",
+    label: "Templates",
+    description: [
+      "Practical business templates used across administration, quality, commercial management and day-to-day company operations.",
+      "The folder includes RFI and technical-query records, complaint forms, credit requests, meeting templates, non-conformance reports, customer surveys, quotation and enquiry records, QA indexes, management and board meeting templates, procedure audits, task matrices and other frequently used business documents.",
+      "Each template provides a practical starting point that can be branded and adapted around your own processes.",
+    ],
+  },
+  {
+    id: "human-resources",
+    label: "Human Resources",
+    description: [
+      "A broad collection of documents supporting the employment and management of people throughout the employee lifecycle.",
+      "The folder includes recruitment and interview documents, new-starter and induction records, employment contracts, holiday and absence forms, maternity, adoption and paternity documents, training and apprenticeship records, expense and mileage forms, DSE assessments, return-to-work documentation, employee handbook material, termination and exit documents and other practical HR records.",
+      "Employment-related documents should be reviewed against your own policies and current legal requirements before use.",
+    ],
+  },
+  {
+    id: "health-safety",
+    label: "Health & Safety",
+    description: [
+      "A substantial library of practical health & safety documents for engineering and technical-services businesses.",
+      "The folder includes permits to work, risk assessments, COSHH documents, method-statement templates, site checklists, inspection records, monitoring forms, toolbox-talk records, electrical permits and registers, equipment and vehicle registers, subcontractor reviews, rescue plans and other site-management documents.",
+      "These documents are intended to provide structured starting points and should be reviewed and adapted by an appropriately competent person before being used.",
     ],
   },
   {
     id: "commercial",
-    label: "Commercial & Financial",
-    count: 28,
-    highlight: "28 documents",
+    label: "Commercial",
     description: [
-      "Practical commercial and financial documents developed around the way engineering businesses manage projects, costs, cash and contractual obligations.",
-      "From assessing opportunities and opening projects through to variations, applications, cost control and final account, the documents are designed to support stronger commercial discipline and greater visibility across the project lifecycle.",
-    ],
-    availability: "Available as a complete commercial and financial document pack.",
-    note: {
-      title: "Built to support stronger commercial discipline.",
-      body: "These documents provide practical structures for managing project information, costs, cash, variations, subcontractors and contractual communication. They should be adapted to your own commercial procedures and, where contractual rights or obligations are involved, checked against the specific terms of the relevant contract.",
-    },
-    docs: [
-      {
-        title: "Cash Flow Forecast — Weekly & Monthly",
-        detail: "Two editable cash flow forecasting tools: a weekly rolling forecast for short-term cash visibility and a monthly forecast for longer-term planning. Designed to help engineering businesses understand expected cash movements, identify pressure points earlier and make better-informed financial decisions.",
-        price: "£45",
-        bundle: true,
-      },
-      {
-        title: "Monthly Project Commercial Report",
-        detail: "Structured monthly commercial report covering contract value, variations, applications, certified amounts, costs, WIP and forecast final account. Designed to give project and management teams a consistent view of commercial performance, outstanding issues and expected project outcome.",
-        price: "£25",
-      },
-      {
-        title: "Contract Costs Summary Sheet",
-        detail: "Project cost-tracking spreadsheet comparing budget and actual costs across labour, materials, plant, subcontractors, preliminaries and other key cost headings. Designed to improve visibility of project cost performance and help teams identify changes to forecast margin as the job progresses.",
-        price: "£20",
-      },
-      {
-        title: "Variation Template",
-        detail: "Structured variation template covering instruction reference, scope, valuation breakdown, programme implications, supporting information and approval status. Designed to help teams record and present variations consistently from identification through to agreement.",
-        price: "£15",
-      },
-      {
-        title: "Variation Register",
-        detail: "Editable register for tracking variations throughout a project, including instruction date, description, submitted value, agreed value, status and other key commercial information. Designed to give commercial and project teams a clear view of outstanding and agreed variations throughout the job.",
-        price: "£15",
-      },
-      {
-        title: "Subcontractor Application for Payment",
-        detail: "Structured subcontractor payment template covering contract value, variations, materials where applicable, retention, previous payments and the current amount being assessed. Designed to create a consistent record of subcontractor payment assessment and approval.",
-        price: "£15",
-      },
-      {
-        title: "Subcontractor Final Account Statement",
-        detail: "Final account statement template for recording subcontractor account settlement, including the original contract value, agreed variations, adjustments, contra charges and final balance. Designed to provide a clear commercial record when bringing a subcontract package to conclusion.",
-        price: "£15",
-      },
-      {
-        title: "Project Final Account Statement",
-        detail: "Project final account statement template covering the original contract value, agreed variations, relevant adjustments, loss and expense where applicable, previous payments and the final account position. Designed to help commercial teams present and record the financial conclusion of a project in a consistent format.",
-        price: "£18",
-      },
-      {
-        title: "Bid / No-Bid Summary",
-        detail: "Structured decision-making framework for assessing tender and project opportunities before committing significant estimating and management resource. Considers areas including client relationship, strategic fit, project type, commercial risk, expected margin, programme, capacity and likelihood of success.",
-        price: "£12",
-      },
-      {
-        title: "Subcontract Tender Enquiry & Pre-Let Minutes",
-        detail: "Subcontract tender enquiry and pre-let meeting templates designed to help define scope, responsibilities, commercial terms, programme requirements and other key matters before appointment. Provides a consistent record of what has been discussed, clarified and agreed with prospective subcontractors.",
-        price: "£18",
-        bundle: true,
-      },
-      {
-        title: "Daywork Sheet",
-        detail: "Editable daywork sheet for recording labour, plant, materials and other relevant information associated with instructed daywork. Includes space for project details, description of work, supporting records and client or site acknowledgement where required.",
-        price: "£10",
-      },
-      {
-        title: "Early Warning Notice",
-        detail: "Structured early warning / notification template designed to help project teams record emerging issues, potential impacts, proposed actions and relevant contract references. The document should always be reviewed against the specific notice provisions, timescales and communication requirements of the contract before issue.",
-        price: "£12",
-      },
-      {
-        title: "Credit Control Letters (2 templates)",
-        detail: "Two-stage credit control letter sequence for following up overdue invoices in a clear and professional manner. Designed to provide a consistent escalation process while maintaining appropriate communication with the customer.",
-        price: "£15",
-        bundle: true,
-      },
+      "Practical tools for improving commercial control from initial opportunity through project delivery, cash management and final account.",
+      "The folder includes project-opening and analysis sheets, payment applications, subcontractor payment and pricing tools, quotation and variation registers, project commercial reports, cost summaries, cash-flow forecasts, purchasing tools, sales forecasts, final-account documents, purchase orders, pre-let records, tender enquiries, invoice-query sheets, site diaries, daywork records, early-warning notices and bid/no-bid tools.",
+      "The documents are designed to support stronger visibility, control and consistency across the commercial lifecycle.",
     ],
   },
   {
     id: "technical",
-    label: "Technical & Commissioning",
-    count: 45,
-    highlight: "45 documents",
+    label: "Technical",
     description: [
-      "Practical technical, commissioning and document-control templates developed around the delivery, testing and handover of engineering projects.",
-      "The library includes service records, commissioning sheets, drawing registers, technical submissions, equipment schedules and close-out documentation designed to support more consistent project delivery and handover.",
-    ],
-    availability: "Available as a complete technical and commissioning document pack.",
-    note: {
-      title: "Built to support consistent project delivery and handover.",
-      body: "These documents provide practical structures for recording technical information, commissioning activities, equipment data, document control and project close-out. They should be reviewed and adapted to suit the particular system, project, client requirements and applicable technical standards before use.",
-    },
-    docs: [
-      {
-        title: "Service & Maintenance Record Sheet",
-        detail: "Editable service and maintenance record for engineering plant and equipment, capturing the service date, engineer, work completed, observations, defects and recommended next service date. Designed to support consistent record keeping across planned and reactive maintenance activities.",
-        price: "£10",
-      },
-      {
-        title: "Commissioning Sheets — Heating Systems",
-        detail: "Commissioning and service record templates for heating systems including boilers, heat exchangers, pressurisation units and associated controls. Designed to provide a consistent structure for recording commissioning information, settings, test results and relevant equipment details.",
-        price: "£25",
-      },
-      {
-        title: "Commissioning Sheets — Air Conditioning & Ventilation",
-        detail: "Commissioning and service record templates for air conditioning and ventilation systems including AHUs, FCUs, VRF/VRV systems and associated equipment. Designed to help engineering teams record system information, commissioning results, settings and service details in a consistent format.",
-        price: "£25",
-      },
-      {
-        title: "Commissioning Sheets — Electrical Systems",
-        detail: "Commissioning and service record templates for LV electrical systems, including distribution equipment, lighting, small power and associated installation information. Designed to support consistent recording of inspections, test information, system details and commissioning activities.",
-        price: "£20",
-      },
-      {
-        title: "Commissioning Sheets — Domestic Services",
-        detail: "Commissioning and service record templates for domestic water and sanitary systems, including cold water, hot water and associated plant. Designed to provide a clear and consistent record of system information, commissioning activities and relevant test results.",
-        price: "£20",
-      },
-      {
-        title: "Drawing Registers — Mechanical & Electrical",
-        detail: "Separate mechanical and electrical drawing registers for recording drawing number, title, revision, issue date, status and distribution. Designed to provide project teams with a clear and consistent method of controlling and tracking drawing information throughout the project.",
-        price: "£18",
-        bundle: true,
-      },
-      {
-        title: "Technical Submission Register & Template",
-        detail: "Technical submission register and supporting submission template designed to track information issued to clients, consultants and other reviewing parties. Includes fields for product information, supporting documentation, issue dates, review status, comments and approval records.",
-        price: "£18",
-        bundle: true,
-      },
-      {
-        title: "Equipment Schedule Templates",
-        detail: "Editable equipment schedule templates for recording key plant and equipment information across engineering projects. Designed to support design coordination, procurement, project delivery and handover by keeping important equipment information in a consistent format.",
-        price: "£20",
-      },
-      {
-        title: "F-Gas & Gas Safe Registers",
-        detail: "Editable registers for recording relevant F-Gas and Gas Safe information, including engineer details, certification records, equipment information and key dates. Designed to support the management and visibility of certification and equipment records within the business.",
-        price: "£18",
-        bundle: true,
-      },
-      {
-        title: "Outstanding Works & Defects List",
-        detail: "Structured register for managing outstanding works, defects and close-out actions during project completion and post-completion periods. Tracks the item, location, responsibility, target date, status and completion information to provide clearer visibility of what remains outstanding.",
-        price: "£12",
-      },
-      {
-        title: "Fire Damper Drop Test Schedules",
-        detail: "Fire damper inspection and test schedule for recording damper reference, location, inspection or test date, result, observations and remedial actions. Designed to provide a consistent record of inspection and testing activity. The document should be reviewed and adapted to suit the applicable system, building, maintenance regime and project requirements.",
-        price: "£15",
-      },
-    ],
-  },
-  {
-    id: "subcontract",
-    label: "Subcontractor Scope of Works",
-    count: 9,
-    highlight: "9 documents",
-    description: [
-      "Practical subcontractor scope-of-works templates developed around the way engineering businesses procure, manage and coordinate specialist trades.",
-      "Each template provides a structured starting point for defining scope, responsibilities, programme requirements, quality expectations, interfaces, testing, commissioning and handover obligations before appointment.",
-      "Each scope should be reviewed and adapted to the specific project, subcontract terms, design responsibilities and procurement strategy before issue.",
-    ],
-    availability: "Available as a complete subcontract scope-of-works pack.",
-    note: {
-      title: "Clearer scope before appointment.",
-      body: "Well-defined subcontract scopes help reduce ambiguity, improve coordination and create a clearer record of responsibilities before work begins. These templates provide a practical starting point, but should always be reviewed against the specific project, drawings, specification, programme, subcontract conditions and agreed design responsibilities before they are issued.",
-    },
-    docs: [
-      {
-        title: "Electrical Installation — Scope of Works",
-        detail: "Structured scope-of-works template for electrical installation subcontractors, covering areas such as containment, cabling, distribution, testing, commissioning, coordination and handover. Designed to help clearly define package responsibilities and interfaces before appointment.",
-        price: "£20",
-      },
-      {
-        title: "General Mechanical Installation — Scope of Works",
-        detail: "Structured scope-of-works template for mechanical installation subcontractors covering pipework, plant installation, equipment, interfaces, testing, commissioning and handover requirements. Designed to create greater clarity around what is included within the subcontract package and how it interfaces with other trades.",
-        price: "£20",
-      },
-      {
-        title: "Ductwork — Scope of Works",
-        detail: "Scope-of-works template for ductwork subcontract packages, covering fabrication, installation, coordination, testing, commissioning and handover of ventilation and extract systems. Designed to help define package boundaries, responsibilities and project-specific requirements before appointment.",
-        price: "£18",
-      },
-      {
-        title: "BMS — Scope of Works",
-        detail: "Scope-of-works template for building management system subcontractors covering control requirements, points schedules, interfaces, commissioning, software, documentation and handover. Designed to help clarify responsibilities between the BMS specialist and the wider mechanical, electrical and controls packages.",
-        price: "£20",
-      },
-      {
-        title: "Commissioning — Scope of Works",
-        detail: "Scope-of-works template for specialist commissioning subcontractors covering pre-commissioning checks, system commissioning, witnessed testing, records, certification and handover information. Designed to provide clearer definition of commissioning responsibilities, deliverables and interfaces across the project.",
-        price: "£18",
-      },
-      {
-        title: "Design — Scope of Works",
-        detail: "Scope-of-works template for specialist design subcontractors covering design deliverables, programme, coordination, review processes, BIM requirements, information exchange and handover. Design responsibility and liability provisions should always be reviewed against the specific subcontract and project requirements before issue.",
-        price: "£20",
-      },
-      {
-        title: "Insulation — Scope of Works",
-        detail: "Scope-of-works template for insulation subcontractors covering pipework, ductwork, plant and equipment insulation, interfaces, finishes and associated project requirements. Designed to provide a clear starting point for defining the package against the project specification and coordinated installation.",
-        price: "£15",
-      },
-      {
-        title: "Medical Pipeline — Scope of Works",
-        detail: "Scope-of-works template for specialist medical gas pipeline subcontractors covering installation, testing, validation, coordination and handover documentation. The scope should be reviewed against the applicable project specification, healthcare requirements, technical guidance and specialist responsibilities before appointment.",
-        price: "£22",
-      },
-      {
-        title: "Flue Systems — Scope of Works",
-        detail: "Scope-of-works template for flue-system subcontractors covering design coordination, installation, interfaces, testing, commissioning and handover requirements. Designed to provide a structured starting point for defining package responsibilities, with project-specific technical and regulatory requirements added before issue.",
-        price: "£15",
-      },
-    ],
-  },
-  {
-    id: "hr",
-    label: "People, HR & Employment",
-    count: 38,
-    highlight: "38 documents",
-    description: [
-      "A practical library of people, HR and employment documents developed around the needs of engineering and technical services businesses.",
-      "The library covers employment, recruitment, onboarding, training, absence management, apprenticeships and employee administration, providing consistent documents and processes that can be adapted to suit your own organisation.",
-      "Employment-related documents should be reviewed against your current policies, employment arrangements and applicable legislation before use.",
-    ],
-    availability: "Available as a complete people, HR and employment document pack.",
-    note: {
-      title: "Built to create more consistent people processes.",
-      body: "These documents provide a practical starting point for recruitment, employment, training, absence management, onboarding and employee administration. They should be adapted to reflect your own organisation, employment arrangements and policies, and reviewed against current legal requirements where appropriate.",
-    },
-    docs: [
-      {
-        title: "Employment Contracts — Full Suite (4 contracts)",
-        detail: "Editable employment contract templates covering four common roles and arrangements within an engineering business: site-based engineer, office-based employee, office-based employee with a company vehicle, and apprentice engineer. Designed to provide a structured starting point for documenting key employment terms and responsibilities. Employment contracts should be reviewed against the individual role, company arrangements and current employment law before issue.",
-        price: "£65",
-        bundle: true,
-      },
-      {
-        title: "Employee Handbook",
-        detail: "Editable employee handbook template covering key workplace policies, conduct, disciplinary and grievance processes, absence management, health and safety responsibilities and other employment-related matters. Designed to provide a structured foundation that businesses can adapt to reflect their own culture, policies, benefits and ways of working.",
-        price: "£45",
-      },
-      {
-        title: "Recruitment & Onboarding Pack",
-        detail: "A practical set of recruitment and onboarding documents including an application form, interview checklist, new-starter information form, equal opportunities monitoring form and induction checklist. Designed to create a more consistent process from candidate application through to joining and induction.",
-        price: "£35",
-        bundle: true,
-      },
-      {
-        title: "H&S Induction Checklist",
-        detail: "Health and safety induction checklist covering areas including emergency arrangements, welfare, site rules, PPE, reporting requirements and other key information relevant to new employees and visitors. Designed to provide a consistent structure for recording the induction information provided.",
-        price: "£10",
-      },
-      {
-        title: "Employee Training Record",
-        detail: "Individual training record for tracking qualifications, certifications, training activity, renewal dates and development requirements. Designed to help businesses maintain clearer visibility of the competence and training records relevant to each employee's role.",
-        price: "£10",
-      },
-      {
-        title: "Apprenticeship Scheme Documentation",
-        detail: "Apprenticeship scheme documentation including an overview of the programme, supporting administration and an apprentice employment contract template. Developed from practical experience operating an engineering apprenticeship programme and designed to provide a starting point for businesses building a more structured approach to apprentice development. The documentation should be adapted to reflect the relevant apprenticeship programme, training provider, employment arrangements and current requirements.",
-        price: "£25",
-      },
-      {
-        title: "Absence & Leave Management Pack",
-        detail: "A practical set of documents for recording and managing employee absence and leave, including absence records, holiday requests, return-to-work documentation and family-leave notification templates. Designed to support more consistent administration and record keeping across the business.",
-        price: "£28",
-        bundle: true,
-      },
-      {
-        title: "DSE Assessment",
-        detail: "Display screen equipment assessment template designed to help record workstation, equipment and working-environment considerations for employees who regularly use display screen equipment. The assessment should be reviewed and adapted in line with the employee's working arrangements and the organisation's current health and safety requirements.",
-        price: "£10",
-      },
-      {
-        title: "Exit Interview & Termination Checklist",
-        detail: "Exit interview and leaver checklist designed to provide a consistent process when an employee leaves the business. Covers areas including handover, company property, system access, outstanding administration and information required for final payroll processing.",
-        price: "£12",
-        bundle: true,
-      },
+      "The largest section of the library, containing technical, engineering, commissioning, inspection, calculation and project-delivery resources across a wide range of disciplines.",
+      "The folder includes general technical and asset registers, drawing and procurement trackers, commissioning records, design documents and extensive service and commissioning sheets covering heating, air conditioning, electrical systems, ventilation, domestic services, controls, leak detection, air curtains, catering equipment, pumps and other equipment.",
+      "It also includes inspection and audit sheets, engineering calculation templates, equipment schedules, installation-standard drawings, fire-damper details, high-voltage documentation, manufacturing and control-panel records, and software-development and digital-system documentation.",
+      "Technical documents should be reviewed and adapted to the specific project, design, contractual and regulatory requirements involved.",
     ],
   },
   {
     id: "manuals",
-    label: "O&M Manuals & HSEQ Manuals",
-    count: 6,
-    highlight: "6 manual templates",
+    label: "Manuals",
     description: [
-      "Practical manual templates developed around the handover, maintenance, operational and HSEQ requirements of engineering and technical services businesses.",
-      "The templates provide a structured starting point for compiling project-specific information, technical records, maintenance requirements and management arrangements in a consistent format.",
-      "The exact documentation required will depend on the project, contract, client requirements and applicable technical or regulatory obligations, so each manual should be reviewed and adapted before issue.",
+      "Structured manual templates designed to support project handover, maintenance, site management and specialist electrical activities.",
+      "The folder includes a complete Technical Services O&M Manual structure, Site HSEQ Manual, Technical Services Maintenance Manual and LV Operations and Verification Manuals.",
+      "These provide a practical framework for compiling and maintaining structured company or project documentation and should be adapted to reflect the specific organisation, project and responsibilities involved.",
     ],
-    availability: "Available as a complete manuals pack.",
-    note: {
-      title: "A structured starting point for project-specific manuals.",
-      body: "These templates are designed to reduce the time involved in creating technical and management manuals from a blank page while improving consistency across the business. They should always be reviewed and adapted to reflect the actual project, installed systems, contract requirements, client standards and responsibilities before issue.",
-    },
-    docs: [
-      {
-        title: "Technical Services O&M Manual — Full Structure (7 sections)",
-        detail: "Structured O&M manual template covering the key information commonly required at project handover, including project introduction, description of works, maintenance information, manufacturers and suppliers, technical literature, commissioning records and as-fitted drawing information. Designed to give project teams a consistent framework for compiling handover information and adapting it to the requirements of the particular project and client.",
-        price: "£85",
-        bundle: true,
-      },
-      {
-        title: "Technical Services Maintenance Manual (10 sections)",
-        detail: "Structured maintenance manual template designed to support the ongoing operation and maintenance of technical services installations. Includes sections for planned maintenance activities, reactive maintenance arrangements, equipment information, responsibilities, records and supporting documentation. Designed to be adapted to the systems, assets, maintenance strategy and client requirements relevant to the particular operation.",
-        price: "£75",
-        bundle: true,
-      },
-      {
-        title: "Site HSEQ Manual",
-        detail: "Site-level health, safety, environmental and quality manual template designed to help businesses document project-specific HSEQ arrangements, responsibilities, controls and management processes. Provides a structured framework that can be adapted to the project, organisation, client requirements and relevant management systems. Where relevant, the template can be adapted to support project-specific management arrangements for organisations undertaking principal contractor responsibilities.",
-        price: "£55",
-      },
-      {
-        title: "LV Operations & Verification Manual",
-        detail: "Operations and verification manual templates for low-voltage electrical installations, covering system information, operational procedures, verification records, responsibilities and emergency arrangements. Designed to provide a structured starting point that can be adapted to the particular installation, operational arrangements and technical requirements.",
-        price: "£35",
-        bundle: true,
-      },
+  },
+  {
+    id: "tenders",
+    label: "Tenders",
+    description: [
+      "Practical documents to support proposal preparation and smaller quotation opportunities.",
+      "The folder includes a structured proposal template together with a small-works quotation and acceptance document, providing a starting point for presenting offers consistently and recording customer acceptance.",
+      "Tender and quotation documents should always be adapted to the specific opportunity, client requirements and commercial terms.",
+    ],
+  },
+  {
+    id: "environmental",
+    label: "Environmental",
+    description: [
+      "Practical environmental documents for recording, monitoring and managing environmental activities on projects and within the wider business.",
+      "The folder includes an environmental update register, environmental accident and incident investigation document, site environmental checklist and waste-management plan.",
+      "These documents provide a structured starting point and should be reviewed against the environmental requirements relevant to the organisation and individual project.",
+    ],
+  },
+  {
+    id: "subcontracting",
+    label: "Sub-contractor Scope of Works",
+    description: [
+      "Editable scope-of-work templates designed to help businesses define subcontractor responsibilities more clearly before work begins.",
+      "The folder includes scopes covering BMS, commissioning, design, ductwork, electrical installation, flues, general mechanical installation, insulation and medical pipelines.",
+      "Each document provides a structured starting point for defining work packages, responsibilities and interfaces and should be amended to reflect the specific subcontract, project information, design responsibility and contractual requirements involved.",
     ],
   },
 ];
 
-const BUNDLE_PRICES: Record<string, { label: string; price: string; saving: string }> = {
-  hs: { label: "Complete H&S & Environmental Pack", price: "£195", saving: "Save over £80 vs individual" },
-  commercial: { label: "Complete Commercial & Financial Pack", price: "£175", saving: "Save over £60 vs individual" },
-  technical: { label: "Complete Technical & Commissioning Pack", price: "£145", saving: "Save over £55 vs individual" },
-  subcontract: { label: "Complete Subcontract Scope of Works Pack", price: "£125", saving: "Save over £45 vs individual" },
-  hr: { label: "Complete People, HR & Employment Pack", price: "£165", saving: "Save over £70 vs individual" },
-  manuals: { label: "Complete Manuals Pack", price: "£195", saving: "Save over £55 vs individual" },
-};
-
 export function DocumentsPage() {
-  {/* TODO(eba): per Mark's review — consider re-cutting the six categories
-      toward: general business, health & safety, commercial, accounting,
-      sales, operations, HR, training, project management. The current six
-      reflect how the real library is organised; align with Mark. */}
-  const [openCategory, setOpenCategory] = useState<string | null>("hs");
+  const [openCategory, setOpenCategory] = useState<string | null>("procedures");
   const isMobile = useIsMobile();
 
   return (
@@ -796,20 +462,23 @@ export function DocumentsPage() {
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
-            380 practical documents built from real engineering business experience.
+            380 practical business documents, organised the way you will actually use them.
           </h1>
-          {/* Hero copy per Mark's Documents page schedule (19 Sep 2026). */}
+          {/* Hero copy per Mark/Duane's "Documents Page & Checkout - Final Amendments" brief (24 Sep 2026). */}
           <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "600px", margin: "0 0 14px" }}>
-            A practical library of forms, registers, procedures, templates and business documents developed through the real-world operation of engineering businesses.
+            The complete library contains 380 practical documents organised into 10 folders, reflecting the way the resources are supplied after purchase.
+          </p>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "600px", margin: "0 0 14px" }}>
+            The library covers everything from company procedures, people management and health & safety through to commercial controls, technical delivery, manuals, tenders and subcontractor scopes of work.
           </p>
           <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "17px", lineHeight: 1.7, maxWidth: "600px", margin: "0 0 32px" }}>
-            These are not generic business templates adapted for the sector. They have been built around the commercial, operational, compliance and management requirements engineering businesses deal with every day.
+            The documents have been developed from real-world engineering business processes and provide a practical starting point that can be reviewed, branded and adapted to suit your own organisation.
           </p>
           <div style={{ display: "flex", gap: "32px", flexWrap: "wrap" }}>
             {[
               { value: "380", label: "Documents" },
-              { value: "6", label: "Categories" },
-              { value: "Editable", label: "Word & Excel formats" },
+              { value: "10", label: "Folders" },
+              { value: "Editable", label: "Primarily Word & Excel" },
             ].map(({ value, label }) => (
               <div key={label} style={{ borderLeft: `3px solid ${RUST_ON_DARK}`, paddingLeft: "16px" }}>
                 <p style={{ fontFamily: "var(--eba-heading)", fontStyle: "italic", color: RUST_ON_DARK, fontSize: "1.4rem", fontWeight: 700, margin: "0 0 4px" }}>{value}</p>
@@ -889,15 +558,6 @@ export function DocumentsPage() {
                   }}
                 >
                   {cat.label}
-                  <span style={{
-                    marginLeft: "8px",
-                    background: openCategory === cat.id ? RUST : OAT,
-                    color: openCategory === cat.id ? "#fff" : `rgba(${NAVY_RGB},0.6)`,
-                    fontSize: "10px", padding: "2px 7px",
-                    transition: "all 0.2s",
-                  }}>
-                    {cat.highlight}
-                  </span>
                 </button>
               ))}
             </div>
@@ -926,35 +586,10 @@ export function DocumentsPage() {
                 </div>
               </RevealSection>
 
-              <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
-                {cat.docs.map((doc, i) => (
-                  <RevealSection key={i} style={{ transitionDelay: `${i * 30}ms` }}>
-                    {/* Browse-only rows: no per-document purchase or enquiry
-                        button at launch (Mark's final Documents schedule, item 1). */}
-                    <div style={{ background: WHITE, borderLeft: `3px solid ${OAT}`, padding: "20px 24px" }}>
-                      <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1rem", color: NAVY, margin: "0 0 6px" }}>
-                        {doc.title}
-                      </h4>
-                      <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: 0 }}>
-                        {doc.detail}
-                      </p>
-                    </div>
-                  </RevealSection>
-                ))}
-              </div>
-
-              {/* Category note (Mark's schedule, per category) */}
-              <RevealSection style={{ marginTop: "32px" }}>
-                <div style={{ background: WHITE, padding: "24px 28px", borderLeft: `3px solid ${RUST}` }}>
-                  <h3 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "1.1rem", color: NAVY, margin: "0 0 8px" }}>{cat.note.title}</h3>
-                  <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "14px", lineHeight: 1.7, margin: 0 }}>{cat.note.body}</p>
-                </div>
-              </RevealSection>
-
               <RevealSection style={{ marginTop: "16px" }}>
                 <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid rgba(${NAVY_RGB},0.2)` }}>
                   <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: "0 0 8px" }}>
-                    Documents are supplied in editable Microsoft Word and Excel formats so they can be reviewed and adapted to suit your own business. The complete library can be purchased separately or accessed through the Academy + Documents package.
+                    Documents are supplied primarily in editable Word and Excel formats, with a small number of supporting PDF and PowerPoint files where appropriate. The complete library can be purchased separately or accessed through the Academy + Documents package.
                   </p>
                   <p style={{ color: `rgba(${NAVY_RGB},0.72)`, fontSize: "13px", lineHeight: 1.65, margin: "0 0 14px" }}>
                     For company-wide licensing or bespoke document-development requirements, talk to us about the right option for your business.{" "}
@@ -1024,6 +659,28 @@ export function DocumentsPage() {
               Together, the documents provide practical building blocks for creating more consistent and repeatable ways of working across the business.
             </p>
           </RevealSection>
+        </div>
+      </section>
+
+      {/* Closing library summary — Mark/Duane's Documents brief (24 Sep 2026), item 4. */}
+      <section style={{ background: DARK_GRADIENT, padding: isMobile ? "56px 20px" : "80px 40px" }}>
+        <div style={{ maxWidth: "820px", margin: "0 auto", textAlign: "center" }}>
+          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "clamp(1.8rem, 3.4vw, 2.6rem)", letterSpacing: "-0.02em", color: ON_DARK, margin: "0 0 20px", lineHeight: 1.15 }}>
+            One complete library. Ten practical folders.
+          </h2>
+          <p style={{ color: `rgba(${CREAM_RGB},0.78)`, fontSize: "16px", lineHeight: 1.75, margin: "0 0 16px" }}>
+            Customers receive the complete 380-document library organised into: Procedures · Templates · Human Resources · Health & Safety · Commercial · Technical · Manuals · Tenders · Environmental · Sub-contractor Scope of Works.
+          </p>
+          <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "15px", lineHeight: 1.75, margin: "0 0 32px" }}>
+            The documents are designed to provide practical starting points rather than replace professional, legal or competent-person review. They should be reviewed and adapted to suit the individual business, project and circumstances in which they are used.
+          </p>
+          <a href={LIBRARY_HREF} target="_blank" rel="noopener noreferrer" aria-disabled={!LIBRARY_HREF || undefined} onClick={() => track("checkout_click", { source: "documents-closing", tier: "library" })} style={{
+            background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
+            fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "15px",
+            padding: "15px 34px", letterSpacing: "0.04em", display: "inline-block", borderRadius: "6px",
+          }}>
+            {LIBRARY_HREF ? `Buy the Complete Document Library · ${PRICING.libraryStandalone} →` : ENROL_PENDING_LABEL}
+          </a>
         </div>
       </section>
 

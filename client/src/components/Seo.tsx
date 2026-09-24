@@ -123,7 +123,7 @@ export const PAGE_SEO = {
   documents: {
     title: "Engineering Business Document Library | The Engineering Business Academy",
     description:
-      "A library of 380 editable documents for engineering and technical services businesses, covering HSEQ, commercial, financial, technical, subcontractor, people and operational processes.",
+      "380 practical documents organised into 10 folders — Procedures, Templates, HR, Health & Safety, Commercial, Technical, Manuals, Tenders, Environmental and Sub-contractor Scope of Works — supplied primarily in editable Word and Excel formats.",
     path: "/documents",
   },
   pricing: {
