@@ -1,34 +1,30 @@
-# Ste's TEBA to-do — 23 Sep 2026
+# Ste's TEBA to-do — captured 23 Sep 2026, updated 24 Sep 2026
 
-Captured verbatim from chat, owner-tagged as we work through it.
-
-- [ ] **Wire the 3 Kajabi webhooks** (Academy, Academy + Documents, Document Library)
-      — native Kajabi webhook screen, not the blocked Automations API. **[STE]**
-      URL: `https://teb-academy.com/api/toolbox-talk-grant?secret=<KAJABI_WEBHOOK_SECRET>&event=purchase`
-- [ ] **Create enquiries@teb-academy.com** mailbox **[STE]** — need to know the mail
-      provider (Google Workspace / Microsoft 365 / other) before Claude can help
-      with DNS/verification.
-- [ ] **Connect Stripe** — two different things tangled together, need to pick which:
-      (a) fix Kajabi's own broken payment provider (the original RAMS/COSHH
-      "payments paused" issue from the start of this engagement — never confirmed
-      fixed) — Kajabi admin only, no API for this.
-      (b) a separate direct Stripe integration on the website for AI-tool
-      checkouts (`STRIPE.omManual` / `complianceChatbot` / `toolsSingle` /
-      `toolsBundle` in constants.ts — still TODO placeholders, currently unused;
-      everything live today actually checks out via Kajabi-hosted checkout URLs).
-      Needs the Stripe connector authorised in claude.ai connector settings before
-      Claude can do anything here.
-- [ ] **Checkout for AI tools / subscriptions** — already exists via Kajabi checkout
-      links (RAMS/COSHH/O&M), contingent on (a) above actually being fixed.
-- [ ] Answered in chat: how documents land with a buyer, what the access email
-      says, where data is stored, whether website purchases reach HubSpot.
-- [ ] Found while answering: a free ($0) offer — "The Engineering Business
-      Academy - limited access" (2151374092) — is live and grants product access.
-      Confirm this is intentional (a genuine free tier) or close it if it's a
-      leftover test/backdoor.
-- [ ] Still open from earlier in this engagement, never confirmed resolved:
-      RAMS/COSHH subscription billing "paused" on Kajabi's connected payment
-      provider (the very first ask of this session).
-- [ ] Still open: delete the 10 orphaned Kajabi Digital Download "collections"
-      created before we discovered `create_download` makes standalone products,
-      not sub-folders (no delete tool available — Kajabi admin only).
+- [x] **Fix Kajabi's payment provider** — resolved via Kajabi Support 23 Sep.
+      Verified live: RAMS + COSHH checkouts both load cleanly, no "payments
+      paused" message, real payment form.
+- [x] **Wire the Kajabi webhook on all 3 offers** (Academy, Academy +
+      Documents, Document Library) — done 24 Sep via the single combined
+      `/api/kajabi-purchase` endpoint (Kajabi's real UI only has one
+      "Purchase Webhook URL" field per offer, not the two-webhook setup
+      originally assumed). Verified live: all 3 offers returned a clean
+      200 on Kajabi's own test-send.
+- [ ] **Create hello@teb-academy.com mailbox** — blocked on **Manchester IT**,
+      not Ste. Ste to raise the request with them. Once live: send a test
+      email from an outside account to confirm it arrives; if it doesn't
+      land, check MX/SPF records at 123-Reg.
+- [ ] **Stripe — separate direct website integration** (not the Kajabi fix,
+      which is done). Only relevant if Ste wants a checkout path that
+      bypasses Kajabi entirely for AI tools (`STRIPE.omManual` /
+      `complianceChatbot` / `toolsSingle` / `toolsBundle` in constants.ts —
+      still unused TODO placeholders). Needs the Stripe connector authorised
+      in claude.ai connector settings first. Not started — deprioritised
+      behind the Kajabi fix, which was done first per Ste's choice.
+- [ ] **Decide on the free ($0) offer** — "The Engineering Business Academy -
+      limited access" (2151374092) is live and grants product access.
+      Confirm this is an intentional free preview tier, or close it if not.
+      Not yet answered.
+- [ ] **Delete the 10 orphaned Kajabi Digital Download "collections"** —
+      leftover from before discovering `create_download` makes standalone
+      products, not sub-folders. No delete tool available — Kajabi admin
+      only, no rush.
