@@ -9,10 +9,10 @@
       "Purchase Webhook URL" field per offer, not the two-webhook setup
       originally assumed). Verified live: all 3 offers returned a clean
       200 on Kajabi's own test-send.
-- [ ] **Create hello@teb-academy.com mailbox** — blocked on **Manchester IT**,
-      not Ste. Ste to raise the request with them. Once live: send a test
-      email from an outside account to confirm it arrives; if it doesn't
-      land, check MX/SPF records at 123-Reg.
+- [ ] **Create hello@teb-academy.com mailbox** — requested from Manchester IT
+      (Abu) 24 Sep, awaiting them. Once live: send a test email from an
+      outside account to confirm it arrives; if it doesn't land, check
+      MX/SPF records at 123-Reg.
 - [ ] **Stripe — separate direct website integration** (not the Kajabi fix,
       which is done). Only relevant if Ste wants a checkout path that
       bypasses Kajabi entirely for AI tools (`STRIPE.omManual` /
