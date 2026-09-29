@@ -802,29 +802,28 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── LESSON PREVIEW ── Mark's personal pre-pack administration lesson
-          (Module 9, wistia id o7j9nnwhlu), reinstated per Mark's request
-          (29 Sep 2026) after being swapped for a different lesson preview
-          on 18 Sep. Copy restored from the original 1 Sep placement, lesson
-          count updated to match the site's current "100+" standard. */}
+      {/* ── LESSON PREVIEW ── "Money Is Made Before You Step on Site" (wistia
+          id dqmf23wn6f), reinstated per Ste's request (29 Sep 2026). Mark's
+          personal pre-pack administration lesson, which had briefly replaced
+          this one, is removed. */}
       <section id="preview-lesson" style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.1fr", gap: isMobile ? "32px" : "64px", alignItems: "center" }}>
             <RevealSection>
-              <SectionLabel>Watch a real lesson</SectionLabel>
+              <SectionLabel>Watch a lesson from the Academy</SectionLabel>
               <RustRule />
               <h2 style={{
                 fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(1.7rem, 3vw, 2.3rem)", letterSpacing: "-0.02em",
                 color: NAVY, margin: "0 0 18px", lineHeight: 1.15,
               }}>
-                My experience of going bust — a pre-pack administration.
+                Money is made before you step on site.
               </h2>
-              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 20px" }}>
-                Module 9 of the Academy, free to watch, no sign-up. Insolvency isn't just a financial event — it affects your health, your family, your team, your suppliers. This is Mark talking through what actually happens when it goes wrong, why early advice matters, and how to protect what can be protected.
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 14px" }}>
+                See exactly what to expect inside The Engineering Business Academy. Watch one of the practical lessons and get a feel for the content, approach and level of detail.
               </p>
-              <p style={{ color: `rgba(${NAVY_RGB},0.6)`, fontSize: "13.5px", lineHeight: 1.6, margin: "0 0 24px", fontStyle: "italic" }}>
-                This is one lesson from a full 100+ lesson curriculum — free, so you can judge the material before you judge the price.
+              <p style={{ color: `rgba(${NAVY_RGB},0.75)`, fontSize: "15.5px", lineHeight: 1.75, margin: "0 0 24px" }}>
+                From Module 6, Commercial Controls: why margin is protected through design, planning, procurement, labour selection and preparation before the job begins, rather than recovered during delivery.
               </p>
               <a href="#preview-lesson-video" style={{
                 background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",
@@ -836,7 +835,7 @@ export default function HomePage() {
             </RevealSection>
             <RevealSection>
               <div id="preview-lesson-video">
-                <VideoEmbed wistiaId="o7j9nnwhlu" title="My Experience of Going Bust — A Pre-Pack Administration" />
+                <VideoEmbed wistiaId="dqmf23wn6f" title="Money Is Made Before You Step on Site" />
               </div>
             </RevealSection>
           </div>
