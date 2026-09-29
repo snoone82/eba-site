@@ -120,6 +120,9 @@ export default async function handler(req: Request): Promise<Response> {
 
   const email = normaliseEmail(pick(payload, EMAIL_PATHS));
   if (!email) {
+    console.error("[toolbox-talk-grant] no_email_in_payload", {
+      received_keys: payload && typeof payload === "object" ? Object.keys(payload) : typeof payload,
+    });
     return json({
       error: "no_email_in_payload",
       received_keys: payload && typeof payload === "object" ? Object.keys(payload) : typeof payload,
@@ -163,6 +166,7 @@ export default async function handler(req: Request): Promise<Response> {
   try {
     const token = await grantMemberAccess(email, tier);
     if (!token) {
+      console.error("[toolbox-talk-grant] DATABASE_URL not configured — grant skipped", { email, tier });
       return json({ error: "not_configured", missing: ["DATABASE_URL"] }, 501);
     }
 
@@ -174,8 +178,21 @@ export default async function handler(req: Request): Promise<Response> {
         ? await sendMemberAccessEmail({ to: email, accessToken: token })
         : await sendToolAccessEmail({ to: email, accessToken: token, tools });
 
+    // TEMP diagnostic (Ste, 29 Sep): Mark's Academy + Document Library test
+    // purchases granted access but no email arrived, not even in spam. This
+    // pins down which step actually failed — remove once resolved.
+    console.log("[toolbox-talk-grant] purchase processed", {
+      email,
+      tier,
+      tools,
+      resendConfigured: Boolean(process.env.RESEND_API_KEY),
+      emailed: emailResult.sent,
+      emailError: emailResult.error,
+    });
+
     return json({ ok: true, event: "purchase", granted: true, tools, emailed: emailResult.sent });
   } catch (e) {
+    console.error("[toolbox-talk-grant] grant_failed", { email, tier, message: (e as Error).message });
     return json({ error: "grant_failed", message: (e as Error).message }, 502);
   }
 }
