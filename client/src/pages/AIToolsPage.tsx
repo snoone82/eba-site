@@ -23,7 +23,7 @@ import {
   CREAM,
   OAT,
   AMBER,
-  isPlaceholder, TOOL_PRICE_NOTES, TOOL_CHECKOUT, OM_CHECKOUT_HREF, OM_ENQUIRY_HREF,
+  isPlaceholder, PRICING, TOOL_PRICE_NOTES, TOOL_CHECKOUT, OM_CHECKOUT_HREF, OM_ENQUIRY_HREF,
   WHITE,
   DARK_GRADIENT, RUST_RGB, NAVY_RGB, CREAM_RGB,
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
@@ -308,10 +308,10 @@ const allTools: {
     title: "A faster way to compile O&M manuals.",
     body: "Provide the project documents and information and the service brings them together into a structured O&M manual ready for your review. It is designed to reduce the time spent manually compiling equipment information, maintenance requirements, commissioning records and other handover documentation.",
     price: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pricing announced soon" : TOOL_PRICE_NOTES.omManual,
-    // Direct Kajabi checkout once the £299 offer is published (OM_OFFER_LIVE in
+    // Direct Kajabi checkout once the £358.80 offer is published (OM_OFFER_LIVE in
     // constants.ts); an honest enquiry route until then.
     checkout: OM_CHECKOUT_HREF,
-    checkoutLabel: "Order an O&M Manual · £299 →",
+    checkoutLabel: `Order an O&M Manual · ${PRICING.omPerManual} →`,
     enquire: OM_ENQUIRY_HREF,
     enquireLabel: "Enquire About an O&M Manual →",
     demo: <OmManualDemo />,
@@ -539,7 +539,7 @@ export default function AIToolsPage() {
                 outcome: "Send us your project documents and information and receive a structured O&M manual ready for review within 24 hours. The service brings together equipment information, maintenance requirements, commissioning records and project documentation into one consistent handover document.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pay per manual · pricing soon" : TOOL_PRICE_NOTES.omManual,
                 review: "You review and approve the final document before issue",
-                checkout: OM_CHECKOUT_HREF, checkoutKey: "om", checkoutLabel: "Order an O&M Manual · £299",
+                checkout: OM_CHECKOUT_HREF, checkoutKey: "om", checkoutLabel: `Order an O&M Manual · ${PRICING.omPerManual}`,
                 enquire: OM_ENQUIRY_HREF, enquireLabel: "Enquire About an O&M Manual",
                 frame: { url: "teb-academy.com/ai-tools/om-manual", docTitle: "O&M Manual — Section 4: Mechanical Services", docMeta: "Project ref · Rev A", lines: ["Equipment schedules extracted", "Maintenance information compiled", "Commissioning records indexed"], chip: "Returned for review within 24 hours" },
               },

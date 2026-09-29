@@ -507,14 +507,14 @@ export function PricingPage() {
             </p>
             <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.10)`, borderTop: `3px solid ${COBALT}`, borderRadius: "12px", overflow: "hidden" }}>
               {([
-                { name: "RAMS Generator", detail: "Monthly subscription. Structured RAMS drafts for competent review.", value: "£39/month", checkout: TOOL_CHECKOUT.rams, checkoutLabel: "Subscribe →", key: "rams" },
-                { name: "COSHH Generator", detail: "Monthly subscription. Structured COSHH assessment drafts for competent review.", value: "£29/month", checkout: TOOL_CHECKOUT.coshh, checkoutLabel: "Subscribe →", key: "coshh" },
-                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription.", value: "£49/month", checkout: TOOL_CHECKOUT.bundle, checkoutLabel: "Subscribe →", key: "bundle" },
+                { name: "RAMS Generator", detail: "Monthly subscription. Structured RAMS drafts for competent review.", value: PRICING.ramsMonthly.replace("/mo", "/month"), checkout: TOOL_CHECKOUT.rams, checkoutLabel: "Subscribe →", key: "rams" },
+                { name: "COSHH Generator", detail: "Monthly subscription. Structured COSHH assessment drafts for competent review.", value: PRICING.coshhMonthly.replace("/mo", "/month"), checkout: TOOL_CHECKOUT.coshh, checkoutLabel: "Subscribe →", key: "coshh" },
+                { name: "RAMS + COSHH bundle", detail: "Both tools under one monthly subscription.", value: PRICING.toolsBothMonthly.replace("/mo", "/month"), checkout: TOOL_CHECKOUT.bundle, checkoutLabel: "Subscribe →", key: "bundle" },
                 // O&M: direct checkout once the Kajabi offer is published
                 // (OM_OFFER_LIVE); enquiry route until then, never a dead button.
                 { name: "O&M Manual Compiler", detail: "Compiled for you, per manual. Returned for your review within 24 hours.", value: `${PRICING.omPerManual} per manual`, checkout: OM_CHECKOUT_HREF, checkoutLabel: `Order an O&M Manual · ${PRICING.omPerManual} →`, enquire: OM_ENQUIRY_HREF, enquireLabel: "Enquire About an O&M Manual →", key: "om" },
                 // Enquiry-led by design: configured around the customer's own documents.
-                { name: "Compliance Co-Pilot", detail: "Configured around your own documents, hosted and supported. Includes setup, hosting and ongoing support.", value: `${PRICING.coPilotSetup} setup + £149/month`, checkout: undefined, enquire: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot", enquireLabel: "Enquire About Compliance Co-Pilot →", key: "copilot" },
+                { name: "Compliance Co-Pilot", detail: "Configured around your own documents, hosted and supported. Includes setup, hosting and ongoing support.", value: `${PRICING.coPilotSetup} setup + ${PRICING.coPilotMonthly.replace("/mo", "/month")}`, checkout: undefined, enquire: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot", enquireLabel: "Enquire About Compliance Co-Pilot →", key: "copilot" },
               ] as { name: string; detail: string; value: string; checkout?: string; checkoutLabel?: string; enquire?: string; enquireLabel?: string; key: string }[]).map(({ name, detail, value, checkout, checkoutLabel, enquire, enquireLabel, key }, i) => (
                 <div key={name} style={{
                   display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap",

@@ -553,7 +553,7 @@ export default function AcademyPage() {
               {[
                 {
                   tier: "The Academy",
-                  price: isPlaceholder(PRICING.academyFounding) ? "£999" : PRICING.academyFounding,
+                  price: isPlaceholder(PRICING.academyFounding) ? "£1,198.80" : PRICING.academyFounding,
                   popular: false,
                   includes: [
                     "Full 100+ lesson curriculum",
@@ -567,7 +567,7 @@ export default function AcademyPage() {
                 },
                 {
                   tier: "Academy + Documents",
-                  price: isPlaceholder(PRICING.academyDocsFounding) ? "£1,299" : PRICING.academyDocsFounding,
+                  price: isPlaceholder(PRICING.academyDocsFounding) ? "£1,558.80" : PRICING.academyDocsFounding,
                   popular: true,
                   includes: [
                     "Everything in The Academy",
