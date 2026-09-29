@@ -396,23 +396,23 @@ export const CASE_STUDIES: CaseStudy[] = [];
  * Enterprise remains unconfirmed (gated).
  */
 export const PRICING = {
-  academyFounding: "£1,198.80",
-  academyStandard: "£1,798.80",
-  academyDocsFounding: "£1,558.80",
-  academyDocsStandard: "£2,398.80",
-  omPerManual: "£358.80",
+  academyFounding: "£1,199",
+  academyStandard: "£1,799",
+  academyDocsFounding: "£1,559",
+  academyDocsStandard: "£2,399",
+  omPerManual: "£359",
   /** Standalone Document Library — Kajabi offer 2151348610, published 2 Sep 2026. */
-  libraryStandalone: "£478.80",
-  ramsMonthly: "£46.80/mo",
-  ramsMonthlyStandard: "£58.80/mo",
-  coshhMonthly: "£34.80/mo",
-  coshhMonthlyStandard: "£46.80/mo",
-  toolsBothMonthly: "£58.80/mo",
-  toolsBothMonthlyStandard: "£82.80/mo",
-  coPilotSetup: "£598.80",
-  coPilotSetupStandard: "£2,398.80",
-  coPilotMonthly: "£178.80/mo",
-  coPilotMonthlyStandard: "£238.80/mo",
+  libraryStandalone: "£479",
+  ramsMonthly: "£47/mo",
+  ramsMonthlyStandard: "£59/mo",
+  coshhMonthly: "£35/mo",
+  coshhMonthlyStandard: "£47/mo",
+  toolsBothMonthly: "£59/mo",
+  toolsBothMonthlyStandard: "£83/mo",
+  coPilotSetup: "£599",
+  coPilotSetupStandard: "£2,399",
+  coPilotMonthly: "£179/mo",
+  coPilotMonthlyStandard: "£239/mo",
   enterpriseSetup: "TODO(eba): enterprise setup fee",
   enterpriseMonthly: "TODO(eba): enterprise monthly retainer",
 } as const;
@@ -450,10 +450,10 @@ export const SHOW_SECTOR_INSIGHTS = true;
  * the deployment price (setup + monthly), never a self-serve tool price.
  */
 export const TOOL_PRICE_NOTES = {
-  omManual: "£358.80 per manual",
-  rams: "£46.80/month · RAMS + COSHH £58.80/month",
-  coPilot: "£598.80 setup + £178.80/month",
-  coshh: "£34.80/month · COSHH + RAMS £58.80/month", // wording per Mark, 20 Sep
+  omManual: "£359 per manual",
+  rams: "£47/month · RAMS + COSHH £59/month",
+  coPilot: "£599 setup + £179/month",
+  coshh: "£35/month · COSHH + RAMS £59/month", // wording per Mark, 20 Sep
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting
@@ -465,8 +465,8 @@ export const COMPANY_REG = "TODO(eba): company reg";
 
 /** Academy founding-cohort pricing — CONFIRMED. Setting these un-gates every
  *  price display sitewide (PRICING_ANNOUNCED reads FOUNDING_PRICE). */
-export const FOUNDING_PRICE = "£1,198.80";
-export const STANDARD_PRICE = "£1,798.80";
+export const FOUNDING_PRICE = "£1,199";
+export const STANDARD_PRICE = "£1,799";
 
 /**
  * Founding-cohort counter — set in ONE place and reused everywhere.

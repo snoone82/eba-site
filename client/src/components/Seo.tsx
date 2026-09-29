@@ -129,7 +129,7 @@ export const PAGE_SEO = {
   pricing: {
     title: "Pricing | The Engineering Business Academy",
     description:
-      "Academy £1,198.80, Academy + Documents £1,558.80, Complete Document Library £478.80, and AI tools priced individually. Straightforward access to practical business learning built for engineering businesses.",
+      "Academy £1,199, Academy + Documents £1,559, Complete Document Library £479, and AI tools priced individually. Straightforward access to practical business learning built for engineering businesses.",
     path: "/pricing",
   },
   enterprise: {

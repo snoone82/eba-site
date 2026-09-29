@@ -308,7 +308,7 @@ const allTools: {
     title: "A faster way to compile O&M manuals.",
     body: "Provide the project documents and information and the service brings them together into a structured O&M manual ready for your review. It is designed to reduce the time spent manually compiling equipment information, maintenance requirements, commissioning records and other handover documentation.",
     price: isPlaceholder(TOOL_PRICE_NOTES.omManual) ? "Pricing announced soon" : TOOL_PRICE_NOTES.omManual,
-    // Direct Kajabi checkout once the £358.80 offer is published (OM_OFFER_LIVE in
+    // Direct Kajabi checkout once the £359 offer is published (OM_OFFER_LIVE in
     // constants.ts); an honest enquiry route until then.
     checkout: OM_CHECKOUT_HREF,
     checkoutLabel: `Order an O&M Manual · ${PRICING.omPerManual} →`,
