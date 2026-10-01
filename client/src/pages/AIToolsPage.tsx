@@ -29,12 +29,12 @@ import {
   IS_VIVID, ON_DARK, ON_DARK_RGB, CTA_DARK_BG, CTA_PRIMARY_BG, CTA_PRIMARY_TEXT, CTA_BAND_BG, NAV_RGB,
   NAV_BAR_BG, NAV_LINK, NAV_LINK_ACTIVE, NAV_BORDER, NAV_CTA_BG, NAV_CTA_TEXT,
   HERO_GLOW, SECTION_GLOW,
-  COBALT, COBALT_RGB, COBALT_ON_DARK, ENTERPRISE_PRICING,
+  COBALT, COBALT_RGB, COBALT_ON_DARK, ENTERPRISE_PRICING, COLORS,
 } from "@/lib/constants";
 import { ProductFrame } from "@/components/ProductFrame";
 import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
-import { Check, FileText, ShieldCheck, MessageSquareText, FlaskConical, Sparkles } from "lucide-react";
+import { Check, FileText, ShieldCheck, MessageSquareText, FlaskConical, Sparkles, ClipboardList, Wrench, FileCheck2 } from "lucide-react";
 
 const TOOLS_IMG = "/site-steelwork.jpg"; // real project photography — no stock, no external host
 
@@ -109,6 +109,89 @@ const omSteps = [
   { label: "Approve and issue", detail: "Download the completed document once your review is complete" },
 ];
 
+// Documents the real service actually compiles from (same wording used in the
+// ProductFrame mocks elsewhere on this page) — the visual stage below never
+// invents content, it just animates the real 4-step process in omSteps.
+const omInputDocs = [
+  { label: "Equipment schedules", Icon: ClipboardList },
+  { label: "Maintenance information", Icon: Wrench },
+  { label: "Commissioning records", Icon: FileCheck2 },
+  { label: "Test certificates", Icon: FileText },
+];
+const omManualSections = ["Equipment schedules", "Maintenance requirements", "Commissioning records", "Handover documentation"];
+
+/**
+ * Motion stage synced 1:1 to the real omSteps below it — no separate,
+ * invented animation. The compiler is a compiled-for-you backend service
+ * with no customer-facing screen (Ste, 1 Oct 2026), so this deliberately
+ * shows the real process (documents in → compiled → manual out) rather than
+ * a fake "live tool" UI that doesn't exist. Built to be screen-recorded once
+ * finished, for use as the actual social/ad video clip.
+ */
+function OmMotionStage({ step }: { step: number }) {
+  const stageStyle = (active: boolean, extra: React.CSSProperties = {}): React.CSSProperties => ({
+    transition: "opacity 0.5s ease, transform 0.5s ease",
+    opacity: active ? 1 : 0,
+    pointerEvents: active ? "auto" : "none",
+    ...extra,
+  });
+
+  return (
+    <div style={{ position: "relative", height: "168px", marginBottom: "22px", background: `rgba(${NAVY_RGB},0.025)`, border: `1px solid rgba(${NAVY_RGB},0.07)`, borderRadius: "10px", overflow: "hidden" }}>
+      {/* Stage 0 — documents fan in */}
+      <div style={{ ...stageStyle(step === 0), position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center", gap: "10px", padding: "0 20px" }}>
+        {omInputDocs.map((d, i) => (
+          <div key={d.label} style={{
+            background: WHITE, border: `1px solid rgba(${COBALT_RGB},0.25)`, borderRadius: "8px",
+            padding: "10px 8px", width: "76px", textAlign: "center",
+            transform: step === 0 ? "translateY(0)" : "translateY(10px)",
+            transition: `transform 0.4s ease ${i * 0.08}s, opacity 0.4s ease ${i * 0.08}s`,
+            opacity: step === 0 ? 1 : 0,
+          }}>
+            <d.Icon size={18} color={COBALT} strokeWidth={1.8} style={{ margin: "0 auto 6px" }} />
+            <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "9px", lineHeight: 1.3, color: `rgba(${NAVY_RGB},0.65)` }}>{d.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* Stage 1 — compiling, documents converge with a pulse */}
+      <div style={stageStyle(step === 1, { position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "14px" })}>
+        <div style={{ position: "relative", width: "56px", height: "56px" }}>
+          <div style={{ position: "absolute", inset: 0, borderRadius: "50%", background: `rgba(${COBALT_RGB},0.18)`, animation: step === 1 ? "pulse 1.6s ease-in-out infinite" : "none" }} />
+          <div style={{ position: "absolute", inset: "10px", borderRadius: "50%", background: COBALT, display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <FileText size={18} color="#fff" strokeWidth={2} />
+          </div>
+        </div>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "11.5px", color: `rgba(${NAVY_RGB},0.7)`, letterSpacing: "0.02em" }}>Compiling your O&amp;M manual…</span>
+      </div>
+
+      {/* Stage 2 — manual cover assembles, sections tick in */}
+      <div style={stageStyle(step === 2, { position: "absolute", inset: 0, display: "flex", alignItems: "center", justifyContent: "center" })}>
+        <div style={{ background: WHITE, border: `1px solid rgba(${NAVY_RGB},0.12)`, borderRadius: "8px", boxShadow: "0 10px 24px -16px rgba(0,0,0,0.3)", padding: "12px 16px", width: "220px" }}>
+          <div style={{ transform: "scale(0.62)", transformOrigin: "left center", marginBottom: "2px" }}><EBALogo height={18} /></div>
+          <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", color: NAVY, margin: "2px 0 8px" }}>O&amp;M Manual — Project Handover</p>
+          <div style={{ display: "flex", flexDirection: "column", gap: "4px" }}>
+            {omManualSections.map((s, i) => (
+              <div key={s} style={{ display: "flex", alignItems: "center", gap: "6px", opacity: step === 2 ? 1 : 0, transition: `opacity 0.3s ease ${0.15 + i * 0.18}s` }}>
+                <Check size={10} strokeWidth={3} color={COLORS.mint} />
+                <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "9.5px", color: `rgba(${NAVY_RGB},0.65)` }}>{s}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Stage 3 — ready for review */}
+      <div style={stageStyle(step === 3, { position: "absolute", inset: 0, display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "10px" })}>
+        <div style={{ width: "44px", height: "44px", borderRadius: "50%", background: "rgba(46,204,113,0.15)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <Check size={22} color={COLORS.mint} strokeWidth={2.5} />
+        </div>
+        <span style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "12px", color: NAVY }}>Ready for your review</span>
+      </div>
+    </div>
+  );
+}
+
 function OmManualDemo() {
   const [step, setStep] = useState(0);
   useEffect(() => {
@@ -140,6 +223,7 @@ function OmManualDemo() {
         <h4 style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.1rem", color: NAVY, margin: "0 0 24px" }}>
           O&M Manual Compiler
         </h4>
+        <OmMotionStage step={step} />
         {/* Progress steps */}
         <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
           {omSteps.map((s, i) => (
