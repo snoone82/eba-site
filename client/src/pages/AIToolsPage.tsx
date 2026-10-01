@@ -413,6 +413,85 @@ const allTools: {
   },
 ];
 
+// ── SEE IT IN ACTION ── real-paced video clips of each tool, start to finish.
+// Recorded directly from the live demo components above (no cuts, no speed-ups;
+// see AIToolsPage demo components for the source of truth these match).
+const actionVideos: { label: string; title: string; href: string; src: string; poster: string }[] = [
+  {
+    label: "O&M MANUAL COMPILER",
+    title: "Documents in, structured manual out.",
+    href: OM_CHECKOUT_HREF ?? OM_ENQUIRY_HREF,
+    src: "/videos/om-manual-ad.webm",
+    poster: "/videos/om-manual-ad-poster.png",
+  },
+  {
+    label: "COMPLIANCE CO-PILOT",
+    title: "Ask a question, get a cited answer.",
+    href: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot",
+    src: "/videos/compliance-copilot-ad.webm",
+    poster: "/videos/compliance-copilot-ad-poster.png",
+  },
+  {
+    label: "TOOLBOX TALK GENERATOR",
+    title: "Free — ready in about a minute.",
+    href: "/toolbox-talk",
+    src: "/videos/toolbox-talk-ad.webm",
+    poster: "/videos/toolbox-talk-ad-poster.png",
+  },
+];
+
+function AdVideoCard({ video }: { video: (typeof actionVideos)[number] }) {
+  const wrapRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const wrap = wrapRef.current;
+    const vid = videoRef.current;
+    if (!wrap || !vid) return;
+    if (typeof IntersectionObserver === "undefined") return;
+    // Only decode/play while the clip is actually on screen — three autoplaying
+    // videos loading at once on page load would waste bandwidth and battery.
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) vid.play().catch(() => {});
+        else vid.pause();
+      },
+      { threshold: 0.4 }
+    );
+    obs.observe(wrap);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={wrapRef} style={{ display: "flex", flexDirection: "column", gap: "14px" }}>
+      <div style={{
+        position: "relative", width: "100%", aspectRatio: "9 / 16", borderRadius: "18px",
+        overflow: "hidden", background: NAVY, boxShadow: "0 30px 60px -32px rgba(0,0,0,0.35)",
+      }}>
+        <video
+          ref={videoRef}
+          src={video.src}
+          poster={video.poster}
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-label={video.title}
+          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+        />
+      </div>
+      <Link href={video.href} onClick={() => track("cta_tool_video", { tool: video.label })} style={{ textDecoration: "none" }}>
+        <p style={{ fontFamily: "'Poppins', sans-serif", fontWeight: 700, fontSize: "11px", letterSpacing: "0.1em", textTransform: "uppercase", color: COBALT, margin: "0 0 4px" }}>
+          {video.label}
+        </p>
+        <p style={{ fontFamily: "var(--eba-heading)", fontWeight: 700, fontSize: "1.05rem", color: NAVY, margin: 0, lineHeight: 1.3 }}>
+          {video.title} →
+        </p>
+      </Link>
+    </div>
+  );
+}
+
 function ToolCta({ tool }: { tool: (typeof allTools)[number] }) {
   const style: React.CSSProperties = {
     background: COBALT, color: "#fff", textDecoration: "none",
@@ -812,6 +891,28 @@ export default function AIToolsPage() {
               </div>
             </RevealSection>
           ))}
+        </div>
+      </section>
+
+      {/* ── SEE IT IN ACTION ── real-paced video clips, start to finish. */}
+      <section style={{ backgroundColor: WHITE, backgroundImage: SECTION_GLOW, padding: isMobile ? "56px 20px" : "92px 40px" }}>
+        <div style={{ maxWidth: "1120px", margin: "0 auto" }}>
+          <RevealSection style={{ textAlign: "center", maxWidth: "640px", margin: "0 auto 48px" }}>
+            <SectionLabel light>See it in action</SectionLabel>
+            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 3.6vw, 2.8rem)", lineHeight: 1.1, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 16px" }}>
+              Watch each tool, start to finish.
+            </h2>
+            <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "16px", lineHeight: 1.65, color: `rgba(${NAVY_RGB},0.72)`, margin: 0 }}>
+              Real-paced clips of each tool being used — no cuts, no speed-ups.
+            </p>
+          </RevealSection>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", gap: isMobile ? "40px" : "32px", maxWidth: isMobile ? "320px" : "none", margin: isMobile ? "0 auto" : undefined }}>
+            {actionVideos.map(video => (
+              <RevealSection key={video.label}>
+                <AdVideoCard video={video} />
+              </RevealSection>
+            ))}
+          </div>
         </div>
       </section>
 
