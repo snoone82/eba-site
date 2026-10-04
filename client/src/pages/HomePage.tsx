@@ -803,9 +803,10 @@ export default function HomePage() {
       </section>
 
       {/* ── LESSON PREVIEW ── "Money Is Made Before You Step on Site" (wistia
-          id dqmf23wn6f), reinstated per Ste's request (29 Sep 2026). Mark's
-          personal pre-pack administration lesson, which had briefly replaced
-          this one, is removed. */}
+          id rux58s400x — the corrected re-upload Kajabi now serves for this
+          lesson, 29 Sep 2026; swapped in 4 Oct 2026, replacing the stale
+          dqmf23wn6f copy). Mark's personal pre-pack administration lesson,
+          which had briefly replaced this one, is removed. */}
       <section id="preview-lesson" style={{ background: WHITE, padding: isMobile ? "60px 20px" : "96px 40px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1.1fr", gap: isMobile ? "32px" : "64px", alignItems: "center" }}>
@@ -835,7 +836,7 @@ export default function HomePage() {
             </RevealSection>
             <RevealSection>
               <div id="preview-lesson-video">
-                <VideoEmbed wistiaId="dqmf23wn6f" title="Money Is Made Before You Step on Site" />
+                <VideoEmbed wistiaId="rux58s400x" title="Money Is Made Before You Step on Site" />
               </div>
             </RevealSection>
           </div>
