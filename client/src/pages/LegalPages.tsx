@@ -15,6 +15,7 @@ import {
   ENROL_READY,
   ENROL_PENDING_LABEL,
   COMPANY_REG,
+  COMPANY_NAME,
   RUST,
   NAVY,
   CREAM,
@@ -145,7 +146,7 @@ export function PrivacyPolicyPage() {
 
           <LegalSection title="1. Who we are">
             <p style={bodyText}>
-              The Engineering Business Academy ("EBA", "we", "us", "our") is operated by The Engineering Business Academy Ltd. Company registration number: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}. Registered in England and Wales.
+              The Engineering Business Academy ("EBA", "we", "us", "our") is operated by {COMPANY_NAME}. Company registration number: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}. Registered in England and Wales.
             </p>
             <p style={bodyText}>
               We are the data controller for the personal data you provide to us when using this website and our services. If you have any questions about this policy, please contact us at <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>.
@@ -258,7 +259,7 @@ export function PrivacyPolicyPage() {
 
           <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid ${RUST}`, marginTop: "40px" }}>
             <p style={{ ...bodyText, margin: 0 }}>
-              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>
+              <strong>Contact us:</strong> {COMPANY_NAME} · <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>
             </p>
           </div>
         </div>
@@ -308,7 +309,7 @@ export function TermsPage() {
 
           <LegalSection title="1. About these terms">
             <p style={bodyText}>
-              These Terms and Conditions ("Terms") govern your use of the website at teb-academy.com and any products or services offered by The Engineering Business Academy Ltd ("EBA", "we", "us", "our"), Company Reg: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}, registered in England and Wales.
+              These Terms and Conditions ("Terms") govern your use of the website at teb-academy.com and any products or services offered by {COMPANY_NAME} ("EBA", "we", "us", "our"), Company Reg: {isPlaceholder(COMPANY_REG) ? "[to be confirmed]" : COMPANY_REG}, registered in England and Wales.
             </p>
             <p style={bodyText}>
               By accessing our website or purchasing our products, you agree to be bound by these Terms. Please read them carefully. If you do not agree, you must not use our website or services.
@@ -350,7 +351,7 @@ export function TermsPage() {
 
           <LegalSection title="5. Intellectual property">
             <p style={bodyText}>
-              All content on this website and within the Academy programme — including text, video, audio, graphics, templates, and documents — is the intellectual property of The Engineering Business Academy Ltd and is protected by copyright law.
+              All content on this website and within the Academy programme — including text, video, audio, graphics, templates, and documents — is the intellectual property of {COMPANY_NAME} and is protected by copyright law.
             </p>
             <p style={bodyText}>
               You may use the content for your own personal and business purposes. You may not reproduce, distribute, sell, or create derivative works from our content without our prior written consent.
@@ -395,7 +396,7 @@ export function TermsPage() {
 
           <div style={{ background: OAT, padding: "24px 28px", borderLeft: `3px solid ${RUST}`, marginTop: "40px" }}>
             <p style={{ ...bodyText, margin: 0 }}>
-              <strong>Contact us:</strong> The Engineering Business Academy Ltd · <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>
+              <strong>Contact us:</strong> {COMPANY_NAME} · <a href="mailto:hello@teb-academy.com" style={{ color: RUST }}>hello@teb-academy.com</a>
             </p>
           </div>
         </div>

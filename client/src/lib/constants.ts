@@ -461,8 +461,11 @@ export const TOOL_PRICE_NOTES = {
  *  (mentorship months live in MENTOR_INTAKES below). */
 export const COHORT_START_DATE = "TODO(eba): founding cohort start date";
 
-/** Company registration number. Placeholder hides the footer reg line entirely. */
-export const COMPANY_REG = "TODO(eba): company reg";
+/** Legal entity operating EBA — confirmed by Ste, 14 Oct 2026. */
+export const COMPANY_NAME = "EBA Education Ltd";
+
+/** Company registration number — confirmed by Ste, 14 Oct 2026. */
+export const COMPANY_REG = "17394873";
 
 /** Academy founding-cohort pricing — CONFIRMED. Setting these un-gates every
  *  price display sitewide (PRICING_ANNOUNCED reads FOUNDING_PRICE). */
