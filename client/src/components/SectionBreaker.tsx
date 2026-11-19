@@ -50,7 +50,7 @@ export function SectionBreaker({
         <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: kickerColor, marginBottom: "18px" }}>
           · {kicker} ·
         </div>
-        <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2.2rem" : "clamp(2.6rem, 5vw, 4.2rem)", lineHeight: 1.05, letterSpacing: "-0.025em", color: textColor, margin: 0 }}>
+        <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2.2rem" : "clamp(2.6rem, 5vw, 4.2rem)", lineHeight: 1.05, letterSpacing: "-0.025em", color: textColor, margin: 0 }}>
           {title}{accent ? " " : ""}
           {accent && <span style={accentStyle}>{accent}</span>}
           {after ? ` ${after}` : ""}

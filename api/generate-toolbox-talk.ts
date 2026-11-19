@@ -73,6 +73,7 @@ export default async function handler(req: VercelLikeRequest, res: VercelLikeRes
   const trade = (body.trade ?? "").toString().trim().slice(0, MAX_FIELD_LEN);
   const site = (body.site ?? "").toString().trim().slice(0, MAX_FIELD_LEN);
   const utm = typeof body.utm === "object" && body.utm ? (body.utm as Record<string, string>) : undefined;
+  const marketingConsent = body.marketingConsent === true;
   const accessToken = (body.accessToken ?? "").toString().trim().slice(0, 128) || undefined;
 
   if (!topic) {
@@ -145,6 +146,7 @@ export default async function handler(req: VercelLikeRequest, res: VercelLikeRes
       title: talk.title,
       source: isMember ? "academy-member" : "toolbox-talk-generator",
       utm: isMember ? { tier: memberTier ?? "unknown" } : utm,
+      marketingConsent: isMember ? undefined : marketingConsent,
     }).catch(() => {
       /* best-effort lead log; don't fail the request over it */
     });

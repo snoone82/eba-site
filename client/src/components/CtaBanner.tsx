@@ -35,7 +35,7 @@ export function CtaBanner({
       }}>
         <div>
           <h2 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: isMobile ? "1.9rem" : "clamp(2rem, 3.6vw, 2.9rem)",
             lineHeight: 1.08, letterSpacing: "-0.02em", color: onDark, margin: 0,
           }}>

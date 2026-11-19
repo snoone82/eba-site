@@ -108,7 +108,7 @@ export function AboutStePage() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <Kicker light>Head of Automation · KEYIS Group</Kicker>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "760px",
           }}>
@@ -272,7 +272,7 @@ export function AboutStePage() {
       {/* 6. CTA — send to Tools first (his domain), Academy second */}
       <section style={{ background: CREAM, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
         <h2 style={{
-          fontFamily: "var(--eba-heading)", fontWeight: 900,
+          fontFamily: "var(--eba-heading)", fontWeight: 800,
           fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
           color: NAVY, margin: "0 0 28px", lineHeight: 1.05,
         }}>

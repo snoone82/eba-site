@@ -51,9 +51,11 @@ async function ensureSchema(sql: Sql): Promise<void> {
           title TEXT,
           source TEXT NOT NULL DEFAULT 'toolbox-talk-generator',
           utm JSONB,
+          marketing_consent BOOLEAN,
           created_at TIMESTAMPTZ NOT NULL DEFAULT now()
         )
       `;
+      await sql`ALTER TABLE toolbox_generations ADD COLUMN IF NOT EXISTS marketing_consent BOOLEAN`;
       await sql`CREATE INDEX IF NOT EXISTS toolbox_generations_email_idx ON toolbox_generations (email, created_at)`;
       await sql`CREATE INDEX IF NOT EXISTS toolbox_generations_ip_idx ON toolbox_generations (ip, created_at)`;
 
@@ -121,6 +123,8 @@ export interface RecordGenerationParams {
   title: string;
   source: string;
   utm?: Record<string, string>;
+  /** Public email form only. True/false when the visitor was asked; omit for members. */
+  marketingConsent?: boolean;
 }
 
 export async function recordGeneration(params: RecordGenerationParams): Promise<void> {
@@ -128,10 +132,11 @@ export async function recordGeneration(params: RecordGenerationParams): Promise<
   if (!sql) return;
   await ensureSchema(sql);
   await sql`
-    INSERT INTO toolbox_generations (email, ip, topic, trade, site, title, source, utm)
+    INSERT INTO toolbox_generations (email, ip, topic, trade, site, title, source, utm, marketing_consent)
     VALUES (${params.email}, ${params.ip}, ${params.topic}, ${params.trade ?? null},
             ${params.site ?? null}, ${params.title}, ${params.source},
-            ${params.utm ? JSON.stringify(params.utm) : null})
+            ${params.utm ? JSON.stringify(params.utm) : null},
+            ${params.marketingConsent === undefined ? null : params.marketingConsent})
   `;
 }
 

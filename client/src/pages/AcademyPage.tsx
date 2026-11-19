@@ -258,7 +258,7 @@ export default function AcademyPage() {
               {/* Founding-cohort / places-remaining label removed (Mark, 19 Sep). */}
               <SectionLabel>The Academy</SectionLabel>
               <h1 style={{
-                fontFamily: "var(--eba-heading)", fontWeight: 900,
+                fontFamily: "var(--eba-heading)", fontWeight: 800,
                 fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
                 color: ON_DARK, margin: "0 0 24px", lineHeight: 1.05,
               }}>
@@ -325,7 +325,7 @@ export default function AcademyPage() {
 
       {/* ── SITE BAND ── */}
       <div style={{ position: "relative", width: "100%", height: isMobile ? "220px" : "360px", overflow: "hidden" }}>
-        <img src="/site-fitout.jpg" alt="A live M&E fit-out — ductwork, containment and services installation" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", display: "block" }} />
+        <img src="/site-fitout.webp" srcSet="/site-fitout-960.webp 960w, /site-fitout.webp 1600w" sizes="100vw" alt="A live M&E fit-out — ductwork, containment and services installation" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", display: "block" }} />
         <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, rgba(${NAVY_RGB},0.72) 0%, rgba(${NAVY_RGB},0.35) 45%, rgba(${ACCENT_RGB},0.25) 100%)` }} />
         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>

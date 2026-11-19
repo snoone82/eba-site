@@ -14,6 +14,7 @@ import { track } from "@/lib/track";
 const NAV_LINKS = [
   { label: "Academy", href: "/academy" },
   { label: "AI Tools", href: "/ai-tools" },
+  { label: "Toolbox Talk", href: "/toolbox-talk" },
   { label: "Documents", href: "/documents" },
   { label: "Mentorship", href: "/mentorship" },
   { label: "Pricing", href: "/pricing" },

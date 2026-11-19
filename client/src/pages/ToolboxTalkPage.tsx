@@ -134,6 +134,7 @@ function GeneratorForm({
   const [trade, setTrade] = useState("");
   const [site, setSite] = useState("");
   const [email, setEmail] = useState("");
+  const [marketingConsent, setMarketingConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [formError, setFormError] = useState("");
   const isMobile = useIsMobile();
@@ -164,7 +165,7 @@ function GeneratorForm({
         body: JSON.stringify(
           isMember
             ? { topic, trade, site, accessToken }
-            : { topic, trade, site, email, utm: getStoredUtm() },
+            : { topic, trade, site, email, marketingConsent, utm: getStoredUtm() },
         ),
       });
 
@@ -235,6 +236,18 @@ function GeneratorForm({
             placeholder="you@company.co.uk" style={inputStyle}
           />
         </div>
+      )}
+      {!isMember && (
+        <label htmlFor="tt-marketing" style={{ display: "flex", gap: "10px", alignItems: "flex-start", fontFamily: "'Poppins', sans-serif", fontSize: "13px", lineHeight: 1.5, color: `rgba(${NAVY_RGB},0.75)`, cursor: "pointer" }}>
+          <input
+            id="tt-marketing"
+            type="checkbox"
+            checked={marketingConsent}
+            onChange={(e) => setMarketingConsent(e.target.checked)}
+            style={{ marginTop: "3px", flexShrink: 0 }}
+          />
+          <span>Send me practical tips and updates from The Engineering Business Academy (you can unsubscribe any time)</span>
+        </label>
       )}
       {formError && <p style={{ color: RUST, fontSize: "13px", margin: 0 }} role="alert">{formError}</p>}
       <button
@@ -429,7 +442,7 @@ export default function ToolboxTalkPage() {
             {isMember ? <Crown size={15} strokeWidth={2} /> : <Sparkles size={15} strokeWidth={2} />}
             {isMember ? "Academy member · Full version" : "Free tool · No purchase"}
           </div>
-          <h1 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2.1rem" : "clamp(2.4rem, 4.6vw, 3.6rem)", lineHeight: 1.06, letterSpacing: "-0.02em", color: ON_DARK, margin: "0 0 16px", maxWidth: "760px" }}>
+          <h1 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2.1rem" : "clamp(2.4rem, 4.6vw, 3.6rem)", lineHeight: 1.06, letterSpacing: "-0.02em", color: ON_DARK, margin: "0 0 16px", maxWidth: "760px" }}>
             {isMember ? "Your Toolbox Talk Generator." : "The free Toolbox Talk Generator."}
           </h1>
           <p style={{ fontSize: isMobile ? "15px" : "17px", lineHeight: 1.65, color: `rgba(${ON_DARK_RGB},0.75)`, maxWidth: "560px", margin: 0 }}>
@@ -467,11 +480,11 @@ export default function ToolboxTalkPage() {
               tier, the 380-document library. Join the Academy.
             </p>
             <Link
-              href="/ai-tools"
-              onClick={() => track("toolbox_talk_cta_ai_tools")}
+              href="/pricing"
+              onClick={() => track("toolbox_talk_cta_pricing")}
               style={{ display: "inline-block", background: CORAL, color: "#0A0A0A", textDecoration: "none", fontWeight: 700, fontSize: "15px", padding: "14px 30px", borderRadius: "10px" }}
             >
-              See the full AI tool suite →
+              See pricing →
             </Link>
           </div>
         </section>

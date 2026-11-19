@@ -86,7 +86,7 @@ function PlaceholderHero({ label, title, sub, portrait, portraitAlt, ctas }: { l
             letterSpacing: "0.12em", textTransform: "uppercase", color: RUST_ON_DARK, margin: "0 0 20px",
           }}>{label}</p>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "700px",
           }}>{title}</h1>
@@ -562,7 +562,7 @@ export function PricingPage() {
           <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", color: RUST_ON_DARK, margin: "0 0 18px" }}>
             · Questions about pricing ·
           </p>
-          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2.2rem" : "clamp(2.6rem, 5vw, 4rem)", lineHeight: 1.05, letterSpacing: "-0.025em", color: "#fff", margin: "0 0 32px" }}>
+          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2.2rem" : "clamp(2.6rem, 5vw, 4rem)", lineHeight: 1.05, letterSpacing: "-0.025em", color: "#fff", margin: "0 0 32px" }}>
             Not sure which level fits? Talk to us.
           </h2>
           <Link href="/contact" onClick={() => track("cta_pricing_talk_to_us")} style={{
@@ -749,7 +749,7 @@ export function FAQPage() {
       <PlaceholderHero
         label="FAQ"
         title="Frequently asked questions."
-        sub="If you have a question that isn't answered here, use the contact form and we'll respond within one business day."
+        sub="If you have a question that isn't answered here, use the contact form and we will get back to you within one working day."
       />
       <section style={{ backgroundColor: IS_VIVID ? CREAM : OAT, backgroundImage: SECTION_GLOW, padding: "clamp(48px,9vw,80px) clamp(20px,5vw,40px)" }}>
         <div style={{ maxWidth: "820px", margin: "0 auto", display: "flex", flexDirection: "column", gap: "12px" }}>
@@ -812,7 +812,7 @@ export function FAQPage() {
             Still have questions?
           </h3>
           <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", lineHeight: 1.65, margin: "0 0 28px" }}>
-            Use the contact form and we'll respond within one business day.
+            Use the contact form and we will get back to you within one working day.
           </p>
           <Link href="/contact" style={{
             background: CTA_PRIMARY_BG, color: CTA_PRIMARY_TEXT, textDecoration: "none",

@@ -36,7 +36,7 @@ import { Seo, PAGE_SEO } from "@/components/Seo";
 import { track } from "@/lib/track";
 import { Check, FileText, ShieldCheck, MessageSquareText, FlaskConical, Sparkles, ClipboardList, Wrench, FileCheck2 } from "lucide-react";
 
-const TOOLS_IMG = "/site-steelwork.jpg"; // real project photography — no stock, no external host
+const TOOLS_IMG = "/site-steelwork.webp"; // real project photography — no stock, no external host
 
 // Tools page = tools accent (cobalt). Academy/Mark/story sections keep rust.
 function SectionLabel({ children, light = false }: { children: string; light?: boolean }) {
@@ -308,7 +308,7 @@ function ComplianceChatDemo() {
         ))}
         <div style={{ flex: 1, background: `rgba(${NAVY_RGB},0.08)`, borderRadius: "3px", padding: "4px 12px", marginLeft: "8px" }}>
           <span style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", color: `rgba(${NAVY_RGB},0.72)` }}>
-            teb-academy.com/ai-tools/compliance-chat
+            teb-academy.com/ai-tools/compliance-chatbot
           </span>
         </div>
       </div>
@@ -611,7 +611,7 @@ export default function AIToolsPage() {
             · AI Tools &amp; Agents · Built for engineering businesses ·
           </div>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5.5vw, 4.6rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 22px", lineHeight: 1.04, maxWidth: "820px",
           }}>
@@ -682,7 +682,7 @@ export default function AIToolsPage() {
             <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: COBALT, marginBottom: "14px" }}>
               · AI Tools &amp; Agents · Available Now ·
             </div>
-            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
+            <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2rem" : "clamp(2.2rem, 4vw, 3.2rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
               Practical tools available now.
             </h2>
             <p style={{ fontFamily: "'Poppins', sans-serif", fontSize: "16px", lineHeight: 1.65, color: `rgba(${NAVY_RGB},0.72)`, margin: "0 0 10px" }}>
@@ -711,7 +711,7 @@ export default function AIToolsPage() {
                 outcome: "Create a structured Risk Assessment & Method Statement draft in minutes using the details of the task, hazards, controls, PPE and permits. The output is designed to give competent people a faster starting point while keeping review and approval with your team.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.rams) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.rams,
                 checkout: TOOL_CHECKOUT.rams, checkoutKey: "rams", checkoutLabel: "Subscribe to RAMS",
-                frame: { url: "teb-academy.com/ai-tools/rams", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards considered", "Control measures structured", "Permits and PPE prompts included"], chip: "First draft generated in minutes", matrix: true },
+                frame: { url: "teb-academy.com/rams-generator", docTitle: "RAMS — Pipework Installation, Level 3 Riser", docMeta: "Method statement · Risk matrix · Sign-off sheet", lines: ["Task-specific hazards considered", "Control measures structured", "Permits and PPE prompts included"], chip: "First draft generated in minutes", matrix: true },
               },
               {
                 Icon: MessageSquareText, name: "Compliance Co-Pilot",
@@ -719,14 +719,14 @@ export default function AIToolsPage() {
                 note: isPlaceholder(TOOL_PRICE_NOTES.coPilot) ? "Built for you · priced per deployment" : TOOL_PRICE_NOTES.coPilot,
                 review: "Includes setup, hosting and ongoing support",
                 enquire: "/contact?enquiry=ai-tools&tier=Compliance%20Co-Pilot", enquireLabel: "Enquire About a Compliance Co-Pilot",
-                frame: { url: "teb-academy.com/ai-tools/compliance-chat", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Answers based on your company's documents", "Cited to the source document", "Available to authorised users across the business"], chip: "Cited to source" },
+                frame: { url: "teb-academy.com/ai-tools/compliance-chatbot", docTitle: "Q: Do we need a hot works permit for this task?", docMeta: "Answered from: your Safe Systems of Work, Section 8", lines: ["Answers based on your company's documents", "Cited to the source document", "Available to authorised users across the business"], chip: "Cited to source" },
               },
               {
                 Icon: FlaskConical, name: "COSHH Generator",
                 outcome: "Create a structured COSHH assessment draft from the substance, task and exposure information you provide, ready for competent review before issue.",
                 note: isPlaceholder(TOOL_PRICE_NOTES.coshh) ? "Monthly subscription · pricing soon" : TOOL_PRICE_NOTES.coshh,
                 checkout: TOOL_CHECKOUT.coshh, checkoutKey: "coshh", checkoutLabel: "Subscribe to COSHH",
-                frame: { url: "teb-academy.com/ai-tools/coshh", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard information structured", "Exposure controls prompted", "Branded PDF ready for review"] },
+                frame: { url: "teb-academy.com/coshh-generator", docTitle: "COSHH Assessment — Solvent Cement, Pipe Jointing", docMeta: "Substance · Task · Exposure route · Controls", lines: ["Hazard information structured", "Exposure controls prompted", "Branded PDF ready for review"] },
               },
             ].map(({ Icon, name, outcome, note, review, frame, checkout, checkoutKey, checkoutLabel, enquire, enquireLabel }: {
               Icon: typeof FileText; name: string; outcome: string; note: string; review?: string;

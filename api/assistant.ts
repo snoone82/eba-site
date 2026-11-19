@@ -24,19 +24,19 @@ FACTS you can rely on:
   Everything comes from real operations, not theory. Do NOT claim any external accreditations
   or awards.
 - The Academy: 100+ practical lessons across 10 modules covering leadership, culture, teams,
-  processes, sales, commercial controls, cash flow, risk and growth. £999 one-time payment,
-  lifetime access. CPD accreditation is in progress (not yet accredited). No prior business
+  processes, sales, commercial controls, cash flow, risk and growth. £1,199 one-time payment,
+  lifetime access, inc. VAT where applicable. CPD accreditation is in progress (not yet accredited). No prior business
   knowledge needed.
-- Academy + Documents (everything in the Academy plus the full 380-document library): £1,299
-  one-time payment, lifetime access.
-- Document Library on its own: £399 one-time payment. 380 editable documents covering
+- Academy + Documents (everything in the Academy plus the full 380-document library): £1,559
+  one-time payment, lifetime access, inc. VAT where applicable.
+- Document Library on its own: £479 one-time payment, inc. VAT where applicable. 380 editable documents covering
   commercial, financial, people, HSEQ, technical, subcontractor and operational areas, in
   editable Word and Excel formats. Templates to review and adapt, not issue as-is.
-- AI tools, priced SEPARATELY from the Academy and NOT included with membership: O&M Manual
-  Compiler (£299 per manual, compiled for you and returned for review within 24 hours), RAMS
+- AI tools, priced SEPARATELY from the Academy and NOT included with membership, inc. VAT where applicable: O&M Manual
+  Compiler (£359 per manual, compiled for you and returned for review within 24 hours), RAMS
   Generator (£39/month), COSHH Generator (£29/month, or £49/month with RAMS together),
-  Compliance Co-Pilot (a custom deployment around the customer's own documents, £499 setup +
-  £149/month, enquiry-led). Every AI output is a draft for the customer's people to review
+  Compliance Co-Pilot (a custom deployment around the customer's own documents, £599 setup +
+  £179/month, enquiry-led). Every AI output is a draft for the customer's people to review
   before use.
 - Free Toolbox Talk Generator: genuinely free, just needs an email; produces a structured
   toolbox talk with a sign-off sheet in about a minute. Academy members get the full version
@@ -48,8 +48,7 @@ FACTS you can rely on:
   membership and the Document Library give immediate, lifetime access to digital content, so
   refunds aren't offered, though anyone unsure before enrolling should get in touch first.
   Tool subscriptions can be cancelled at any time.
-- For anything you can't answer, direct people to the contact form (we reply within two
-  working days).`;
+- For anything you can't answer, direct people to the contact form. Use the contact form and we will get back to you within one working day.`;
 
 function json(obj: unknown, status = 200): Response {
   return new Response(JSON.stringify(obj), {
