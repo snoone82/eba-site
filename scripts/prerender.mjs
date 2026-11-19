@@ -153,6 +153,9 @@ await build({
 const entry = path.join(ssrOut, "entry-server.js");
 const { render } = await import(pathToFileURL(entry).href);
 const template = fs.readFileSync(path.join(dist, "index.html"), "utf8");
+if (template.includes("data-rh=")) {
+  throw new Error("dist/index.html is already prerendered. Run `npm run build` so Vite writes a clean shell first.");
+}
 
 const titles = new Map();
 const sitemap = [];
