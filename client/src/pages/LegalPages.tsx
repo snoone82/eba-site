@@ -128,7 +128,7 @@ export function PrivacyPolicyPage() {
             Legal
           </p>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>
@@ -291,7 +291,7 @@ export function TermsPage() {
             Legal
           </p>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2rem, 4vw, 3.5rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>

@@ -43,7 +43,7 @@ export function Testimonials() {
           <div style={{ fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", textTransform: "uppercase", color: RUST, marginBottom: "14px" }}>
             · From the operators ·
           </div>
-          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
+          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: 0 }}>
             Directors who run engineering businesses with it.
           </h2>
         </div>
@@ -59,7 +59,7 @@ export function Testimonials() {
                 display: "flex", flexDirection: "column",
               }}
             >
-              <span aria-hidden style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: "3.2rem", lineHeight: 0.6, color: `rgba(${RUST_RGB},0.28)`, marginBottom: "18px", display: "block" }}>
+              <span aria-hidden style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: "3.2rem", lineHeight: 0.6, color: `rgba(${RUST_RGB},0.28)`, marginBottom: "18px", display: "block" }}>
                 &ldquo;
               </span>
               <blockquote style={{ fontFamily: "'Poppins', sans-serif", fontSize: isMobile ? "15.5px" : "17px", lineHeight: 1.65, color: sub, margin: "0 0 26px", flex: 1 }}>

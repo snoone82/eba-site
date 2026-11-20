@@ -152,7 +152,7 @@ export const ORB_WARM = "radial-gradient(circle, rgba(43,199,181,0.09) 0%, trans
  * TO RESTORE: put a real photograph of Mark in client/public/ and set the
  * relevant constant. Never point these at stock imagery again.
  */
-export const MARK_PHOTO_HERO = "/site-plantroom.jpg";     // real project photography, not a person
+export const MARK_PHOTO_HERO = "/site-plantroom.webp";    // real project photography, not a person
 export const MARK_PHOTO_FOUNDER = "";                     // was stock — now TeachingPanel
 export const MARK_PHOTO_STORY = "";                       // was stock — now TeachingPanel
 export const MARK_PHOTO_MENTORSHIP = "";                   // was stock — slot now omitted
@@ -404,11 +404,12 @@ export const PRICING = {
   omPerManual: "£359",
   /** Standalone Document Library — Kajabi offer 2151348610, published 2 Sep 2026. */
   libraryStandalone: "£479",
-  ramsMonthly: "£47/mo",
+  // Live Kajabi offer prices (Steven, 19 Nov 2026): RAMS £39, COSHH £29, both £49.
+  ramsMonthly: "£39/mo",
   ramsMonthlyStandard: "£59/mo",
-  coshhMonthly: "£35/mo",
+  coshhMonthly: "£29/mo",
   coshhMonthlyStandard: "£47/mo",
-  toolsBothMonthly: "£59/mo",
+  toolsBothMonthly: "£49/mo",
   toolsBothMonthlyStandard: "£83/mo",
   coPilotSetup: "£599",
   coPilotSetupStandard: "£2,399",
@@ -452,9 +453,9 @@ export const SHOW_SECTOR_INSIGHTS = true;
  */
 export const TOOL_PRICE_NOTES = {
   omManual: "£359 per manual",
-  rams: "£47/month · RAMS + COSHH £59/month",
+  rams: "£39/month · RAMS + COSHH £49/month",
   coPilot: "£599 setup + £179/month",
-  coshh: "£35/month · COSHH + RAMS £59/month", // wording per Mark, 20 Sep
+  coshh: "£29/month · COSHH + RAMS £49/month", // wording per Mark, 20 Sep
 } as const;
 
 /** Cohort / mentorship dates — TODO(eba): confirm real dates post-meeting
@@ -516,8 +517,9 @@ export const ENROL_READY = OFFERS_LIVE && !isPlaceholder(KAJABI_CHECKOUT_URL);
 /** Safe href for enrolment CTAs — the live URL, or undefined when not yet configured. */
 export const ENROL_HREF: string | undefined = ENROL_READY ? KAJABI_CHECKOUT_URL : undefined;
 
-/** Label shown by enrolment CTAs while no live checkout URL is configured. */
-export const ENROL_PENDING_LABEL = "Enrolment opens soon";
+/** Label shown by enrolment CTAs while no live checkout URL is configured.
+ *  Enrolment is open, so this must not say it is still to come. */
+export const ENROL_PENDING_LABEL = "Join the Academy";
 
 /** +Documents tier: true once its own checkout URL (or the main one) is live. */
 export const ENROL_DOCS_READY = OFFERS_LIVE && (!isPlaceholder(KAJABI_CHECKOUT_URL_DOCS) || ENROL_READY);

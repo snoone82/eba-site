@@ -876,6 +876,7 @@ export default function HomePage() {
               <p style={{ color: `rgba(${NAVY_RGB},0.62)`, fontSize: "14.5px", lineHeight: 1.65, margin: "0 0 26px", fontStyle: "italic" }}>
                 AI should make good people more productive, not replace the judgement, experience and accountability required to run an engineering business.
               </p>
+              <div style={{ display: "flex", gap: "22px", flexWrap: "wrap" }}>
               <Link href="/ai-tools" style={{
                 color: COBALT, textDecoration: "none",
                 fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
@@ -883,6 +884,14 @@ export default function HomePage() {
               }}>
                 Explore the AI Tools →
               </Link>
+              <Link href="/toolbox-talk" style={{
+                color: COBALT, textDecoration: "none",
+                fontFamily: "'Poppins', sans-serif", fontWeight: 600, fontSize: "14px",
+                letterSpacing: "0.04em", borderBottom: `1px solid ${COBALT}`, paddingBottom: "2px",
+              }}>
+                Try the free Toolbox Talk →
+              </Link>
+              </div>
             </RevealSection>
             <RevealSection>
               <ProductFrame
@@ -979,7 +988,7 @@ export default function HomePage() {
         <div aria-hidden style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: ACCENT_GRAD }} />
         <RevealSection>
           <h2 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
           }}>

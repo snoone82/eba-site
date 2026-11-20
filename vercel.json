@@ -10,6 +10,26 @@
       "permanent": true
     },
     {
+      "source": "/about-ste",
+      "destination": "/ai-tools",
+      "permanent": true
+    },
+    {
+      "source": "/ai-tools/rams",
+      "destination": "/rams-generator",
+      "permanent": true
+    },
+    {
+      "source": "/ai-tools/coshh",
+      "destination": "/coshh-generator",
+      "permanent": true
+    },
+    {
+      "source": "/ai-tools/compliance-chat",
+      "destination": "/ai-tools/compliance-chatbot",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [
         {
@@ -19,12 +39,28 @@
       ],
       "destination": "https://teb-academy.com/:path*",
       "permanent": true
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/:path*",
-      "destination": "/index.html"
+      "has": [
+        {
+          "type": "host",
+          "value": "eba-site.vercel.app"
+        }
+      ],
+      "destination": "https://teb-academy.com/:path*",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Content-Security-Policy", "value": "frame-ancestors 'self'" }
+      ]
     }
   ],
   "functions": {

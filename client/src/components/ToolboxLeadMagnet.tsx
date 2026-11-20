@@ -45,7 +45,7 @@ export function ToolboxLeadMagnet() {
           <div style={{ display: "inline-flex", alignItems: "center", gap: "8px", fontFamily: "'Poppins', sans-serif", fontSize: "11px", fontWeight: 700, letterSpacing: "0.16em", textTransform: "uppercase", color: COBALT, marginBottom: "16px" }}>
             <Sparkles size={15} strokeWidth={2} /> Free tool · No purchase
           </div>
-          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 900, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
+          <h2 style={{ fontFamily: "var(--eba-heading)", fontWeight: 800, fontSize: isMobile ? "2rem" : "clamp(2.1rem, 4vw, 3rem)", lineHeight: 1.08, letterSpacing: "-0.02em", color: NAVY, margin: "0 0 18px" }}>
             Try the Toolbox Talk Generator.
           </h2>
           {/* Copy per Mark's AI Tools schedule (19 Sep 2026), section 11: a

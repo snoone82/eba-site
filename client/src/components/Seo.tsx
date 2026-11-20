@@ -13,10 +13,9 @@ import { SOCIAL_LINKS } from "@/lib/constants";
 
 export const SITE_URL = "https://teb-academy.com";
 export const SITE_NAME = "The Engineering Business Academy";
-// On-brand 1200×630 og-image lives at client/public/og-image.png (served at /og-image.png).
-// This is an absolute teb-academy.com URL, so social link previews resolve once the custom
-// domain is connected. TODO(eba): swap in a richer photo/hero version if desired.
-export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.png`;
+// On-brand 1200×630 artwork at client/public/og-image.jpg (served at /og-image.jpg).
+// Absolute teb-academy.com URL so link previews resolve on the canonical host.
+export const DEFAULT_OG_IMAGE = `${SITE_URL}/og-image.jpg`;
 
 export interface SeoMeta {
   title: string;
@@ -141,7 +140,7 @@ export const PAGE_SEO = {
   contact: {
     title: "Contact The Engineering Business Academy",
     description:
-      "Questions about the Academy, documents, AI tools and agents, mentorship or a solution for your business. We reply within two working days.",
+      "Questions about the Academy, documents, AI tools and agents, mentorship or a solution for your business. We will get back to you within one working day.",
     path: "/contact",
   },
   faq: {

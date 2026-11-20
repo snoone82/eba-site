@@ -117,7 +117,7 @@ export function AutomationPage() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <Kicker light>Automation &amp; Systems · Built around your business</Kicker>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "820px",
           }}>
@@ -247,7 +247,7 @@ export function AutomationPage() {
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
         <div style={{ maxWidth: "720px", margin: "0 auto" }}>
           <h2 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 16px", lineHeight: 1.05,
           }}>
@@ -257,7 +257,7 @@ export function AutomationPage() {
             Whether it is a repetitive process, disconnected information, reporting requirement or an internal workflow that could work better, tell us a little about the problem and how it operates today.
           </p>
           <p style={{ color: `rgba(${CREAM_RGB},0.72)`, fontSize: "16px", lineHeight: 1.7, margin: "0 0 32px" }}>
-            We can then discuss whether automation, integration or a bespoke application is the right approach. We reply within two working days.
+            We can then discuss whether automation, integration or a bespoke application is the right approach. We will get back to you within one working day.
           </p>
           <Link href={ctaHref} onClick={() => track("cta_automation_footer")} style={{
             background: COBALT, color: "#fff", textDecoration: "none",

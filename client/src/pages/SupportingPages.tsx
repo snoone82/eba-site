@@ -168,7 +168,7 @@ export function OurStoryPage() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Our Story</SectionLabel>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "800px",
           }}>
@@ -298,7 +298,7 @@ export function OurStoryPage() {
       <section style={{ background: DARK_GRADIENT, padding: isMobile ? "60px 20px" : "90px 40px", textAlign: "center" }}>
         <RevealSection>
           <h2 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 28px", lineHeight: 1.05,
           }}>
@@ -458,7 +458,7 @@ export function DocumentsPage() {
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px" }}>
           <SectionLabel>Document Library</SectionLabel>
           <h1 style={{
-            fontFamily: "var(--eba-heading)", fontWeight: 900,
+            fontFamily: "var(--eba-heading)", fontWeight: 800,
             fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
             color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05, maxWidth: "720px",
           }}>
@@ -522,7 +522,7 @@ export function DocumentsPage() {
 
       {/* Photo band */}
       <div style={{ position: "relative", width: "100%", height: isMobile ? "240px" : "380px", overflow: "hidden" }}>
-        <img src="/site-fitout.jpg" alt="Developed around the real documentation and processes used within engineering businesses" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", display: "block" }} />
+        <img src="/site-fitout.webp" srcSet="/site-fitout-960.webp 960w, /site-fitout.webp 1600w" sizes="100vw" alt="Live site fit-out with ductwork, cable containment and building services" loading="lazy" decoding="async" style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center 45%", display: "block" }} />
         <div aria-hidden style={{ position: "absolute", inset: 0, background: `linear-gradient(90deg, rgba(${NAVY_RGB},0.74) 0%, rgba(${NAVY_RGB},0.4) 45%, rgba(${ACCENT_RGB},0.28) 100%)` }} />
         <div style={{ position: "absolute", inset: 0, display: "flex", alignItems: "center" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto", padding: isMobile ? "0 20px" : "0 40px", width: "100%" }}>
@@ -773,14 +773,14 @@ export function ContactPage() {
           <div>
             <SectionLabel>Enquiries</SectionLabel>
             <h1 style={{
-              fontFamily: "var(--eba-heading)", fontWeight: 900,
+              fontFamily: "var(--eba-heading)", fontWeight: 800,
               fontSize: "clamp(2.5rem, 5vw, 4rem)", letterSpacing: "-0.02em",
               color: ON_DARK, margin: "0 0 20px", lineHeight: 1.05,
             }}>
               Get in touch.
             </h1>
             <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "17px", lineHeight: 1.65, maxWidth: "520px" }}>
-              Whether you have a question about the Academy, documents, AI tools and agents, mentorship or a solution for your business, use the form below and we will get back to you within two working days.
+              Whether you have a question about the Academy, documents, AI tools and agents, mentorship or a solution for your business, use the form below and we will get back to you within one working day.
             </p>
           </div>
 
@@ -819,7 +819,7 @@ export function ContactPage() {
                     Enquiry received.
                   </h3>
                   <p style={{ color: `rgba(${CREAM_RGB},0.7)`, fontSize: "15px", margin: 0 }}>
-                    We will get back to you within two working days.
+                    We will get back to you within one working day.
                   </p>
                 </div>
               ) : (
